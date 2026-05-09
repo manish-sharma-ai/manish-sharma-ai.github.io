@@ -57,6 +57,8 @@ Core routes include:
 - `/frameworks/lmd-quality-evidence-ladder`
 - `/frameworks/lmd-repairability-index`
 - `/frameworks/lmd-ai-readiness-score`
+- `/frameworks/lmd-failure-atlas`
+- `/frameworks/lmd-ai-maturity-model`
 - `/agent-pack`
 - `/tools`
 - `/lab-notes`
@@ -73,6 +75,8 @@ Core routes include:
 - `/llms-full.txt`
 - `/identity.md`
 - `/frameworks/lmd-quality-evidence-ladder.md`
+- `/frameworks/lmd-failure-atlas.md`
+- `/frameworks/lmd-ai-maturity-model.md`
 - `/agent-pack/lmd-rfq-schema.json`
 - `/agent-pack/lmd-decision-rules.md`
 - `/agent-pack/lmd-prompt-library.md`
@@ -88,3 +92,10 @@ Preliminary decision-support only. Final feasibility depends on base material, g
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms
 - Website repository: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
+
+## Supporting Docs
+
+- `docs/content-roadmap.md`
+- `docs/github-profile-readme-suggestion.md`
+- `docs/lmd-black-hole-score-template.md`
+- `docs/search-indexing-checklist.md`

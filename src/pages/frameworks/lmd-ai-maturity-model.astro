@@ -1,0 +1,141 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "LMD-AI Maturity Model";
+const description =
+  "A staged model for moving Laser Metal Deposition workflows from manual records to structured data capture, analytics, AI decision support, and validated closed-loop development.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/frameworks/lmd-ai-maturity-model#article`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/frameworks/lmd-ai-maturity-model`,
+  about: ["Laser Metal Deposition", "AI maturity", "Process monitoring", "Manufacturing data", "Closed-loop control"]
+};
+
+const stages = [
+  {
+    level: "0",
+    title: "Unstructured craft memory",
+    signal: "Knowledge lives in people, screenshots, PDFs, and machine-side notes.",
+    capability: "AI can only summarize generic guidance.",
+    next: "Start collecting consistent RFQ, material, parameter, photo, and inspection records."
+  },
+  {
+    level: "1",
+    title: "Basic digital records",
+    signal: "Machine logs, photos, drawings, and inspection results exist but are not reliably linked.",
+    capability: "AI can help with search, checklists, and missing-information prompts.",
+    next: "Create job IDs that connect RFQ, CAD/path, parameters, feedstock, and inspection evidence."
+  },
+  {
+    level: "2",
+    title: "Traceable process history",
+    signal: "Jobs have linked material, geometry, parameters, feedstock batches, and operator notes.",
+    capability: "AI can support offline analytics and risk summaries.",
+    next: "Connect process signals to measured inspection outcomes and comparable build families."
+  },
+  {
+    level: "3",
+    title: "Inspection-linked analytics",
+    signal: "Monitoring data, parameter changes, inspection results, and defect labels can be analyzed together.",
+    capability: "AI can provide anomaly triage, evidence routing, and repairability decision support.",
+    next: "Validate model behavior against known outcomes and define escalation rules."
+  },
+  {
+    level: "4",
+    title: "Validated AI decision support",
+    signal: "AI outputs are tested, bounded, logged, reviewed, and connected to expert decisions.",
+    capability: "AI can support RFQ review, process monitoring interpretation, and inspection planning.",
+    next: "Build governance for model updates, drift checks, and closed-loop experiments."
+  },
+  {
+    level: "5",
+    title: "Closed-loop development candidate",
+    signal: "Validated feedback loops connect process, inspection, and outcome data across repeated jobs.",
+    capability: "AI may support controlled closed-loop development under engineering governance.",
+    next: "Treat deployment as a qualification program, not a software toggle."
+  }
+];
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-maturity-model" jsonLd={jsonLd}>
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Open framework</Badge>
+        <Badge tone="steel">Markdown available</Badge>
+        <Badge tone="laser">Decision-support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">
+        A maturity model for companies moving from scattered LMD records to inspection-linked analytics, validated AI decision support, and closed-loop development.
+      </p>
+      <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-16">
+    <div class="site-shell grid gap-4 md:grid-cols-3">
+      {[
+        ["Data before models", "The maturity question is not which model to use first. It is whether process, material, geometry, and inspection data are connected."],
+        ["Decision support before autonomy", "AI should assist missing-information checks, risk routing, and evidence planning before any closed-loop claims."],
+        ["Validation before confidence", "Useful AI maturity depends on validation, escalation rules, drift monitoring, and expert review."]
+      ].map(([heading, text]) => (
+        <div class="rounded-lg border border-white/10 bg-white/[0.035] p-5">
+          <h2 class="text-lg font-black text-white">{heading}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-400">{text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Maturity stages" title="From unstructured records to validated loops" />
+    <div class="mt-10 grid gap-4">
+      {
+        stages.map((stage) => (
+          <article class="grid gap-5 rounded-lg border border-white/10 bg-white/[0.035] p-6 md:grid-cols-[5rem_1fr]">
+            <div class="grid h-16 w-16 place-items-center rounded-lg border border-cyan-300/35 bg-cyan-300/10 font-mono text-2xl font-black text-cyan-100">
+              {stage.level}
+            </div>
+            <div>
+              <h2 class="text-2xl font-black text-white">{stage.title}</h2>
+              <div class="mt-5 grid gap-4 md:grid-cols-3">
+                <p class="text-sm leading-6 text-slate-300"><strong class="text-white">Maturity signal:</strong> {stage.signal}</p>
+                <p class="text-sm leading-6 text-cyan-50"><strong class="text-cyan-100">AI capability:</strong> {stage.capability}</p>
+                <p class="text-sm leading-6 text-orange-50"><strong class="text-orange-100">Next move:</strong> {stage.next}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <SectionHeading
+        eyebrow="Related resources"
+        title="Use with the readiness score and evidence ladder"
+        description="The maturity model explains the organizational path. The readiness score checks the current data foundations. The evidence ladder keeps AI outputs connected to physical validation."
+      />
+      <div>
+        <SourceLinks links={[
+          { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+          { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+          { label: "Markdown version", href: "/frameworks/lmd-ai-maturity-model.md" }
+        ]} />
+      </div>
+    </div>
+  </section>
+</Layout>

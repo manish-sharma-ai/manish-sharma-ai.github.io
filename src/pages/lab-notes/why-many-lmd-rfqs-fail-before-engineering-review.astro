@@ -1,0 +1,60 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "Why Many LMD RFQs Fail Before Engineering Review";
+const description =
+  "Many Laser Metal Deposition RFQs fail early because they omit material, damage, access, tolerance, inspection, and operating-condition context.";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/lab-notes/why-many-lmd-rfqs-fail-before-engineering-review`
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/why-many-lmd-rfqs-fail-before-engineering-review" jsonLd={jsonLd}>
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-3xl">
+      <p class="metric-label">Lab note · 2026-05-09</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Short answer">
+          Weak RFQs fail because the decision-critical information is missing before anyone can responsibly discuss feasibility.
+        </NoteBox>
+        <NoteBox title="Common mistake" tone="laser">
+          Asking “can this be repaired by LMD?” without material grade, damage depth, access, tolerance, inspection requirement, or operating conditions.
+        </NoteBox>
+        <NoteBox title="Practical takeaway" tone="steel">
+          A good AI-assisted RFQ should make missing information visible instead of hiding uncertainty behind a confident recommendation.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          Many Laser Metal Deposition RFQs fail before engineering review because they start with a vague part description and end with a request for a firm answer. The missing information is not administrative detail; it is the feasibility signal.
+        </p>
+        <p>
+          The most important missing fields are often material grade, damage depth, repair-zone access, final tolerance, operating conditions, safety criticality, and inspection requirements. Without those fields, AI should not produce a firm repair recommendation.
+        </p>
+        <p>
+          A strong RFQ separates known facts, assumptions, missing data, risk items, and next questions. That structure helps both AI agents and engineers avoid false confidence.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "LMD Agent Pack", href: "/agent-pack" },
+        { label: "RFQ schema JSON", href: "/agent-pack/lmd-rfq-schema.json" },
+        { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" }
+      ]} />
+    </div>
+  </article>
+</Layout>

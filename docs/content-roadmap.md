@@ -2,6 +2,8 @@
 
 ## Week 1: LMD Failure Atlas
 
+Status: first public version shipped.
+
 Create a public atlas connecting:
 
 - failure mode
@@ -12,6 +14,8 @@ Create a public atlas connecting:
 - inspection route
 
 ## Week 2: LMD-AI Maturity Model
+
+Status: first public version shipped.
 
 Define stages:
 

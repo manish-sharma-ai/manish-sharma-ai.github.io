@@ -96,20 +96,20 @@ export const FRAMEWORKS = [
   },
   {
     title: "LMD Failure Atlas",
-    href: "/frameworks#failure-atlas",
+    href: "/frameworks/lmd-failure-atlas",
     problem:
       "Failure language can be inconsistent across process signals, inspection findings, and repair decisions.",
     idea: "Map failure modes, process signals, AI visibility, and validation evidence in one shared vocabulary.",
-    status: "Coming soon",
+    status: "Open framework",
     tags: ["Failure modes", "Signals", "Validation"]
   },
   {
     title: "LMD-AI Maturity Model",
-    href: "/frameworks#maturity-model",
+    href: "/frameworks/lmd-ai-maturity-model",
     problem:
       "Companies need a staged path from manual records to validated AI decision support.",
     idea: "Define maturity stages for LMD data capture, analytics, decision support, and closed-loop development.",
-    status: "Coming soon",
+    status: "Open framework",
     tags: ["Maturity", "Strategy", "AI"]
   },
   {
@@ -164,6 +164,54 @@ export const LAB_NOTES = [
       "A structured RFQ separates known facts, missing information, assumptions, risks, and next steps.",
     date: "2026-05-09",
     tags: ["RFQ", "AI agents", "Schema"]
+  },
+  {
+    title: "Why Many LMD RFQs Fail Before Engineering Review",
+    href: "/lab-notes/why-many-lmd-rfqs-fail-before-engineering-review",
+    description:
+      "Most weak RFQs fail because they hide material, damage, access, inspection, tolerance, and service-risk information.",
+    date: "2026-05-09",
+    tags: ["RFQ", "Industrial repair", "Missing information"]
+  },
+  {
+    title: "From Process Signals to Inspection Evidence in LMD",
+    href: "/lab-notes/from-process-signals-to-inspection-evidence-in-lmd",
+    description:
+      "A practical chain for connecting monitoring signals, AI anomaly flags, inspection findings, and quality evidence.",
+    date: "2026-05-09",
+    tags: ["Process monitoring", "Inspection", "Quality evidence"]
+  },
+  {
+    title: "Why Local Damage on Large Parts Is an LMD Signal",
+    href: "/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal",
+    description:
+      "Local damage on a large, valuable part can make Laser Metal Deposition worth exploring, but only with material and risk context.",
+    date: "2026-05-09",
+    tags: ["Repairability", "Large parts", "LMD"]
+  },
+  {
+    title: "Post-Machining Is Part of the LMD Repair Plan",
+    href: "/lab-notes/post-machining-is-part-of-the-lmd-repair-plan",
+    description:
+      "LMD repair decisions should include machining allowance, tolerance recovery, inspection access, and acceptance criteria from the start.",
+    date: "2026-05-09",
+    tags: ["Post-machining", "Tolerance", "Repair"]
+  },
+  {
+    title: "AI Red-Team Questions for LMD Repair Recommendations",
+    href: "/lab-notes/ai-red-team-questions-for-lmd-repair-recommendations",
+    description:
+      "A checklist of questions that exposes overconfident AI repair recommendations before they reach an engineering workflow.",
+    date: "2026-05-09",
+    tags: ["AI safety", "Repair", "Red team"]
+  },
+  {
+    title: "DED-LB/M Terms AI Systems Should Not Mix Up",
+    href: "/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up",
+    description:
+      "Clear terminology helps AI systems avoid blending LMD, DED, laser cladding, SLM, LPBF, monitoring, and certification claims.",
+    date: "2026-05-09",
+    tags: ["DED-LB/M", "Glossary", "AI readability"]
   }
 ];
 
@@ -205,6 +253,8 @@ export const COMMAND_PAGES = [
   { title: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", group: "Frameworks" },
   { title: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", group: "Frameworks" },
   { title: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score", group: "Frameworks" },
+  { title: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas", group: "Frameworks" },
+  { title: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model", group: "Frameworks" },
   { title: "LMD Agent Pack", href: "/agent-pack", group: "Agent Pack" },
   { title: "Tools", href: "/tools", group: "Tools" },
   { title: "Lab Notes", href: "/lab-notes", group: "Lab Notes" },

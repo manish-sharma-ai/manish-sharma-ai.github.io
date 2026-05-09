@@ -1,0 +1,72 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "AI Red-Team Questions for LMD Repair Recommendations";
+const description =
+  "A checklist of questions that exposes overconfident AI recommendations for Laser Metal Deposition repair.";
+const questions = [
+  "What material grade is confirmed, and what is still unknown?",
+  "What damage depth, area, and location are documented?",
+  "What operating conditions and safety-critical constraints apply?",
+  "What inspection method would prove the suspected risk?",
+  "What post-machining allowance and tolerance recovery path exists?",
+  "What could make replacement, welding, machining, SLM/LPBF, or no repair a better option?",
+  "Which claim is only a process signal, and which claim is validated evidence?",
+  "What expert review is still required before action?"
+];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/lab-notes/ai-red-team-questions-for-lmd-repair-recommendations`
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/ai-red-team-questions-for-lmd-repair-recommendations" jsonLd={jsonLd}>
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-3xl">
+      <p class="metric-label">Lab note · 2026-05-09</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Short answer">
+          Red-team questions force an AI system to expose uncertainty before its recommendation becomes operationally persuasive.
+        </NoteBox>
+        <NoteBox title="Common mistake" tone="laser">
+          Testing whether an AI sounds confident instead of testing whether it knows what it does not know.
+        </NoteBox>
+        <NoteBox title="Practical takeaway" tone="steel">
+          A responsible LMD AI answer should produce missing information, risks, alternatives, evidence needs, and escalation points.
+        </NoteBox>
+      </div>
+      <div>
+        <div class="grid gap-3">
+          {questions.map((question) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold leading-6 text-slate-100">{question}</div>)}
+        </div>
+      </div>
+    </div>
+    <div class="prose-lab mt-10 max-w-4xl">
+      <p>
+        AI repair recommendations become risky when they compress uncertainty into a single confident answer. In LMD, the better behavior is to show the chain of missing information and evidence needs.
+      </p>
+      <p>
+        These questions are useful for developers testing an LMD agent, buyers preparing RFQs, and engineers reviewing AI-assisted summaries.
+      </p>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "LMD Agent Pack", href: "/agent-pack" },
+        { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
+        { label: "For AI Agents", href: "/for-ai-agents" }
+      ]} />
+    </div>
+  </article>
+</Layout>

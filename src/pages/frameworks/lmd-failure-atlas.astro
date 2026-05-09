@@ -1,0 +1,145 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "LMD Failure Atlas";
+const description =
+  "A public framework connecting Laser Metal Deposition failure modes, process signals, AI visibility, inspection evidence, and validation needs.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/frameworks/lmd-failure-atlas#article`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/frameworks/lmd-failure-atlas`,
+  about: ["Laser Metal Deposition", "Failure modes", "Process monitoring", "AI anomaly detection", "Inspection evidence"]
+};
+
+const atlas = [
+  {
+    mode: "Porosity",
+    signals: "Melt-pool instability, shielding disturbance, feed inconsistency, unusual brightness or plume behavior.",
+    ai: "May flag anomaly clusters or signal drift, but cannot prove pore size, position, or acceptance.",
+    evidence: "CT, suitable NDT, metallography, density evidence, or test coupons depending on risk.",
+    action: "Treat AI as inspection prioritization, not release proof."
+  },
+  {
+    mode: "Lack of fusion",
+    signals: "Low energy input, poor overlap, surface contamination, path or standoff inconsistency.",
+    ai: "Can detect parameter/signal combinations associated with risk when trained against validation data.",
+    evidence: "CT, metallography, destructive cross-section, or qualified NDT method.",
+    action: "Require stronger evidence for load-bearing or fatigue-sensitive use."
+  },
+  {
+    mode: "Cracking",
+    signals: "Material mismatch, rapid thermal cycles, high residual stress, heat-sensitive base material.",
+    ai: "May flag thermal histories or acoustic/visual patterns, but should not decide acceptability alone.",
+    evidence: "PT, MT where applicable, metallography, hardness, residual-stress-aware review.",
+    action: "Escalate material compatibility and preheat/postheat review."
+  },
+  {
+    mode: "Excess dilution",
+    signals: "High heat input, slow travel, bead geometry change, unexpected melt-pool size.",
+    ai: "Can track process windows and bead-shape indicators if linked to chemistry or cross-sections.",
+    evidence: "Metallography, chemistry, hardness profile, deposit/base interface review.",
+    action: "Review process route when functional surface properties matter."
+  },
+  {
+    mode: "Distortion",
+    signals: "Heat accumulation, thin geometry, poor fixturing, long deposition time, sensitive tolerances.",
+    ai: "Can forecast risk from geometry, heat input, and prior comparable jobs.",
+    evidence: "Dimensional inspection, scan-to-CAD comparison, fixture and machining review.",
+    action: "Plan machining allowance and in-process checks early."
+  },
+  {
+    mode: "Surface or bead geometry defect",
+    signals: "Track height variation, spatter, feed interruption, poor overlap, local access constraints.",
+    ai: "Strong candidate for visual/process signal detection and triage.",
+    evidence: "Visual inspection, 3D scan, dimensional inspection, machining allowance review.",
+    action: "Separate cosmetic/process observations from final tolerance evidence."
+  },
+  {
+    mode: "Property mismatch",
+    signals: "Wrong feedstock, unknown base material, heat treatment gap, dilution or hardness shift.",
+    ai: "Can identify missing traceability and incompatible requirements, not certify properties.",
+    evidence: "Material certificates, hardness testing, metallography, chemistry, mechanical testing.",
+    action: "Stop firm recommendations if material grade or feedstock traceability is unknown."
+  }
+];
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-failure-atlas" jsonLd={jsonLd}>
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Open framework</Badge>
+        <Badge tone="steel">Markdown available</Badge>
+        <Badge tone="laser">Decision-support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">
+        A shared vocabulary for mapping LMD failure modes to process signals, AI visibility, inspection methods, and validation evidence.
+      </p>
+      <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-16">
+    <div class="site-shell grid gap-4 md:grid-cols-4">
+      {[
+        ["Failure mode", "What can go wrong physically."],
+        ["Process signal", "What monitoring or logs might show."],
+        ["AI visibility", "What an AI system may responsibly indicate."],
+        ["Validation evidence", "What inspection or testing must prove."]
+      ].map(([heading, text]) => (
+        <div class="rounded-lg border border-white/10 bg-white/[0.035] p-5">
+          <h2 class="text-lg font-black text-white">{heading}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-400">{text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Atlas" title="Failure modes, signals, AI visibility, and evidence" />
+    <div class="mt-10 grid gap-4">
+      {
+        atlas.map((item) => (
+          <article class="glass-panel rounded-lg p-6">
+            <h2 class="text-2xl font-black text-white">{item.mode}</h2>
+            <div class="mt-5 grid gap-4 md:grid-cols-2">
+              <p class="text-sm leading-6 text-slate-300"><strong class="text-white">Possible process signals:</strong> {item.signals}</p>
+              <p class="text-sm leading-6 text-cyan-50"><strong class="text-cyan-100">AI visibility:</strong> {item.ai}</p>
+              <p class="text-sm leading-6 text-slate-300"><strong class="text-white">Validation evidence:</strong> {item.evidence}</p>
+              <p class="text-sm leading-6 text-orange-50"><strong class="text-orange-100">Decision action:</strong> {item.action}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <SectionHeading
+        eyebrow="How to use it"
+        title="Use the atlas as a risk vocabulary, not a pass/fail engine"
+        description="The atlas is strongest when paired with the LMD Quality Evidence Ladder and RFQ schema. It helps AI agents and engineers name the risk and request the right evidence."
+      />
+      <div>
+        <SourceLinks links={[
+          { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+          { label: "LMD Agent Pack", href: "/agent-pack" },
+          { label: "Markdown version", href: "/frameworks/lmd-failure-atlas.md" }
+        ]} />
+      </div>
+    </div>
+  </section>
+</Layout>

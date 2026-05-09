@@ -32,6 +32,8 @@ This site avoids confidential customer or employer data.
 
 - Identity page: https://manish-sharma-ai.github.io/identity
 - Site: https://manish-sharma-ai.github.io
+- LMD Failure Atlas: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
+- LMD-AI Maturity Model: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
 
 ## Limitation
 

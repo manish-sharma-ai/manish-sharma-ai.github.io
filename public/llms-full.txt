@@ -52,6 +52,22 @@ The LMD-AI Readiness Score evaluates whether a workflow is ready for useful AI-a
 
 URL: https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score
 
+### LMD Failure Atlas
+
+The LMD Failure Atlas connects failure modes, process signals, AI visibility, validation evidence, and decision actions. It helps AI agents and engineers avoid treating a monitoring signal as full quality proof.
+
+URL: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
+
+Markdown mirror: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas.md
+
+### LMD-AI Maturity Model
+
+The LMD-AI Maturity Model describes stages from unstructured craft memory to basic digital records, traceable process history, inspection-linked analytics, validated AI decision support, and closed-loop development candidates.
+
+URL: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
+
+Markdown mirror: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model.md
+
 ## Agent Pack
 
 The LMD Agent Pack helps AI agents, engineers, buyers, and developers convert vague part descriptions into structured RFQ data. It does not make final engineering decisions.
@@ -88,6 +104,12 @@ Melt-pool monitoring: observation of the molten region during deposition to supp
 - What AI Needs Before Recommending LMD Repair
 - LMD vs SLM: Decision Signals
 - How to Structure a Laser Metal Deposition RFQ for AI Agents
+- Why Many LMD RFQs Fail Before Engineering Review
+- From Process Signals to Inspection Evidence in LMD
+- Why Local Damage on Large Parts Is an LMD Signal
+- Post-Machining Is Part of the LMD Repair Plan
+- AI Red-Team Questions for LMD Repair Recommendations
+- DED-LB/M Terms AI Systems Should Not Mix Up
 
 URL: https://manish-sharma-ai.github.io/lab-notes
 

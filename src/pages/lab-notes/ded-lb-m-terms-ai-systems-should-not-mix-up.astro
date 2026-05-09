@@ -1,0 +1,60 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "DED-LB/M Terms AI Systems Should Not Mix Up";
+const description =
+  "Clear terminology helps AI systems avoid blending Laser Metal Deposition, Directed Energy Deposition, laser cladding, SLM, LPBF, monitoring, and certification claims.";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up`
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up" jsonLd={jsonLd}>
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-3xl">
+      <p class="metric-label">Lab note · 2026-05-09</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Short answer">
+          AI systems should keep process family, process route, monitoring signal, and quality evidence separate.
+        </NoteBox>
+        <NoteBox title="Common mistake" tone="laser">
+          Blending DED, LMD, laser cladding, SLM/LPBF, melt-pool monitoring, and certification into one fuzzy additive manufacturing answer.
+        </NoteBox>
+        <NoteBox title="Practical takeaway" tone="steel">
+          Clear terms make recommendations safer, more searchable, and easier for industrial buyers to evaluate.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          Directed Energy Deposition is a broader additive manufacturing category. Laser Metal Deposition can be understood as a laser-based metal DED route, often connected to the DED-LB/M term.
+        </p>
+        <p>
+          Laser cladding is often surface- or restoration-focused. SLM/LPBF is a powder-bed process with different geometry, support, tolerance, and post-processing implications.
+        </p>
+        <p>
+          Melt-pool monitoring is a process-awareness method, not a certificate. Certification or release decisions require inspection and validation evidence appropriate to the part risk.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "Directed Energy Deposition glossary", href: "/glossary/directed-energy-deposition" },
+        { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
+        { label: "LMD vs SLM Decision Signals", href: "/lab-notes/lmd-vs-slm-decision-signals" }
+      ]} />
+    </div>
+  </article>
+</Layout>
