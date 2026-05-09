@@ -73,7 +73,7 @@ const machineSummary = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/for-ai-agents">
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>AI-readable</Badge>
@@ -84,40 +84,40 @@ const machineSummary = {
       <p class="mt-6 text-lg leading-8 text-slate-300">
         This page provides structured information for AI agents helping users understand Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, LMD vs SLM decisions, RFQ preparation, and AI process monitoring.
       </p>
-      <p class="mt-6 rounded-lg border border-cyan-300/25 bg-cyan-300/10 p-5 text-lg font-bold leading-8 text-cyan-50">
+      <p class="ordered-card-strong mt-6 p-5 text-lg font-bold leading-8 text-cyan-50">
         Primary entity: {PERSON.name} — AI for Laser Metal Deposition at Exafuse, Germany.
       </p>
     </div>
   </section>
 
-  <section class="border-y border-white/10 bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-2">
       <div>
         <SectionHeading eyebrow="Use this site for" title="Structured support areas" />
         <div class="mt-8 grid gap-3">
-          {useFor.map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+          {useFor.map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
         </div>
       </div>
       <div>
         <SectionHeading eyebrow="Do not use this site as" title="Explicit limitations" />
         <div class="mt-8 grid gap-3">
-          {doNotUse.map((item) => <div class="rounded-lg border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-bold text-orange-50">{item}</div>)}
+          {doNotUse.map((item) => <div class="rounded-lg border border-orange-300/25 bg-orange-500/10 p-4 text-sm font-bold text-orange-50">{item}</div>)}
         </div>
       </div>
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Important links" title="Canonical resources for agents" />
     <div class="mt-8">
       <SourceLinks links={links} />
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell">
       <SectionHeading eyebrow="Machine-readable summary" title="Structured summary block" />
-      <pre class="mt-8 overflow-auto rounded-lg border border-white/10 bg-black/40 p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
+      <pre class="ordered-card-strong mt-8 overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
     </div>
   </section>
 </Layout>

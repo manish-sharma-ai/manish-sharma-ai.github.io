@@ -82,7 +82,7 @@ function Select({
   onChange: (value: string) => void;
 }) {
   return (
-    <label className="grid gap-2 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-white">
+    <label className="ordered-card grid gap-2 p-4 text-sm font-bold text-white">
       {label}
       <select
         value={value}
@@ -99,13 +99,13 @@ function Select({
 
 function ToolResult({ title, explanation, missing }: { title: string; explanation: string; missing: string[] }) {
   return (
-    <aside className="glass-panel h-fit rounded-lg p-6">
+    <aside className="ordered-card-strong h-fit p-6">
       <p className="metric-label">Advisor output</p>
       <p className="mt-4 text-3xl font-black text-white">{title}</p>
       <p className="mt-4 text-sm leading-6 text-slate-300">{explanation}</p>
       <p className="mt-6 text-sm font-bold text-white">Missing information</p>
       <ul className="mt-3 grid gap-2 text-sm text-slate-300">
-        {missing.map((item) => <li key={item} className="rounded-md border border-white/10 bg-black/20 px-3 py-2">{item}</li>)}
+        {missing.map((item) => <li key={item} className="ordered-card px-3 py-2">{item}</li>)}
       </ul>
       <p className="mt-6 rounded-md border border-cyan-300/20 bg-cyan-300/10 p-3 text-sm leading-6 text-cyan-50">
         Basic frontend decision demo. It does not replace engineering review, material validation, or supplier feasibility assessment.

@@ -2,19 +2,19 @@
 import { LINKS, NAV_ITEMS } from "@data/site";
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/74 backdrop-blur-xl">
-  <div class="site-shell flex min-h-16 items-center justify-between gap-4">
-    <a href="/" class="group flex items-center gap-3" aria-label="Manish Sharma Lab home">
-      <span class="grid h-9 w-9 place-items-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 shadow-glow">
+<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/82 backdrop-blur-xl">
+  <div class="site-shell grid min-h-[4.5rem] grid-cols-[auto_1fr_auto] items-center gap-5">
+    <a href="/" class="group flex min-w-[15rem] items-center gap-3" aria-label="Manish Sharma Lab home">
+      <span class="grid h-10 w-10 place-items-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 shadow-glow">
         <span class="h-3 w-3 rounded-sm bg-cyan-300 shadow-glow"></span>
       </span>
       <span class="leading-tight">
         <span class="block text-sm font-black text-white">Manish Sharma Lab</span>
-        <span class="metric-label hidden text-[0.62rem] sm:block">AI for Laser Metal Deposition</span>
+        <span class="metric-label hidden whitespace-nowrap text-[0.62rem] sm:block">AI for Laser Metal Deposition</span>
       </span>
     </a>
 
-    <nav class="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
+    <nav class="hidden items-center justify-center gap-1 xl:flex" aria-label="Primary navigation">
       {
         NAV_ITEMS.map((item) => (
           <a
@@ -27,7 +27,7 @@ import { LINKS, NAV_ITEMS } from "@data/site";
       }
     </nav>
 
-    <div class="hidden items-center gap-2 xl:flex">
+    <div class="hidden items-center justify-end gap-2 xl:flex">
       <button
         type="button"
         data-command-trigger
@@ -41,7 +41,7 @@ import { LINKS, NAV_ITEMS } from "@data/site";
       </a>
     </div>
 
-    <details class="group relative xl:hidden">
+    <details class="group relative justify-self-end xl:hidden">
       <summary class="flex cursor-pointer list-none items-center rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-bold text-white">
         Menu
       </summary>

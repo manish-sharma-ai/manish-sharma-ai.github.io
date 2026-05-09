@@ -69,7 +69,7 @@ const stages = [
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-maturity-model" jsonLd={jsonLd}>
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Open framework</Badge>
@@ -84,14 +84,14 @@ const stages = [
     </div>
   </section>
 
-  <section class="border-y border-white/10 bg-black/24 py-16">
+  <section class="band section-y">
     <div class="site-shell grid gap-4 md:grid-cols-3">
       {[
         ["Data before models", "The maturity question is not which model to use first. It is whether process, material, geometry, and inspection data are connected."],
         ["Decision support before autonomy", "AI should assist missing-information checks, risk routing, and evidence planning before any closed-loop claims."],
         ["Validation before confidence", "Useful AI maturity depends on validation, escalation rules, drift monitoring, and expert review."]
       ].map(([heading, text]) => (
-        <div class="rounded-lg border border-white/10 bg-white/[0.035] p-5">
+        <div class="ordered-card p-5">
           <h2 class="text-lg font-black text-white">{heading}</h2>
           <p class="mt-3 text-sm leading-6 text-slate-400">{text}</p>
         </div>
@@ -99,12 +99,12 @@ const stages = [
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Maturity stages" title="From unstructured records to validated loops" />
     <div class="mt-10 grid gap-4">
       {
         stages.map((stage) => (
-          <article class="grid gap-5 rounded-lg border border-white/10 bg-white/[0.035] p-6 md:grid-cols-[5rem_1fr]">
+          <article class="ordered-card grid gap-5 p-6 md:grid-cols-[5rem_1fr]">
             <div class="grid h-16 w-16 place-items-center rounded-lg border border-cyan-300/35 bg-cyan-300/10 font-mono text-2xl font-black text-cyan-100">
               {stage.level}
             </div>
@@ -122,7 +122,7 @@ const stages = [
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
       <SectionHeading
         eyebrow="Related resources"

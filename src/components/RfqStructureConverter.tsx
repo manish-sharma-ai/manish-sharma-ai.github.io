@@ -46,10 +46,10 @@ export default function RfqStructureConverter() {
           value={text}
           onChange={(event) => setText(event.target.value)}
           rows={12}
-          className="rounded-lg border border-white/10 bg-black/28 p-4 text-sm leading-6 text-slate-100 outline-none transition focus:border-cyan-300/50"
+          className="ordered-card min-h-[24rem] p-4 text-sm leading-6 text-slate-100 outline-none transition focus:border-cyan-300/50"
         />
       </label>
-      <aside className="glass-panel rounded-lg p-6">
+      <aside className="ordered-card-strong p-6">
         <p className="metric-label">Structured RFQ preview</p>
         <div className="mt-5 grid gap-4 text-sm">
           <Field label="Part" value={parsed.part} />
@@ -59,7 +59,7 @@ export default function RfqStructureConverter() {
           <div>
             <p className="font-bold text-white">Missing information</p>
             <ul className="mt-2 grid gap-2 text-slate-300">
-              {parsed.missing.map((item) => <li key={item} className="rounded-md border border-white/10 bg-black/20 px-3 py-2">{item}</li>)}
+              {parsed.missing.map((item) => <li key={item} className="ordered-card px-3 py-2">{item}</li>)}
             </ul>
           </div>
           <div>
@@ -81,7 +81,7 @@ function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="font-bold text-white">{label}</p>
-      <p className="mt-1 rounded-md border border-white/10 bg-black/20 px-3 py-2 text-slate-300">{value}</p>
+      <p className="ordered-card mt-1 px-3 py-2 text-slate-300">{value}</p>
     </div>
   );
 }

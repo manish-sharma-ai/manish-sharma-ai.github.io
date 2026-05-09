@@ -14,7 +14,7 @@ const { title, href, problem, idea, status, tags } = Astro.props;
 const tone = status.includes("Coming") ? "amber" : status.includes("Agent") ? "cyan" : status.includes("Interactive") ? "laser" : "steel";
 ---
 
-<a href={href} class="glass-panel card-hover grid min-h-[19rem] content-between rounded-lg p-6">
+<a href={href} class="ordered-card-strong card-hover group grid min-h-[20rem] content-between overflow-hidden p-6">
   <div>
     <div class="flex flex-wrap items-center gap-2">
       <Badge tone={tone}>{status}</Badge>
@@ -26,5 +26,8 @@ const tone = status.includes("Coming") ? "amber" : status.includes("Agent") ? "c
       <p class="text-slate-300"><strong class="text-cyan-100">Framework idea:</strong> {idea}</p>
     </div>
   </div>
-  <span class="mt-6 inline-flex font-mono text-xs font-bold uppercase text-cyan-200">Open resource</span>
+  <span class="mt-6 inline-flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs font-bold uppercase text-cyan-200">
+    Open resource
+    <span class="transition group-hover:translate-x-1">&rarr;</span>
+  </span>
 </a>

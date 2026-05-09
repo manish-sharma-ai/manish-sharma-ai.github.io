@@ -66,10 +66,16 @@ const graphLinks = [
 ];
 
 const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
+
+const heroSignals = [
+  ["Lab", "Frameworks + tools"],
+  ["Domain", "DED/LMD + AI"],
+  ["Boundary", "Inspection-aware"]
+];
 ---
 
 <Layout title={title} description={description} canonical="/" jsonLd={websiteJsonLd}>
-  <section class="site-shell grid min-h-[calc(100svh-4rem)] items-center gap-12 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:py-20">
+  <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:py-20">
     <div>
       <div class="flex flex-wrap gap-2">
         <Badge>Agent-ready</Badge>
@@ -92,12 +98,20 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
         <a href="/lab-notes" class="btn btn-secondary">Read Lab Notes</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Visit Exafuse</a>
       </div>
+      <div class="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+        {heroSignals.map(([label, value]) => (
+          <div class="ordered-card p-4">
+            <p class="metric-label">{label}</p>
+            <p class="mt-2 text-sm font-black text-white">{value}</p>
+          </div>
+        ))}
+      </div>
     </div>
     <HeroLaserVisual />
   </section>
 
-  <section class="border-y border-white/10 bg-black/24">
-    <div class="site-shell grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-5">
+  <section class="band">
+    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-6">
       {[
         ["Person", "Manish Sharma"],
         ["Focus", "AI + Laser Metal Deposition"],
@@ -105,7 +119,7 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
         ["Location", "Germany"],
         ["Domains", "LMD · DED · Laser Cladding · Process Monitoring · Industrial Repair · RFQ Intelligence"]
       ].map(([label, value]) => (
-        <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+        <div class={`ordered-card p-4 ${label === "Domains" ? "lg:col-span-2" : ""}`}>
           <p class="metric-label">{label}</p>
           <p class="mt-2 text-sm font-bold leading-6 text-white">{value}</p>
         </div>
@@ -113,28 +127,28 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading
       eyebrow="Public frameworks"
       title="A technical knowledge graph for LMD decisions"
       description="Open frameworks turn scattered LMD questions into structured decision support: what can be inferred, what is missing, what must be inspected, and when expert review becomes non-negotiable."
     />
-    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {homepageCards.map((card) => <FrameworkCard {...card} />)}
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell">
       <SectionHeading
         eyebrow="Decision flow"
         title="From vague RFQ to inspection-aware evidence"
         description="The site is built around a practical chain of information. AI can help structure the work, but quality evidence must match part risk and service conditions."
       />
-      <div class="mt-10 grid gap-4 lg:grid-cols-6">
+      <div class="mt-10 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
         {
           flow.map(([node, text], index) => (
-            <div class="relative rounded-lg border border-white/10 bg-white/[0.035] p-5">
+            <div class="ordered-card relative min-h-[13rem] p-5">
               <span class="metric-label">0{index + 1}</span>
               <h3 class="mt-3 text-xl font-black text-white">{node}</h3>
               <p class="mt-3 text-sm leading-6 text-slate-400">{text}</p>
@@ -145,15 +159,15 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
       <SectionHeading eyebrow="Latest lab notes" title="Short, inspection-aware explanations" />
       <a href="/lab-notes" class="btn btn-secondary w-fit">View all lab notes</a>
     </div>
-    <div class="mt-10 grid gap-5 md:grid-cols-2">
+    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {
         latestLabNotes.map((note) => (
-          <a href={note.href} class="glass-panel card-hover rounded-lg p-6">
+          <a href={note.href} class="ordered-card-strong card-hover rounded-lg p-6">
             <p class="metric-label">{note.date}</p>
             <h3 class="mt-3 text-2xl font-black text-white">{note.title}</h3>
             <p class="mt-4 text-sm leading-6 text-slate-400">{note.description}</p>
@@ -163,7 +177,7 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <SectionHeading
@@ -176,7 +190,7 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
             graphLinks.map(([label, href]) => (
               <a
                 href={href}
-                class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-200 transition hover:border-cyan-300/35 hover:text-white"
+                class="ordered-card p-4 text-sm font-bold text-slate-200 transition hover:border-cyan-300/35 hover:text-white"
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel={href.startsWith("http") ? "noreferrer" : undefined}
               >
@@ -190,9 +204,9 @@ const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <div class="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
-      <div class="glass-panel rounded-lg p-8">
+      <div class="ordered-card-strong p-8">
         <p class="metric-label">For AI agents</p>
         <h2 class="mt-4 text-3xl font-black text-white">Structured LMD context, with boundaries</h2>
         <p class="mt-5 text-lg leading-8 text-slate-300">

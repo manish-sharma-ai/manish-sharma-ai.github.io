@@ -31,7 +31,7 @@ export default function AIReadinessCalculator() {
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <div className="grid gap-3">
         {checks.map((item) => (
-          <label key={item} className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-semibold text-slate-200">
+          <label key={item} className="ordered-card flex items-start gap-3 p-4 text-sm font-semibold text-slate-200">
             <input
               type="checkbox"
               checked={selected.includes(item)}
@@ -46,7 +46,7 @@ export default function AIReadinessCalculator() {
           </label>
         ))}
       </div>
-      <aside className="glass-panel h-fit rounded-lg p-6">
+      <aside className="ordered-card-strong h-fit p-6">
         <p className="metric-label">AI readiness</p>
         <div className="mt-4 text-6xl font-black text-white">{score}</div>
         <p className="mt-4 text-xl font-bold text-cyan-100">{band.label}</p>
@@ -57,7 +57,7 @@ export default function AIReadinessCalculator() {
           <p className="text-sm font-bold text-white">Next data foundations</p>
           <ul className="mt-3 grid gap-2 text-sm text-slate-300">
             {missing.slice(0, 5).map((item) => (
-              <li key={item} className="rounded-md border border-white/10 bg-black/20 px-3 py-2">{item}</li>
+              <li key={item} className="ordered-card px-3 py-2">{item}</li>
             ))}
           </ul>
         </div>

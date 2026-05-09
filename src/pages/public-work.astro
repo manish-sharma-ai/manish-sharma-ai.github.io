@@ -36,7 +36,7 @@ const liveResources = [
 ---
 
 <Layout title={title} description={description} canonical="/public-work">
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell section-y">
     <SectionHeading
       eyebrow="Public work"
       title="Profiles, frameworks, reports, repositories, and tools"
@@ -47,18 +47,18 @@ const liveResources = [
     </div>
   </section>
 
-  <section class="border-y border-white/10 bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell">
       <SectionHeading eyebrow="Live public resources" title="Frameworks and AI-agent files now published" />
-      <div class="mt-8 grid gap-3 md:grid-cols-4">
-        {liveResources.map(([label, href]) => <a href={href} class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100 transition hover:border-cyan-300/35 hover:text-white">{label}</a>)}
+      <div class="equal-card-grid mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        {liveResources.map(([label, href]) => <a href={href} class="ordered-card card-hover flex min-h-20 items-center p-4 text-sm font-bold text-slate-100">{label}</a>)}
       </div>
     </div>
   </section>
 
-  <section class="py-20">
-    <div class="site-shell grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-      {future.map(([heading, text]) => <div class="glass-panel rounded-lg p-6"><h2 class="text-2xl font-black text-white">{heading}</h2><p class="mt-4 text-sm leading-6 text-slate-300">{text}</p></div>)}
+  <section class="site-shell section-y">
+    <div class="equal-card-grid grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {future.map(([heading, text]) => <div class="ordered-card-strong card-hover p-6"><h2 class="text-2xl font-black text-white">{heading}</h2><p class="mt-4 text-sm leading-6 text-slate-300">{text}</p></div>)}
     </div>
   </section>
 </Layout>

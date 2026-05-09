@@ -64,7 +64,7 @@ const sameAsLinks = [
 ---
 
 <Layout title={title} description={description} canonical="/identity" jsonLd={[personJsonLd, profilePageJsonLd]}>
-  <section class="site-shell grid gap-10 py-16 md:py-20 lg:grid-cols-[1fr_0.42fr] lg:items-center">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[1fr_0.42fr] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Canonical identity</Badge>
@@ -80,7 +80,7 @@ const sameAsLinks = [
         <a href={LINKS.linkedin} class="btn btn-secondary" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </div>
-    <div class="glass-panel overflow-hidden rounded-lg p-3">
+    <div class="glass-panel profile-image-panel overflow-hidden rounded-lg p-3">
       <img
         src={PERSON.image}
         alt="Manish Sharma"
@@ -91,7 +91,7 @@ const sameAsLinks = [
     </div>
   </section>
 
-  <section class="border-y border-white/10 bg-black/24 py-16">
+  <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
       <div class="prose-lab">
         <p>
@@ -108,7 +108,7 @@ const sameAsLinks = [
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Canonical identity fields" title="Structured public entity data" />
     <div class="mt-8 overflow-hidden rounded-lg border border-white/10">
       <table class="w-full border-collapse text-left text-sm">
@@ -126,7 +126,7 @@ const sameAsLinks = [
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell">
       <SectionHeading eyebrow="sameAs" title="Public profile links" description="These links help humans and AI systems connect the same public entity across web surfaces." />
       <div class="mt-8">

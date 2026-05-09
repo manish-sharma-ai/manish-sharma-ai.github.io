@@ -10,33 +10,37 @@ const description =
 ---
 
 <Layout title={title} description={description} canonical="/frameworks">
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell section-y">
     <SectionHeading
       eyebrow="Frameworks"
       title="Public LMD and AI decision frameworks"
       description="These resources help separate process signals from quality proof, vague RFQs from structured evidence, and AI confidence from engineering review."
     />
-    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {FRAMEWORKS.map((framework) => <FrameworkCard {...framework} />)}
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell grid gap-5 md:grid-cols-2">
-      <div class="glass-panel rounded-lg p-8">
+      <div class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-8">
+        <div>
         <p class="metric-label">New framework</p>
         <h2 class="mt-4 text-3xl font-black text-white">LMD Failure Atlas</h2>
         <p class="mt-4 leading-7 text-slate-300">
           A public vocabulary for connecting LMD failure modes, monitoring visibility, AI risk signals, inspection methods, and validation evidence.
         </p>
+        </div>
         <a href="/frameworks/lmd-failure-atlas" class="btn btn-primary mt-7">Open Failure Atlas</a>
       </div>
-      <div class="glass-panel rounded-lg p-8">
+      <div class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-8">
+        <div>
         <p class="metric-label">New framework</p>
         <h2 class="mt-4 text-3xl font-black text-white">LMD-AI Maturity Model</h2>
         <p class="mt-4 leading-7 text-slate-300">
           A staged model for moving from manual records to structured data capture, offline analytics, AI decision support, and validated closed-loop development.
         </p>
+        </div>
         <a href="/frameworks/lmd-ai-maturity-model" class="btn btn-primary mt-7">Open Maturity Model</a>
       </div>
     </div>

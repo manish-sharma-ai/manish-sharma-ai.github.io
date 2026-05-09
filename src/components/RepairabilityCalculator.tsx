@@ -38,7 +38,7 @@ export default function RepairabilityCalculator() {
     <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
       <div className="grid gap-4">
         {categories.map((category) => (
-          <label key={category} className="grid gap-2 rounded-lg border border-white/10 bg-white/[0.035] p-4">
+          <label key={category} className="ordered-card grid gap-2 p-4">
             <span className="flex items-center justify-between gap-4 text-sm font-bold text-white">
               {category}
               <span className="font-mono text-cyan-100">{scores[category]}/10</span>
@@ -59,7 +59,7 @@ export default function RepairabilityCalculator() {
           </label>
         ))}
       </div>
-      <aside className="glass-panel h-fit rounded-lg p-6">
+      <aside className="ordered-card-strong h-fit p-6">
         <p className="metric-label">Repairability score</p>
         <div className="mt-4 text-6xl font-black text-white">{score}</div>
         <p className="mt-4 text-xl font-bold text-cyan-100">{band.label}</p>
@@ -70,7 +70,7 @@ export default function RepairabilityCalculator() {
           <p className="text-sm font-bold text-white">Watch items</p>
           <ul className="mt-3 grid gap-2 text-sm text-slate-300">
             {(missing.length ? missing : ["No severe weak category selected"]).map((item) => (
-              <li key={item} className="rounded-md border border-white/10 bg-black/20 px-3 py-2">{item}</li>
+              <li key={item} className="ordered-card px-3 py-2">{item}</li>
             ))}
           </ul>
         </div>

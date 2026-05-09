@@ -100,7 +100,7 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/agent-pack" jsonLd={jsonLd}>
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Agent-ready</Badge>
@@ -116,14 +116,14 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="border-y border-white/10 bg-black/24 py-16">
-    <div class="site-shell grid gap-5 md:grid-cols-3">
+  <section class="band section-y">
+    <div class="site-shell equal-card-grid grid gap-5 md:grid-cols-3">
       {[
         ["What this Agent Pack is", "A public structure for turning LMD repair, cladding, or build requests into explicit facts, missing information, risks, and next steps."],
         ["What it can help with", "RFQ preparation, process-selection questions, repairability screening, monitoring explanations, and quality-evidence planning."],
         ["What it cannot do", "It cannot certify a part, approve safety-critical work, validate material compatibility, or replace expert review."]
       ].map(([heading, text]) => (
-        <div class="glass-panel rounded-lg p-6">
+        <div class="ordered-card-strong p-6">
           <h2 class="text-xl font-black text-white">{heading}</h2>
           <p class="mt-4 text-sm leading-6 text-slate-300">{text}</p>
         </div>
@@ -131,49 +131,49 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="RFQ schema preview" title="A structured object before recommendations" />
     <div class="mt-8">
       <CopyBlock client:load label="lmd-rfq-schema.json" text={JSON.stringify(schema, null, 2)} />
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell grid gap-10 lg:grid-cols-2">
       <div>
         <SectionHeading eyebrow="Decision rules preview" title="Risk-aware rules for agents" />
         <ol class="mt-8 grid gap-3">
-          {decisionRules.map((rule) => <li class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold leading-6 text-slate-100">{rule}</li>)}
+          {decisionRules.map((rule) => <li class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{rule}</li>)}
         </ol>
       </div>
       <div>
         <SectionHeading eyebrow="Missing information checklist" title="Ask before deciding" />
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          {["material grade", "damage depth", "photos", "drawing/CAD", "operating conditions", "tolerance", "inspection requirement", "timeline"].map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+          {["material grade", "damage depth", "photos", "drawing/CAD", "operating conditions", "tolerance", "inspection requirement", "timeline"].map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
         </div>
       </div>
     </div>
   </section>
 
-  <section id="prompt-library" class="site-shell py-20">
+  <section id="prompt-library" class="site-shell section-y">
     <SectionHeading eyebrow="Prompt library" title="Prompts that force missing-information checks" />
     <div class="mt-8 grid gap-5">
       {prompts.map((prompt, index) => <CopyBlock client:load label={`Prompt ${index + 1}`} text={prompt} />)}
     </div>
   </section>
 
-  <section id="quality-checklist" class="bg-black/24 py-20">
+  <section id="quality-checklist" class="band section-y">
     <div class="site-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <SectionHeading eyebrow="Quality checklist" title="Agent output should keep inspection visible" description={DISCLAIMER} />
       </div>
       <div class="grid gap-3 sm:grid-cols-2">
-        {checklist.map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+        {checklist.map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
       </div>
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Download/source files" title="AI-readable Agent Pack files" />
     <div class="mt-8">
       <SourceLinks links={downloads} />

@@ -11,16 +11,17 @@ interface Props {
 const { links } = Astro.props;
 ---
 
-<div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+<div class="equal-card-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {
     links.map((link) => (
       <a
         href={link.href}
-        class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-200 transition hover:border-cyan-300/35 hover:text-white"
+        class="ordered-card card-hover flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-200"
         target={link.href.startsWith("http") ? "_blank" : undefined}
         rel={link.href.startsWith("http") ? "noreferrer" : undefined}
       >
-        {link.label}
+        <span>{link.label}</span>
+        <span class="font-mono text-cyan-200/80">&rarr;</span>
       </a>
     ))
   }

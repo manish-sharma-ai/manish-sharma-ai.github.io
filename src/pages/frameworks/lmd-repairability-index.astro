@@ -54,7 +54,7 @@ const missing = [
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-repairability-index" jsonLd={jsonLd}>
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Open framework</Badge>
@@ -66,34 +66,34 @@ const missing = [
     </div>
   </section>
 
-  <section class="border-y border-white/10 bg-black/24 py-16">
+  <section class="band section-y">
     <div class="site-shell">
       <SectionHeading eyebrow="Scoring categories" title="Repairability is not one variable" />
       <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        {categories.map((category) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold leading-6 text-slate-100">{category}</div>)}
+        {categories.map((category) => <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{category}</div>)}
       </div>
     </div>
   </section>
 
-  <section class="site-shell py-20">
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Interactive" title="LMD Repairability Index calculator" description="Score each category from weak or unknown to strong. The output is a preliminary band, not a final feasibility decision." />
     <div class="mt-10">
       <RepairabilityCalculator client:load />
     </div>
   </section>
 
-  <section class="bg-black/24 py-20">
+  <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-2">
       <div>
         <SectionHeading eyebrow="Score bands" title="Interpretation bands" />
         <div class="mt-8 grid gap-3">
-          {bands.map(([score, label]) => <div class="flex items-center gap-4 rounded-lg border border-white/10 bg-white/[0.035] p-4"><span class="w-20 font-mono font-black text-cyan-100">{score}</span><span class="font-semibold text-slate-100">{label}</span></div>)}
+          {bands.map(([score, label]) => <div class="ordered-card flex items-center gap-4 p-4"><span class="w-20 font-mono font-black text-cyan-100">{score}</span><span class="font-semibold text-slate-100">{label}</span></div>)}
         </div>
       </div>
       <div>
         <SectionHeading eyebrow="Missing information" title="Minimum RFQ checklist" />
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          {missing.map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+          {missing.map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
         </div>
       </div>
     </div>
