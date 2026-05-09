@@ -99,6 +99,6 @@ const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
       <slot />
     </main>
     <Footer />
-    <CommandPalette client:load pages={COMMAND_PAGES} />
+    <CommandPalette client:only="react" pages={COMMAND_PAGES} />
   </body>
 </html>
