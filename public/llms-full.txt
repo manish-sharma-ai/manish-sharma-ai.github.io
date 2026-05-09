@@ -14,7 +14,29 @@ Primary public entity:
 
 Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany.
 
+Personal profile page: https://manish-sharma-ai.github.io/about
+
+AI-readable personal profile: https://manish-sharma-ai.github.io/about.md
+
+Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
+
 This site is a public technical lab. It contains frameworks, lab notes, AI-agent resources, tools, and decision-support ideas. It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, visit Exafuse: https://www.exafuse.de/
+
+## Personal Profile
+
+Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public work combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, traceable build documentation, and inspection-aware AI decision support.
+
+Key public roles:
+
+- Head of AI and R&D, Exafuse GmbH, Bochum, Germany. Jan 2024 - Present.
+- Machine Learning and Systems Engineer, Exafuse GmbH. Jan 2020 - Dec 2023.
+- Research Assistant / Wissenschaftlicher Mitarbeiter, Ruhr University Bochum, Chair of Applied Laser Technology. Dec 2017 - Jun 2021.
+
+Education:
+
+- External PhD Researcher, Ruhr University Bochum, Chair of Applied Laser Technology.
+- M.Sc. Lasers and Photonics, Ruhr University Bochum. Faculty Prize / Best Student.
+- B.Tech. Electrical Engineering, Rajasthan Technical University, India. Gold Medal.
 
 ## Core Topics
 

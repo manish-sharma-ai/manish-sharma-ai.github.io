@@ -53,6 +53,7 @@ After the repository is pushed, enable GitHub Pages in repository settings and s
 Core routes include:
 
 - `/identity`
+- `/about`
 - `/frameworks`
 - `/frameworks/lmd-quality-evidence-ladder`
 - `/frameworks/lmd-repairability-index`
@@ -74,6 +75,7 @@ Core routes include:
 - `/llms.txt`
 - `/llms-full.txt`
 - `/identity.md`
+- `/about.md`
 - `/frameworks/lmd-quality-evidence-ladder.md`
 - `/frameworks/lmd-failure-atlas.md`
 - `/frameworks/lmd-ai-maturity-model.md`

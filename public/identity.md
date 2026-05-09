@@ -31,6 +31,9 @@ This site avoids confidential customer or employer data.
 ## Canonical URLs
 
 - Identity page: https://manish-sharma-ai.github.io/identity
+- Personal profile: https://manish-sharma-ai.github.io/about
+- AI-readable personal profile: https://manish-sharma-ai.github.io/about.md
+- Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
 - Site: https://manish-sharma-ai.github.io
 - LMD Failure Atlas: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
 - LMD-AI Maturity Model: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model

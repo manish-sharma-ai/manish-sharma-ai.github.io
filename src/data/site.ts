@@ -13,6 +13,7 @@ export const PERSON = {
   headline: "AI for Laser Metal Deposition",
   primaryPositioning: "Manish Sharma — AI for Laser Metal Deposition",
   shortIdentity: "AI for Laser Metal Deposition at Exafuse.",
+  image: "/images/manish-sharma-profile.jpg",
   longIdentity:
     "Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.",
   location: "Germany",
@@ -48,6 +49,7 @@ export const CORE_TOPICS = [
 ];
 
 export const NAV_ITEMS = [
+  { label: "About", href: "/about" },
   { label: "Identity", href: "/identity" },
   { label: "Frameworks", href: "/frameworks" },
   { label: "Agent Pack", href: "/agent-pack" },
@@ -248,6 +250,7 @@ export const GLOSSARY_TERMS = [
 
 export const COMMAND_PAGES = [
   { title: "Home", href: "/", group: "Core" },
+  { title: "About Manish Sharma", href: "/about", group: "Core" },
   { title: "Identity", href: "/identity", group: "Core" },
   { title: "Frameworks", href: "/frameworks", group: "Core" },
   { title: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", group: "Frameworks" },

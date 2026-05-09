@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
+import { absoluteUrl } from "@utils/urls";
 
 const title = "Manish Sharma — AI for Laser Metal Deposition";
 const description =
@@ -15,6 +16,7 @@ const personJsonLd = {
   "@type": "Person",
   "@id": "https://manish-sharma-ai.github.io/identity#manish-sharma",
   name: "Manish Sharma",
+  image: absoluteUrl(PERSON.image),
   jobTitle: "AI and Machine Learning for Laser Metal Deposition",
   worksFor: {
     "@type": "Organization",
@@ -62,7 +64,7 @@ const sameAsLinks = [
 ---
 
 <Layout title={title} description={description} canonical="/identity" jsonLd={[personJsonLd, profilePageJsonLd]}>
-  <section class="site-shell py-16 md:py-20">
+  <section class="site-shell grid gap-10 py-16 md:py-20 lg:grid-cols-[1fr_0.42fr] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Canonical identity</Badge>
@@ -73,6 +75,19 @@ const sameAsLinks = [
       <p class="mt-6 text-xl leading-9 text-slate-200">
         {PERSON.longIdentity}
       </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/about" class="btn btn-primary">Personal Profile</a>
+        <a href={LINKS.linkedin} class="btn btn-secondary" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
+    <div class="glass-panel overflow-hidden rounded-lg p-3">
+      <img
+        src={PERSON.image}
+        alt="Manish Sharma"
+        class="aspect-[5/4] w-full rounded-md object-cover object-center"
+        width="1400"
+        height="1095"
+      />
     </div>
   </section>
 

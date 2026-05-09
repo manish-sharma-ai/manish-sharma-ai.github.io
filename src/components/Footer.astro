@@ -16,7 +16,7 @@ import { LINKS, NAV_ITEMS, SITE } from "@data/site";
     <div>
       <p class="metric-label">Site</p>
       <div class="mt-4 grid gap-2 text-sm text-slate-300">
-        {NAV_ITEMS.slice(0, 6).map((item) => <a href={item.href} class="hover:text-white">{item.label}</a>)}
+        {NAV_ITEMS.map((item) => <a href={item.href} class="hover:text-white">{item.label}</a>)}
         <a href="/for-ai-agents" class="hover:text-white">For AI Agents</a>
       </div>
     </div>

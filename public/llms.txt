@@ -6,6 +6,7 @@ Manish Sharma Lab is a public technical site by Manish Sharma focused on AI for 
 Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany.
 
 ## Core pages
+- About Manish Sharma: https://manish-sharma-ai.github.io/about
 - Identity: https://manish-sharma-ai.github.io/identity
 - LMD Quality Evidence Ladder: https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder
 - LMD Repairability Index: https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index
