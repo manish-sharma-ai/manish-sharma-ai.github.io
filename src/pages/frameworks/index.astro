@@ -1,0 +1,42 @@
+---
+import FrameworkCard from "@components/FrameworkCard.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import { FRAMEWORKS } from "@data/site";
+
+const title = "Public LMD and AI Frameworks — Manish Sharma Lab";
+const description =
+  "Open frameworks for Laser Metal Deposition quality evidence, repairability, AI readiness, RFQ structuring, and AI-agent decision support.";
+---
+
+<Layout title={title} description={description} canonical="/frameworks">
+  <section class="site-shell py-16 md:py-20">
+    <SectionHeading
+      eyebrow="Frameworks"
+      title="Public LMD and AI decision frameworks"
+      description="These resources help separate process signals from quality proof, vague RFQs from structured evidence, and AI confidence from engineering review."
+    />
+    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {FRAMEWORKS.map((framework) => <FrameworkCard {...framework} />)}
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell grid gap-5 md:grid-cols-2">
+      <div id="failure-atlas" class="glass-panel rounded-lg p-8">
+        <p class="metric-label">Coming soon</p>
+        <h2 class="mt-4 text-3xl font-black text-white">LMD Failure Atlas</h2>
+        <p class="mt-4 leading-7 text-slate-300">
+          A planned map of failure modes, process signals, AI visibility, and validation evidence for Laser Metal Deposition and repair workflows.
+        </p>
+      </div>
+      <div id="maturity-model" class="glass-panel rounded-lg p-8">
+        <p class="metric-label">Coming soon</p>
+        <h2 class="mt-4 text-3xl font-black text-white">LMD-AI Maturity Model</h2>
+        <p class="mt-4 leading-7 text-slate-300">
+          A staged model for moving from manual process records to inspection-linked analytics, decision support, and validated closed-loop development.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

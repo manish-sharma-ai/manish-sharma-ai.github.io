@@ -1,0 +1,104 @@
+---
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import CommandPalette from "@components/CommandPalette";
+import { COMMAND_PAGES, SITE } from "@data/site";
+import { absoluteUrl, canonicalPath } from "@utils/urls";
+import "@styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  image?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  lastUpdated?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  canonical = canonicalPath(Astro.url.pathname),
+  image = "/og-image.svg",
+  jsonLd = [],
+  lastUpdated = SITE.lastUpdated
+} = Astro.props;
+
+const canonicalUrl = absoluteUrl(canonical);
+const imageUrl = absoluteUrl(image);
+const titleText = title;
+const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const breadcrumbItems =
+  canonical === "/"
+    ? []
+    : canonical
+        .split("/")
+        .filter(Boolean)
+        .map((segment, index, segments) => {
+          const itemPath = `/${segments.slice(0, index + 1).join("/")}`;
+          return {
+            "@type": "ListItem",
+            position: index + 2,
+            name: segment
+              .split("-")
+              .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+              .join(" "),
+            item: absoluteUrl(itemPath)
+          };
+        });
+
+const breadcrumbJsonLd =
+  breadcrumbItems.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl("/")
+          },
+          ...breadcrumbItems
+        ]
+      }
+    : null;
+
+const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{titleText}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={titleText} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titleText} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="last-modified" content={lastUpdated} />
+    {allJsonLd.map((item) => <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <CommandPalette client:load pages={COMMAND_PAGES} />
+  </body>
+</html>

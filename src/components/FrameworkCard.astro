@@ -1,0 +1,30 @@
+---
+import Badge from "@components/Badge.astro";
+
+interface Props {
+  title: string;
+  href: string;
+  problem: string;
+  idea: string;
+  status: string;
+  tags: string[];
+}
+
+const { title, href, problem, idea, status, tags } = Astro.props;
+const tone = status.includes("Coming") ? "amber" : status.includes("Agent") ? "cyan" : status.includes("Interactive") ? "laser" : "steel";
+---
+
+<a href={href} class="glass-panel card-hover grid min-h-[19rem] content-between rounded-lg p-6">
+  <div>
+    <div class="flex flex-wrap items-center gap-2">
+      <Badge tone={tone}>{status}</Badge>
+      {tags.slice(0, 2).map((tag) => <Badge tone="steel">{tag}</Badge>)}
+    </div>
+    <h3 class="mt-5 text-2xl font-black leading-tight text-white">{title}</h3>
+    <div class="mt-5 grid gap-4 text-sm leading-6">
+      <p class="text-slate-400"><strong class="text-slate-200">Problem:</strong> {problem}</p>
+      <p class="text-slate-300"><strong class="text-cyan-100">Framework idea:</strong> {idea}</p>
+    </div>
+  </div>
+  <span class="mt-6 inline-flex font-mono text-xs font-bold uppercase text-cyan-200">Open resource</span>
+</a>

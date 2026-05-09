@@ -1,0 +1,63 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "How to Structure a Laser Metal Deposition RFQ for AI Agents";
+const description =
+  "A good Laser Metal Deposition RFQ separates known facts, missing information, assumptions, risks, and next steps.";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/lab-notes/structuring-an-lmd-rfq-for-ai-agents`
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/structuring-an-lmd-rfq-for-ai-agents" jsonLd={jsonLd}>
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-3xl">
+      <p class="metric-label">Lab note · 2026-05-09</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Short answer">
+          Future buyers will ask AI tools to prepare RFQs. The RFQ must include enough context for responsible missing-information checks.
+        </NoteBox>
+        <NoteBox title="Common mistake" tone="laser">
+          Asking an AI for a recommendation while hiding the material, damage, CAD, operating conditions, tolerance, inspection requirement, or timeline.
+        </NoteBox>
+        <NoteBox title="Practical takeaway" tone="steel">
+          Use a schema that separates known facts, missing information, assumptions, risks, and next steps.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          A good LMD RFQ should include material, geometry, damage description, photos, drawings, CAD, operating conditions, tolerance, inspection expectations, and timeline.
+        </p>
+        <p>
+          AI agents can help buyers become more precise, but only if the prompt asks them to identify missing information before producing a recommendation. That behavior reduces false confidence.
+        </p>
+        <p>
+          The LMD Agent Pack schema gives AI systems a stable way to summarize part data, job type, damage, requirements, operating conditions, and missing information.
+        </p>
+        <p>
+          The output should be practical: known facts, missing info, risks, and next steps. It should not pretend to be final engineering approval.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "LMD Agent Pack", href: "/agent-pack" },
+        { label: "RFQ schema JSON", href: "/agent-pack/lmd-rfq-schema.json" },
+        { label: "RFQ Prompt-to-Structure Converter", href: "/tools" }
+      ]} />
+    </div>
+  </article>
+</Layout>

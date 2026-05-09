@@ -1,0 +1,37 @@
+---
+import { LINKS, NAV_ITEMS, SITE } from "@data/site";
+---
+
+<footer class="border-t border-white/10 bg-black/28">
+  <div class="site-shell grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr]">
+    <div>
+      <p class="metric-label">Manish Sharma Lab</p>
+      <p class="mt-3 max-w-xl text-lg font-semibold text-white">
+        AI-assisted decision systems, process monitoring, RFQ intelligence, and public frameworks for Laser Metal Deposition.
+      </p>
+      <p class="mt-4 text-sm leading-6 text-slate-400">
+        Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
+      </p>
+    </div>
+    <div>
+      <p class="metric-label">Site</p>
+      <div class="mt-4 grid gap-2 text-sm text-slate-300">
+        {NAV_ITEMS.slice(0, 6).map((item) => <a href={item.href} class="hover:text-white">{item.label}</a>)}
+        <a href="/for-ai-agents" class="hover:text-white">For AI Agents</a>
+      </div>
+    </div>
+    <div>
+      <p class="metric-label">Links</p>
+      <div class="mt-4 grid gap-2 text-sm text-slate-300">
+        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="hover:text-white">Exafuse</a>
+        <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn</a>
+        <a href={LINKS.github} target="_blank" rel="noreferrer" class="hover:text-white">GitHub profile</a>
+        <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="hover:text-white">Website repository</a>
+      </div>
+    </div>
+  </div>
+  <div class="site-shell flex flex-col gap-3 border-t border-white/10 py-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+    <span>© {new Date().getFullYear()} Manish Sharma Lab.</span>
+    <span>Canonical site: {SITE.canonicalUrl}</span>
+  </div>
+</footer>

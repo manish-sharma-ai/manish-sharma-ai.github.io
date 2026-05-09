@@ -1,0 +1,65 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import LmdVsSlmAdvisor from "@components/LmdVsSlmAdvisor";
+import RepairabilityQuickCheck from "@components/RepairabilityQuickCheck";
+import RfqStructureConverter from "@components/RfqStructureConverter";
+import SectionHeading from "@components/SectionHeading.astro";
+
+const title = "LMD Tools — Manish Sharma Lab";
+const description =
+  "Frontend-only tools for LMD vs SLM comparison, LMD repairability quick checks, and RFQ prompt-to-structure conversion.";
+---
+
+<Layout title={title} description={description} canonical="/tools">
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Frontend-only</Badge>
+        <Badge tone="steel">No backend</Badge>
+        <Badge tone="laser">Decision-support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">LMD Tools</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300">
+        Lightweight interactive tools for early LMD thinking. They help structure decisions and missing information; they do not replace expert feasibility review.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-20">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Tool 1"
+        title="LMD vs SLM Advisor"
+        description="Compare early decision signals for Laser Metal Deposition and SLM/LPBF."
+      />
+      <div class="mt-10">
+        <LmdVsSlmAdvisor client:load />
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading
+      eyebrow="Tool 2"
+      title="LMD Repairability Quick Check"
+      description="Screen whether an industrial part has enough signals to be a preliminary LMD repair candidate."
+    />
+    <div class="mt-10">
+      <RepairabilityQuickCheck client:load />
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-20">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Tool 3"
+        title="RFQ Prompt-to-Structure Converter"
+        description="A basic heuristic demo that turns free text into a structured RFQ preview and missing-information list."
+      />
+      <div class="mt-10">
+        <RfqStructureConverter client:load />
+      </div>
+    </div>
+  </section>
+</Layout>

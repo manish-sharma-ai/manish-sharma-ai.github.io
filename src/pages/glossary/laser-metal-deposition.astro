@@ -1,0 +1,45 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+
+const title = "Laser Metal Deposition";
+const short =
+  "Laser Metal Deposition is a metal additive manufacturing process where a focused energy source melts feedstock as it is deposited, often used for repair, cladding, and large-part additive manufacturing.";
+const description = `${title}: ${short}`;
+---
+
+<Layout title={`${title} — Glossary — Manish Sharma Lab`} description={description} canonical="/glossary/laser-metal-deposition">
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <p class="metric-label">Glossary</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Practical meaning">
+          LMD is useful when material needs to be added locally, when a part is large, when repair or cladding is attractive, or when deposition can be combined with machining.
+        </NoteBox>
+        <NoteBox title="Common confusion" tone="laser">
+          LMD is not the same as powder-bed SLM/LPBF. LMD feeds material into a melt zone during deposition; SLM/LPBF builds in a powder bed layer by layer.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          In practical industrial language, Laser Metal Deposition can support repair, dimensional restoration, coating, feature addition, and near-net-shape manufacturing.
+        </p>
+        <p>
+          Feasibility depends on material compatibility, geometry, access, heat input, post-machining, and inspection evidence.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+        { label: "LMD vs SLM Decision Signals", href: "/lab-notes/lmd-vs-slm-decision-signals" },
+        { label: "LMD Agent Pack", href: "/agent-pack" }
+      ]} />
+    </div>
+  </article>
+</Layout>

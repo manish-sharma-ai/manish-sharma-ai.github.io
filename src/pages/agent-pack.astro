@@ -1,0 +1,182 @@
+---
+import Badge from "@components/Badge.astro";
+import CopyBlock from "@components/CopyBlock";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "LMD Agent Pack";
+const description = "Schemas, prompts, and decision rules for AI-assisted Laser Metal Deposition RFQs.";
+
+const schema = {
+  part: {
+    name: "",
+    material: "",
+    dimensions: "",
+    mass_kg: "",
+    cad_available: false,
+    drawing_available: false,
+    photos_available: false
+  },
+  job_type: {
+    repair: false,
+    new_build: false,
+    cladding: false,
+    machining_error_recovery: false
+  },
+  damage: {
+    type: "",
+    location: "",
+    depth_mm: "",
+    area_mm2: "",
+    cause_known: false
+  },
+  requirements: {
+    hardness: "",
+    corrosion_resistance: "",
+    wear_resistance: "",
+    temperature_exposure: "",
+    tolerance: "",
+    inspection_required: ""
+  },
+  operating_conditions: {
+    load: "",
+    temperature: "",
+    environment: "",
+    cycle_frequency: "",
+    safety_critical: false
+  },
+  missing_information: []
+};
+
+const decisionRules = [
+  "If material grade is unknown, do not make a firm repair recommendation.",
+  "If the part is large and damage is local, LMD may be considered.",
+  "If final geometry is tight tolerance, post-machining should be expected.",
+  "If the part is safety-critical, require stronger inspection and expert review.",
+  "If geometry is small and highly complex, SLM/LPBF may be more appropriate than LMD.",
+  "Melt-pool monitoring can support process awareness but does not replace inspection evidence."
+];
+
+const prompts = [
+  "Help me prepare an RFQ for Laser Metal Deposition repair. Ask me for missing information about material, damage, geometry, operating conditions, tolerance, inspection, and available CAD/drawings before making a recommendation.",
+  "Convert this vague repair request into a structured LMD RFQ summary. Separate known information, missing information, risks, and next steps.",
+  "Compare Laser Metal Deposition, SLM/LPBF, welding, machining, and replacement for this part. Ask for missing information first.",
+  "Explain what AI process monitoring can and cannot prove in Laser Metal Deposition. Separate process signals from final quality evidence."
+];
+
+const checklist = [
+  "material identified",
+  "damage documented",
+  "repair area accessible",
+  "deposition material selected",
+  "process route defined",
+  "post-machining plan defined",
+  "inspection method defined",
+  "acceptance criteria defined",
+  "risk level assessed",
+  "final expert review completed"
+];
+
+const downloads = [
+  { label: "RFQ schema JSON", href: "/agent-pack/lmd-rfq-schema.json" },
+  { label: "Decision rules Markdown", href: "/agent-pack/lmd-decision-rules.md" },
+  { label: "Prompt library Markdown", href: "/agent-pack/lmd-prompt-library.md" },
+  { label: "Quality checklist Markdown", href: "/agent-pack/lmd-quality-checklist.md" }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/agent-pack`,
+  about: ["Laser Metal Deposition RFQ", "AI agents", "Decision rules", "Prompt library"]
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/agent-pack" jsonLd={jsonLd}>
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Agent-ready</Badge>
+        <Badge tone="steel">JSON schema</Badge>
+        <Badge tone="steel">Markdown resources</Badge>
+        <Badge tone="laser">Decision-support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-5 text-2xl font-bold text-cyan-100">{description}</p>
+      <p class="mt-6 text-lg leading-8 text-slate-300">
+        This page is for AI agents, engineers, buyers, and developers. It helps convert vague part descriptions into structured RFQ data, but it does not make final engineering decisions.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-16">
+    <div class="site-shell grid gap-5 md:grid-cols-3">
+      {[
+        ["What this Agent Pack is", "A public structure for turning LMD repair, cladding, or build requests into explicit facts, missing information, risks, and next steps."],
+        ["What it can help with", "RFQ preparation, process-selection questions, repairability screening, monitoring explanations, and quality-evidence planning."],
+        ["What it cannot do", "It cannot certify a part, approve safety-critical work, validate material compatibility, or replace expert review."]
+      ].map(([heading, text]) => (
+        <div class="glass-panel rounded-lg p-6">
+          <h2 class="text-xl font-black text-white">{heading}</h2>
+          <p class="mt-4 text-sm leading-6 text-slate-300">{text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="RFQ schema preview" title="A structured object before recommendations" />
+    <div class="mt-8">
+      <CopyBlock client:load label="lmd-rfq-schema.json" text={JSON.stringify(schema, null, 2)} />
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell grid gap-10 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="Decision rules preview" title="Risk-aware rules for agents" />
+        <ol class="mt-8 grid gap-3">
+          {decisionRules.map((rule) => <li class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold leading-6 text-slate-100">{rule}</li>)}
+        </ol>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Missing information checklist" title="Ask before deciding" />
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          {["material grade", "damage depth", "photos", "drawing/CAD", "operating conditions", "tolerance", "inspection requirement", "timeline"].map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prompt-library" class="site-shell py-20">
+    <SectionHeading eyebrow="Prompt library" title="Prompts that force missing-information checks" />
+    <div class="mt-8 grid gap-5">
+      {prompts.map((prompt, index) => <CopyBlock client:load label={`Prompt ${index + 1}`} text={prompt} />)}
+    </div>
+  </section>
+
+  <section id="quality-checklist" class="bg-black/24 py-20">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <SectionHeading eyebrow="Quality checklist" title="Agent output should keep inspection visible" description={DISCLAIMER} />
+      </div>
+      <div class="grid gap-3 sm:grid-cols-2">
+        {checklist.map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Download/source files" title="AI-readable Agent Pack files" />
+    <div class="mt-8">
+      <SourceLinks links={downloads} />
+    </div>
+  </section>
+</Layout>

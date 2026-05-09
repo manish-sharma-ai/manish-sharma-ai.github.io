@@ -1,0 +1,47 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { LINKS } from "@data/site";
+
+const title = "Public Work — Manish Sharma Lab";
+const description =
+  "Public profiles, frameworks, reports, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing.";
+
+const links = [
+  { label: "Exafuse", href: LINKS.exafuse },
+  { label: "LinkedIn", href: LINKS.linkedin },
+  { label: "GitHub", href: LINKS.github },
+  { label: "ORCID placeholder", href: LINKS.orcid },
+  { label: "Zenodo placeholder", href: LINKS.zenodo },
+  { label: "Hugging Face placeholder", href: LINKS.huggingFace },
+  { label: "Google Scholar placeholder", href: LINKS.googleScholar },
+  { label: "ResearchGate placeholder", href: LINKS.researchGate }
+];
+
+const future = [
+  ["Future reports", "Inspection-aware LMD AI notes, RFQ intelligence reports, and public technical summaries."],
+  ["Future talks", "Talks on AI-assisted Laser Metal Deposition, process monitoring, and decision-support boundaries."],
+  ["Future datasets", "Synthetic LMD RFQ examples and structured missing-information datasets."],
+  ["Future tools", "More frontend-only calculators, checklists, and AI-agent preparation aids."]
+];
+---
+
+<Layout title={title} description={description} canonical="/public-work">
+  <section class="site-shell py-16 md:py-20">
+    <SectionHeading
+      eyebrow="Public work"
+      title="Profiles, frameworks, reports, repositories, and tools"
+      description="This page collects public profiles, frameworks, reports, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing."
+    />
+    <div class="mt-10">
+      <SourceLinks links={links} />
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-20">
+    <div class="site-shell grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      {future.map(([heading, text]) => <div class="glass-panel rounded-lg p-6"><h2 class="text-2xl font-black text-white">{heading}</h2><p class="mt-4 text-sm leading-6 text-slate-300">{text}</p></div>)}
+    </div>
+  </section>
+</Layout>

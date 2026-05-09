@@ -1,0 +1,45 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+
+const title = "Directed Energy Deposition";
+const short =
+  "Directed Energy Deposition is a category of additive manufacturing processes where focused thermal energy fuses material as it is being deposited.";
+const description = `${title}: ${short}`;
+---
+
+<Layout title={`${title} — Glossary — Manish Sharma Lab`} description={description} canonical="/glossary/directed-energy-deposition">
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <p class="metric-label">Glossary</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Practical meaning">
+          DED is the broader family. Laser Metal Deposition can be understood as a laser-based DED route, often written as DED-LB/M in standards language.
+        </NoteBox>
+        <NoteBox title="Common confusion" tone="laser">
+          DED is a category, not one single machine type. Energy source, feedstock, motion system, shielding, and process controls can vary.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          Directed Energy Deposition is often associated with repair, cladding, feature addition, and larger metal parts. It can use powder or wire feedstock depending on the system.
+        </p>
+        <p>
+          AI decision support for DED should account for route-specific data, inspection requirements, and validation evidence.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "Laser Metal Deposition", href: "/glossary/laser-metal-deposition" },
+        { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+        { label: "For AI Agents", href: "/for-ai-agents" }
+      ]} />
+    </div>
+  </article>
+</Layout>

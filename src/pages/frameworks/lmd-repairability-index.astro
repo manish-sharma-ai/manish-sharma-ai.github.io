@@ -1,0 +1,101 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import RepairabilityCalculator from "@components/RepairabilityCalculator";
+import SectionHeading from "@components/SectionHeading.astro";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "LMD Repairability Index";
+const description =
+  "A structured way to think about whether an industrial part may be suitable for Laser Metal Deposition repair.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/frameworks/lmd-repairability-index`
+};
+
+const categories = [
+  "Material compatibility",
+  "Damage geometry",
+  "Access to repair zone",
+  "Heat sensitivity and distortion risk",
+  "Post-machining allowance",
+  "Required properties",
+  "Inspection feasibility",
+  "Replacement cost",
+  "Downtime cost",
+  "Criticality and risk"
+];
+
+const bands = [
+  ["0-20", "Not enough information or likely unsuitable"],
+  ["21-40", "High uncertainty"],
+  ["41-60", "Possible but needs engineering review"],
+  ["61-80", "Likely candidate if material/inspection align"],
+  ["81-100", "Strong candidate, subject to expert validation"]
+];
+
+const missing = [
+  "material grade",
+  "damage depth",
+  "photos",
+  "drawing/CAD",
+  "operating conditions",
+  "tolerance",
+  "hardness/coating requirement",
+  "inspection requirement"
+];
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-repairability-index" jsonLd={jsonLd}>
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Open framework</Badge>
+        <Badge tone="laser">Interactive calculator</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-5 text-2xl font-bold text-cyan-100">A structured way to think about whether an industrial part may be suitable for Laser Metal Deposition repair.</p>
+      <p class="mt-6 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-16">
+    <div class="site-shell">
+      <SectionHeading eyebrow="Scoring categories" title="Repairability is not one variable" />
+      <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        {categories.map((category) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold leading-6 text-slate-100">{category}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Interactive" title="LMD Repairability Index calculator" description="Score each category from weak or unknown to strong. The output is a preliminary band, not a final feasibility decision." />
+    <div class="mt-10">
+      <RepairabilityCalculator client:load />
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell grid gap-8 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="Score bands" title="Interpretation bands" />
+        <div class="mt-8 grid gap-3">
+          {bands.map(([score, label]) => <div class="flex items-center gap-4 rounded-lg border border-white/10 bg-white/[0.035] p-4"><span class="w-20 font-mono font-black text-cyan-100">{score}</span><span class="font-semibold text-slate-100">{label}</span></div>)}
+        </div>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Missing information" title="Minimum RFQ checklist" />
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          {missing.map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

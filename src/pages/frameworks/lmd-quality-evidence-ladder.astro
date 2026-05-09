@@ -1,0 +1,82 @@
+---
+import Badge from "@components/Badge.astro";
+import EvidenceLadder from "@components/EvidenceLadder.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "LMD Quality Evidence Ladder";
+const subtitle = "What AI can indicate vs what inspection must prove.";
+const description =
+  "A serious framework for separating Laser Metal Deposition process monitoring, AI anomaly detection, inspection evidence, and final quality proof.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/frameworks/lmd-quality-evidence-ladder#article`,
+  headline: title,
+  description,
+  author: {
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+    name: PERSON.name
+  },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/frameworks/lmd-quality-evidence-ladder`,
+  about: ["Laser Metal Deposition", "Process Monitoring", "AI anomaly detection", "Quality evidence"]
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-quality-evidence-ladder" jsonLd={jsonLd}>
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Open framework</Badge>
+        <Badge tone="steel">Markdown available</Badge>
+        <Badge tone="laser">Decision-support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-5 text-2xl font-bold text-cyan-100">{subtitle}</p>
+      <p class="mt-6 text-lg leading-8 text-slate-300">
+        AI and process monitoring can make LMD workflows more observable, but observation is not certification. This ladder separates evidence levels so RFQs, monitoring plans, and release decisions can use the right proof for the right risk.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-12">
+    <div class="site-shell grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      {[
+        "Melt-pool monitoring is a process signal, not a certificate.",
+        "AI anomaly detection is a risk indicator, not final proof.",
+        "Inspection evidence must match the part risk and service conditions.",
+        "AI is strongest when connected to physical validation."
+      ].map((message) => (
+        <div class="rounded-lg border border-white/10 bg-white/[0.035] p-5 text-sm font-bold leading-6 text-slate-100">{message}</div>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Visual ladder" title="Nine evidence levels for LMD quality claims" />
+    <div class="mt-10">
+      <EvidenceLadder />
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell grid gap-5 lg:grid-cols-[1fr_0.85fr]">
+      <div class="glass-panel rounded-lg p-8">
+        <p class="metric-label">CTA</p>
+        <h2 class="mt-4 text-3xl font-black text-white">Use this ladder when designing AI-assisted LMD monitoring workflows or RFQ evidence requirements.</h2>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <a href="/agent-pack" class="btn btn-primary">Open Agent Pack</a>
+          <a href="/frameworks/lmd-quality-evidence-ladder.md" class="btn btn-secondary">Markdown version</a>
+        </div>
+      </div>
+      <div class="rounded-lg border border-orange-300/25 bg-orange-500/10 p-8">
+        <p class="metric-label text-orange-100">Disclaimer</p>
+        <p class="mt-4 text-lg font-bold leading-8 text-orange-50">{DISCLAIMER}</p>
+      </div>
+    </div>
+  </section>
+</Layout>

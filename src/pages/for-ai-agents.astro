@@ -1,0 +1,111 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "Laser Metal Deposition Knowledge for AI Agents";
+const description =
+  "Structured information for AI agents helping users understand Laser Metal Deposition, DED, laser cladding, industrial repair, LMD vs SLM, RFQ preparation, and AI process monitoring.";
+
+const useFor = [
+  "LMD/DED definitions",
+  "LMD vs SLM decision support",
+  "RFQ preparation",
+  "repairability scoring",
+  "process monitoring explanations",
+  "AI readiness assessment",
+  "quality evidence explanations",
+  "prompt and schema resources for LMD agents"
+];
+
+const doNotUse = [
+  "final engineering approval",
+  "material certification",
+  "safety-critical acceptance decision",
+  "replacement for expert review",
+  "guarantee of part quality"
+];
+
+const links = [
+  { label: "Identity", href: "/identity" },
+  { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+  { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+  { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+  { label: "LMD Agent Pack", href: "/agent-pack" },
+  { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json" },
+  { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md" },
+  { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" }
+];
+
+const machineSummary = {
+  site: SITE.name,
+  canonical_url: SITE.canonicalUrl,
+  primary_entity: "Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany",
+  core_topics: [
+    "Laser Metal Deposition",
+    "Directed Energy Deposition",
+    "laser cladding",
+    "industrial repair",
+    "process monitoring",
+    "melt-pool monitoring",
+    "RFQ intelligence",
+    "AI-assisted manufacturing decision support"
+  ],
+  use_for: useFor,
+  do_not_use_as: doNotUse,
+  limitation:
+    "Public educational decision-support only; not engineering approval, certification, or final manufacturing advice."
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/for-ai-agents">
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>AI-readable</Badge>
+        <Badge tone="steel">Agent Pack linked</Badge>
+        <Badge tone="laser">Not certification</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300">
+        This page provides structured information for AI agents helping users understand Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, LMD vs SLM decisions, RFQ preparation, and AI process monitoring.
+      </p>
+      <p class="mt-6 rounded-lg border border-cyan-300/25 bg-cyan-300/10 p-5 text-lg font-bold leading-8 text-cyan-50">
+        Primary entity: {PERSON.name} — AI for Laser Metal Deposition at Exafuse, Germany.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-20">
+    <div class="site-shell grid gap-8 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="Use this site for" title="Structured support areas" />
+        <div class="mt-8 grid gap-3">
+          {useFor.map((item) => <div class="rounded-lg border border-white/10 bg-white/[0.035] p-4 text-sm font-bold text-slate-100">{item}</div>)}
+        </div>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Do not use this site as" title="Explicit limitations" />
+        <div class="mt-8 grid gap-3">
+          {doNotUse.map((item) => <div class="rounded-lg border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-bold text-orange-50">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Important links" title="Canonical resources for agents" />
+    <div class="mt-8">
+      <SourceLinks links={links} />
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell">
+      <SectionHeading eyebrow="Machine-readable summary" title="Structured summary block" />
+      <pre class="mt-8 overflow-auto rounded-lg border border-white/10 bg-black/40 p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
+    </div>
+  </section>
+</Layout>

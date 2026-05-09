@@ -1,0 +1,63 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "Why Melt-Pool Monitoring Is Not a Quality Certificate";
+const description =
+  "Melt-pool monitoring is valuable Laser Metal Deposition process evidence, but it does not by itself prove final part quality.";
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/lab-notes/melt-pool-monitoring-is-not-quality-proof`
+};
+---
+
+<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/melt-pool-monitoring-is-not-quality-proof" jsonLd={jsonLd}>
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-3xl">
+      <p class="metric-label">Lab note · 2026-05-09</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Short answer">
+          Melt-pool monitoring is valuable process evidence. It can support awareness, anomaly detection, and trend analysis, but it is not a standalone quality certificate.
+        </NoteBox>
+        <NoteBox title="Common mistake" tone="laser">
+          Treating a stable-looking melt pool or AI anomaly score as proof of final mechanical properties, internal soundness, or service performance.
+        </NoteBox>
+        <NoteBox title="Practical takeaway" tone="steel">
+          Connect monitoring signals to dimensional inspection, NDT, metallography, hardness, mechanical tests, and field data when the part risk requires it.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          Melt-pool monitoring can be a strong source of process evidence in Laser Metal Deposition. It can help detect instability, unusual signal patterns, parameter drift, spatter, and changes that deserve attention.
+        </p>
+        <p>
+          The boundary matters: a process signal does not automatically prove final mechanical properties, internal defects, bonding quality, or service performance. It tells you something happened during deposition; it does not, by itself, close the quality argument.
+        </p>
+        <p>
+          Quality release requires evidence appropriate to risk. Depending on the part, that may include dimensional inspection, NDT such as CT, UT, PT, or MT, metallography, hardness testing, mechanical testing, functional testing, or field performance evidence.
+        </p>
+        <p>
+          AI works best when monitoring signals are connected to physical validation. The useful workflow is not “AI says pass.” It is “AI helps identify risk, prioritize inspection, and learn from measured outcomes.”
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+        { label: "LMD Agent Pack", href: "/agent-pack" },
+        { label: "Melt-pool monitoring glossary", href: "/glossary/melt-pool-monitoring" }
+      ]} />
+    </div>
+  </article>
+</Layout>

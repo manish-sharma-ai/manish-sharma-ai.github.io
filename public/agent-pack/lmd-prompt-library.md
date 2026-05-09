@@ -1,0 +1,23 @@
+# LMD Prompt Library
+
+Prompts for AI-assisted Laser Metal Deposition RFQ preparation and process-monitoring explanation.
+
+## Prompt 1
+
+Help me prepare an RFQ for Laser Metal Deposition repair. Ask me for missing information about material, damage, geometry, operating conditions, tolerance, inspection, and available CAD/drawings before making a recommendation.
+
+## Prompt 2
+
+Convert this vague repair request into a structured LMD RFQ summary. Separate known information, missing information, risks, and next steps.
+
+## Prompt 3
+
+Compare Laser Metal Deposition, SLM/LPBF, welding, machining, and replacement for this part. Ask for missing information first.
+
+## Prompt 4
+
+Explain what AI process monitoring can and cannot prove in Laser Metal Deposition. Separate process signals from final quality evidence.
+
+## Limitation
+
+These prompts support structured thinking. They do not replace expert review, inspection, material validation, or final engineering approval.

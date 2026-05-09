@@ -1,0 +1,53 @@
+---
+const nodes = [
+  { label: "Manish Sharma", x: 50, y: 50, tone: "cyan" },
+  { label: "Exafuse", x: 220, y: 50, tone: "laser" },
+  { label: "AI", x: 360, y: 48, tone: "cyan" },
+  { label: "LMD", x: 505, y: 50, tone: "cyan" },
+  { label: "DED", x: 632, y: 82, tone: "steel" },
+  { label: "Laser Cladding", x: 640, y: 20, tone: "steel" },
+  { label: "Process Monitoring", x: 500, y: 126, tone: "steel" },
+  { label: "RFQ Intelligence", x: 335, y: 128, tone: "laser" }
+];
+
+const paths = [
+  [50, 50, 220, 50],
+  [220, 50, 360, 48],
+  [360, 48, 505, 50],
+  [505, 50, 632, 82],
+  [505, 50, 640, 20],
+  [505, 50, 500, 126],
+  [360, 48, 335, 128],
+  [335, 128, 500, 126]
+];
+---
+
+<div class="glass-panel overflow-hidden rounded-lg p-4">
+  <svg viewBox="0 0 780 180" class="w-full" role="img" aria-label="Public identity graph connecting Manish Sharma, Exafuse, AI, LMD, DED, laser cladding, process monitoring, and RFQ intelligence">
+    <defs>
+      <filter id="nodeGlow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur stdDeviation="5" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <rect width="780" height="180" rx="18" fill="#071018" opacity="0.72" />
+    {paths.map(([x1, y1, x2, y2]) => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#33d6ff" stroke-width="1.5" stroke-dasharray="5 8" opacity="0.5" />)}
+    {
+      nodes.map((node) => (
+        <g transform={`translate(${node.x} ${node.y})`}>
+          <circle
+            r="18"
+            fill={node.tone === "laser" ? "#ff4d2e" : node.tone === "cyan" ? "#33d6ff" : "#9cc9d9"}
+            opacity="0.16"
+            filter="url(#nodeGlow)"
+          />
+          <circle r="5" fill={node.tone === "laser" ? "#ff4d2e" : node.tone === "cyan" ? "#33d6ff" : "#9cc9d9"} />
+          <text x="0" y="34" text-anchor="middle" fill="#dceef5" font-size="12" font-family="Inter, sans-serif" font-weight="700">{node.label}</text>
+        </g>
+      ))
+    }
+  </svg>
+</div>

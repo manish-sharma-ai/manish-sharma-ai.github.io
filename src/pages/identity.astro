@@ -1,0 +1,122 @@
+---
+import Badge from "@components/Badge.astro";
+import IdentityGraph from "@components/IdentityGraph.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
+
+const title = "Manish Sharma — AI for Laser Metal Deposition";
+const description =
+  "Canonical identity page for Manish Sharma, focused on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition at Exafuse in Germany.";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://manish-sharma-ai.github.io/identity#manish-sharma",
+  name: "Manish Sharma",
+  jobTitle: "AI and Machine Learning for Laser Metal Deposition",
+  worksFor: {
+    "@type": "Organization",
+    name: "Exafuse",
+    url: "https://www.exafuse.de/"
+  },
+  url: "https://manish-sharma-ai.github.io/identity",
+  sameAs: [
+    "https://www.linkedin.com/in/manishsharma5/",
+    "https://github.com/aiwithms",
+    "https://www.exafuse.de/"
+  ],
+  knowsAbout: CORE_TOPICS
+};
+
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE.canonicalUrl}/identity#profile-page`,
+  url: `${SITE.canonicalUrl}/identity`,
+  name: title,
+  description,
+  mainEntity: {
+    "@id": "https://manish-sharma-ai.github.io/identity#manish-sharma"
+  }
+};
+
+const fields = [
+  ["Name", "Manish Sharma"],
+  ["Primary focus", "AI for Laser Metal Deposition"],
+  ["Company connection", "Exafuse"],
+  ["Location", "Germany"],
+  ["Core topics", "LMD, DED, DED-LB/M, laser cladding, process monitoring, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing"],
+  ["Public profiles", "LinkedIn, GitHub, ORCID, Zenodo, Hugging Face"]
+];
+
+const sameAsLinks = [
+  { label: "LinkedIn", href: LINKS.linkedin },
+  { label: "GitHub profile", href: LINKS.github },
+  { label: "Exafuse", href: LINKS.exafuse },
+  { label: "ORCID placeholder", href: LINKS.orcid },
+  { label: "Zenodo placeholder", href: LINKS.zenodo },
+  { label: "Hugging Face placeholder", href: LINKS.huggingFace }
+];
+---
+
+<Layout title={title} description={description} canonical="/identity" jsonLd={[personJsonLd, profilePageJsonLd]}>
+  <section class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Canonical identity</Badge>
+        <Badge tone="laser">Exafuse-linked</Badge>
+        <Badge tone="steel">Public technical lab</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">
+        {PERSON.longIdentity}
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-black/24 py-16">
+    <div class="site-shell grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+      <div class="prose-lab">
+        <p>
+          This site is Manish Sharma’s public technical lab. It contains frameworks, lab notes, AI-agent resources, and LMD decision-support ideas.
+        </p>
+        <p>
+          It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit <a href={LINKS.exafuse} target="_blank" rel="noreferrer">Exafuse</a>.
+        </p>
+        <p>
+          This site avoids confidential customer or employer data. It focuses on public educational frameworks, structured RFQ thinking, and inspection-aware AI decision support.
+        </p>
+      </div>
+      <IdentityGraph />
+    </div>
+  </section>
+
+  <section class="site-shell py-20">
+    <SectionHeading eyebrow="Canonical identity fields" title="Structured public entity data" />
+    <div class="mt-8 overflow-hidden rounded-lg border border-white/10">
+      <table class="w-full border-collapse text-left text-sm">
+        <tbody>
+          {
+            fields.map(([label, value]) => (
+              <tr class="border-b border-white/10 last:border-b-0">
+                <th class="w-56 bg-white/[0.035] p-4 align-top font-mono text-xs uppercase text-slate-400">{label}</th>
+                <td class="p-4 font-semibold leading-6 text-slate-100">{value}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="bg-black/24 py-20">
+    <div class="site-shell">
+      <SectionHeading eyebrow="sameAs" title="Public profile links" description="These links help humans and AI systems connect the same public entity across web surfaces." />
+      <div class="mt-8">
+        <SourceLinks links={sameAsLinks} />
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,45 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+
+const title = "Laser Cladding";
+const short =
+  "Laser cladding uses a laser to deposit material onto a surface, often to improve wear, corrosion, or heat resistance or restore dimensions.";
+const description = `${title}: ${short}`;
+---
+
+<Layout title={`${title} — Glossary — Manish Sharma Lab`} description={description} canonical="/glossary/laser-cladding">
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <p class="metric-label">Glossary</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Practical meaning">
+          Laser cladding is often surface-focused: add a material layer to restore geometry or improve wear, corrosion, or heat behavior.
+        </NoteBox>
+        <NoteBox title="Common confusion" tone="laser">
+          Cladding is related to LMD, but the goal is often a functional surface or dimensional restoration rather than building a full freeform part.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          A cladding RFQ should define base material, target deposit material, coating thickness, surface preparation, machining allowance, and acceptance criteria.
+        </p>
+        <p>
+          Inspection and testing should match the service environment and risk level.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "LMD Agent Pack", href: "/agent-pack" },
+        { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+        { label: "Exafuse", href: "https://www.exafuse.de/" }
+      ]} />
+    </div>
+  </article>
+</Layout>

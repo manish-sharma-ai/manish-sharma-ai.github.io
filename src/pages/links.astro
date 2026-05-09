@@ -1,0 +1,29 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { LINKS } from "@data/site";
+
+const title = "Links — Manish Sharma Lab";
+const description = "Public links for Manish Sharma, Exafuse, GitHub, LinkedIn, and research profile placeholders.";
+
+const links = [
+  { label: "Exafuse", href: LINKS.exafuse },
+  { label: "LinkedIn", href: LINKS.linkedin },
+  { label: "GitHub", href: LINKS.github },
+  { label: "ORCID", href: LINKS.orcid },
+  { label: "Zenodo", href: LINKS.zenodo },
+  { label: "Hugging Face", href: LINKS.huggingFace },
+  { label: "Google Scholar", href: LINKS.googleScholar },
+  { label: "ResearchGate", href: LINKS.researchGate }
+];
+---
+
+<Layout title={title} description={description} canonical="/links">
+  <section class="site-shell py-16 md:py-20">
+    <SectionHeading eyebrow="Links" title="Public profiles and references" description="Clean public links for Manish Sharma Lab, Exafuse, GitHub, LinkedIn, and future research profiles." />
+    <div class="mt-10">
+      <SourceLinks links={links} />
+    </div>
+  </section>
+</Layout>

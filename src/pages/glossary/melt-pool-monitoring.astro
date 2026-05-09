@@ -1,0 +1,48 @@
+---
+import NoteBox from "@components/NoteBox.astro";
+import Layout from "@layouts/Layout.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+
+const title = "Melt-Pool Monitoring";
+const short =
+  "Melt-pool monitoring observes the molten region during deposition to support process awareness, anomaly detection, and parameter understanding.";
+const description = `${title}: ${short}`;
+---
+
+<Layout title={`${title} — Glossary — Manish Sharma Lab`} description={description} canonical="/glossary/melt-pool-monitoring">
+  <article class="site-shell py-16 md:py-20">
+    <div class="max-w-4xl">
+      <p class="metric-label">Glossary</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
+    </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+      <div class="grid h-fit gap-4">
+        <NoteBox title="Practical meaning">
+          Melt-pool monitoring can help identify process instability, trends, and anomaly candidates during Laser Metal Deposition.
+        </NoteBox>
+        <NoteBox title="Common confusion" tone="laser">
+          It is process awareness, not a standalone certificate of final quality.
+        </NoteBox>
+        <NoteBox title="Disclaimer" tone="steel">
+          Monitoring signals should be connected to inspection and validation evidence before quality claims are made.
+        </NoteBox>
+      </div>
+      <div class="prose-lab">
+        <p>
+          Melt-pool monitoring can include images, video, pyrometry, coaxial sensing, or other process signals depending on the system. AI may help classify patterns, but the interpretation must be tied to real inspection evidence.
+        </p>
+        <p>
+          For risk-aware work, monitoring is one layer in a larger evidence ladder.
+        </p>
+      </div>
+    </div>
+    <div class="mt-12">
+      <SourceLinks links={[
+        { label: "Why Melt-Pool Monitoring Is Not a Quality Certificate", href: "/lab-notes/melt-pool-monitoring-is-not-quality-proof" },
+        { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+        { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" }
+      ]} />
+    </div>
+  </article>
+</Layout>

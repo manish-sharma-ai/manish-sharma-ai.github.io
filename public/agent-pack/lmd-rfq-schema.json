@@ -1,0 +1,40 @@
+{
+  "part": {
+    "name": "",
+    "material": "",
+    "dimensions": "",
+    "mass_kg": "",
+    "cad_available": false,
+    "drawing_available": false,
+    "photos_available": false
+  },
+  "job_type": {
+    "repair": false,
+    "new_build": false,
+    "cladding": false,
+    "machining_error_recovery": false
+  },
+  "damage": {
+    "type": "",
+    "location": "",
+    "depth_mm": "",
+    "area_mm2": "",
+    "cause_known": false
+  },
+  "requirements": {
+    "hardness": "",
+    "corrosion_resistance": "",
+    "wear_resistance": "",
+    "temperature_exposure": "",
+    "tolerance": "",
+    "inspection_required": ""
+  },
+  "operating_conditions": {
+    "load": "",
+    "temperature": "",
+    "environment": "",
+    "cycle_frequency": "",
+    "safety_critical": false
+  },
+  "missing_information": []
+}

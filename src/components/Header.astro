@@ -1,0 +1,67 @@
+---
+import { LINKS, NAV_ITEMS } from "@data/site";
+---
+
+<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/74 backdrop-blur-xl">
+  <div class="site-shell flex min-h-16 items-center justify-between gap-4">
+    <a href="/" class="group flex items-center gap-3" aria-label="Manish Sharma Lab home">
+      <span class="grid h-9 w-9 place-items-center rounded-lg border border-cyan-300/30 bg-cyan-300/10 shadow-glow">
+        <span class="h-3 w-3 rounded-sm bg-cyan-300 shadow-glow"></span>
+      </span>
+      <span class="leading-tight">
+        <span class="block text-sm font-black text-white">Manish Sharma Lab</span>
+        <span class="metric-label hidden text-[0.62rem] sm:block">AI for Laser Metal Deposition</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+      {
+        NAV_ITEMS.map((item) => (
+          <a
+            href={item.href}
+            class="rounded-md px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden items-center gap-2 md:flex">
+      <button
+        type="button"
+        data-command-trigger
+        class="rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/35 hover:text-white"
+        aria-label="Open command palette"
+      >
+        Search <span class="ml-2 rounded border border-white/10 px-1.5 py-0.5 font-mono text-[0.68rem] text-slate-400">⌘K</span>
+      </button>
+      <a href={LINKS.exafuse} class="btn btn-laser min-h-10 px-3 py-2 text-sm" target="_blank" rel="noreferrer">
+        Exafuse
+      </a>
+    </div>
+
+    <details class="group relative lg:hidden">
+      <summary class="flex cursor-pointer list-none items-center rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-bold text-white">
+        Menu
+      </summary>
+      <div class="absolute right-0 mt-3 w-[min(88vw,22rem)] rounded-lg border border-white/10 bg-graphite-900/96 p-3 shadow-panel backdrop-blur-xl">
+        <nav class="grid gap-1" aria-label="Mobile navigation">
+          {
+            NAV_ITEMS.map((item) => (
+              <a href={item.href} class="rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-white/6">
+                {item.label}
+              </a>
+            ))
+          }
+          <a href="/for-ai-agents" class="rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-white/6">
+            For AI Agents
+          </a>
+          <a href={LINKS.exafuse} class="mt-2 rounded-md border border-orange-300/35 bg-orange-500/10 px-3 py-2 text-sm font-bold text-orange-100" target="_blank" rel="noreferrer">
+            Visit Exafuse
+          </a>
+        </nav>
+      </div>
+    </details>
+  </div>
+</header>

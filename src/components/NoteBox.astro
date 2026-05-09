@@ -1,0 +1,20 @@
+---
+interface Props {
+  title: string;
+  tone?: "cyan" | "laser" | "steel";
+}
+
+const { title, tone = "cyan" } = Astro.props;
+const classes = {
+  cyan: "border-cyan-300/25 bg-cyan-300/10 text-cyan-50",
+  laser: "border-orange-300/25 bg-orange-500/10 text-orange-50",
+  steel: "border-white/10 bg-white/[0.035] text-slate-200"
+};
+---
+
+<aside class={`rounded-lg border p-5 ${classes[tone]}`}>
+  <p class="metric-label">{title}</p>
+  <div class="mt-3 text-sm font-semibold leading-7">
+    <slot />
+  </div>
+</aside>

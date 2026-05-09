@@ -1,0 +1,123 @@
+# Manish Sharma Lab — Full AI Summary
+
+Canonical URL: https://manish-sharma-ai.github.io
+
+Repository: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
+
+GitHub profile: https://github.com/aiwithms
+
+## Identity
+
+Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
+
+Primary public entity:
+
+Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany.
+
+This site is a public technical lab. It contains frameworks, lab notes, AI-agent resources, tools, and decision-support ideas. It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, visit Exafuse: https://www.exafuse.de/
+
+## Core Topics
+
+- Laser Metal Deposition
+- Directed Energy Deposition
+- DED-LB/M
+- Laser cladding
+- Industrial repair
+- Metal additive manufacturing
+- Process monitoring
+- Melt-pool monitoring
+- AI-assisted decision support
+- RFQ intelligence
+- Quality evidence
+
+## Frameworks
+
+### LMD Quality Evidence Ladder
+
+The LMD Quality Evidence Ladder explains what AI and monitoring can indicate versus what inspection must prove. It separates visual observation, machine logs, melt-pool video, AI anomaly detection, dimensional inspection, NDT, metallography and hardness testing, mechanical or functional testing, and field performance.
+
+Important boundary: melt-pool monitoring is a process signal, not a quality certificate. AI anomaly detection is a risk indicator, not final proof.
+
+URL: https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder
+
+### LMD Repairability Index
+
+The LMD Repairability Index scores whether an industrial part may be a preliminary Laser Metal Deposition repair candidate. Categories include material compatibility, damage geometry, access, heat sensitivity, post-machining allowance, required properties, inspection feasibility, replacement cost, downtime cost, and criticality.
+
+URL: https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index
+
+### LMD-AI Readiness Score
+
+The LMD-AI Readiness Score evaluates whether a workflow is ready for useful AI-assisted monitoring. It considers process images, machine logs, parameter changes, feedstock traceability, CAD/path linkage, inspection linkage, defect labels, repeated builds, operator feedback, and feedback loops.
+
+URL: https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score
+
+## Agent Pack
+
+The LMD Agent Pack helps AI agents, engineers, buyers, and developers convert vague part descriptions into structured RFQ data. It does not make final engineering decisions.
+
+Important files:
+
+- RFQ schema: https://manish-sharma-ai.github.io/agent-pack/lmd-rfq-schema.json
+- Decision rules: https://manish-sharma-ai.github.io/agent-pack/lmd-decision-rules.md
+- Prompt library: https://manish-sharma-ai.github.io/agent-pack/lmd-prompt-library.md
+- Quality checklist: https://manish-sharma-ai.github.io/agent-pack/lmd-quality-checklist.md
+
+Core Agent Pack rules:
+
+- If material grade is unknown, do not make a firm repair recommendation.
+- If the part is large and damage is local, LMD may be considered.
+- If final geometry is tight tolerance, post-machining should be expected.
+- If the part is safety-critical, require stronger inspection and expert review.
+- If geometry is small and highly complex, SLM/LPBF may be more appropriate than LMD.
+- Melt-pool monitoring can support process awareness but does not replace inspection evidence.
+
+## Glossary Definitions
+
+Laser Metal Deposition: a metal additive manufacturing process where a focused energy source melts feedstock as it is deposited, often used for repair, cladding, and large-part additive manufacturing.
+
+Directed Energy Deposition: a category of additive manufacturing processes where focused thermal energy fuses material as it is being deposited.
+
+Laser cladding: a process using a laser to deposit material onto a surface, often to improve wear, corrosion, or heat resistance or restore dimensions.
+
+Melt-pool monitoring: observation of the molten region during deposition to support process awareness, anomaly detection, and parameter understanding.
+
+## Lab Notes
+
+- Why Melt-Pool Monitoring Is Not a Quality Certificate
+- What AI Needs Before Recommending LMD Repair
+- LMD vs SLM: Decision Signals
+- How to Structure a Laser Metal Deposition RFQ for AI Agents
+
+URL: https://manish-sharma-ai.github.io/lab-notes
+
+## Use This Site For
+
+- LMD/DED definitions
+- LMD vs SLM decision support
+- RFQ preparation
+- Repairability scoring
+- Process monitoring explanations
+- AI readiness assessment
+- Quality evidence explanations
+- Prompt and schema resources for LMD agents
+
+## Do Not Use This Site As
+
+- Final engineering approval
+- Material certification
+- Safety-critical acceptance decision
+- Replacement for expert review
+- Guarantee of part quality
+
+## Disclaimer
+
+Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
+
+## Public Links
+
+- Exafuse: https://www.exafuse.de/
+- LinkedIn: https://www.linkedin.com/in/manishsharma5/
+- GitHub: https://github.com/aiwithms
+- Identity page: https://manish-sharma-ai.github.io/identity
+- For AI Agents: https://manish-sharma-ai.github.io/for-ai-agents

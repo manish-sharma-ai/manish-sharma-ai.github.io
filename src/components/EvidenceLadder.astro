@@ -1,0 +1,99 @@
+---
+const levels = [
+  {
+    level: 1,
+    title: "Visual process observation",
+    shows: "Gross process behavior, obvious interruptions, accessibility, and operator-visible instability.",
+    misses: "Internal defects, mechanical properties, subtle metallurgical issues, and repeatability.",
+    ai: "Can summarize observations and flag visible anomalies when video is available.",
+    stronger: "Needed when the part has dimensional, structural, or safety requirements."
+  },
+  {
+    level: 2,
+    title: "Machine log and parameter record",
+    shows: "Nominal power, feed rate, travel speed, shielding, and process history.",
+    misses: "Whether the actual melt pool and deposit quality matched the planned parameters.",
+    ai: "Can detect parameter drift, unusual sequences, and incomplete records.",
+    stronger: "Needed when parameters alone cannot prove material state or geometry."
+  },
+  {
+    level: 3,
+    title: "Melt-pool image or process video",
+    shows: "Thermal/process signal behavior, local instability, spatter, and relative process trends.",
+    misses: "Final mechanical properties, internal soundness, and service performance.",
+    ai: "Can classify anomalies and correlate visible signals with risk.",
+    stronger: "Needed for any quality claim beyond process awareness."
+  },
+  {
+    level: 4,
+    title: "AI anomaly detection",
+    shows: "Patterns that differ from training examples or expected process behavior.",
+    misses: "Root cause, acceptability, and final part conformance.",
+    ai: "Provides a risk indicator and prioritizes inspection attention.",
+    stronger: "Needed when release decisions, safety, or acceptance criteria are involved."
+  },
+  {
+    level: 5,
+    title: "Dimensional inspection",
+    shows: "Geometry, tolerance, machining allowance, and final fit-related evidence.",
+    misses: "Internal defects and metallurgical properties.",
+    ai: "Can compare scans, highlight deviations, and connect geometry drift to process history.",
+    stronger: "Needed when internal integrity or material properties matter."
+  },
+  {
+    level: 6,
+    title: "NDT: CT, UT, PT, MT",
+    shows: "Evidence about cracks, porosity, lack of fusion, surface-breaking or internal discontinuities depending on method.",
+    misses: "Full mechanical performance and some microstructural or service-condition behavior.",
+    ai: "Can support indication triage and traceability, subject to validated inspection workflows.",
+    stronger: "Needed when acceptance requires destructive or property-based evidence."
+  },
+  {
+    level: 7,
+    title: "Metallography and hardness testing",
+    shows: "Microstructure, heat-affected zone, dilution, hardness, and local material condition.",
+    misses: "Full component-level service performance.",
+    ai: "Can link process signatures to measured physical outcomes over time.",
+    stronger: "Needed for critical load cases or qualification."
+  },
+  {
+    level: 8,
+    title: "Mechanical or functional testing",
+    shows: "Strength, fatigue, wear, pressure, fit, or functional performance under defined tests.",
+    misses: "Long-term field behavior outside the tested conditions.",
+    ai: "Can learn from validated outcomes and improve future risk scoring.",
+    stronger: "Needed when real operating exposure is the decisive proof."
+  },
+  {
+    level: 9,
+    title: "Field performance",
+    shows: "Real service behavior, durability, and failure modes under operating conditions.",
+    misses: "Controlled isolation of every cause without supporting records.",
+    ai: "Can connect in-service outcomes back to process, inspection, and repair-route data.",
+    stronger: "This is the strongest evidence tier, but it still depends on traceable context."
+  }
+];
+---
+
+<ol class="grid gap-4">
+  {
+    levels.map((item) => (
+      <li class="grid gap-4 rounded-lg border border-white/10 bg-white/[0.035] p-5 md:grid-cols-[5.5rem_1fr]">
+        <div>
+          <span class="grid h-14 w-14 place-items-center rounded-lg border border-cyan-300/35 bg-cyan-300/10 font-mono text-xl font-black text-cyan-100">
+            {item.level}
+          </span>
+        </div>
+        <div>
+          <h3 class="text-xl font-black text-white">{item.title}</h3>
+          <div class="mt-4 grid gap-3 md:grid-cols-2">
+            <p class="text-sm leading-6 text-slate-300"><strong class="text-white">What it shows:</strong> {item.shows}</p>
+            <p class="text-sm leading-6 text-slate-400"><strong class="text-white">What it does not show:</strong> {item.misses}</p>
+            <p class="text-sm leading-6 text-cyan-50"><strong class="text-cyan-100">How AI can help:</strong> {item.ai}</p>
+            <p class="text-sm leading-6 text-orange-50"><strong class="text-orange-100">When stronger evidence is needed:</strong> {item.stronger}</p>
+          </div>
+        </div>
+      </li>
+    ))
+  }
+</ol>
