@@ -14,6 +14,8 @@ Logo lockup: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
 
 Press kit: https://manish-sharma-ai.github.io/press-kit
 
+Site map: https://manish-sharma-ai.github.io/site-map
+
 Evidence base: https://manish-sharma-ai.github.io/evidence
 
 Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof

@@ -28,6 +28,8 @@ This site is a public technical lab for inspection-aware AI in Laser Metal Depos
 
 Press kit and media facts: https://manish-sharma-ai.github.io/press-kit
 
+Complete linked site map: https://manish-sharma-ai.github.io/site-map
+
 Evidence base: https://manish-sharma-ai.github.io/evidence
 
 Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof

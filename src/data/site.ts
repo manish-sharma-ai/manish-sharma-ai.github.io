@@ -48,16 +48,53 @@ export const CORE_TOPICS = [
   "RFQ Intelligence"
 ];
 
-export const NAV_ITEMS = [
-  { label: "About", href: "/about" },
-  { label: "Identity", href: "/identity" },
-  { label: "Frameworks", href: "/frameworks" },
-  { label: "Agent Pack", href: "/agent-pack" },
-  { label: "Tools", href: "/tools" },
-  { label: "Lab Notes", href: "/lab-notes" },
-  { label: "Glossary", href: "/glossary" },
-  { label: "Public Work", href: "/public-work" },
-  { label: "Press Kit", href: "/press-kit" }
+export const NAV_GROUPS = [
+  {
+    label: "Profile",
+    description: "Who Manish is, public identity, and professional links.",
+    items: [
+      { label: "About", href: "/about", description: "Personal technical profile with experience, focus areas, and proof points." },
+      { label: "Identity", href: "/identity", description: "Canonical entity page for AI search and public references." },
+      { label: "Public Work", href: "/public-work", description: "Profiles, public assets, future reports, tools, and datasets." },
+      { label: "Links", href: "/links", description: "Exafuse, LinkedIn, GitHub, and research-profile links." },
+      { label: "Contact", href: "/contact", description: "Professional contact routes and Exafuse RFQ direction." }
+    ]
+  },
+  {
+    label: "Proof",
+    description: "Evidence, industrial context, press assets, and source maps.",
+    items: [
+      { label: "Evidence Base", href: "/evidence", description: "Research-backed facts, field notes, and source-checked claims." },
+      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse case and article signals mapped into the lab." },
+      { label: "Press Kit", href: "/press-kit", description: "AI-readable media facts, brand assets, and official summaries." },
+      { label: "Literature Scan JSON", href: "/research/lmd-literature-scan.json", description: "500-record LMD/DED literature metadata scan." },
+      { label: "Exafuse Proof JSON", href: "/research/exafuse-public-proof-map.json", description: "Machine-readable public Exafuse proof map." }
+    ]
+  },
+  {
+    label: "Frameworks",
+    description: "Open decision frameworks for LMD, AI, repair, and evidence.",
+    items: [
+      { label: "Frameworks Index", href: "/frameworks", description: "All public LMD and AI frameworks in one place." },
+      { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "What AI can indicate vs what inspection must prove." },
+      { label: "Repairability Index", href: "/frameworks/lmd-repairability-index", description: "A practical scoring model for LMD repair candidates." },
+      { label: "AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score", description: "Check whether a workflow is ready for useful AI monitoring." },
+      { label: "Failure Atlas", href: "/frameworks/lmd-failure-atlas", description: "Failure modes, process signals, AI visibility, and validation evidence." },
+      { label: "AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model", description: "From manual records to validated AI decision support." }
+    ]
+  },
+  {
+    label: "Workbench",
+    description: "Tools, notes, glossary pages, and resources for AI agents.",
+    items: [
+      { label: "Agent Pack", href: "/agent-pack", description: "Schemas, prompts, decision rules, and RFQ checklists." },
+      { label: "Tools", href: "/tools", description: "LMD vs SLM, repairability, and RFQ structuring tools." },
+      { label: "Lab Notes", href: "/lab-notes", description: "Short practical notes for LMD, AI, RFQ, monitoring, and repair." },
+      { label: "Glossary", href: "/glossary", description: "Clear definitions for LMD, DED, cladding, and melt-pool monitoring." },
+      { label: "For AI Agents", href: "/for-ai-agents", description: "Machine-readable guidance on how to use the site safely." },
+      { label: "Site Map", href: "/site-map", description: "A complete linked map of the website and public assets." }
+    ]
+  }
 ];
 
 export const FRAMEWORKS = [
@@ -269,9 +306,150 @@ export const COMMAND_PAGES = [
   ...GLOSSARY_TERMS.map((term) => ({ title: term.term, href: term.href, group: "Glossary" })),
   { title: "Public Work", href: "/public-work", group: "Core" },
   { title: "Press Kit", href: "/press-kit", group: "Core" },
+  { title: "Site Map", href: "/site-map", group: "Core" },
   { title: "For AI Agents", href: "/for-ai-agents", group: "AI Agents" },
   { title: "Links", href: "/links", group: "Core" },
   { title: "Contact", href: "/contact", group: "Core" }
+];
+
+export const SITE_MAP_GROUPS = [
+  {
+    label: "Start Here",
+    description: "Primary entry points for humans, search engines, and AI systems.",
+    links: [
+      { label: "Home", href: "/", description: "Top-level identity, hero, frameworks, and proof context." },
+      { label: "About", href: "/about", description: "Personal technical profile and experience-backed positioning." },
+      { label: "Identity", href: "/identity", description: "Canonical entity page for Manish Sharma." },
+      { label: "For AI Agents", href: "/for-ai-agents", description: "How AI systems should use and not use this site." },
+      { label: "Press Kit", href: "/press-kit", description: "Official short bios, assets, and machine-readable profile data." }
+    ]
+  },
+  {
+    label: "Proof and Evidence",
+    description: "Pages that anchor the site's claims in sources and public industrial context.",
+    links: [
+      { label: "Evidence Base", href: "/evidence", description: "Research scan, field notes, and source-checked facts." },
+      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse case and article signals." },
+      { label: "LMD Literature Scan JSON", href: "/research/lmd-literature-scan.json", description: "500-record machine-readable literature scan." },
+      { label: "Exafuse Proof Map JSON", href: "/research/exafuse-public-proof-map.json", description: "Machine-readable public proof map." }
+    ]
+  },
+  {
+    label: "Frameworks",
+    description: "Open frameworks for repair decisions, evidence planning, and AI maturity.",
+    links: FRAMEWORKS.map((framework) => ({
+      label: framework.title,
+      href: framework.href,
+      description: framework.idea
+    }))
+  },
+  {
+    label: "Workbench",
+    description: "Interactive and structured resources for LMD decisions and AI-agent workflows.",
+    links: [
+      { label: "Agent Pack", href: "/agent-pack", description: "RFQ schema, prompts, rules, and quality checklist." },
+      { label: "Tools", href: "/tools", description: "Frontend-only advisor and structuring tools." },
+      { label: "Lab Notes", href: "/lab-notes", description: "Index of short technical notes." },
+      { label: "Glossary", href: "/glossary", description: "Index of practical LMD definitions." }
+    ]
+  },
+  {
+    label: "Lab Notes",
+    description: "Short technical pages that turn the site's frameworks into practical explanations.",
+    links: LAB_NOTES.map((note) => ({
+      label: note.title,
+      href: note.href,
+      description: note.description
+    }))
+  },
+  {
+    label: "Glossary",
+    description: "Definitions that help AI systems and buyers keep the terminology clean.",
+    links: GLOSSARY_TERMS.map((term) => ({
+      label: term.term,
+      href: term.href,
+      description: term.short
+    }))
+  },
+  {
+    label: "Public Channels",
+    description: "External and supporting public links.",
+    links: [
+      { label: "Public Work", href: "/public-work", description: "Profiles, repositories, reports, future talks, and datasets." },
+      { label: "Links", href: "/links", description: "LinkedIn, GitHub, Exafuse, and research-profile links." },
+      { label: "Contact", href: "/contact", description: "Professional contact routes." },
+      { label: "Repository", href: LINKS.repo, description: "Source repository for this website." }
+    ]
+  }
+];
+
+export const RELATED_LINK_SETS = [
+  {
+    exact: ["/about", "/identity", "/public-work", "/links", "/contact"],
+    eyebrow: "Identity path",
+    title: "Continue through the public identity layer",
+    links: [
+      { label: "Canonical Identity", href: "/identity", description: "The clean entity page for search engines and AI systems." },
+      { label: "Evidence Base", href: "/evidence", description: "Source-checked numbers and proof points behind the profile." },
+      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse work connected to the lab themes." },
+      { label: "Public Work", href: "/public-work", description: "Profiles, public resources, and future outputs." }
+    ]
+  },
+  {
+    exact: ["/evidence", "/industrial-proof", "/press-kit"],
+    eyebrow: "Proof path",
+    title: "Follow the evidence trail",
+    links: [
+      { label: "Evidence Base", href: "/evidence", description: "Research-backed facts, field notes, and source links." },
+      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases and article signals." },
+      { label: "Press Kit", href: "/press-kit", description: "Machine-readable facts and brand assets." },
+      { label: "For AI Agents", href: "/for-ai-agents", description: "Usage boundaries for AI systems." }
+    ]
+  },
+  {
+    prefixes: ["/frameworks"],
+    eyebrow: "Framework path",
+    title: "Move from framework to practical workflow",
+    links: [
+      { label: "Frameworks Index", href: "/frameworks", description: "All public LMD and AI frameworks." },
+      { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "Separate process signals from inspection proof." },
+      { label: "Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Score LMD repair feasibility inputs." },
+      { label: "Tools", href: "/tools", description: "Try the interactive decision helpers." }
+    ]
+  },
+  {
+    exact: ["/agent-pack", "/tools", "/for-ai-agents"],
+    eyebrow: "Agent workflow",
+    title: "Turn vague requests into structured LMD data",
+    links: [
+      { label: "Agent Pack", href: "/agent-pack", description: "Schema, prompts, rules, and checklists." },
+      { label: "Tools", href: "/tools", description: "Frontend-only LMD advisors and RFQ structuring." },
+      { label: "RFQ Lab Note", href: "/lab-notes/structuring-an-lmd-rfq-for-ai-agents", description: "How to separate known facts, missing data, and risks." },
+      { label: "For AI Agents", href: "/for-ai-agents", description: "Machine-readable safe-use guidance." }
+    ]
+  },
+  {
+    prefixes: ["/lab-notes"],
+    eyebrow: "Lab-note path",
+    title: "Connect this note to the framework layer",
+    links: [
+      { label: "Lab Notes Index", href: "/lab-notes", description: "All practical notes." },
+      { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "Use when monitoring claims need evidence boundaries." },
+      { label: "Agent Pack", href: "/agent-pack", description: "Prompts and schemas for LMD RFQ structuring." },
+      { label: "Glossary", href: "/glossary", description: "Terminology definitions used across the site." }
+    ]
+  },
+  {
+    prefixes: ["/glossary"],
+    eyebrow: "Glossary path",
+    title: "Use definitions inside decision workflows",
+    links: [
+      { label: "Glossary Index", href: "/glossary", description: "All practical LMD definitions." },
+      { label: "LMD vs SLM Signals", href: "/lab-notes/lmd-vs-slm-decision-signals", description: "Decision signals for process selection." },
+      { label: "Frameworks", href: "/frameworks", description: "Frameworks that use this terminology." },
+      { label: "Agent Pack", href: "/agent-pack", description: "AI-agent resources that rely on clear terms." }
+    ]
+  }
 ];
 
 export const DISCLAIMER =

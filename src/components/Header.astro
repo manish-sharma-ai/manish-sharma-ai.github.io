@@ -1,8 +1,15 @@
 ---
-import { LINKS, NAV_ITEMS } from "@data/site";
+import { LINKS, NAV_GROUPS } from "@data/site";
+
+const normalize = (value: string) => (value === "/" ? "/" : value.replace(/\/$/, ""));
+const currentPath = normalize(Astro.url.pathname);
+const isActive = (href: string) => {
+  const normalizedHref = normalize(href);
+  return currentPath === normalizedHref || (normalizedHref !== "/" && currentPath.startsWith(`${normalizedHref}/`));
+};
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/82 backdrop-blur-xl">
+<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/86 backdrop-blur-xl">
   <div class="site-shell grid min-h-[4.5rem] grid-cols-[auto_1fr_auto] items-center gap-5">
     <a href="/" class="group flex min-w-0 items-center gap-3 sm:min-w-[13.25rem]" aria-label="Manish Sharma Lab home">
       <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.035] shadow-glow transition group-hover:border-cyan-300/35 group-hover:bg-cyan-300/8">
@@ -15,16 +22,37 @@ import { LINKS, NAV_ITEMS } from "@data/site";
     </a>
 
     <nav class="hidden items-center justify-center gap-1 xl:flex" aria-label="Primary navigation">
-      {
-        NAV_ITEMS.map((item) => (
-          <a
-            href={item.href}
-            class="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"
-          >
-            {item.label}
-          </a>
-        ))
-      }
+      {NAV_GROUPS.map((group) => {
+        const groupActive = group.items.some((item) => isActive(item.href));
+        return (
+          <details class="nav-flyout group relative">
+            <summary class:list={[
+              "flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-2 text-sm font-bold transition",
+              groupActive ? "bg-cyan-300/10 text-cyan-50" : "text-slate-300 hover:bg-white/5 hover:text-white"
+            ]}>
+              {group.label}
+              <span class="font-mono text-[0.68rem] text-slate-500 transition group-open:rotate-180">⌄</span>
+            </summary>
+            <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(31rem,calc(100vw-2rem))] -translate-x-1/2 rounded-lg border border-white/10 bg-graphite-900/96 p-3 shadow-panel backdrop-blur-xl">
+              <p class="px-3 py-2 text-xs font-semibold leading-5 text-slate-400">{group.description}</p>
+              <div class="grid gap-1">
+                {group.items.map((item) => (
+                  <a
+                    href={item.href}
+                    class:list={[
+                      "grid gap-1 rounded-md px-3 py-3 transition",
+                      isActive(item.href) ? "bg-cyan-300/10 text-white" : "hover:bg-white/6"
+                    ]}
+                  >
+                    <span class="text-sm font-black text-white">{item.label}</span>
+                    <span class="text-xs leading-5 text-slate-400">{item.description}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </details>
+        );
+      })}
     </nav>
 
     <div class="hidden items-center justify-end gap-2 xl:flex">
@@ -45,19 +73,34 @@ import { LINKS, NAV_ITEMS } from "@data/site";
       <summary class="flex cursor-pointer list-none items-center rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-bold text-white">
         Menu
       </summary>
-      <div class="absolute right-0 mt-3 w-[min(88vw,22rem)] rounded-lg border border-white/10 bg-graphite-900/96 p-3 shadow-panel backdrop-blur-xl">
-        <nav class="grid gap-1" aria-label="Mobile navigation">
-          {
-            NAV_ITEMS.map((item) => (
-              <a href={item.href} class="rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-white/6">
-                {item.label}
-              </a>
-            ))
-          }
-          <a href="/for-ai-agents" class="rounded-md px-3 py-2 text-sm font-semibold text-slate-200 hover:bg-white/6">
-            For AI Agents
-          </a>
-          <a href={LINKS.exafuse} class="mt-2 rounded-md border border-orange-300/35 bg-orange-500/10 px-3 py-2 text-sm font-bold text-orange-100" target="_blank" rel="noreferrer">
+      <div class="absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,24rem)] overflow-auto rounded-lg border border-white/10 bg-graphite-900/96 p-3 shadow-panel backdrop-blur-xl">
+        <nav class="grid gap-4" aria-label="Mobile navigation">
+          {NAV_GROUPS.map((group) => (
+            <div class="rounded-lg border border-white/10 bg-white/[0.025] p-2">
+              <p class="metric-label px-2 py-2">{group.label}</p>
+              <div class="grid gap-1">
+                {group.items.map((item) => (
+                  <a
+                    href={item.href}
+                    class:list={[
+                      "rounded-md px-3 py-2 text-sm font-semibold transition",
+                      isActive(item.href) ? "bg-cyan-300/10 text-white" : "text-slate-200 hover:bg-white/6"
+                    ]}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+          <button
+            type="button"
+            data-command-trigger
+            class="rounded-md border border-white/10 bg-white/[0.04] px-3 py-3 text-left text-sm font-bold text-white"
+          >
+            Search all pages
+          </button>
+          <a href={LINKS.exafuse} class="rounded-md border border-orange-300/35 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-100" target="_blank" rel="noreferrer">
             Visit Exafuse
           </a>
         </nav>

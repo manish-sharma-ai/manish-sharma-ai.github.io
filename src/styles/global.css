@@ -70,6 +70,10 @@ a {
   text-decoration: none;
 }
 
+summary::-webkit-details-marker {
+  display: none;
+}
+
 button,
 input,
 select,

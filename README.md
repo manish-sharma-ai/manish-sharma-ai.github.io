@@ -48,6 +48,24 @@ output: "static"
 
 After the repository is pushed, enable GitHub Pages in repository settings and set the source to **GitHub Actions** if it is not already selected.
 
+## Continue On A Windows PC
+
+```bash
+git clone https://github.com/manish-sharma-ai/manish-sharma-ai.github.io.git
+cd manish-sharma-ai.github.io
+npm install
+npm run dev
+```
+
+Before switching machines, run:
+
+```bash
+git status
+git pull --ff-only
+```
+
+The working tree should be clean before continuing development on another computer.
+
 ## Content Strategy
 
 Core routes include:
@@ -68,6 +86,7 @@ Core routes include:
 - `/glossary`
 - `/public-work`
 - `/press-kit`
+- `/site-map`
 - `/for-ai-agents`
 - `/links`
 - `/contact`

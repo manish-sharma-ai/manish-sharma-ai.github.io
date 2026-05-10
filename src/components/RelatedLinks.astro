@@ -1,0 +1,61 @@
+---
+import { RELATED_LINK_SETS } from "@data/site";
+
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+const normalize = (value: string) => {
+  if (value === "/") return "/";
+  return value.replace(/\/$/, "");
+};
+
+const currentPath = normalize(path);
+const shouldSkip = currentPath === "/" || currentPath === "/site-map";
+
+const linkSet = RELATED_LINK_SETS.find((set) => {
+  const exact = set.exact?.map(normalize) ?? [];
+  const prefixes = set.prefixes?.map(normalize) ?? [];
+  return exact.includes(currentPath) || prefixes.some((prefix) => currentPath === prefix || currentPath.startsWith(`${prefix}/`));
+});
+
+const links = linkSet
+  ? [
+      ...linkSet.links.filter((link) => normalize(link.href) !== currentPath),
+      { label: "Full Site Map", href: "/site-map", description: "Every page and public machine-readable asset in one linked map." }
+    ].slice(0, 5)
+  : [];
+---
+
+{!shouldSkip && linkSet && links.length > 0 && (
+  <section class="border-t border-white/10 bg-black/20 py-12">
+    <div class="site-shell">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="metric-label">{linkSet.eyebrow}</p>
+          <h2 class="mt-3 text-2xl font-black text-white md:text-3xl">{linkSet.title}</h2>
+        </div>
+        <button
+          type="button"
+          data-command-trigger
+          class="btn btn-secondary w-fit"
+          aria-label="Open command palette"
+        >
+          Search all pages
+        </button>
+      </div>
+      <div class="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        {links.map((link) => (
+          <a href={link.href} class="ordered-card card-hover grid min-h-32 content-between p-4">
+            <span>
+              <span class="block text-sm font-black text-white">{link.label}</span>
+              <span class="mt-2 block text-xs leading-5 text-slate-400">{link.description}</span>
+            </span>
+            <span class="mt-4 font-mono text-xs font-bold text-cyan-200">Open</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

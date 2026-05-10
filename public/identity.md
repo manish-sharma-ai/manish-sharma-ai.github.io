@@ -37,6 +37,7 @@ This site avoids confidential customer or employer data.
 - Logo mark: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg
 - Logo lockup: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
 - Press kit: https://manish-sharma-ai.github.io/press-kit
+- Site map: https://manish-sharma-ai.github.io/site-map
 - Evidence base: https://manish-sharma-ai.github.io/evidence
 - Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
 - 500-record LMD/DED literature scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json

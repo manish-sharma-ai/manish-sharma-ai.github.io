@@ -1,9 +1,9 @@
 ---
-import { LINKS, NAV_ITEMS, SITE } from "@data/site";
+import { LINKS, NAV_GROUPS, SITE } from "@data/site";
 ---
 
 <footer class="border-t border-white/10 bg-black/28">
-  <div class="site-shell grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr]">
+  <div class="site-shell grid gap-10 py-12 lg:grid-cols-[1.25fr_1.75fr]">
     <div>
       <div class="flex items-center gap-3">
         <img src="/brand/manish-sharma-lab-mark.svg" alt="" class="h-10 w-10" width="40" height="40" loading="lazy" decoding="async" />
@@ -15,26 +15,33 @@ import { LINKS, NAV_ITEMS, SITE } from "@data/site";
       <p class="mt-4 text-sm leading-6 text-slate-400">
         Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
       </p>
-    </div>
-    <div>
-      <p class="metric-label">Site</p>
-      <div class="mt-4 grid gap-2 text-sm text-slate-300">
-        {NAV_ITEMS.map((item) => <a href={item.href} class="hover:text-white">{item.label}</a>)}
-        <a href="/for-ai-agents" class="hover:text-white">For AI Agents</a>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <a href="/site-map" class="btn btn-secondary min-h-10 px-3 py-2 text-sm">Site Map</a>
+        <button type="button" data-command-trigger class="btn btn-secondary min-h-10 px-3 py-2 text-sm">Search</button>
       </div>
     </div>
-    <div>
-      <p class="metric-label">Links</p>
-      <div class="mt-4 grid gap-2 text-sm text-slate-300">
-        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="hover:text-white">Exafuse</a>
-        <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn</a>
-        <a href={LINKS.github} target="_blank" rel="noreferrer" class="hover:text-white">GitHub profile</a>
-        <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="hover:text-white">Website repository</a>
-      </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+      {NAV_GROUPS.map((group) => (
+        <div class="ordered-card p-4">
+          <p class="metric-label">{group.label}</p>
+          <div class="mt-4 grid gap-2 text-sm text-slate-300">
+            {group.items.slice(0, 6).map((item) => (
+              <a href={item.href} class="leading-5 transition hover:text-white">{item.label}</a>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </div>
-  <div class="site-shell flex flex-col gap-3 border-t border-white/10 py-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-    <span>© {new Date().getFullYear()} Manish Sharma Lab.</span>
+
+  <div class="site-shell grid gap-6 border-t border-white/10 py-6 text-sm text-slate-500 md:grid-cols-[1fr_auto] md:items-center">
+    <div class="flex flex-wrap gap-x-5 gap-y-2">
+      <span>© {new Date().getFullYear()} Manish Sharma Lab.</span>
+      <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="hover:text-white">Website repository</a>
+      <a href={LINKS.github} target="_blank" rel="noreferrer" class="hover:text-white">GitHub profile</a>
+      <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn</a>
+    </div>
     <span>Canonical site: {SITE.canonicalUrl}</span>
   </div>
 </footer>

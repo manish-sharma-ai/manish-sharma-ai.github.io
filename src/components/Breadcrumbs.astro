@@ -1,0 +1,63 @@
+---
+import { COMMAND_PAGES, SITE } from "@data/site";
+
+interface Props {
+  path: string;
+  title: string;
+}
+
+const { path, title } = Astro.props;
+const normalize = (value: string) => {
+  if (value === "/") return "/";
+  return value.replace(/\/$/, "");
+};
+
+const currentPath = normalize(path);
+const titleMap = new Map(COMMAND_PAGES.map((page) => [normalize(page.href), page.title]));
+const cleanTitle = title.replace(` — ${SITE.name}`, "").replace(` | ${SITE.name}`, "");
+
+const crumbs =
+  currentPath === "/"
+    ? []
+    : [
+        { label: "Home", href: "/" },
+        ...currentPath
+          .split("/")
+          .filter(Boolean)
+          .map((_, index, segments) => {
+            const href = `/${segments.slice(0, index + 1).join("/")}`;
+            const isLast = index === segments.length - 1;
+            return {
+              label:
+                titleMap.get(href) ??
+                (isLast
+                  ? cleanTitle
+                  : segments[index]
+                      .split("-")
+                      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+                      .join(" ")),
+              href
+            };
+          })
+      ];
+---
+
+{crumbs.length > 0 && (
+  <nav class="border-b border-white/10 bg-black/18" aria-label="Breadcrumb">
+    <ol class="site-shell flex min-h-11 items-center gap-2 overflow-x-auto whitespace-nowrap py-2 text-xs font-semibold text-slate-500">
+      {crumbs.map((crumb, index) => {
+        const isLast = index === crumbs.length - 1;
+        return (
+          <li class="flex items-center gap-2">
+            {isLast ? (
+              <span class="text-slate-300" aria-current="page">{crumb.label}</span>
+            ) : (
+              <a href={crumb.href} class="transition hover:text-white">{crumb.label}</a>
+            )}
+            {!isLast && <span class="font-mono text-slate-700">/</span>}
+          </li>
+        );
+      })}
+    </ol>
+  </nav>
+)}

@@ -19,6 +19,7 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/evidence`
 - `https://manish-sharma-ai.github.io/industrial-proof`
 - `https://manish-sharma-ai.github.io/press-kit`
+- `https://manish-sharma-ai.github.io/site-map`
 - `https://manish-sharma-ai.github.io/identity`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index`

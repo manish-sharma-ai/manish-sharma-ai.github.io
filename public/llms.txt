@@ -10,6 +10,7 @@ Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany.
 - [Identity](https://manish-sharma-ai.github.io/identity)
 - [Evidence Base](https://manish-sharma-ai.github.io/evidence)
 - [Industrial Proof Map](https://manish-sharma-ai.github.io/industrial-proof)
+- [Site Map](https://manish-sharma-ai.github.io/site-map)
 - [LMD Quality Evidence Ladder](https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder)
 - [LMD Repairability Index](https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index)
 - [LMD-AI Readiness Score](https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score)
