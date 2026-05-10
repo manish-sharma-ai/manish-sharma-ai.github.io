@@ -9,6 +9,7 @@ import SectionHeading from "@components/SectionHeading.astro";
 import { EVIDENCE_FACTS, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evidence";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
+import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 
 const title = "Manish Sharma Lab - AI for Laser Metal Deposition";
 const description =
@@ -57,16 +58,7 @@ const flow = [
   ["Inspection Evidence", "Dimensional, NDT, metallography, hardness, mechanical, or field evidence closes the loop."]
 ];
 
-const graphLinks = [
-  ["Exafuse", LINKS.exafuse],
-  ["LinkedIn", LINKS.linkedin],
-  ["GitHub", LINKS.github],
-  ["ORCID", LINKS.orcid],
-  ["Zenodo", LINKS.zenodo],
-  ["Hugging Face", LINKS.huggingFace],
-  ["Google Scholar", LINKS.googleScholar],
-  ["ResearchGate", LINKS.researchGate]
-];
+const graphLinks = ACTIVE_PROFILE_LINKS;
 
 const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
 
@@ -74,6 +66,27 @@ const heroSignals = [
   ["Lab", "Frameworks + tools"],
   ["Domain", "DED/LMD + AI"],
   ["Boundary", "Inspection-aware"]
+];
+
+const flagshipAssets = [
+  {
+    title: "LMD Quality Evidence Ladder",
+    href: "/frameworks/lmd-quality-evidence-ladder",
+    text: "Separate process signals, AI anomaly flags, inspection evidence, and final quality proof.",
+    label: "Evidence"
+  },
+  {
+    title: "LMD Repairability Index",
+    href: "/frameworks/lmd-repairability-index",
+    text: "Screen material, damage, access, machining, inspection, economics, and risk before recommending repair.",
+    label: "Repair"
+  },
+  {
+    title: "LMD RFQ Toolkit / Agent Pack",
+    href: "/agent-pack",
+    text: "Turn vague LMD requests into known facts, missing information, risks, and next steps.",
+    label: "RFQ"
+  }
 ];
 ---
 
@@ -93,11 +106,12 @@ const heroSignals = [
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I use this site to organize my work around AI-assisted Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ preparation, and metal additive manufacturing.
+        I build inspection-aware AI frameworks, RFQ tools, and process-monitoring notes for Laser Metal Deposition, Directed Energy Deposition, repair, cladding, and metal additive manufacturing at Exafuse in Germany.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href="/frameworks" class="btn btn-primary">Explore Frameworks</a>
         <a href="/agent-pack" class="btn btn-secondary">Open RFQ Toolkit</a>
+        <a href="/identity" class="btn btn-secondary">Manish Sharma - AI for LMD</a>
         <a href="/lab-notes" class="btn btn-secondary">Read Lab Notes</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Visit Exafuse</a>
       </div>
@@ -111,6 +125,31 @@ const heroSignals = [
       </div>
     </div>
     <HeroLaserVisual />
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading
+          eyebrow="Flagship assets"
+          title="Start with the three useful things"
+          description="The site is built around practical assets that help readers separate LMD process signals, repairability, and RFQ structure."
+        />
+        <a href="/tools" class="btn btn-secondary w-fit">Open LMD tools</a>
+      </div>
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        {flagshipAssets.map((asset) => (
+          <a href={asset.href} class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-7">
+            <span>
+              <span class="metric-label">{asset.label}</span>
+              <span class="mt-4 block text-3xl font-black leading-tight text-white">{asset.title}</span>
+              <span class="mt-5 block text-base leading-7 text-slate-300">{asset.text}</span>
+            </span>
+            <span class="mt-8 font-mono text-xs font-black uppercase text-cyan-100">Open asset</span>
+          </a>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section class="band">
@@ -147,7 +186,10 @@ const heroSignals = [
             </article>
           ))}
         </div>
-        <a href="/evidence" class="btn btn-primary mt-8">Open Evidence Base</a>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/evidence" class="btn btn-primary">Open Evidence Base</a>
+          <a href="/research/core-lmd-ai-sources" class="btn btn-secondary">Core LMD-AI Sources</a>
+        </div>
       </div>
       <EvidenceFactGrid facts={EVIDENCE_FACTS.slice(0, 4)} />
     </div>
@@ -238,14 +280,14 @@ const heroSignals = [
         />
         <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {
-            graphLinks.map(([label, href]) => (
+            graphLinks.map((link) => (
               <a
-                href={href}
+                href={link.href}
                 class="ordered-card p-4 text-sm font-bold text-slate-200 transition hover:border-cyan-300/35 hover:text-white"
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noreferrer" : undefined}
+                target={link.href?.startsWith("http") ? "_blank" : undefined}
+                rel={link.href?.startsWith("http") ? "noreferrer" : undefined}
               >
-                {label}
+                {link.label}
               </a>
             ))
           }

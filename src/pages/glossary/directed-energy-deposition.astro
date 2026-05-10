@@ -1,45 +1,105 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
 
 const title = "Directed Energy Deposition";
 const short =
-  "Directed Energy Deposition is a category of additive manufacturing processes where focused thermal energy fuses material as it is being deposited.";
+  "Directed Energy Deposition is a broader additive manufacturing family where focused thermal energy fuses material as it is deposited.";
 const description = `${title}: ${short}`;
+
+const faq = [
+  ["Is DED a single process?", "No. DED is a process family. Energy source, feedstock, shielding, machine motion, and control approach can vary."],
+  ["How is LMD related to DED?", "LMD is commonly treated as a laser-based DED route. Standards language may use DED-LB/M for laser beam DED with metallic feedstock."],
+  ["Can DED use powder or wire?", "Yes. DED systems can use powder or wire feedstock depending on process route and machine design."],
+  ["When is DED useful?", "DED is useful when local material addition, repair, cladding, large parts, feature addition, or hybrid manufacturing are more relevant than powder-bed design freedom."]
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${SITE.canonicalUrl}/glossary/directed-energy-deposition#term`,
+    name: title,
+    description: short,
+    inDefinedTermSet: `${SITE.canonicalUrl}/glossary`
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: `${title} glossary`,
+    description,
+    author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+    datePublished: SITE.lastUpdated,
+    dateModified: SITE.lastUpdated,
+    url: `${SITE.canonicalUrl}/glossary/directed-energy-deposition`
+  }
+];
 ---
 
-<Layout title={`${title} — Glossary — Manish Sharma Lab`} description={description} canonical="/glossary/directed-energy-deposition">
+<Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/directed-energy-deposition" jsonLd={jsonLd}>
   <article class="site-shell py-16 md:py-20">
     <div class="max-w-4xl">
       <p class="metric-label">Glossary</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
     </div>
+
     <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
       <div class="grid h-fit gap-4">
-        <NoteBox title="Practical meaning">
-          DED is the broader family. Laser Metal Deposition can be understood as a laser-based DED route, often written as DED-LB/M in standards language.
-        </NoteBox>
-        <NoteBox title="Common confusion" tone="laser">
-          DED is a category, not one single machine type. Energy source, feedstock, motion system, shielding, and process controls can vary.
-        </NoteBox>
+        <NoteBox title="Short answer">DED is the parent family. Laser Metal Deposition is one laser-based route inside that family.</NoteBox>
+        <NoteBox title="Common confusion" tone="laser">DED is not one machine type. A DED system may differ by heat source, powder or wire feedstock, motion platform, shielding, sensing, and control.</NoteBox>
+        <NoteBox title="Buyer/RFQ relevance" tone="steel">A DED RFQ should name the process route, material, feedstock expectation, part geometry, deposition area, tolerance, post-processing, and inspection route.</NoteBox>
       </div>
       <div class="prose-lab">
-        <p>
-          Directed Energy Deposition is often associated with repair, cladding, feature addition, and larger metal parts. It can use powder or wire feedstock depending on the system.
-        </p>
-        <p>
-          AI decision support for DED should account for route-specific data, inspection requirements, and validation evidence.
-        </p>
+        <h2>Practical Meaning</h2>
+        <p>DED is useful language when comparing process families. It helps separate laser-based LMD, wire-fed systems, powder-fed systems, repair routes, and cladding routes from powder-bed processes.</p>
+        <h2>Technical Context</h2>
+        <p>DED process behavior depends on heat input, material delivery, bead geometry, overlap, thermal accumulation, path strategy, shielding, base material, and inspection requirements.</p>
+        <h2>When It Is Used</h2>
+        <p>DED is often discussed for repair, cladding, feature addition, large-part manufacturing, hybrid manufacturing, and near-net-shape build work.</p>
+        <h2>When It May Not Fit</h2>
+        <p>DED may not fit small complex parts with internal channels, very fine lattice detail, or cases where powder-bed geometry freedom is the main requirement.</p>
+        <h2>AI and Process-Monitoring Relevance</h2>
+        <p>AI support for DED should be route-specific. A powder-fed laser DED workflow, a wire-fed DED workflow, and a powder-bed workflow do not produce the same data or evidence needs.</p>
+        <h2>Related Terms</h2>
+        <p>Related terms include Laser Metal Deposition, DED-LB/M, laser cladding, powder-fed DED, wire-fed DED, LPBF, SLM, and hybrid manufacturing.</p>
       </div>
     </div>
-    <div class="mt-12">
+
+    <section class="mt-14">
+      <SectionHeading eyebrow="FAQ" title="Common DED questions" />
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {faq.map(([question, answer]) => (
+          <article class="ordered-card-strong p-5">
+            <h2 class="text-lg font-black text-white">{question}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{answer}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Source notes" title="Source notes and related pages" />
       <SourceLinks links={[
-        { label: "Laser Metal Deposition", href: "/glossary/laser-metal-deposition" },
+        { label: "ISO/ASTM additive manufacturing terminology", href: null, status: "Source link to be added", description: "Needed for exact standard wording." },
+        { label: "NIST additive manufacturing / DED resources", href: null, status: "Source link to be added" },
+        { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
-        { label: "For AI Agents", href: "/for-ai-agents" }
+        { label: "LMD RFQ Toolkit", href: "/agent-pack" },
+        { label: "Tools", href: "/tools" }
       ]} />
-    </div>
+    </section>
   </article>
 </Layout>

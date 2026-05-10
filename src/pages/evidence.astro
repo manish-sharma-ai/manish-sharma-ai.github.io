@@ -43,6 +43,12 @@ const pageJsonLd = {
       name: "Exafuse public proof map",
       url: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`,
       description: "Public Exafuse proof signals mapped to Manish Sharma Lab themes."
+    },
+    {
+      "@type": "TechArticle",
+      name: "Core Sources for AI and Laser Metal Deposition",
+      url: `${SITE.canonicalUrl}/research/core-lmd-ai-sources`,
+      description: "Curated starting map for LMD, DED, process monitoring, AI, repair, quality, and terminology sources."
     }
   ]
 };
@@ -71,6 +77,7 @@ const pageJsonLd = {
         <p class="mt-3 text-lg font-bold text-white">LMD/DED records in the map</p>
         <p class="mt-4 text-sm leading-6 text-slate-400">{RESEARCH_SCAN.method}</p>
         <a href={RESEARCH_SCAN.file} class="btn btn-secondary mt-6">Open reference JSON</a>
+        <a href="/research/core-lmd-ai-sources" class="btn btn-primary mt-3">Open Curated Source Map</a>
       </div>
     </div>
   </section>
@@ -162,6 +169,7 @@ const pageJsonLd = {
         </p>
       </div>
     </div>
+    <a href="/research/core-lmd-ai-sources" class="btn btn-primary mt-8">Open Core LMD-AI Sources</a>
   </section>
 
   <section class="band section-y">

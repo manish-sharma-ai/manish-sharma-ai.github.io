@@ -1,45 +1,105 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { PERSON, SITE } from "@data/site";
 
 const title = "Laser Cladding";
 const short =
-  "Laser cladding uses a laser to deposit material onto a surface, often to improve wear, corrosion, or heat resistance or restore dimensions.";
+  "Laser cladding uses a laser to deposit material onto a surface, often to restore dimensions or improve wear, corrosion, or heat behavior.";
 const description = `${title}: ${short}`;
+
+const faq = [
+  ["Is laser cladding a repair process?", "It can be. Laser cladding is often used for repair, surface restoration, and functional coating, but the exact fit depends on the part and service requirements."],
+  ["Is laser cladding structural?", "Sometimes it supports structural repair logic, but that claim needs material compatibility, bond quality, inspection evidence, and acceptance criteria."],
+  ["Does laser cladding need machining?", "Often yes. Cladding may require machining or finishing to recover final geometry, tolerance, and surface condition."],
+  ["What information is needed for a laser cladding RFQ?", "Base material, target deposit material, service environment, coating thickness, repair area, surface preparation, machining allowance, inspection requirements, and acceptance criteria."]
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${SITE.canonicalUrl}/glossary/laser-cladding#term`,
+    name: title,
+    description: short,
+    inDefinedTermSet: `${SITE.canonicalUrl}/glossary`
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: `${title} glossary`,
+    description,
+    author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+    datePublished: SITE.lastUpdated,
+    dateModified: SITE.lastUpdated,
+    url: `${SITE.canonicalUrl}/glossary/laser-cladding`
+  }
+];
 ---
 
-<Layout title={`${title} — Glossary — Manish Sharma Lab`} description={description} canonical="/glossary/laser-cladding">
+<Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/laser-cladding" jsonLd={jsonLd}>
   <article class="site-shell py-16 md:py-20">
     <div class="max-w-4xl">
       <p class="metric-label">Glossary</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
     </div>
+
     <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
       <div class="grid h-fit gap-4">
-        <NoteBox title="Practical meaning">
-          Laser cladding is often surface-focused: add a material layer to restore geometry or improve wear, corrosion, or heat behavior.
-        </NoteBox>
-        <NoteBox title="Common confusion" tone="laser">
-          Cladding is related to LMD, but the goal is often a functional surface or dimensional restoration rather than building a full freeform part.
-        </NoteBox>
+        <NoteBox title="Short answer">Laser cladding is surface-focused material addition. It often supports wear resistance, corrosion resistance, dimensional restoration, and repair.</NoteBox>
+        <NoteBox title="Common confusion" tone="laser">Cladding overlaps with LMD, but the goal is often a functional surface or local restoration rather than a full freeform build.</NoteBox>
+        <NoteBox title="Buyer/RFQ relevance" tone="steel">A good cladding RFQ must state base material, target surface function, thickness, area, finishing, and inspection needs.</NoteBox>
       </div>
       <div class="prose-lab">
-        <p>
-          A cladding RFQ should define base material, target deposit material, coating thickness, surface preparation, machining allowance, and acceptance criteria.
-        </p>
-        <p>
-          Inspection and testing should match the service environment and risk level.
-        </p>
+        <h2>Practical Meaning</h2>
+        <p>Laser cladding adds a material layer to a surface. In repair language, it can restore worn or damaged areas when the base material, access, and service requirements make the route credible.</p>
+        <h2>Technical Context</h2>
+        <p>Cladding quality depends on dilution, bond quality, heat input, surface preparation, material compatibility, layer strategy, and finishing route.</p>
+        <h2>When It Is Used</h2>
+        <p>It is often used for wear surfaces, corrosion-resistant layers, heat-resistant layers, dimensional restoration, and local repair of valuable parts.</p>
+        <h2>When It May Not Fit</h2>
+        <p>It may not fit if the base material is unknown, cracking risk is high, the surface cannot be prepared, machining is impossible, or inspection cannot confirm the relevant quality claim.</p>
+        <h2>AI and Process-Monitoring Relevance</h2>
+        <p>Monitoring may help identify deposition consistency or anomaly candidates, but final surface performance still depends on inspection and service-specific validation.</p>
+        <h2>Related Terms</h2>
+        <p>Related terms include Laser Metal Deposition, Directed Energy Deposition, functional coating, dilution, bond quality, wear resistance, repair, and post-machining.</p>
       </div>
     </div>
-    <div class="mt-12">
+
+    <section class="mt-14">
+      <SectionHeading eyebrow="FAQ" title="Common laser cladding questions" />
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {faq.map(([question, answer]) => (
+          <article class="ordered-card-strong p-5">
+            <h2 class="text-lg font-black text-white">{question}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{answer}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Source notes" title="Source notes and related pages" />
       <SourceLinks links={[
+        { label: "Laser cladding review source", href: null, status: "Source link to be added", description: "Needed for deeper surface engineering context." },
+        { label: "Public Exafuse LMD case studies", href: "/industrial-proof" },
+        { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
-        { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
-        { label: "Exafuse", href: "https://www.exafuse.de/" }
+        { label: "Tools", href: "/tools" },
+        { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" }
       ]} />
-    </div>
+    </section>
   </article>
 </Layout>

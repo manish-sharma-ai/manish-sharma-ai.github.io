@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
-import SourceLinks from "@components/SourceLinks.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Why Melt-Pool Monitoring Is Not a Quality Certificate";
@@ -52,12 +52,10 @@ const jsonLd = {
         </p>
       </div>
     </div>
-    <div class="mt-12">
-      <SourceLinks links={[
+    <LabNoteFooter links={[
         { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "Melt-pool monitoring glossary", href: "/glossary/melt-pool-monitoring" }
       ]} />
-    </div>
   </article>
 </Layout>

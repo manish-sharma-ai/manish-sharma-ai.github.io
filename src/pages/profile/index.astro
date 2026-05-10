@@ -1,0 +1,26 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+
+const title = "Profile Resources - Manish Sharma Lab";
+const description = "Public-safe profile resources for Manish Sharma Lab.";
+---
+
+<Layout title={title} description={description} canonical="/profile">
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Profile"
+      title="Public-safe profile resources"
+      description="Identity pages and public profile facts used by Manish Sharma Lab."
+    />
+    <div class="mt-10">
+      <SourceLinks links={[
+        { label: "Manish Sharma public profile", href: "/profile/public-profile" },
+        { label: "Canonical identity page", href: "/identity" },
+        { label: "About Manish Sharma", href: "/about" },
+        { label: "Press kit", href: "/press-kit" }
+      ]} />
+    </div>
+  </section>
+</Layout>

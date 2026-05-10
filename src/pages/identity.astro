@@ -5,7 +5,8 @@ import Layout from "@layouts/Layout.astro";
 import ProfileImage from "@components/ProfileImage.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
+import { CORE_TOPICS, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
+import { PROFILE_LINKS } from "@data/profiles";
 import { absoluteUrl } from "@utils/urls";
 
 const title = "Manish Sharma - AI for Laser Metal Deposition";
@@ -25,11 +26,7 @@ const personJsonLd = {
     url: "https://www.exafuse.de/"
   },
   url: "https://manish-sharma-ai.github.io/identity",
-  sameAs: [
-    "https://www.linkedin.com/in/manishsharma5/",
-    "https://github.com/aiwithms",
-    "https://www.exafuse.de/"
-  ],
+  sameAs: SAME_AS,
   knowsAbout: CORE_TOPICS
 };
 
@@ -51,16 +48,8 @@ const fields = [
   ["Company connection", "Exafuse"],
   ["Location", "Germany"],
   ["Core topics", "LMD, DED, DED-LB/M, laser cladding, process monitoring, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing"],
-  ["Public profiles", "LinkedIn, GitHub, ORCID, Zenodo, Hugging Face"]
-];
-
-const sameAsLinks = [
-  { label: "LinkedIn", href: LINKS.linkedin },
-  { label: "GitHub profile", href: LINKS.github },
-  { label: "Exafuse", href: LINKS.exafuse },
-  { label: "ORCID placeholder", href: LINKS.orcid },
-  { label: "Zenodo placeholder", href: LINKS.zenodo },
-  { label: "Hugging Face placeholder", href: LINKS.huggingFace }
+  ["Active public profiles", "LinkedIn, GitHub, Exafuse, website"],
+  ["Planned profiles", "ORCID, Zenodo, Hugging Face, Google Scholar, ResearchGate"]
 ];
 ---
 
@@ -78,6 +67,7 @@ const sameAsLinks = [
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/about" class="btn btn-primary">Personal Profile</a>
+        <a href="/profile/public-profile" class="btn btn-secondary">Public Profile Facts</a>
         <a href={LINKS.linkedin} class="btn btn-secondary" target="_blank" rel="noreferrer">LinkedIn</a>
       </div>
     </div>
@@ -123,9 +113,9 @@ const sameAsLinks = [
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="sameAs" title="Public profile links" description="These links connect the same public profile across web surfaces." />
+      <SectionHeading eyebrow="sameAs" title="Public profile links" description="Only real profile URLs are used in JSON-LD. Planned profiles are shown as planned, not broken links." />
       <div class="mt-8">
-        <SourceLinks links={sameAsLinks} />
+        <SourceLinks links={PROFILE_LINKS} />
       </div>
     </div>
   </section>

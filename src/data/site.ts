@@ -1,8 +1,10 @@
+import { PROFILE_URLS, JSON_LD_SAME_AS } from "./profiles";
+
 export const SITE = {
   name: "Manish Sharma Lab",
-  canonicalUrl: "https://manish-sharma-ai.github.io",
-  repoUrl: "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io",
-  githubProfile: "https://github.com/aiwithms",
+  canonicalUrl: PROFILE_URLS.site,
+  repoUrl: PROFILE_URLS.repository,
+  githubProfile: PROFILE_URLS.github,
   description:
     "Working notes, tools, and practical frameworks on AI for Laser Metal Deposition, process monitoring, repair decisions, and RFQ preparation.",
   lastUpdated: "2026-05-10"
@@ -26,18 +28,13 @@ export const PERSON = {
 };
 
 export const LINKS = {
-  exafuse: "https://www.exafuse.de/",
-  linkedin: "https://www.linkedin.com/in/manishsharma5/",
-  github: "https://github.com/aiwithms",
-  repo: "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io",
-  orcid: "#",
-  zenodo: "#",
-  huggingFace: "#",
-  googleScholar: "#",
-  researchGate: "#"
+  exafuse: PROFILE_URLS.exafuse,
+  linkedin: PROFILE_URLS.linkedin,
+  github: PROFILE_URLS.github,
+  repo: PROFILE_URLS.repository
 };
 
-export const SAME_AS = [LINKS.linkedin, LINKS.github, LINKS.exafuse];
+export const SAME_AS = JSON_LD_SAME_AS;
 
 export const CORE_TOPICS = [
   "Laser Metal Deposition",
@@ -60,6 +57,7 @@ export const NAV_GROUPS = [
     items: [
       { label: "About", href: "/about", description: "Personal technical profile with experience, focus areas, and proof points." },
       { label: "Identity", href: "/identity", description: "Stable public profile facts and reference links." },
+      { label: "Public Profile", href: "/profile/public-profile", description: "Public-safe identity facts and planned profile links." },
       { label: "Public Work", href: "/public-work", description: "Profiles, public assets, notes, tools, and future outputs." },
       { label: "Links", href: "/links", description: "Exafuse, LinkedIn, GitHub, and research-profile links." },
       { label: "Contact", href: "/contact", description: "Professional contact routes and Exafuse RFQ direction." }
@@ -70,6 +68,7 @@ export const NAV_GROUPS = [
     description: "Sources, industrial context, press assets, and public reference files.",
     items: [
       { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source map for AI and Laser Metal Deposition." },
       { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." },
       { label: "Press Kit", href: "/press-kit", description: "Media facts, brand assets, and short profile summaries." },
       { label: "Literature Map JSON", href: "/research/lmd-literature-scan.json", description: "500-record LMD/DED reference map." },
@@ -295,7 +294,9 @@ export const COMMAND_PAGES = [
   { title: "Home", href: "/", group: "Core" },
   { title: "About Manish Sharma", href: "/about", group: "Core" },
   { title: "Identity", href: "/identity", group: "Core" },
+  { title: "Manish Sharma Public Profile", href: "/profile/public-profile", group: "Core" },
   { title: "Evidence Base", href: "/evidence", group: "Core" },
+  { title: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources", group: "Core" },
   { title: "Industrial Proof Map", href: "/industrial-proof", group: "Core" },
   { title: "Frameworks", href: "/frameworks", group: "Core" },
   { title: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", group: "Frameworks" },
@@ -325,6 +326,7 @@ export const SITE_MAP_GROUPS = [
       { label: "Home", href: "/", description: "Top-level profile, frameworks, and proof context." },
       { label: "About", href: "/about", description: "Personal technical profile and experience-backed positioning." },
       { label: "Identity", href: "/identity", description: "Stable public profile page for Manish Sharma." },
+      { label: "Public Profile", href: "/profile/public-profile", description: "Public-safe profile facts and planned profile links." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "How automated assistants should use and not use this site." },
       { label: "Press Kit", href: "/press-kit", description: "Official short bios, assets, and machine-readable profile data." }
     ]
@@ -334,6 +336,7 @@ export const SITE_MAP_GROUPS = [
     description: "Pages that anchor the site's claims in sources and public industrial context.",
     links: [
       { label: "Evidence Base", href: "/evidence", description: "Reference map, field notes, and checked facts." },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated starting map for source categories and further reading." },
       { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse case and article signals." },
       { label: "LMD Literature Map JSON", href: "/research/lmd-literature-scan.json", description: "500-record LMD/DED reference map." },
       { label: "Exafuse Proof Map JSON", href: "/research/exafuse-public-proof-map.json", description: "Public proof map." }
@@ -381,6 +384,7 @@ export const SITE_MAP_GROUPS = [
     description: "External and supporting public links.",
     links: [
       { label: "Public Work", href: "/public-work", description: "Profiles, repositories, reports, future talks, and datasets." },
+      { label: "Public Profile", href: "/profile/public-profile", description: "Public-safe profile facts." },
       { label: "Links", href: "/links", description: "LinkedIn, GitHub, Exafuse, and research-profile links." },
       { label: "Contact", href: "/contact", description: "Professional contact routes." },
       { label: "Repository", href: LINKS.repo, description: "Source repository for this website." }
@@ -390,22 +394,24 @@ export const SITE_MAP_GROUPS = [
 
 export const RELATED_LINK_SETS = [
   {
-    exact: ["/about", "/identity", "/public-work", "/links", "/contact"],
+    exact: ["/about", "/identity", "/profile/public-profile", "/public-work", "/links", "/contact"],
     eyebrow: "Identity path",
     title: "Continue through the public identity layer",
     links: [
       { label: "Canonical Identity", href: "/identity", description: "The stable public profile page for references." },
+      { label: "Public Profile Facts", href: "/profile/public-profile", description: "Public-safe identity facts and planned profile links." },
       { label: "Evidence Base", href: "/evidence", description: "Source-checked numbers and proof points behind the profile." },
       { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse work connected to the lab themes." },
       { label: "Public Work", href: "/public-work", description: "Profiles, public resources, and future outputs." }
     ]
   },
   {
-    exact: ["/evidence", "/industrial-proof", "/press-kit"],
+    exact: ["/evidence", "/industrial-proof", "/press-kit", "/research/core-lmd-ai-sources"],
     eyebrow: "Proof path",
     title: "Follow the evidence trail",
     links: [
       { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source map for AI and Laser Metal Deposition." },
       { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases and article signals." },
       { label: "Press Kit", href: "/press-kit", description: "Profile facts and brand assets." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "Usage boundaries for automated assistants." }
@@ -416,10 +422,13 @@ export const RELATED_LINK_SETS = [
     eyebrow: "Framework path",
     title: "Move from framework to practical workflow",
     links: [
+      { label: "Manish Sharma - AI for Laser Metal Deposition", href: "/identity", description: "Canonical identity page for the author and public entity." },
       { label: "Frameworks Index", href: "/frameworks", description: "All public LMD and AI frameworks." },
       { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "Separate process signals from inspection proof." },
       { label: "Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Score LMD repair feasibility inputs." },
-      { label: "Tools", href: "/tools", description: "Try the interactive decision helpers." }
+      { label: "LMD Agent Pack", href: "/agent-pack", description: "RFQ schemas, prompts, rules, and checklists." },
+      { label: "Tools", href: "/tools", description: "Try the interactive decision helpers." },
+      { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance and limitations for assistants." }
     ]
   },
   {

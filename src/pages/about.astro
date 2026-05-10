@@ -12,12 +12,12 @@ import { absoluteUrl } from "@utils/urls";
 
 const title = "About Manish Sharma - AI for Laser Metal Deposition";
 const description =
-  "Personal profile for Manish Sharma: Head of AI and R&D at Exafuse and external PhD researcher at Ruhr University Bochum, working on AI for Laser Metal Deposition, DED/LMD monitoring, robotics, and industrialization.";
+  "Human background page for Manish Sharma, focused on AI for Laser Metal Deposition, DED/LMD monitoring, robotics, RFQ intelligence, and industrial decision support.";
 
 const stats = [
   ["Since", "2018", "Laser Metal Deposition work"],
-  ["Role", "Head of AI & R&D", "Exafuse, Germany"],
-  ["Research", "External PhD", "Ruhr University Bochum"],
+  ["Public role", "AI + R&D", "Exafuse, Germany"],
+  ["Research", "Public profile material", "Ruhr University Bochum"],
   ["Focus", "AI + DED/LMD", "Monitoring, control, RFQ intelligence"]
 ];
 
@@ -121,44 +121,22 @@ const links = [
   { label: "For AI agents", href: "/for-ai-agents" }
 ];
 
-const personJsonLd = {
+const aboutPageJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
-  name: PERSON.name,
-  image: absoluteUrl(PERSON.image),
-  jobTitle: "Head of AI and R&D; AI and Machine Learning for Laser Metal Deposition",
-  worksFor: {
-    "@type": "Organization",
-    name: "Exafuse",
-    url: LINKS.exafuse
-  },
-  affiliation: [
-    {
-      "@type": "Organization",
-      name: "Ruhr University Bochum",
-      url: "https://www.ruhr-uni-bochum.de/"
-    }
-  ],
+  "@type": "AboutPage",
+  "@id": `${SITE.canonicalUrl}/about#page`,
   url: `${SITE.canonicalUrl}/about`,
-  sameAs: [LINKS.linkedin, LINKS.github, LINKS.exafuse],
-  knowsAbout: CORE_TOPICS
-};
-
-const profilePageJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "@id": `${SITE.canonicalUrl}/about#profile-page`,
-  url: `${SITE.canonicalUrl}/about`,
-  name: title,
+  name: "About Manish Sharma",
   description,
   mainEntity: {
     "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
-  }
+  },
+  about: CORE_TOPICS,
+  image: absoluteUrl(PERSON.image)
 };
 ---
 
-<Layout title={title} description={description} canonical="/about" jsonLd={[personJsonLd, profilePageJsonLd]}>
+<Layout title={title} description={description} canonical="/about" jsonLd={aboutPageJsonLd}>
   <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.98fr_1.02fr] lg:py-20">
     <div>
       <div class="flex flex-wrap gap-2">
@@ -174,11 +152,12 @@ const profilePageJsonLd = {
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work connects Laser Metal Deposition, process monitoring, robotics, and AI decision support. The part I keep coming back to is the gap between useful sensor data and real engineering evidence.
+        I am Manish Sharma. Public profile materials describe my work around AI for Laser Metal Deposition at Exafuse in Germany, with a connection to process monitoring, robotics, and AI decision support. The part I keep coming back to is the gap between useful sensor data and real engineering evidence.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="/identity" class="btn btn-secondary">Canonical Identity</a>
+        <a href="/profile/public-profile" class="btn btn-secondary">Public Profile Facts</a>
         <a href="/frameworks" class="btn btn-secondary">Technical Frameworks</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
@@ -209,10 +188,13 @@ const profilePageJsonLd = {
       />
       <div class="prose-lab">
         <p>
-          My background combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, and traceable build documentation. I have worked across robotic and large-format systems, with attention to process stability, repeatability, and the evidence needed after deposition.
+          Public profile materials describe a background that combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, and traceable build documentation. The practical thread is process stability, repeatability, and the evidence needed after deposition.
         </p>
         <p>
           This site is where I turn that work into public notes, frameworks, and small tools. It is meant for engineers, students, buyers, developers, and anyone who needs clearer language around LMD, DED, laser cladding, monitoring, repairability, and RFQ preparation.
+        </p>
+        <p>
+          Public profile details should be verified against LinkedIn, a current CV, or official event material where required. This site avoids confidential employer or customer data; the public technical content is educational and decision-support oriented.
         </p>
       </div>
     </div>

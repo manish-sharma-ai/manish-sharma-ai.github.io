@@ -1,0 +1,149 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { CITED_SOURCES } from "@data/evidence";
+import { EXAFUSE_SOURCE_LINKS } from "@data/exafuse";
+import { PERSON, SITE } from "@data/site";
+
+const title = "Core Sources for AI and Laser Metal Deposition";
+const description =
+  "A curated starting map for engineers, students, and AI agents researching AI, process monitoring, and Laser Metal Deposition.";
+
+const sourceRows = [
+  ["LMD / DED fundamentals", "Terminology source", "Keeps LMD, DED, DED-LB/M, cladding, and powder-bed processes from being mixed together.", "ISO/ASTM terminology source - source link to be added"],
+  ["LMD / DED fundamentals", "Public technical resource", "Gives a reliable starting point for Directed Energy Deposition terminology and AM process categories.", "NIST additive manufacturing / DED resources - source link to be added"],
+  ["Process monitoring and melt-pool monitoring", "Review paper", "Useful for understanding what in-situ monitoring can observe and why monitoring is not final release evidence.", "Review paper on in-situ monitoring in metal AM - source link to be added"],
+  ["Process monitoring and melt-pool monitoring", "Review paper", "Useful for linking melt-pool signals, thermal history, geometry, and inspection outcomes in DED/LMD.", "Review paper on DED / LMD process monitoring - source link to be added"],
+  ["AI / machine learning in additive manufacturing", "Review paper", "Useful for model categories, data limitations, defect labels, and validation boundaries.", "Review paper on machine learning in metal additive manufacturing - source link to be added"],
+  ["Defect formation and failure modes", "Review / handbook source", "Useful for connecting porosity, lack of fusion, cracking, dilution, distortion, and property mismatch to inspection evidence.", "Source link to be added"],
+  ["Repair and cladding applications", "Public industrial case studies", "Shows real repair, cladding, build-and-coat, and large-part LMD situations without using confidential project data.", "Public Exafuse case studies linked below"],
+  ["Quality, inspection, and validation", "Standards / inspection resources", "Keeps quality claims tied to inspection, testing, acceptance criteria, and service risk.", "Source link to be added"],
+  ["Standards and terminology", "Standards source", "Important for avoiding invented definitions and overclaiming what a process or AI system proves.", "ASTM / ISO additive manufacturing terminology - source link to be added"]
+];
+
+const sections = [
+  ["Why this page exists", "The existing 500-record map is broad metadata. This page is a smaller, curated starting map for people who need to understand which source areas matter before reading deeper."],
+  ["How to use this source map", "Use it to choose what to read next, not as a final literature review. Source rows marked as source link to be added should be replaced only when a real source URL is confirmed."],
+  ["What is still missing", "The next improvement is to replace placeholders with verified standards pages, review papers, and stable public source URLs without inventing paper details or DOIs."],
+  ["Suggested next search queries", "DED-LB/M terminology, LMD process monitoring review, in-situ monitoring metal additive manufacturing review, machine learning metal additive manufacturing review, laser cladding repair inspection, LMD quality evidence."]
+];
+
+const categorySections = [
+  ["LMD / DED fundamentals", "Start with terminology and process-family boundaries before comparing LMD, DED, DED-LB/M, laser cladding, SLM, or LPBF."],
+  ["Process monitoring and melt-pool monitoring", "Use these sources to understand what signals can indicate, what they cannot prove, and how signals connect to inspection evidence."],
+  ["AI / machine learning in additive manufacturing", "Use these sources to evaluate data foundations, labels, validation, model limits, and decision-support boundaries."],
+  ["Defect formation and failure modes", "Use these sources to connect porosity, lack of fusion, cracking, dilution, distortion, and property mismatch to physical evidence."],
+  ["Repair and cladding applications", "Use these sources to understand when local deposition, surface restoration, coating, machining, and inspection planning matter."],
+  ["Quality, inspection, and validation", "Use these sources to keep quality claims tied to NDT, dimensional inspection, metallography, hardness, mechanical testing, and service risk."],
+  ["Standards and terminology", "Use these sources when exact definitions matter. This page should not be treated as standard wording."]
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/research/core-lmd-ai-sources#article`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/research/core-lmd-ai-sources`,
+  about: [
+    "Laser Metal Deposition",
+    "Directed Energy Deposition",
+    "Process Monitoring",
+    "Melt-Pool Monitoring",
+    "AI for Manufacturing",
+    "Industrial Repair"
+  ]
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/research/core-lmd-ai-sources" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <p class="metric-label">Curated research map</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">
+        A curated starting map for engineers, students, and AI agents. It complements the broad 500-record reference map; it does not pretend to be a complete systematic review.
+      </p>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {sections.map(([heading, text]) => (
+        <article class="ordered-card-strong p-5">
+          <h2 class="text-xl font-black text-white">{heading}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading eyebrow="Categories" title="How the source map is organized" />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {categorySections.map(([heading, text]) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-xl font-black text-white">{heading}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Source map"
+      title="Categories to read before making strong LMD-AI claims"
+      description="Rows marked as source link to be added are deliberate placeholders, not fake citations."
+    />
+    <div class="mt-10 overflow-hidden rounded-lg border border-white/10">
+      <table class="w-full border-collapse text-left text-sm">
+        <thead class="bg-white/[0.04] text-xs uppercase text-slate-400">
+          <tr>
+            <th class="p-4">Category</th>
+            <th class="p-4">Source type</th>
+            <th class="p-4">Why it matters</th>
+            <th class="p-4">Link/status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sourceRows.map(([category, sourceType, why, status]) => (
+            <tr class="border-t border-white/10">
+              <td class="p-4 align-top font-bold text-white">{category}</td>
+              <td class="p-4 align-top text-slate-300">{sourceType}</td>
+              <td class="p-4 align-top leading-6 text-slate-300">{why}</td>
+              <td class="p-4 align-top font-semibold text-cyan-100">{status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <SectionHeading
+        eyebrow="Existing source anchors"
+        title="Public sources already used by the site"
+        description="These links are already present in the evidence layer and public Exafuse proof map."
+      />
+      <div class="grid gap-8">
+        <SourceLinks links={CITED_SOURCES} />
+        <SourceLinks links={EXAFUSE_SOURCE_LINKS} />
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="rounded-lg border border-orange-300/25 bg-orange-500/10 p-6">
+      <p class="metric-label text-orange-100">Disclaimer</p>
+      <p class="mt-4 text-lg font-bold leading-8 text-orange-50">
+        This page is a curated starting map, not a complete literature review or formal standard. Exact technical claims should be checked against the original source, standard, inspection requirement, and engineering context.
+      </p>
+    </div>
+  </section>
+</Layout>

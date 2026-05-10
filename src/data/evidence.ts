@@ -127,8 +127,8 @@ export const EVIDENCE_FACTS = [
     label: "BreitbahnDED project targets",
     detail:
       "From my public profile material: broad-track DED goals include rotating multi-spot optics, 5-10 mm wide tracks, multimodal monitoring, layer-to-layer control, and a >95% powder-utilization target. This is a project target, not a published result claim.",
-    source: "Manish Sharma CV, local profile material",
-    href: `${SITE.canonicalUrl}/about`
+    source: "Manish Sharma public profile material",
+    href: `${SITE.canonicalUrl}/profile/public-profile`
   }
 ];
 

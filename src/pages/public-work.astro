@@ -2,22 +2,11 @@
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { LINKS } from "@data/site";
+import { PROFILE_LINKS } from "@data/profiles";
 
 const title = "Public Work - Manish Sharma Lab";
 const description =
   "Public profiles, frameworks, notes, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing.";
-
-const links = [
-  { label: "Exafuse", href: LINKS.exafuse },
-  { label: "LinkedIn", href: LINKS.linkedin },
-  { label: "GitHub", href: LINKS.github },
-  { label: "ORCID placeholder", href: LINKS.orcid },
-  { label: "Zenodo placeholder", href: LINKS.zenodo },
-  { label: "Hugging Face placeholder", href: LINKS.huggingFace },
-  { label: "Google Scholar placeholder", href: LINKS.googleScholar },
-  { label: "ResearchGate placeholder", href: LINKS.researchGate }
-];
 
 const future = [
   ["Future reports", "Inspection-aware LMD notes, RFQ reports, and public technical summaries."],
@@ -28,7 +17,10 @@ const future = [
 
 const liveResources = [
   ["Personal profile", "/about"],
+  ["Manish Sharma public profile", "/profile/public-profile"],
+  ["Canonical identity", "/identity"],
   ["Evidence Base", "/evidence"],
+  ["Core LMD-AI Sources", "/research/core-lmd-ai-sources"],
   ["Industrial Proof Map", "/industrial-proof"],
   ["Press Kit", "/press-kit"],
   ["500-record LMD/DED reference map", "/research/lmd-literature-scan.json"],
@@ -48,7 +40,7 @@ const liveResources = [
       description="This page collects public profiles, frameworks, notes, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing."
     />
     <div class="mt-10">
-      <SourceLinks links={links} />
+      <SourceLinks links={PROFILE_LINKS} />
     </div>
   </section>
 

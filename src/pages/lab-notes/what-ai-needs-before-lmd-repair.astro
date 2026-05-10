@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
-import SourceLinks from "@components/SourceLinks.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "What AI Needs Before Recommending LMD Repair";
@@ -52,12 +52,10 @@ const jsonLd = {
         </p>
       </div>
     </div>
-    <div class="mt-12">
-      <SourceLinks links={[
+    <LabNoteFooter links={[
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
         { label: "RFQ Prompt-to-Structure Converter", href: "/tools" },
         { label: "RFQ schema", href: "/agent-pack/lmd-rfq-schema.json" }
       ]} />
-    </div>
   </article>
 </Layout>

@@ -1,0 +1,55 @@
+---
+import SourceLinks from "@components/SourceLinks.astro";
+
+interface LinkItem {
+  label: string;
+  href?: string | null;
+  status?: string;
+  description?: string;
+}
+
+interface Props {
+  links: LinkItem[];
+  sourceNotes?: LinkItem[];
+}
+
+const { links, sourceNotes = [] } = Astro.props;
+
+const defaultSourceNotes: LinkItem[] = [
+  {
+    label: "Source link to be added: review literature on in-situ monitoring in metal additive manufacturing.",
+    href: null,
+    status: "Further reading to add"
+  },
+  {
+    label: "Source link to be added: ISO/ASTM additive manufacturing terminology.",
+    href: null,
+    status: "Further reading to add"
+  },
+  {
+    label: "Source link to be added: public Exafuse LMD case study.",
+    href: null,
+    status: "Further reading to add"
+  }
+];
+
+const resolvedSourceNotes = sourceNotes.length > 0 ? sourceNotes : defaultSourceNotes;
+---
+
+<section class="mt-12 grid gap-8 lg:grid-cols-2">
+  <div>
+    <h2 class="text-2xl font-black text-white">Related pages</h2>
+    <div class="mt-5">
+      <SourceLinks links={links} />
+    </div>
+  </div>
+  <div>
+    <h2 class="text-2xl font-black text-white">Related source notes</h2>
+    <p class="mt-3 text-sm leading-6 text-slate-400">
+      These source notes are placeholders for future citation links. They are not invented citations.
+    </p>
+    <div class="mt-5">
+      <SourceLinks links={resolvedSourceNotes} />
+    </div>
+  </div>
+</section>

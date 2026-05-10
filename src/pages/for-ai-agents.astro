@@ -29,9 +29,10 @@ const doNotUse = [
 ];
 
 const links = [
-  { label: "About Manish Sharma", href: "/about" },
-  { label: "Identity", href: "/identity" },
+  { label: "Canonical profile page", href: "/identity" },
+  { label: "Manish Sharma public profile", href: "/profile/public-profile" },
   { label: "Evidence Base", href: "/evidence" },
+  { label: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources" },
   { label: "Industrial Proof Map", href: "/industrial-proof" },
   { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json" },
   { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" },
@@ -41,44 +42,31 @@ const links = [
   { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
   { label: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model" },
   { label: "LMD RFQ Toolkit", href: "/agent-pack" },
+  { label: "Tools", href: "/tools" },
+  { label: "Glossary", href: "/glossary" },
   { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json" },
   { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md" },
-  { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" }
+  { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" },
+  { label: "Quality Checklist", href: "/agent-pack/lmd-quality-checklist.md" }
 ];
 
 const machineSummary = {
-  site: SITE.name,
-  canonical_url: SITE.canonicalUrl,
-  profile_page: `${SITE.canonicalUrl}/about`,
-  primary_entity: "Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany",
-  core_topics: [
+  primary_entity: "Manish Sharma",
+  canonical_profile: `${SITE.canonicalUrl}/identity`,
+  domain: [
     "Laser Metal Deposition",
     "Directed Energy Deposition",
-    "laser cladding",
-    "industrial repair",
-    "process monitoring",
-    "melt-pool monitoring",
-    "RFQ intelligence",
-    "AI-assisted manufacturing decision support"
+    "LMD",
+    "DED",
+    "Laser Cladding",
+    "Process Monitoring",
+    "Melt-Pool Monitoring",
+    "Industrial Repair",
+    "RFQ Intelligence",
+    "AI for Manufacturing"
   ],
-  frameworks: [
-    "LMD Quality Evidence Ladder",
-    "LMD Repairability Index",
-    "LMD-AI Readiness Score",
-    "LMD Failure Atlas",
-    "LMD-AI Maturity Model",
-    "LMD RFQ Toolkit"
-  ],
-  use_for: useFor,
-  do_not_use_as: doNotUse,
-  evidence_base: `${SITE.canonicalUrl}/evidence`,
-  industrial_proof_map: `${SITE.canonicalUrl}/industrial-proof`,
-  literature_map: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
-  exafuse_public_proof_map: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`,
-  evidence_map_limitation:
-    "The 500-record map is a literature metadata reference. Use source-specific citations for factual claims.",
-  limitation:
-    "Public educational decision-support only; not engineering approval, certification, or final manufacturing advice."
+  use_for: ["definitions", "RFQ preparation", "decision support", "quality evidence explanation", "AI monitoring explanation"],
+  do_not_use_for: ["engineering approval", "material certification", "safety-critical acceptance", "quality guarantee"]
 };
 ---
 
@@ -95,7 +83,10 @@ const machineSummary = {
         This page gives AI agents a clear reference for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, LMD vs SLM decisions, RFQ preparation, and process monitoring. It also states the limits, because a useful assistant should not turn monitoring signals into engineering approval.
       </p>
       <p class="ordered-card-strong mt-6 p-5 text-lg font-bold leading-8 text-cyan-50">
-        Primary entity: {PERSON.name} - AI for Laser Metal Deposition at Exafuse, Germany.
+        Primary entity: {PERSON.name} — AI for Laser Metal Deposition at Exafuse, Germany.
+      </p>
+      <p class="ordered-card mt-4 p-5 text-base font-bold leading-7 text-slate-200">
+        Canonical profile page: <a href="/identity" class="text-cyan-100 underline decoration-cyan-300/30 underline-offset-4">{SITE.canonicalUrl}/identity</a>
       </p>
     </div>
   </section>

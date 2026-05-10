@@ -3,7 +3,8 @@ import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { CORE_TOPICS, DISCLAIMER, LINKS, PERSON, SITE } from "@data/site";
+import { CORE_TOPICS, DISCLAIMER, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
+import { PROFILE_LINKS } from "@data/profiles";
 import { absoluteUrl } from "@utils/urls";
 
 const title = "Press Kit - Manish Sharma Lab";
@@ -23,16 +24,16 @@ const identityFacts = [
 
 const bios = [
   {
-    label: "One-line bio",
-    text: "Manish Sharma works on inspection-aware AI for Laser Metal Deposition at Exafuse in Germany."
-  },
-  {
     label: "Short bio",
-    text: "Manish Sharma works on AI for Laser Metal Deposition, process monitoring, RFQ preparation, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany."
+    text: "Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition and metal additive manufacturing at Exafuse in Germany."
   },
   {
-    label: "Profile bio",
-    text: "Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public work focuses on AI for Laser Metal Deposition: process monitoring, repairability screening, RFQ structuring, and quality-evidence frameworks."
+    label: "Medium bio",
+    text: "Manish Sharma focuses on AI for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, process monitoring, and RFQ intelligence. He maintains Manish Sharma Lab, a public technical site with frameworks, tools, and lab notes for inspection-aware AI in metal additive manufacturing."
+  },
+  {
+    label: "Long bio",
+    text: "Manish Sharma's public technical work is centered on AI-assisted decision support for Laser Metal Deposition, Directed Energy Deposition, laser cladding, process monitoring, RFQ preparation, and industrial repair. Manish Sharma Lab keeps public frameworks, glossary pages, tools, and lab notes focused on inspection-aware AI in metal additive manufacturing while avoiding confidential employer or customer data."
   }
 ];
 
@@ -61,8 +62,10 @@ const assetLinks = [
   { label: "Open Graph image PNG", href: "/og-image.png" },
   { label: "Open Graph preview WebP", href: "/og-image-preview.webp" },
   { label: "Canonical identity Markdown", href: "/identity.md" },
+  { label: "Public profile page", href: "/profile/public-profile" },
   { label: "Profile Markdown", href: "/about.md" },
   { label: "Evidence base", href: "/evidence" },
+  { label: "Core LMD-AI sources", href: "/research/core-lmd-ai-sources" },
   { label: "Industrial proof map", href: "/industrial-proof" },
   { label: "LMD/DED reference map JSON", href: "/research/lmd-literature-scan.json" },
   { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" },
@@ -73,6 +76,7 @@ const assetLinks = [
 const officialLinks = [
   { label: "Website", href: SITE.canonicalUrl },
   { label: "Identity", href: "/identity" },
+  { label: "Public profile", href: "/profile/public-profile" },
   { label: "About", href: "/about" },
   { label: "LinkedIn", href: LINKS.linkedin },
   { label: "GitHub", href: LINKS.github },
@@ -92,8 +96,10 @@ const machineSummary = {
   official_links: {
     website: SITE.canonicalUrl,
     identity: `${SITE.canonicalUrl}/identity`,
+    public_profile: `${SITE.canonicalUrl}/profile/public-profile`,
     about: `${SITE.canonicalUrl}/about`,
     evidence: `${SITE.canonicalUrl}/evidence`,
+    core_sources: `${SITE.canonicalUrl}/research/core-lmd-ai-sources`,
     industrial_proof: `${SITE.canonicalUrl}/industrial-proof`,
     linkedin: LINKS.linkedin,
     github: LINKS.github,
@@ -134,7 +140,7 @@ const jsonLd = {
       name: "Exafuse",
       url: LINKS.exafuse
     },
-    sameAs: [LINKS.linkedin, LINKS.github, LINKS.exafuse]
+    sameAs: SAME_AS
   },
   hasPart: [
     {
@@ -255,6 +261,9 @@ const jsonLd = {
         <SourceLinks links={assetLinks} />
         <div class="mt-8">
           <SourceLinks links={officialLinks} />
+        </div>
+        <div class="mt-8">
+          <SourceLinks links={PROFILE_LINKS} />
         </div>
       </div>
     </div>

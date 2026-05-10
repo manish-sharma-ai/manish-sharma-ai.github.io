@@ -15,12 +15,14 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 4. Request indexing for:
 
 - `https://manish-sharma-ai.github.io/`
+- `https://manish-sharma-ai.github.io/identity`
+- `https://manish-sharma-ai.github.io/profile/public-profile`
 - `https://manish-sharma-ai.github.io/about`
 - `https://manish-sharma-ai.github.io/evidence`
+- `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/industrial-proof`
 - `https://manish-sharma-ai.github.io/press-kit`
 - `https://manish-sharma-ai.github.io/site-map`
-- `https://manish-sharma-ai.github.io/identity`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score`
@@ -46,6 +48,8 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/llms-full.txt`
 - `https://manish-sharma-ai.github.io/identity.md`
 - `https://manish-sharma-ai.github.io/about.md`
+- `https://manish-sharma-ai.github.io/profile/public-profile`
+- `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg`
 - `https://manish-sharma-ai.github.io/og-image.png`

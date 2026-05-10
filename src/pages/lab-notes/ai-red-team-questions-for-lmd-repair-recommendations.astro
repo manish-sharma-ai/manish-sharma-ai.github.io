@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
-import SourceLinks from "@components/SourceLinks.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "AI Red-Team Questions for LMD Repair Recommendations";
@@ -61,12 +61,10 @@ const jsonLd = {
         These questions are useful for developers testing an LMD agent, buyers preparing RFQs, and engineers reviewing AI-assisted summaries.
       </p>
     </div>
-    <div class="mt-12">
-      <SourceLinks links={[
+    <LabNoteFooter links={[
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
         { label: "For AI Agents", href: "/for-ai-agents" }
       ]} />
-    </div>
   </article>
 </Layout>

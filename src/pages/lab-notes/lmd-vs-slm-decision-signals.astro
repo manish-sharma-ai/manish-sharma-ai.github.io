@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
-import SourceLinks from "@components/SourceLinks.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "LMD vs SLM: Decision Signals";
@@ -52,12 +52,10 @@ const jsonLd = {
         </p>
       </div>
     </div>
-    <div class="mt-12">
-      <SourceLinks links={[
+    <LabNoteFooter links={[
         { label: "LMD vs SLM Advisor", href: "/tools" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "Directed Energy Deposition glossary", href: "/glossary/directed-energy-deposition" }
       ]} />
-    </div>
   </article>
 </Layout>

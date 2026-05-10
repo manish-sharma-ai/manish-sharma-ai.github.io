@@ -1,0 +1,99 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { PROFILE_LINKS } from "@data/profiles";
+import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
+
+const title = "Manish Sharma Public Profile";
+const description =
+  "Public-safe profile facts for Manish Sharma, AI for Laser Metal Deposition at Exafuse in Germany.";
+
+const facts = [
+  ["Name", PERSON.name],
+  ["Focus", "AI for Laser Metal Deposition"],
+  ["Company connection", PERSON.company],
+  ["Location", PERSON.location],
+  ["Website", SITE.canonicalUrl],
+  ["LinkedIn", LINKS.linkedin],
+  ["GitHub", LINKS.github],
+  ["Exafuse", LINKS.exafuse]
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE.canonicalUrl}/profile/public-profile#page`,
+  url: `${SITE.canonicalUrl}/profile/public-profile`,
+  name: title,
+  description,
+  mainEntity: {
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
+  }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/profile/public-profile" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <p class="metric-label">Public profile</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-xl leading-9 text-slate-200">
+        A public-safe profile reference for identity facts used across this website. It avoids confidential employer, customer, or project information.
+      </p>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Facts"
+        title="Public-safe identity facts"
+        description="These facts are suitable for public website references, media snippets, AI-agent context, and internal linking."
+      />
+      <div class="overflow-hidden rounded-lg border border-white/10">
+        <table class="w-full border-collapse text-left text-sm">
+          <tbody>
+            {facts.map(([label, value]) => (
+              <tr class="border-b border-white/10 last:border-b-0">
+                <th class="w-48 bg-white/[0.035] p-4 align-top font-mono text-xs uppercase text-slate-400">{label}</th>
+                <td class="p-4 font-semibold leading-6 text-slate-100">{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Themes" title="Public technical themes" />
+      <div class="flex flex-wrap gap-2">
+        {CORE_TOPICS.map((topic) => (
+          <span class="ordered-card px-3 py-2 text-sm font-bold text-slate-200">{topic}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Profiles"
+        title="Active and planned profile links"
+        description="Planned profiles are listed for clarity, but are not active links until a real URL exists."
+      />
+      <SourceLinks links={PROFILE_LINKS} />
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="ordered-card-strong p-6">
+      <p class="metric-label">Boundary</p>
+      <p class="mt-4 text-lg font-semibold leading-8 text-slate-200">
+        This page contains public-safe profile information only. It is not confidential company or customer material, and it is not engineering approval, material certification, or final manufacturing advice.
+      </p>
+    </div>
+  </section>
+</Layout>
