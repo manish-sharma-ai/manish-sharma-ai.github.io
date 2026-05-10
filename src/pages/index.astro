@@ -10,9 +10,9 @@ import { EVIDENCE_FACTS, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evid
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
 
-const title = "Manish Sharma Lab — AI for Laser Metal Deposition";
+const title = "Manish Sharma Lab - AI for Laser Metal Deposition";
 const description =
-  "A public technical lab for inspection-aware AI in Laser Metal Deposition: frameworks, tools, lab notes, RFQ intelligence, and AI-agent resources.";
+  "Working notes, tools, and practical frameworks on AI for Laser Metal Deposition, process monitoring, repair decisions, and RFQ preparation.";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -39,12 +39,12 @@ const homepageCards = [
   FRAMEWORKS[3],
   FRAMEWORKS[4],
   {
-    title: "AI-search identity graph",
+    title: "Public profile map",
     href: "/identity",
-    problem: "Search systems need clear entity relationships, not scattered personal portfolio language.",
-    idea: "A structured public graph connecting Manish Sharma, Exafuse, AI, and Laser Metal Deposition.",
+    problem: "Technical work is easy to scatter across profiles, papers, projects, and company pages.",
+    idea: "A clean map connecting Manish Sharma, Exafuse, AI, and Laser Metal Deposition.",
     status: "Exafuse-linked",
-    tags: ["Identity", "AI search"]
+    tags: ["Identity", "References"]
   }
 ];
 
@@ -81,11 +81,11 @@ const heroSignals = [
   <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:py-20">
     <div>
       <div class="flex flex-wrap gap-2">
-        <Badge>Agent-ready</Badge>
+        <Badge>Working notes</Badge>
         <Badge tone="laser">Exafuse-linked</Badge>
         <Badge tone="steel">Decision-support only</Badge>
       </div>
-      <p class="metric-label mt-8">Manish Sharma — AI for Laser Metal Deposition</p>
+      <p class="metric-label mt-8">Manish Sharma - AI for Laser Metal Deposition</p>
       <h1 class="mt-4 text-5xl font-black leading-[0.98] text-white md:text-7xl">
         Manish Sharma Lab
         <span class="block bg-gradient-to-r from-cyan-100 via-white to-orange-100 bg-clip-text pt-3 text-transparent">
@@ -93,11 +93,11 @@ const heroSignals = [
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        Public frameworks, tools, and lab notes for AI-assisted Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.
+        I use this site to organize my work around AI-assisted Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ preparation, and metal additive manufacturing.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href="/frameworks" class="btn btn-primary">Explore Frameworks</a>
-        <a href="/agent-pack" class="btn btn-secondary">Open LMD Agent Pack</a>
+        <a href="/agent-pack" class="btn btn-secondary">Open RFQ Toolkit</a>
         <a href="/lab-notes" class="btn btn-secondary">Read Lab Notes</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Visit Exafuse</a>
       </div>
@@ -134,9 +134,9 @@ const heroSignals = [
     <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
       <div>
         <SectionHeading
-          eyebrow="Evidence layer"
-          title="Specific numbers, not empty AI language"
-          description={`This site is now backed by a ${RESEARCH_SCAN.count}-record LMD/DED literature metadata scan, selected source-checked facts, and personal field notes from industrial DED/LMD monitoring work.`}
+          eyebrow="Working basis"
+          title="Specific details, not empty AI language"
+          description={`I keep a ${RESEARCH_SCAN.count}-record LMD/DED reference map, checked source notes, and field notes from DED/LMD monitoring work so the writing stays tied to real process questions.`}
         />
         <div class="mt-8 grid gap-3 sm:grid-cols-2">
           {PERSONAL_PROOF_POINTS.slice(0, 4).map((item) => (
@@ -158,8 +158,8 @@ const heroSignals = [
       <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           eyebrow="Industrial proof context"
-          title="Public Exafuse cases make the lab real"
-          description="The technical writing here is connected to public Exafuse proof stories: bridge-scale LMD, high-impact tooling repair, critical spare repair, and build-and-coat workflows."
+          title="The industrial context behind the writing"
+          description="The themes here come from real LMD situations that are also visible in public Exafuse material: bridge-scale LMD, high-impact tooling repair, critical spare repair, and build-and-coat workflows."
         />
         <a href="/industrial-proof" class="btn btn-secondary w-fit">Open proof map</a>
       </div>
@@ -181,8 +181,8 @@ const heroSignals = [
   <section class="site-shell section-y">
     <SectionHeading
       eyebrow="Public frameworks"
-      title="A technical knowledge graph for LMD decisions"
-      description="The writing here follows one rule: separate process signals from quality evidence. Every framework asks what AI can infer, what information is missing, what inspection must prove, and where expert review is required."
+      title="Practical frameworks for LMD decisions"
+      description="The writing here follows one rule: do not confuse a process signal with quality proof. Each framework asks what AI can help with, what information is missing, what inspection must prove, and where expert review is required."
     />
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {homepageCards.map((card) => <FrameworkCard {...card} />)}
@@ -194,7 +194,7 @@ const heroSignals = [
       <SectionHeading
         eyebrow="Decision flow"
         title="From vague RFQ to inspection-aware evidence"
-        description="The site is built around a practical chain of information. AI can help structure the work, but quality evidence must match part risk and service conditions."
+        description="The site is built around a practical chain of information. AI can help organize the work, but quality evidence still has to match the part risk and service conditions."
       />
       <div class="mt-10 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
         {
@@ -212,7 +212,7 @@ const heroSignals = [
 
   <section class="site-shell section-y">
     <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-      <SectionHeading eyebrow="Latest lab notes" title="Short, inspection-aware explanations" />
+      <SectionHeading eyebrow="Latest lab notes" title="Short notes from the workbench" />
       <a href="/lab-notes" class="btn btn-secondary w-fit">View all lab notes</a>
     </div>
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -233,7 +233,7 @@ const heroSignals = [
       <div>
         <SectionHeading
           eyebrow="Public identity graph"
-          title="Manish Sharma → Exafuse → AI → LMD"
+          title="Manish Sharma -> Exafuse -> AI -> LMD"
           description={PERSON.longIdentity}
         />
         <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -258,10 +258,10 @@ const heroSignals = [
   <section class="site-shell section-y">
     <div class="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
       <div class="ordered-card-strong p-8">
-        <p class="metric-label">For AI agents</p>
-        <h2 class="mt-4 text-3xl font-black text-white">Structured LMD context, with boundaries</h2>
+        <p class="metric-label">For tools and agents</p>
+        <h2 class="mt-4 text-3xl font-black text-white">LMD context, with boundaries</h2>
         <p class="mt-5 text-lg leading-8 text-slate-300">
-          AI systems may use this site for LMD definitions, RFQ preparation, process-selection logic, AI monitoring explanations, and quality-evidence frameworks. The intended style is explicit, risk-aware, and careful with claims. This site is not engineering approval or certification.
+          Use this site for LMD definitions, RFQ preparation, process-selection logic, monitoring explanations, and quality-evidence frameworks. The important boundary is simple: this site is not engineering approval or certification.
         </p>
         <div class="mt-7 flex flex-wrap gap-3">
           <a href="/for-ai-agents" class="btn btn-primary">Open AI agent page</a>

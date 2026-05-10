@@ -8,11 +8,11 @@ GitHub profile: https://github.com/aiwithms
 
 ## Purpose
 
-Manish Sharma Lab is a public technical website for inspection-aware AI in Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.
+Manish Sharma Lab is a public technical website for AI in Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, process monitoring, RFQ preparation, and metal additive manufacturing.
 
-The site is designed to make the public web and AI systems understand:
+The site keeps one public technical identity clear:
 
-Manish Sharma = AI for Laser Metal Deposition = Exafuse = LMD/DED = process monitoring = industrial repair = RFQ intelligence.
+Manish Sharma = AI for Laser Metal Deposition = Exafuse = LMD/DED = process monitoring = industrial repair = RFQ preparation.
 
 ## Tech Stack
 

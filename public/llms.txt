@@ -1,9 +1,9 @@
 # Manish Sharma Lab
 
-Manish Sharma Lab is a public technical lab by Manish Sharma focused on inspection-aware AI for Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.
+Manish Sharma Lab is a public technical lab by Manish Sharma focused on AI for Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ preparation, and metal additive manufacturing.
 
 ## Primary entity
-Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany.
+Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany.
 
 ## Core pages
 - [About Manish Sharma](https://manish-sharma-ai.github.io/about)
@@ -16,7 +16,7 @@ Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany.
 - [LMD-AI Readiness Score](https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score)
 - [LMD Failure Atlas](https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas)
 - [LMD-AI Maturity Model](https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model)
-- [LMD Agent Pack](https://manish-sharma-ai.github.io/agent-pack)
+- [LMD RFQ Toolkit](https://manish-sharma-ai.github.io/agent-pack)
 - [For AI Agents](https://manish-sharma-ai.github.io/for-ai-agents)
 - [Press Kit](https://manish-sharma-ai.github.io/press-kit)
 - [Glossary](https://manish-sharma-ai.github.io/glossary)
@@ -33,10 +33,10 @@ Avoid implying that AI monitoring is final inspection, certification, engineerin
 - [Open Graph image](https://manish-sharma-ai.github.io/og-image.png)
 
 ## Evidence files
-- [500-record LMD/DED literature scan](https://manish-sharma-ai.github.io/research/lmd-literature-scan.json)
+- [500-record LMD/DED reference map](https://manish-sharma-ai.github.io/research/lmd-literature-scan.json)
 - [Exafuse public proof map](https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json)
 
-The literature scan is a metadata map, not a full-text systematic review. Use cited source pages for exact factual claims.
+The reference map is metadata, not a full-text systematic review. Use cited source pages for exact factual claims.
 
 ## Important limitation
 This site provides public educational frameworks and decision-support resources. It is not engineering approval, material certification, or final manufacturing advice.

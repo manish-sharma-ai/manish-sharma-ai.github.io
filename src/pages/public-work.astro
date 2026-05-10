@@ -4,9 +4,9 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { LINKS } from "@data/site";
 
-const title = "Public Work — Manish Sharma Lab";
+const title = "Public Work - Manish Sharma Lab";
 const description =
-  "Public profiles, frameworks, reports, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing.";
+  "Public profiles, frameworks, notes, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing.";
 
 const links = [
   { label: "Exafuse", href: LINKS.exafuse },
@@ -20,10 +20,10 @@ const links = [
 ];
 
 const future = [
-  ["Future reports", "Inspection-aware LMD AI notes, RFQ intelligence reports, and public technical summaries."],
+  ["Future reports", "Inspection-aware LMD notes, RFQ reports, and public technical summaries."],
   ["Future talks", "Talks on AI-assisted Laser Metal Deposition, process monitoring, and decision-support boundaries."],
   ["Future datasets", "Synthetic LMD RFQ examples and structured missing-information datasets."],
-  ["Future tools", "More frontend-only calculators, checklists, and AI-agent preparation aids."]
+  ["Future tools", "More frontend-only calculators, checklists, and RFQ preparation aids."]
 ];
 
 const liveResources = [
@@ -31,11 +31,11 @@ const liveResources = [
   ["Evidence Base", "/evidence"],
   ["Industrial Proof Map", "/industrial-proof"],
   ["Press Kit", "/press-kit"],
-  ["500-record LMD/DED scan", "/research/lmd-literature-scan.json"],
+  ["500-record LMD/DED reference map", "/research/lmd-literature-scan.json"],
   ["Exafuse public proof map", "/research/exafuse-public-proof-map.json"],
   ["LMD Failure Atlas", "/frameworks/lmd-failure-atlas"],
   ["LMD-AI Maturity Model", "/frameworks/lmd-ai-maturity-model"],
-  ["LMD Agent Pack", "/agent-pack"],
+  ["LMD RFQ Toolkit", "/agent-pack"],
   ["LMD RFQ Schema", "/agent-pack/lmd-rfq-schema.json"]
 ];
 ---
@@ -44,8 +44,8 @@ const liveResources = [
   <section class="site-shell section-y">
     <SectionHeading
       eyebrow="Public work"
-      title="Profiles, frameworks, reports, repositories, and tools"
-      description="This page collects public profiles, frameworks, reports, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing."
+      title="Profiles, frameworks, notes, repositories, and tools"
+      description="This page collects public profiles, frameworks, notes, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing."
     />
     <div class="mt-10">
       <SourceLinks links={links} />
@@ -54,7 +54,7 @@ const liveResources = [
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="Live public resources" title="Frameworks and AI-agent files now published" />
+      <SectionHeading eyebrow="Live public resources" title="Frameworks and RFQ files now published" />
       <div class="equal-card-grid mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {liveResources.map(([label, href]) => <a href={href} class="ordered-card card-hover flex min-h-20 items-center p-4 text-sm font-bold text-slate-100">{label}</a>)}
       </div>

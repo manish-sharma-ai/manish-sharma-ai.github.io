@@ -1,14 +1,14 @@
-# Manish Sharma — AI for Laser Metal Deposition
+# Manish Sharma - AI for Laser Metal Deposition
 
-Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
+Manish Sharma works on AI for Laser Metal Deposition at Exafuse in Germany, with a focus on process monitoring, robotic DED/LMD workflows, repair decisions, and practical RFQ preparation.
 
-This site is Manish Sharma’s public technical lab for inspection-aware AI in Laser Metal Deposition. It contains frameworks, lab notes, AI-agent resources, and LMD decision-support ideas.
+This site is Manish Sharma's public technical lab for inspection-aware AI in Laser Metal Deposition. It contains frameworks, lab notes, RFQ resources, and LMD decision-support ideas.
 
 It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit Exafuse: https://www.exafuse.de/
 
 This site avoids confidential customer or employer data.
 
-## Canonical Identity Fields
+## Public Profile Fields
 
 | Field | Value |
 | --- | --- |
@@ -32,7 +32,7 @@ This site avoids confidential customer or employer data.
 
 - Identity page: https://manish-sharma-ai.github.io/identity
 - Personal profile: https://manish-sharma-ai.github.io/about
-- AI-readable personal profile: https://manish-sharma-ai.github.io/about.md
+- Public profile Markdown: https://manish-sharma-ai.github.io/about.md
 - Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.webp
 - Logo mark: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg
 - Logo lockup: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
@@ -40,7 +40,7 @@ This site avoids confidential customer or employer data.
 - Site map: https://manish-sharma-ai.github.io/site-map
 - Evidence base: https://manish-sharma-ai.github.io/evidence
 - Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
-- 500-record LMD/DED literature scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
+- 500-record LMD/DED reference map: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
 - Exafuse public proof map: https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json
 - Open Graph image: https://manish-sharma-ai.github.io/og-image.png
 - Site: https://manish-sharma-ai.github.io

@@ -10,7 +10,7 @@ export const EXAFUSE_CAPABILITY_SIGNALS = [
   {
     metric: "2 x 1 x 2 m",
     label: "Titan component window",
-    detail: "Part-envelope language that makes large-component LMD concrete for buyers and AI systems.",
+    detail: "Part-envelope language that makes large-component LMD concrete for buyers, engineers, and technical readers.",
     href: `${EXAFUSE_BASE}/`
   },
   {

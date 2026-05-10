@@ -45,13 +45,13 @@ const jsonLd = {
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Open framework</Badge>
+        <Badge>Working framework</Badge>
         <Badge tone="laser">Interactive score checker</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-5 text-2xl font-bold text-cyan-100">Is an LMD workflow ready for useful AI-assisted monitoring?</p>
       <p class="mt-6 text-lg leading-8 text-slate-300">
-        Useful AI in Laser Metal Deposition depends on traceable process data, inspection outcomes, labels, repeated examples, and feedback loops. The score below makes those foundations visible.
+        Useful AI in Laser Metal Deposition depends on traceable process data, inspection outcomes, labels, repeated examples, and feedback loops. The score below makes those foundations visible before model talk starts.
       </p>
     </div>
   </section>
@@ -66,7 +66,7 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Interactive" title="LMD-AI Readiness Score checker" description="Select the data foundations already present in the workflow. The output indicates the practical stage of AI readiness." />
+    <SectionHeading eyebrow="Interactive" title="LMD-AI Readiness Score checker" description="Select the data foundations already present in the workflow. The output shows the practical stage of AI readiness." />
     <div class="mt-10">
       <AIReadinessCalculator client:load />
     </div>

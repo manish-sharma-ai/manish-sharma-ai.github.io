@@ -10,9 +10,9 @@ import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 import { absoluteUrl } from "@utils/urls";
 
-const title = "About Manish Sharma — AI for Laser Metal Deposition";
+const title = "About Manish Sharma - AI for Laser Metal Deposition";
 const description =
-  "Personal profile for Manish Sharma: Head of AI and R&D at Exafuse, external PhD researcher at Ruhr University Bochum, focused on inspection-aware AI for Laser Metal Deposition, DED/LMD process monitoring, robotics, and industrialization.";
+  "Personal profile for Manish Sharma: Head of AI and R&D at Exafuse and external PhD researcher at Ruhr University Bochum, working on AI for Laser Metal Deposition, DED/LMD monitoring, robotics, and industrialization.";
 
 const stats = [
   ["Since", "2018", "Laser Metal Deposition work"],
@@ -24,7 +24,7 @@ const stats = [
 const focusAreas = [
   {
     title: "AI for DED/LMD process control",
-    text: "Vision-based process monitoring, melt-pool and bead-geometry indicators, anomaly signals, and data pipelines for decision support."
+    text: "Vision-based monitoring, melt-pool and bead-geometry indicators, anomaly signals, and data pipelines that make process behavior easier to review."
   },
   {
     title: "Industrial LMD workflows",
@@ -32,11 +32,11 @@ const focusAreas = [
   },
   {
     title: "Robotics and automation",
-    text: "Robotic DED toolpaths, KUKA workflows, slicer post-processing, ROS2 integration, sensor/camera control, and real-time system interfaces."
+    text: "Robotic DED toolpaths, KUKA workflows, slicer post-processing, ROS2 integration, sensor and camera control, and real-time system interfaces."
   },
   {
-    title: "AI-readable manufacturing knowledge",
-    text: "Frameworks, schemas, prompts, and public decision-support resources that help humans and AI agents ask better LMD questions."
+    title: "Practical manufacturing knowledge",
+    text: "Frameworks, schemas, prompts, and public notes that help people ask better LMD questions before jumping to an answer."
   }
 ];
 
@@ -170,11 +170,11 @@ const profilePageJsonLd = {
       <h1 class="mt-4 text-5xl font-black leading-[0.98] text-white md:text-7xl">
         Making LMD more
         <span class="block bg-gradient-to-r from-cyan-100 via-white to-orange-100 bg-clip-text pt-3 text-transparent">
-          observable and AI-ready.
+          observable and usable.
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work connects Laser Metal Deposition, process monitoring, robotics, and AI decision support without treating AI signals as final quality proof. I care about the uncomfortable middle ground: where sensors are useful, but inspection still has to close the loop.
+        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work connects Laser Metal Deposition, process monitoring, robotics, and AI decision support. The part I keep coming back to is the gap between useful sensor data and real engineering evidence.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -204,15 +204,15 @@ const profilePageJsonLd = {
     <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <SectionHeading
         eyebrow="Profile"
-        title="A practical bridge between lab AI and industrial metal AM"
-        description="The public thread through my work is simple: make Laser Metal Deposition more observable, more structured, and more decision-ready without pretending AI replaces engineering evidence."
+        title="Where my work sits"
+        description="I work in the middle of process development, monitoring, robotics, and AI. The aim is to make LMD decisions clearer without pretending software replaces engineering evidence."
       />
       <div class="prose-lab">
         <p>
-          My background combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, and traceable build documentation. I have worked across robotic and large-format systems, with attention to process stability, repeatability, and quality evidence.
+          My background combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, and traceable build documentation. I have worked across robotic and large-format systems, with attention to process stability, repeatability, and the evidence needed after deposition.
         </p>
         <p>
-          This site turns that work into public frameworks, tools, lab notes, and AI-agent resources. It is designed for engineers, students, buyers, developers, and AI systems that need clearer language around LMD, DED, laser cladding, monitoring, repairability, and RFQ preparation.
+          This site is where I turn that work into public notes, frameworks, and small tools. It is meant for engineers, students, buyers, developers, and anyone who needs clearer language around LMD, DED, laser cladding, monitoring, repairability, and RFQ preparation.
         </p>
       </div>
     </div>
@@ -222,8 +222,8 @@ const profilePageJsonLd = {
     <div class="site-shell">
       <SectionHeading
         eyebrow="Working numbers"
-        title="The scale I keep in mind when writing about LMD"
-        description={`A ${RESEARCH_SCAN.count}-record literature scan gives the site topic coverage, but the numbers below are only used where a source or local profile material supports them.`}
+        title="The scale I keep in mind"
+        description={`I keep a ${RESEARCH_SCAN.count}-record LMD/DED reference map for orientation, but the numbers below are only used where a checked source or public profile material supports them.`}
       />
       <div class="mt-10">
         <EvidenceFactGrid facts={EVIDENCE_FACTS.slice(4)} />
@@ -251,7 +251,7 @@ const profilePageJsonLd = {
       <SectionHeading
         eyebrow="Exafuse proof context"
         title="The public industrial work behind the themes"
-        description="The site should not only say AI, monitoring, repair and RFQ intelligence. It should point to the industrial situations where those ideas matter."
+        description="The site should not just use words like AI, monitoring, repair, and RFQ. It should point to the industrial situations where those ideas actually matter."
       />
       <div class="grid gap-4 md:grid-cols-2">
         {EXAFUSE_PROOF_CASES.map((item) => (
@@ -270,7 +270,7 @@ const profilePageJsonLd = {
       <SectionHeading
         eyebrow="Field principles"
         title="What makes the work personal"
-        description="These are the operating instincts behind the frameworks: practical, inspection-aware, and skeptical of overconfident AI claims."
+        description="These are the instincts behind the frameworks: stay practical, keep inspection visible, and be skeptical of overconfident AI claims."
       />
       <div class="grid gap-4 md:grid-cols-2">
         {FIELD_NOTES.map((note) => (
@@ -355,11 +355,11 @@ const profilePageJsonLd = {
       <SectionHeading
         eyebrow="Human note"
         title="Why this site exists"
-        description="I’m interested in how AI can transform technical work without blurring the line between a useful process signal and validated engineering evidence."
+        description="I’m interested in how AI can improve technical work without blurring the line between a useful process signal and validated engineering evidence."
       />
       <div class="ordered-card-strong p-6">
         <p class="text-lg font-semibold leading-8 text-slate-200">
-          The goal is to make complex LMD knowledge easier to structure: for buyers preparing RFQs, engineers reviewing risk, developers building agents, and AI systems trying to understand the domain. This site stays public, inspection-aware, and careful about confidential or employer-owned information.
+          The goal is to make complex LMD knowledge easier to structure: for buyers preparing RFQs, engineers reviewing risk, and developers building technical tools. This site stays public, inspection-aware, and careful about confidential or employer-owned information.
         </p>
         <div class="mt-8">
           <SourceLinks links={links} />

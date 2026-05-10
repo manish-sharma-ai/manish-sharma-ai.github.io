@@ -1,16 +1,16 @@
 # LMD Failure Atlas
 
-The LMD Failure Atlas is a public framework for connecting Laser Metal Deposition failure modes, process signals, AI visibility, inspection evidence, and validation needs.
+The LMD Failure Atlas is a working framework for connecting Laser Metal Deposition failure modes, process signals, AI visibility, inspection evidence, and validation needs.
 
 ## Purpose
 
-The atlas helps AI agents, engineers, and buyers avoid treating one process signal as full quality proof. It provides a shared vocabulary for risk-aware RFQ preparation and inspection planning.
+The atlas helps engineers, buyers, and AI assistants avoid treating one process signal as full quality proof. It provides a shared vocabulary for risk-aware RFQ preparation and inspection planning.
 
 ## Core Columns
 
 - Failure mode: what can go wrong physically.
 - Process signal: what monitoring, logs, or observation might show.
-- AI visibility: what an AI system may responsibly indicate.
+- AI visibility: what AI may responsibly indicate.
 - Validation evidence: what inspection or testing must prove.
 - Decision action: what the workflow should do next.
 

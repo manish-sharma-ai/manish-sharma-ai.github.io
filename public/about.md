@@ -1,6 +1,6 @@
 # About Manish Sharma
 
-Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public technical focus is inspection-aware AI for Laser Metal Deposition, Directed Energy Deposition, process monitoring, robotic DED/LMD workflows, RFQ intelligence, and quality-evidence decision support.
+Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public technical focus is AI for Laser Metal Deposition, Directed Energy Deposition, process monitoring, robotic DED/LMD workflows, RFQ preparation, and quality-evidence decision support.
 
 Canonical profile page: https://manish-sharma-ai.github.io/about
 
@@ -20,7 +20,7 @@ Evidence base: https://manish-sharma-ai.github.io/evidence
 
 Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
 
-500-record LMD/DED literature scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
+500-record LMD/DED reference map: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
 
 Exafuse public proof map: https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json
 
@@ -32,7 +32,7 @@ Exafuse public proof map: https://manish-sharma-ai.github.io/research/exafuse-pu
 - Robotic DED toolpaths and KUKA workflows
 - ROS2-based sensor and camera pipelines
 - Process windows, traceability, and inspection-ready documentation
-- RFQ intelligence and AI-agent resources for LMD
+- RFQ preparation and practical resources for LMD
 
 ## Evidence Anchors
 

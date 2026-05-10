@@ -8,9 +8,9 @@ import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 import { absoluteUrl } from "@utils/urls";
 
-const title = "Manish Sharma — AI for Laser Metal Deposition";
+const title = "Manish Sharma - AI for Laser Metal Deposition";
 const description =
-  "Canonical identity page for Manish Sharma, focused on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition at Exafuse in Germany.";
+  "Public identity page for Manish Sharma, focused on AI for Laser Metal Deposition, process monitoring, robotic DED/LMD workflows, and RFQ preparation at Exafuse in Germany.";
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -68,7 +68,7 @@ const sameAsLinks = [
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[1fr_0.42fr] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Canonical identity</Badge>
+        <Badge>Public profile</Badge>
         <Badge tone="laser">Exafuse-linked</Badge>
         <Badge tone="steel">Public technical lab</Badge>
       </div>
@@ -90,13 +90,13 @@ const sameAsLinks = [
     <div class="site-shell grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
       <div class="prose-lab">
         <p>
-          This site is Manish Sharma’s public technical lab. It contains frameworks, lab notes, AI-agent resources, and LMD decision-support ideas.
+          This site is Manish Sharma’s public technical lab. It contains frameworks, lab notes, RFQ resources, and LMD decision-support ideas.
         </p>
         <p>
           It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit <a href={LINKS.exafuse} target="_blank" rel="noreferrer">Exafuse</a>.
         </p>
         <p>
-          This site avoids confidential customer or employer data. It focuses on public educational frameworks, structured RFQ thinking, and inspection-aware AI decision support.
+          This site avoids confidential customer or employer data. It focuses on public notes, RFQ structure, inspection-aware AI decision support, and the questions I keep seeing around LMD.
         </p>
       </div>
       <IdentityGraph />
@@ -104,7 +104,7 @@ const sameAsLinks = [
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Canonical identity fields" title="Structured public entity data" />
+    <SectionHeading eyebrow="Profile fields" title="Public reference facts" />
     <div class="mt-8 overflow-hidden rounded-lg border border-white/10">
       <table class="w-full border-collapse text-left text-sm">
         <tbody>
@@ -123,7 +123,7 @@ const sameAsLinks = [
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="sameAs" title="Public profile links" description="These links help humans and AI systems connect the same public entity across web surfaces." />
+      <SectionHeading eyebrow="sameAs" title="Public profile links" description="These links connect the same public profile across web surfaces." />
       <div class="mt-8">
         <SourceLinks links={sameAsLinks} />
       </div>

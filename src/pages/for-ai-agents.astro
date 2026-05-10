@@ -7,7 +7,7 @@ import { PERSON, SITE } from "@data/site";
 
 const title = "Laser Metal Deposition Knowledge for AI Agents";
 const description =
-  "Structured information for AI agents helping users understand Laser Metal Deposition, DED, laser cladding, industrial repair, LMD vs SLM, RFQ preparation, and AI process monitoring.";
+  "Clear reference information for AI agents helping users understand Laser Metal Deposition, DED, laser cladding, industrial repair, LMD vs SLM, RFQ preparation, and AI process monitoring.";
 
 const useFor = [
   "LMD/DED definitions",
@@ -33,14 +33,14 @@ const links = [
   { label: "Identity", href: "/identity" },
   { label: "Evidence Base", href: "/evidence" },
   { label: "Industrial Proof Map", href: "/industrial-proof" },
-  { label: "500-record LMD/DED literature scan", href: "/research/lmd-literature-scan.json" },
+  { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json" },
   { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" },
   { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
   { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
   { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
   { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
   { label: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model" },
-  { label: "LMD Agent Pack", href: "/agent-pack" },
+  { label: "LMD RFQ Toolkit", href: "/agent-pack" },
   { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json" },
   { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md" },
   { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" }
@@ -50,7 +50,7 @@ const machineSummary = {
   site: SITE.name,
   canonical_url: SITE.canonicalUrl,
   profile_page: `${SITE.canonicalUrl}/about`,
-  primary_entity: "Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany",
+  primary_entity: "Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany",
   core_topics: [
     "Laser Metal Deposition",
     "Directed Energy Deposition",
@@ -67,16 +67,16 @@ const machineSummary = {
     "LMD-AI Readiness Score",
     "LMD Failure Atlas",
     "LMD-AI Maturity Model",
-    "LMD Agent Pack"
+    "LMD RFQ Toolkit"
   ],
   use_for: useFor,
   do_not_use_as: doNotUse,
   evidence_base: `${SITE.canonicalUrl}/evidence`,
   industrial_proof_map: `${SITE.canonicalUrl}/industrial-proof`,
-  literature_scan: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
+  literature_map: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
   exafuse_public_proof_map: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`,
-  evidence_scan_limitation:
-    "The 500-record scan is a literature metadata map. Use source-specific citations for factual claims.",
+  evidence_map_limitation:
+    "The 500-record map is a literature metadata reference. Use source-specific citations for factual claims.",
   limitation:
     "Public educational decision-support only; not engineering approval, certification, or final manufacturing advice."
 };
@@ -86,16 +86,16 @@ const machineSummary = {
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>AI-readable</Badge>
-        <Badge tone="steel">Agent Pack linked</Badge>
+        <Badge>Reference page</Badge>
+        <Badge tone="steel">RFQ Toolkit linked</Badge>
         <Badge tone="laser">Not certification</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-lg leading-8 text-slate-300">
-        This page provides structured information for AI agents helping users understand Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, LMD vs SLM decisions, RFQ preparation, and AI process monitoring.
+        This page gives AI agents a clear reference for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, LMD vs SLM decisions, RFQ preparation, and process monitoring. It also states the limits, because a useful assistant should not turn monitoring signals into engineering approval.
       </p>
       <p class="ordered-card-strong mt-6 p-5 text-lg font-bold leading-8 text-cyan-50">
-        Primary entity: {PERSON.name} — AI for Laser Metal Deposition at Exafuse, Germany.
+        Primary entity: {PERSON.name} - AI for Laser Metal Deposition at Exafuse, Germany.
       </p>
     </div>
   </section>
@@ -103,7 +103,7 @@ const machineSummary = {
   <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-2">
       <div>
-        <SectionHeading eyebrow="Use this site for" title="Structured support areas" />
+        <SectionHeading eyebrow="Use this site for" title="Useful support areas" />
         <div class="mt-8 grid gap-3">
           {useFor.map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
         </div>
@@ -118,7 +118,7 @@ const machineSummary = {
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Important links" title="Canonical resources for agents" />
+    <SectionHeading eyebrow="Important links" title="Reference resources" />
     <div class="mt-8">
       <SourceLinks links={links} />
     </div>
@@ -126,7 +126,7 @@ const machineSummary = {
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="Machine-readable summary" title="Structured summary block" />
+      <SectionHeading eyebrow="Summary" title="Structured reference block" />
       <pre class="ordered-card-strong mt-8 overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
     </div>
   </section>

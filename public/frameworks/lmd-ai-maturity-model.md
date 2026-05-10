@@ -1,6 +1,6 @@
 # LMD-AI Maturity Model
 
-The LMD-AI Maturity Model is a public framework for moving Laser Metal Deposition workflows from manual records to structured data capture, analytics, AI decision support, and validated closed-loop development.
+The LMD-AI Maturity Model is a working framework for moving Laser Metal Deposition workflows from manual records to usable data capture, analytics, AI decision support, and validated closed-loop development.
 
 ## Core Principle
 
@@ -8,7 +8,7 @@ The maturity question is not which model to use first. It is whether RFQ data, m
 
 ## Stages
 
-### 0. Unstructured Craft Memory
+### 0. Scattered Craft Memory
 
 Signal: knowledge lives in people, screenshots, PDFs, and machine-side notes.
 

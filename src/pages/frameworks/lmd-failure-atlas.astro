@@ -7,7 +7,7 @@ import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD Failure Atlas";
 const description =
-  "A public framework connecting Laser Metal Deposition failure modes, process signals, AI visibility, inspection evidence, and validation needs.";
+  "A working framework connecting Laser Metal Deposition failure modes, process signals, AI visibility, inspection evidence, and validation needs.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -79,13 +79,13 @@ const atlas = [
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Open framework</Badge>
+        <Badge>Working framework</Badge>
         <Badge tone="steel">Markdown available</Badge>
         <Badge tone="laser">Decision-support only</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
-        A shared vocabulary for mapping LMD failure modes to process signals, AI visibility, inspection methods, and validation evidence.
+        A working vocabulary for mapping LMD failure modes to process signals, AI visibility, inspection methods, and validation evidence.
       </p>
       <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
     </div>
@@ -96,7 +96,7 @@ const atlas = [
       {[
         ["Failure mode", "What can go wrong physically."],
         ["Process signal", "What monitoring or logs might show."],
-        ["AI visibility", "What an AI system may responsibly indicate."],
+        ["AI visibility", "What AI may responsibly indicate."],
         ["Validation evidence", "What inspection or testing must prove."]
       ].map(([heading, text]) => (
         <div class="ordered-card p-5">
@@ -131,12 +131,12 @@ const atlas = [
       <SectionHeading
         eyebrow="How to use it"
         title="Use the atlas as a risk vocabulary, not a pass/fail engine"
-        description="The atlas is strongest when paired with the LMD Quality Evidence Ladder and RFQ schema. It helps AI agents and engineers name the risk and request the right evidence."
+        description="The atlas is strongest when paired with the LMD Quality Evidence Ladder and RFQ schema. It helps name the risk and request the right evidence before a claim becomes too confident."
       />
       <div>
         <SourceLinks links={[
           { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
-          { label: "LMD Agent Pack", href: "/agent-pack" },
+          { label: "LMD RFQ Toolkit", href: "/agent-pack" },
           { label: "Markdown version", href: "/frameworks/lmd-failure-atlas.md" }
         ]} />
       </div>

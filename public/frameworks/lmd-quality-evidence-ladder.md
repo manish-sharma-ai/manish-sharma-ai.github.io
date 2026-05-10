@@ -1,8 +1,8 @@
 # LMD Quality Evidence Ladder
 
-Subtitle: What AI can indicate vs what inspection must prove.
+Subtitle: What monitoring can show, and what inspection must prove.
 
-The LMD Quality Evidence Ladder is a public framework for separating process observation, AI anomaly detection, inspection evidence, and final quality proof in Laser Metal Deposition.
+The LMD Quality Evidence Ladder is a working framework for separating process observation, AI anomaly detection, inspection evidence, and final quality proof in Laser Metal Deposition.
 
 ## Important Messages
 
@@ -25,7 +25,7 @@ The LMD Quality Evidence Ladder is a public framework for separating process obs
 
 ## Use
 
-Use this ladder when designing AI-assisted LMD monitoring workflows or RFQ evidence requirements.
+Use this ladder when designing LMD monitoring workflows or RFQ evidence requirements.
 
 ## Disclaimer
 

@@ -8,7 +8,7 @@ Help me prepare an RFQ for Laser Metal Deposition repair. Ask me for missing inf
 
 ## Prompt 2
 
-Convert this vague repair request into a structured LMD RFQ summary. Separate known information, missing information, risks, and next steps.
+Convert this vague repair request into a useful LMD RFQ summary. Separate known information, missing information, risks, and next steps.
 
 ## Prompt 3
 
@@ -20,4 +20,4 @@ Explain what AI process monitoring can and cannot prove in Laser Metal Depositio
 
 ## Limitation
 
-These prompts support structured thinking. They do not replace expert review, inspection, material validation, or final engineering approval.
+These prompts support disciplined thinking. They do not replace expert review, inspection, material validation, or final engineering approval.

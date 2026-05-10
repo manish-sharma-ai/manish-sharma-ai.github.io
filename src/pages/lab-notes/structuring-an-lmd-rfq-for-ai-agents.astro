@@ -4,7 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
 
-const title = "How to Structure a Laser Metal Deposition RFQ for AI Agents";
+const title = "How to Structure a Laser Metal Deposition RFQ";
 const description =
   "A good Laser Metal Deposition RFQ separates known facts, missing information, assumptions, risks, and next steps.";
 const jsonLd = {
@@ -45,7 +45,7 @@ const jsonLd = {
           AI agents can help buyers become more precise, but only if the prompt asks them to identify missing information before producing a recommendation. That behavior reduces false confidence.
         </p>
         <p>
-          The LMD Agent Pack schema gives AI systems a stable way to summarize part data, job type, damage, requirements, operating conditions, and missing information.
+          The RFQ schema gives a stable way to summarize part data, job type, damage, requirements, operating conditions, and missing information.
         </p>
         <p>
           The output should be practical: known facts, missing info, risks, and next steps. It should not pretend to be final engineering approval.
@@ -54,7 +54,7 @@ const jsonLd = {
     </div>
     <div class="mt-12">
       <SourceLinks links={[
-        { label: "LMD Agent Pack", href: "/agent-pack" },
+        { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "RFQ schema JSON", href: "/agent-pack/lmd-rfq-schema.json" },
         { label: "RFQ Prompt-to-Structure Converter", href: "/tools" }
       ]} />

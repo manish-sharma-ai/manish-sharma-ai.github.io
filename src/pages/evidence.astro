@@ -8,9 +8,9 @@ import { CITED_SOURCES, EVIDENCE_FACTS, FIELD_NOTES, PERSONAL_PROOF_POINTS, RESE
 import { EXAFUSE_PROOF_CASES, EXAFUSE_SOURCE_LINKS } from "@data/exafuse";
 import { PERSON, SITE } from "@data/site";
 
-const title = "LMD Evidence Base — Manish Sharma Lab";
+const title = "LMD Evidence Base - Manish Sharma Lab";
 const description =
-  "Research-backed facts, personal field notes, source links, and a 500-record literature scan behind Manish Sharma Lab's AI for Laser Metal Deposition content.";
+  "Checked facts, field notes, source links, and a 500-record LMD/DED reference map behind Manish Sharma Lab.";
 
 const pageJsonLd = {
   "@context": "https://schema.org",
@@ -34,7 +34,7 @@ const pageJsonLd = {
   hasPart: [
     {
       "@type": "Dataset",
-      name: "LMD/DED literature scan",
+      name: "LMD/DED literature map",
       url: `${SITE.canonicalUrl}${RESEARCH_SCAN.file}`,
       description: RESEARCH_SCAN.method
     },
@@ -54,23 +54,23 @@ const pageJsonLd = {
       <div>
         <div class="flex flex-wrap gap-2">
           <Badge>Evidence base</Badge>
-          <Badge tone="steel">500-record scan</Badge>
+          <Badge tone="steel">500-record map</Badge>
           <Badge tone="laser">Field notes</Badge>
         </div>
-        <p class="metric-label mt-8">Research + Experience</p>
+        <p class="metric-label mt-8">Sources + Experience</p>
         <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">
-          Evidence, not just AI-sounding language.
+          Notes that stay tied to real LMD work.
         </h1>
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-          This page collects the numbers, source links, and personal field context behind the site. The goal is to make Manish Sharma Lab feel like a real technical lab: specific where evidence supports it, careful where the data is conditional, and clear about what AI can and cannot prove.
+          This page collects the numbers, source links, and field context behind the site. I want the writing to feel like engineering notes: specific where the source supports it, careful where the data is conditional, and clear about what AI can and cannot prove.
         </p>
       </div>
       <div class="ordered-card-strong p-6">
-        <p class="metric-label">Literature map</p>
+        <p class="metric-label">Reference map</p>
         <p class="mt-4 font-mono text-6xl font-black text-cyan-100">{RESEARCH_SCAN.count}</p>
-        <p class="mt-3 text-lg font-bold text-white">research records scanned</p>
+        <p class="mt-3 text-lg font-bold text-white">LMD/DED records in the map</p>
         <p class="mt-4 text-sm leading-6 text-slate-400">{RESEARCH_SCAN.method}</p>
-        <a href={RESEARCH_SCAN.file} class="btn btn-secondary mt-6">Open JSON scan</a>
+        <a href={RESEARCH_SCAN.file} class="btn btn-secondary mt-6">Open reference JSON</a>
       </div>
     </div>
   </section>
@@ -90,8 +90,8 @@ const pageJsonLd = {
   <section class="site-shell section-y">
     <SectionHeading
       eyebrow="Numbers with source context"
-      title="Concrete LMD/DED facts the site can safely use"
-      description="These numbers are not universal design rules. They are cited anchors that help readers and AI systems understand scale, process behavior, and claim boundaries."
+      title="Concrete LMD/DED facts I can point to"
+      description="These numbers are not universal design rules. They are cited anchors that help readers understand scale, process behavior, and claim boundaries."
     />
     <div class="mt-10">
       <EvidenceFactGrid facts={EVIDENCE_FACTS} />
@@ -103,7 +103,7 @@ const pageJsonLd = {
       <SectionHeading
         eyebrow="Field notes"
         title="What experience changes in the writing"
-        description="The personal layer of the site should not be vague authority. It should show how I think when an LMD claim, RFQ, monitoring signal, or AI recommendation looks too confident."
+        description="The personal layer should not sound like vague authority. It should show how I think when an LMD claim, RFQ, monitoring signal, or AI recommendation looks too confident."
       />
       <div class="grid gap-4 md:grid-cols-2">
         {FIELD_NOTES.map((note) => (
@@ -143,12 +143,12 @@ const pageJsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
-        eyebrow="Literature scan"
-        title="What the 500-record scan is good for"
-        description="The scan is a map of the research terrain, not a replacement for full-text engineering review. It helps keep the site vocabulary aligned with real LMD/DED research."
+        eyebrow="Reference map"
+        title="What the 500-record map is good for"
+        description="This is a map of the research terrain, not a claim that every paper was read end to end. It helps keep the site vocabulary aligned with real LMD/DED research."
       />
       <div class="ordered-card-strong p-6">
-        <h2 class="text-2xl font-black text-white">Top venues in the scan</h2>
+        <h2 class="text-2xl font-black text-white">Top venues in the map</h2>
         <div class="mt-6 grid gap-3">
           {RESEARCH_SCAN.topVenues.map(([venue, count]) => (
             <div class="grid grid-cols-[1fr_auto] gap-4 border-b border-white/10 pb-3 text-sm last:border-b-0 last:pb-0">
@@ -158,7 +158,7 @@ const pageJsonLd = {
           ))}
         </div>
         <p class="mt-6 text-sm leading-6 text-slate-400">
-          Exact claims on this site are based on source-specific citations. The broader scan is useful for topic coverage, terminology, and deciding which content needs more research depth next.
+          Exact claims on this site are based on source-specific citations. The broader map is useful for topic coverage, terminology, and deciding which content needs more research depth next.
         </p>
       </div>
     </div>

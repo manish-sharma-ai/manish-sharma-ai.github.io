@@ -6,8 +6,8 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
-const title = "LMD Agent Pack";
-const description = "Schemas, prompts, and decision rules for AI-assisted Laser Metal Deposition RFQs.";
+const title = "LMD RFQ Toolkit";
+const description = "Schemas, prompts, and decision rules for clearer Laser Metal Deposition RFQs.";
 
 const schema = {
   part: {
@@ -61,7 +61,7 @@ const decisionRules = [
 
 const prompts = [
   "Help me prepare an RFQ for Laser Metal Deposition repair. Ask me for missing information about material, damage, geometry, operating conditions, tolerance, inspection, and available CAD/drawings before making a recommendation.",
-  "Convert this vague repair request into a structured LMD RFQ summary. Separate known information, missing information, risks, and next steps.",
+  "Convert this vague repair request into a useful LMD RFQ summary. Separate known information, missing information, risks, and next steps.",
   "Compare Laser Metal Deposition, SLM/LPBF, welding, machining, and replacement for this part. Ask for missing information first.",
   "Explain what AI process monitoring can and cannot prove in Laser Metal Deposition. Separate process signals from final quality evidence."
 ];
@@ -103,7 +103,7 @@ const jsonLd = {
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Agent-ready</Badge>
+        <Badge>RFQ toolkit</Badge>
         <Badge tone="steel">JSON schema</Badge>
         <Badge tone="steel">Markdown resources</Badge>
         <Badge tone="laser">Decision-support only</Badge>
@@ -111,7 +111,7 @@ const jsonLd = {
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-5 text-2xl font-bold text-cyan-100">{description}</p>
       <p class="mt-6 text-lg leading-8 text-slate-300">
-        This page is for AI agents, engineers, buyers, and developers. It helps convert vague part descriptions into structured RFQ data, but it does not make final engineering decisions.
+        This page is for engineers, buyers, developers, and AI assistants that need to turn vague part descriptions into useful RFQ information. It helps organize the work; it does not make final engineering decisions.
       </p>
     </div>
   </section>
@@ -119,7 +119,7 @@ const jsonLd = {
   <section class="band section-y">
     <div class="site-shell equal-card-grid grid gap-5 md:grid-cols-3">
       {[
-        ["What this Agent Pack is", "A public structure for turning LMD repair, cladding, or build requests into explicit facts, missing information, risks, and next steps."],
+        ["What this toolkit is", "A public structure for turning LMD repair, cladding, or build requests into explicit facts, missing information, risks, and next steps."],
         ["What it can help with", "RFQ preparation, process-selection questions, repairability screening, monitoring explanations, and quality-evidence planning."],
         ["What it cannot do", "It cannot certify a part, approve safety-critical work, validate material compatibility, or replace expert review."]
       ].map(([heading, text]) => (
@@ -132,7 +132,7 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="RFQ schema preview" title="A structured object before recommendations" />
+    <SectionHeading eyebrow="RFQ schema preview" title="Organize the facts before recommending anything" />
     <div class="mt-8">
       <CopyBlock client:load label="lmd-rfq-schema.json" text={JSON.stringify(schema, null, 2)} />
     </div>
@@ -141,7 +141,7 @@ const jsonLd = {
   <section class="band section-y">
     <div class="site-shell grid gap-10 lg:grid-cols-2">
       <div>
-        <SectionHeading eyebrow="Decision rules preview" title="Risk-aware rules for agents" />
+        <SectionHeading eyebrow="Decision rules preview" title="Risk-aware rules" />
         <ol class="mt-8 grid gap-3">
           {decisionRules.map((rule) => <li class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{rule}</li>)}
         </ol>
@@ -156,7 +156,7 @@ const jsonLd = {
   </section>
 
   <section id="prompt-library" class="site-shell section-y">
-    <SectionHeading eyebrow="Prompt library" title="Prompts that force missing-information checks" />
+    <SectionHeading eyebrow="Prompt library" title="Prompts that slow down overconfident answers" />
     <div class="mt-8 grid gap-5">
       {prompts.map((prompt, index) => <CopyBlock client:load label={`Prompt ${index + 1}`} text={prompt} />)}
     </div>
@@ -165,7 +165,7 @@ const jsonLd = {
   <section id="quality-checklist" class="band section-y">
     <div class="site-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
-        <SectionHeading eyebrow="Quality checklist" title="Agent output should keep inspection visible" description={DISCLAIMER} />
+        <SectionHeading eyebrow="Quality checklist" title="Keep inspection visible" description={DISCLAIMER} />
       </div>
       <div class="grid gap-3 sm:grid-cols-2">
         {checklist.map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
@@ -174,7 +174,7 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Download/source files" title="AI-readable Agent Pack files" />
+    <SectionHeading eyebrow="Download/source files" title="Toolkit files" />
     <div class="mt-8">
       <SourceLinks links={downloads} />
     </div>

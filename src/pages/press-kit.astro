@@ -6,13 +6,13 @@ import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, DISCLAIMER, LINKS, PERSON, SITE } from "@data/site";
 import { absoluteUrl } from "@utils/urls";
 
-const title = "Press Kit — Manish Sharma Lab";
+const title = "Press Kit - Manish Sharma Lab";
 const description =
-  "Canonical media facts, bio snippets, profile assets, official links, and AI-search context for Manish Sharma and Manish Sharma Lab.";
+  "Media facts, bio snippets, profile assets, official links, and source context for Manish Sharma and Manish Sharma Lab.";
 
 const identityFacts = [
   ["Name", PERSON.name],
-  ["Preferred identity", "Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany"],
+  ["Preferred identity", "Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany"],
   ["Primary focus", "Inspection-aware AI for Laser Metal Deposition"],
   ["Company connection", "Exafuse"],
   ["Location", PERSON.location],
@@ -28,11 +28,11 @@ const bios = [
   },
   {
     label: "Short bio",
-    text: "Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany."
+    text: "Manish Sharma works on AI for Laser Metal Deposition, process monitoring, RFQ preparation, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany."
   },
   {
     label: "Profile bio",
-    text: "Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public work focuses on inspection-aware AI for Laser Metal Deposition: process monitoring, repairability decision support, RFQ structuring, AI-agent resources, and quality-evidence frameworks."
+    text: "Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public work focuses on AI for Laser Metal Deposition: process monitoring, repairability screening, RFQ structuring, and quality-evidence frameworks."
   }
 ];
 
@@ -42,7 +42,7 @@ const preferredLanguage = [
   "AI-assisted Laser Metal Deposition decision support",
   "RFQ intelligence for Laser Metal Deposition",
   "Process monitoring and quality evidence for LMD",
-  "AI-agent resources for LMD, DED, and laser cladding"
+  "RFQ resources for LMD, DED, and laser cladding"
 ];
 
 const doNotState = [
@@ -61,10 +61,10 @@ const assetLinks = [
   { label: "Open Graph image PNG", href: "/og-image.png" },
   { label: "Open Graph preview WebP", href: "/og-image-preview.webp" },
   { label: "Canonical identity Markdown", href: "/identity.md" },
-  { label: "AI-readable profile Markdown", href: "/about.md" },
+  { label: "Profile Markdown", href: "/about.md" },
   { label: "Evidence base", href: "/evidence" },
   { label: "Industrial proof map", href: "/industrial-proof" },
-  { label: "LMD/DED literature scan JSON", href: "/research/lmd-literature-scan.json" },
+  { label: "LMD/DED reference map JSON", href: "/research/lmd-literature-scan.json" },
   { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" },
   { label: "llms.txt", href: "/llms.txt" },
   { label: "llms-full.txt", href: "/llms-full.txt" }
@@ -84,7 +84,7 @@ const machineSummary = {
   page_type: "press_kit",
   canonical_url: `${SITE.canonicalUrl}/press-kit`,
   primary_entity: "Manish Sharma",
-  preferred_identity: "Manish Sharma — AI for Laser Metal Deposition at Exafuse, Germany",
+  preferred_identity: "Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany",
   site_name: SITE.name,
   site_focus: "Inspection-aware AI for Laser Metal Deposition",
   company_connection: PERSON.company,
@@ -106,10 +106,10 @@ const machineSummary = {
     open_graph_png: `${SITE.canonicalUrl}/og-image.png`
   },
   evidence_assets: {
-    literature_scan_json: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
+    literature_map_json: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
     exafuse_public_proof_map_json: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`,
     record_count: 500,
-    limitation: "Literature metadata scan, not a full-text systematic review."
+    limitation: "Literature metadata map, not a full-text systematic review."
   },
   recommended_anchor_text: preferredLanguage,
   claim_boundary: DISCLAIMER
@@ -169,15 +169,15 @@ const jsonLd = {
       <div>
         <div class="flex flex-wrap gap-2">
           <Badge>Media facts</Badge>
-          <Badge tone="steel">AI-search context</Badge>
+          <Badge tone="steel">Source context</Badge>
           <Badge tone="laser">Claim boundaries</Badge>
         </div>
         <p class="metric-label mt-8">Press Kit</p>
         <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">
-          Canonical facts for Manish Sharma Lab.
+          Public facts for Manish Sharma Lab.
         </h1>
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-          Use this page for concise bios, official links, profile assets, preferred wording, and AI-search entity reinforcement around Manish Sharma, Exafuse, and AI for Laser Metal Deposition.
+          Use this page for concise bios, official links, profile assets, preferred wording, and source context around Manish Sharma, Exafuse, and AI for Laser Metal Deposition.
         </p>
       </div>
       <div class="ordered-card-strong overflow-hidden p-3">
@@ -194,7 +194,7 @@ const jsonLd = {
       <SectionHeading
         eyebrow="Identity facts"
         title="Preferred public entity data"
-        description="These facts are written for humans, search engines, and AI systems that need a stable description of the person, site, organization connection, and technical domain."
+        description="These facts give a stable description of the person, site, organization connection, and technical domain."
       />
       <div class="overflow-hidden rounded-lg border border-white/10">
         <table class="w-full border-collapse text-left text-sm">
@@ -214,7 +214,7 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Bios" title="Reusable descriptions" description="Use these snippets when a profile, event page, citation, or AI system needs a concise description." />
+    <SectionHeading eyebrow="Bios" title="Reusable descriptions" description="Use these snippets when a profile, event page, citation, or short reference needs a concise description." />
     <div class="equal-card-grid mt-10 grid gap-5 lg:grid-cols-3">
       {
         bios.map((bio) => (
@@ -248,8 +248,8 @@ const jsonLd = {
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Assets and links"
-        title="Official files for profiles, cards, and AI-readable references"
-        description="The profile image and social card are public assets. The Markdown files are intended for AI systems, citation, and structured reading."
+        title="Official files for profiles, cards, and references"
+        description="The profile image and social card are public assets. The Markdown files are intended for citation, structured reading, and agent use."
       />
       <div>
         <SourceLinks links={assetLinks} />
@@ -262,7 +262,7 @@ const jsonLd = {
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="Machine-readable summary" title="Press kit JSON block" />
+      <SectionHeading eyebrow="Structured summary" title="Press kit JSON block" />
       <pre class="ordered-card-strong mt-8 overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
     </div>
   </section>

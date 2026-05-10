@@ -6,7 +6,7 @@ import { PERSON, SITE } from "@data/site";
 
 const title = "What AI Needs Before Recommending LMD Repair";
 const description =
-  "AI should not confidently recommend Laser Metal Deposition repair without material, geometry, damage, service conditions, tolerances, and inspection requirements.";
+  "A Laser Metal Deposition repair recommendation needs material, geometry, damage, service conditions, tolerances, and inspection requirements first.";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -39,7 +39,7 @@ const jsonLd = {
       </div>
       <div class="prose-lab">
         <p>
-          AI should not confidently recommend Laser Metal Deposition without the basic engineering context. The minimum useful context includes material, geometry, damage type and depth, operating conditions, tolerance, and inspection requirements.
+          I would not recommend Laser Metal Deposition from a vague part description alone. The minimum useful context includes material, geometry, damage type and depth, operating conditions, tolerance, and inspection requirements.
         </p>
         <p>
           Good AI behavior is conservative: it separates known facts from assumptions, asks for missing information, and explains uncertainty. If material grade is unknown, the recommendation should stay tentative.
@@ -48,7 +48,7 @@ const jsonLd = {
           Local damage on a large, high-value part may be a good LMD candidate because the process can add material only where needed. That signal is still not enough by itself. Access, heat sensitivity, post-machining allowance, and inspection feasibility all matter.
         </p>
         <p>
-          For safety-critical parts, AI should move toward stronger inspection and expert review rather than confident automation.
+          For safety-critical parts, the answer should move toward stronger inspection and expert review rather than confident automation.
         </p>
       </div>
     </div>
@@ -56,7 +56,7 @@ const jsonLd = {
       <SourceLinks links={[
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
         { label: "RFQ Prompt-to-Structure Converter", href: "/tools" },
-        { label: "Agent Pack RFQ schema", href: "/agent-pack/lmd-rfq-schema.json" }
+        { label: "RFQ schema", href: "/agent-pack/lmd-rfq-schema.json" }
       ]} />
     </div>
   </article>

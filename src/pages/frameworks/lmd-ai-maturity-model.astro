@@ -7,7 +7,7 @@ import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD-AI Maturity Model";
 const description =
-  "A staged model for moving Laser Metal Deposition workflows from manual records to structured data capture, analytics, AI decision support, and validated closed-loop development.";
+  "A staged model for moving Laser Metal Deposition workflows from manual records to usable data capture, analytics, AI decision support, and validated closed-loop development.";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -25,7 +25,7 @@ const jsonLd = {
 const stages = [
   {
     level: "0",
-    title: "Unstructured craft memory",
+    title: "Scattered craft memory",
     signal: "Knowledge lives in people, screenshots, PDFs, and machine-side notes.",
     capability: "AI can only summarize generic guidance.",
     next: "Start collecting consistent RFQ, material, parameter, photo, and inspection records."
@@ -72,13 +72,13 @@ const stages = [
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Open framework</Badge>
+        <Badge>Working framework</Badge>
         <Badge tone="steel">Markdown available</Badge>
         <Badge tone="laser">Decision-support only</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
-        A maturity model for companies moving from scattered LMD records to inspection-linked analytics, validated AI decision support, and closed-loop development.
+        A maturity model for moving from scattered LMD records to inspection-linked analytics, validated AI decision support, and closed-loop development.
       </p>
       <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
     </div>
@@ -88,7 +88,7 @@ const stages = [
     <div class="site-shell grid gap-4 md:grid-cols-3">
       {[
         ["Data before models", "The maturity question is not which model to use first. It is whether process, material, geometry, and inspection data are connected."],
-        ["Decision support before autonomy", "AI should assist missing-information checks, risk routing, and evidence planning before any closed-loop claims."],
+        ["Decision support before autonomy", "Start with missing-information checks, risk routing, and evidence planning before any closed-loop claims."],
         ["Validation before confidence", "Useful AI maturity depends on validation, escalation rules, drift monitoring, and expert review."]
       ].map(([heading, text]) => (
         <div class="ordered-card p-5">
@@ -100,7 +100,7 @@ const stages = [
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Maturity stages" title="From unstructured records to validated loops" />
+    <SectionHeading eyebrow="Maturity stages" title="From scattered records to validated loops" />
     <div class="mt-10 grid gap-4">
       {
         stages.map((stage) => (
