@@ -13,8 +13,8 @@ const { pages } = Astro.props;
 const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
 ---
 
-<div data-command-palette hidden class="fixed inset-0 z-[70] bg-black/70 px-4 py-20 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Search site">
-  <div class="mx-auto max-w-2xl overflow-hidden rounded-lg border border-white/10 bg-graphite-900 shadow-panel">
+<div data-command-palette hidden class="fixed inset-0 z-[70] bg-black/72 px-4 py-20 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Search site">
+  <div class="mx-auto max-w-2xl overflow-hidden rounded-lg border border-cyan-100/16 bg-graphite-900 shadow-panel">
     <div class="flex items-center gap-3 border-b border-white/10 px-4 py-3">
       <span aria-hidden="true" class="font-mono text-lg text-cyan-200">/</span>
       <input
@@ -22,17 +22,23 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         class="min-h-11 flex-1 bg-transparent text-base text-white outline-none placeholder:text-slate-500"
         placeholder="Search frameworks, notes, glossary..."
         autocomplete="off"
+        aria-label="Search pages"
       />
       <button
         type="button"
         data-command-close
-        class="grid h-9 w-9 place-items-center rounded-md border border-white/10 text-slate-300 transition hover:bg-white/5 hover:text-white"
+        class="utility-button grid h-9 w-9 place-items-center p-0 text-slate-300"
         aria-label="Close search"
       >
-        &times;
+        <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div data-command-results class="max-h-[60vh] overflow-auto p-2"></div>
+    <div data-command-results class="max-h-[60vh] overflow-auto p-2" role="listbox" aria-label="Search results"></div>
+    <div class="flex items-center justify-between border-t border-white/10 px-4 py-2 text-xs font-semibold text-slate-500">
+      <span>Arrow keys move</span>
+      <span>Enter opens</span>
+      <span>Esc closes</span>
+    </div>
   </div>
 </div>
 
@@ -43,19 +49,33 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
     const palette = document.querySelector("[data-command-palette]");
     const input = document.querySelector("[data-command-input]");
     const results = document.querySelector("[data-command-results]");
-    const close = document.querySelector("[data-command-close]");
+    const closeButton = document.querySelector("[data-command-close]");
 
-    if (!pagesElement || !palette || !input || !results || !close) return;
+    if (!pagesElement || !palette || !input || !results || !closeButton) return;
 
     const pages = JSON.parse(pagesElement.textContent || "[]");
+    let activeIndex = 0;
+    let matches = [];
+    let lastFocusedElement = null;
+
+    const updateActiveResult = () => {
+      const resultLinks = Array.from(results.querySelectorAll("[data-command-result]"));
+
+      resultLinks.forEach((link, index) => {
+        const isActive = index === activeIndex;
+        link.classList.toggle("is-active", isActive);
+        link.setAttribute("aria-selected", String(isActive));
+      });
+    };
 
     const render = () => {
       const query = input.value.trim().toLowerCase();
-      const matches = (query
+      matches = (query
         ? pages.filter((page) => `${page.title} ${page.group} ${page.href}`.toLowerCase().includes(query))
         : pages
       ).slice(0, 12);
 
+      activeIndex = matches.length > 0 ? Math.min(activeIndex, matches.length - 1) : -1;
       results.textContent = "";
 
       if (matches.length === 0) {
@@ -66,10 +86,13 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         return;
       }
 
-      for (const page of matches) {
+      matches.forEach((page, index) => {
         const link = document.createElement("a");
         link.href = page.href;
-        link.className = "grid gap-1 rounded-md px-3 py-3 transition hover:bg-white/6";
+        link.className = "command-result";
+        link.dataset.commandResult = "";
+        link.setAttribute("role", "option");
+        link.setAttribute("aria-selected", String(index === activeIndex));
 
         const title = document.createElement("span");
         title.className = "text-sm font-bold text-white";
@@ -80,20 +103,34 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         meta.textContent = `${page.group} - ${page.href}`;
 
         link.append(title, meta);
+        link.addEventListener("mouseenter", () => {
+          activeIndex = index;
+          updateActiveResult();
+        });
         link.addEventListener("click", hide);
         results.append(link);
-      }
+      });
+
+      updateActiveResult();
     };
 
     function show() {
+      document.dispatchEvent(new CustomEvent("site-command-open"));
+      lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       palette.hidden = false;
+      document.body.style.overflow = "hidden";
       input.value = "";
+      activeIndex = 0;
       render();
       window.setTimeout(() => input.focus(), 30);
     }
 
     function hide() {
       palette.hidden = true;
+      document.body.style.overflow = "";
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
     }
 
     document.addEventListener("keydown", (event) => {
@@ -102,7 +139,7 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         show();
       }
 
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !palette.hidden) {
         hide();
       }
     });
@@ -112,6 +149,7 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
       if (!(target instanceof Element)) return;
 
       if (target.closest("[data-command-trigger]")) {
+        event.preventDefault();
         show();
       }
 
@@ -120,6 +158,30 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
       }
     });
 
-    input.addEventListener("input", render);
+    input.addEventListener("input", () => {
+      activeIndex = 0;
+      render();
+    });
+
+    input.addEventListener("keydown", (event) => {
+      if (matches.length === 0) return;
+
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        activeIndex = (activeIndex + 1) % matches.length;
+        updateActiveResult();
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        activeIndex = (activeIndex - 1 + matches.length) % matches.length;
+        updateActiveResult();
+      }
+
+      if (event.key === "Enter" && activeIndex >= 0) {
+        event.preventDefault();
+        window.location.href = matches[activeIndex].href;
+      }
+    });
   })();
 </script>

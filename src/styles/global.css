@@ -23,6 +23,7 @@
 
 html {
   min-height: 100%;
+  scroll-padding-top: 5.5rem;
   scroll-behavior: smooth;
   background: var(--bg);
 }
@@ -79,6 +80,12 @@ input,
 select,
 textarea {
   font: inherit;
+}
+
+button,
+summary,
+select {
+  cursor: pointer;
 }
 
 ::selection {
@@ -143,6 +150,14 @@ textarea {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
 }
 
+.ordered-card,
+.ordered-card-strong {
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
 .ordered-card-strong {
   border: 1px solid var(--line-strong);
   border-radius: 0.5rem;
@@ -159,6 +174,176 @@ textarea {
   box-shadow:
     0 32px 72px rgba(0, 0, 0, 0.72),
     inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.nav-trigger,
+.utility-button {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-trigger {
+  gap: 0.42rem;
+  padding: 0.56rem 0.72rem;
+  color: #cbd8df;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.nav-trigger:hover,
+.nav-trigger:focus-visible,
+.nav-flyout[open] > .nav-trigger {
+  border-color: rgba(51, 214, 255, 0.26);
+  background: rgba(51, 214, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 26px rgba(51, 214, 255, 0.11);
+  color: #ffffff;
+}
+
+.nav-trigger.is-active {
+  border-color: rgba(51, 214, 255, 0.32);
+  background: rgba(51, 214, 255, 0.12);
+  color: #e7fbff;
+}
+
+.nav-caret {
+  display: block;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  opacity: 0.72;
+  transform: translateY(-0.12rem) rotate(45deg);
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.nav-flyout[open] .nav-caret {
+  opacity: 1;
+  transform: translateY(0.12rem) rotate(225deg);
+}
+
+.nav-menu-link,
+.command-result,
+.footer-link,
+.breadcrumb-link {
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-menu-link {
+  position: relative;
+  display: grid;
+  gap: 0.22rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.78rem 0.85rem;
+  color: #d8e6ec;
+}
+
+.nav-menu-link::before,
+.command-result::before {
+  position: absolute;
+  left: 0.52rem;
+  top: 0.72rem;
+  bottom: 0.72rem;
+  width: 2px;
+  border-radius: 999px;
+  content: "";
+  background: linear-gradient(180deg, var(--cyan), var(--laser));
+  opacity: 0;
+  transform: scaleY(0.35);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-menu-link:hover,
+.nav-menu-link:focus-visible,
+.nav-menu-link.is-active {
+  border-color: rgba(51, 214, 255, 0.18);
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.nav-menu-link:hover::before,
+.nav-menu-link:focus-visible::before,
+.nav-menu-link.is-active::before,
+.command-result:hover::before,
+.command-result:focus-visible::before,
+.command-result.is-active::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.utility-button {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd8df;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.utility-button:hover,
+.utility-button:focus-visible,
+.utility-button.is-active {
+  border-color: rgba(51, 214, 255, 0.35);
+  background: rgba(51, 214, 255, 0.09);
+  color: #ffffff;
+}
+
+.keycap {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.28rem;
+  padding: 0.08rem 0.36rem;
+  color: #9bb0bd;
+  font-family: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.command-result {
+  position: relative;
+  display: grid;
+  gap: 0.24rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  padding: 0.8rem 0.85rem 0.8rem 1.05rem;
+}
+
+.command-result:hover,
+.command-result:focus-visible,
+.command-result.is-active {
+  border-color: rgba(51, 214, 255, 0.2);
+  background: rgba(51, 214, 255, 0.08);
+}
+
+.footer-link,
+.breadcrumb-link {
+  border-radius: 0.35rem;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible,
+.breadcrumb-link:hover,
+.breadcrumb-link:focus-visible {
+  color: #ffffff;
 }
 
 .hairline-grid {
@@ -272,7 +457,16 @@ textarea {
 }
 
 .btn:hover {
+  border-color: rgba(51, 214, 255, 0.48);
+  box-shadow: 0 0 28px rgba(51, 214, 255, 0.12);
   transform: translateY(-1px);
+}
+
+.btn:active,
+.card-hover:active,
+.nav-trigger:active,
+.utility-button:active {
+  transform: translateY(0);
 }
 
 .btn-primary {
@@ -306,6 +500,31 @@ textarea {
   border-color: rgba(51, 214, 255, 0.42);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 34px rgba(51, 214, 255, 0.12);
   transform: translateY(-3px);
+}
+
+.card-hover:focus-visible {
+  border-color: rgba(51, 214, 255, 0.58);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.42), 0 0 0 3px rgba(51, 214, 255, 0.14);
+}
+
+.disabled-card {
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
+select,
+textarea,
+input {
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+select:hover,
+textarea:hover,
+input:hover {
+  border-color: rgba(51, 214, 255, 0.28);
 }
 
 .equal-card-grid {

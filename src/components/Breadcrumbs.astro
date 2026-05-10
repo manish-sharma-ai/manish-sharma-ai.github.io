@@ -52,7 +52,7 @@ const crumbs =
             {isLast ? (
               <span class="text-slate-300" aria-current="page">{crumb.label}</span>
             ) : (
-              <a href={crumb.href} class="transition hover:text-white">{crumb.label}</a>
+              <a href={crumb.href} class="breadcrumb-link px-1 py-0.5">{crumb.label}</a>
             )}
             {!isLast && <span class="font-mono text-slate-700">/</span>}
           </li>

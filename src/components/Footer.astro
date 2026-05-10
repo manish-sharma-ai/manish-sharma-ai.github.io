@@ -27,7 +27,7 @@ import { LINKS, NAV_GROUPS, SITE } from "@data/site";
           <p class="metric-label">{group.label}</p>
           <div class="mt-4 grid gap-2 text-sm text-slate-300">
             {group.items.slice(0, 6).map((item) => (
-              <a href={item.href} class="leading-5 transition hover:text-white">{item.label}</a>
+              <a href={item.href} class="footer-link -mx-2 rounded-md px-2 py-1 leading-5 hover:bg-white/[0.045]">{item.label}</a>
             ))}
           </div>
         </div>
@@ -37,10 +37,10 @@ import { LINKS, NAV_GROUPS, SITE } from "@data/site";
 
   <div class="site-shell grid gap-6 border-t border-white/10 py-6 text-sm text-slate-500 md:grid-cols-[1fr_auto] md:items-center">
     <div class="flex flex-wrap gap-x-5 gap-y-2">
-      <span>© {new Date().getFullYear()} Manish Sharma Lab.</span>
-      <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="hover:text-white">Website repository</a>
-      <a href={LINKS.github} target="_blank" rel="noreferrer" class="hover:text-white">GitHub profile</a>
-      <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="hover:text-white">LinkedIn</a>
+      <span>&copy; {new Date().getFullYear()} Manish Sharma Lab.</span>
+      <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="footer-link">Website repository</a>
+      <a href={LINKS.github} target="_blank" rel="noreferrer" class="footer-link">GitHub profile</a>
+      <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="footer-link">LinkedIn</a>
     </div>
     <span>Canonical site: {SITE.canonicalUrl}</span>
   </div>

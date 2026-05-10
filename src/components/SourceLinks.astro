@@ -19,7 +19,7 @@ const { links } = Astro.props;
       link.href ? (
         <a
           href={link.href}
-          class="ordered-card card-hover flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-200"
+          class="ordered-card card-hover group flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-200"
           target={link.href.startsWith("http") ? "_blank" : undefined}
           rel={link.href.startsWith("http") ? "noreferrer" : undefined}
         >
@@ -27,11 +27,11 @@ const { links } = Astro.props;
             <span class="block">{link.label}</span>
             {link.description && <span class="mt-1 block text-xs font-semibold leading-5 text-slate-500">{link.description}</span>}
           </span>
-          <span class="font-mono text-cyan-200/80">&rarr;</span>
+          <span class="font-mono text-cyan-200/80 transition group-hover:translate-x-1 group-focus-visible:translate-x-1">&rarr;</span>
         </a>
       ) : (
         <div
-          class="ordered-card flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-500 opacity-85"
+          class="ordered-card disabled-card flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-500"
           aria-disabled="true"
         >
           <span>

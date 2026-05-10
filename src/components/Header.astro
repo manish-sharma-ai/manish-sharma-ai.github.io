@@ -9,10 +9,10 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/86 backdrop-blur-xl">
+<header class="sticky top-0 z-50 border-b border-white/10 bg-graphite-950/86 shadow-[0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-xl" data-site-header>
   <div class="site-shell grid min-h-[4.5rem] grid-cols-[auto_1fr_auto] items-center gap-5">
-    <a href="/" class="group flex min-w-0 items-center gap-3 sm:min-w-[13.25rem]" aria-label="Manish Sharma Lab home">
-      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.035] shadow-glow transition group-hover:border-cyan-300/35 group-hover:bg-cyan-300/8">
+    <a href="/" class="group flex min-w-0 items-center gap-3 rounded-lg sm:min-w-[13.25rem]" aria-label="Manish Sharma Lab home">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.035] shadow-glow transition group-hover:border-cyan-300/35 group-hover:bg-cyan-300/8 group-focus-visible:border-cyan-300/50">
         <img src="/brand/manish-sharma-lab-mark.svg" alt="" class="h-9 w-9" width="36" height="36" decoding="async" />
       </span>
       <span class="leading-tight">
@@ -26,12 +26,9 @@ const isActive = (href: string) => {
         const groupActive = group.items.some((item) => isActive(item.href));
         return (
           <details class="nav-flyout group relative" data-nav-flyout>
-            <summary class:list={[
-              "flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-2 text-sm font-bold transition",
-              groupActive ? "bg-cyan-300/10 text-cyan-50" : "text-slate-300 hover:bg-white/5 hover:text-white"
-            ]}>
+            <summary class:list={["nav-trigger list-none", groupActive ? "is-active" : ""]}>
               {group.label}
-              <span class="font-mono text-[0.68rem] text-slate-500 transition group-open:rotate-180">⌄</span>
+              <span class="nav-caret" aria-hidden="true"></span>
             </summary>
             <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(31rem,calc(100vw-2rem))] -translate-x-1/2 rounded-lg border border-cyan-100/14 bg-[#070b10] p-3 shadow-panel">
               <p class="px-3 py-2 text-xs font-semibold leading-5 text-slate-400">{group.description}</p>
@@ -39,10 +36,7 @@ const isActive = (href: string) => {
                 {group.items.map((item) => (
                   <a
                     href={item.href}
-                    class:list={[
-                      "grid gap-1 rounded-md px-3 py-3 transition",
-                      isActive(item.href) ? "bg-cyan-300/10 text-white" : "hover:bg-white/6"
-                    ]}
+                    class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]}
                   >
                     <span class="text-sm font-black text-white">{item.label}</span>
                     <span class="text-xs leading-5 text-slate-400">{item.description}</span>
@@ -59,18 +53,18 @@ const isActive = (href: string) => {
       <button
         type="button"
         data-command-trigger
-        class="rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-semibold text-slate-300 transition hover:border-cyan-300/35 hover:text-white"
+        class="utility-button gap-2 px-3 py-2"
         aria-label="Open command palette"
       >
-        Search <span class="ml-2 rounded border border-white/10 px-1.5 py-0.5 font-mono text-[0.68rem] text-slate-400">⌘K</span>
+        Search <span class="keycap">Ctrl K</span>
       </button>
       <a href={LINKS.exafuse} class="btn btn-laser min-h-10 px-3 py-2 text-sm" target="_blank" rel="noreferrer">
         Exafuse
       </a>
     </div>
 
-    <details class="group relative justify-self-end xl:hidden">
-      <summary class="flex cursor-pointer list-none items-center rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-bold text-white">
+    <details class="group relative justify-self-end xl:hidden" data-mobile-menu>
+      <summary class="utility-button list-none px-3 py-2 text-white">
         Menu
       </summary>
       <div class="nav-panel absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,24rem)] overflow-auto rounded-lg border border-cyan-100/14 bg-[#070b10] p-3 shadow-panel">
@@ -82,10 +76,7 @@ const isActive = (href: string) => {
                 {group.items.map((item) => (
                   <a
                     href={item.href}
-                    class:list={[
-                      "rounded-md px-3 py-2 text-sm font-semibold transition",
-                      isActive(item.href) ? "bg-cyan-300/10 text-white" : "text-slate-200 hover:bg-white/6"
-                    ]}
+                    class:list={["nav-menu-link py-2 text-sm", isActive(item.href) ? "is-active" : ""]}
                   >
                     {item.label}
                   </a>
@@ -96,11 +87,11 @@ const isActive = (href: string) => {
           <button
             type="button"
             data-command-trigger
-            class="rounded-md border border-white/10 bg-white/[0.04] px-3 py-3 text-left text-sm font-bold text-white"
+            class="utility-button justify-start px-3 py-3 text-left text-sm text-white"
           >
             Search all pages
           </button>
-          <a href={LINKS.exafuse} class="rounded-md border border-orange-300/35 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-100" target="_blank" rel="noreferrer">
+          <a href={LINKS.exafuse} class="rounded-md border border-orange-300/35 bg-orange-500/10 px-3 py-3 text-sm font-bold text-orange-100 transition hover:border-orange-200/60 hover:bg-orange-400/15 hover:text-white" target="_blank" rel="noreferrer">
             Visit Exafuse
           </a>
         </nav>
@@ -111,16 +102,67 @@ const isActive = (href: string) => {
 
 <script is:inline>
   const navFlyouts = Array.from(document.querySelectorAll("[data-nav-flyout]"));
+  const mobileMenu = document.querySelector("[data-mobile-menu]");
+
+  const setSummaryExpanded = (flyout) => {
+    const summary = flyout.querySelector("summary");
+    summary?.setAttribute("aria-expanded", String(flyout.open));
+  };
+
+  const setMobileExpanded = () => {
+    const summary = mobileMenu?.querySelector("summary");
+    summary?.setAttribute("aria-expanded", String(mobileMenu.open));
+  };
+
+  const closeMobileMenu = () => {
+    if (!mobileMenu) return;
+
+    mobileMenu.open = false;
+    setMobileExpanded();
+  };
+
+  const closeNavFlyouts = (except = null) => {
+    navFlyouts.forEach((flyout) => {
+      if (flyout !== except) {
+        flyout.open = false;
+        setSummaryExpanded(flyout);
+      }
+    });
+  };
 
   navFlyouts.forEach((flyout) => {
+    setSummaryExpanded(flyout);
+
     flyout.addEventListener("toggle", () => {
+      setSummaryExpanded(flyout);
       if (!flyout.open) return;
 
-      navFlyouts.forEach((otherFlyout) => {
-        if (otherFlyout !== flyout) {
-          otherFlyout.open = false;
-        }
-      });
+      closeNavFlyouts(flyout);
     });
+  });
+
+  setMobileExpanded();
+  mobileMenu?.addEventListener("toggle", setMobileExpanded);
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    if (!target.closest("[data-site-header]")) {
+      closeNavFlyouts();
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeNavFlyouts();
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener("site-command-open", () => {
+    closeNavFlyouts();
+    closeMobileMenu();
   });
 </script>
