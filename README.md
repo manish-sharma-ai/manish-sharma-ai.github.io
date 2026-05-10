@@ -34,6 +34,10 @@ npm run build
 npm run preview
 ```
 
+## Agent Handoff
+
+All AI coding agents must read `AGENTS.md` before changing this repository. It contains the repo rules for canonical URLs, GitHub Pages deployment, committing and pushing, switching machines, and keeping the site synchronized across computers.
+
 ## Deployment
 
 The repository is configured for GitHub Pages Actions deployment in `.github/workflows/deploy.yml`.
