@@ -142,7 +142,7 @@ export const CITED_SOURCES = [
     href: "https://www.astm.org/news/press-releases/new-astm-additive-manufacturing-standard-focuses-directed-energy-deposition"
   },
   {
-    label: "Lee et al. - Directed Energy Deposition Process: State of the Art",
+    label: "Ahn - Directed Energy Deposition Process: State of the Art",
     href: "https://link.springer.com/article/10.1007/s40684-020-00302-7"
   },
   {
