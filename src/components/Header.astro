@@ -25,7 +25,7 @@ const isActive = (href: string) => {
       {NAV_GROUPS.map((group) => {
         const groupActive = group.items.some((item) => isActive(item.href));
         return (
-          <details class="nav-flyout group relative">
+          <details class="nav-flyout group relative" data-nav-flyout>
             <summary class:list={[
               "flex cursor-pointer list-none items-center gap-1 rounded-md px-3 py-2 text-sm font-bold transition",
               groupActive ? "bg-cyan-300/10 text-cyan-50" : "text-slate-300 hover:bg-white/5 hover:text-white"
@@ -108,3 +108,19 @@ const isActive = (href: string) => {
     </details>
   </div>
 </header>
+
+<script is:inline>
+  const navFlyouts = Array.from(document.querySelectorAll("[data-nav-flyout]"));
+
+  navFlyouts.forEach((flyout) => {
+    flyout.addEventListener("toggle", () => {
+      if (!flyout.open) return;
+
+      navFlyouts.forEach((otherFlyout) => {
+        if (otherFlyout !== flyout) {
+          otherFlyout.open = false;
+        }
+      });
+    });
+  });
+</script>
