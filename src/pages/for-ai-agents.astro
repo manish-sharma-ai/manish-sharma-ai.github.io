@@ -1,6 +1,7 @@
 ---
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -71,7 +72,7 @@ const machineSummary = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/for-ai-agents">
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Reference page</Badge>
@@ -89,6 +90,7 @@ const machineSummary = {
         Canonical profile page: <a href="/identity" class="text-cyan-100 underline decoration-cyan-300/30 underline-offset-4">{SITE.canonicalUrl}/identity</a>
       </p>
     </div>
+    <PageHeroVisual variant="agent" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

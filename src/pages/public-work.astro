@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PROFILE_LINKS } from "@data/profiles";
@@ -34,11 +35,14 @@ const liveResources = [
 
 <Layout title={title} description={description} canonical="/public-work">
   <section class="site-shell section-y">
-    <SectionHeading
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <SectionHeading
       eyebrow="Public work"
       title="Profiles, frameworks, notes, repositories, and tools"
       description="This page collects public profiles, frameworks, notes, repositories, and tools connected to Manish Sharma’s work around AI for Laser Metal Deposition and metal additive manufacturing."
-    />
+      />
+      <PageHeroVisual variant="profile" class="hidden lg:block" />
+    </div>
     <div class="mt-10">
       <SourceLinks links={PROFILE_LINKS} />
     </div>

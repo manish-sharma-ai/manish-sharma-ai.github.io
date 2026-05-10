@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { GLOSSARY_TERMS } from "@data/site";
 
@@ -10,11 +11,14 @@ const description =
 
 <Layout title={title} description={description} canonical="/glossary">
   <section class="site-shell py-16 md:py-20">
-    <SectionHeading
-      eyebrow="Glossary"
-      title="Laser Metal Deposition terminology for humans and AI agents"
-      description="Practical definitions that connect LMD, DED, laser cladding, process monitoring, inspection evidence, and RFQ intelligence."
-    />
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <SectionHeading
+        eyebrow="Glossary"
+        title="Laser Metal Deposition terminology for humans and AI agents"
+        description="Practical definitions that connect LMD, DED, laser cladding, process monitoring, inspection evidence, and RFQ intelligence."
+      />
+      <PageHeroVisual variant="glossary" class="hidden lg:block" />
+    </div>
     <div class="mt-10 grid gap-5 md:grid-cols-2">
       {
         GLOSSARY_TERMS.map((term) => (

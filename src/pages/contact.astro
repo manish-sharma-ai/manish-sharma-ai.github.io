@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { LINKS } from "@data/site";
 
 const title = "Contact — Manish Sharma Lab";
@@ -9,7 +10,8 @@ const description =
 
 <Layout title={title} description={description} canonical="/contact">
   <section class="site-shell py-16 md:py-20">
-    <div class="glass-panel max-w-4xl rounded-lg p-8 md:p-10">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+    <div class="glass-panel rounded-lg p-8 md:p-10">
       <p class="metric-label">Contact</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">Contact</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
@@ -23,6 +25,8 @@ const description =
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
         <a href={LINKS.github} class="btn btn-secondary" target="_blank" rel="noreferrer">GitHub</a>
       </div>
+    </div>
+    <PageHeroVisual variant="contact" class="hidden lg:block" />
     </div>
   </section>
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
@@ -21,9 +22,12 @@ const jsonLd = {
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up" jsonLd={jsonLd}>
   <article class="site-shell py-16 md:py-20">
-    <div class="max-w-3xl">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <div class="max-w-3xl">
       <p class="metric-label">Lab note · 2026-05-09</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      </div>
+      <PageHeroVisual variant="notes" class="hidden lg:block" />
     </div>
     <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
       <div class="grid h-fit gap-4">

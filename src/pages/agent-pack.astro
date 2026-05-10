@@ -2,6 +2,7 @@
 import Badge from "@components/Badge.astro";
 import CopyBlock from "@components/CopyBlock";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
@@ -100,7 +101,7 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/agent-pack" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>RFQ toolkit</Badge>
@@ -114,6 +115,7 @@ const jsonLd = {
         This page is for engineers, buyers, developers, and AI assistants that need to turn vague part descriptions into useful RFQ information. It helps organize the work; it does not make final engineering decisions.
       </p>
     </div>
+    <PageHeroVisual variant="agent" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

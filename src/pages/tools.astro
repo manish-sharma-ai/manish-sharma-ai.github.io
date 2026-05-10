@@ -2,6 +2,7 @@
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import LmdVsSlmAdvisor from "@components/LmdVsSlmAdvisor";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import RepairabilityQuickCheck from "@components/RepairabilityQuickCheck";
 import RfqStructureConverter from "@components/RfqStructureConverter";
 import SectionHeading from "@components/SectionHeading.astro";
@@ -12,7 +13,7 @@ const description =
 ---
 
 <Layout title={title} description={description} canonical="/tools">
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Frontend-only</Badge>
@@ -24,6 +25,7 @@ const description =
         Lightweight interactive tools for early LMD thinking. They help structure decisions and missing information; they do not replace expert feasibility review.
       </p>
     </div>
+    <PageHeroVisual variant="tools" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

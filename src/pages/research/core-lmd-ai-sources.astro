@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CITED_SOURCES } from "@data/evidence";
@@ -61,7 +62,7 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/research/core-lmd-ai-sources" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <p class="metric-label">Curated research map</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
@@ -69,6 +70,7 @@ const jsonLd = {
         A curated starting map for engineers, students, and AI agents. It complements the broad 500-record reference map; it does not pretend to be a complete systematic review.
       </p>
     </div>
+    <PageHeroVisual variant="research" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

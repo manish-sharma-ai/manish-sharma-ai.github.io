@@ -1,6 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -50,10 +51,13 @@ const jsonLd = [
 
 <Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/melt-pool-monitoring" jsonLd={jsonLd}>
   <article class="site-shell py-16 md:py-20">
-    <div class="max-w-4xl">
-      <p class="metric-label">Glossary</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <div class="max-w-4xl">
+        <p class="metric-label">Glossary</p>
+        <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+        <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
+      </div>
+      <PageHeroVisual variant="glossary" class="hidden lg:block" />
     </div>
 
     <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">

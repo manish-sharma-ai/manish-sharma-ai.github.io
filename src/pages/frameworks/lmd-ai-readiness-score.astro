@@ -2,6 +2,7 @@
 import AIReadinessCalculator from "@components/AIReadinessCalculator";
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { PERSON, SITE } from "@data/site";
 
@@ -42,7 +43,7 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-readiness-score" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Working framework</Badge>
@@ -54,6 +55,7 @@ const jsonLd = {
         Useful AI in Laser Metal Deposition depends on traceable process data, inspection outcomes, labels, repeated examples, and feedback loops. The score below makes those foundations visible before model talk starts.
       </p>
     </div>
+    <PageHeroVisual variant="frameworks" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

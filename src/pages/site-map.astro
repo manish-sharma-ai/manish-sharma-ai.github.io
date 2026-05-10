@@ -1,6 +1,7 @@
 ---
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { SITE, SITE_MAP_GROUPS } from "@data/site";
 
 const title = "Site Map - Manish Sharma Lab";
@@ -25,7 +26,7 @@ const jsonLd = {
 ---
 
 <Layout title={title} description={description} canonical="/site-map" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <Badge>Linked map</Badge>
       <p class="metric-label mt-8">Website Navigation</p>
@@ -34,6 +35,7 @@ const jsonLd = {
         This map keeps the site easy to follow: profile, proof, frameworks, tools, notes, glossary definitions, RFQ resources, and public reference files.
       </p>
     </div>
+    <PageHeroVisual variant="profile" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

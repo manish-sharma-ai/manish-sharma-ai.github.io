@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PROFILE_LINKS } from "@data/profiles";
@@ -34,7 +35,7 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/profile/public-profile" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <p class="metric-label">Public profile</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
@@ -42,6 +43,7 @@ const jsonLd = {
         A public-safe profile reference for identity facts used across this website. It avoids confidential employer, customer, or project information.
       </p>
     </div>
+    <PageHeroVisual variant="profile" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

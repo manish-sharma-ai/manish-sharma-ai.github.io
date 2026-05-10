@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 
@@ -9,11 +10,14 @@ const description = "Research and source resources for AI and Laser Metal Deposi
 
 <Layout title={title} description={description} canonical="/research">
   <section class="site-shell section-y">
-    <SectionHeading
-      eyebrow="Research"
-      title="Source maps and research references"
-      description="Public resources that keep Manish Sharma Lab grounded in checked sources, standards-aware terminology, and industrial context."
-    />
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <SectionHeading
+        eyebrow="Research"
+        title="Source maps and research references"
+        description="Public resources that keep Manish Sharma Lab grounded in checked sources, standards-aware terminology, and industrial context."
+      />
+      <PageHeroVisual variant="research" class="hidden lg:block" />
+    </div>
     <div class="mt-10">
       <SourceLinks links={[
         { label: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources" },

@@ -1,6 +1,7 @@
 ---
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import RepairabilityCalculator from "@components/RepairabilityCalculator";
 import SectionHeading from "@components/SectionHeading.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
@@ -54,7 +55,7 @@ const missing = [
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-repairability-index" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Working framework</Badge>
@@ -64,6 +65,7 @@ const missing = [
       <p class="mt-5 text-2xl font-bold text-cyan-100">A practical way to think about whether an industrial part may be suitable for Laser Metal Deposition repair.</p>
       <p class="mt-6 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
     </div>
+    <PageHeroVisual variant="frameworks" class="hidden lg:block" />
   </section>
 
   <section class="band section-y">

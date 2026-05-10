@@ -1,6 +1,7 @@
 ---
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import {
@@ -61,12 +62,15 @@ const jsonLd = {
           This page connects public Exafuse stories to the technical themes I write about here: large-part LMD, repairability, build-and-coat workflows, material breadth, process monitoring, AI image processing, and inspection-aware decision support.
         </p>
       </div>
-      <div class="ordered-card-strong p-6">
-        <p class="metric-label">Claim boundary</p>
-        <p class="mt-4 text-lg font-bold leading-8 text-white">
-          These are public company proof signals. They support technical context and buyer education; they are not engineering approval, certification, guaranteed outcomes, or confidential project details.
-        </p>
-        <a href="/research/exafuse-public-proof-map.json" class="btn btn-secondary mt-6">Open proof-map JSON</a>
+      <div class="grid gap-4">
+        <PageHeroVisual variant="industrial" class="hidden xl:block" />
+        <div class="ordered-card-strong p-6">
+          <p class="metric-label">Claim boundary</p>
+          <p class="mt-4 text-lg font-bold leading-8 text-white">
+            These are public company proof signals. They support technical context and buyer education; they are not engineering approval, certification, guaranteed outcomes, or confidential project details.
+          </p>
+          <a href="/research/exafuse-public-proof-map.json" class="btn btn-secondary mt-6">Open proof-map JSON</a>
+        </div>
       </div>
     </div>
   </section>

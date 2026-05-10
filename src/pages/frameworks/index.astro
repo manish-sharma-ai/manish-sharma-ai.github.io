@@ -1,6 +1,7 @@
 ---
 import FrameworkCard from "@components/FrameworkCard.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { RESEARCH_SCAN } from "@data/evidence";
 import { FRAMEWORKS } from "@data/site";
@@ -12,11 +13,14 @@ const description =
 
 <Layout title={title} description={description} canonical="/frameworks">
   <section class="site-shell section-y">
-    <SectionHeading
-      eyebrow="Frameworks"
-      title="Working frameworks for LMD decisions"
-      description="These resources help separate process signals from quality proof, vague RFQs from useful evidence, and AI confidence from engineering review."
-    />
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <SectionHeading
+        eyebrow="Frameworks"
+        title="Working frameworks for LMD decisions"
+        description="These resources help separate process signals from quality proof, vague RFQs from useful evidence, and AI confidence from engineering review."
+      />
+      <PageHeroVisual variant="frameworks" class="hidden lg:block" />
+    </div>
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {FRAMEWORKS.map((framework) => <FrameworkCard {...framework} />)}
     </div>

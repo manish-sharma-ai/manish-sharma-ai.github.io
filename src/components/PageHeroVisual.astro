@@ -1,0 +1,253 @@
+---
+type Variant =
+  | "agent"
+  | "contact"
+  | "evidence"
+  | "frameworks"
+  | "glossary"
+  | "industrial"
+  | "notes"
+  | "profile"
+  | "research"
+  | "tools"
+  | "default";
+
+interface Props {
+  variant?: Variant;
+  class?: string;
+}
+
+const variants: Record<Variant, {
+  title: string;
+  label: string;
+  focus: string;
+  subfocus: string;
+  cards: string[];
+  nodes: string[];
+  accent: string;
+}> = {
+  default: {
+    title: "LMD decision system",
+    label: "process signal map",
+    focus: "AI + LMD",
+    subfocus: "signals to evidence",
+    cards: ["Process", "Risk", "Inspection"],
+    nodes: ["LMD", "DED", "RFQ", "QA"],
+    accent: "#33d6ff"
+  },
+  agent: {
+    title: "Agent-readable LMD map",
+    label: "schema + limits",
+    focus: "agent pack",
+    subfocus: "prompt to structured review",
+    cards: ["Schema", "Rules", "Boundaries"],
+    nodes: ["RFQ", "AI", "LMD", "Review"],
+    accent: "#33d6ff"
+  },
+  contact: {
+    title: "Industrial inquiry path",
+    label: "RFQ signal route",
+    focus: "contact",
+    subfocus: "public lab to Exafuse",
+    cards: ["Question", "Context", "Next step"],
+    nodes: ["RFQ", "Part", "Risk", "Exafuse"],
+    accent: "#ffb547"
+  },
+  evidence: {
+    title: "Evidence-linked signal map",
+    label: "proof boundaries",
+    focus: "quality evidence",
+    subfocus: "monitoring is not release",
+    cards: ["Signal", "Inspection", "Source"],
+    nodes: ["Melt pool", "NDT", "Data", "Claim"],
+    accent: "#33d6ff"
+  },
+  frameworks: {
+    title: "LMD framework graph",
+    label: "decision layers",
+    focus: "frameworks",
+    subfocus: "risk to evidence",
+    cards: ["Repairability", "AI readiness", "Quality"],
+    nodes: ["Risk", "RFQ", "Evidence", "Decision"],
+    accent: "#33d6ff"
+  },
+  glossary: {
+    title: "Terminology boundary map",
+    label: "definition layer",
+    focus: "glossary",
+    subfocus: "LMD, DED, cladding",
+    cards: ["Term", "Meaning", "Use case"],
+    nodes: ["LMD", "DED", "SLM", "Cladding"],
+    accent: "#9cc9d9"
+  },
+  industrial: {
+    title: "Industrial proof map",
+    label: "public case signals",
+    focus: "Exafuse-linked",
+    subfocus: "repair, cladding, build",
+    cards: ["Case", "Metric", "Lesson"],
+    nodes: ["Part", "Repair", "Scale", "Evidence"],
+    accent: "#ff4d2e"
+  },
+  notes: {
+    title: "Lab note signal trace",
+    label: "working note",
+    focus: "field notes",
+    subfocus: "question to takeaway",
+    cards: ["Observation", "Mistake", "Takeaway"],
+    nodes: ["Signal", "Risk", "Context", "Review"],
+    accent: "#33d6ff"
+  },
+  profile: {
+    title: "Public identity graph",
+    label: "entity map",
+    focus: "Manish Sharma",
+    subfocus: "AI for LMD",
+    cards: ["Identity", "Public work", "Profiles"],
+    nodes: ["Manish", "AI", "LMD", "Exafuse"],
+    accent: "#33d6ff"
+  },
+  research: {
+    title: "Curated source map",
+    label: "literature terrain",
+    focus: "research map",
+    subfocus: "standards, reviews, cases",
+    cards: ["Sources", "Standards", "Gaps"],
+    nodes: ["Review", "NIST", "ISO", "DED"],
+    accent: "#9cc9d9"
+  },
+  tools: {
+    title: "RFQ decision console",
+    label: "frontend tool output",
+    focus: "LMD tools",
+    subfocus: "input to recommendation",
+    cards: ["Input", "Missing info", "Next step"],
+    nodes: ["Part", "Material", "Damage", "RFQ"],
+    accent: "#33d6ff"
+  }
+};
+
+const { variant = "default", class: className = "" } = Astro.props;
+const visual = variants[variant] ?? variants.default;
+const titleId = `page-hero-visual-title-${variant}`;
+const descId = `page-hero-visual-desc-${variant}`;
+const cardPositions = [
+  { x: 52, y: 72 },
+  { x: 52, y: 142 },
+  { x: 52, y: 212 }
+];
+const nodePositions = [
+  { x: 585, y: 122 },
+  { x: 704, y: 84 },
+  { x: 790, y: 176 },
+  { x: 655, y: 226 }
+];
+---
+
+<div
+  class:list={["page-hero-visual glass-panel relative overflow-hidden rounded-lg p-4 md:p-5", className]}
+  style={`--page-visual-accent: ${visual.accent}`}
+  aria-label={`${visual.title} visual`}
+>
+  <svg class="aspect-[16/10] w-full" viewBox="0 0 920 575" role="img" aria-labelledby={`${titleId} ${descId}`}>
+    <title id={titleId}>{visual.title}</title>
+    <desc id={descId}>
+      A dark technical visual connecting Laser Metal Deposition process signals, AI decision support, RFQ context, and inspection evidence.
+    </desc>
+    <defs>
+      <linearGradient id={`${variant}-beam`} x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#ff4d2e" stop-opacity="0.08" />
+        <stop offset="54%" stop-color="#ff4d2e" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#ffb547" stop-opacity="0.76" />
+      </linearGradient>
+      <linearGradient id={`${variant}-trace`} x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#30404b" />
+        <stop offset="52%" stop-color="#7392a0" />
+        <stop offset="100%" stop-color={visual.accent} />
+      </linearGradient>
+      <radialGradient id={`${variant}-heat`}>
+        <stop offset="0%" stop-color="#fff3c4" stop-opacity="1" />
+        <stop offset="28%" stop-color="#ffb547" stop-opacity="0.95" />
+        <stop offset="65%" stop-color="#ff4d2e" stop-opacity="0.42" />
+        <stop offset="100%" stop-color="#ff4d2e" stop-opacity="0" />
+      </radialGradient>
+      <filter id={`${variant}-glow`} x="-70%" y="-70%" width="240%" height="240%">
+        <feGaussianBlur stdDeviation="8" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <rect width="920" height="575" rx="18" fill="#071018" />
+    <rect x="18" y="18" width="884" height="539" rx="14" fill="none" stroke="rgba(156, 201, 217, 0.16)" />
+
+    <g opacity="0.22">
+      {Array.from({ length: 14 }).map((_, index) => (
+        <line x1={index * 70 + 8} x2={index * 70 + 8} y1="18" y2="557" stroke="#9cc9d9" stroke-width="1" />
+      ))}
+      {Array.from({ length: 10 }).map((_, index) => (
+        <line x1="18" x2="902" y1={index * 58 + 32} y2={index * 58 + 32} stroke="#9cc9d9" stroke-width="1" />
+      ))}
+    </g>
+
+    <g transform="translate(34 28)" font-family="JetBrains Mono, Consolas, monospace">
+      <text x="0" y="16" fill="#9cc9d9" font-size="12" letter-spacing="1.6">{visual.label}</text>
+      <text x="0" y="46" fill="#ffffff" font-size="30" font-weight="800">{visual.focus}</text>
+      <text x="0" y="72" fill="#9cc9d9" font-size="13">{visual.subfocus}</text>
+    </g>
+
+    <g>
+      <path d="M190 390 C295 350 380 360 460 405 S636 470 780 418" fill="none" stroke="#1d2934" stroke-width="62" stroke-linecap="round" opacity="0.92" />
+      <path class="page-bead-trace" d="M190 390 C295 350 380 360 460 405 S636 470 780 418" fill="none" stroke={`url(#${variant}-trace)`} stroke-width="18" stroke-linecap="round" opacity="0.9" />
+      <path d="M188 420 C300 383 382 394 466 435 S632 500 790 450" fill="none" stroke="#080d12" stroke-width="24" stroke-linecap="round" opacity="0.65" />
+
+      <line x1="360" y1="105" x2="468" y2="344" stroke="rgba(255, 77, 46, 0.14)" stroke-width="32" stroke-linecap="round" />
+      <line class="page-laser-core" x1="360" y1="105" x2="468" y2="344" stroke={`url(#${variant}-beam)`} stroke-width="4" stroke-linecap="round" filter={`url(#${variant}-glow)`} />
+      <circle class="page-heat-core" cx="468" cy="344" r="54" fill={`url(#${variant}-heat)`} filter={`url(#${variant}-glow)`} />
+      <ellipse cx="468" cy="350" rx="36" ry="14" fill="#fff3c4" opacity="0.38" />
+    </g>
+
+    <g fill="none" stroke={visual.accent} stroke-width="2" opacity="0.62">
+      <path class="page-signal-line" d="M470 310 C540 242 612 226 684 236" />
+      <path class="page-signal-line page-signal-line-alt" d="M500 360 C574 346 638 372 704 420" />
+      <path class="page-signal-line" d="M430 330 C358 296 294 298 236 318" />
+    </g>
+
+    <g transform="translate(42 96)">
+      {visual.cards.map((card, index) => (
+        <g class="page-data-card" transform={`translate(${cardPositions[index].x} ${cardPositions[index].y})`}>
+          <rect width="196" height="46" rx="8" fill="rgba(5, 10, 14, 0.74)" stroke="rgba(156, 201, 217, 0.18)" />
+          <circle cx="19" cy="23" r="4" fill={index === 1 ? "#ffb547" : visual.accent} opacity="0.9" />
+          <text x="34" y="28" fill="#e7f6fa" font-family="JetBrains Mono, Consolas, monospace" font-size="12" font-weight="800">{card}</text>
+        </g>
+      ))}
+    </g>
+
+    <g transform="translate(520 56)">
+      <rect x="0" y="0" width="334" height="246" rx="14" fill="rgba(5, 10, 14, 0.68)" stroke="rgba(156, 201, 217, 0.2)" />
+      <text x="22" y="34" fill="#9cc9d9" font-family="JetBrains Mono, Consolas, monospace" font-size="12">AI decision graph</text>
+      <path class="page-graph-link" d={`M${nodePositions[0].x - 520} ${nodePositions[0].y - 56} L${nodePositions[1].x - 520} ${nodePositions[1].y - 56} L${nodePositions[2].x - 520} ${nodePositions[2].y - 56} L${nodePositions[3].x - 520} ${nodePositions[3].y - 56} Z`} fill="none" stroke={visual.accent} stroke-width="2" opacity="0.72" />
+      {visual.nodes.map((node, index) => {
+        const pos = nodePositions[index];
+        const cx = pos.x - 520;
+        const cy = pos.y - 56;
+        const color = index === 1 ? "#ffb547" : index === 3 ? "#ff4d2e" : visual.accent;
+        return (
+          <g class="page-graph-node" transform={`translate(${cx} ${cy})`}>
+            <circle r="15" fill={color} opacity="0.14" />
+            <circle r="5" fill={color} />
+            <text x="-28" y="32" fill="#c6d7df" font-family="JetBrains Mono, Consolas, monospace" font-size="10">{node}</text>
+          </g>
+        );
+      })}
+    </g>
+
+    <g font-family="JetBrains Mono, Consolas, monospace" font-size="11" fill="#9cc9d9" opacity="0.8">
+      <text x="236" y="322">process signal</text>
+      <text x="402" y="294">melt pool</text>
+      <text x="600" y="472">evidence path</text>
+    </g>
+  </svg>
+</div>

@@ -1,6 +1,7 @@
 ---
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { LAB_NOTES } from "@data/site";
 
 const title = "Lab Notes — Manish Sharma Lab";
@@ -10,12 +11,15 @@ const description =
 
 <Layout title={title} description={description} canonical="/lab-notes">
   <section class="site-shell section-y">
-    <div class="max-w-4xl">
-      <Badge>Inspection-aware notes</Badge>
-      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Lab Notes</h1>
-      <p class="mt-6 text-lg leading-8 text-slate-300">
-        Concise public notes for AI-assisted LMD decisions, process monitoring boundaries, repair RFQs, and manufacturing route selection.
-      </p>
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,0.52fr)] lg:items-center">
+      <div class="max-w-4xl">
+        <Badge>Inspection-aware notes</Badge>
+        <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Lab Notes</h1>
+        <p class="mt-6 text-lg leading-8 text-slate-300">
+          Concise public notes for AI-assisted LMD decisions, process monitoring boundaries, repair RFQs, and manufacturing route selection.
+        </p>
+      </div>
+      <PageHeroVisual variant="notes" class="hidden lg:block" />
     </div>
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
       {
