@@ -4,8 +4,8 @@ export const SITE = {
   repoUrl: "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io",
   githubProfile: "https://github.com/aiwithms",
   description:
-    "Public frameworks, tools, and lab notes for AI-assisted Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.",
-  lastUpdated: "2026-05-09"
+    "A public technical lab for inspection-aware AI in Laser Metal Deposition: frameworks, tools, lab notes, RFQ intelligence, and AI-agent resources.",
+  lastUpdated: "2026-05-10"
 };
 
 export const PERSON = {
@@ -56,7 +56,8 @@ export const NAV_ITEMS = [
   { label: "Tools", href: "/tools" },
   { label: "Lab Notes", href: "/lab-notes" },
   { label: "Glossary", href: "/glossary" },
-  { label: "Public Work", href: "/public-work" }
+  { label: "Public Work", href: "/public-work" },
+  { label: "Press Kit", href: "/press-kit" }
 ];
 
 export const FRAMEWORKS = [
@@ -265,6 +266,7 @@ export const COMMAND_PAGES = [
   { title: "Glossary", href: "/glossary", group: "Glossary" },
   ...GLOSSARY_TERMS.map((term) => ({ title: term.term, href: term.href, group: "Glossary" })),
   { title: "Public Work", href: "/public-work", group: "Core" },
+  { title: "Press Kit", href: "/press-kit", group: "Core" },
   { title: "For AI Agents", href: "/for-ai-agents", group: "AI Agents" },
   { title: "Links", href: "/links", group: "Core" },
   { title: "Contact", href: "/contact", group: "Core" }

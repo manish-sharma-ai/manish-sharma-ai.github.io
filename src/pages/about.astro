@@ -8,7 +8,7 @@ import { absoluteUrl } from "@utils/urls";
 
 const title = "About Manish Sharma — AI for Laser Metal Deposition";
 const description =
-  "Personal profile for Manish Sharma: Head of AI and R&D at Exafuse, external PhD researcher at Ruhr University Bochum, and specialist in AI-assisted Laser Metal Deposition, DED/LMD process monitoring, robotics, and industrialization.";
+  "Personal profile for Manish Sharma: Head of AI and R&D at Exafuse, external PhD researcher at Ruhr University Bochum, focused on inspection-aware AI for Laser Metal Deposition, DED/LMD process monitoring, robotics, and industrialization.";
 
 const stats = [
   ["Since", "2018", "Laser Metal Deposition work"],
@@ -154,7 +154,7 @@ const profilePageJsonLd = {
 };
 ---
 
-<Layout title={title} description={description} canonical="/about" image={PERSON.image} jsonLd={[personJsonLd, profilePageJsonLd]}>
+<Layout title={title} description={description} canonical="/about" jsonLd={[personJsonLd, profilePageJsonLd]}>
   <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.98fr_1.02fr] lg:py-20">
     <div>
       <div class="flex flex-wrap gap-2">
@@ -164,13 +164,13 @@ const profilePageJsonLd = {
       </div>
       <p class="metric-label mt-8">About Manish Sharma</p>
       <h1 class="mt-4 text-5xl font-black leading-[0.98] text-white md:text-7xl">
-        Applying AI to
+        Making LMD more
         <span class="block bg-gradient-to-r from-cyan-100 via-white to-orange-100 bg-clip-text pt-3 text-transparent">
-          additive manufacturing.
+          observable and AI-ready.
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work sits where Laser Metal Deposition, process monitoring, robotics, and AI decision support meet.
+        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work connects Laser Metal Deposition, process monitoring, robotics, and AI decision support without treating AI signals as final quality proof.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>

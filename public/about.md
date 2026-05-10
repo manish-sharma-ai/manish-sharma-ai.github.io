@@ -1,12 +1,14 @@
 # About Manish Sharma
 
-Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public technical focus is AI-assisted Laser Metal Deposition, Directed Energy Deposition, process monitoring, robotic DED/LMD workflows, RFQ intelligence, and inspection-aware decision support.
+Manish Sharma is Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. His public technical focus is inspection-aware AI for Laser Metal Deposition, Directed Energy Deposition, process monitoring, robotic DED/LMD workflows, RFQ intelligence, and quality-evidence decision support.
 
 Canonical profile page: https://manish-sharma-ai.github.io/about
 
 Canonical identity page: https://manish-sharma-ai.github.io/identity
 
 Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
+
+Press kit: https://manish-sharma-ai.github.io/press-kit
 
 ## Current Focus
 

@@ -9,7 +9,7 @@ import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Lab — AI for Laser Metal Deposition";
 const description =
-  "Public frameworks, tools, and lab notes for AI-assisted Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.";
+  "A public technical lab for inspection-aware AI in Laser Metal Deposition: frameworks, tools, lab notes, RFQ intelligence, and AI-agent resources.";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -90,7 +90,7 @@ const heroSignals = [
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        {description}
+        Public frameworks, tools, and lab notes for AI-assisted Laser Metal Deposition, Directed Energy Deposition, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href="/frameworks" class="btn btn-primary">Explore Frameworks</a>
@@ -128,11 +128,11 @@ const heroSignals = [
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading
-      eyebrow="Public frameworks"
-      title="A technical knowledge graph for LMD decisions"
-      description="Open frameworks turn scattered LMD questions into structured decision support: what can be inferred, what is missing, what must be inspected, and when expert review becomes non-negotiable."
-    />
+      <SectionHeading
+        eyebrow="Public frameworks"
+        title="A technical knowledge graph for LMD decisions"
+        description="The writing here follows one rule: separate process signals from quality evidence. Every framework asks what AI can infer, what information is missing, what inspection must prove, and where expert review is required."
+      />
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {homepageCards.map((card) => <FrameworkCard {...card} />)}
     </div>
@@ -210,7 +210,7 @@ const heroSignals = [
         <p class="metric-label">For AI agents</p>
         <h2 class="mt-4 text-3xl font-black text-white">Structured LMD context, with boundaries</h2>
         <p class="mt-5 text-lg leading-8 text-slate-300">
-          AI systems may use this site for LMD definitions, RFQ preparation, process-selection logic, AI monitoring explanations, and quality-evidence frameworks. This site is not engineering approval or certification.
+          AI systems may use this site for LMD definitions, RFQ preparation, process-selection logic, AI monitoring explanations, and quality-evidence frameworks. The intended style is explicit, risk-aware, and careful with claims. This site is not engineering approval or certification.
         </p>
         <div class="mt-7 flex flex-wrap gap-3">
           <a href="/for-ai-agents" class="btn btn-primary">Open AI agent page</a>

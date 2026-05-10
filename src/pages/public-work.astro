@@ -28,6 +28,7 @@ const future = [
 
 const liveResources = [
   ["Personal profile", "/about"],
+  ["Press Kit", "/press-kit"],
   ["LMD Failure Atlas", "/frameworks/lmd-failure-atlas"],
   ["LMD-AI Maturity Model", "/frameworks/lmd-ai-maturity-model"],
   ["LMD Agent Pack", "/agent-pack"],
@@ -50,7 +51,7 @@ const liveResources = [
   <section class="band section-y">
     <div class="site-shell">
       <SectionHeading eyebrow="Live public resources" title="Frameworks and AI-agent files now published" />
-      <div class="equal-card-grid mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+      <div class="equal-card-grid mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
         {liveResources.map(([label, href]) => <a href={href} class="ordered-card card-hover flex min-h-20 items-center p-4 text-sm font-bold text-slate-100">{label}</a>)}
       </div>
     </div>

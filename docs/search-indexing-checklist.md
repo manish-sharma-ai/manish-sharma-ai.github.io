@@ -16,6 +16,7 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 
 - `https://manish-sharma-ai.github.io/`
 - `https://manish-sharma-ai.github.io/about`
+- `https://manish-sharma-ai.github.io/press-kit`
 - `https://manish-sharma-ai.github.io/identity`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index`
@@ -42,6 +43,8 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/llms-full.txt`
 - `https://manish-sharma-ai.github.io/identity.md`
 - `https://manish-sharma-ai.github.io/about.md`
+- `https://manish-sharma-ai.github.io/og-image.png`
+- `https://manish-sharma-ai.github.io/og-image-preview.webp`
 - `https://manish-sharma-ai.github.io/agent-pack/lmd-rfq-schema.json`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas.md`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model.md`

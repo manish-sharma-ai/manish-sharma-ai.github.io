@@ -1,0 +1,125 @@
+---
+interface Page {
+  title: string;
+  href: string;
+  group: string;
+}
+
+interface Props {
+  pages: Page[];
+}
+
+const { pages } = Astro.props;
+const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
+---
+
+<div data-command-palette hidden class="fixed inset-0 z-[70] bg-black/70 px-4 py-20 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Search site">
+  <div class="mx-auto max-w-2xl overflow-hidden rounded-lg border border-white/10 bg-graphite-900 shadow-panel">
+    <div class="flex items-center gap-3 border-b border-white/10 px-4 py-3">
+      <span aria-hidden="true" class="font-mono text-lg text-cyan-200">/</span>
+      <input
+        data-command-input
+        class="min-h-11 flex-1 bg-transparent text-base text-white outline-none placeholder:text-slate-500"
+        placeholder="Search frameworks, notes, glossary..."
+        autocomplete="off"
+      />
+      <button
+        type="button"
+        data-command-close
+        class="grid h-9 w-9 place-items-center rounded-md border border-white/10 text-slate-300 transition hover:bg-white/5 hover:text-white"
+        aria-label="Close search"
+      >
+        &times;
+      </button>
+    </div>
+    <div data-command-results class="max-h-[60vh] overflow-auto p-2"></div>
+  </div>
+</div>
+
+<script is:inline type="application/json" id="command-pages" set:html={pagesJson}></script>
+<script is:inline>
+  (() => {
+    const pagesElement = document.getElementById("command-pages");
+    const palette = document.querySelector("[data-command-palette]");
+    const input = document.querySelector("[data-command-input]");
+    const results = document.querySelector("[data-command-results]");
+    const close = document.querySelector("[data-command-close]");
+
+    if (!pagesElement || !palette || !input || !results || !close) return;
+
+    const pages = JSON.parse(pagesElement.textContent || "[]");
+
+    const render = () => {
+      const query = input.value.trim().toLowerCase();
+      const matches = (query
+        ? pages.filter((page) => `${page.title} ${page.group} ${page.href}`.toLowerCase().includes(query))
+        : pages
+      ).slice(0, 12);
+
+      results.textContent = "";
+
+      if (matches.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "px-3 py-6 text-sm text-slate-400";
+        empty.textContent = "No matching page found.";
+        results.append(empty);
+        return;
+      }
+
+      for (const page of matches) {
+        const link = document.createElement("a");
+        link.href = page.href;
+        link.className = "grid gap-1 rounded-md px-3 py-3 transition hover:bg-white/6";
+
+        const title = document.createElement("span");
+        title.className = "text-sm font-bold text-white";
+        title.textContent = page.title;
+
+        const meta = document.createElement("span");
+        meta.className = "font-mono text-xs text-slate-500";
+        meta.textContent = `${page.group} - ${page.href}`;
+
+        link.append(title, meta);
+        link.addEventListener("click", hide);
+        results.append(link);
+      }
+    };
+
+    function show() {
+      palette.hidden = false;
+      input.value = "";
+      render();
+      window.setTimeout(() => input.focus(), 30);
+    }
+
+    function hide() {
+      palette.hidden = true;
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        show();
+      }
+
+      if (event.key === "Escape") {
+        hide();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      if (target.closest("[data-command-trigger]")) {
+        show();
+      }
+
+      if (target === palette || target.closest("[data-command-close]")) {
+        hide();
+      }
+    });
+
+    input.addEventListener("input", render);
+  })();
+</script>

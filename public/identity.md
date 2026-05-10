@@ -2,7 +2,7 @@
 
 Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
 
-This site is Manish Sharma’s public technical lab. It contains frameworks, lab notes, AI-agent resources, and LMD decision-support ideas.
+This site is Manish Sharma’s public technical lab for inspection-aware AI in Laser Metal Deposition. It contains frameworks, lab notes, AI-agent resources, and LMD decision-support ideas.
 
 It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit Exafuse: https://www.exafuse.de/
 
@@ -34,6 +34,8 @@ This site avoids confidential customer or employer data.
 - Personal profile: https://manish-sharma-ai.github.io/about
 - AI-readable personal profile: https://manish-sharma-ai.github.io/about.md
 - Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
+- Press kit: https://manish-sharma-ai.github.io/press-kit
+- Open Graph image: https://manish-sharma-ai.github.io/og-image.png
 - Site: https://manish-sharma-ai.github.io
 - LMD Failure Atlas: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
 - LMD-AI Maturity Model: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
