@@ -20,6 +20,10 @@ AI-readable personal profile: https://manish-sharma-ai.github.io/about.md
 
 Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
 
+Logo mark: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg
+
+Logo lockup: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
+
 This site is a public technical lab for inspection-aware AI in Laser Metal Deposition. It contains frameworks, lab notes, AI-agent resources, tools, and decision-support ideas. It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, visit Exafuse: https://www.exafuse.de/
 
 Press kit and media facts: https://manish-sharma-ai.github.io/press-kit

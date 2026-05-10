@@ -1,7 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#050608"/>
-  <path d="M12 43c12-8 22-8 40 0" fill="none" stroke="#33d6ff" stroke-width="5" stroke-linecap="round"/>
-  <path d="M20 12l18 27" stroke="#ff4d2e" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="38" cy="39" r="8" fill="#ffb547"/>
-  <circle cx="38" cy="39" r="4" fill="#fff3c4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Manish Sharma Lab">
+  <defs>
+    <linearGradient id="bg" x1="24" y1="22" x2="232" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070b10"/>
+      <stop offset="0.5" stop-color="#0b1219"/>
+      <stop offset="1" stop-color="#050608"/>
+    </linearGradient>
+    <linearGradient id="border" x1="38" y1="24" x2="218" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#33d6ff" stop-opacity="0.62"/>
+      <stop offset="0.52" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffb547" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="bead" x1="50" y1="150" x2="208" y2="176" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3f4f5b"/>
+      <stop offset="0.44" stop-color="#8da5b2"/>
+      <stop offset="1" stop-color="#33d6ff"/>
+    </linearGradient>
+    <linearGradient id="laser" x1="80" y1="52" x2="129" y2="138" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff4d2e" stop-opacity="0.2"/>
+      <stop offset="0.62" stop-color="#ff4d2e"/>
+      <stop offset="1" stop-color="#ffdd9a"/>
+    </linearGradient>
+    <radialGradient id="melt" cx="128" cy="138" r="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff4ca"/>
+      <stop offset="0.28" stop-color="#ffb547"/>
+      <stop offset="0.64" stop-color="#ff4d2e" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#ff4d2e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="9" y="9" width="238" height="238" rx="56" fill="#020304"/>
+  <rect x="18" y="18" width="220" height="220" rx="48" fill="url(#bg)" stroke="url(#border)" stroke-width="2"/>
+  <path d="M52 169c29-24 54-24 78-5 27 21 50 22 78-4" fill="none" stroke="#17222c" stroke-width="34" stroke-linecap="round"/>
+  <path d="M52 168c29-23 54-23 78-4 27 20 50 21 78-4" fill="none" stroke="url(#bead)" stroke-width="11" stroke-linecap="round"/>
+  <path d="M79 52l49 86" fill="none" stroke="#ff4d2e" stroke-opacity="0.18" stroke-width="24" stroke-linecap="round"/>
+  <path d="M79 52l49 86" fill="none" stroke="url(#laser)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="128" cy="138" r="39" fill="url(#melt)"/>
+  <ellipse cx="128" cy="141" rx="27" ry="10" fill="#fff3c4" opacity="0.48"/>
+  <path d="M170 72l29 22M170 72l-1 41M199 94l-30 19" fill="none" stroke="#33d6ff" stroke-opacity="0.66" stroke-width="2"/>
+  <circle cx="170" cy="72" r="7" fill="#9bf0ff"/>
+  <circle cx="199" cy="94" r="6" fill="#33d6ff"/>
+  <circle cx="169" cy="113" r="5" fill="#2f80ff"/>
 </svg>

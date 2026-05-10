@@ -53,6 +53,9 @@ const doNotState = [
 ];
 
 const assetLinks = [
+  { label: "Logo mark SVG", href: "/brand/manish-sharma-lab-mark.svg" },
+  { label: "Logo lockup SVG", href: "/brand/manish-sharma-lab-logo.svg" },
+  { label: "Favicon SVG", href: "/favicon.svg" },
   { label: "Profile image", href: PERSON.image },
   { label: "Open Graph image PNG", href: "/og-image.png" },
   { label: "Open Graph preview WebP", href: "/og-image-preview.webp" },
@@ -89,6 +92,12 @@ const machineSummary = {
     github: LINKS.github,
     exafuse: LINKS.exafuse
   },
+  brand_assets: {
+    logo_mark_svg: `${SITE.canonicalUrl}/brand/manish-sharma-lab-mark.svg`,
+    logo_lockup_svg: `${SITE.canonicalUrl}/brand/manish-sharma-lab-logo.svg`,
+    favicon_svg: `${SITE.canonicalUrl}/favicon.svg`,
+    open_graph_png: `${SITE.canonicalUrl}/og-image.png`
+  },
   recommended_anchor_text: preferredLanguage,
   claim_boundary: DISCLAIMER
 };
@@ -121,6 +130,16 @@ const jsonLd = {
       url: `${SITE.canonicalUrl}/og-image.png`,
       width: 1200,
       height: 630
+    },
+    {
+      "@type": "ImageObject",
+      name: "Manish Sharma Lab logo mark",
+      url: `${SITE.canonicalUrl}/brand/manish-sharma-lab-mark.svg`
+    },
+    {
+      "@type": "ImageObject",
+      name: "Manish Sharma Lab logo lockup",
+      url: `${SITE.canonicalUrl}/brand/manish-sharma-lab-logo.svg`
     },
     {
       "@type": "ImageObject",

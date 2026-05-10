@@ -43,6 +43,8 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/llms-full.txt`
 - `https://manish-sharma-ai.github.io/identity.md`
 - `https://manish-sharma-ai.github.io/about.md`
+- `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg`
+- `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg`
 - `https://manish-sharma-ai.github.io/og-image.png`
 - `https://manish-sharma-ai.github.io/og-image-preview.webp`
 - `https://manish-sharma-ai.github.io/agent-pack/lmd-rfq-schema.json`

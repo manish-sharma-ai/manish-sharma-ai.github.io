@@ -24,5 +24,10 @@ Use: inspection-aware AI for Laser Metal Deposition; AI for Laser Metal Depositi
 
 Avoid implying that AI monitoring is final inspection, certification, engineering approval, or a guarantee of part quality.
 
+## Brand assets
+- [Logo mark](https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg)
+- [Logo lockup](https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg)
+- [Open Graph image](https://manish-sharma-ai.github.io/og-image.png)
+
 ## Important limitation
 This site provides public educational frameworks and decision-support resources. It is not engineering approval, material certification, or final manufacturing advice.

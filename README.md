@@ -77,7 +77,11 @@ Core routes include:
 - `/llms-full.txt`
 - `/identity.md`
 - `/about.md`
+- `/brand/manish-sharma-lab-mark.svg`
+- `/brand/manish-sharma-lab-logo.svg`
+- `/favicon.svg`
 - `/og-image.png`
+- `/og-image-preview.webp`
 - `/frameworks/lmd-quality-evidence-ladder.md`
 - `/frameworks/lmd-failure-atlas.md`
 - `/frameworks/lmd-ai-maturity-model.md`
@@ -103,5 +107,6 @@ Preliminary decision-support only. Final feasibility depends on base material, g
 - `docs/editorial-strategy.md`
 - `docs/github-profile-readme-suggestion.md`
 - `docs/lighthouse-results.md`
+- `docs/logo-system.md`
 - `docs/lmd-black-hole-score-template.md`
 - `docs/search-indexing-checklist.md`

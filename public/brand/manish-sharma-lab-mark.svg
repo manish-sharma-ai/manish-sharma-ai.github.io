@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Manish Sharma Lab mark</title>
+  <desc id="desc">A graphite technical lab mark showing a laser beam, melt pool, deposited bead, and AI graph nodes.</desc>
+  <defs>
+    <linearGradient id="mark-bg" x1="24" y1="22" x2="232" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#070b10"/>
+      <stop offset="0.5" stop-color="#0b1219"/>
+      <stop offset="1" stop-color="#050608"/>
+    </linearGradient>
+    <linearGradient id="mark-border" x1="38" y1="24" x2="218" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#33d6ff" stop-opacity="0.62"/>
+      <stop offset="0.52" stop-color="#ffffff" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#ffb547" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="bead-stroke" x1="50" y1="150" x2="208" y2="176" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3f4f5b"/>
+      <stop offset="0.44" stop-color="#8da5b2"/>
+      <stop offset="1" stop-color="#33d6ff"/>
+    </linearGradient>
+    <linearGradient id="laser-stroke" x1="80" y1="52" x2="129" y2="138" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff4d2e" stop-opacity="0.2"/>
+      <stop offset="0.62" stop-color="#ff4d2e"/>
+      <stop offset="1" stop-color="#ffdd9a"/>
+    </linearGradient>
+    <radialGradient id="melt-glow" cx="128" cy="138" r="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff4ca"/>
+      <stop offset="0.28" stop-color="#ffb547"/>
+      <stop offset="0.64" stop-color="#ff4d2e" stop-opacity="0.58"/>
+      <stop offset="1" stop-color="#ff4d2e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyan-halo" cx="176" cy="72" r="122" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#33d6ff" stop-opacity="0.22"/>
+      <stop offset="0.62" stop-color="#2f80ff" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#33d6ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft-glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="inner-clip">
+      <rect x="18" y="18" width="220" height="220" rx="48"/>
+    </clipPath>
+  </defs>
+
+  <rect x="9" y="9" width="238" height="238" rx="56" fill="#020304"/>
+  <rect x="18" y="18" width="220" height="220" rx="48" fill="url(#mark-bg)" stroke="url(#mark-border)" stroke-width="2"/>
+  <g clip-path="url(#inner-clip)">
+    <rect x="18" y="18" width="220" height="220" fill="url(#cyan-halo)"/>
+    <g opacity="0.14" stroke="#9cc9d9" stroke-width="1">
+      <path d="M48 18v220M88 18v220M128 18v220M168 18v220M208 18v220"/>
+      <path d="M18 48h220M18 88h220M18 128h220M18 168h220M18 208h220"/>
+    </g>
+    <path d="M52 169c29-24 54-24 78-5 27 21 50 22 78-4" fill="none" stroke="#17222c" stroke-width="34" stroke-linecap="round"/>
+    <path d="M52 168c29-23 54-23 78-4 27 20 50 21 78-4" fill="none" stroke="url(#bead-stroke)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M79 52l49 86" fill="none" stroke="#ff4d2e" stroke-opacity="0.18" stroke-width="24" stroke-linecap="round"/>
+    <path d="M79 52l49 86" fill="none" stroke="url(#laser-stroke)" stroke-width="5" stroke-linecap="round" filter="url(#soft-glow)"/>
+    <circle cx="128" cy="138" r="39" fill="url(#melt-glow)" filter="url(#soft-glow)"/>
+    <ellipse cx="128" cy="141" rx="27" ry="10" fill="#fff3c4" opacity="0.48"/>
+    <g fill="none" stroke="#33d6ff" stroke-opacity="0.66" stroke-width="2">
+      <path d="M170 72l29 22M170 72l-1 41M199 94l-30 19"/>
+    </g>
+    <g filter="url(#soft-glow)">
+      <circle cx="170" cy="72" r="7" fill="#9bf0ff"/>
+      <circle cx="199" cy="94" r="6" fill="#33d6ff"/>
+      <circle cx="169" cy="113" r="5" fill="#2f80ff"/>
+    </g>
+    <path d="M58 201h140" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -34,6 +34,8 @@ This site avoids confidential customer or employer data.
 - Personal profile: https://manish-sharma-ai.github.io/about
 - AI-readable personal profile: https://manish-sharma-ai.github.io/about.md
 - Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
+- Logo mark: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg
+- Logo lockup: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
 - Press kit: https://manish-sharma-ai.github.io/press-kit
 - Open Graph image: https://manish-sharma-ai.github.io/og-image.png
 - Site: https://manish-sharma-ai.github.io
