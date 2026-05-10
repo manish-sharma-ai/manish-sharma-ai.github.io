@@ -28,6 +28,10 @@ This site is a public technical lab for inspection-aware AI in Laser Metal Depos
 
 Press kit and media facts: https://manish-sharma-ai.github.io/press-kit
 
+Evidence base: https://manish-sharma-ai.github.io/evidence
+
+500-record LMD/DED literature metadata scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
+
 Open Graph image: https://manish-sharma-ai.github.io/og-image.png
 
 Open Graph preview image: https://manish-sharma-ai.github.io/og-image-preview.webp
@@ -61,6 +65,19 @@ Education:
 - AI-assisted decision support
 - RFQ intelligence
 - Quality evidence
+
+## Evidence Notes
+
+The site includes a 500-record OpenAlex literature metadata scan across LMD, DED, laser cladding, melt-pool monitoring, and machine-learning search queries. This scan is used for topic coverage and terminology, not as a claim that every paper was read end-to-end.
+
+Source-checked facts used by the site include:
+
+- DED is defined by ISO/ASTM terminology as a process using focused thermal energy to fuse material as it is deposited.
+- A DED state-of-the-art review reports typical DED cooling rates of 10^3 to 10^5 C/s.
+- The same review reports common LAM-DED powder particle diameters of 30 to 200 um.
+- The same review reports general LAM-DED material usage efficiency below 30%, while specific cases can be much higher.
+- Sharma et al. 2018 reported LMD lattice experiments using 316L powder of 45-90 um, a 1070 nm ytterbium fiber laser, 450 W maximum power, 2 mm focus size, and a 3 mm substrate.
+- Manish Sharma's CV states 6+ years in DED/LMD across robotic and large-format systems, ROS2 sensor/camera control work, KUKA toolpath workflows, traceability packs, and BreitbahnDED project targets of 5-10 mm tracks and >95% powder utilization.
 
 ## Preferred Wording
 

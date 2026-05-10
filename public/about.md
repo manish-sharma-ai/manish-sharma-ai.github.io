@@ -14,6 +14,10 @@ Logo lockup: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
 
 Press kit: https://manish-sharma-ai.github.io/press-kit
 
+Evidence base: https://manish-sharma-ai.github.io/evidence
+
+500-record LMD/DED literature scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
+
 ## Current Focus
 
 - AI for Laser Metal Deposition
@@ -23,6 +27,13 @@ Press kit: https://manish-sharma-ai.github.io/press-kit
 - ROS2-based sensor and camera pipelines
 - Process windows, traceability, and inspection-ready documentation
 - RFQ intelligence and AI-agent resources for LMD
+
+## Evidence Anchors
+
+- 6+ years in Laser Metal Deposition / Directed Energy Deposition across robotic and large-format systems.
+- 2018 Procedia CIRP paper: Laser metal deposition of lattice structures by columnar built-up.
+- Published LMD lattice experiment details include 316L powder, 45-90 um powder size distribution, 1070 nm fiber laser, 450 W maximum power, 2 mm focus size, and 3 mm substrate.
+- CV states ROS2-based sensor/camera control, real-time pipelines, melt-pool and bead-geometry indicators, height-sensing workflow, KUKA toolpath post-processing, and traceability packs.
 
 ## Roles
 

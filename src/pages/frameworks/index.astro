@@ -2,6 +2,7 @@
 import FrameworkCard from "@components/FrameworkCard.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import { RESEARCH_SCAN } from "@data/evidence";
 import { FRAMEWORKS } from "@data/site";
 
 const title = "Public LMD and AI Frameworks — Manish Sharma Lab";
@@ -23,6 +24,16 @@ const description =
 
   <section class="band section-y">
     <div class="site-shell grid gap-5 md:grid-cols-2">
+      <div class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-8 md:col-span-2">
+        <div>
+          <p class="metric-label">Evidence layer</p>
+          <h2 class="mt-4 text-3xl font-black text-white">{RESEARCH_SCAN.count}-record LMD/DED research scan</h2>
+          <p class="mt-4 max-w-4xl leading-7 text-slate-300">
+            The frameworks are now connected to a public evidence base: source-checked DED/LMD facts, Manish Sharma field notes, and a metadata scan used to keep the vocabulary grounded in the research literature.
+          </p>
+        </div>
+        <a href="/evidence" class="btn btn-primary mt-7 w-fit">Open Evidence Base</a>
+      </div>
       <div class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-8">
         <div>
         <p class="metric-label">New framework</p>

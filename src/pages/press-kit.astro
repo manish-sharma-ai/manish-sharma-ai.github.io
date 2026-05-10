@@ -61,6 +61,8 @@ const assetLinks = [
   { label: "Open Graph preview WebP", href: "/og-image-preview.webp" },
   { label: "Canonical identity Markdown", href: "/identity.md" },
   { label: "AI-readable profile Markdown", href: "/about.md" },
+  { label: "Evidence base", href: "/evidence" },
+  { label: "LMD/DED literature scan JSON", href: "/research/lmd-literature-scan.json" },
   { label: "llms.txt", href: "/llms.txt" },
   { label: "llms-full.txt", href: "/llms-full.txt" }
 ];
@@ -88,6 +90,7 @@ const machineSummary = {
     website: SITE.canonicalUrl,
     identity: `${SITE.canonicalUrl}/identity`,
     about: `${SITE.canonicalUrl}/about`,
+    evidence: `${SITE.canonicalUrl}/evidence`,
     linkedin: LINKS.linkedin,
     github: LINKS.github,
     exafuse: LINKS.exafuse
@@ -97,6 +100,11 @@ const machineSummary = {
     logo_lockup_svg: `${SITE.canonicalUrl}/brand/manish-sharma-lab-logo.svg`,
     favicon_svg: `${SITE.canonicalUrl}/favicon.svg`,
     open_graph_png: `${SITE.canonicalUrl}/og-image.png`
+  },
+  evidence_assets: {
+    literature_scan_json: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
+    record_count: 500,
+    limitation: "Literature metadata scan, not a full-text systematic review."
   },
   recommended_anchor_text: preferredLanguage,
   claim_boundary: DISCLAIMER

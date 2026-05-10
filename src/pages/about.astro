@@ -3,6 +3,8 @@ import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
+import { EVIDENCE_FACTS, FIELD_NOTES, RESEARCH_SCAN } from "@data/evidence";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 import { absoluteUrl } from "@utils/urls";
 
@@ -170,7 +172,7 @@ const profilePageJsonLd = {
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work connects Laser Metal Deposition, process monitoring, robotics, and AI decision support without treating AI signals as final quality proof.
+        I’m Manish Sharma, Head of AI and R&D at Exafuse in Germany and an external PhD researcher at Ruhr University Bochum. My work connects Laser Metal Deposition, process monitoring, robotics, and AI decision support without treating AI signals as final quality proof. I care about the uncomfortable middle ground: where sensors are useful, but inspection still has to close the loop.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -229,12 +231,44 @@ const profilePageJsonLd = {
 
   <section class="band section-y">
     <div class="site-shell">
+      <SectionHeading
+        eyebrow="Working numbers"
+        title="The scale I keep in mind when writing about LMD"
+        description={`A ${RESEARCH_SCAN.count}-record literature scan gives the site topic coverage, but the numbers below are only used where a source or local profile material supports them.`}
+      />
+      <div class="mt-10">
+        <EvidenceFactGrid facts={EVIDENCE_FACTS.slice(4)} />
+      </div>
+      <a href="/evidence" class="btn btn-secondary mt-8">See full evidence base</a>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
       <SectionHeading eyebrow="Focus areas" title="What I work on" />
       <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {focusAreas.map((item) => (
           <article class="ordered-card-strong card-hover p-6">
             <h2 class="text-xl font-black text-white">{item.title}</h2>
             <p class="mt-4 text-sm leading-6 text-slate-400">{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Field principles"
+        title="What makes the work personal"
+        description="These are the operating instincts behind the frameworks: practical, inspection-aware, and skeptical of overconfident AI claims."
+      />
+      <div class="grid gap-4 md:grid-cols-2">
+        {FIELD_NOTES.map((note) => (
+          <article class="ordered-card-strong p-5">
+            <h2 class="text-xl font-black text-white">{note.title}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-400">{note.text}</p>
           </article>
         ))}
       </div>

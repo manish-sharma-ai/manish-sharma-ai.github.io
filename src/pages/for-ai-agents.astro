@@ -31,6 +31,8 @@ const doNotUse = [
 const links = [
   { label: "About Manish Sharma", href: "/about" },
   { label: "Identity", href: "/identity" },
+  { label: "Evidence Base", href: "/evidence" },
+  { label: "500-record LMD/DED literature scan", href: "/research/lmd-literature-scan.json" },
   { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
   { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
   { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
@@ -67,6 +69,10 @@ const machineSummary = {
   ],
   use_for: useFor,
   do_not_use_as: doNotUse,
+  evidence_base: `${SITE.canonicalUrl}/evidence`,
+  literature_scan: `${SITE.canonicalUrl}/research/lmd-literature-scan.json`,
+  evidence_scan_limitation:
+    "The 500-record scan is a literature metadata map. Use source-specific citations for factual claims.",
   limitation:
     "Public educational decision-support only; not engineering approval, certification, or final manufacturing advice."
 };

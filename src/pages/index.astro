@@ -1,10 +1,12 @@
 ---
 import Badge from "@components/Badge.astro";
+import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
 import FrameworkCard from "@components/FrameworkCard.astro";
 import HeroLaserVisual from "@components/HeroLaserVisual";
 import IdentityGraph from "@components/IdentityGraph.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import { EVIDENCE_FACTS, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evidence";
 import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Lab — AI for Laser Metal Deposition";
@@ -124,6 +126,29 @@ const heroSignals = [
           <p class="mt-2 text-sm font-bold leading-6 text-white">{value}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+      <div>
+        <SectionHeading
+          eyebrow="Evidence layer"
+          title="Specific numbers, not empty AI language"
+          description={`This site is now backed by a ${RESEARCH_SCAN.count}-record LMD/DED literature metadata scan, selected source-checked facts, and personal field notes from industrial DED/LMD monitoring work.`}
+        />
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          {PERSONAL_PROOF_POINTS.slice(0, 4).map((item) => (
+            <article class="ordered-card p-4">
+              <p class="metric-label">{item.label}</p>
+              <p class="mt-2 text-2xl font-black text-white">{item.value}</p>
+              <p class="mt-2 text-xs leading-5 text-slate-400">{item.detail}</p>
+            </article>
+          ))}
+        </div>
+        <a href="/evidence" class="btn btn-primary mt-8">Open Evidence Base</a>
+      </div>
+      <EvidenceFactGrid facts={EVIDENCE_FACTS.slice(0, 4)} />
     </div>
   </section>
 

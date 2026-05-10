@@ -1,0 +1,142 @@
+---
+import Badge from "@components/Badge.astro";
+import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { CITED_SOURCES, EVIDENCE_FACTS, FIELD_NOTES, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evidence";
+import { PERSON, SITE } from "@data/site";
+
+const title = "LMD Evidence Base — Manish Sharma Lab";
+const description =
+  "Research-backed facts, personal field notes, source links, and a 500-record literature scan behind Manish Sharma Lab's AI for Laser Metal Deposition content.";
+
+const pageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE.canonicalUrl}/evidence#page`,
+  url: `${SITE.canonicalUrl}/evidence`,
+  name: title,
+  description,
+  about: [
+    "Laser Metal Deposition",
+    "Directed Energy Deposition",
+    "Process Monitoring",
+    "AI in Additive Manufacturing",
+    "Industrial Repair"
+  ],
+  author: {
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+    "@type": "Person",
+    name: PERSON.name
+  },
+  hasPart: [
+    {
+      "@type": "Dataset",
+      name: "LMD/DED literature scan",
+      url: `${SITE.canonicalUrl}${RESEARCH_SCAN.file}`,
+      description: RESEARCH_SCAN.method
+    }
+  ]
+};
+---
+
+<Layout title={title} description={description} canonical="/evidence" jsonLd={pageJsonLd}>
+  <section class="site-shell section-y">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+      <div>
+        <div class="flex flex-wrap gap-2">
+          <Badge>Evidence base</Badge>
+          <Badge tone="steel">500-record scan</Badge>
+          <Badge tone="laser">Field notes</Badge>
+        </div>
+        <p class="metric-label mt-8">Research + Experience</p>
+        <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">
+          Evidence, not just AI-sounding language.
+        </h1>
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+          This page collects the numbers, source links, and personal field context behind the site. The goal is to make Manish Sharma Lab feel like a real technical lab: specific where evidence supports it, careful where the data is conditional, and clear about what AI can and cannot prove.
+        </p>
+      </div>
+      <div class="ordered-card-strong p-6">
+        <p class="metric-label">Literature map</p>
+        <p class="mt-4 font-mono text-6xl font-black text-cyan-100">{RESEARCH_SCAN.count}</p>
+        <p class="mt-3 text-lg font-bold text-white">research records scanned</p>
+        <p class="mt-4 text-sm leading-6 text-slate-400">{RESEARCH_SCAN.method}</p>
+        <a href={RESEARCH_SCAN.file} class="btn btn-secondary mt-6">Open JSON scan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="site-shell grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
+      {PERSONAL_PROOF_POINTS.map((item) => (
+        <article class="ordered-card p-4">
+          <p class="metric-label">{item.label}</p>
+          <p class="mt-2 text-3xl font-black text-white">{item.value}</p>
+          <p class="mt-2 text-sm leading-6 text-slate-400">{item.detail}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Numbers with source context"
+      title="Concrete LMD/DED facts the site can safely use"
+      description="These numbers are not universal design rules. They are cited anchors that help readers and AI systems understand scale, process behavior, and claim boundaries."
+    />
+    <div class="mt-10">
+      <EvidenceFactGrid facts={EVIDENCE_FACTS} />
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Field notes"
+        title="What experience changes in the writing"
+        description="The personal layer of the site should not be vague authority. It should show how I think when an LMD claim, RFQ, monitoring signal, or AI recommendation looks too confident."
+      />
+      <div class="grid gap-4 md:grid-cols-2">
+        {FIELD_NOTES.map((note) => (
+          <article class="ordered-card-strong p-5">
+            <h2 class="text-xl font-black text-white">{note.title}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-400">{note.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Literature scan"
+        title="What the 500-record scan is good for"
+        description="The scan is a map of the research terrain, not a replacement for full-text engineering review. It helps keep the site vocabulary aligned with real LMD/DED research."
+      />
+      <div class="ordered-card-strong p-6">
+        <h2 class="text-2xl font-black text-white">Top venues in the scan</h2>
+        <div class="mt-6 grid gap-3">
+          {RESEARCH_SCAN.topVenues.map(([venue, count]) => (
+            <div class="grid grid-cols-[1fr_auto] gap-4 border-b border-white/10 pb-3 text-sm last:border-b-0 last:pb-0">
+              <span class="font-bold text-slate-200">{venue}</span>
+              <span class="font-mono font-black text-cyan-100">{count}</span>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-sm leading-6 text-slate-400">
+          Exact claims on this site are based on source-specific citations. The broader scan is useful for topic coverage, terminology, and deciding which content needs more research depth next.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Sources" title="Public sources used for this evidence pass" />
+      <SourceLinks links={CITED_SOURCES} />
+    </div>
+  </section>
+</Layout>
