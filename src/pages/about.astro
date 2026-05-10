@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
+import ProfileImage from "@components/ProfileImage.astro";
 import { EVIDENCE_FACTS, FIELD_NOTES, RESEARCH_SCAN } from "@data/evidence";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
@@ -183,20 +184,7 @@ const profilePageJsonLd = {
       </div>
     </div>
     <div class="glass-panel profile-image-panel overflow-hidden rounded-lg p-3">
-      <div class="relative overflow-hidden rounded-md bg-graphite-900">
-        <img
-          src={PERSON.image}
-          alt="Manish Sharma"
-          class="aspect-[5/4] w-full object-cover object-center"
-          width="1400"
-          height="1095"
-          loading="eager"
-        />
-        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/82 via-black/26 to-transparent p-6">
-          <p class="metric-label text-cyan-100">Manish Sharma</p>
-          <p class="mt-2 text-2xl font-black text-white">AI for Laser Metal Deposition</p>
-        </div>
-      </div>
+      <ProfileImage eager withCaption />
     </div>
   </section>
 

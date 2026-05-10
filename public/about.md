@@ -6,7 +6,7 @@ Canonical profile page: https://manish-sharma-ai.github.io/about
 
 Canonical identity page: https://manish-sharma-ai.github.io/identity
 
-Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.jpg
+Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.webp
 
 Logo mark: https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg
 

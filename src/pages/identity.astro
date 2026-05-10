@@ -2,6 +2,7 @@
 import Badge from "@components/Badge.astro";
 import IdentityGraph from "@components/IdentityGraph.astro";
 import Layout from "@layouts/Layout.astro";
+import ProfileImage from "@components/ProfileImage.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
@@ -81,13 +82,7 @@ const sameAsLinks = [
       </div>
     </div>
     <div class="glass-panel profile-image-panel overflow-hidden rounded-lg p-3">
-      <img
-        src={PERSON.image}
-        alt="Manish Sharma"
-        class="aspect-[5/4] w-full rounded-md object-cover object-center"
-        width="1400"
-        height="1095"
-      />
+      <ProfileImage />
     </div>
   </section>
 

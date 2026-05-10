@@ -1,0 +1,32 @@
+---
+import { PERSON } from "@data/site";
+
+interface Props {
+  eager?: boolean;
+  withCaption?: boolean;
+}
+
+const { eager = false, withCaption = false } = Astro.props;
+---
+
+<div class="relative overflow-hidden rounded-md bg-graphite-900">
+  <picture>
+    <source type="image/webp" srcset={PERSON.imageSrcSet} sizes={PERSON.imageSizes} />
+    <img
+      src={PERSON.imageFallback}
+      alt="Manish Sharma"
+      class="aspect-[5/4] w-full object-cover object-center"
+      width="1400"
+      height="1095"
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      fetchpriority={eager ? "high" : undefined}
+    />
+  </picture>
+  {withCaption && (
+    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/82 via-black/26 to-transparent p-6">
+      <p class="metric-label text-cyan-100">Manish Sharma</p>
+      <p class="mt-2 text-2xl font-black text-white">AI for Laser Metal Deposition</p>
+    </div>
+  )}
+</div>
