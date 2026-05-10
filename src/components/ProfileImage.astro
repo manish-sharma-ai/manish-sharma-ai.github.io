@@ -4,14 +4,15 @@ import { PERSON } from "@data/site";
 interface Props {
   eager?: boolean;
   withCaption?: boolean;
+  sizes?: string;
 }
 
-const { eager = false, withCaption = false } = Astro.props;
+const { eager = false, withCaption = false, sizes = PERSON.imageSizes } = Astro.props;
 ---
 
 <div class="relative overflow-hidden rounded-md bg-graphite-900">
   <picture>
-    <source type="image/webp" srcset={PERSON.imageSrcSet} sizes={PERSON.imageSizes} />
+    <source type="image/webp" srcset={PERSON.imageSrcSet} sizes={sizes} />
     <img
       src={PERSON.imageFallback}
       alt="Manish Sharma"
