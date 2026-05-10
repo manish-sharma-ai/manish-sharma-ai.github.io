@@ -16,7 +16,11 @@ Press kit: https://manish-sharma-ai.github.io/press-kit
 
 Evidence base: https://manish-sharma-ai.github.io/evidence
 
+Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
+
 500-record LMD/DED literature scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
+
+Exafuse public proof map: https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json
 
 ## Current Focus
 
@@ -34,6 +38,16 @@ Evidence base: https://manish-sharma-ai.github.io/evidence
 - 2018 Procedia CIRP paper: Laser metal deposition of lattice structures by columnar built-up.
 - Published LMD lattice experiment details include 316L powder, 45-90 um powder size distribution, 1070 nm fiber laser, 450 W maximum power, 2 mm focus size, and 3 mm substrate.
 - CV states ROS2-based sensor/camera control, real-time pipelines, melt-pool and bead-geometry indicators, height-sensing workflow, KUKA toolpath post-processing, and traceability packs.
+
+## Public Exafuse Context
+
+Public Exafuse pages show the industrial context around this technical identity:
+
+- Duisburg bridge LMD components: 750 kg+ of components, six structural nodes, long robotic production paths, process monitoring and validation planning.
+- Forging hammer repair: local high-impact surface rebuild and coating where preparation, bond quality, finishing and inspection matter.
+- Nobufil extrusion screw repair: local crack repair where downtime and missing spare-part availability made repair-versus-replacement logic central.
+- 130 mm drill build-and-coat workflow: LMD geometry creation plus functional coating in one process family.
+- 2024 material volume: 1,850 kg+ public LMD material signal across 316L and advanced material families.
 
 ## Roles
 

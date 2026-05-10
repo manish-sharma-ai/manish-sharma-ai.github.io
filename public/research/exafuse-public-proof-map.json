@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-05-10",
+  "source_base": "https://exafuse-website-react.pages.dev/en",
+  "purpose": "Public Exafuse proof-map signals used to strengthen Manish Sharma Lab without duplicating company service pages or treating process-monitoring content as certification.",
+  "case_studies": [
+    {
+      "code": "CS15",
+      "title": "Duisburg Bridge Components with LMD",
+      "url": "https://exafuse-website-react.pages.dev/en/case/CS15/",
+      "public_signals": ["750 kg+ LMD bridge components", "six structural nodes", "Knoten 10: 219 hours and about 8 km of robot travel", "roughly 38 km across six nodes", "more than one million melt-pool images", "KIT validation context"]
+    },
+    {
+      "code": "CS01",
+      "title": "Forging Hammer Repair and Coating with LMD",
+      "url": "https://exafuse-website-react.pages.dev/en/case/CS01/",
+      "public_signals": ["10-20 mm local reinforcement context", "impact wear and heat duty", "surface preparation", "finishing and inspection", "hardness is not enough by itself"]
+    },
+    {
+      "code": "CS10",
+      "title": "Nobufil Extrusion Screw Repair",
+      "url": "https://exafuse-website-react.pages.dev/en/case/CS10/",
+      "public_signals": ["cracked stub shaft", "no immediately available replacement", "remove damaged material before LMD", "finish geometry after deposition"]
+    },
+    {
+      "code": "CS13",
+      "title": "130 mm Bombenbohrer Build-and-Coat Workflow",
+      "url": "https://exafuse-website-react.pages.dev/en/case/CS13/",
+      "public_signals": ["130 mm drill", "LMD fabrication plus LMD functional coating", "wear-resistant anti-magnetic coating from tungsten-carbide-containing alloy"]
+    }
+  ],
+  "knowledge_articles": [
+    {
+      "code": "A03",
+      "title": "LMD buyer guide",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A03/",
+      "public_signals": ["local melt-pool powder deposition", "repair, cladding, modification and hybrid routes", "750 mm water-cooled nozzle example", "1.8 mm thin-wall context", "more than 1,070 layers"]
+    },
+    {
+      "code": "A04",
+      "title": "LMD vs SLM selection",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A04/",
+      "public_signals": ["LMD fit: large parts, repair, local feature addition and cladding", "SLM / LPBF fit: compact complex geometry, fine detail and internal channels", "process choice depends on geometry, purpose, post-processing and inspection"]
+    },
+    {
+      "code": "A06",
+      "title": "Large-part LMD productivity",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A06/",
+      "public_signals": ["Titan build envelope 2 x 1 x 2 m", "robotic rotary-table support up to 1,000 kg", "large LMD depends on bead width, overlap, heat management, machining allowance, fixtures and inspection"]
+    },
+    {
+      "code": "A12",
+      "title": "Monitoring and control",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A12/",
+      "public_signals": ["melt-pool behavior", "path execution", "deposition continuity", "thermal history", "monitoring supports process awareness but does not replace inspection or qualification"]
+    },
+    {
+      "code": "A21",
+      "title": "BreitBahnDED wide-bead research",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A21/",
+      "public_signals": ["conventional LMD track context around 1-4 mm", "research exploration around 5 mm and potentially 10 mm tracks", "30-50% time-saving potential as a research goal", ">95% powder-utilization target"]
+    },
+    {
+      "code": "A25",
+      "title": "2024 year in powder",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A25/",
+      "public_signals": ["more than 1,850 kg of LMD material in 2024", "more than 1,600 kg of 316L", "around 250 kg across nickel, wear-resistant, copper and specialty steel routes"]
+    },
+    {
+      "code": "A29",
+      "title": "Forging hammer repair evaluation",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A29/",
+      "public_signals": ["local accessible damage", "viable base material", "metallurgical bond", "machinability", "inspection and release criteria", "not generic hardfacing"]
+    },
+    {
+      "code": "A37",
+      "title": "Neural image processing",
+      "url": "https://exafuse-website-react.pages.dev/en/article/A37/",
+      "public_signals": ["Pix2Pix-style image processing", "segmentation and visual interpretation", "model outputs require process-context and inspection validation"]
+    }
+  ],
+  "claim_boundary": "These are public Exafuse proof signals. They support public technical context and buyer education, not engineering approval, certification, guaranteed outcomes, or confidential project details."
+}

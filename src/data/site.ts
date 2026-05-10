@@ -254,6 +254,7 @@ export const COMMAND_PAGES = [
   { title: "About Manish Sharma", href: "/about", group: "Core" },
   { title: "Identity", href: "/identity", group: "Core" },
   { title: "Evidence Base", href: "/evidence", group: "Core" },
+  { title: "Industrial Proof Map", href: "/industrial-proof", group: "Core" },
   { title: "Frameworks", href: "/frameworks", group: "Core" },
   { title: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", group: "Frameworks" },
   { title: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", group: "Frameworks" },

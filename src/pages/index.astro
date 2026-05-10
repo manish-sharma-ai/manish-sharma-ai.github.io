@@ -7,6 +7,7 @@ import IdentityGraph from "@components/IdentityGraph.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { EVIDENCE_FACTS, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evidence";
+import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Lab — AI for Laser Metal Deposition";
@@ -152,12 +153,37 @@ const heroSignals = [
     </div>
   </section>
 
+  <section class="band section-y">
+    <div class="site-shell">
+      <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading
+          eyebrow="Industrial proof context"
+          title="Public Exafuse cases make the lab real"
+          description="The technical writing here is connected to public Exafuse proof stories: bridge-scale LMD, high-impact tooling repair, critical spare repair, and build-and-coat workflows."
+        />
+        <a href="/industrial-proof" class="btn btn-secondary w-fit">Open proof map</a>
+      </div>
+      <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {EXAFUSE_PROOF_CASES.map((item) => (
+          <a href={item.href} class="ordered-card-strong card-hover p-5" target="_blank" rel="noreferrer">
+            <p class="metric-label">{item.code}</p>
+            <h3 class="mt-3 text-xl font-black text-white">{item.title}</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {item.metrics.slice(0, 3).map((metric) => <span class="rounded-md border border-white/10 bg-white/[0.035] px-2 py-1 text-xs font-bold text-slate-200">{metric}</span>)}
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-400">{item.labConnection}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="site-shell section-y">
-      <SectionHeading
-        eyebrow="Public frameworks"
-        title="A technical knowledge graph for LMD decisions"
-        description="The writing here follows one rule: separate process signals from quality evidence. Every framework asks what AI can infer, what information is missing, what inspection must prove, and where expert review is required."
-      />
+    <SectionHeading
+      eyebrow="Public frameworks"
+      title="A technical knowledge graph for LMD decisions"
+      description="The writing here follows one rule: separate process signals from quality evidence. Every framework asks what AI can infer, what information is missing, what inspection must prove, and where expert review is required."
+    />
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {homepageCards.map((card) => <FrameworkCard {...card} />)}
     </div>

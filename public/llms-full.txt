@@ -30,7 +30,11 @@ Press kit and media facts: https://manish-sharma-ai.github.io/press-kit
 
 Evidence base: https://manish-sharma-ai.github.io/evidence
 
+Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
+
 500-record LMD/DED literature metadata scan: https://manish-sharma-ai.github.io/research/lmd-literature-scan.json
+
+Exafuse public proof map: https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json
 
 Open Graph image: https://manish-sharma-ai.github.io/og-image.png
 
@@ -78,6 +82,17 @@ Source-checked facts used by the site include:
 - The same review reports general LAM-DED material usage efficiency below 30%, while specific cases can be much higher.
 - Sharma et al. 2018 reported LMD lattice experiments using 316L powder of 45-90 um, a 1070 nm ytterbium fiber laser, 450 W maximum power, 2 mm focus size, and a 3 mm substrate.
 - Manish Sharma's CV states 6+ years in DED/LMD across robotic and large-format systems, ROS2 sensor/camera control work, KUKA toolpath workflows, traceability packs, and BreitbahnDED project targets of 5-10 mm tracks and >95% powder utilization.
+
+## Public Exafuse Proof Signals
+
+The public Exafuse website provides industrial proof context for the same themes:
+
+- CS15 Duisburg bridge components: more than 750 kg of LMD components, six structural nodes, Knoten 10 with 219 hours of printing and about 8 km robot travel, roughly 38 km robot travel across six nodes, more than one million melt-pool images, and validation context involving KIT.
+- CS01 forging hammer repair: local impact-wear repair and coating logic, 10-20 mm local reinforcement context, preparation, finishing and inspection planning.
+- CS10 Nobufil extrusion screw repair: local cracked stub-shaft repair where no immediate replacement was available; damaged material was removed before LMD rebuild and finishing.
+- CS13 130 mm drill: LMD part fabrication plus final functional coating from a tungsten-carbide-containing alloy.
+- A25 year-in-powder article: more than 1,850 kg of LMD material in 2024, with more than 1,600 kg 316L and around 250 kg across advanced material families.
+- A12 and A37 reinforce the site's AI boundary: monitoring and neural image-processing can support process understanding, but do not replace inspection or qualification.
 
 ## Preferred Wording
 

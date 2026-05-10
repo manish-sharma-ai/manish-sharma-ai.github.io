@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CITED_SOURCES, EVIDENCE_FACTS, FIELD_NOTES, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evidence";
+import { EXAFUSE_PROOF_CASES, EXAFUSE_SOURCE_LINKS } from "@data/exafuse";
 import { PERSON, SITE } from "@data/site";
 
 const title = "LMD Evidence Base — Manish Sharma Lab";
@@ -36,6 +37,12 @@ const pageJsonLd = {
       name: "LMD/DED literature scan",
       url: `${SITE.canonicalUrl}${RESEARCH_SCAN.file}`,
       description: RESEARCH_SCAN.method
+    },
+    {
+      "@type": "Dataset",
+      name: "Exafuse public proof map",
+      url: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`,
+      description: "Public Exafuse proof signals mapped to Manish Sharma Lab themes."
     }
   ]
 };
@@ -110,6 +117,30 @@ const pageJsonLd = {
   </section>
 
   <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+      <SectionHeading
+        eyebrow="Industrial proof"
+        title="Public Exafuse cases that anchor the claims"
+        description="These are public company case studies, not private project details. They make the site more concrete by showing the kind of industrial LMD problems behind the frameworks."
+      />
+      <div class="grid gap-4 md:grid-cols-2">
+        {EXAFUSE_PROOF_CASES.map((item) => (
+          <article class="ordered-card-strong p-5">
+            <p class="metric-label">{item.code}</p>
+            <h2 class="mt-3 text-xl font-black text-white">{item.title}</h2>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {item.metrics.map((metric) => <span class="rounded-md border border-white/10 bg-white/[0.035] px-2 py-1 text-xs font-bold text-slate-200">{metric}</span>)}
+            </div>
+            <p class="mt-4 text-sm leading-6 text-slate-400">{item.lesson}</p>
+            <a href={item.href} class="mt-4 inline-block text-xs font-bold uppercase tracking-[0.18em] text-cyan-100 hover:text-white" target="_blank" rel="noreferrer">Open Exafuse source</a>
+          </article>
+        ))}
+      </div>
+    </div>
+    <a href="/industrial-proof" class="btn btn-primary mt-8">Open Industrial Proof Map</a>
+  </section>
+
+  <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Literature scan"
@@ -136,7 +167,10 @@ const pageJsonLd = {
   <section class="band section-y">
     <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading eyebrow="Sources" title="Public sources used for this evidence pass" />
-      <SourceLinks links={CITED_SOURCES} />
+      <div class="grid gap-8">
+        <SourceLinks links={CITED_SOURCES} />
+        <SourceLinks links={EXAFUSE_SOURCE_LINKS} />
+      </div>
     </div>
   </section>
 </Layout>

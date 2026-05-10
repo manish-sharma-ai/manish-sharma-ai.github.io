@@ -55,6 +55,7 @@ Core routes include:
 - `/identity`
 - `/about`
 - `/evidence`
+- `/industrial-proof`
 - `/frameworks`
 - `/frameworks/lmd-quality-evidence-ladder`
 - `/frameworks/lmd-repairability-index`
@@ -84,6 +85,7 @@ Core routes include:
 - `/og-image.png`
 - `/og-image-preview.webp`
 - `/research/lmd-literature-scan.json`
+- `/research/exafuse-public-proof-map.json`
 - `/frameworks/lmd-quality-evidence-ladder.md`
 - `/frameworks/lmd-failure-atlas.md`
 - `/frameworks/lmd-ai-maturity-model.md`
