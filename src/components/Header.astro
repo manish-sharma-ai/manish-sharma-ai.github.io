@@ -33,7 +33,7 @@ const isActive = (href: string) => {
               {group.label}
               <span class="font-mono text-[0.68rem] text-slate-500 transition group-open:rotate-180">⌄</span>
             </summary>
-            <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(31rem,calc(100vw-2rem))] -translate-x-1/2 rounded-lg border border-white/10 bg-graphite-900/96 p-3 shadow-panel backdrop-blur-xl">
+            <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(31rem,calc(100vw-2rem))] -translate-x-1/2 rounded-lg border border-cyan-100/14 bg-[#070b10] p-3 shadow-panel">
               <p class="px-3 py-2 text-xs font-semibold leading-5 text-slate-400">{group.description}</p>
               <div class="grid gap-1">
                 {group.items.map((item) => (
@@ -73,7 +73,7 @@ const isActive = (href: string) => {
       <summary class="flex cursor-pointer list-none items-center rounded-md border border-white/10 bg-white/[0.04] px-3 py-2 text-sm font-bold text-white">
         Menu
       </summary>
-      <div class="absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,24rem)] overflow-auto rounded-lg border border-white/10 bg-graphite-900/96 p-3 shadow-panel backdrop-blur-xl">
+      <div class="nav-panel absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,24rem)] overflow-auto rounded-lg border border-cyan-100/14 bg-[#070b10] p-3 shadow-panel">
         <nav class="grid gap-4" aria-label="Mobile navigation">
           {NAV_GROUPS.map((group) => (
             <div class="rounded-lg border border-white/10 bg-white/[0.025] p-2">
