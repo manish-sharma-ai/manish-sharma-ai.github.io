@@ -19,7 +19,7 @@ export const PERSON = {
   imageWebp: "/images/manish-sharma-profile.webp",
   imageFallback: "/images/manish-sharma-profile.jpg",
   imageSrcSet:
-    "/images/manish-sharma-profile-700.webp 700w, /images/manish-sharma-profile-1100.webp 1100w, /images/manish-sharma-profile.webp 1400w",
+    "/images/manish-sharma-profile-700.webp 700w, /images/manish-sharma-profile-1100.webp 1100w, /images/manish-sharma-profile.webp 1250w",
   imageSizes: "(min-width: 1024px) 48vw, calc(100vw - 2rem)",
   longIdentity:
     "Manish Sharma works on AI for Laser Metal Deposition at Exafuse in Germany, with a focus on process monitoring, robotic DED/LMD workflows, repair decisions, and practical RFQ preparation.",
