@@ -122,13 +122,13 @@ Active:
 - Exafuse: https://www.exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub: https://github.com/aiwithms
+- Google Scholar: https://scholar.google.com/citations?hl=en&user=-F9cDT0AAAAJ
 
 Planned, with no public URL yet:
 
 - ORCID
 - Zenodo
 - Hugging Face
-- Google Scholar
 - ResearchGate
 
 Only real URLs should appear in JSON-LD `sameAs`.
@@ -182,7 +182,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 ## Next Roadmap
 
-- Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs when the profiles are created.
+- Add real ORCID, Zenodo, Hugging Face, and ResearchGate URLs when the profiles are created.
 - Replace source placeholders on the curated research page with verified citation links.
 - Add more buyer-facing RFQ examples and public-safe tool outputs.
 - Keep glossary pages aligned with source notes and standards references.

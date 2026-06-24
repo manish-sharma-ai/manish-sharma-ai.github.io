@@ -26,8 +26,8 @@ This site avoids confidential customer, employer, and private project data.
 | Company connection | Exafuse |
 | Location | Germany |
 | Core topics | industrial AI, decision support systems, process monitoring, machine vision, robotics, engineering evidence, LMD, DED, DED-LB/M, laser cladding, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing |
-| Active public profiles | Website, Exafuse, LinkedIn, GitHub |
-| Planned profiles | ORCID, Zenodo, Hugging Face, Google Scholar, ResearchGate |
+| Active public profiles | Website, Exafuse, LinkedIn, GitHub, Google Scholar |
+| Planned profiles | ORCID, Zenodo, Hugging Face, ResearchGate |
 
 ## sameAs
 
@@ -36,13 +36,13 @@ Only real URLs should be used in JSON-LD sameAs.
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms
 - Exafuse: https://www.exafuse.de/
+- Google Scholar: https://scholar.google.com/citations?hl=en&user=-F9cDT0AAAAJ
 
 Planned, no public URL yet:
 
 - ORCID
 - Zenodo
 - Hugging Face
-- Google Scholar
 - ResearchGate
 
 ## Canonical URLs
