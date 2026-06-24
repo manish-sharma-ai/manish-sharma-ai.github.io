@@ -2,6 +2,10 @@
 
 Canonical identity page: https://manish-sharma-ai.github.io/identity
 
+Public thesis: https://manish-sharma-ai.github.io/thesis
+
+LMD/DED proof domain: https://manish-sharma-ai.github.io/domains/lmd-ded
+
 Public-safe profile facts: https://manish-sharma-ai.github.io/profile/public-profile
 
 Human background page: https://manish-sharma-ai.github.io/about
@@ -18,18 +22,21 @@ Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
 
 ## Summary
 
-Public profile materials describe Manish Sharma as working on AI for Laser Metal Deposition at Exafuse in Germany. Current public focus includes Directed Energy Deposition, process monitoring, robotic DED/LMD workflows, RFQ intelligence, and quality-evidence decision support.
+Public profile materials describe Manish Sharma as working on industrial AI and decision-support systems, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
+
+Current public focus includes process monitoring, machine vision, robotic DED/LMD workflows, RFQ intelligence, inspection-aware decision support, and quality-evidence boundaries.
 
 Profile details should be verified against LinkedIn, a current CV, or official event material where required.
 
-This site avoids confidential employer and customer data. Public technical content is educational and decision-support oriented.
+This site avoids confidential employer, customer, and private project data. Public technical content is educational and decision-support oriented.
 
 ## Current Focus
 
-- AI for Laser Metal Deposition
-- DED/LMD process monitoring
+- Industrial AI and decision support systems
+- Process monitoring and machine vision
+- Robotic industrial workflows
+- AI for Laser Metal Deposition and Directed Energy Deposition
 - Melt-pool and bead-geometry indicators
-- Robotic DED/LMD workflows
 - Process windows, traceability, and inspection-ready documentation
 - RFQ preparation and practical resources for LMD
 - Quality evidence boundaries for AI-assisted monitoring
@@ -40,12 +47,14 @@ Public Exafuse pages provide industrial context around the themes used on this s
 
 ## Selected Public Work
 
-Selected public work may include published technical work, event talks, public professional profiles, and public Exafuse context where available. Strong profile claims should be verified against LinkedIn, a current CV, or the original public source before reuse in a formal setting.
+Selected public work may include published technical work, event talks, public professional profiles, public site resources, GitHub artifacts, and public Exafuse context where available. Strong profile claims should be verified against LinkedIn, a current CV, or the original public source before reuse in a formal setting.
 
 ## Public Links
 
 - Site: https://manish-sharma-ai.github.io
 - Identity: https://manish-sharma-ai.github.io/identity
+- Public thesis: https://manish-sharma-ai.github.io/thesis
+- LMD/DED proof domain: https://manish-sharma-ai.github.io/domains/lmd-ded
 - Public profile facts: https://manish-sharma-ai.github.io/profile/public-profile
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub: https://github.com/aiwithms

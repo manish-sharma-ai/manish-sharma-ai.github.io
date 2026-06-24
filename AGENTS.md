@@ -9,7 +9,9 @@ Every AI coding agent working in this repository must read this file before edit
 - GitHub organization: `manish-sharma-ai`
 - Repository: `manish-sharma-ai/manish-sharma-ai.github.io`
 - GitHub profile for Manish: `https://github.com/aiwithms`
-- Primary positioning: Manish Sharma — AI for Laser Metal Deposition
+- Public category: Manish Sharma - Industrial AI & Decision Systems
+- Primary promise: Industrial AI for decisions you can verify.
+- Established public proof domain: AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany
 - Company connection: Exafuse, Germany
 
 Never replace the canonical site with `https://aiwithms.github.io`. That URL is only relevant as a GitHub profile/account context, not as the website canonical URL.
@@ -33,6 +35,8 @@ npm run build
 npm run preview
 ```
 
+On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
+
 ## Non-Negotiable Site Rules
 
 - Keep `astro.config.*` configured for:
@@ -42,6 +46,8 @@ npm run preview
 - Keep deployment through `.github/workflows/deploy.yml`.
 - Do not use a `docs` deployment folder or `gh-pages` branch unless explicitly requested.
 - Do not introduce a backend, database, paid service, private API, or confidential Exafuse/customer information.
+- Do not place private, unannounced, employer-confidential, customer-confidential, or commercially sensitive project ideas anywhere in this public repository. Private concepts belong in a separate private workspace and must not be represented as hidden routes or draft source files.
+- Preserve the LMD/DED pages as the established public proof domain. Do not dilute technical specificity on LMD, DED, laser cladding, repair, process monitoring, RFQ intelligence, or quality evidence pages.
 - Keep statements inspection-aware. AI/process monitoring is decision support, not final quality proof.
 - Keep this disclaimer language where relevant:
   `Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.`
@@ -170,6 +176,7 @@ Important public files:
 - `public/llms-full.txt`
 - `public/identity.md`
 - `public/about.md`
+- `public/thesis.md`
 - `public/research/lmd-literature-scan.json`
 - `public/research/exafuse-public-proof-map.json`
 - `public/agent-pack/lmd-rfq-schema.json`
@@ -181,7 +188,9 @@ When updating SEO-sensitive content:
 
 - Keep canonical URLs on `https://manish-sharma-ai.github.io`.
 - Keep JSON-LD IDs stable where possible.
-- Keep `Person` identity centered on Manish Sharma, AI for Laser Metal Deposition, Exafuse, Germany.
+- Keep the `Person` identity centered on Manish Sharma.
+- Use the broad public category "Industrial AI & Decision Systems" on top-level identity surfaces.
+- Treat LMD/DED at Exafuse as the established public proof domain, not the only possible industrial AI theme.
 - Keep AI-readable files concise, source-aware, and non-hype.
 
 ## Design Rules
@@ -189,15 +198,19 @@ When updating SEO-sensitive content:
 - Premium, ordered, dark graphite/black-metal design.
 - Clear hierarchy, symmetric layouts, readable menus, accessible contrast.
 - Avoid generic portfolio feel.
-- Keep navigation understandable: grouped nav, breadcrumbs, related links, site map.
+- Keep navigation understandable: thesis, work/proof, LMD/DED domain, tools, writing, about, and Exafuse.
 - Do not make dropdowns or important text too transparent to read.
 - Optimize large images with WebP/responsive sources when practical.
 
 ## Useful Live URLs
 
 - Home: `https://manish-sharma-ai.github.io/`
+- Thesis: `https://manish-sharma-ai.github.io/thesis`
+- LMD/DED domain: `https://manish-sharma-ai.github.io/domains/lmd-ded`
 - About: `https://manish-sharma-ai.github.io/about`
 - Identity: `https://manish-sharma-ai.github.io/identity`
+- Public Profile: `https://manish-sharma-ai.github.io/profile/public-profile`
+- Public Work: `https://manish-sharma-ai.github.io/public-work`
 - Evidence: `https://manish-sharma-ai.github.io/evidence`
 - Industrial Proof Map: `https://manish-sharma-ai.github.io/industrial-proof`
 - Frameworks: `https://manish-sharma-ai.github.io/frameworks`
@@ -206,5 +219,5 @@ When updating SEO-sensitive content:
 - Lab Notes: `https://manish-sharma-ai.github.io/lab-notes`
 - Glossary: `https://manish-sharma-ai.github.io/glossary`
 - Press Kit: `https://manish-sharma-ai.github.io/press-kit`
+- For AI Agents: `https://manish-sharma-ai.github.io/for-ai-agents`
 - Site Map: `https://manish-sharma-ai.github.io/site-map`
-

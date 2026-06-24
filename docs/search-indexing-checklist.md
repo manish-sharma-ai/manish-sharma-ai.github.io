@@ -7,13 +7,20 @@ Use this after each meaningful content release.
 Paste this into GitHub repository settings before or immediately after the site update is deployed.
 
 Description:
-Manish Sharma Lab - AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing.
+Manish Sharma Lab - Industrial AI & Decision Systems, grounded in public AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing work.
 
 Website:
 https://manish-sharma-ai.github.io
 
 Topics:
 
+- industrial-ai
+- decision-systems
+- ai-for-manufacturing
+- process-monitoring
+- machine-vision
+- robotics
+- engineering-evidence
 - laser-metal-deposition
 - directed-energy-deposition
 - lmd
@@ -22,10 +29,8 @@ Topics:
 - metal-additive-manufacturing
 - metal-3d-printing
 - laser-cladding
-- process-monitoring
 - melt-pool-monitoring
 - industrial-repair
-- ai-for-manufacturing
 - rfq-intelligence
 - astro
 - typescript
@@ -43,14 +48,18 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 4. Request indexing for:
 
 - `https://manish-sharma-ai.github.io/`
+- `https://manish-sharma-ai.github.io/thesis`
+- `https://manish-sharma-ai.github.io/domains/lmd-ded`
 - `https://manish-sharma-ai.github.io/identity`
 - `https://manish-sharma-ai.github.io/profile/public-profile`
 - `https://manish-sharma-ai.github.io/about`
+- `https://manish-sharma-ai.github.io/public-work`
 - `https://manish-sharma-ai.github.io/evidence`
 - `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/industrial-proof`
 - `https://manish-sharma-ai.github.io/press-kit`
 - `https://manish-sharma-ai.github.io/site-map`
+- `https://manish-sharma-ai.github.io/frameworks`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score`
@@ -77,6 +86,7 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/llms-full.txt`
 - `https://manish-sharma-ai.github.io/identity.md`
 - `https://manish-sharma-ai.github.io/about.md`
+- `https://manish-sharma-ai.github.io/thesis.md`
 - `https://manish-sharma-ai.github.io/profile/public-profile`
 - `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg`
@@ -93,8 +103,9 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 
 Run these prompts in ChatGPT, Gemini, Perplexity, Copilot, and Bing:
 
-- Who is Manish Sharma in Laser Metal Deposition?
-- What is Manish Sharma’s role at Exafuse?
+- Who is Manish Sharma in industrial AI?
+- Who works on AI for Laser Metal Deposition in Germany?
+- What is Manish Sharma's public proof domain?
 - What is the LMD Quality Evidence Ladder?
 - What is the LMD Failure Atlas?
 - What does AI need before recommending LMD repair?

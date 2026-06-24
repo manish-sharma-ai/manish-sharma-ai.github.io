@@ -1,0 +1,180 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
+
+const title = "AI for Laser Metal Deposition and Directed Energy Deposition";
+const subtitle = "The established technical proof domain behind Manish Sharma Lab.";
+const description =
+  "A hub for Manish Sharma's public LMD/DED work: process monitoring, machine vision, robotics, repair, RFQ intelligence, evidence, tools, and glossary resources.";
+
+const includes = [
+  "Laser Metal Deposition",
+  "Directed Energy Deposition",
+  "Laser cladding",
+  "Industrial repair",
+  "Robotic deposition",
+  "Process monitoring",
+  "Machine vision",
+  "RFQ intelligence",
+  "Inspection evidence"
+];
+
+const contextLinks = [
+  { label: "Exafuse", href: LINKS.exafuse, description: "Industrial LMD/SLM services, case studies, and RFQ context." },
+  { label: "About Manish Sharma", href: "/about", description: "Public career background and technical context." },
+  { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
+  { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." }
+];
+
+const toolLinks = [
+  { label: "Tools", href: "/tools", description: "LMD vs SLM, repairability, and RFQ structuring tools." },
+  { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and checklists." },
+  { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json" },
+  { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" },
+  { label: "Quality Checklist", href: "/agent-pack/lmd-quality-checklist.md" }
+];
+
+const evidenceLinks = [
+  { label: "Evidence Base", href: "/evidence" },
+  { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources" },
+  { label: "500-record LMD/DED literature map", href: "/research/lmd-literature-scan.json" },
+  { label: "Industrial Proof Map", href: "/industrial-proof" }
+];
+
+const writingLinks = [
+  { label: "Lab Notes", href: "/lab-notes" },
+  { label: "Glossary", href: "/glossary" },
+  { label: "Melt-Pool Monitoring", href: "/glossary/melt-pool-monitoring" },
+  { label: "Laser Metal Deposition", href: "/glossary/laser-metal-deposition" },
+  { label: "Directed Energy Deposition", href: "/glossary/directed-energy-deposition" },
+  { label: "Laser Cladding", href: "/glossary/laser-cladding" }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE.canonicalUrl}/domains/lmd-ded#page`,
+  url: `${SITE.canonicalUrl}/domains/lmd-ded`,
+  name: title,
+  description,
+  about: [
+    "Laser Metal Deposition",
+    "Directed Energy Deposition",
+    "Process Monitoring",
+    "Machine Vision",
+    "Industrial Repair",
+    "RFQ Intelligence",
+    "Engineering Evidence"
+  ],
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/domains/lmd-ded" jsonLd={jsonLd}>
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Established proof domain</Badge>
+        <Badge tone="steel">LMD / DED</Badge>
+        <Badge tone="laser">Exafuse-linked</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-5 text-2xl font-bold text-cyan-100">{subtitle}</p>
+      <p class="mt-6 text-lg leading-8 text-slate-300">
+        This hub keeps the LMD/DED authority layer easy to navigate without duplicating the detailed pages. It connects process monitoring, machine vision, robotic deposition, industrial repair, RFQ intelligence, and inspection-aware decision support.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/thesis" class="btn btn-primary">Read the thesis</a>
+        <a href="/evidence" class="btn btn-secondary">Open evidence base</a>
+        <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Visit Exafuse</a>
+      </div>
+    </div>
+    <PageHeroVisual variant="industrial" class="hidden lg:block" />
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading eyebrow="Scope" title="What this domain includes" />
+      <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {includes.map((item) => (
+          <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Public context"
+        title="Established public context"
+        description="The public proof domain is tied to Exafuse, public profile material, public research context, and public case-study sources."
+      />
+      <SourceLinks links={contextLinks} />
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Frameworks"
+        title="Applied LMD/DED framework library"
+        description="These framework routes keep their LMD specificity because that specificity is the public authority asset."
+      />
+      <div class="equal-card-grid mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {FRAMEWORKS.slice(0, 6).map((framework) => (
+          <a href={framework.href} class="ordered-card-strong card-hover grid min-h-44 content-between p-5">
+            <span>
+              <span class="metric-label">{framework.status}</span>
+              <span class="mt-3 block text-xl font-black text-white">{framework.title}</span>
+              <span class="mt-3 block text-sm leading-6 text-slate-300">{framework.idea}</span>
+            </span>
+            <span class="mt-5 font-mono text-xs font-bold uppercase text-cyan-100">Open framework</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="Tools and RFQ resources" title="Convert vague requests into usable facts" />
+        <div class="mt-8">
+          <SourceLinks links={toolLinks} />
+        </div>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Evidence and research" title="Source-aware public context" />
+        <div class="mt-8">
+          <SourceLinks links={evidenceLinks} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Writing and definitions"
+        title="Short notes and glossary pages"
+        description="Use these pages when terminology, monitoring limits, RFQ structure, or process selection needs to stay precise."
+      />
+      <SourceLinks links={writingLinks} />
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="rounded-lg border border-orange-300/25 bg-orange-500/10 p-6">
+      <p class="metric-label text-orange-100">Industrial services</p>
+      <p class="mt-4 text-lg font-bold leading-8 text-orange-50">
+        Manish Sharma Lab is a public technical site. For industrial LMD/SLM services, company capabilities, case studies, or RFQs, use Exafuse as the industrial-service context.
+      </p>
+      <a href={LINKS.exafuse} class="btn btn-laser mt-6" target="_blank" rel="noreferrer">Visit Exafuse</a>
+    </div>
+  </section>
+</Layout>

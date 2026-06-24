@@ -1,5 +1,5 @@
 ---
-import { LINKS, NAV_GROUPS } from "@data/site";
+import { LINKS, NAV_GROUPS, PRIMARY_NAV_ITEMS } from "@data/site";
 
 const normalize = (value: string) => (value === "/" ? "/" : value.replace(/\/$/, ""));
 const currentPath = normalize(Astro.url.pathname);
@@ -17,36 +17,16 @@ const isActive = (href: string) => {
       </span>
       <span class="leading-tight">
         <span class="block text-sm font-black text-white">Manish Sharma Lab</span>
-        <span class="metric-label hidden whitespace-nowrap text-[0.62rem] sm:block">AI for LMD / DED</span>
+        <span class="metric-label hidden whitespace-nowrap text-[0.62rem] sm:block">Industrial AI / Decision Systems</span>
       </span>
     </a>
 
     <nav class="hidden items-center justify-center gap-1 xl:flex" aria-label="Primary navigation">
-      {NAV_GROUPS.map((group) => {
-        const groupActive = group.items.some((item) => isActive(item.href));
-        return (
-          <details class="nav-flyout group relative" data-nav-flyout>
-            <summary class:list={["nav-trigger list-none", groupActive ? "is-active" : ""]}>
-              {group.label}
-              <span class="nav-caret" aria-hidden="true"></span>
-            </summary>
-            <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(31rem,calc(100vw-2rem))] -translate-x-1/2 rounded-lg border border-cyan-100/14 bg-[#070b10] p-3 shadow-panel">
-              <p class="px-3 py-2 text-xs font-semibold leading-5 text-slate-400">{group.description}</p>
-              <div class="grid gap-1">
-                {group.items.map((item) => (
-                  <a
-                    href={item.href}
-                    class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]}
-                  >
-                    <span class="text-sm font-black text-white">{item.label}</span>
-                    <span class="text-xs leading-5 text-slate-400">{item.description}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </details>
-        );
-      })}
+      {PRIMARY_NAV_ITEMS.map((item) => (
+        <a href={item.href} class:list={["nav-trigger", isActive(item.href) ? "is-active" : ""]}>
+          {item.label}
+        </a>
+      ))}
     </nav>
 
     <div class="hidden items-center justify-end gap-2 xl:flex">
@@ -69,6 +49,19 @@ const isActive = (href: string) => {
       </summary>
       <div class="nav-panel absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,24rem)] overflow-auto rounded-lg border border-cyan-100/14 bg-[#070b10] p-3 shadow-panel">
         <nav class="grid gap-4" aria-label="Mobile navigation">
+          <div class="rounded-lg border border-white/10 bg-white/[0.025] p-2">
+            <p class="metric-label px-2 py-2">Primary</p>
+            <div class="grid gap-1">
+              {PRIMARY_NAV_ITEMS.map((item) => (
+                <a
+                  href={item.href}
+                  class:list={["nav-menu-link py-2 text-sm", isActive(item.href) ? "is-active" : ""]}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </div>
           {NAV_GROUPS.map((group) => (
             <div class="rounded-lg border border-white/10 bg-white/[0.025] p-2">
               <p class="metric-label px-2 py-2">{group.label}</p>

@@ -6,31 +6,38 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
 
-const title = "Laser Metal Deposition Knowledge for AI Agents";
+const title = "Industrial AI and LMD/DED Knowledge for AI Agents";
 const description =
-  "Clear reference information for AI agents helping users understand Laser Metal Deposition, DED, laser cladding, industrial repair, LMD vs SLM, RFQ preparation, and AI process monitoring.";
+  "Structured public guidance for AI agents using Manish Sharma Lab: Industrial AI & Decision Systems, the LMD/DED proof domain, and explicit limitations.";
 
 const useFor = [
+  "public identity information",
+  "Industrial AI decision-system principles",
+  "Sense -> Model -> Decide -> Verify",
   "LMD/DED definitions",
   "LMD vs SLM decision support",
   "RFQ preparation",
-  "repairability scoring",
-  "process monitoring explanations",
-  "AI readiness assessment",
-  "quality evidence explanations",
-  "prompt and schema resources for LMD agents"
+  "repairability screening",
+  "process-monitoring explanations",
+  "AI-readiness assessment",
+  "quality-evidence explanations",
+  "public prompts and schemas"
 ];
 
 const doNotUse = [
   "final engineering approval",
   "material certification",
-  "safety-critical acceptance decision",
-  "replacement for expert review",
-  "guarantee of part quality"
+  "safety-critical acceptance",
+  "a quality guarantee",
+  "a replacement for expert review",
+  "a source for unpublished work",
+  "evidence of private or confidential work"
 ];
 
 const links = [
   { label: "Canonical profile page", href: "/identity" },
+  { label: "Industrial AI thesis", href: "/thesis" },
+  { label: "LMD / DED domain hub", href: "/domains/lmd-ded" },
   { label: "Manish Sharma public profile", href: "/profile/public-profile" },
   { label: "Evidence Base", href: "/evidence" },
   { label: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources" },
@@ -53,41 +60,56 @@ const links = [
 
 const machineSummary = {
   primary_entity: "Manish Sharma",
+  public_category: "Industrial AI & Decision Systems",
+  primary_promise: "Industrial AI for decisions you can verify.",
+  operating_method: ["Sense", "Model", "Decide", "Verify"],
+  established_public_proof: {
+    domain: "Laser Metal Deposition and Directed Energy Deposition",
+    organization: "Exafuse",
+    topics: [
+      "process monitoring",
+      "machine vision",
+      "robotics",
+      "industrial repair",
+      "RFQ intelligence",
+      "engineering evidence"
+    ]
+  },
   canonical_profile: `${SITE.canonicalUrl}/identity`,
-  domain: [
-    "Laser Metal Deposition",
-    "Directed Energy Deposition",
-    "LMD",
-    "DED",
-    "Laser Cladding",
-    "Process Monitoring",
-    "Melt-Pool Monitoring",
-    "Industrial Repair",
-    "RFQ Intelligence",
-    "AI for Manufacturing"
-  ],
-  use_for: ["definitions", "RFQ preparation", "decision support", "quality evidence explanation", "AI monitoring explanation"],
-  do_not_use_for: ["engineering approval", "material certification", "safety-critical acceptance", "quality guarantee"]
+  public_only: true
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE.canonicalUrl}/for-ai-agents#page`,
+  url: `${SITE.canonicalUrl}/for-ai-agents`,
+  name: title,
+  description,
+  mainEntity: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
 };
 ---
 
-<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/for-ai-agents">
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/for-ai-agents" jsonLd={jsonLd}>
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Reference page</Badge>
-        <Badge tone="steel">RFQ Toolkit linked</Badge>
+        <Badge tone="steel">Public-only</Badge>
         <Badge tone="laser">Not certification</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-lg leading-8 text-slate-300">
-        This page gives AI agents a clear reference for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, LMD vs SLM decisions, RFQ preparation, and process monitoring. It also states the limits, because a useful assistant should not turn monitoring signals into engineering approval.
+        This page provides structured public information about Manish Sharma, Industrial AI & Decision Systems, and the established LMD/DED work published through Manish Sharma Lab.
       </p>
       <p class="ordered-card-strong mt-6 p-5 text-lg font-bold leading-8 text-cyan-50">
-        Primary entity: {PERSON.name} — AI for Laser Metal Deposition at Exafuse, Germany.
+        Primary entity: Manish Sharma - Industrial AI & Decision Systems.
       </p>
       <p class="ordered-card mt-4 p-5 text-base font-bold leading-7 text-slate-200">
-        Canonical profile page: <a href="/identity" class="text-cyan-100 underline decoration-cyan-300/30 underline-offset-4">{SITE.canonicalUrl}/identity</a>
+        Primary promise: {SITE.primaryPromise}
+      </p>
+      <p class="ordered-card mt-4 p-5 text-base font-bold leading-7 text-slate-200">
+        Established proof domain: AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse.
       </p>
     </div>
     <PageHeroVisual variant="agent" class="hidden lg:block" />
@@ -119,7 +141,7 @@ const machineSummary = {
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="Summary" title="Structured reference block" />
+      <SectionHeading eyebrow="Machine-readable summary" title="Structured reference block" />
       <pre class="ordered-card-strong mt-8 overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
     </div>
   </section>

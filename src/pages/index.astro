@@ -1,19 +1,14 @@
 ---
 import Badge from "@components/Badge.astro";
-import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
-import FrameworkCard from "@components/FrameworkCard.astro";
-import HeroLaserVisual from "@components/HeroLaserVisual";
-import IdentityGraph from "@components/IdentityGraph.astro";
 import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
-import { EVIDENCE_FACTS, PERSONAL_PROOF_POINTS, RESEARCH_SCAN } from "@data/evidence";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
-import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
-import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
+import { FRAMEWORKS, LAB_NOTES, LINKS, METHOD_LOOP, PERSON, SITE } from "@data/site";
 
-const title = "Manish Sharma Lab - AI for Laser Metal Deposition";
+const title = "Manish Sharma Lab - Industrial AI & Decision Systems";
 const description =
-  "Working notes, tools, and practical frameworks on AI for Laser Metal Deposition, process monitoring, repair decisions, and RFQ preparation.";
+  "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse.";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -33,39 +28,12 @@ const websiteJsonLd = {
   }
 };
 
-const homepageCards = [
-  FRAMEWORKS[0],
-  FRAMEWORKS[1],
-  FRAMEWORKS[2],
-  FRAMEWORKS[3],
-  FRAMEWORKS[4],
-  {
-    title: "Public profile map",
-    href: "/identity",
-    problem: "Technical work is easy to scatter across profiles, papers, projects, and company pages.",
-    idea: "A clean map connecting Manish Sharma, Exafuse, AI, and Laser Metal Deposition.",
-    status: "Exafuse-linked",
-    tags: ["Identity", "References"]
-  }
-];
-
-const flow = [
-  ["RFQ", "Vague request becomes known facts, assumptions, missing information, and next questions."],
-  ["Part Data", "Material, geometry, CAD, drawings, photos, damage, tolerances, and service conditions."],
-  ["Repairability", "Risk-aware screening for whether LMD repair may be worth expert review."],
-  ["Process Route", "Deposition, cladding, machining, inspection, or replacement routes are compared."],
-  ["Monitoring", "Process signals and AI anomaly detection support awareness during deposition."],
-  ["Inspection Evidence", "Dimensional, NDT, metallography, hardness, mechanical, or field evidence closes the loop."]
-];
-
-const graphLinks = ACTIVE_PROFILE_LINKS;
-
-const latestLabNotes = [...LAB_NOTES].slice(-6).reverse();
-
-const heroSignals = [
-  ["Lab", "Frameworks + tools"],
-  ["Domain", "DED/LMD + AI"],
-  ["Boundary", "Inspection-aware"]
+const identityStrip = [
+  ["Name", PERSON.name],
+  ["Category", SITE.publicCategory],
+  ["Established proof", "AI for LMD / DED at Exafuse"],
+  ["Method", "Sense -> Model -> Decide -> Verify"],
+  ["Boundary", "Decision support connected to engineering evidence"]
 ];
 
 const flagshipAssets = [
@@ -73,95 +41,82 @@ const flagshipAssets = [
     title: "LMD Quality Evidence Ladder",
     href: "/frameworks/lmd-quality-evidence-ladder",
     text: "Separate process signals, AI anomaly flags, inspection evidence, and final quality proof.",
-    label: "Evidence"
+    label: "Verify"
   },
   {
     title: "LMD Repairability Index",
     href: "/frameworks/lmd-repairability-index",
     text: "Screen material, damage, access, machining, inspection, economics, and risk before recommending repair.",
-    label: "Repair"
+    label: "Decide"
   },
   {
-    title: "LMD RFQ Toolkit / Agent Pack",
+    title: "LMD RFQ Toolkit",
     href: "/agent-pack",
     text: "Turn vague LMD requests into known facts, missing information, risks, and next steps.",
-    label: "RFQ"
+    label: "Structure"
   }
 ];
+
+const additionalAssets = [
+  FRAMEWORKS[2],
+  FRAMEWORKS[4],
+  FRAMEWORKS[5],
+  {
+    title: "Core LMD-AI Sources",
+    href: "/research/core-lmd-ai-sources",
+    idea: "Curated starting map for LMD, DED, process monitoring, AI, repair, quality, and terminology sources.",
+    status: "Source map"
+  },
+  {
+    title: "Tools",
+    href: "/tools",
+    idea: "Frontend-only tools for LMD vs SLM, repairability, and RFQ structuring.",
+    status: "Workbench"
+  },
+  {
+    title: "Glossary",
+    href: "/glossary",
+    idea: "Definitions for LMD, DED, laser cladding, and melt-pool monitoring.",
+    status: "Definitions"
+  }
+];
+
+const latestLabNotes = [...LAB_NOTES].slice(-3).reverse();
 ---
 
 <Layout title={title} description={description} canonical="/" jsonLd={websiteJsonLd}>
-  <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:py-20">
+  <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.96fr_1.04fr] lg:py-20">
     <div>
       <div class="flex flex-wrap gap-2">
-        <Badge>Working notes</Badge>
-        <Badge tone="laser">Exafuse-linked</Badge>
-        <Badge tone="steel">Decision-support only</Badge>
+        <Badge>Manish Sharma Lab</Badge>
+        <Badge tone="steel">Industrial AI / Decision Systems</Badge>
+        <Badge tone="laser">LMD / DED proof domain</Badge>
       </div>
-      <p class="metric-label mt-8">Manish Sharma - AI for Laser Metal Deposition</p>
+      <p class="metric-label mt-8">Manish Sharma Lab</p>
       <h1 class="mt-4 text-5xl font-black leading-[0.98] text-white md:text-7xl">
-        Manish Sharma Lab
-        <span class="block bg-gradient-to-r from-cyan-100 via-white to-orange-100 bg-clip-text pt-3 text-transparent">
-          AI for Laser Metal Deposition.
-        </span>
+        Industrial AI for decisions you can verify.
       </h1>
-      <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I build inspection-aware AI frameworks, RFQ tools, and process-monitoring notes for Laser Metal Deposition, Directed Energy Deposition, repair, cladding, and metal additive manufacturing at Exafuse in Germany.
+      <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+        I build AI, monitoring, and decision-support systems for industrial processes, grounded in public work in Laser Metal Deposition and Directed Energy Deposition at Exafuse.
+      </p>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-400">
+        The work connects process signals, models, engineering context, decisions, and physical verification.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/frameworks" class="btn btn-primary">Explore Frameworks</a>
-        <a href="/agent-pack" class="btn btn-secondary">Open RFQ Toolkit</a>
-        <a href="/identity" class="btn btn-secondary">Manish Sharma - AI for LMD</a>
-        <a href="/lab-notes" class="btn btn-secondary">Read Lab Notes</a>
+        <a href="/thesis" class="btn btn-primary">Read the thesis</a>
+        <a href="/domains/lmd-ded" class="btn btn-secondary">Explore LMD / DED work</a>
+        <a href="/tools" class="btn btn-secondary">Open public tools</a>
+        <a href="/identity" class="btn btn-secondary">Public identity</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Visit Exafuse</a>
       </div>
-      <div class="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
-        {heroSignals.map(([label, value]) => (
-          <div class="ordered-card p-4">
-            <p class="metric-label">{label}</p>
-            <p class="mt-2 text-sm font-black text-white">{value}</p>
-          </div>
-        ))}
-      </div>
     </div>
-    <HeroLaserVisual />
-  </section>
-
-  <section class="band section-y">
-    <div class="site-shell">
-      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        <SectionHeading
-          eyebrow="Flagship assets"
-          title="Start with the three useful things"
-          description="The site is built around practical assets that help readers separate LMD process signals, repairability, and RFQ structure."
-        />
-        <a href="/tools" class="btn btn-secondary w-fit">Open LMD tools</a>
-      </div>
-      <div class="mt-10 grid gap-5 lg:grid-cols-3">
-        {flagshipAssets.map((asset) => (
-          <a href={asset.href} class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-7">
-            <span>
-              <span class="metric-label">{asset.label}</span>
-              <span class="mt-4 block text-3xl font-black leading-tight text-white">{asset.title}</span>
-              <span class="mt-5 block text-base leading-7 text-slate-300">{asset.text}</span>
-            </span>
-            <span class="mt-8 font-mono text-xs font-black uppercase text-cyan-100">Open asset</span>
-          </a>
-        ))}
-      </div>
-    </div>
+    <PageHeroVisual variant="frameworks" class="hidden lg:block" />
   </section>
 
   <section class="band">
-    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-6">
-      {[
-        ["Person", "Manish Sharma"],
-        ["Focus", "AI + Laser Metal Deposition"],
-        ["Company", "Exafuse"],
-        ["Location", "Germany"],
-        ["Domains", "LMD · DED · Laser Cladding · Process Monitoring · Industrial Repair · RFQ Intelligence"]
-      ].map(([label, value]) => (
-        <div class={`ordered-card p-4 ${label === "Domains" ? "lg:col-span-2" : ""}`}>
+    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-5">
+      {identityStrip.map(([label, value]) => (
+        <div class="ordered-card p-4">
           <p class="metric-label">{label}</p>
           <p class="mt-2 text-sm font-bold leading-6 text-white">{value}</p>
         </div>
@@ -170,50 +125,43 @@ const flagshipAssets = [
   </section>
 
   <section class="site-shell section-y">
-    <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-      <div>
-        <SectionHeading
-          eyebrow="Working basis"
-          title="Specific details, not empty AI language"
-          description={`I keep a ${RESEARCH_SCAN.count}-record LMD/DED reference map, checked source notes, and field notes from DED/LMD monitoring work so the writing stays tied to real process questions.`}
-        />
-        <div class="mt-8 grid gap-3 sm:grid-cols-2">
-          {PERSONAL_PROOF_POINTS.slice(0, 4).map((item) => (
-            <article class="ordered-card p-4">
-              <p class="metric-label">{item.label}</p>
-              <p class="mt-2 text-2xl font-black text-white">{item.value}</p>
-              <p class="mt-2 text-xs leading-5 text-slate-400">{item.detail}</p>
-            </article>
-          ))}
-        </div>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/evidence" class="btn btn-primary">Open Evidence Base</a>
-          <a href="/research/core-lmd-ai-sources" class="btn btn-secondary">Core LMD-AI Sources</a>
-        </div>
-      </div>
-      <EvidenceFactGrid facts={EVIDENCE_FACTS.slice(0, 4)} />
+    <SectionHeading
+      eyebrow="Operating method"
+      title="Sense -> Model -> Decide -> Verify"
+      description="The site uses one public operating loop: connect observed signals to model assumptions, decisions, and the evidence needed to verify outcomes."
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {METHOD_LOOP.map((stage, index) => (
+        <article class="ordered-card-strong p-6">
+          <p class="metric-label">0{index + 1}</p>
+          <h2 class="mt-3 text-3xl font-black text-white">{stage.label.toUpperCase()}</h2>
+          <p class="mt-4 text-sm leading-6 text-slate-300">{stage.text}</p>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="band section-y">
-    <div class="site-shell">
-      <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+    <div class="site-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
         <SectionHeading
-          eyebrow="Industrial proof context"
-          title="The industrial context behind the writing"
-          description="The themes here come from real LMD situations that are also visible in public Exafuse material: bridge-scale LMD, high-impact tooling repair, critical spare repair, and build-and-coat workflows."
+          eyebrow="Established public proof"
+          title="AI for Laser Metal Deposition and Directed Energy Deposition"
+          description="My deepest public work is in LMD/DED process monitoring, robotic workflows, industrial repair, RFQ structure, and inspection-aware decision support at Exafuse."
         />
-        <a href="/industrial-proof" class="btn btn-secondary w-fit">Open proof map</a>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/domains/lmd-ded" class="btn btn-primary">LMD / DED hub</a>
+          <a href="/evidence" class="btn btn-secondary">Evidence base</a>
+          <a href="/industrial-proof" class="btn btn-secondary">Industrial proof map</a>
+          <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
+        </div>
       </div>
-      <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {EXAFUSE_PROOF_CASES.map((item) => (
-          <a href={item.href} class="ordered-card-strong card-hover p-5" target="_blank" rel="noreferrer">
+      <div class="grid gap-4 md:grid-cols-2">
+        {EXAFUSE_PROOF_CASES.slice(0, 4).map((item) => (
+          <a href={item.href} class="ordered-card card-hover p-5" target="_blank" rel="noreferrer">
             <p class="metric-label">{item.code}</p>
             <h3 class="mt-3 text-xl font-black text-white">{item.title}</h3>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {item.metrics.slice(0, 3).map((metric) => <span class="rounded-md border border-white/10 bg-white/[0.035] px-2 py-1 text-xs font-bold text-slate-200">{metric}</span>)}
-            </div>
-            <p class="mt-4 text-sm leading-6 text-slate-400">{item.labConnection}</p>
+            <p class="mt-3 text-sm leading-6 text-slate-400">{item.labConnection}</p>
           </a>
         ))}
       </div>
@@ -222,99 +170,56 @@ const flagshipAssets = [
 
   <section class="site-shell section-y">
     <SectionHeading
-      eyebrow="Public frameworks"
-      title="Practical frameworks for LMD decisions"
-      description="The writing here follows one rule: do not confuse a process signal with quality proof. Each framework asks what AI can help with, what information is missing, what inspection must prove, and where expert review is required."
+      eyebrow="Flagship resources"
+      title="The three LMD assets to start with"
+      description="These public assets make the verification thesis practical inside the established LMD/DED proof domain."
     />
-    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {homepageCards.map((card) => <FrameworkCard {...card} />)}
+    <div class="mt-10 grid gap-5 lg:grid-cols-3">
+      {flagshipAssets.map((asset) => (
+        <a href={asset.href} class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-7">
+          <span>
+            <span class="metric-label">{asset.label}</span>
+            <span class="mt-4 block text-3xl font-black leading-tight text-white">{asset.title}</span>
+            <span class="mt-5 block text-base leading-7 text-slate-300">{asset.text}</span>
+          </span>
+          <span class="mt-8 font-mono text-xs font-black uppercase text-cyan-100">Open asset</span>
+        </a>
+      ))}
     </div>
   </section>
 
   <section class="band section-y">
     <div class="site-shell">
       <SectionHeading
-        eyebrow="Decision flow"
-        title="From vague RFQ to inspection-aware evidence"
-        description="The site is built around a practical chain of information. AI can help organize the work, but quality evidence still has to match the part risk and service conditions."
+        eyebrow="More public assets"
+        title="Frameworks, tools, research, and definitions"
+        description="The LMD/DED authority layer remains intact and easy to reach from the broader identity."
       />
-      <div class="mt-10 grid gap-4 md:grid-cols-3 xl:grid-cols-6">
-        {
-          flow.map(([node, text], index) => (
-            <div class="ordered-card relative min-h-[13rem] p-5">
-              <span class="metric-label">0{index + 1}</span>
-              <h3 class="mt-3 text-xl font-black text-white">{node}</h3>
-              <p class="mt-3 text-sm leading-6 text-slate-400">{text}</p>
-            </div>
-          ))
-        }
+      <div class="equal-card-grid mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {additionalAssets.map((asset) => (
+          <a href={asset.href} class="ordered-card card-hover p-5">
+            <p class="metric-label">{asset.status}</p>
+            <h3 class="mt-3 text-xl font-black text-white">{asset.title}</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-400">{asset.idea}</p>
+          </a>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="site-shell section-y">
     <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-      <SectionHeading eyebrow="Latest lab notes" title="Short notes from the workbench" />
+      <SectionHeading eyebrow="Applied writing" title="Recent notes from the LMD/DED proof domain" />
       <a href="/lab-notes" class="btn btn-secondary w-fit">View all lab notes</a>
     </div>
-    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {
-        latestLabNotes.map((note) => (
-          <a href={note.href} class="ordered-card-strong card-hover rounded-lg p-6">
-            <p class="metric-label">{note.date}</p>
-            <h3 class="mt-3 text-2xl font-black text-white">{note.title}</h3>
-            <p class="mt-4 text-sm leading-6 text-slate-400">{note.description}</p>
-          </a>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="band section-y">
-    <div class="site-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-      <div>
-        <SectionHeading
-          eyebrow="Public identity graph"
-          title="Manish Sharma -> Exafuse -> AI -> LMD"
-          description={PERSON.longIdentity}
-        />
-        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {
-            graphLinks.map((link) => (
-              <a
-                href={link.href}
-                class="ordered-card p-4 text-sm font-bold text-slate-200 transition hover:border-cyan-300/35 hover:text-white"
-                target={link.href?.startsWith("http") ? "_blank" : undefined}
-                rel={link.href?.startsWith("http") ? "noreferrer" : undefined}
-              >
-                {link.label}
-              </a>
-            ))
-          }
-        </div>
-      </div>
-      <IdentityGraph />
-    </div>
-  </section>
-
-  <section class="site-shell section-y">
-    <div class="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
-      <div class="ordered-card-strong p-8">
-        <p class="metric-label">For tools and agents</p>
-        <h2 class="mt-4 text-3xl font-black text-white">LMD context, with boundaries</h2>
-        <p class="mt-5 text-lg leading-8 text-slate-300">
-          Use this site for LMD definitions, RFQ preparation, process-selection logic, monitoring explanations, and quality-evidence frameworks. The important boundary is simple: this site is not engineering approval or certification.
-        </p>
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a href="/for-ai-agents" class="btn btn-primary">Open AI agent page</a>
-          <a href="/agent-pack/lmd-rfq-schema.json" class="btn btn-secondary">RFQ Schema</a>
-        </div>
-      </div>
-      <div class="rounded-lg border border-orange-300/20 bg-orange-500/10 p-8">
-        <p class="metric-label text-orange-100">Industrial work</p>
-        <h2 class="mt-4 text-3xl font-black text-white">For industrial LMD services, case studies, and RFQs, visit Exafuse.</h2>
-        <a href={LINKS.exafuse} class="btn btn-laser mt-7" target="_blank" rel="noreferrer">Visit Exafuse</a>
-      </div>
+    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-3">
+      {latestLabNotes.map((note) => (
+        <a href={note.href} class="ordered-card-strong card-hover rounded-lg p-6">
+          <p class="metric-label">{note.date}</p>
+          <h3 class="mt-3 text-2xl font-black text-white">{note.title}</h3>
+          <p class="mt-4 text-sm leading-6 text-slate-400">{note.description}</p>
+        </a>
+      ))}
     </div>
   </section>
 </Layout>

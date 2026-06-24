@@ -5,27 +5,31 @@ import Layout from "@layouts/Layout.astro";
 import ProfileImage from "@components/ProfileImage.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { CORE_TOPICS, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
+import { CORE_TOPICS, LINKS, METHOD_LOOP, PERSON, SAME_AS, SITE } from "@data/site";
 import { PROFILE_LINKS } from "@data/profiles";
 import { absoluteUrl } from "@utils/urls";
 
-const title = "Manish Sharma - AI for Laser Metal Deposition";
+const title = "Manish Sharma - Industrial AI & Decision Systems";
 const description =
-  "Public identity page for Manish Sharma, focused on AI for Laser Metal Deposition, process monitoring, robotic DED/LMD workflows, and RFQ preparation at Exafuse in Germany.";
+  "Public identity page for Manish Sharma, focused on industrial AI and decision systems, with established public work in AI for LMD/DED at Exafuse in Germany.";
+
+const personDescription =
+  "Manish Sharma works on industrial AI and decision systems for engineering processes, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.";
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": "https://manish-sharma-ai.github.io/identity#manish-sharma",
-  name: "Manish Sharma",
+  "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+  name: PERSON.name,
+  description: personDescription,
   image: absoluteUrl(PERSON.image),
-  jobTitle: "AI and Machine Learning for Laser Metal Deposition",
+  jobTitle: "Industrial AI and Decision Systems",
   worksFor: {
     "@type": "Organization",
     name: "Exafuse",
-    url: "https://www.exafuse.de/"
+    url: LINKS.exafuse
   },
-  url: "https://manish-sharma-ai.github.io/identity",
+  url: `${SITE.canonicalUrl}/identity`,
   sameAs: SAME_AS,
   knowsAbout: CORE_TOPICS
 };
@@ -38,17 +42,20 @@ const profilePageJsonLd = {
   name: title,
   description,
   mainEntity: {
-    "@id": "https://manish-sharma-ai.github.io/identity#manish-sharma"
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
   }
 };
 
 const fields = [
-  ["Name", "Manish Sharma"],
-  ["Primary focus", "AI for Laser Metal Deposition"],
-  ["Company connection", "Exafuse"],
-  ["Location", "Germany"],
-  ["Core topics", "LMD, DED, DED-LB/M, laser cladding, process monitoring, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing"],
-  ["Active public profiles", "LinkedIn, GitHub, Exafuse, website"],
+  ["Name", PERSON.name],
+  ["Primary category", SITE.publicCategory],
+  ["Primary promise", SITE.primaryPromise],
+  ["Established proof", "AI for LMD/DED at Exafuse"],
+  ["Company connection", PERSON.company],
+  ["Location", PERSON.location],
+  ["Operating method", "Sense -> Model -> Decide -> Verify"],
+  ["Core public topics", CORE_TOPICS.join(", ")],
+  ["Active public profiles", "Website, LinkedIn, GitHub, Exafuse"],
   ["Planned profiles", "ORCID, Zenodo, Hugging Face, Google Scholar, ResearchGate"]
 ];
 ---
@@ -57,18 +64,22 @@ const fields = [
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[1fr_0.42fr] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Public profile</Badge>
-        <Badge tone="laser">Exafuse-linked</Badge>
-        <Badge tone="steel">Public technical lab</Badge>
+        <Badge>Canonical identity</Badge>
+        <Badge tone="steel">Industrial AI / Decision Systems</Badge>
+        <Badge tone="laser">LMD / DED proof</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
-        {PERSON.longIdentity}
+        Manish Sharma works on industrial AI and decision systems for engineering processes, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
+      </p>
+      <p class="mt-4 text-lg leading-8 text-slate-300">
+        His public work focuses on process monitoring, machine vision, robotic workflows, industrial repair, RFQ intelligence, and decision support that remains connected to engineering evidence.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/about" class="btn btn-primary">Personal Profile</a>
-        <a href="/profile/public-profile" class="btn btn-secondary">Public Profile Facts</a>
-        <a href={LINKS.linkedin} class="btn btn-secondary" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="/thesis" class="btn btn-primary">Read the thesis</a>
+        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED proof domain</a>
+        <a href="/public-work" class="btn btn-secondary">Work & Proof</a>
+        <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
     </div>
     <div class="glass-panel profile-image-panel overflow-hidden rounded-lg p-3">
@@ -80,13 +91,13 @@ const fields = [
     <div class="site-shell grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
       <div class="prose-lab">
         <p>
-          This site is Manish Sharma’s public technical lab. It contains frameworks, lab notes, RFQ resources, and LMD decision-support ideas.
+          This is the canonical public identity page for Manish Sharma Lab. The top-level identity is Industrial AI & Decision Systems; the strongest established public proof domain is AI for LMD/DED at Exafuse.
         </p>
         <p>
-          It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit <a href={LINKS.exafuse} target="_blank" rel="noreferrer">Exafuse</a>.
+          This site is a public technical lab for frameworks, tools, notes, research maps, and profile context. It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit <a href={LINKS.exafuse} target="_blank" rel="noreferrer">Exafuse</a>.
         </p>
         <p>
-          This site avoids confidential customer or employer data. It focuses on public notes, RFQ structure, inspection-aware AI decision support, and the questions I keep seeing around LMD.
+          This repository and site avoid private, unannounced, employer-confidential, customer-confidential, or commercially sensitive project material.
         </p>
       </div>
       <IdentityGraph />
@@ -94,29 +105,39 @@ const fields = [
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Profile fields" title="Public reference facts" />
-    <div class="mt-8 overflow-hidden rounded-lg border border-white/10">
-      <table class="w-full border-collapse text-left text-sm">
-        <tbody>
-          {
-            fields.map(([label, value]) => (
-              <tr class="border-b border-white/10 last:border-b-0">
-                <th class="w-56 bg-white/[0.035] p-4 align-top font-mono text-xs uppercase text-slate-400">{label}</th>
-                <td class="p-4 font-semibold leading-6 text-slate-100">{value}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+    <SectionHeading eyebrow="Operating method" title="Sense -> Model -> Decide -> Verify" />
+    <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {METHOD_LOOP.map((stage) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-xl font-black text-white">{stage.label}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{stage.text}</p>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="band section-y">
     <div class="site-shell">
-      <SectionHeading eyebrow="sameAs" title="Public profile links" description="Only real profile URLs are used in JSON-LD. Planned profiles are shown as planned, not broken links." />
-      <div class="mt-8">
-        <SourceLinks links={PROFILE_LINKS} />
+      <SectionHeading eyebrow="Profile fields" title="Public reference facts" />
+      <div class="mt-8 overflow-hidden rounded-lg border border-white/10">
+        <table class="w-full border-collapse text-left text-sm">
+          <tbody>
+            {fields.map(([label, value]) => (
+              <tr class="border-b border-white/10 last:border-b-0">
+                <th class="w-56 bg-white/[0.035] p-4 align-top font-mono text-xs uppercase text-slate-400">{label}</th>
+                <td class="p-4 font-semibold leading-6 text-slate-100">{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading eyebrow="sameAs" title="Public profile links" description="Only real profile URLs are used in JSON-LD. Planned profiles are shown as planned, not broken links." />
+    <div class="mt-8">
+      <SourceLinks links={PROFILE_LINKS} />
     </div>
   </section>
 </Layout>

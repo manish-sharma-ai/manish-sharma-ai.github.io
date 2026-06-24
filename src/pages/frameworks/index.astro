@@ -8,7 +8,7 @@ import { FRAMEWORKS } from "@data/site";
 
 const title = "Public LMD and AI Frameworks - Manish Sharma Lab";
 const description =
-  "Practical frameworks for Laser Metal Deposition quality evidence, repairability, AI readiness, RFQ structuring, and decision support.";
+  "Public frameworks for industrial AI decisions that connect signals, assumptions, decisions, and verification evidence, grounded in LMD/DED.";
 ---
 
 <Layout title={title} description={description} canonical="/frameworks">
@@ -17,7 +17,7 @@ const description =
       <SectionHeading
         eyebrow="Frameworks"
         title="Working frameworks for LMD decisions"
-        description="These resources help separate process signals from quality proof, vague RFQs from useful evidence, and AI confidence from engineering review."
+        description="These public frameworks apply a common rule: industrial AI should connect signals, assumptions, decisions, and verification evidence. The current applied framework library is grounded in LMD/DED."
       />
       <PageHeroVisual variant="frameworks" class="hidden lg:block" />
     </div>
@@ -30,7 +30,17 @@ const description =
     <div class="site-shell grid gap-5 md:grid-cols-2">
       <div class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-8 md:col-span-2">
         <div>
-          <p class="metric-label">Working basis</p>
+          <p class="metric-label">Operating thesis</p>
+          <h2 class="mt-4 text-3xl font-black text-white">Sense -> Model -> Decide -> Verify</h2>
+          <p class="mt-4 max-w-4xl leading-7 text-slate-300">
+            The public operating model behind the frameworks: connect observed signals to model assumptions, decision boundaries, and verification evidence.
+          </p>
+        </div>
+        <a href="/thesis" class="btn btn-primary mt-7 w-fit">Read the thesis</a>
+      </div>
+      <div class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-8 md:col-span-2">
+        <div>
+          <p class="metric-label">Applied LMD/DED frameworks</p>
           <h2 class="mt-4 text-3xl font-black text-white">{RESEARCH_SCAN.count}-record LMD/DED reference map</h2>
           <p class="mt-4 max-w-4xl leading-7 text-slate-300">
             The frameworks are connected to checked DED/LMD facts, my field notes, and a reference map that keeps the vocabulary grounded in real research literature.

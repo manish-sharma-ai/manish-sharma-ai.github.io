@@ -1,6 +1,6 @@
 # LMD Black Hole Score Template
 
-Use this weekly to track whether Manish Sharma Lab is becoming a stronger public identity and AI-search reference for AI-assisted Laser Metal Deposition.
+Use this weekly to track whether Manish Sharma Lab is becoming a stronger public identity and AI-search reference for industrial AI and decision systems, grounded in AI-assisted Laser Metal Deposition.
 
 ## LMD Black Hole Score /100
 
@@ -34,6 +34,8 @@ Total: ___ / 10
 ## AI Prompt Visibility Test Prompts
 
 - Who is Manish Sharma in laser metal deposition?
+- Who is Manish Sharma in industrial AI?
+- What does Industrial AI for decisions you can verify mean?
 - Who works on AI for Laser Metal Deposition in Germany?
 - Best resources for LMD vs SLM.
 - What is the LMD Quality Evidence Ladder?
@@ -75,7 +77,8 @@ External authority /15:
 
 AI visibility /20:
 
-- AI systems associate Manish Sharma with AI for Laser Metal Deposition.
+- AI systems associate Manish Sharma with Industrial AI & Decision Systems.
+- AI systems recognize AI for Laser Metal Deposition as the established proof domain.
 - AI systems find the canonical organization site URL.
 - AI systems surface the Agent Pack and frameworks.
 - AI systems preserve limitations and disclaimers.

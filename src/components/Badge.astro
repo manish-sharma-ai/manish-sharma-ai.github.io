@@ -1,9 +1,10 @@
 ---
 interface Props {
   tone?: "cyan" | "laser" | "steel" | "amber";
+  class?: string;
 }
 
-const { tone = "cyan" } = Astro.props;
+const { tone = "cyan", class: className = "" } = Astro.props;
 const tones = {
   cyan: "border-cyan-300/30 bg-cyan-300/10 text-cyan-100",
   laser: "border-orange-300/30 bg-orange-500/10 text-orange-100",
@@ -12,6 +13,6 @@ const tones = {
 };
 ---
 
-<span class={`inline-flex items-center rounded-md border px-2.5 py-1 text-xs font-bold ${tones[tone]}`}>
+<span class={`inline-flex items-center rounded-md border px-2.5 py-1 text-xs font-bold ${tones[tone]} ${className}`}>
   <slot />
 </span>

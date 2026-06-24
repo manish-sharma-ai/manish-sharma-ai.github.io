@@ -10,33 +10,41 @@ import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 import { absoluteUrl } from "@utils/urls";
 
-const title = "About Manish Sharma - AI for Laser Metal Deposition";
+const title = "About Manish Sharma - Industrial AI & Decision Systems";
 const description =
-  "Human background page for Manish Sharma, focused on AI for Laser Metal Deposition, DED/LMD monitoring, robotics, RFQ intelligence, and industrial decision support.";
+  "Human background page for Manish Sharma, focused on industrial AI and decision systems, with established public work in AI for LMD/DED at Exafuse.";
 
 const stats = [
   ["Since", "2018", "Laser Metal Deposition work"],
   ["Public role", "AI + R&D", "Exafuse, Germany"],
   ["Research", "Public profile material", "Ruhr University Bochum"],
-  ["Focus", "AI + DED/LMD", "Monitoring, control, RFQ intelligence"]
+  ["Focus", "Industrial AI", "Decision systems, monitoring, LMD/DED"]
 ];
 
 const focusAreas = [
   {
-    title: "AI for DED/LMD process control",
+    title: "Industrial AI and decision support",
+    text: "Decision-support systems that keep signals, assumptions, risks, recommendations, and verification evidence traceable."
+  },
+  {
+    title: "Process monitoring and machine vision",
     text: "Vision-based monitoring, melt-pool and bead-geometry indicators, anomaly signals, and data pipelines that make process behavior easier to review."
   },
   {
-    title: "Industrial LMD workflows",
-    text: "Process windows, parameter optimization, repair and cladding workflows, traceability packs, inspection-ready documentation, and repeatability."
-  },
-  {
-    title: "Robotics and automation",
+    title: "Robotic industrial workflows",
     text: "Robotic DED toolpaths, KUKA workflows, slicer post-processing, ROS2 integration, sensor and camera control, and real-time system interfaces."
   },
   {
-    title: "Practical manufacturing knowledge",
-    text: "Frameworks, schemas, prompts, and public notes that help people ask better LMD questions before jumping to an answer."
+    title: "LMD/DED process understanding",
+    text: "Process windows, repair and cladding workflows, traceability packs, inspection-ready documentation, and repeatability."
+  },
+  {
+    title: "Inspection-aware AI",
+    text: "AI outputs treated as decision support, with physical inspection and engineering evidence kept visible where risk requires it."
+  },
+  {
+    title: "RFQ and engineering information structure",
+    text: "Frameworks, schemas, prompts, and public notes that help people separate known facts, missing information, assumptions, and risks."
   }
 ];
 
@@ -113,6 +121,8 @@ const awards = [
 ];
 
 const links = [
+  { label: "Industrial AI thesis", href: "/thesis" },
+  { label: "LMD / DED proof domain", href: "/domains/lmd-ded" },
   { label: "LinkedIn", href: LINKS.linkedin },
   { label: "GitHub", href: LINKS.github },
   { label: "Exafuse", href: LINKS.exafuse },
@@ -142,22 +152,26 @@ const aboutPageJsonLd = {
       <div class="flex flex-wrap gap-2">
         <Badge>Personal profile</Badge>
         <Badge tone="laser">Exafuse-linked</Badge>
-        <Badge tone="steel">AI + DED/LMD</Badge>
+        <Badge tone="steel">Industrial AI</Badge>
       </div>
       <p class="metric-label mt-8">About Manish Sharma</p>
       <h1 class="mt-4 text-5xl font-black leading-[0.98] text-white md:text-7xl">
-        Making LMD more
+        Building industrial AI
         <span class="block bg-gradient-to-r from-cyan-100 via-white to-orange-100 bg-clip-text pt-3 text-transparent">
-          observable and usable.
+          connected to evidence.
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I am Manish Sharma. Public profile materials describe my work around AI for Laser Metal Deposition at Exafuse in Germany, with a connection to process monitoring, robotics, and AI decision support. The part I keep coming back to is the gap between useful sensor data and real engineering evidence.
+        I am Manish Sharma. I work on industrial AI and decision systems for engineering processes. My deepest public work is in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse, where process monitoring, robotics, repair decisions, RFQ quality, and physical inspection all meet.
+      </p>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-slate-400">
+        The question that connects my public work is not simply whether an AI model can produce an answer. It is whether the decision can be traced to the right signals, assumptions, engineering context, and verification evidence.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
+        <a href="/thesis" class="btn btn-primary">Operating Thesis</a>
+        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED Proof Domain</a>
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="/identity" class="btn btn-secondary">Canonical Identity</a>
-        <a href="/profile/public-profile" class="btn btn-secondary">Public Profile Facts</a>
         <a href="/frameworks" class="btn btn-secondary">Technical Frameworks</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
@@ -182,13 +196,13 @@ const aboutPageJsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <SectionHeading
-        eyebrow="Profile"
+        eyebrow="Current work"
         title="Where my work sits"
-        description="I work in the middle of process development, monitoring, robotics, and AI. The aim is to make LMD decisions clearer without pretending software replaces engineering evidence."
+        description="I work in the middle of process development, monitoring, robotics, and AI. The aim is to make industrial decisions clearer without pretending software replaces engineering evidence."
       />
       <div class="prose-lab">
         <p>
-          Public profile materials describe a background that combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, and traceable build documentation. The practical thread is process stability, repeatability, and the evidence needed after deposition.
+          Public profile materials describe a background that combines DED/LMD process development, machine vision, neural-network-based feature extraction, robotic toolpath refinement, and traceable build documentation. The practical thread is process stability, repeatability, and the evidence needed after a decision leaves the model.
         </p>
         <p>
           This site is where I turn that work into public notes, frameworks, and small tools. It is meant for engineers, students, buyers, developers, and anyone who needs clearer language around LMD, DED, laser cladding, monitoring, repairability, and RFQ preparation.
@@ -217,7 +231,7 @@ const aboutPageJsonLd = {
   <section class="band section-y">
     <div class="site-shell">
       <SectionHeading eyebrow="Focus areas" title="What I work on" />
-      <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {focusAreas.map((item) => (
           <article class="ordered-card-strong card-hover p-6">
             <h2 class="text-xl font-black text-white">{item.title}</h2>

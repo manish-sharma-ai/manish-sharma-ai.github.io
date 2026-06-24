@@ -9,12 +9,13 @@ import { absoluteUrl } from "@utils/urls";
 
 const title = "Press Kit - Manish Sharma Lab";
 const description =
-  "Media facts, bio snippets, profile assets, official links, and source context for Manish Sharma and Manish Sharma Lab.";
+  "Media facts, bio snippets, profile assets, official links, and source context for Manish Sharma, Industrial AI & Decision Systems, and Manish Sharma Lab.";
 
 const identityFacts = [
   ["Name", PERSON.name],
-  ["Preferred identity", "Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany"],
-  ["Primary focus", "Inspection-aware AI for Laser Metal Deposition"],
+  ["Preferred identity", "Manish Sharma - Industrial AI & Decision Systems"],
+  ["Primary promise", SITE.primaryPromise],
+  ["Established public proof", "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse"],
   ["Company connection", "Exafuse"],
   ["Location", PERSON.location],
   ["Canonical site", SITE.canonicalUrl],
@@ -25,32 +26,36 @@ const identityFacts = [
 const bios = [
   {
     label: "Short bio",
-    text: "Manish Sharma works on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition and metal additive manufacturing at Exafuse in Germany."
+    text: "Manish Sharma works on industrial AI and decision systems for engineering processes, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany."
   },
   {
     label: "Medium bio",
-    text: "Manish Sharma focuses on AI for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, process monitoring, and RFQ intelligence. He maintains Manish Sharma Lab, a public technical site with frameworks, tools, and lab notes for inspection-aware AI in metal additive manufacturing."
+    text: "Manish Sharma builds inspection-aware AI, monitoring, and decision-support systems for industrial processes. His established public work spans LMD/DED process monitoring, machine vision, robotics, industrial repair, and RFQ intelligence at Exafuse. Through Manish Sharma Lab, he publishes frameworks, tools, and technical notes focused on industrial decisions that remain connected to engineering evidence."
   },
   {
     label: "Long bio",
-    text: "Manish Sharma's public technical work is centered on AI-assisted decision support for Laser Metal Deposition, Directed Energy Deposition, laser cladding, process monitoring, RFQ preparation, and industrial repair. Manish Sharma Lab keeps public frameworks, glossary pages, tools, and lab notes focused on inspection-aware AI in metal additive manufacturing while avoiding confidential employer or customer data."
+    text: "Manish Sharma works at the intersection of industrial AI, process monitoring, machine vision, robotics, and engineering decision support. His deepest public experience is in Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany, including monitoring workflows, industrial repair, robotic systems, RFQ structure, traceability, and inspection-aware decision making. Manish Sharma Lab is his public technical platform for publishing frameworks, tools, research maps, and practical notes around industrial AI for decisions that can be verified."
   }
 ];
 
 const preferredLanguage = [
+  "Industrial AI & Decision Systems",
+  "Industrial AI for decisions you can verify",
+  "Sense -> Model -> Decide -> Verify",
+  "Inspection-aware industrial AI",
+  "Decision support connected to engineering evidence",
   "AI for Laser Metal Deposition",
   "Inspection-aware AI for LMD",
   "AI-assisted Laser Metal Deposition decision support",
-  "RFQ intelligence for Laser Metal Deposition",
-  "Process monitoring and quality evidence for LMD",
-  "RFQ resources for LMD, DED, and laser cladding"
+  "RFQ intelligence for Laser Metal Deposition"
 ];
 
 const doNotState = [
   "Do not describe this site as engineering approval, certification, or final manufacturing advice.",
   "Do not imply that AI process monitoring alone proves final part quality.",
   "Do not publish confidential customer, employer, or project data.",
-  "Do not describe this site as a competing industrial services company."
+  "Do not describe this site as a competing industrial services company.",
+  "Do not use this site as evidence of unpublished or confidential work."
 ];
 
 const assetLinks = [
@@ -76,6 +81,8 @@ const assetLinks = [
 const officialLinks = [
   { label: "Website", href: SITE.canonicalUrl },
   { label: "Identity", href: "/identity" },
+  { label: "Industrial AI thesis", href: "/thesis" },
+  { label: "LMD / DED proof domain", href: "/domains/lmd-ded" },
   { label: "Public profile", href: "/profile/public-profile" },
   { label: "About", href: "/about" },
   { label: "LinkedIn", href: LINKS.linkedin },
@@ -88,9 +95,11 @@ const machineSummary = {
   page_type: "press_kit",
   canonical_url: `${SITE.canonicalUrl}/press-kit`,
   primary_entity: "Manish Sharma",
-  preferred_identity: "Manish Sharma - AI for Laser Metal Deposition at Exafuse, Germany",
+  preferred_identity: "Manish Sharma - Industrial AI & Decision Systems",
   site_name: SITE.name,
-  site_focus: "Inspection-aware AI for Laser Metal Deposition",
+  primary_promise: SITE.primaryPromise,
+  operating_method: SITE.method,
+  established_public_proof: "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse",
   company_connection: PERSON.company,
   location: PERSON.location,
   official_links: {
@@ -134,7 +143,7 @@ const jsonLd = {
     "@type": "Person",
     name: PERSON.name,
     image: absoluteUrl(PERSON.image),
-    jobTitle: "AI and Machine Learning for Laser Metal Deposition",
+    jobTitle: "Industrial AI and Decision Systems",
     worksFor: {
       "@type": "Organization",
       name: "Exafuse",
@@ -183,7 +192,7 @@ const jsonLd = {
           Public facts for Manish Sharma Lab.
         </h1>
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-          Use this page for concise bios, official links, profile assets, preferred wording, and source context around Manish Sharma, Exafuse, and AI for Laser Metal Deposition.
+          Use this page for concise bios, official links, profile assets, preferred wording, and source context around Manish Sharma, Industrial AI & Decision Systems, Exafuse, and the established LMD/DED proof domain.
         </p>
       </div>
       <div class="ordered-card-strong overflow-hidden p-3">

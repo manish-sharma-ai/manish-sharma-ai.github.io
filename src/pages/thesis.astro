@@ -1,0 +1,137 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { METHOD_LOOP, PERSON, SITE } from "@data/site";
+
+const title = "Industrial AI for Decisions You Can Verify";
+const subtitle = "Sense -> Model -> Decide -> Verify";
+const description =
+  "A practical operating thesis for industrial AI and decision systems: connect signals, assumptions, decisions, and verification evidence.";
+
+const principles = [
+  "A signal is not proof.",
+  "A model output is not automatically an engineering decision.",
+  "Missing information should remain visible.",
+  "Confidence should not hide uncertainty.",
+  "Human review must be explicit where risk requires it.",
+  "Verification must match the consequence of failure.",
+  "Useful industrial AI creates traceability, not only predictions."
+];
+
+const appliedProof = [
+  ["Process monitoring", "Signals from LMD/DED systems can expose instability candidates, drift, and review points."],
+  ["Melt-pool signals", "A melt-pool signal can support awareness, but it does not prove final part quality by itself."],
+  ["Bead geometry", "Geometry indicators can guide process review and machining planning when tied to inspection evidence."],
+  ["Repairability screening", "Material, damage, access, tolerance, inspection, and criticality must remain visible before a recommendation hardens."],
+  ["RFQ preparation", "Known facts, missing information, assumptions, risks, and next steps should be separated."],
+  ["Process route selection", "LMD, DED, cladding, SLM/LPBF, machining, replacement, or no repair should be compared with explicit trade-offs."],
+  ["Inspection evidence", "Dimensional checks, NDT, material evidence, and expert review close the loop where risk requires it."]
+];
+
+const links = [
+  { label: "LMD / DED domain hub", href: "/domains/lmd-ded" },
+  { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+  { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+  { label: "LMD RFQ Toolkit", href: "/agent-pack" },
+  { label: "Evidence Base", href: "/evidence" },
+  { label: "About Manish Sharma", href: "/about" }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/thesis#article`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: SITE.lastUpdated,
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/thesis`,
+  about: ["Industrial AI", "Decision Support Systems", "Process Monitoring", "Engineering Evidence"]
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/thesis" jsonLd={jsonLd}>
+  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Working thesis</Badge>
+        <Badge tone="steel">Public operating model</Badge>
+        <Badge tone="laser">Evidence-bound</Badge>
+      </div>
+      <p class="metric-label mt-8">Manish Sharma Lab</p>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-5 text-2xl font-bold text-cyan-100">{subtitle}</p>
+      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        Industrial AI becomes useful when it does more than produce a confident output. It must stay connected to the signals it observed, the model assumptions it used, the decision it recommends, and the evidence that can verify the outcome.
+      </p>
+    </div>
+    <PageHeroVisual variant="frameworks" class="hidden lg:block" />
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Four-stage loop"
+        title="Sense, Model, Decide, Verify"
+        description="This is a practical operating model for public industrial-AI work, not a claim to own a new discipline."
+      />
+      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {METHOD_LOOP.map((stage, index) => (
+          <article class="ordered-card-strong p-6">
+            <p class="metric-label">0{index + 1}</p>
+            <h2 class="mt-3 text-3xl font-black text-white">{stage.label.toUpperCase()}</h2>
+            <p class="mt-4 text-sm leading-6 text-slate-300">{stage.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <SectionHeading
+        eyebrow="Principles"
+        title="Decision support has to keep uncertainty visible"
+        description="The model is useful only when the decision path remains inspectable."
+      />
+      <div class="grid gap-3 md:grid-cols-2">
+        {principles.map((principle) => (
+          <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{principle}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Applied proof"
+        title="Grounded publicly in LMD / DED"
+        description="The established public proof domain for this thesis is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse."
+      />
+      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {appliedProof.map(([heading, text]) => (
+          <article class="ordered-card p-5">
+            <h2 class="text-xl font-black text-white">{heading}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+      <SectionHeading
+        eyebrow="Use with"
+        title="Public resources that make the thesis practical"
+        description="These links connect the operating model to existing LMD/DED frameworks, evidence, and RFQ resources."
+      />
+      <SourceLinks links={links} />
+    </div>
+  </section>
+</Layout>

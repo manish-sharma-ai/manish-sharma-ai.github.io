@@ -5,7 +5,7 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 
 const title = "Profile Resources - Manish Sharma Lab";
-const description = "Public-safe profile resources for Manish Sharma Lab.";
+const description = "Public-safe profile resources for Manish Sharma Lab, industrial AI, and the LMD/DED proof domain.";
 ---
 
 <Layout title={title} description={description} canonical="/profile">
@@ -14,12 +14,14 @@ const description = "Public-safe profile resources for Manish Sharma Lab.";
       <SectionHeading
         eyebrow="Profile"
         title="Public-safe profile resources"
-        description="Identity pages and public profile facts used by Manish Sharma Lab."
+        description="Identity pages, public profile facts, and positioning resources used by Manish Sharma Lab."
       />
       <PageHeroVisual variant="profile" class="hidden lg:block" />
     </div>
     <div class="mt-10">
       <SourceLinks links={[
+        { label: "Industrial AI thesis", href: "/thesis" },
+        { label: "LMD / DED proof domain", href: "/domains/lmd-ded" },
         { label: "Manish Sharma public profile", href: "/profile/public-profile" },
         { label: "Canonical identity page", href: "/identity" },
         { label: "About Manish Sharma", href: "/about" },

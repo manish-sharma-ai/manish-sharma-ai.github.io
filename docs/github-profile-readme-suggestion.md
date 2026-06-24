@@ -2,26 +2,28 @@
 
 ## Headline
 
-AI for Laser Metal Deposition at Exafuse
+Industrial AI & Decision Systems
 
 ## Bio
 
-I’m Manish Sharma. I work on AI-assisted decision systems, process monitoring, and RFQ intelligence for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
+I am Manish Sharma. I work on industrial AI, monitoring, and decision-support systems for engineering processes, grounded in public work on Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
 
 Public technical lab: https://manish-sharma-ai.github.io
 
 ## Focus Areas
 
-- AI for Laser Metal Deposition
-- Directed Energy Deposition and DED-LB/M
-- Process monitoring and melt-pool signal interpretation
+- Industrial AI and decision support systems
+- Process monitoring and machine vision
+- Robotic industrial workflows
+- AI for Laser Metal Deposition and Directed Energy Deposition
 - RFQ intelligence for industrial repair
 - Inspection-aware decision support
 - Metal additive manufacturing workflows
 
-## Current Projects
+## Current Public Projects
 
 - Manish Sharma Lab
+- Industrial AI thesis: Sense -> Model -> Decide -> Verify
 - LMD Quality Evidence Ladder
 - LMD Repairability Index
 - LMD-AI Readiness Score
@@ -30,9 +32,8 @@ Public technical lab: https://manish-sharma-ai.github.io
 ## Suggested Pinned Repositories
 
 - `manish-sharma-ai.github.io`
-- Future LMD Agent Pack repository
-- Future LMD RFQ schema repository
-- Future LMD tools repository
+
+Avoid pinning or naming future repositories until they are public and ready.
 
 ## Links
 

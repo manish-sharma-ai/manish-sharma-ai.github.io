@@ -1,12 +1,12 @@
 # Manish Sharma Lab Logo System
 
-The Manish Sharma Lab logo is designed as a compact technical identity mark for AI-assisted Laser Metal Deposition.
+The Manish Sharma Lab logo is designed as a compact technical identity mark for industrial AI and decision systems, grounded in public LMD/DED work.
 
 ## Concept
 
 The mark combines four ideas:
 
-- Laser beam: the orange diagonal line represents focused energy input.
+- Laser beam: the orange diagonal line represents focused industrial energy input.
 - Melt pool: the warm central glow represents the local process zone.
 - Deposited bead: the cyan/steel curved path represents additive material deposition.
 - AI graph: the small connected nodes represent decision systems, monitoring, and RFQ intelligence.
@@ -46,4 +46,4 @@ Avoid stretching, recoloring, rotating, or adding extra effects. The mark alread
 
 ## Brand Sentence
 
-Manish Sharma Lab is a public technical lab for inspection-aware AI in Laser Metal Deposition.
+Manish Sharma Lab is a public technical lab for industrial AI and decision systems, grounded in public AI for Laser Metal Deposition and Directed Energy Deposition work at Exafuse.

@@ -52,13 +52,13 @@
   <g transform="translate(82 74)">
     <image href="brand/manish-sharma-lab-mark.svg" x="-1" y="-1" width="56" height="56"/>
     <text x="72" y="23" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Manish Sharma Lab</text>
-    <text x="72" y="47" fill="#9bb0bd" font-family="JetBrains Mono, Menlo, monospace" font-size="13" letter-spacing="2">PUBLIC TECHNICAL LAB</text>
+    <text x="72" y="47" fill="#9bb0bd" font-family="JetBrains Mono, Menlo, monospace" font-size="13" letter-spacing="2">INDUSTRIAL AI LAB</text>
   </g>
   <g transform="translate(82 166)">
     <text x="0" y="0" fill="#9bb0bd" font-family="JetBrains Mono, Menlo, monospace" font-size="19" letter-spacing="2">MANISH SHARMA - EXAFUSE, GERMANY</text>
-    <text x="0" y="82" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="75" font-weight="900">AI for Laser</text>
-    <text x="0" y="164" fill="#dffbff" font-family="Inter, Arial, sans-serif" font-size="75" font-weight="900">Metal Deposition.</text>
-    <text x="0" y="232" fill="#c7d7df" font-family="Inter, Arial, sans-serif" font-size="29" font-weight="650">Inspection-aware AI for LMD decisions.</text>
+    <text x="0" y="82" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="900">Industrial AI for</text>
+    <text x="0" y="160" fill="#dffbff" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="900">decisions you verify.</text>
+    <text x="0" y="228" fill="#c7d7df" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="650">Grounded in public LMD / DED work.</text>
   </g>
   <g transform="translate(82 500)">
     <rect x="0" y="0" width="170" height="38" rx="9" fill="#33d6ff" fill-opacity="0.11" stroke="#33d6ff" stroke-opacity="0.34"/>
@@ -82,7 +82,7 @@
     <rect x="862" y="116" width="214" height="250" rx="22" fill="none" stroke="#ffffff" stroke-opacity="0.16"/>
     <rect x="862" y="276" width="214" height="90" rx="0" fill="#000000" fill-opacity="0.48"/>
     <text x="884" y="322" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900">Manish Sharma</text>
-    <text x="884" y="348" fill="#9bf0ff" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800">AI for Laser Metal Deposition</text>
+    <text x="884" y="348" fill="#9bf0ff" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800">Industrial AI &amp; Decision Systems</text>
   </g>
   <g transform="translate(862 434)">
     <rect x="0" y="0" width="236" height="76" rx="16" fill="#071018" fill-opacity="0.82" stroke="#9cc9d9" stroke-opacity="0.2"/>

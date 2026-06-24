@@ -8,13 +8,16 @@ import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Public Profile";
 const description =
-  "Public-safe profile facts for Manish Sharma, AI for Laser Metal Deposition at Exafuse in Germany.";
+  "Public-safe profile facts for Manish Sharma, focused on Industrial AI & Decision Systems with established public proof in AI for LMD/DED at Exafuse.";
 
 const facts = [
   ["Name", PERSON.name],
-  ["Focus", "AI for Laser Metal Deposition"],
+  ["Focus", SITE.publicCategory],
+  ["Primary promise", SITE.primaryPromise],
+  ["Established technical proof", "AI for LMD/DED, process monitoring, robotics, industrial repair, and RFQ intelligence at Exafuse."],
   ["Company connection", PERSON.company],
   ["Location", PERSON.location],
+  ["Operating method", "Sense -> Model -> Decide -> Verify"],
   ["Website", SITE.canonicalUrl],
   ["LinkedIn", LINKS.linkedin],
   ["GitHub", LINKS.github],
@@ -40,8 +43,13 @@ const jsonLd = {
       <p class="metric-label">Public profile</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
-        A public-safe profile reference for identity facts used across this website. It avoids confidential employer, customer, or project information.
+        A public-safe profile reference for identity facts used across this website. It avoids confidential employer, customer, project, or commercially sensitive information.
       </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/identity" class="btn btn-primary">Canonical Identity</a>
+        <a href="/thesis" class="btn btn-secondary">Operating Thesis</a>
+        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED Proof Domain</a>
+      </div>
     </div>
     <PageHeroVisual variant="profile" class="hidden lg:block" />
   </section>
@@ -58,7 +66,7 @@ const jsonLd = {
           <tbody>
             {facts.map(([label, value]) => (
               <tr class="border-b border-white/10 last:border-b-0">
-                <th class="w-48 bg-white/[0.035] p-4 align-top font-mono text-xs uppercase text-slate-400">{label}</th>
+                <th class="w-56 bg-white/[0.035] p-4 align-top font-mono text-xs uppercase text-slate-400">{label}</th>
                 <td class="p-4 font-semibold leading-6 text-slate-100">{value}</td>
               </tr>
             ))}

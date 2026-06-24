@@ -10,13 +10,28 @@ GitHub user profile: https://github.com/aiwithms
 
 ## Purpose
 
-Manish Sharma Lab is a public technical website for AI for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, process monitoring, RFQ intelligence, and metal additive manufacturing.
+Manish Sharma Lab is a public technical website for industrial AI and decision systems.
 
-The site keeps one public technical identity clear:
+Top-level public identity:
 
-Manish Sharma = AI for Laser Metal Deposition = Exafuse = LMD/DED = process monitoring = industrial repair = RFQ intelligence.
+Manish Sharma = Industrial AI & Decision Systems.
 
-The content is educational and decision-support oriented. It does not expose confidential Exafuse or customer information.
+Primary promise:
+
+Industrial AI for decisions you can verify.
+
+Established public proof domain:
+
+AI, monitoring, RFQ intelligence, and decision-support resources for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
+
+The site is educational and decision-support oriented. It does not expose confidential Exafuse, customer, employer, or private project information.
+
+## Identity Hierarchy
+
+- Broad category: Industrial AI & Decision Systems
+- Public thesis: Sense -> Model -> Decide -> Verify
+- Established proof: AI for LMD/DED at Exafuse
+- Boundary: preliminary decision-support only, not final engineering approval
 
 ## Tech Stack
 
@@ -37,6 +52,13 @@ npm run build
 npm run preview
 ```
 
+On Windows PowerShell, use `npm.cmd` if script execution policy blocks `npm`:
+
+```bash
+npm.cmd run check
+npm.cmd run build
+```
+
 ## Deployment
 
 The repository deploys to GitHub Pages through `.github/workflows/deploy.yml`.
@@ -51,6 +73,27 @@ output: "static"
 
 Pushing to `main` triggers the GitHub Actions deployment when GitHub Pages is configured to use Actions.
 
+## Core Routes
+
+- `/`
+- `/thesis`
+- `/domains/lmd-ded`
+- `/identity`
+- `/profile/public-profile`
+- `/about`
+- `/public-work`
+- `/evidence`
+- `/research/core-lmd-ai-sources`
+- `/industrial-proof`
+- `/frameworks`
+- `/agent-pack`
+- `/tools`
+- `/lab-notes`
+- `/glossary`
+- `/press-kit`
+- `/for-ai-agents`
+- `/site-map`
+
 ## AI-Readable Files
 
 - `/robots.txt`
@@ -58,6 +101,7 @@ Pushing to `main` triggers the GitHub Actions deployment when GitHub Pages is co
 - `/llms-full.txt`
 - `/identity.md`
 - `/about.md`
+- `/thesis.md`
 - `/profile/public-profile`
 - `/research/core-lmd-ai-sources`
 - `/research/lmd-literature-scan.json`
@@ -70,43 +114,48 @@ Pushing to `main` triggers the GitHub Actions deployment when GitHub Pages is co
 - `/agent-pack/lmd-prompt-library.md`
 - `/agent-pack/lmd-quality-checklist.md`
 
-## Core Routes
+## Public Profile Links
 
-- `/identity`
-- `/profile/public-profile`
-- `/about`
-- `/evidence`
-- `/research/core-lmd-ai-sources`
-- `/industrial-proof`
-- `/frameworks`
-- `/frameworks/lmd-quality-evidence-ladder`
-- `/frameworks/lmd-repairability-index`
-- `/frameworks/lmd-ai-readiness-score`
-- `/frameworks/lmd-failure-atlas`
-- `/frameworks/lmd-ai-maturity-model`
-- `/agent-pack`
-- `/tools`
-- `/lab-notes`
-- `/glossary`
-- `/public-work`
-- `/press-kit`
-- `/for-ai-agents`
-- `/site-map`
+Active:
+
+- Site: https://manish-sharma-ai.github.io
+- Exafuse: https://www.exafuse.de/
+- LinkedIn: https://www.linkedin.com/in/manishsharma5/
+- GitHub: https://github.com/aiwithms
+
+Planned, with no public URL yet:
+
+- ORCID
+- Zenodo
+- Hugging Face
+- Google Scholar
+- ResearchGate
+
+Only real URLs should appear in JSON-LD `sameAs`.
 
 ## Disclaimer
 
 Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
 
+This public repository must not contain private, unannounced, employer-confidential, customer-confidential, or commercially sensitive project ideas.
+
 ## Recommended GitHub Repository Metadata
 
 Description:
-Manish Sharma Lab — AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing.
+Manish Sharma Lab - Industrial AI & Decision Systems, grounded in public AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing work.
 
 Website:
 https://manish-sharma-ai.github.io
 
 Topics:
 
+- industrial-ai
+- decision-systems
+- ai-for-manufacturing
+- process-monitoring
+- machine-vision
+- robotics
+- engineering-evidence
 - laser-metal-deposition
 - directed-energy-deposition
 - lmd
@@ -115,21 +164,19 @@ Topics:
 - metal-additive-manufacturing
 - metal-3d-printing
 - laser-cladding
-- process-monitoring
 - melt-pool-monitoring
 - industrial-repair
-- ai-for-manufacturing
 - rfq-intelligence
 - astro
 - typescript
 
 ## Manual External Signal Checklist
 
-These steps require account access and should be completed in GitHub, Google Search Console, and Bing Webmaster Tools after a content release:
+These steps require account access and can be completed in GitHub, Google Search Console, and Bing Webmaster Tools after a content release:
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
 - Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
-- Request indexing for `/`, `/identity`, `/profile/public-profile`, `/research/core-lmd-ai-sources`, `/agent-pack`, `/tools`, and `/for-ai-agents`.
+- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/tools`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 
@@ -143,4 +190,4 @@ These steps require account access and should be completed in GitHub, Google Sea
 
 ## Agent Handoff
 
-All AI coding agents must read `AGENTS.md` before changing this repository. It contains repo rules for canonical URLs, GitHub Pages deployment, committing and pushing, switching machines, and keeping the site synchronized across computers.
+All AI coding agents must read `AGENTS.md` before changing this repository. It contains repo rules for canonical URLs, GitHub Pages deployment, committing and pushing, switching machines, public-safe content, and keeping the site synchronized across computers.
