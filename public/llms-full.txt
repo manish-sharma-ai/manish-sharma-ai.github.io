@@ -38,7 +38,8 @@ LinkedIn: https://www.linkedin.com/in/manishsharma5/
 
 GitHub: https://github.com/aiwithms
 
-Planned profiles with no public URL yet: ORCID, Zenodo, Hugging Face, Google Scholar, ResearchGate.
+Active public profiles: Website, LinkedIn, GitHub, Exafuse, Google Scholar.
+Planned profiles with no public URL yet: ORCID, Zenodo, Hugging Face, ResearchGate.
 
 ## Site Purpose
 
