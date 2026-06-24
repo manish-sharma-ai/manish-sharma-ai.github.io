@@ -123,6 +123,16 @@ Topics:
 - astro
 - typescript
 
+## Manual External Signal Checklist
+
+These steps require account access and should be completed in GitHub, Google Search Console, and Bing Webmaster Tools after a content release:
+
+- Paste the recommended GitHub repository metadata above into the repository settings.
+- Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
+- Request indexing for `/`, `/identity`, `/profile/public-profile`, `/research/core-lmd-ai-sources`, `/agent-pack`, `/tools`, and `/for-ai-agents`.
+- Submit the same sitemap in Bing Webmaster Tools.
+- Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
+
 ## Next Roadmap
 
 - Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs when the profiles are created.

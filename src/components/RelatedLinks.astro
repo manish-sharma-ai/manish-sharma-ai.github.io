@@ -24,7 +24,7 @@ const links = linkSet
   ? [
       ...linkSet.links.filter((link) => normalize(link.href) !== currentPath),
       { label: "Full Site Map", href: "/site-map", description: "Every page and public machine-readable asset in one linked map." }
-    ].slice(0, 5)
+    ]
   : [];
 ---
 
@@ -45,7 +45,7 @@ const links = linkSet
           Search all pages
         </button>
       </div>
-      <div class="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+      <div class="mt-7 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         {links.map((link) => (
           <a href={link.href} class="ordered-card card-hover group grid min-h-32 content-between p-4">
             <span>

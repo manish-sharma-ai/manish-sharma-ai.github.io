@@ -2,6 +2,34 @@
 
 Use this after each meaningful content release.
 
+## GitHub Repository Metadata
+
+Paste this into GitHub repository settings before or immediately after the site update is deployed.
+
+Description:
+Manish Sharma Lab - AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing.
+
+Website:
+https://manish-sharma-ai.github.io
+
+Topics:
+
+- laser-metal-deposition
+- directed-energy-deposition
+- lmd
+- ded
+- ded-lb-m
+- metal-additive-manufacturing
+- metal-3d-printing
+- laser-cladding
+- process-monitoring
+- melt-pool-monitoring
+- industrial-repair
+- ai-for-manufacturing
+- rfq-intelligence
+- astro
+- typescript
+
 ## Google Search Console
 
 1. Add property: `https://manish-sharma-ai.github.io`
@@ -29,6 +57,7 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model`
 - `https://manish-sharma-ai.github.io/agent-pack`
+- `https://manish-sharma-ai.github.io/tools`
 - `https://manish-sharma-ai.github.io/for-ai-agents`
 
 ## Bing Webmaster Tools

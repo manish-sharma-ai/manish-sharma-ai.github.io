@@ -7,7 +7,7 @@ export const SITE = {
   githubProfile: PROFILE_URLS.github,
   description:
     "Working notes, tools, and practical frameworks on AI for Laser Metal Deposition, process monitoring, repair decisions, and RFQ preparation.",
-  lastUpdated: "2026-05-10"
+  lastUpdated: "2026-06-24"
 };
 
 export const PERSON = {
