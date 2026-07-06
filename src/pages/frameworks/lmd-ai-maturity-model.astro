@@ -10,13 +10,35 @@ const title = "LMD-AI Maturity Model";
 const description =
   "A staged model for moving Laser Metal Deposition workflows from manual records to usable data capture, analytics, AI decision support, and validated closed-loop development.";
 
+const frameworkBrief = [
+  ["Definition", "A staged model for moving LMD workflows from scattered records to validated AI decision support and controlled closed-loop development candidates."],
+  ["Problem it solves", "Organizations often jump to model claims before data capture, traceability, inspection linkage, and governance are ready."],
+  ["Who it is for", "Manufacturing teams, engineers, AI developers, students, and managers planning LMD data maturity."],
+  ["Inputs required", "RFQ records, material traceability, CAD/path linkage, logs, monitoring data, inspection outcomes, labels, comparable jobs, governance, and review rules."],
+  ["Output", "A maturity stage and the next practical capability to build."],
+  ["Evidence needed", "Traceable records, linked inspection outcomes, validation results, drift checks, escalation rules, and model-update control."],
+  ["Limitations", "It is a planning framework, not a qualification system or proof that closed-loop control is safe."],
+  ["Example use case", "Deciding whether a team should improve job IDs and inspection links before starting AI anomaly detection."],
+  ["Thesis connection", "Sense records, model maturity, decide the next data capability, and verify with measured outcomes."]
+];
+
+const relatedLinks = [
+  { label: "Manish Sharma - AI for Laser Metal Deposition", href: "/identity" },
+  { label: "LMD Agent Pack", href: "/agent-pack" },
+  { label: "Tools", href: "/tools" },
+  { label: "For AI Agents", href: "/for-ai-agents" },
+  { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+  { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+  { label: "Markdown version", href: "/frameworks/lmd-ai-maturity-model.md" }
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "@id": `${SITE.canonicalUrl}/frameworks/lmd-ai-maturity-model#article`,
   headline: title,
   description,
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  author: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name },
   datePublished: SITE.lastUpdated,
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/frameworks/lmd-ai-maturity-model`,
@@ -102,6 +124,22 @@ const stages = [
   </section>
 
   <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Framework brief"
+      title="Use maturity as a planning model"
+      description={DISCLAIMER}
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {frameworkBrief.map(([label, text]) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-lg font-black text-white">{label}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Maturity stages" title="From scattered records to validated loops" />
     <div class="mt-10 grid gap-4">
       {
@@ -132,11 +170,7 @@ const stages = [
         description="The maturity model explains the organizational path. The readiness score checks the current data foundations. The evidence ladder keeps AI outputs connected to physical validation."
       />
       <div>
-        <SourceLinks links={[
-          { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
-          { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
-          { label: "Markdown version", href: "/frameworks/lmd-ai-maturity-model.md" }
-        ]} />
+        <SourceLinks links={relatedLinks} />
       </div>
     </div>
   </section>

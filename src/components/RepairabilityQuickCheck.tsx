@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
-const EXAFUSE_URL = "https://www.exafuse.de/";
+const EXAFUSE_URL = EXAFUSE_LINKS.contact;
 
 const questions = [
   "Material known?",

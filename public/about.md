@@ -58,7 +58,7 @@ Selected public work may include published technical work, event talks, public p
 - Public profile facts: https://manish-sharma-ai.github.io/profile/public-profile
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub: https://github.com/aiwithms
-- Exafuse: https://www.exafuse.de/
+- Exafuse: https://exafuse.de/
 
 ## Limitation
 

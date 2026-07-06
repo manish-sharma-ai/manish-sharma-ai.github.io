@@ -10,7 +10,7 @@ Established public proof domain: AI for Laser Metal Deposition, Directed Energy 
 
 This site is Manish Sharma's public technical lab for inspection-aware industrial AI and decision systems. It contains frameworks, lab notes, RFQ resources, glossary pages, tools, and LMD/DED decision-support ideas.
 
-It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit Exafuse: https://www.exafuse.de/
+It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit Exafuse: https://exafuse.de/
 
 This site avoids confidential customer, employer, and private project data.
 
@@ -35,7 +35,7 @@ Only real URLs should be used in JSON-LD sameAs.
 
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms
-- Exafuse: https://www.exafuse.de/
+- Exafuse: https://exafuse.de/
 
 Planned, no public URL yet:
 

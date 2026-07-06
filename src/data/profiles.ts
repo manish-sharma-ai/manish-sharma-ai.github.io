@@ -1,3 +1,5 @@
+import { SITE_CONFIG } from "./siteConfig";
+
 export type ProfileStatus = "active" | "planned";
 
 export interface ProfileLink {
@@ -14,16 +16,16 @@ export type ActiveProfileLink = ProfileLink & {
 };
 
 export const PROFILE_URLS = {
-  site: "https://manish-sharma-ai.github.io",
-  exafuse: "https://www.exafuse.de/",
-  linkedin: "https://www.linkedin.com/in/manishsharma5/",
-  github: "https://github.com/aiwithms",
-  repository: "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io",
-  orcid: null,
-  zenodo: null,
-  huggingFace: null,
-  googleScholar: null,
-  researchGate: null
+  site: SITE_CONFIG.site.baseUrl,
+  exafuse: SITE_CONFIG.exafuse.canonicalLinks.homepage,
+  linkedin: SITE_CONFIG.person.links.linkedin,
+  github: SITE_CONFIG.person.links.github,
+  repository: SITE_CONFIG.site.repository,
+  orcid: SITE_CONFIG.person.links.orcid,
+  zenodo: SITE_CONFIG.person.links.zenodo,
+  huggingFace: SITE_CONFIG.person.links.huggingFace,
+  googleScholar: SITE_CONFIG.person.links.googleScholar,
+  researchGate: SITE_CONFIG.person.links.researchGate
 } as const;
 
 export const PROFILE_LINKS: ProfileLink[] = [

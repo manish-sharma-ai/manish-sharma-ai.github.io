@@ -5,6 +5,7 @@ import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "AI for Laser Metal Deposition and Directed Energy Deposition";
 const subtitle = "The established technical proof domain behind Manish Sharma Lab.";
@@ -28,6 +29,57 @@ const contextLinks = [
   { label: "About Manish Sharma", href: "/about", description: "Public career background and technical context." },
   { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
   { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." }
+];
+
+const decisionSections = [
+  {
+    title: "Why LMD/DED is a decision-system problem",
+    text:
+      "A useful LMD decision combines material compatibility, geometry, damage state, access, heat input, post-machining, inspection, economics, and service risk. No single signal should become a final recommendation by itself."
+  },
+  {
+    title: "Connection to repairability",
+    text:
+      "Local damage on a large or valuable part can be a strong LMD signal, but only after material, damage depth, crack context, tolerance recovery, and inspection needs are visible."
+  },
+  {
+    title: "Connection to quality evidence",
+    text:
+      "Process monitoring and AI flags can guide review. Final confidence still depends on the inspection and validation evidence required by the part risk."
+  },
+  {
+    title: "Connection to Exafuse public proof",
+    text:
+      "Commercial manufacturing, repair, case details, and RFQs belong on Exafuse. This page interprets public LMD/DED proof through AI, evidence, repairability, and decision-system language."
+  }
+];
+
+const aiHelp = [
+  "structure RFQ facts, gaps, assumptions, risks, and next questions",
+  "compare LMD/DED, SLM/LPBF, cladding, machining, replacement, and hybrid routes",
+  "flag monitoring anomalies or drift candidates for human review",
+  "connect process signals to inspection planning and evidence levels",
+  "summarize repeat jobs, parameter history, photos, logs, and operator feedback",
+  "make uncertainty and missing information visible before a recommendation hardens"
+];
+
+const aiLimits = [
+  "AI cannot certify material properties from process signals alone.",
+  "AI cannot turn melt-pool monitoring into final quality proof.",
+  "AI cannot approve safety-critical repair without inspection, testing, qualification, and expert review.",
+  "AI cannot recover missing material grade, damage depth, geometry, service load, or acceptance criteria.",
+  "AI cannot guarantee a repair, coating, or build outcome."
+];
+
+const exafuseLinks = [
+  { label: "Exafuse additive manufacturing service", href: EXAFUSE_LINKS.metalAdditiveManufacturing },
+  { label: "Exafuse modification and repair", href: EXAFUSE_LINKS.repair },
+  { label: "Exafuse laser cladding", href: EXAFUSE_LINKS.laserCladding },
+  { label: "Exafuse technology", href: EXAFUSE_LINKS.technology },
+  { label: "Exafuse quality", href: EXAFUSE_LINKS.quality },
+  { label: "Duisburg bridge LMD case", href: EXAFUSE_LINKS.duisburgBridgeCase },
+  { label: "Exafuse LMD / DED-LB/M guide", href: EXAFUSE_LINKS.knowledgeLmd },
+  { label: "Exafuse LMD vs SLM / LPBF guide", href: EXAFUSE_LINKS.knowledgeLmdVsSlm }
 ];
 
 const toolLinks = [
@@ -70,7 +122,7 @@ const jsonLd = {
     "RFQ Intelligence",
     "Engineering Evidence"
   ],
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+  author: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name }
 };
 ---
 
@@ -108,6 +160,39 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Decision system"
+      title="LMD / DED is not just a process label"
+      description="This page is the personal decision layer around a wider industrial additive manufacturing landscape: LMD, DED, DED-LB/M, laser cladding, SLM/LPBF, hybrid manufacturing, machining, repair, and replacement."
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2">
+      {decisionSections.map((item) => (
+        <article class="ordered-card-strong p-5">
+          <h2 class="text-xl font-black text-white">{item.title}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="What AI can help with" title="Useful decision support" />
+        <div class="mt-8 grid gap-3">
+          {aiHelp.map((item) => <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{item}</div>)}
+        </div>
+      </div>
+      <div>
+        <SectionHeading eyebrow="What AI cannot prove alone" title="Explicit limits" />
+        <div class="mt-8 grid gap-3">
+          {aiLimits.map((item) => <div class="rounded-lg border border-orange-300/25 bg-orange-500/10 p-4 text-sm font-bold leading-6 text-orange-50">{item}</div>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Public context"
@@ -137,6 +222,17 @@ const jsonLd = {
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading
+        eyebrow="Exafuse canonical pages"
+        title="Company-owned commercial and case-study context"
+        description="Use these production Exafuse URLs for services, RFQs, quality, technology, and company-owned public proof. Manish Sharma Lab links to them instead of duplicating service pages."
+      />
+      <SourceLinks links={exafuseLinks} />
     </div>
   </section>
 

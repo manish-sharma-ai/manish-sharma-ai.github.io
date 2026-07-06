@@ -119,7 +119,7 @@ Pushing to `main` triggers the GitHub Actions deployment when GitHub Pages is co
 Active:
 
 - Site: https://manish-sharma-ai.github.io
-- Exafuse: https://www.exafuse.de/
+- Exafuse: https://exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub: https://github.com/aiwithms
 
@@ -142,7 +142,7 @@ This public repository must not contain private, unannounced, employer-confident
 ## Recommended GitHub Repository Metadata
 
 Description:
-Manish Sharma Lab - Industrial AI & Decision Systems, grounded in public AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing work.
+Manish Sharma Lab - AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing.
 
 Website:
 https://manish-sharma-ai.github.io

@@ -39,4 +39,4 @@ Avoid pinning or naming future repositories until they are public and ready.
 
 - Website: https://manish-sharma-ai.github.io
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
-- Exafuse: https://www.exafuse.de/
+- Exafuse: https://exafuse.de/

@@ -19,7 +19,7 @@ const personDescription =
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+  "@id": `${SITE.canonicalUrl}/#person`,
   name: PERSON.name,
   description: personDescription,
   image: absoluteUrl(PERSON.image),
@@ -42,7 +42,7 @@ const profilePageJsonLd = {
   name: title,
   description,
   mainEntity: {
-    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
+    "@id": `${SITE.canonicalUrl}/#person`
   }
 };
 

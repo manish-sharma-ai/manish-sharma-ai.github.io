@@ -13,6 +13,39 @@ const title = "LMD Evidence Base - Manish Sharma Lab";
 const description =
   "Checked facts, field notes, source links, and a 500-record LMD/DED reference map behind Manish Sharma Lab.";
 
+const evidenceClasses = [
+  ["Public source", "Stable public pages, standards pages, papers, datasets, or public records that can be checked independently."],
+  ["Exafuse public page", "Company-owned public context for industrial additive manufacturing services, cases, quality, technology, or RFQ paths."],
+  ["External partner/source", "A public partner, venue, event, organization, or third-party source that supports a specific statement."],
+  ["Personal framework", "Manish Sharma Lab frameworks that organize decision-support thinking. Useful as interpretation, not independent proof."],
+  ["Research/source map", "Broad metadata maps or curated source categories that orient research. Not equivalent to full-text review."],
+  ["Lab note", "Personal technical interpretation that should link back to source categories, frameworks, and public proof."],
+  ["Draft / incomplete", "A source or claim that still needs verification before it is treated as citation-quality evidence."]
+];
+
+const evidenceRules = [
+  {
+    title: "Strong evidence",
+    text:
+      "Strong evidence is public, specific, stable, and matched to the claim being made. For industrial decisions it usually includes source context, inspection method, acceptance criteria, measured output, and expert review path."
+  },
+  {
+    title: "Weak evidence",
+    text:
+      "Weak evidence is generic, unsupported, overbroad, or detached from the part risk. A single monitoring signal, unverified AI score, or vague case mention should not be treated as final proof."
+  },
+  {
+    title: "Monitoring is not release proof",
+    text:
+      "Melt-pool and process monitoring can expose review points, drift, or anomaly candidates. Final quality still depends on the inspection, testing, documentation, and acceptance evidence required by the application."
+  },
+  {
+    title: "Decision systems need verification",
+    text:
+      "A good recommendation remains traceable to inputs, assumptions, missing information, risk flags, and a next evidence step. This is why the site links repairability, AI readiness, and quality evidence together."
+  }
+];
+
 const pageJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -28,7 +61,7 @@ const pageJsonLd = {
     "Industrial Repair"
   ],
   author: {
-    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+    "@id": `${SITE.canonicalUrl}/#person`,
     "@type": "Person",
     name: PERSON.name
   },
@@ -84,6 +117,40 @@ const pageJsonLd = {
           <p class="mt-2 text-sm leading-6 text-slate-400">{item.detail}</p>
         </article>
       ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Evidence classification"
+      title="How this site labels trust"
+      description="Not every page carries the same evidentiary weight. This classification keeps public sources, company pages, personal frameworks, lab notes, and drafts separate."
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {evidenceClasses.map(([label, text]) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-xl font-black text-white">{label}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Strong vs weak evidence"
+        title="Why process signals must connect to inspection"
+        description="This is the trust layer behind the tools, frameworks, and lab notes."
+      />
+      <div class="mt-10 grid gap-4 md:grid-cols-2">
+        {evidenceRules.map((item) => (
+          <article class="ordered-card-strong p-5">
+            <h2 class="text-xl font-black text-white">{item.title}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{item.text}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 

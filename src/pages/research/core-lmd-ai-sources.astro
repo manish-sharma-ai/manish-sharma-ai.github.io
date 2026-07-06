@@ -12,21 +12,34 @@ const description =
   "A curated starting map for engineers, students, and AI agents researching AI, process monitoring, and Laser Metal Deposition.";
 
 const sourceRows = [
-  ["LMD / DED fundamentals", "Terminology source", "Keeps LMD, DED, DED-LB/M, cladding, and powder-bed processes from being mixed together.", "ISO/ASTM terminology source - source link to be added"],
-  ["LMD / DED fundamentals", "Public technical resource", "Gives a reliable starting point for Directed Energy Deposition terminology and AM process categories.", "NIST additive manufacturing / DED resources - source link to be added"],
-  ["Process monitoring and melt-pool monitoring", "Review paper", "Useful for understanding what in-situ monitoring can observe and why monitoring is not final release evidence.", "Review paper on in-situ monitoring in metal AM - source link to be added"],
-  ["Process monitoring and melt-pool monitoring", "Review paper", "Useful for linking melt-pool signals, thermal history, geometry, and inspection outcomes in DED/LMD.", "Review paper on DED / LMD process monitoring - source link to be added"],
-  ["AI / machine learning in additive manufacturing", "Review paper", "Useful for model categories, data limitations, defect labels, and validation boundaries.", "Review paper on machine learning in metal additive manufacturing - source link to be added"],
-  ["Defect formation and failure modes", "Review / handbook source", "Useful for connecting porosity, lack of fusion, cracking, dilution, distortion, and property mismatch to inspection evidence.", "Source link to be added"],
-  ["Repair and cladding applications", "Public industrial case studies", "Shows real repair, cladding, build-and-coat, and large-part LMD situations without using confidential project data.", "Public Exafuse case studies linked below"],
-  ["Quality, inspection, and validation", "Standards / inspection resources", "Keeps quality claims tied to inspection, testing, acceptance criteria, and service risk.", "Source link to be added"],
-  ["Standards and terminology", "Standards source", "Important for avoiding invented definitions and overclaiming what a process or AI system proves.", "ASTM / ISO additive manufacturing terminology - source link to be added"]
+  ["LMD / DED fundamentals", "Terminology category", "Keeps LMD, DED, DED-LB/M, cladding, SLM, and LPBF from being mixed together.", "Working draft - standards source URL not yet verified"],
+  ["LMD / DED fundamentals", "Public technical-resource category", "Gives a reliable starting point for process-family boundaries and additive manufacturing vocabulary.", "Working draft - public source URL not yet verified"],
+  ["Process monitoring and melt-pool monitoring", "Review-paper category", "Useful for understanding what in-situ monitoring can observe and why monitoring is not final release evidence.", "Working draft - review source to verify"],
+  ["Process monitoring and melt-pool monitoring", "Review-paper category", "Useful for linking melt-pool signals, thermal history, geometry, and inspection outcomes in DED/LMD.", "Working draft - review source to verify"],
+  ["AI / machine learning in additive manufacturing", "Review-paper category", "Useful for model categories, data limits, labels, validation boundaries, and decision-support claims.", "Working draft - review source to verify"],
+  ["Defect formation and failure modes", "Review / handbook category", "Useful for connecting porosity, lack of fusion, cracking, dilution, distortion, and property mismatch to inspection evidence.", "Working draft - source to verify"],
+  ["Repair and cladding applications", "Public industrial case studies", "Shows repair, cladding, build-and-coat, and large-part LMD situations without confidential project data.", "Public Exafuse source map below"],
+  ["Quality, inspection, and validation", "Standards / inspection category", "Keeps quality claims tied to inspection, testing, acceptance criteria, and service risk.", "Working draft - source to verify"],
+  ["Decision systems / AI governance", "Method and governance category", "Keeps AI claims bounded by uncertainty, escalation, human review, and verification evidence.", "Working draft - source to verify"],
+  ["Additive manufacturing process selection", "Process-selection category", "Helps compare LMD/DED, cladding, SLM/LPBF, machining, replacement, and hybrid routes.", "Working draft - source to verify"]
+];
+
+const sourcesToVerify = [
+  "ISO/ASTM additive manufacturing terminology source",
+  "NIST additive manufacturing / DED public resources",
+  "Review paper on in-situ monitoring in metal additive manufacturing",
+  "Review paper on DED / LMD process monitoring",
+  "Review paper on machine learning in metal additive manufacturing",
+  "Review or handbook source for DED/LMD defect formation and failure modes",
+  "Quality, inspection, and validation source for metal additive manufacturing",
+  "Decision-system or AI-governance source for human review, uncertainty, and verification",
+  "Process-selection source comparing LMD/DED, SLM/LPBF, cladding, repair, and hybrid routes"
 ];
 
 const sections = [
   ["Why this page exists", "The existing 500-record map is broad metadata. This page is a smaller, curated starting map for people who need to understand which source areas matter before reading deeper."],
-  ["How to use this source map", "Use it to choose what to read next, not as a final literature review. Source rows marked as source link to be added should be replaced only when a real source URL is confirmed."],
-  ["What is still missing", "The next improvement is to replace placeholders with verified standards pages, review papers, and stable public source URLs without inventing paper details or DOIs."],
+  ["How to use this source map", "Use it to choose what to read next, not as a final literature review. Working-draft rows should be replaced only when a real source URL is confirmed."],
+  ["What is still missing", "The next improvement is to replace working-draft source categories with verified standards pages, review papers, and stable public source URLs without inventing paper details or DOIs."],
   ["Suggested next search queries", "DED-LB/M terminology, LMD process monitoring review, in-situ monitoring metal additive manufacturing review, machine learning metal additive manufacturing review, laser cladding repair inspection, LMD quality evidence."]
 ];
 
@@ -46,7 +59,7 @@ const jsonLd = {
   "@id": `${SITE.canonicalUrl}/research/core-lmd-ai-sources#article`,
   headline: title,
   description,
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  author: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name },
   datePublished: SITE.lastUpdated,
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/research/core-lmd-ai-sources`,
@@ -100,7 +113,7 @@ const jsonLd = {
     <SectionHeading
       eyebrow="Source map"
       title="Categories to read before making strong LMD-AI claims"
-      description="Rows marked as source link to be added are deliberate placeholders, not fake citations."
+      description="Rows marked as working draft are source categories to verify, not citations."
     />
     <div class="mt-10 overflow-hidden rounded-lg border border-white/10">
       <table class="w-full border-collapse text-left text-sm">
@@ -123,6 +136,19 @@ const jsonLd = {
           ))}
         </tbody>
       </table>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Verification queue"
+      title="Sources to verify before citation"
+      description="These items are intentionally not cited as papers or standards yet. Add URLs only after the exact source is confirmed."
+    />
+    <div class="mt-8 grid gap-3 md:grid-cols-2">
+      {sourcesToVerify.map((item) => (
+        <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{item}</div>
+      ))}
     </div>
   </section>
 

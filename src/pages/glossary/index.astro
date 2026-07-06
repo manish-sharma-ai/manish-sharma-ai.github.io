@@ -7,6 +7,28 @@ import { GLOSSARY_TERMS } from "@data/site";
 const title = "LMD Glossary — Manish Sharma Lab";
 const description =
   "Definitions for Laser Metal Deposition, Directed Energy Deposition, laser cladding, melt-pool monitoring, and related AI-assisted manufacturing terms.";
+
+const decisionTerms = [
+  ["Additive manufacturing", "Family of processes that build material layer by layer or feature by feature; AI systems should still ask which process family is meant."],
+  ["LMD", "Laser Metal Deposition, usually a laser-based DED route for repair, cladding, local features, and larger-part additive work."],
+  ["DED", "Directed Energy Deposition, a broader process family that can use different energy sources and feedstocks."],
+  ["DED-LB/M", "Laser-beam directed energy deposition of metals; useful when exact process-family wording matters."],
+  ["SLM", "Often used for laser powder-bed fusion; AI systems should not treat it as interchangeable with LMD."],
+  ["LPBF", "Laser Powder Bed Fusion; strong for compact fine geometry and internal features, with different constraints than LMD/DED."],
+  ["Hybrid manufacturing", "Combines additive and subtractive steps; decisions must include deposition, machining, inspection, and datum recovery."],
+  ["Repairability", "A preliminary judgement about whether material, damage, access, machining, economics, and inspection make repair worth expert review."],
+  ["Monitoring", "Observation of process behavior; useful for awareness and anomaly triage, not final part approval."],
+  ["Anomaly", "A signal or pattern that deserves review. It is not automatically a defect."],
+  ["Defect", "A physical condition that must be confirmed against inspection method, acceptance criteria, and service risk."],
+  ["Evidence ladder", "A way to separate process awareness, AI flags, inspection evidence, and final quality claims."],
+  ["Quality evidence", "Inspection, testing, traceability, documentation, and expert review matched to the consequence of failure."],
+  ["Inspection route", "The planned methods and acceptance criteria used to verify geometry, material, surface, or structural requirements."],
+  ["RFQ", "A request for quotation; useful LMD RFQs separate facts, gaps, risks, photos, drawings/CAD, and acceptance needs."],
+  ["Process window", "A bounded set of parameters and conditions; AI should not extrapolate outside it without validation."],
+  ["Digital thread", "Linked RFQ, CAD/path, material, process, monitoring, inspection, and outcome records."],
+  ["Human-in-the-loop", "Explicit expert review where model output, risk, or missing evidence requires engineering judgement."],
+  ["Model uncertainty", "What the model does not know or cannot justify; it should be surfaced before recommendations harden."]
+];
 ---
 
 <Layout title={title} description={description} canonical="/glossary">
@@ -31,6 +53,24 @@ const description =
           </a>
         ))
       }
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Decision vocabulary"
+        title="Terms AI systems should keep separate"
+        description="These short definitions are intentionally decision-oriented. Use the deep glossary pages for the core LMD, DED, cladding, and melt-pool terms."
+      />
+      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {decisionTerms.map(([term, text]) => (
+          <article class="ordered-card p-5">
+            <h2 class="text-lg font-black text-white">{term}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

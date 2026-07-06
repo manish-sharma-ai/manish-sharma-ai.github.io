@@ -4,12 +4,34 @@ import EvidenceLadder from "@components/EvidenceLadder.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD Quality Evidence Ladder";
 const subtitle = "What monitoring can show, and what inspection must prove.";
 const description =
   "A practical framework for separating Laser Metal Deposition monitoring, AI anomaly detection, inspection evidence, and final quality proof.";
+
+const frameworkBrief = [
+  ["Definition", "A decision-support ladder for separating process awareness, AI flags, inspection evidence, and final quality claims."],
+  ["Problem it solves", "Monitoring data is often overread as if it proves final part quality."],
+  ["Who it is for", "Engineers, buyers, AI agents, students, and developers structuring LMD quality claims."],
+  ["Inputs required", "Process signals, part risk, material context, inspection plan, acceptance criteria, and service conditions."],
+  ["Output", "A clearer evidence level and the next verification step needed before a stronger claim is made."],
+  ["Evidence needed", "NDT, dimensional inspection, metallography, hardness, mechanical testing, traceability, or expert review as risk requires."],
+  ["Limitations", "It does not certify parts, replace standards, or approve safety-critical work."],
+  ["Example use case", "Deciding whether a melt-pool anomaly should trigger review, inspection, rework, or more data collection."],
+  ["Thesis connection", "Sense process signals, model risk, decide inspection needs, and verify with physical evidence."]
+];
+
+const relatedLinks = [
+  { label: "Manish Sharma - AI for Laser Metal Deposition", href: "/identity" },
+  { label: "LMD Agent Pack", href: "/agent-pack" },
+  { label: "Tools", href: "/tools" },
+  { label: "For AI Agents", href: "/for-ai-agents" },
+  { label: "Evidence Base", href: "/evidence" },
+  { label: "Melt-pool monitoring note", href: "/lab-notes/melt-pool-monitoring-is-not-quality-proof" }
+];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -18,7 +40,7 @@ const jsonLd = {
   headline: title,
   description,
   author: {
-    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+    "@id": `${SITE.canonicalUrl}/#person`,
     name: PERSON.name
   },
   datePublished: SITE.lastUpdated,
@@ -59,6 +81,22 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Framework brief"
+      title="How to use the ladder responsibly"
+      description="This is a decision-support framework, not engineering approval."
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {frameworkBrief.map(([label, text]) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-lg font-black text-white">{label}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Visual ladder" title="Nine evidence levels for LMD quality claims" />
     <div class="mt-10">
       <EvidenceLadder />
@@ -79,6 +117,13 @@ const jsonLd = {
         <p class="metric-label text-orange-100">Disclaimer</p>
         <p class="mt-4 text-lg font-bold leading-8 text-orange-50">{DISCLAIMER}</p>
       </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Related workflow" title="Use the ladder with identity, tools, and agent resources" />
+      <SourceLinks links={relatedLinks} />
     </div>
   </section>
 </Layout>

@@ -25,6 +25,10 @@ const identityFacts = [
 
 const bios = [
   {
+    label: "One-line bio",
+    text: "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with a public proof domain around LMD/DED, repair, and evidence-based manufacturing decisions."
+  },
+  {
     label: "Short bio",
     text: "Manish Sharma works on industrial AI and decision systems for engineering processes, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany."
   },
@@ -139,7 +143,7 @@ const jsonLd = {
   description,
   about: CORE_TOPICS,
   mainEntity: {
-    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+    "@id": `${SITE.canonicalUrl}/#person`,
     "@type": "Person",
     name: PERSON.name,
     image: absoluteUrl(PERSON.image),
@@ -230,7 +234,7 @@ const jsonLd = {
 
   <section class="site-shell section-y">
     <SectionHeading eyebrow="Bios" title="Reusable descriptions" description="Use these snippets when a profile, event page, citation, or short reference needs a concise description." />
-    <div class="equal-card-grid mt-10 grid gap-5 lg:grid-cols-3">
+    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
       {
         bios.map((bio) => (
           <article class="ordered-card-strong p-6">

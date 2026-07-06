@@ -4,7 +4,8 @@ import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
-import { PERSON, SITE } from "@data/site";
+import SourceLinks from "@components/SourceLinks.astro";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD-AI Readiness Score";
 const description = "Is an LMD workflow ready for useful AI-assisted monitoring?";
@@ -30,12 +31,33 @@ const bands = [
   ["81-100", "Candidate for validated closed-loop development"]
 ];
 
+const frameworkBrief = [
+  ["Definition", "A preliminary score for whether an LMD workflow has enough connected data for useful AI-assisted monitoring."],
+  ["Problem it solves", "AI projects often start before process data, inspection outcomes, labels, and feedback loops are linked."],
+  ["Who it is for", "Manufacturing teams, engineers, AI developers, and students evaluating data foundations before model work."],
+  ["Inputs required", "Process images, machine logs, parameter history, traceability, CAD/path linkage, inspection outcomes, labels, repeated jobs, and operator feedback."],
+  ["Output", "A readiness band and the weakest data foundations to improve next."],
+  ["Evidence needed", "Linked job IDs, source data, inspection records, label definitions, model validation, and review rules."],
+  ["Limitations", "A high score does not qualify a model, approve a process, or prove part quality."],
+  ["Example use case", "Checking whether a monitoring workflow is ready for anomaly triage or only basic data capture."],
+  ["Thesis connection", "Sense connected data, model only after traceability, decide support scope, and verify against inspection outcomes."]
+];
+
+const relatedLinks = [
+  { label: "Manish Sharma - AI for Laser Metal Deposition", href: "/identity" },
+  { label: "LMD Agent Pack", href: "/agent-pack" },
+  { label: "Tools", href: "/tools" },
+  { label: "For AI Agents", href: "/for-ai-agents" },
+  { label: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model" },
+  { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources" }
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   headline: title,
   description,
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  author: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name },
   datePublished: SITE.lastUpdated,
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/frameworks/lmd-ai-readiness-score`
@@ -68,6 +90,22 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Framework brief"
+      title="Use readiness as a data-foundation check"
+      description={DISCLAIMER}
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {frameworkBrief.map(([label, text]) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-lg font-black text-white">{label}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Interactive" title="LMD-AI Readiness Score checker" description="Select the data foundations already present in the workflow. The output shows the practical stage of AI readiness." />
     <div class="mt-10">
       <AIReadinessCalculator client:load />
@@ -80,6 +118,13 @@ const jsonLd = {
       <div class="mt-8 grid gap-3 md:grid-cols-5">
         {bands.map(([score, label]) => <div class="ordered-card p-5"><p class="font-mono text-xl font-black text-cyan-100">{score}</p><p class="mt-3 text-sm font-bold leading-6 text-slate-100">{label}</p></div>)}
       </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Related workflow" title="Use readiness with maturity and agent resources" />
+      <SourceLinks links={relatedLinks} />
     </div>
   </section>
 </Layout>

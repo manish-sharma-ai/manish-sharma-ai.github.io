@@ -1,23 +1,25 @@
 import { PROFILE_URLS, JSON_LD_SAME_AS } from "./profiles";
+import { PERSON_ID, SITE_CONFIG, WEBSITE_ID } from "./siteConfig";
 
 export const SITE = {
-  name: "Manish Sharma Lab",
+  name: SITE_CONFIG.site.name,
   canonicalUrl: PROFILE_URLS.site,
   repoUrl: PROFILE_URLS.repository,
   githubProfile: PROFILE_URLS.github,
+  personId: PERSON_ID,
+  websiteId: WEBSITE_ID,
   publicCategory: "Industrial AI & Decision Systems",
   primaryPromise: "Industrial AI for decisions you can verify.",
   method: ["Sense", "Model", "Decide", "Verify"],
   establishedProof: "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse",
-  description:
-    "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse.",
+  description: SITE_CONFIG.site.description,
   shortDescription:
     "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in AI for LMD/DED at Exafuse.",
   lastUpdated: "2026-06-24"
 };
 
 export const PERSON = {
-  name: "Manish Sharma",
+  name: SITE_CONFIG.person.name,
   headline: SITE.publicCategory,
   primaryPositioning: "Manish Sharma - Industrial AI & Decision Systems",
   shortIdentity: "Industrial AI & Decision Systems, with established public proof in AI for LMD/DED at Exafuse.",
@@ -27,9 +29,8 @@ export const PERSON = {
   imageSrcSet:
     "/images/manish-sharma-profile-420.webp 420w, /images/manish-sharma-profile-640.webp 640w, /images/manish-sharma-profile-700.webp 700w, /images/manish-sharma-profile-1100.webp 1100w, /images/manish-sharma-profile.webp 1250w",
   imageSizes: "(min-width: 1024px) 48vw, calc(100vw - 2rem)",
-  longIdentity:
-    "Manish Sharma works on industrial AI and decision systems for engineering processes, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.",
-  location: "Germany",
+  longIdentity: SITE_CONFIG.person.longBio,
+  location: SITE_CONFIG.person.location,
   company: "Exafuse"
 };
 

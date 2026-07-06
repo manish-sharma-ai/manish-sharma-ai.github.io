@@ -5,6 +5,7 @@ import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { METHOD_LOOP, PERSON, SITE } from "@data/site";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "Industrial AI for Decisions You Can Verify";
 const subtitle = "Sense -> Model -> Decide -> Verify";
@@ -40,13 +41,52 @@ const links = [
   { label: "About Manish Sharma", href: "/about" }
 ];
 
+const stageLinks = [
+  {
+    stage: "Sense",
+    text: "Process signals, images, measurements, logs, human observations, and RFQ inputs.",
+    links: [
+      { label: "LMD / DED domain hub", href: "/domains/lmd-ded" },
+      { label: "Melt-pool monitoring glossary", href: "/glossary/melt-pool-monitoring" },
+      { label: "Exafuse technology", href: EXAFUSE_LINKS.technology }
+    ]
+  },
+  {
+    stage: "Model",
+    text: "AI, statistical, process, and rule-based models with visible assumptions and uncertainty.",
+    links: [
+      { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+      { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources" }
+    ]
+  },
+  {
+    stage: "Decide",
+    text: "Repairability, process route, inspection need, risk level, and next-step recommendations.",
+    links: [
+      { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+      { label: "LMD RFQ Toolkit", href: "/agent-pack" },
+      { label: "Tools", href: "/tools" }
+    ]
+  },
+  {
+    stage: "Verify",
+    text: "Quality evidence, testing, inspection, documentation, release criteria, and expert review.",
+    links: [
+      { label: "Evidence Base", href: "/evidence" },
+      { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+      { label: "Exafuse quality", href: EXAFUSE_LINKS.quality }
+    ]
+  }
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
   "@id": `${SITE.canonicalUrl}/thesis#article`,
   headline: title,
   description,
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  author: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name },
   datePublished: SITE.lastUpdated,
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/thesis`,
@@ -88,6 +128,34 @@ const jsonLd = {
           </article>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Stage links"
+      title="Connect each stage to a source, framework, or tool"
+      description="The thesis is useful only when it routes readers to concrete LMD/DED resources and evidence boundaries."
+    />
+    <div class="mt-10 grid gap-5 md:grid-cols-2">
+      {stageLinks.map((stage) => (
+        <article class="ordered-card-strong p-6">
+          <h2 class="text-2xl font-black text-white">{stage.stage}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{stage.text}</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            {stage.links.map((link) => (
+              <a
+                href={link.href}
+                class="rounded-md border border-white/10 bg-white/[0.035] px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-cyan-100 hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-white"
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 

@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
-const EXAFUSE_URL = "https://www.exafuse.de/";
+const EXAFUSE_URL = EXAFUSE_LINKS.contact;
 
 const partTerms = ["shaft", "die", "gear", "valve", "hammer", "mold", "tool", "bracket", "node", "component"];
 const materialTerms = ["steel", "stainless", "aluminium", "aluminum", "inconel", "nickel", "copper", "titanium", "unknown"];
@@ -16,6 +17,8 @@ export default function RfqStructureConverter() {
     const part = partTerms.find((term) => lower.includes(term));
     const material = materialTerms.find((term) => lower.includes(term));
     const damage = damageTerms.filter((term) => lower.includes(term));
+    const hasExactMaterialGrade =
+      /\b(316l|304l|304|17-4|ti-6al-4v|inconel\s?625|inconel\s?718|42crmo4|1\.\d{4}|aisi\s?\d{3,4}|en\s?\d{3,5})\b/.test(lower);
     const hasPhotos = lower.includes("photo") && !lower.includes("no photo") && !lower.includes("photos missing");
     const hasCad = (lower.includes("cad") || lower.includes("3d model")) && !lower.includes("cad is missing") && !lower.includes("no cad") && !lower.includes("cad missing");
     const hasDrawing = lower.includes("drawing") && !lower.includes("no drawing") && !lower.includes("drawing missing");
@@ -24,9 +27,9 @@ export default function RfqStructureConverter() {
     const hasOperating = lower.includes("operating") || lower.includes("temperature") || lower.includes("load") || lower.includes("pressure") || lower.includes("wear environment");
     const hasInspection = lower.includes("inspection") || lower.includes("ndt") || lower.includes("ct") || lower.includes("hardness");
     const hasDeadline = lower.includes("deadline") || lower.includes("timeline") || lower.includes("urgent") || lower.includes("downtime");
-    const materialLooksGeneric = !material || material === "unknown" || lower.includes("unknown material");
+    const materialLooksGeneric = !material || material === "unknown" || lower.includes("unknown material") || !hasExactMaterialGrade;
     const riskFlags = [
-      materialLooksGeneric && "Exact material grade is not confirmed.",
+      materialLooksGeneric && "Exact material grade is not confirmed, even if a broad material family is mentioned.",
       damage.length === 0 && "Damage mechanism is not clearly described.",
       !hasCad && !hasDrawing && "No CAD or drawing is available yet.",
       (lower.includes("crack") || lower.includes("cracked")) && "Crack repair needs stronger material, removal, inspection, and expert review.",

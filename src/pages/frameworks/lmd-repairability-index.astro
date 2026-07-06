@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import RepairabilityCalculator from "@components/RepairabilityCalculator";
 import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD Repairability Index";
@@ -15,7 +16,7 @@ const jsonLd = {
   "@type": "TechArticle",
   headline: title,
   description,
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  author: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name },
   datePublished: SITE.lastUpdated,
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/frameworks/lmd-repairability-index`
@@ -52,6 +53,27 @@ const missing = [
   "hardness/coating requirement",
   "inspection requirement"
 ];
+
+const frameworkBrief = [
+  ["Definition", "A preliminary scoring model for deciding whether an LMD repair request is worth expert feasibility review."],
+  ["Problem it solves", "Repair requests often arrive before the material, damage, access, tolerance, and inspection facts are clear."],
+  ["Who it is for", "Engineers, buyers, AI agents, students, and developers preparing LMD repair RFQs."],
+  ["Inputs required", "Material grade, damage type and depth, access, geometry, service conditions, tolerance, inspection requirement, downtime, and replacement context."],
+  ["Output", "A repairability band, missing-information list, risk flags, and a suggested next step."],
+  ["Evidence needed", "Photos, drawing or CAD, material evidence, damage documentation, machining plan, inspection route, and expert review."],
+  ["Limitations", "It does not approve repair, validate material compatibility, or guarantee final quality."],
+  ["Example use case", "Screening whether a worn shaft, hammer, die, screw, or valve component has enough information for a first LMD review."],
+  ["Thesis connection", "Sense RFQ facts, model repairability, decide review priority, and verify through inspection evidence."]
+];
+
+const relatedLinks = [
+  { label: "Manish Sharma - AI for Laser Metal Deposition", href: "/identity" },
+  { label: "LMD Agent Pack", href: "/agent-pack" },
+  { label: "Tools", href: "/tools" },
+  { label: "For AI Agents", href: "/for-ai-agents" },
+  { label: "What AI needs before LMD repair", href: "/lab-notes/what-ai-needs-before-lmd-repair" },
+  { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" }
+];
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-repairability-index" jsonLd={jsonLd}>
@@ -78,6 +100,22 @@ const missing = [
   </section>
 
   <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Framework brief"
+      title="What the index does and does not decide"
+      description={DISCLAIMER}
+    />
+    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {frameworkBrief.map(([label, text]) => (
+        <article class="ordered-card p-5">
+          <h2 class="text-lg font-black text-white">{label}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
     <SectionHeading eyebrow="Interactive" title="LMD Repairability Index calculator" description="Score each category from weak or unknown to strong. The output is a preliminary band, not a final feasibility decision." />
     <div class="mt-10">
       <RepairabilityCalculator client:load />
@@ -98,6 +136,13 @@ const missing = [
           {missing.map((item) => <div class="ordered-card p-4 text-sm font-bold text-slate-100">{item}</div>)}
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <SectionHeading eyebrow="Related workflow" title="Use the index with agent resources and tools" />
+      <SourceLinks links={relatedLinks} />
     </div>
   </section>
 </Layout>
