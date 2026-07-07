@@ -55,6 +55,19 @@ export default function RepairabilityQuickCheck({
       !selected.includes("Inspection requirement known?") && "Inspection path is not defined.",
       !selected.includes("Post-machining possible?") && "Final geometry recovery may be difficult."
     ].filter(Boolean) as string[];
+    const evidenceNeeded = [
+      selected.includes("Material known?") ? "confirmed material grade" : "material grade and compatibility check",
+      selected.includes("Damage local?") ? "damage map and depth estimate" : "damage extent and depth evidence",
+      selected.includes("Post-machining possible?") ? "post-machining allowance and tolerance plan" : "finishing route and tolerance recovery plan",
+      selected.includes("Inspection requirement known?") ? "defined inspection requirement" : "inspection requirement and acceptance criteria"
+    ];
+    const reviewReadiness = safetyCritical
+      ? "Requires formal inspection/qualification planning"
+      : score < 30
+        ? "Not enough information"
+        : score < 55
+          ? "Ready for preliminary discussion"
+          : "Ready for expert review";
 
     return {
       score,
@@ -62,6 +75,8 @@ export default function RepairabilityQuickCheck({
       why,
       missing: safetyCritical ? [...missing, "expert approval path"] : missing,
       riskFlags: riskFlags.length > 0 ? riskFlags : ["No major risk flag from the selected inputs; missing RFQ data may still change the result."],
+      evidenceNeeded,
+      reviewReadiness,
       suggestedNextStep:
         "Collect the missing evidence, then send a structured RFQ with photos, drawings or CAD, material grade, operating conditions, tolerance, and inspection expectations."
     };
@@ -95,6 +110,7 @@ export default function RepairabilityQuickCheck({
         <div className="mt-2 flex flex-wrap gap-3">
           <button type="button" onClick={() => { setSelected(exampleSelected); setSafetyCritical(false); }} className="btn btn-secondary">Use example</button>
           <button type="button" onClick={() => { setSelected(["Damage local?", "Access possible?", "Downtime important?"]); setSafetyCritical(false); }} className="btn btn-secondary">Reset</button>
+          <button type="button" onClick={() => { setSelected([]); setSafetyCritical(false); }} className="btn btn-secondary">Clear all inputs</button>
         </div>
       </div>
       <aside className="ordered-card-strong h-fit p-6 md:p-7">
@@ -103,11 +119,13 @@ export default function RepairabilityQuickCheck({
           Confidence is not approval. This score screens review readiness; it does not approve repair.
         </p>
         <p className="mt-4 font-mono text-5xl font-black text-white">{result.score}</p>
-        <ResultSection label="Recommendation" value={result.recommendation} large />
-        <ResultList label="Why-signals" items={result.why} />
+        <ResultSection label="Decision signal" value={result.recommendation} large />
+        <ResultSection label="Review readiness" value={result.reviewReadiness} />
+        <ResultList label="Why" items={result.why} />
         <ResultList label="Missing information" items={result.missing.length ? result.missing : ["No major missing field from selected checklist."]} />
         <ResultList label="Risk flags" items={result.riskFlags} />
-        <ResultSection label="Suggested next step" value={result.suggestedNextStep} />
+        <ResultList label="Evidence needed" items={result.evidenceNeeded} />
+        <ResultSection label="Next action" value={result.suggestedNextStep} />
         <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`} />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
         <ActionRow
@@ -175,16 +193,20 @@ function formatResult(result: {
   why: string[];
   missing: string[];
   riskFlags: string[];
+  evidenceNeeded: string[];
+  reviewReadiness: string;
   suggestedNextStep: string;
 }, exafuseLabel: string) {
   return [
     `## LMD Repairability Quick Check`,
     ``,
-    `Recommendation: ${result.recommendation} (${result.score}/100)`,
-    `Why-signals: ${result.why.join(", ")}`,
+    `Decision signal: ${result.recommendation} (${result.score}/100)`,
+    `Review readiness: ${result.reviewReadiness}`,
+    `Why: ${result.why.join(", ")}`,
     `Missing information: ${result.missing.join(", ") || "none flagged by checklist"}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Suggested next step: ${result.suggestedNextStep}`,
+    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
+    `Next action: ${result.suggestedNextStep}`,
     `Exafuse route: ${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`,
     `Disclaimer: ${DISCLAIMER}`,
     `Confidence is not approval.`
@@ -196,14 +218,18 @@ function formatRfqSummary(result: {
   recommendation: string;
   missing: string[];
   riskFlags: string[];
+  evidenceNeeded: string[];
+  reviewReadiness: string;
   suggestedNextStep: string;
 }, exafuseLabel: string, exafuseUrl: string) {
   return [
     `## LMD repairability RFQ summary`,
     ``,
-    `Recommendation: ${result.recommendation} (${result.score}/100)`,
+    `Decision signal: ${result.recommendation} (${result.score}/100)`,
+    `Review readiness: ${result.reviewReadiness}`,
     `Missing RFQ fields: ${result.missing.join(", ") || "none flagged by checklist"}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
+    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
     result.suggestedNextStep,
     `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
     DISCLAIMER

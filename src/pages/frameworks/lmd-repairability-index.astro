@@ -55,6 +55,15 @@ const missing = [
   "inspection requirement"
 ];
 
+const whatChangesDecision = [
+  "Unknown material",
+  "Cracks beyond visible damage",
+  "Tight tolerance",
+  "No post-machining route",
+  "Safety-critical service",
+  "No inspection plan"
+];
+
 const frameworkBrief = [
   ["Definition", "A preliminary scoring model for deciding whether an LMD repair request is worth expert feasibility review."],
   ["Problem it solves", "Repair requests often arrive before the material, damage, access, tolerance, and inspection facts are clear."],
@@ -123,6 +132,21 @@ const relatedLinks = [
     <SectionHeading eyebrow="Interactive" title="LMD Repairability Index calculator" description="Score each category from weak or unknown to strong. The output is a preliminary band, not a final feasibility decision." />
     <div class="mt-10">
       <RepairabilityCalculator client:load />
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+      <SectionHeading
+        eyebrow="What changes the decision"
+        title="Repairability can change quickly when risk facts appear"
+        description="Use these as red-team checks before calling an LMD repair candidate promising."
+      />
+      <div class="grid gap-3 sm:grid-cols-2">
+        {whatChangesDecision.map((item) => (
+          <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{item}</div>
+        ))}
+      </div>
     </div>
   </section>
 

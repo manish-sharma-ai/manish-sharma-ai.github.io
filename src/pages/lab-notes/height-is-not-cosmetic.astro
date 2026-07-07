@@ -1,0 +1,59 @@
+---
+import Badge from "@components/Badge.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import { resolveExafuseLink } from "../../config/externalLinks";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "Height Is Not Cosmetic";
+const description =
+  "Why bead height, build-up height, and machining allowance affect LMD/DED repair decisions, evidence needs, and RFQ quality.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
+
+const sections = [
+  ["One-line thesis", "Height affects geometry, heat input, machining allowance, inspection access, and final tolerance. It is not a cosmetic variable."],
+  ["Why it matters in LMD/DED", "In repair and cladding, deposited height influences how much material must be removed, whether final dimensions can be recovered, and how inspection should be planned."],
+  ["Common mistake", "Treating a worn area as a surface problem without asking how much build-up and finishing allowance are needed."],
+  ["Better decision question", "What final geometry, tolerance, and inspection route must the deposited height support?"],
+  ["What evidence is needed", "Damage depth, target height, machining allowance, drawing/CAD, tolerance requirement, and post-machining inspection plan."],
+  ["Exafuse route if commercial review is needed", `${exafuseRfqLink.label}: use Exafuse for company-owned technical and commercial review.`],
+  ["Boundary disclaimer", DISCLAIMER]
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/lab-notes/height-is-not-cosmetic#article`,
+  url: `${SITE.canonicalUrl}/lab-notes/height-is-not-cosmetic`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/lab-notes/height-is-not-cosmetic" jsonLd={jsonLd}>
+  <article class="site-shell section-y">
+    <div class="max-w-3xl">
+      <Badge>Lab note</Badge>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300">{description}</p>
+    </div>
+    <div class="prose-lab mt-10">
+      {sections.map(([heading, text]) => (
+        <>
+          <h2>{heading}</h2>
+          <p>{text}</p>
+        </>
+      ))}
+    </div>
+    <LabNoteFooter
+      links={[
+        { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+        { label: "LMD Decision Workbench", href: "/tools#repairability-module" },
+        { label: "Decision Brief Template", href: "/brief-template" },
+        { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
+        { label: exafuseRfqLink.label, href: exafuseRfqLink.href }
+      ]}
+    />
+  </article>
+</Layout>

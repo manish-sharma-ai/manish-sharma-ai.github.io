@@ -1,0 +1,110 @@
+---
+import Badge from "@components/Badge.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import { PUBLIC_CLAIMS, getClaimHref, getClaimSourceStatus } from "@data/publicClaims";
+import { PERSON, SITE } from "@data/site";
+
+const title = "Public Claim Ledger";
+const description =
+  "Human-readable ledger for public claims, source status, limitations, allowed pages, and review dates used by Manish Sharma Lab.";
+
+const groups = [
+  {
+    label: "Exafuse public proof context",
+    claims: PUBLIC_CLAIMS.filter((claim) => claim.sourceType === "exafuse-public")
+  },
+  {
+    label: "Personal/public profile facts",
+    claims: PUBLIC_CLAIMS.filter((claim) => ["personal-public", "public-profile"].includes(claim.sourceType))
+  },
+  {
+    label: "Research/publication facts",
+    claims: PUBLIC_CLAIMS.filter((claim) => claim.sourceType === "published-paper")
+  },
+  {
+    label: "Literature/reference map facts",
+    claims: PUBLIC_CLAIMS.filter((claim) => claim.id.includes("literature"))
+  }
+].filter((group) => group.claims.length > 0);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE.canonicalUrl}/claims#page`,
+  url: `${SITE.canonicalUrl}/claims`,
+  name: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/claims" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Claim ledger</Badge>
+        <Badge tone="steel">Source status</Badge>
+        <Badge tone="laser">Limitations visible</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Public claims should be auditable.</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        This page renders the public claim registry as a human-readable ledger. Metrics and profile facts are not free-floating marketing copy; they carry source status, allowed pages, review dates, and limitations.
+      </p>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-10">
+      {groups.map((group) => (
+        <section>
+          <SectionHeading eyebrow="Claim group" title={group.label} />
+          <div class="mt-8 grid gap-5 lg:grid-cols-2">
+            {group.claims.map((claim) => {
+              const displayValue = claim.confidence === "do-not-render" ? "Held for source review" : `${claim.value} ${claim.unit}`.trim();
+              const fields = [
+                ["Value", displayValue, false],
+                ["Claim label", claim.fullText, false],
+                ["Source status", getClaimSourceStatus(claim), false],
+                ["Source type", claim.sourceType, false],
+                ["Last reviewed", claim.lastReviewed, false],
+                ["Allowed pages", claim.allowedPages.length ? claim.allowedPages.join(", ") : "Not allowed on public pages until reviewed.", false],
+                ["Limitation", claim.limitation, true],
+                ["Related page/tool/framework", claim.sourceUrlKey ? "Exafuse public context via current link mode" : getClaimHref(claim), false]
+              ];
+              return (
+                <article class="ordered-card-strong p-5" data-claim-id={claim.id}>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="chip">{claim.sourceType}</span>
+                    <span class="chip chip--steel">{claim.confidence}</span>
+                  </div>
+                  <h2 class="mt-4 text-2xl font-black text-white">{claim.shortLabel}</h2>
+                  <dl class="mt-5 grid gap-3 text-sm leading-6">
+                    {fields.map(([label, value, warning]) => (
+                      <div>
+                        <dt class="font-black text-white">{label}</dt>
+                        <dd class:list={["mt-1", warning ? "text-orange-100" : "text-slate-300"]}>{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <a href={getClaimHref(claim)} class="btn btn-secondary mt-5" target={getClaimHref(claim).startsWith("http") ? "_blank" : undefined} rel={getClaimHref(claim).startsWith("http") ? "noreferrer" : undefined}>
+                    Open source/context
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="ordered-card p-6">
+      <p class="metric-label">Boundary</p>
+      <p class="mt-3 text-base font-semibold leading-7 text-slate-200">
+        Project targets are targets, not achieved production results. Exafuse case claims remain company-owned public context. This ledger does not disclose confidential employer, customer, or private project data.
+      </p>
+    </div>
+  </section>
+</Layout>

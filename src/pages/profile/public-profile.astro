@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { GITHUB_IDENTITY, PROFILE_LINKS } from "@data/profiles";
+import { ACTIVE_PROFILE_LINKS, GITHUB_IDENTITY } from "@data/profiles";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Public Profile";
@@ -93,10 +93,10 @@ const jsonLd = {
     <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Profiles"
-        title="Active and planned profile links"
-        description="Planned profiles are listed for clarity, but are not active links until a real URL exists."
+        title="Verified public profile links"
+        description="Only active, verified public URLs are shown here. Planned research profiles are tracked in private/docs-facing roadmap notes until real URLs exist."
       />
-      <SourceLinks links={PROFILE_LINKS} />
+      <SourceLinks links={ACTIVE_PROFILE_LINKS} />
     </div>
   </section>
 

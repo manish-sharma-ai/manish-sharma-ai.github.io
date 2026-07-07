@@ -1,0 +1,59 @@
+---
+import Badge from "@components/Badge.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import { resolveExafuseLink } from "../../config/externalLinks";
+import { DISCLAIMER, PERSON, SITE } from "@data/site";
+
+const title = "Traceability Is a Product Feature";
+const description =
+  "Why LMD/DED decision systems need traceability between inputs, process signals, review decisions, and inspection evidence.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
+
+const sections = [
+  ["One-line thesis", "Traceability is not admin overhead; it is part of the product value of a decision system."],
+  ["Why it matters in LMD/DED", "A useful process-monitoring or RFQ system should connect input assumptions, process signals, expert review, inspection evidence, and the final next action."],
+  ["Common mistake", "Keeping images, logs, RFQ notes, operator comments, and inspection results in separate islands."],
+  ["Better decision question", "Can a reviewer see why this signal, score, or recommendation was produced and what evidence supports it?"],
+  ["What evidence is needed", "Linked job context, input facts, process records, operator notes, inspection results, review decisions, and revision history."],
+  ["Exafuse route if commercial review is needed", `${exafuseRfqLink.label}: use Exafuse for company-owned technical and commercial review.`],
+  ["Boundary disclaimer", DISCLAIMER]
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/lab-notes/traceability-is-a-product-feature#article`,
+  url: `${SITE.canonicalUrl}/lab-notes/traceability-is-a-product-feature`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/lab-notes/traceability-is-a-product-feature" jsonLd={jsonLd}>
+  <article class="site-shell section-y">
+    <div class="max-w-3xl">
+      <Badge>Lab note</Badge>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300">{description}</p>
+    </div>
+    <div class="prose-lab mt-10">
+      {sections.map(([heading, text]) => (
+        <>
+          <h2>{heading}</h2>
+          <p>{text}</p>
+        </>
+      ))}
+    </div>
+    <LabNoteFooter
+      links={[
+        { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+        { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+        { label: "Decision Playbooks", href: "/playbooks" },
+        { label: "For AI Agents", href: "/for-ai-agents" },
+        { label: exafuseRfqLink.label, href: exafuseRfqLink.href }
+      ]}
+    />
+  </article>
+</Layout>

@@ -3,6 +3,14 @@
   "source_base": "https://exafuse.de",
   "link_mode": "production-safe",
   "purpose": "Public Exafuse proof-map signals used to strengthen Manish Sharma Lab without duplicating company service pages or treating process-monitoring content as certification.",
+  "manish_sharma_lab_routes": {
+    "decision_cockpit": "https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit",
+    "playbooks": "https://manish-sharma-ai.github.io/playbooks",
+    "claim_ledger": "https://manish-sharma-ai.github.io/claims",
+    "no_hype_boundary": "https://manish-sharma-ai.github.io/no-hype",
+    "brief_template": "https://manish-sharma-ai.github.io/brief-template",
+    "demo": "https://manish-sharma-ai.github.io/demo"
+  },
   "canonical_links": {
     "homepage": "https://exafuse.de/",
     "contact": "https://exafuse.de/kontakt/",

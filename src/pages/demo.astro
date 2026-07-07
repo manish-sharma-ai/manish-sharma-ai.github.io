@@ -1,0 +1,67 @@
+---
+import Badge from "@components/Badge.astro";
+import CTAButton from "@components/CTAButton.astro";
+import Layout from "@layouts/Layout.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
+import { PERSON, SITE } from "@data/site";
+
+const title = "90-second LMD decision demo";
+const description =
+  "Public-safe dummy journey showing how a vague LMD repair request becomes structured facts, missing information, risk flags, evidence needs, and a review route.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
+
+const steps = [
+  ["Initial vague request", "Worn steel shaft near bearing seat. Photos available. CAD missing. Tight tolerance. Operating conditions unknown."],
+  ["Structured facts", "Possible repair request, steel material family, local wear near a bearing seat, photos available, tight tolerance mentioned."],
+  ["Missing information", "Exact material grade, CAD/drawing, damage depth, dimensions, operating conditions, inspection requirement, deadline."],
+  ["Risk flags", "Tight tolerance needs post-machining and dimensional inspection. Unknown operating conditions can change material and evidence needs."],
+  ["Evidence needed", "Confirmed material grade, damage map, machining allowance, tolerance target, inspection requirement, and expert review."],
+  ["Why confidence is not approval", "The route is only a preliminary signal. It does not approve repair, material release, or service safety."],
+  ["Exafuse review route", "Use Exafuse for commercial and technical review after the request is structured."]
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/demo#article`,
+  url: `${SITE.canonicalUrl}/demo`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/demo" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>90-second demo</Badge>
+        <Badge tone="steel">Dummy data</Badge>
+        <Badge tone="laser">Decision support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Watch a vague LMD request become a decision brief.</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        This journey uses dummy public-safe data. It shows how the site exposes known facts, missing information, risk flags, evidence needs, and where Exafuse review begins.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <CTAButton href="/tools#lmd-decision-cockpit" variant="primary">Run this example in the workbench</CTAButton>
+        <CTAButton href="/brief-template" variant="secondary">Open brief template</CTAButton>
+        <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-4">
+      {steps.map(([heading, text], index) => (
+        <article class="ordered-card-strong grid gap-4 p-5 md:grid-cols-[5rem_1fr] md:items-start">
+          <div class="font-mono text-3xl font-black text-cyan-100">{String(index + 1).padStart(2, "0")}</div>
+          <div>
+            <h2 class="text-2xl font-black text-white">{heading}</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

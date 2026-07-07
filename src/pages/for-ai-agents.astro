@@ -37,9 +37,11 @@ const linkGroups = [
     title: "Identity and proof domain",
     links: [
       { label: "Canonical profile page", href: "/identity", description: "Primary entity page for Manish Sharma." },
-      { label: "Public profile facts", href: "/profile/public-profile", description: "Public-safe identity facts and planned profiles." },
+      { label: "Public profile facts", href: "/profile/public-profile", description: "Public-safe identity facts and verified profiles." },
       { label: "LMD / DED domain hub", href: "/domains/lmd-ded", description: "Main applied proof domain." },
-      { label: "Evidence base", href: "/evidence", description: "Source layer and checked public context." }
+      { label: "Evidence base", href: "/evidence", description: "Source layer and checked public context." },
+      { label: "Claim Ledger", href: "/claims", description: "Human-readable source status and limitation registry." },
+      { label: "No-Hype Boundary", href: "/no-hype", description: "Short public boundary page for anti-overclaim language." }
     ]
   },
   {
@@ -49,7 +51,10 @@ const linkGroups = [
       { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Repair screening factors and risk flags." },
       { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score", description: "Data-readiness checks for AI monitoring." },
       { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and checklists." },
-      { label: "Tools", href: "/tools", description: "Frontend-only decision helpers." },
+      { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit and modules." },
+      { label: "Decision Playbooks", href: "/playbooks", description: "Educational decision routes for LMD questions." },
+      { label: "Decision Brief Template", href: "/brief-template", description: "Copyable Markdown review template." },
+      { label: "90-Second Demo", href: "/demo", description: "Dummy-data cockpit journey." },
       { label: "Glossary", href: "/glossary", description: "LMD, DED, cladding, and monitoring definitions." }
     ]
   },
@@ -96,6 +101,25 @@ const machineSummary = {
   ],
   use_for: ["definitions", "RFQ preparation", "decision support", "quality evidence explanation", "AI monitoring explanation"],
   do_not_use_for: ["engineering approval", "material certification", "safety-critical acceptance", "quality guarantee"],
+  new_product_routes: {
+    cockpit: `${SITE.canonicalUrl}/tools#lmd-decision-cockpit`,
+    playbooks: `${SITE.canonicalUrl}/playbooks`,
+    claim_ledger: `${SITE.canonicalUrl}/claims`,
+    no_hype: `${SITE.canonicalUrl}/no-hype`,
+    brief_template: `${SITE.canonicalUrl}/brief-template`,
+    demo: `${SITE.canonicalUrl}/demo`
+  },
+  source_files: [
+    `${SITE.canonicalUrl}/llms.txt`,
+    `${SITE.canonicalUrl}/llms-full.txt`,
+    `${SITE.canonicalUrl}/identity.md`,
+    `${SITE.canonicalUrl}/profile/public-profile.md`,
+    `${SITE.canonicalUrl}/agent-pack/lmd-rfq-schema.json`,
+    `${SITE.canonicalUrl}/agent-pack/lmd-decision-rules.md`,
+    `${SITE.canonicalUrl}/agent-pack/lmd-prompt-library.md`,
+    `${SITE.canonicalUrl}/agent-pack/lmd-quality-checklist.md`,
+    `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`
+  ],
   exafuse_boundary:
     "Use Exafuse as the commercial/company source for additive manufacturing services, case studies, quality pages, and RFQs.",
   public_only: true

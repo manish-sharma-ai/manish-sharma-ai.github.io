@@ -2,17 +2,17 @@
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { PROFILE_LINKS } from "@data/profiles";
+import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 
 const title = "Links - Manish Sharma Lab";
-const description = "Public links for Manish Sharma, Exafuse, GitHub, LinkedIn, and planned research profiles.";
+const description = "Verified public links for Manish Sharma, Exafuse, GitHub, and LinkedIn.";
 ---
 
 <Layout title={title} description={description} canonical="/links">
   <section class="site-shell py-16 md:py-20">
-    <SectionHeading eyebrow="Links" title="Public profiles and references" description="Active public links are clickable. Planned research profiles are shown without broken placeholder URLs." />
+    <SectionHeading eyebrow="Links" title="Verified public profiles and references" description="Only real, verified public URLs are shown on public-facing link pages." />
     <div class="mt-10">
-      <SourceLinks links={PROFILE_LINKS} />
+      <SourceLinks links={ACTIVE_PROFILE_LINKS} />
     </div>
   </section>
 </Layout>

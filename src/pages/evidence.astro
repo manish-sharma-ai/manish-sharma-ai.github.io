@@ -2,6 +2,7 @@
 import Badge from "@components/Badge.astro";
 import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
 import EvidenceRail from "@components/EvidenceRail.astro";
+import ExafuseMigrationNotice from "@components/ExafuseMigrationNotice.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
@@ -203,11 +204,16 @@ const pageJsonLd = {
         title="Public Exafuse cases that anchor the claims"
         description="These are public company case studies, not private project details. They make the site more concrete by showing the kind of industrial LMD problems behind the frameworks."
       />
-      <div class="grid gap-4 md:grid-cols-2">
+      <div>
+        <ExafuseMigrationNotice />
+        <div class="mt-6 grid gap-4 md:grid-cols-2">
         {EXAFUSE_PROOF_CASES.map((item) => (
           <article class="ordered-card-strong p-5">
             <p class="metric-label">{item.code}</p>
             <h2 class="mt-3 text-xl font-black text-white">{item.title}</h2>
+            <p class="mt-3 inline-block rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-black uppercase text-slate-300">
+              {item.sourceStatus === "production-link-after-migration" ? "Migration-gated link" : "Live production link"}
+            </p>
             {item.metricClaims?.length > 0 && (
               <div class="mt-4 flex flex-wrap gap-2">
                 {item.metricClaims.map((claim) => (
@@ -226,6 +232,7 @@ const pageJsonLd = {
             </a>
           </article>
         ))}
+        </div>
       </div>
     </div>
     <a href="/industrial-proof" class="btn btn-primary mt-8">Open Industrial Proof Map</a>

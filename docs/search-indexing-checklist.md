@@ -67,6 +67,11 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model`
 - `https://manish-sharma-ai.github.io/agent-pack`
 - `https://manish-sharma-ai.github.io/tools`
+- `https://manish-sharma-ai.github.io/playbooks`
+- `https://manish-sharma-ai.github.io/claims`
+- `https://manish-sharma-ai.github.io/no-hype`
+- `https://manish-sharma-ai.github.io/brief-template`
+- `https://manish-sharma-ai.github.io/demo`
 - `https://manish-sharma-ai.github.io/for-ai-agents`
 
 ## Bing Webmaster Tools
@@ -88,6 +93,11 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/about.md`
 - `https://manish-sharma-ai.github.io/thesis.md`
 - `https://manish-sharma-ai.github.io/profile/public-profile`
+- `https://manish-sharma-ai.github.io/playbooks`
+- `https://manish-sharma-ai.github.io/claims`
+- `https://manish-sharma-ai.github.io/no-hype`
+- `https://manish-sharma-ai.github.io/brief-template`
+- `https://manish-sharma-ai.github.io/demo`
 - `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg`

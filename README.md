@@ -101,6 +101,11 @@ Core routes:
 - `/frameworks`
 - `/agent-pack`
 - `/tools`
+- `/playbooks`
+- `/claims`
+- `/no-hype`
+- `/brief-template`
+- `/demo`
 - `/lab-notes`
 - `/glossary`
 - `/press-kit`
@@ -151,6 +156,10 @@ npm run audit:rendered-text
 npm run audit:links
 npm run audit:claims
 npm run audit:boundaries
+npm run audit:homepage-product
+npm run audit:public-profiles
+npm run audit:decision-boundaries
+npm run audit:exafuse-mode-human
 npm run audit:all
 npm run audit:links:report
 ```
@@ -165,6 +174,11 @@ npm run audit:links:report
 - `/profile/public-profile.md`
 - `/thesis.md`
 - `/profile/public-profile`
+- `/playbooks`
+- `/claims`
+- `/no-hype`
+- `/brief-template`
+- `/demo`
 - `/research/core-lmd-ai-sources`
 - `/research/lmd-literature-scan.json`
 - `/research/exafuse-public-proof-map.json`
@@ -183,15 +197,9 @@ Active:
 - Site: https://manish-sharma-ai.github.io
 - Exafuse: https://exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
-- GitHub: https://github.com/aiwithms
-
-Planned, with no public URL yet:
-
-- ORCID
-- Zenodo
-- Hugging Face
-- Google Scholar
-- ResearchGate
+- GitHub profile: https://github.com/aiwithms
+- GitHub organization / repository owner: https://github.com/manish-sharma-ai
+- Website repository: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
 
 Only real URLs should appear in JSON-LD `sameAs`.
 
@@ -240,7 +248,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
 - Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
-- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/tools`, `/for-ai-agents`, and `/site-map`.
+- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/tools`, `/playbooks`, `/claims`, `/no-hype`, `/brief-template`, `/demo`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.
@@ -249,7 +257,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 ## Next Roadmap
 
-- Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs when the profiles are created.
+- Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs only after they are created and verified. Track future profile work in `docs/profile-roadmap.md`.
 - Switch Exafuse link mode only after following `docs/exafuse-migration-switch.md`.
 - Replace working-draft source categories on the curated research page with verified citation links.
 - Add more buyer-facing RFQ examples and public-safe tool outputs.

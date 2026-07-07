@@ -34,6 +34,15 @@ const relatedLinks = [
   { label: "Melt-pool monitoring note", href: "/lab-notes/melt-pool-monitoring-is-not-quality-proof" }
 ];
 
+const whatChangesDecision = [
+  "Correlation with inspection",
+  "Drift history",
+  "Sensor calibration",
+  "Image quality",
+  "Process repeatability",
+  "Acceptance criteria"
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -104,6 +113,21 @@ const jsonLd = {
     <SectionHeading eyebrow="Visual ladder" title="Nine evidence levels for LMD quality claims" />
     <div class="mt-10">
       <EvidenceLadder />
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+      <SectionHeading
+        eyebrow="What changes the decision"
+        title="A monitoring signal needs evidence context"
+        description="These factors decide whether a signal is only awareness, a review trigger, or part of a stronger evidence package."
+      />
+      <div class="grid gap-3 sm:grid-cols-2">
+        {whatChangesDecision.map((item) => (
+          <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{item}</div>
+        ))}
+      </div>
     </div>
   </section>
 

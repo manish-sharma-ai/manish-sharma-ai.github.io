@@ -1,0 +1,72 @@
+---
+import Badge from "@components/Badge.astro";
+import CTAButton from "@components/CTAButton.astro";
+import Layout from "@layouts/Layout.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
+import { PERSON, SITE } from "@data/site";
+
+const title = "No hype: what this site will not claim";
+const description =
+  "A concise engineering boundary page for Manish Sharma Lab: AI, monitoring, scoring, RFQ structure, and public proof context are decision support, not approval.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
+
+const boundaries = [
+  ["AI does not certify LMD quality.", "AI can help structure signals and risk; it does not certify material quality or final release."],
+  ["Monitoring does not replace inspection.", "Process monitoring can support review; inspection, testing, and acceptance criteria close the loop."],
+  ["Confidence is not approval.", "A confident model output is not an engineering approval or safety-critical acceptance decision."],
+  ["A repairability score is not repair approval.", "Scores are screening signals. Repair approval requires material, geometry, service, inspection, and expert review."],
+  ["RFQ structure is not commercial feasibility.", "A clean RFQ helps review. Exafuse performs company-owned commercial and technical assessment."],
+  ["Public proof context is not confidential case disclosure.", "This site uses public context only and avoids employer/customer confidential information."],
+  ["Exafuse performs company review.", "Services, RFQs, capabilities, case studies, and company claims belong to Exafuse."]
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${SITE.canonicalUrl}/no-hype#page`,
+  url: `${SITE.canonicalUrl}/no-hype`,
+  name: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/no-hype" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>No-hype boundary</Badge>
+        <Badge tone="steel">Engineering evidence</Badge>
+        <Badge tone="laser">Decision support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">No hype: what this site will not claim.</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        Manish Sharma Lab is useful only if the boundary stays visible. The site helps structure decisions; it does not turn signals into approval.
+      </p>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-4 md:grid-cols-2">
+      {boundaries.map(([heading, text]) => (
+        <article class="ordered-card-strong p-6">
+          <h2 class="text-2xl font-black text-white">{heading}</h2>
+          <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="ordered-card p-6">
+      <p class="metric-label">Use next</p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <CTAButton href="/tools#lmd-decision-cockpit" variant="primary">Start cockpit</CTAButton>
+        <CTAButton href="/for-ai-agents" variant="secondary">AI-agent guidance</CTAButton>
+        <CTAButton href="/press-kit" variant="secondary">Press kit</CTAButton>
+        <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
+        <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
+      </div>
+    </div>
+  </section>
+</Layout>

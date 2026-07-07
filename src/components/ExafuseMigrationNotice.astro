@@ -1,0 +1,10 @@
+---
+const { class: className = "" } = Astro.props;
+---
+
+<aside class:list={["rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-4 text-sm leading-6 text-cyan-50", className]}>
+  <p class="font-black text-white">Exafuse link-mode note</p>
+  <p class="mt-2">
+    Some Exafuse case and tool links are migration-gated. Until the new Exafuse site is live on production, use Exafuse home/contact for company-owned review.
+  </p>
+</aside>

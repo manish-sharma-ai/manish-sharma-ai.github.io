@@ -1,5 +1,6 @@
 ---
 import Badge from "@components/Badge.astro";
+import ExafuseMigrationNotice from "@components/ExafuseMigrationNotice.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
@@ -69,6 +70,17 @@ const aiLimits = [
   "AI cannot approve safety-critical repair without inspection, testing, qualification, and expert review.",
   "AI cannot recover missing material grade, damage depth, geometry, service load, or acceptance criteria.",
   "AI cannot guarantee a repair, coating, or build outcome."
+];
+
+const whatChangesDecision = [
+  "Unknown material",
+  "Crack depth or damage beyond visible wear",
+  "Tight tolerance and no post-machining route",
+  "Internal channels or fine geometry",
+  "No inspection path",
+  "Safety-critical service",
+  "Qualification or certification requirement",
+  "Missing operating conditions"
 ];
 
 const exafuseLinks = [
@@ -195,6 +207,21 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y">
+    <div class="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+      <SectionHeading
+        eyebrow="What changes the decision"
+        title="The route can change when risk or evidence changes"
+        description="Use this block before treating LMD, DED, SLM/LPBF, cladding, repair, or replacement as an obvious answer."
+      />
+      <div class="grid gap-3 sm:grid-cols-2">
+        {whatChangesDecision.map((item) => (
+          <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{item}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Public context"
@@ -232,9 +259,14 @@ const jsonLd = {
       <SectionHeading
         eyebrow="Exafuse canonical pages"
         title="Company-owned commercial and case-study context"
-        description="Use these production Exafuse URLs for services, RFQs, quality, technology, and company-owned public proof. Manish Sharma Lab links to them instead of duplicating service pages."
+        description="Use these Exafuse routes according to the current link mode. Manish Sharma Lab links to company-owned service, RFQ, quality, technology, and public proof context instead of duplicating service pages."
       />
-      <SourceLinks links={exafuseLinks} />
+      <div>
+        <ExafuseMigrationNotice />
+        <div class="mt-5">
+          <SourceLinks links={exafuseLinks} />
+        </div>
+      </div>
     </div>
   </section>
 

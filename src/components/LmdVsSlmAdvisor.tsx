@@ -83,6 +83,20 @@ export default function LmdVsSlmAdvisor({
     const missing = ["material grade", "part drawing or CAD", "service conditions", "inspection requirement"];
     if (values.tolerance === "tight") missing.push("post-machining plan");
     if (values.jobType === "repair" || values.jobType === "cladding") missing.push("damage depth and repair area");
+    const evidenceNeeded = [
+      "material grade and compatibility context",
+      "drawing/CAD or dimensional envelope",
+      "tolerance and post-processing plan",
+      "inspection requirement linked to part risk"
+    ];
+    if (values.internalChannels === "yes") evidenceNeeded.push("powder removal and internal-feature inspection plan");
+    if (values.jobType === "repair" || values.jobType === "cladding") evidenceNeeded.push("damage depth, repair area, and base-material condition");
+    const reviewReadiness =
+      riskFlags.length > 1 || values.tolerance === "tight"
+        ? "Ready for expert review"
+        : missing.length > 4
+          ? "Not enough information"
+          : "Ready for preliminary discussion";
 
     return {
       recommendation,
@@ -92,6 +106,8 @@ export default function LmdVsSlmAdvisor({
           : ["The selected signals are balanced; process choice depends on material, geometry, economics, post-processing, and inspection."],
       missing,
       riskFlags: riskFlags.length > 0 ? riskFlags : ["No major risk flag from the selected inputs; missing RFQ data may still change the result."],
+      evidenceNeeded,
+      reviewReadiness,
       suggestedNextStep:
         "Prepare a structured RFQ with material grade, CAD or drawing, operating conditions, tolerance target, inspection expectations, and the reason LMD or SLM is being considered."
     };
@@ -111,6 +127,7 @@ export default function LmdVsSlmAdvisor({
         <div className="mt-5 flex flex-wrap gap-3">
           <button type="button" onClick={() => setValues(exampleValues)} className="btn btn-secondary">Use example</button>
           <button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Reset</button>
+          <button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Clear all inputs</button>
         </div>
       </div>
       <ToolResult result={result} exafuseUrl={exafuseUrl} exafuseLabel={exafuseLabel} />
@@ -155,6 +172,8 @@ function ToolResult({
     why: string[];
     missing: string[];
     riskFlags: string[];
+    evidenceNeeded: string[];
+    reviewReadiness: string;
     suggestedNextStep: string;
   };
   exafuseUrl: string;
@@ -165,8 +184,10 @@ function ToolResult({
     `## LMD vs SLM RFQ summary`,
     ``,
     `Recommendation: ${result.recommendation}`,
+    `Review readiness: ${result.reviewReadiness}`,
     `Missing information: ${result.missing.join(", ")}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
+    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
     result.suggestedNextStep,
     `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
     DISCLAIMER
@@ -178,11 +199,13 @@ function ToolResult({
       <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
         Confidence is not approval. This output is a route signal, not a release decision.
       </p>
-      <ResultSection label="Recommendation" value={result.recommendation} large />
-      <ResultList label="Why-signals" items={result.why} />
+      <ResultSection label="Decision signal" value={result.recommendation} large />
+      <ResultSection label="Review readiness" value={result.reviewReadiness} />
+      <ResultList label="Why" items={result.why} />
       <ResultList label="Missing information" items={result.missing} />
       <ResultList label="Risk flags" items={result.riskFlags} />
-      <ResultSection label="Suggested next step" value={result.suggestedNextStep} />
+      <ResultList label="Evidence needed" items={result.evidenceNeeded} />
+      <ResultSection label="Next action" value={result.suggestedNextStep} />
       <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the question is structured.`} />
       <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
       <ActionRow copyText={copyText} rfqSummary={rfqSummary} missingChecklist={result.missing.join("\n")} exafuseUrl={exafuseUrl} exafuseLabel={exafuseLabel} />
@@ -242,16 +265,20 @@ function formatResult(result: {
   why: string[];
   missing: string[];
   riskFlags: string[];
+  evidenceNeeded: string[];
+  reviewReadiness: string;
   suggestedNextStep: string;
 }) {
   return [
     `## LMD vs SLM Advisor`,
     ``,
-    `Recommendation: ${result.recommendation}`,
-    `Why-signals: ${result.why.join(" ")}`,
+    `Decision signal: ${result.recommendation}`,
+    `Review readiness: ${result.reviewReadiness}`,
+    `Why: ${result.why.join(" ")}`,
     `Missing information: ${result.missing.join(", ")}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Suggested next step: ${result.suggestedNextStep}`,
+    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
+    `Next action: ${result.suggestedNextStep}`,
     `Exafuse route: Use Exafuse for commercial and technical review after the question is structured.`,
     `Disclaimer: ${DISCLAIMER}`,
     `Confidence is not approval.`

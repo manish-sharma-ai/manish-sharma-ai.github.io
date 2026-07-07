@@ -1,5 +1,6 @@
 ---
 import Layout from "@layouts/Layout.astro";
+import ExafuseMigrationNotice from "@components/ExafuseMigrationNotice.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
@@ -91,6 +92,7 @@ const jsonLd = {
           <a href="/identity" class="btn btn-primary">Manish Sharma identity</a>
           <a href="/thesis" class="btn btn-secondary">Industrial AI thesis</a>
           <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED proof domain</a>
+          <a href="/claims" class="btn btn-secondary">Claim ledger</a>
           <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
         </div>
       </div>
@@ -135,6 +137,7 @@ const jsonLd = {
         title="Company-owned cases used as industrial context"
         description="These items link to Exafuse for canonical case or service context. Manish Sharma Lab uses them only to explain monitoring, repairability, evidence, RFQ, and decision-system relevance."
       />
+      <ExafuseMigrationNotice class="mt-6" />
       <div class="mt-10 grid gap-5 md:grid-cols-2">
         {EXAFUSE_PROOF_CASES.map((item) => (
           <article class="ordered-card-strong p-6">
@@ -142,6 +145,9 @@ const jsonLd = {
             <h2 class="mt-3 text-2xl font-black text-white">{item.title}</h2>
             <p class="mt-3 inline-block rounded-md border border-cyan-300/25 bg-cyan-300/10 px-2.5 py-1 text-xs font-black uppercase text-cyan-100">
               {item.evidenceStatus}
+            </p>
+            <p class="mt-2 inline-block rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-black uppercase text-slate-300">
+              {item.sourceStatus === "production-link-after-migration" ? "Migration-gated link" : "Live production link"}
             </p>
             {item.metricClaims?.length > 0 && (
               <div class="mt-5 flex flex-wrap gap-2">

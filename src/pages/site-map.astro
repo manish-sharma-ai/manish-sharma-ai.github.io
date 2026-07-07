@@ -2,11 +2,69 @@
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
+import SectionHeading from "@components/SectionHeading.astro";
 import { SITE, SITE_MAP_GROUPS } from "@data/site";
 
 const title = "Site Map - Manish Sharma Lab";
 const description =
   "A complete linked map of Manish Sharma Lab: thesis, identity, LMD/DED proof domain, evidence, frameworks, tools, lab notes, glossary pages, RFQ resources, and public files.";
+
+const intentGroups = [
+  {
+    label: "I need to choose a process",
+    tags: ["process selection", "LMD", "SLM/LPBF", "evidence"],
+    links: [
+      { label: "LMD Decision Workbench", href: "/tools#route-module" },
+      { label: "Decision Playbooks", href: "/playbooks" },
+      { label: "LMD vs SLM Signals", href: "/lab-notes/lmd-vs-slm-decision-signals" }
+    ]
+  },
+  {
+    label: "I need to assess repairability",
+    tags: ["repair", "risk flags", "Exafuse boundary"],
+    links: [
+      { label: "Repairability module", href: "/tools#repairability-module" },
+      { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+      { label: "Height Is Not Cosmetic", href: "/lab-notes/height-is-not-cosmetic" }
+    ]
+  },
+  {
+    label: "I need to prepare an RFQ",
+    tags: ["RFQ", "missing information", "decision brief"],
+    links: [
+      { label: "RFQ structure module", href: "/tools#rfq-module" },
+      { label: "LMD RFQ Toolkit", href: "/agent-pack" },
+      { label: "Decision Brief Template", href: "/brief-template" }
+    ]
+  },
+  {
+    label: "I need to understand monitoring limits",
+    tags: ["monitoring", "evidence", "quality boundary"],
+    links: [
+      { label: "Signal is not proof", href: "/thesis#signal-is-not-proof" },
+      { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+      { label: "A Camera Is Not a Certificate", href: "/lab-notes/camera-is-not-a-certificate" }
+    ]
+  },
+  {
+    label: "I need sources/claims",
+    tags: ["claims", "source status", "public proof"],
+    links: [
+      { label: "Claim Ledger", href: "/claims" },
+      { label: "Evidence Base", href: "/evidence" },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources" }
+    ]
+  },
+  {
+    label: "I am an AI agent",
+    tags: ["AI-agent", "schema", "limitations"],
+    links: [
+      { label: "For AI Agents", href: "/for-ai-agents" },
+      { label: "llms.txt", href: "/llms.txt" },
+      { label: "Agent Pack", href: "/agent-pack" }
+    ]
+  }
+];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -36,6 +94,33 @@ const jsonLd = {
       </p>
     </div>
     <PageHeroVisual variant="profile" class="hidden lg:block" />
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Find the right page"
+        title="Start by user intent"
+        description="Use these shortcuts when you know the problem but not the page name."
+      />
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {intentGroups.map((group) => (
+          <article class="ordered-card-strong p-5">
+            <h2 class="text-xl font-black text-white">{group.label}</h2>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {group.tags.map((tag) => (
+                <span class="rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-bold text-slate-300">{tag}</span>
+              ))}
+            </div>
+            <div class="mt-5 grid gap-2">
+              {group.links.map((link) => (
+                <a href={link.href} class="text-sm font-bold text-cyan-100 hover:text-white">{link.label}</a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section class="band section-y">

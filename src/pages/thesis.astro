@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import SignalNotProofExplainer from "@components/SignalNotProofExplainer";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
 import { EXAFUSE_LINKS } from "@data/siteConfig";
@@ -164,6 +165,25 @@ const jsonLd = {
       <div class="grid gap-3 md:grid-cols-2">
         {principles.map((principle) => (
           <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{principle}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SignalNotProofExplainer client:load />
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+      <SectionHeading
+        eyebrow="What changes the decision"
+        title="Monitoring signals need context before they become useful"
+        description="A signal becomes more useful when it can be tied to inspection, calibration, repeatability, and acceptance criteria."
+      />
+      <div class="grid gap-3 sm:grid-cols-2">
+        {["Correlation with inspection", "Drift history", "Sensor calibration", "Image quality", "Process repeatability", "Acceptance criteria"].map((item) => (
+          <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{item}</div>
         ))}
       </div>
     </div>

@@ -80,6 +80,18 @@ export default function RfqStructureConverter({
       missing,
       riskFlags: riskFlags.length > 0 ? riskFlags : ["No major risk flag detected by keyword rules; expert review is still required."],
       recommendation: missing.length > 4 ? "RFQ needs more information before feasibility review" : "RFQ is partly structured and ready for a first expert review",
+      evidenceNeeded: [
+        hasExactMaterialGrade ? "confirmed material grade" : "exact material grade",
+        hasCad || hasDrawing ? "drawing/CAD context" : "drawing/CAD or dimensional sketch",
+        hasInspection ? "inspection requirement" : "inspection requirement and acceptance criteria",
+        hasTolerance ? "tolerance and finishing plan" : "tolerance target"
+      ],
+      reviewReadiness:
+        riskFlags.length > 2 || missing.length > 5
+          ? "Not enough information"
+          : missing.length > 2
+            ? "Ready for preliminary discussion"
+            : "Ready for expert review",
       suggestedNextStep:
         "Ask the buyer for the missing fields, then prepare a compact RFQ summary with photos, drawing or CAD, material grade, damage depth, tolerance, operating conditions, inspection requirement, and deadline."
     };
@@ -101,6 +113,7 @@ export default function RfqStructureConverter({
         <span className="mt-4 flex flex-wrap gap-3">
           <button type="button" onClick={() => setText(exampleText)} className="btn btn-secondary">Use example</button>
           <button type="button" onClick={() => setText("")} className="btn btn-secondary">Reset</button>
+          <button type="button" onClick={() => setText("")} className="btn btn-secondary">Clear all inputs</button>
         </span>
       </label>
       <aside className="ordered-card-strong p-6 md:p-7">
@@ -108,8 +121,9 @@ export default function RfqStructureConverter({
         <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
           Confidence is not approval. This parser structures a request; it does not decide feasibility.
         </p>
-        <ResultSection label="Recommendation" value={parsed.recommendation} large />
-        <ResultList label="Why-signals" items={parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."]} />
+        <ResultSection label="Decision signal" value={parsed.recommendation} large />
+        <ResultSection label="Review readiness" value={parsed.reviewReadiness} />
+        <ResultList label="Why" items={parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."]} />
         <div className="mt-5 grid gap-3 text-sm">
           <Field label="Part" value={parsed.part} />
           <Field label="Material" value={parsed.material} />
@@ -117,7 +131,8 @@ export default function RfqStructureConverter({
         </div>
         <ResultList label="Missing information" items={parsed.missing.length ? parsed.missing : ["No major missing field detected by keyword rules."]} />
         <ResultList label="Risk flags" items={parsed.riskFlags} />
-        <ResultSection label="Suggested next step" value={parsed.suggestedNextStep} />
+        <ResultList label="Evidence needed" items={parsed.evidenceNeeded} />
+        <ResultSection label="Next action" value={parsed.suggestedNextStep} />
         <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`} />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
         <div className="mt-6 flex flex-wrap gap-3">
@@ -172,19 +187,23 @@ function formatResult(parsed: {
   damage: string;
   missing: string[];
   riskFlags: string[];
+  evidenceNeeded: string[];
+  reviewReadiness: string;
   suggestedNextStep: string;
 }, exafuseLabel: string) {
   return [
     `## RFQ Prompt-to-Structure Converter`,
     ``,
-    `Recommendation: ${parsed.recommendation}`,
-    `Why-signals: ${parsed.known.join(", ") || "not enough clear facts detected yet"}`,
+    `Decision signal: ${parsed.recommendation}`,
+    `Review readiness: ${parsed.reviewReadiness}`,
+    `Why: ${parsed.known.join(", ") || "not enough clear facts detected yet"}`,
     `Part: ${parsed.part}`,
     `Material: ${parsed.material}`,
     `Damage: ${parsed.damage}`,
     `Missing information: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
     `Risk flags: ${parsed.riskFlags.join(", ")}`,
-    `Suggested next step: ${parsed.suggestedNextStep}`,
+    `Evidence needed: ${parsed.evidenceNeeded.join(", ")}`,
+    `Next action: ${parsed.suggestedNextStep}`,
     `Exafuse route: ${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`,
     `Disclaimer: ${DISCLAIMER}`,
     `Confidence is not approval.`
@@ -198,16 +217,20 @@ function formatRfqSummary(parsed: {
   damage: string;
   missing: string[];
   riskFlags: string[];
+  evidenceNeeded: string[];
+  reviewReadiness: string;
 }, exafuseLabel: string, exafuseUrl: string) {
   return [
     `## LMD RFQ summary`,
     ``,
-    `Recommendation: ${parsed.recommendation}`,
+    `Decision signal: ${parsed.recommendation}`,
+    `Review readiness: ${parsed.reviewReadiness}`,
     `Part: ${parsed.part}`,
     `Material: ${parsed.material}`,
     `Damage: ${parsed.damage}`,
     `Missing fields: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
     `Risk flags: ${parsed.riskFlags.join(", ")}`,
+    `Evidence needed: ${parsed.evidenceNeeded.join(", ")}`,
     `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
     DISCLAIMER
   ].join("\n");

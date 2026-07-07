@@ -15,6 +15,10 @@
     "audit:links:report": "node scripts/audit-site.mjs links:report",
     "audit:claims": "node scripts/audit-site.mjs claims",
     "audit:boundaries": "node scripts/audit-site.mjs boundaries",
+    "audit:homepage-product": "node scripts/audit-site.mjs homepage-product",
+    "audit:public-profiles": "node scripts/audit-site.mjs public-profiles",
+    "audit:decision-boundaries": "node scripts/audit-site.mjs decision-boundaries",
+    "audit:exafuse-mode-human": "node scripts/audit-site.mjs exafuse-mode-human",
     "audit:all": "node scripts/audit-site.mjs all"
   },
   "dependencies": {

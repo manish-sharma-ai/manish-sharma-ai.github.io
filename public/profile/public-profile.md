@@ -31,16 +31,6 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 - RFQ intelligence
 - Engineering evidence
 
-## Planned Profiles
-
-These profiles do not have public URLs yet and should not be used in JSON-LD `sameAs`:
-
-- ORCID
-- Zenodo
-- Hugging Face
-- Google Scholar
-- ResearchGate
-
 ## Boundary
 
 This is public-safe profile information only. It is not confidential company/customer material, engineering approval, material certification, safety-critical acceptance, or a guarantee of part quality.

@@ -18,6 +18,13 @@ Compare Laser Metal Deposition, SLM/LPBF, welding, machining, and replacement fo
 
 Explain what AI process monitoring can and cannot prove in Laser Metal Deposition. Separate process signals from final quality evidence.
 
+## Related Public Tools
+
+- LMD Decision Cockpit: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+- RFQ structure module: https://manish-sharma-ai.github.io/tools#rfq-module
+- Decision Brief Template: https://manish-sharma-ai.github.io/brief-template
+- Claim Ledger: https://manish-sharma-ai.github.io/claims
+
 ## Limitation
 
 These prompts support disciplined thinking. They do not replace expert review, inspection, material validation, or final engineering approval.

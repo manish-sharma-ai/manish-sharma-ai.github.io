@@ -39,6 +39,11 @@ const keyRenderedPages = [
   "/public-work/",
   "/contact/",
   "/tools/",
+  "/playbooks/",
+  "/claims/",
+  "/no-hype/",
+  "/brief-template/",
+  "/demo/",
   "/for-ai-agents/",
   "/press-kit/"
 ];
@@ -277,6 +282,134 @@ function auditBoundaries() {
   fail("Boundary audit failed", findings);
 }
 
+function auditHomepageProduct() {
+  const file = "dist/index.html";
+  const findings = [];
+  if (!existsSync(join(root, file))) {
+    fail("Homepage product audit failed", [`${file}: missing built homepage`]);
+    return;
+  }
+  const text = read(file);
+  const visibleText = visibleTextFromHtml(text);
+  const required = [
+    "AI for Laser Metal Deposition decisions you can verify.",
+    "LMD Decision Cockpit",
+    "Decision support only",
+    "Not final engineering approval",
+    "A signal is not proof."
+  ];
+  for (const phrase of required) {
+    if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+  }
+  const cockpitIndex = visibleText.indexOf("LMD Decision Cockpit");
+  const proofIndex = visibleText.indexOf("Public proof");
+  if (cockpitIndex < 0 || proofIndex < 0 || cockpitIndex > proofIndex) {
+    findings.push(`${file}: LMD Decision Cockpit should appear before Public proof`);
+  }
+  const operatingLoopMatches = visibleText.match(/Operating loop/g) ?? [];
+  if (operatingLoopMatches.length !== 1) {
+    findings.push(`${file}: expected exactly one visible "Operating loop" section, found ${operatingLoopMatches.length}`);
+  }
+  fail("Homepage product audit failed", findings);
+}
+
+function auditPublicProfiles() {
+  const findings = [];
+  const publicProfileFiles = [
+    "dist/identity/index.html",
+    "dist/profile/public-profile/index.html",
+    "dist/press-kit/index.html",
+    "dist/links/index.html",
+    "dist/identity.md",
+    "dist/profile/public-profile.md"
+  ];
+  const plannedLabels = ["ORCID", "Zenodo", "Hugging Face", "Google Scholar", "ResearchGate", "Planned profiles", "planned profiles", "planned profile"];
+  for (const file of publicProfileFiles) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    const visibleText = file.endsWith(".html") ? visibleTextFromHtml(text) : text;
+    for (const label of plannedLabels) {
+      if (visibleText.includes(label)) findings.push(`${file}: public profile surface contains planned-profile text "${label}"`);
+    }
+  }
+  const sameAsBad = ["orcid.org", "zenodo.org", "huggingface.co", "scholar.google", "researchgate.net", "#"];
+  for (const file of ["dist/identity/index.html", "dist/press-kit/index.html"]) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    const sameAsBlocks = text.match(/"sameAs":\[[^\]]*\]/g) ?? [];
+    for (const block of sameAsBlocks) {
+      for (const bad of sameAsBad) {
+        if (block.includes(bad)) findings.push(`${file}: JSON-LD sameAs contains unsafe profile value "${bad}"`);
+      }
+    }
+  }
+  fail("Public profile audit failed", findings);
+}
+
+function auditDecisionBoundaries() {
+  const findings = [];
+  const sourceFiles = [
+    "src/components/LmdDecisionCockpit.tsx",
+    "src/components/LmdVsSlmAdvisor.tsx",
+    "src/components/RepairabilityQuickCheck.tsx",
+    "src/components/RfqStructureConverter.tsx"
+  ];
+  for (const file of sourceFiles) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing decision tool source`);
+      continue;
+    }
+    const text = read(file);
+    for (const phrase of ["Confidence is not approval", "Missing information", "Risk flags", "Evidence needed"]) {
+      if (!text.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+    }
+  }
+
+  const unsafeClaims = [
+    "monitoring proves final quality",
+    "monitoring proves quality",
+    "score approves repair",
+    "repairability score approves",
+    "AI approves repair",
+    "AI approves quality"
+  ];
+  for (const { file, text } of scanFiles([...sourceRoots, ...distRoot])) {
+    const lower = text.toLowerCase();
+    for (const phrase of unsafeClaims) {
+      if (lower.includes(phrase)) findings.push(`${file}: contains unsafe decision-boundary phrase "${phrase}"`);
+    }
+  }
+  fail("Decision-boundary audit failed", findings);
+}
+
+function auditExafuseModeHuman() {
+  const findings = [];
+  for (const { file, text } of scanFiles(distRoot, [".html", ".js", ".json", ".txt", ".md"])) {
+    for (const bad of ["pages.dev", "exafuse-website-react", "www.exafuse.de"]) {
+      if (text.includes(bad)) findings.push(`${file}: contains forbidden Exafuse/staging URL text "${bad}"`);
+    }
+  }
+  if (exafuseMode() === "production-safe") {
+    const rendered = scanFiles(distRoot, [".html"]);
+    const unsafeHumanLabels = ["Exafuse Pathfinder", "Exafuse RFQ Builder", "Use these production Exafuse URLs"];
+    for (const { file, text } of rendered) {
+      const visibleText = visibleTextFromHtml(text);
+      for (const label of unsafeHumanLabels) {
+        if (visibleText.includes(label)) {
+          findings.push(`${file}: production-safe human text implies migration-gated path is live: "${label}"`);
+        }
+      }
+    }
+    const modeNotice = "Some Exafuse case and tool links are migration-gated";
+    for (const file of ["dist/domains/lmd-ded/index.html", "dist/public-work/index.html"]) {
+      if (existsSync(join(root, file)) && !visibleTextFromHtml(read(file)).includes(modeNotice)) {
+        findings.push(`${file}: missing Exafuse migration notice`);
+      }
+    }
+  }
+  fail("Exafuse human link-mode audit failed", findings);
+}
+
 const audits = {
   "visual-text": auditVisualText,
   "rendered-text": auditRenderedText,
@@ -284,12 +417,20 @@ const audits = {
   "links:report": auditLinksReport,
   claims: auditClaims,
   boundaries: auditBoundaries,
+  "homepage-product": auditHomepageProduct,
+  "public-profiles": auditPublicProfiles,
+  "decision-boundaries": auditDecisionBoundaries,
+  "exafuse-mode-human": auditExafuseModeHuman,
   all() {
     auditVisualText();
     auditRenderedText();
     auditLinks();
     auditClaims();
     auditBoundaries();
+    auditHomepageProduct();
+    auditPublicProfiles();
+    auditDecisionBoundaries();
+    auditExafuseModeHuman();
   }
 };
 

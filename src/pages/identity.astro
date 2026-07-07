@@ -6,7 +6,7 @@ import ProfileImage from "@components/ProfileImage.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, LINKS, METHOD_LOOP, PERSON, SAME_AS, SITE } from "@data/site";
-import { GITHUB_IDENTITY, PROFILE_LINKS } from "@data/profiles";
+import { ACTIVE_PROFILE_LINKS, GITHUB_IDENTITY } from "@data/profiles";
 import { absoluteUrl } from "@utils/urls";
 
 const title = "Manish Sharma - Industrial AI & Decision Systems";
@@ -58,8 +58,7 @@ const fields = [
   ["GitHub profile", `${GITHUB_IDENTITY.profile.slug} - ${GITHUB_IDENTITY.profile.href}`],
   ["Site/repository owner", `${GITHUB_IDENTITY.repositoryOwner.slug} - ${GITHUB_IDENTITY.repositoryOwner.href}`],
   ["Website repository", GITHUB_IDENTITY.repository.href],
-  ["Active public profiles", "Website, LinkedIn, GitHub profile, Exafuse"],
-  ["Planned profiles", "ORCID, Zenodo, Hugging Face, Google Scholar, ResearchGate"]
+  ["Verified public profiles", "Website, LinkedIn, GitHub profile, Exafuse"]
 ];
 ---
 
@@ -138,9 +137,9 @@ const fields = [
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="sameAs" title="Public profile links" description="Only real profile URLs are used in JSON-LD. Planned profiles are shown as planned, not broken links." />
+    <SectionHeading eyebrow="sameAs" title="Verified public profile links" description="Only real profile URLs are used in JSON-LD sameAs and public identity surfaces." />
     <div class="mt-8">
-      <SourceLinks links={PROFILE_LINKS} />
+      <SourceLinks links={ACTIVE_PROFILE_LINKS} />
     </div>
   </section>
 </Layout>

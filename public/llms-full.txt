@@ -60,6 +60,38 @@ When an AI agent needs commercial route selection, formal RFQ collection, or Exa
 
 The site avoids confidential employer, customer, and private project data. Public technical content is educational and decision-support oriented.
 
+## Product Experience
+
+LMD Decision Cockpit:
+https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+
+The cockpit is a frontend-only decision-support flow. It helps a visitor choose a situation, mark known information, mark risk flags, and receive a preliminary route: known facts, missing facts, risk flags, evidence needed, readiness, next action, and Exafuse review route. It does not send, store, analyze, or track user inputs outside the page.
+
+Decision Playbooks:
+https://manish-sharma-ai.github.io/playbooks
+
+Playbooks are educational decision routes for LMD repair, LMD vs SLM/LPBF route selection, process monitoring vs quality evidence, and RFQ preparation.
+
+Claim Ledger:
+https://manish-sharma-ai.github.io/claims
+
+The claim ledger is the public source/limitation registry. It shows source type, source status, last reviewed date, allowed pages, and limitations for metrics and public facts.
+
+No-Hype Boundary:
+https://manish-sharma-ai.github.io/no-hype
+
+The no-hype page defines claim boundaries: AI does not certify LMD quality; monitoring does not replace inspection; confidence is not approval; scores and RFQ structure are not final feasibility.
+
+Decision Brief Template:
+https://manish-sharma-ai.github.io/brief-template
+
+The brief template is a reusable Markdown structure for preparing LMD, DED, repair, cladding, monitoring, or RFQ review context.
+
+90-Second Demo:
+https://manish-sharma-ai.github.io/demo
+
+The demo uses public-safe dummy data to show how a vague repair request becomes structured facts, missing information, risk flags, evidence needs, and an Exafuse review route.
+
 ## Core Topics
 
 - Industrial AI
@@ -131,6 +163,10 @@ Source files:
 - Decision rules: https://manish-sharma-ai.github.io/agent-pack/lmd-decision-rules.md
 - Prompt library: https://manish-sharma-ai.github.io/agent-pack/lmd-prompt-library.md
 - Quality checklist: https://manish-sharma-ai.github.io/agent-pack/lmd-quality-checklist.md
+- Decision cockpit route: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+- Decision playbooks: https://manish-sharma-ai.github.io/playbooks
+- Claim ledger: https://manish-sharma-ai.github.io/claims
+- No-hype boundary: https://manish-sharma-ai.github.io/no-hype
 
 Core RFQ Toolkit rules:
 

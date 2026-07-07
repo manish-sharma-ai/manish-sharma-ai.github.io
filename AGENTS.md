@@ -60,6 +60,8 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Render public proof metrics from `src/data/publicClaims.ts`; do not hard-code CS15 or other proof metrics in page components.
 - Do not render image-generation prompts, diagram helper text, or long SVG descriptions as visible page text. Decorative visuals should keep internals out of rendered text and use concise accessibility labels.
 - Keep identity facts unambiguous: `aiwithms` is the GitHub profile, `manish-sharma-ai` is the GitHub organization/site repository owner, and `manish-sharma-ai/manish-sharma-ai.github.io` is the repository.
+- Keep the homepage cockpit-first. A first-time visitor should be able to start the LMD Decision Cockpit before proof maps or long reference sections.
+- Public identity, links, profile, and press-kit pages must show only verified public profile URLs. Track planned profiles in `docs/profile-roadmap.md`.
 
 ## Working Tree Rules
 
@@ -224,6 +226,10 @@ npm run audit:rendered-text
 npm run audit:links
 npm run audit:claims
 npm run audit:boundaries
+npm run audit:homepage-product
+npm run audit:public-profiles
+npm run audit:decision-boundaries
+npm run audit:exafuse-mode-human
 npm run audit:all
 git diff --check
 ```

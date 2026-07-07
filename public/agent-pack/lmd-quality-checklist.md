@@ -13,6 +13,13 @@ Use this checklist for AI-assisted Laser Metal Deposition RFQ preparation and ev
 - risk level assessed
 - final expert review completed
 
+## Related Public Tools
+
+- LMD Decision Cockpit: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+- Decision Playbooks: https://manish-sharma-ai.github.io/playbooks
+- Decision Brief Template: https://manish-sharma-ai.github.io/brief-template
+- No-Hype Boundary: https://manish-sharma-ai.github.io/no-hype
+
 ## Limitation
 
 Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.

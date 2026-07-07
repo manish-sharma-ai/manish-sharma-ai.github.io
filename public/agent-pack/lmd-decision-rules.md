@@ -19,7 +19,14 @@ AI agents should separate:
 - missing information
 - assumptions
 - risks
+- evidence needed
 - recommended next steps
+
+Use the public cockpit and playbooks for frontend-only decision routing:
+
+- LMD Decision Cockpit: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+- Decision Playbooks: https://manish-sharma-ai.github.io/playbooks
+- Decision Brief Template: https://manish-sharma-ai.github.io/brief-template
 
 ## Limitation
 

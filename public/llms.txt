@@ -39,6 +39,12 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [LMD-AI Maturity Model](https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model)
 - [LMD RFQ Toolkit / Agent Pack](https://manish-sharma-ai.github.io/agent-pack)
 - [Tools](https://manish-sharma-ai.github.io/tools)
+- [LMD Decision Cockpit](https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit)
+- [Decision Playbooks](https://manish-sharma-ai.github.io/playbooks)
+- [Public Claim Ledger](https://manish-sharma-ai.github.io/claims)
+- [No-Hype Boundary](https://manish-sharma-ai.github.io/no-hype)
+- [Decision Brief Template](https://manish-sharma-ai.github.io/brief-template)
+- [90-Second LMD Decision Demo](https://manish-sharma-ai.github.io/demo)
 - [Glossary](https://manish-sharma-ai.github.io/glossary)
 - [Lab Notes](https://manish-sharma-ai.github.io/lab-notes)
 - [For AI Agents](https://manish-sharma-ai.github.io/for-ai-agents)
@@ -78,6 +84,9 @@ Use: Manish Sharma - Industrial AI & Decision Systems; AI for Laser Metal Deposi
 - AI readiness assessment
 - Quality evidence explanations
 - Prompt and schema resources for LMD agents
+- Frontend-only LMD Decision Cockpit routing
+- Educational decision playbooks
+- Public claim/source limitation checks
 
 ## Do not use this site for
 

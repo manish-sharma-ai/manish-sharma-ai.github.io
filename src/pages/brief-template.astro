@@ -1,0 +1,111 @@
+---
+import Badge from "@components/Badge.astro";
+import BriefTemplateActions from "@components/BriefTemplateActions";
+import CTAButton from "@components/CTAButton.astro";
+import Layout from "@layouts/Layout.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
+import { PERSON, SITE } from "@data/site";
+
+const title = "LMD Decision Brief Template";
+const description =
+  "Copyable Markdown template for preparing Laser Metal Deposition, repair, cladding, monitoring, or RFQ review briefs.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
+
+const templateSections = [
+  "Part / component",
+  "Goal",
+  "Material",
+  "Geometry / size",
+  "Damage or build area",
+  "Available data",
+  "Missing data",
+  "Service conditions",
+  "Tolerance / finishing",
+  "Inspection requirement",
+  "Risk flags",
+  "Process route considered",
+  "Evidence needed",
+  "Next action",
+  "Exafuse review route"
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/brief-template#article`,
+  url: `${SITE.canonicalUrl}/brief-template`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/brief-template" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Decision brief</Badge>
+        <Badge tone="steel">Copyable Markdown</Badge>
+        <Badge tone="laser">No backend</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">A reusable format for rough LMD questions.</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        Use this when you do not want to run a tool. The goal is to make known facts, missing data, risk flags, evidence needs, and Exafuse review route visible.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <BriefTemplateActions client:load />
+        <CTAButton href="/tools#lmd-decision-cockpit" variant="secondary">Start cockpit</CTAButton>
+        <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {templateSections.map((section) => (
+        <article class="ordered-card p-5">
+          <p class="metric-label">Template field</p>
+          <h2 class="mt-3 text-xl font-black text-white">{section}</h2>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <pre class="ordered-card-strong overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{`# LMD decision brief
+
+## Part / component
+
+## Goal
+
+## Material
+
+## Geometry / size
+
+## Damage or build area
+
+## Available data
+
+## Missing data
+
+## Service conditions
+
+## Tolerance / finishing
+
+## Inspection requirement
+
+## Risk flags
+
+## Process route considered
+
+## Evidence needed
+
+## Next action
+
+## Exafuse review route
+
+Confidence is not approval.
+
+Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.`}</code></pre>
+  </section>
+</Layout>
