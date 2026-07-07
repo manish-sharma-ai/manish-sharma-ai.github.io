@@ -4,6 +4,7 @@ import BentoGrid from "@components/BentoGrid.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Chip from "@components/Chip.astro";
 import EvidenceRail from "@components/EvidenceRail.astro";
+import HeroLaserVisual from "@components/HeroLaserVisual";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import VisualPanel from "@components/VisualPanel.astro";
@@ -37,6 +38,12 @@ const proofStrip = [
   ["Public proof domain", "AI for LMD / DED at Exafuse"],
   ["Operating loop", "Sense -> Model -> Decide -> Verify"],
   ["Boundary", "Decision support, not final approval"]
+];
+
+const heroReadouts = [
+  ["Signal layer", "melt pool / bead / sensor stream"],
+  ["AI layer", "risk flags + missing facts"],
+  ["Evidence layer", "inspection path before approval"]
 ];
 
 const flagshipAssets = [
@@ -89,17 +96,17 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
 
 <Layout title={title} description={description} canonical="/" jsonLd={websiteJsonLd}>
   <section class="site-shell home-hero-grid section-y">
-    <div>
+    <div class="relative">
       <div class="flex flex-wrap gap-2">
-        <Chip>Manish Sharma Lab</Chip>
-        <Chip tone="steel">Industrial AI cockpit</Chip>
-        <Chip tone="amber">Exafuse public proof domain</Chip>
+        <Chip>Industrial AI cockpit</Chip>
+        <Chip tone="steel">LMD / DED</Chip>
+        <Chip tone="amber">Decision support</Chip>
       </div>
-      <p class="metric-label mt-8">Manish Sharma Lab</p>
-      <h1 class="mt-4 max-w-5xl text-5xl font-black leading-[0.98] text-white md:text-7xl">
-        AI for Laser Metal Deposition.
+      <p class="home-eyebrow metric-label mt-8">Manish Sharma Lab / public decision systems</p>
+      <h1 class="mt-4 max-w-5xl text-5xl font-black leading-[0.95] text-white md:text-7xl">
+        AI for <span class="hero-title-gradient">Laser Metal Deposition.</span>
       </h1>
-      <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+      <p class="hero-copy mt-7 max-w-3xl text-lg leading-8 md:text-xl">
         I build inspection-aware AI frameworks, RFQ tools, and process-monitoring notes for Laser Metal Deposition, Directed Energy Deposition, repair, cladding, and metal additive manufacturing at Exafuse in Germany.
       </p>
       <p class="mt-4 max-w-3xl text-base leading-7 text-slate-400">
@@ -111,8 +118,33 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
         <CTAButton href="/frameworks" variant="secondary">Open frameworks</CTAButton>
         <CTAButton href={LINKS.exafuse} variant="laser" external>Visit Exafuse</CTAButton>
       </div>
+      <div class="industrial-divider mt-9 max-w-3xl"></div>
+      <div class="hero-proof-console mt-6 max-w-3xl sm:grid-cols-3">
+        {heroReadouts.map(([label, value]) => (
+          <div class="hero-proof-console__item">
+            <p class="metric-label">{label}</p>
+            <p class="text-sm font-black leading-6 text-white">{value}</p>
+          </div>
+        ))}
+      </div>
     </div>
-    <VisualPanel title="LMD decision-system cockpit" subtitle="Sense -> Model -> Decide -> Verify" />
+    <div class="grid gap-4">
+      <HeroLaserVisual />
+      <div class="grid gap-3 sm:grid-cols-3">
+        <div class="ordered-card p-4">
+          <p class="metric-label">mode</p>
+          <p class="mt-2 text-sm font-black text-white">process monitoring</p>
+        </div>
+        <div class="ordered-card p-4">
+          <p class="metric-label">proof</p>
+          <p class="mt-2 text-sm font-black text-white">public sources</p>
+        </div>
+        <div class="ordered-card p-4">
+          <p class="metric-label">limit</p>
+          <p class="mt-2 text-sm font-black text-white">expert review</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="band">
@@ -133,15 +165,23 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
       description="The site is intentionally centered on LMD/DED decision support: what can be inferred, what is missing, what needs inspection, and when Exafuse should handle the commercial RFQ path."
     />
     <BentoGrid class="mt-10">
-      {flagshipAssets.map((asset) => (
-        <BentoCard href={asset.href} eyebrow={asset.label} title={asset.title} description={asset.text} cta="Open asset" strong />
+      {flagshipAssets.map((asset, index) => (
+        <BentoCard
+          href={asset.href}
+          eyebrow={asset.label}
+          title={asset.title}
+          description={asset.text}
+          cta="Open asset"
+          strong
+          class={index === 0 ? "lg:col-span-5 lg:min-h-[19rem]" : index === 1 ? "lg:col-span-4" : "lg:col-span-3"}
+        />
       ))}
     </BentoGrid>
   </section>
 
   <section class="band section-y">
-    <div class="site-shell section-split">
-      <div>
+    <div class="site-shell grid gap-10">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           eyebrow="Operating loop"
           title="Inspection-aware AI, not AI theater"
@@ -152,7 +192,8 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
           <CTAButton href="/evidence" variant="secondary">Evidence base</CTAButton>
         </div>
       </div>
-      <EvidenceRail />
+      <VisualPanel title="Sense -> Model -> Decide -> Verify" subtitle="LMD decision-system cockpit" />
+      <EvidenceRail compact />
     </div>
   </section>
 
@@ -166,8 +207,16 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
       <CTAButton href="/industrial-proof" variant="secondary">Open proof map</CTAButton>
     </div>
     <BentoGrid class="mt-10">
-      {EXAFUSE_PROOF_CASES.slice(0, 4).map((item) => (
-        <BentoCard href={item.href} eyebrow={item.code} title={item.title} description={item.labConnection} cta="View public source" external />
+      {EXAFUSE_PROOF_CASES.slice(0, 4).map((item, index) => (
+        <BentoCard
+          href={item.href}
+          eyebrow={item.code}
+          title={item.title}
+          description={item.labConnection}
+          cta="View public source"
+          external
+          class={index === 0 ? "lg:col-span-6" : index === 1 ? "lg:col-span-6" : "lg:col-span-3"}
+        />
       ))}
     </BentoGrid>
   </section>
@@ -180,8 +229,15 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
         description="A compact map of the public resources that make Manish Sharma Lab useful to engineers, students, buyers, and AI agents."
       />
       <BentoGrid class="mt-10">
-        {frameworkHighlights.map((asset) => (
-          <BentoCard href={asset.href} eyebrow={asset.status} title={asset.title} description={asset.idea} cta="Open resource" />
+        {frameworkHighlights.map((asset, index) => (
+          <BentoCard
+            href={asset.href}
+            eyebrow={asset.status}
+            title={asset.title}
+            description={asset.idea}
+            cta="Open resource"
+            class={index === 3 ? "lg:col-span-6" : index === 5 ? "lg:col-span-6" : "lg:col-span-3"}
+          />
         ))}
       </BentoGrid>
     </div>
@@ -193,15 +249,22 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
       <CTAButton href="/lab-notes" variant="secondary">View all notes</CTAButton>
     </div>
     <BentoGrid class="mt-10">
-      {latestLabNotes.map((note) => (
-        <BentoCard href={note.href} eyebrow={note.date} title={note.title} description={note.description} cta="Read note" />
+      {latestLabNotes.map((note, index) => (
+        <BentoCard
+          href={note.href}
+          eyebrow={note.date}
+          title={note.title}
+          description={note.description}
+          cta="Read note"
+          class={index === 0 ? "lg:col-span-6" : "lg:col-span-3"}
+        />
       ))}
     </BentoGrid>
   </section>
 
   <section class="band section-y">
     <div class="site-shell grid gap-5 lg:grid-cols-2">
-      <div class="ordered-card-strong p-7">
+      <div class="ordered-card-strong p-7 md:p-8">
         <p class="metric-label">Personal expert layer</p>
         <h2 class="mt-3 text-3xl font-black leading-tight text-white">Manish Sharma - AI for Laser Metal Deposition</h2>
         <p class="mt-4 leading-7 text-slate-300">
@@ -212,7 +275,7 @@ const latestLabNotes = LAB_NOTES.slice(0, 3);
           <CTAButton href="/profile/public-profile" variant="secondary">Public profile</CTAButton>
         </div>
       </div>
-      <div class="ordered-card p-7">
+      <div class="ordered-card p-7 md:p-8">
         <p class="metric-label">Commercial boundary</p>
         <h2 class="mt-3 text-3xl font-black leading-tight text-white">For services, RFQs, and company claims, use Exafuse.</h2>
         <p class="mt-4 leading-7 text-slate-300">
