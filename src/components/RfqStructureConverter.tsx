@@ -8,9 +8,11 @@ const EXAFUSE_URL = EXAFUSE_LINKS.rfqBuilder;
 const partTerms = ["shaft", "die", "gear", "valve", "hammer", "mold", "tool", "bracket", "node", "component"];
 const materialTerms = ["steel", "stainless", "aluminium", "aluminum", "inconel", "nickel", "copper", "titanium", "unknown"];
 const damageTerms = ["worn", "wear", "corrosion", "crack", "cracked", "broken", "damaged", "pitted", "eroded", "machining error"];
+const exampleText =
+  "Repair a worn stainless steel shaft with local damage near the bearing seat. Photos are available but CAD is missing. Need tight tolerance and hardness requirement.";
 
 export default function RfqStructureConverter() {
-  const [text, setText] = useState("Repair a worn stainless steel shaft with local damage near the bearing seat. Photos are available but CAD is missing. Need tight tolerance and hardness requirement.");
+  const [text, setText] = useState(exampleText);
 
   const parsed = useMemo(() => {
     const lower = text.toLowerCase();
@@ -88,11 +90,18 @@ export default function RfqStructureConverter() {
           rows={12}
           className="min-h-[24rem] p-4 text-sm leading-6 text-slate-100 outline-none"
         />
+        <span className="mt-4 flex flex-wrap gap-3">
+          <button type="button" onClick={() => setText(exampleText)} className="btn btn-secondary">Use example</button>
+          <button type="button" onClick={() => setText("")} className="btn btn-secondary">Reset</button>
+        </span>
       </label>
       <aside className="ordered-card-strong p-6 md:p-7">
         <p className="metric-label">Structured RFQ output</p>
+        <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
+          Confidence is not approval. This parser structures a request; it does not decide feasibility.
+        </p>
         <ResultSection label="Preliminary recommendation" value={parsed.recommendation} large />
-        <ResultList label="Why" items={parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."]} />
+        <ResultList label="Why-signals" items={parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."]} />
         <div className="mt-5 grid gap-3 text-sm">
           <Field label="Part" value={parsed.part} />
           <Field label="Material" value={parsed.material} />
@@ -101,10 +110,12 @@ export default function RfqStructureConverter() {
         <ResultList label="Missing information" items={parsed.missing.length ? parsed.missing : ["No major missing field detected by keyword rules."]} />
         <ResultList label="Risk flags" items={parsed.riskFlags} />
         <ResultSection label="Suggested next step" value={parsed.suggestedNextStep} />
+        <ResultSection label="Exafuse RFQ path" value="Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured." />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
         <div className="mt-6 flex flex-wrap gap-3">
           <button type="button" onClick={() => copyToClipboard(resultText)} className="btn btn-primary">Copy result</button>
           <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
+          <button type="button" onClick={() => copyToClipboard(parsed.missing.join("\n") || "No major missing field detected by keyword rules.")} className="btn btn-secondary">Copy missing-information checklist</button>
           <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
           <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
         </div>
@@ -163,6 +174,7 @@ function formatResult(parsed: {
     `Missing information: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
     `Risk flags: ${parsed.riskFlags.join(", ")}`,
     `Suggested next step: ${parsed.suggestedNextStep}`,
+    "Exafuse RFQ path: Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.",
     `Disclaimer: ${DISCLAIMER}`
   ].join("\n");
 }

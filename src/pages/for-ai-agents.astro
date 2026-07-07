@@ -2,9 +2,9 @@
 import CTAButton from "@components/CTAButton.astro";
 import Chip from "@components/Chip.astro";
 import Layout from "@layouts/Layout.astro";
+import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import VisualPanel from "@components/VisualPanel.astro";
 import { PERSON, SITE } from "@data/site";
 import { EXAFUSE_LINKS } from "@data/siteConfig";
 
@@ -24,7 +24,7 @@ const useFor = [
 ];
 
 const doNotUse = [
-  "final engineering approval",
+  "not final engineering approval",
   "material certification",
   "safety-critical acceptance decision",
   "replacement for expert review",
@@ -60,7 +60,7 @@ const linkGroups = [
       { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json", description: "Broad metadata scan." },
       { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json", description: "Structured RFQ fields." },
       { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md", description: "Prompt patterns with missing-field checks." },
-      { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md", description: "Rules for preliminary decision support." },
+      { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md", description: "Rules for preliminary decision-support." },
       { label: "Quality Checklist", href: "/agent-pack/lmd-quality-checklist.md", description: "RFQ quality and evidence checklist." }
     ]
   },
@@ -133,7 +133,7 @@ const jsonLd = {
         <CTAButton href="/research/core-lmd-ai-sources" variant="secondary">Core source map</CTAButton>
       </div>
     </div>
-    <VisualPanel title="Agent-safe interpretation" subtitle="Public facts -> boundaries -> source files" />
+    <ProcessLoop variant="compact" title="Agent-safe interpretation loop" subtitle="Public facts, boundaries, source files, and expert-review escalation must stay separate." />
   </section>
 
   <section class="band section-y">

@@ -1,9 +1,11 @@
 {
-  "generated_at": "2026-07-06",
+  "generated_at": "2026-07-07",
   "source_base": "https://exafuse.de",
+  "link_mode": "production-safe",
   "purpose": "Public Exafuse proof-map signals used to strengthen Manish Sharma Lab without duplicating company service pages or treating process-monitoring content as certification.",
   "canonical_links": {
     "homepage": "https://exafuse.de/",
+    "contact": "https://exafuse.de/kontakt/",
     "services": "https://exafuse.de/leistungen/",
     "metal_additive_manufacturing": "https://exafuse.de/leistungen/bauteilherstellung/",
     "repair": "https://exafuse.de/leistungen/modifikation-reparatur/",
@@ -11,95 +13,137 @@
     "technology": "https://exafuse.de/technologie/",
     "quality": "https://exafuse.de/qualitaet/",
     "case_studies": "https://exafuse.de/fallstudien/",
-    "knowledge_lmd": "https://exafuse.de/wissen/laser-metal-deposition-ded-lbm/",
-    "knowledge_lmd_vs_slm": "https://exafuse.de/wissen/lmd-vs-slm-lpbf/",
-    "contact": "https://exafuse.de/kontakt/"
+    "knowledge": "https://exafuse.de/wissen/"
   },
+  "migration_note": "Case-study and new knowledge deep links should be treated as production links only after Exafuse migration verification. Until then, use the safe production index/contact URLs.",
   "case_studies": [
     {
       "code": "CS15",
       "title": "Duisburg Bridge Components with LMD",
-      "url": "https://exafuse.de/fallstudien/duisburger-bruecke-lmd-fallstudie/",
-      "status": "Public Exafuse proof",
-      "public_signals": ["750 kg+ LMD bridge components", "six structural nodes", "Knoten 10: 219 hours and about 8 km of robot travel", "roughly 38 km across six nodes", "more than one million melt-pool images", "KIT validation context"]
+      "url": "https://exafuse.de/fallstudien/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "claim_ids": [
+        "cs15-bridge-components-750kg",
+        "cs15-six-structural-nodes",
+        "cs15-single-node-build-219h",
+        "cs15-six-node-robot-path-38km",
+        "cs15-melt-pool-images-1m",
+        "cs15-kit-validation-context"
+      ],
+      "public_signals": [
+        "large structural LMD context",
+        "multi-node manufacturing context",
+        "robot-path and monitoring scale context",
+        "independent validation context where production source confirms it"
+      ]
     },
     {
       "code": "CS01",
       "title": "Forging Hammer Repair and Coating with LMD",
-      "url": "https://exafuse.de/fallstudien/schmiedehammer-reparatur-lmd/",
-      "status": "Public Exafuse proof",
-      "public_signals": ["10-20 mm local reinforcement context", "impact wear and heat duty", "surface preparation", "finishing and inspection", "hardness is not enough by itself"]
+      "url": "https://exafuse.de/fallstudien/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "claim_ids": ["cs01-local-wear-repair"],
+      "public_signals": [
+        "local wear repair context",
+        "impact wear and heat duty",
+        "surface preparation",
+        "finishing and inspection",
+        "hardness is not enough by itself"
+      ]
     },
     {
       "code": "CS10",
       "title": "Nobufil Extrusion Screw Repair",
-      "url": "https://exafuse.de/fallstudien/extrusionsschnecke-reparatur-lmd/",
-      "status": "Public Exafuse proof",
-      "public_signals": ["cracked stub shaft", "no immediately available replacement", "remove damaged material before LMD", "finish geometry after deposition"]
+      "url": "https://exafuse.de/fallstudien/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "claim_ids": ["cs10-local-crack-repair"],
+      "public_signals": [
+        "local crack repair context",
+        "downtime and spare-part pressure",
+        "remove damaged material before LMD",
+        "finish geometry after deposition"
+      ]
     },
     {
       "code": "CS13",
-      "title": "130 mm Bombenbohrer Build-and-Coat Workflow",
-      "url": "https://exafuse.de/fallstudien/bombenbohrer-lmd-aufbau-beschichtung/",
-      "status": "Public Exafuse proof",
-      "public_signals": ["130 mm drill", "LMD fabrication plus LMD functional coating", "wear-resistant anti-magnetic coating from tungsten-carbide-containing alloy"]
+      "title": "Build-and-Coat Drill Workflow",
+      "url": "https://exafuse.de/fallstudien/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "claim_ids": ["cs13-build-and-coat-130mm"],
+      "public_signals": [
+        "build-and-coat workflow context",
+        "geometry build-up plus functional coating",
+        "surface function requires application-specific validation"
+      ]
     }
   ],
   "knowledge_articles": [
     {
       "code": "A03",
       "title": "LMD buyer guide",
-      "url": "https://exafuse.de/wissen/laser-metal-deposition-ded-lbm/",
-      "status": "Public Exafuse knowledge page",
-      "public_signals": ["local melt-pool powder deposition", "repair, cladding, modification and hybrid routes", "process-family terminology"]
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "public_signals": ["repair, cladding, modification and hybrid routes", "process-family terminology"]
     },
     {
       "code": "A04",
       "title": "LMD vs SLM selection",
-      "url": "https://exafuse.de/wissen/lmd-vs-slm-lpbf/",
-      "status": "Public Exafuse knowledge page",
-      "public_signals": ["LMD fit: large parts, repair, local feature addition and cladding", "SLM / LPBF fit: compact complex geometry, fine detail and internal channels", "process choice depends on geometry, purpose, post-processing and inspection"]
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "public_signals": ["process choice depends on geometry, purpose, post-processing and inspection"]
     },
     {
       "code": "A06",
       "title": "Large-part LMD productivity",
-      "url": "https://exafuse.de/wissen/grosse-bauteile-laser-metal-deposition/",
-      "status": "Public Exafuse knowledge context",
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
       "public_signals": ["large LMD depends on bead width, overlap, heat management, machining allowance, fixtures and inspection"]
     },
     {
       "code": "A12",
       "title": "Monitoring and control",
-      "url": "https://exafuse.de/wissen/lmd-prozessueberwachung-qualitaet/",
-      "status": "Public Exafuse knowledge context",
-      "public_signals": ["melt-pool behavior", "path execution", "deposition continuity", "thermal history", "monitoring supports process awareness but does not replace inspection or qualification"]
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "public_signals": ["monitoring supports process awareness but does not replace inspection or qualification"]
     },
     {
       "code": "A21",
       "title": "BreitBahnDED wide-bead research",
-      "url": "https://exafuse.de/wissen/breitbahn-ded-lmd/",
-      "status": "Public Exafuse knowledge context",
-      "public_signals": ["wide-bead LMD research context", "productivity and powder-utilization questions", "research goals are not production qualification"]
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "public_signals": ["research goals are not production qualification"]
     },
     {
       "code": "A25",
       "title": "2024 year in powder",
-      "url": "https://exafuse.de/wissen/lmd-pulver-jahresrueckblick-2024/",
-      "status": "Public Exafuse knowledge context",
-      "public_signals": ["public material-consumption scale context", "should not be overread as customer proof or process qualification"]
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "public_signals": ["material scale context should not be overread as customer proof or process qualification"]
     },
     {
       "code": "A29",
       "title": "Forging hammer repair evaluation",
-      "url": "https://exafuse.de/wissen/lmd-reparatur-schmiedehammer/",
-      "status": "Public Exafuse knowledge context",
-      "public_signals": ["local accessible damage", "viable base material", "metallurgical bond", "machinability", "inspection and release criteria", "not generic hardfacing"]
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
+      "public_signals": ["local accessible damage", "viable base material", "metallurgical bond", "machinability", "inspection and release criteria"]
     },
     {
       "code": "A37",
       "title": "Neural image processing",
-      "url": "https://exafuse.de/wissen/neuronale-bildverarbeitung-lmd/",
-      "status": "Public Exafuse knowledge context",
+      "url": "https://exafuse.de/wissen/",
+      "source_link_after_migration": true,
+      "status": "production link after Exafuse migration",
       "public_signals": ["AI image processing", "segmentation and visual interpretation", "model outputs require process-context and inspection validation"]
     }
   ],

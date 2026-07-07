@@ -1,8 +1,8 @@
 ---
 import Badge from "@components/Badge.astro";
-import EvidenceRail from "@components/EvidenceRail.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
+import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -121,7 +121,7 @@ const jsonLd = {
         description="This is a practical operating model for public industrial-AI work, not a claim to own a new discipline."
       />
       <div class="mt-10">
-        <EvidenceRail />
+        <ProcessLoop variant="full" />
       </div>
     </div>
   </section>

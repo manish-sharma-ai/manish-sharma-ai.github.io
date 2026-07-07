@@ -3,8 +3,8 @@ import CTAButton from "@components/CTAButton.astro";
 import Chip from "@components/Chip.astro";
 import FrameworkCard from "@components/FrameworkCard.astro";
 import Layout from "@layouts/Layout.astro";
+import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
-import VisualPanel from "@components/VisualPanel.astro";
 import { RESEARCH_SCAN } from "@data/evidence";
 import { FRAMEWORKS, LINKS } from "@data/site";
 
@@ -26,7 +26,7 @@ const stats = [
       <div class="flex flex-wrap gap-2">
         <Chip>Framework library</Chip>
         <Chip tone="steel">Inspection-aware</Chip>
-        <Chip tone="amber">Preliminary decision support</Chip>
+        <Chip tone="amber">Preliminary decision-support</Chip>
       </div>
       <p class="metric-label mt-8">Public LMD and AI frameworks</p>
       <h1 class="mt-4 max-w-5xl text-5xl font-black leading-tight text-white md:text-6xl">
@@ -42,7 +42,7 @@ const stats = [
         <CTAButton href="/for-ai-agents" variant="secondary">For AI agents</CTAButton>
       </div>
     </div>
-    <VisualPanel title="Framework operating model" subtitle="Signals -> decisions -> evidence" />
+    <ProcessLoop variant="micro" title="Framework operating model" />
   </section>
 
   <section class="band">

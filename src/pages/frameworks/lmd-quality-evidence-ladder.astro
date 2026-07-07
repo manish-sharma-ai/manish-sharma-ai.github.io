@@ -3,6 +3,7 @@ import Badge from "@components/Badge.astro";
 import EvidenceLadder from "@components/EvidenceLadder.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
+import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
@@ -68,15 +69,18 @@ const jsonLd = {
   </section>
 
   <section class="band py-12">
-    <div class="site-shell grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      {[
-        "Melt-pool monitoring is a process signal, not a certificate.",
-        "AI anomaly detection is a risk indicator, not final proof.",
-        "Inspection evidence must match the part risk and service conditions.",
-        "AI is strongest when connected to physical validation."
-      ].map((message) => (
-        <div class="ordered-card p-5 text-sm font-bold leading-6 text-slate-100">{message}</div>
-      ))}
+    <div class="site-shell grid gap-6">
+      <ProcessLoop variant="micro" title="Quality evidence loop" />
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {[
+          "Melt-pool monitoring is a process signal, not a certificate.",
+          "AI anomaly detection is a risk indicator, not final proof.",
+          "Inspection evidence must match the part risk and service conditions.",
+          "AI is strongest when connected to physical validation."
+        ].map((message) => (
+          <div class="ordered-card p-5 text-sm font-bold leading-6 text-slate-100">{message}</div>
+        ))}
+      </div>
     </div>
   </section>
 

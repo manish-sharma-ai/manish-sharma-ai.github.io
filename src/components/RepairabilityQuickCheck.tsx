@@ -15,6 +15,15 @@ const questions = [
   "Downtime important?"
 ];
 
+const exampleSelected = [
+  "Material known?",
+  "Damage local?",
+  "Access possible?",
+  "Post-machining possible?",
+  "Inspection requirement known?",
+  "Downtime important?"
+];
+
 export default function RepairabilityQuickCheck() {
   const [selected, setSelected] = useState<string[]>(["Damage local?", "Access possible?", "Downtime important?"]);
   const [safetyCritical, setSafetyCritical] = useState(false);
@@ -75,17 +84,25 @@ export default function RepairabilityQuickCheck() {
           />
           <span>Safety critical?</span>
         </label>
+        <div className="mt-2 flex flex-wrap gap-3">
+          <button type="button" onClick={() => { setSelected(exampleSelected); setSafetyCritical(false); }} className="btn btn-secondary">Use example</button>
+          <button type="button" onClick={() => { setSelected(["Damage local?", "Access possible?", "Downtime important?"]); setSafetyCritical(false); }} className="btn btn-secondary">Reset</button>
+        </div>
       </div>
       <aside className="ordered-card-strong h-fit p-6 md:p-7">
         <p className="metric-label">Quick-check output</p>
+        <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
+          Confidence is not approval. This score screens review readiness; it does not approve repair.
+        </p>
         <p className="mt-4 font-mono text-5xl font-black text-white">{result.score}</p>
         <ResultSection label="Preliminary recommendation" value={result.recommendation} large />
-        <ResultList label="Why" items={result.why} />
+        <ResultList label="Why-signals" items={result.why} />
         <ResultList label="Missing information" items={result.missing.length ? result.missing : ["No major missing field from selected checklist."]} />
         <ResultList label="Risk flags" items={result.riskFlags} />
         <ResultSection label="Suggested next step" value={result.suggestedNextStep} />
+        <ResultSection label="Exafuse RFQ path" value="Use Exafuse for commercial and technical review after the repair question is structured." />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-        <ActionRow copyText={formatResult(result)} rfqSummary={formatRfqSummary(result)} />
+        <ActionRow copyText={formatResult(result)} rfqSummary={formatRfqSummary(result)} missingChecklist={result.missing.join("\n") || "No major missing field from selected checklist."} />
       </aside>
     </div>
   );
@@ -113,11 +130,12 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-function ActionRow({ copyText, rfqSummary }: { copyText: string; rfqSummary: string }) {
+function ActionRow({ copyText, rfqSummary, missingChecklist }: { copyText: string; rfqSummary: string; missingChecklist: string }) {
   return (
     <div className="mt-6 flex flex-wrap gap-3">
       <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-primary">Copy result</button>
       <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
+      <button type="button" onClick={() => copyToClipboard(missingChecklist)} className="btn btn-secondary">Copy missing-information checklist</button>
       <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
       <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
     </div>
@@ -138,6 +156,7 @@ function formatResult(result: {
     `Missing information: ${result.missing.join(", ") || "none flagged by checklist"}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
     `Suggested next step: ${result.suggestedNextStep}`,
+    "Exafuse RFQ path: Use Exafuse for commercial and technical review after the repair question is structured.",
     `Disclaimer: ${DISCLAIMER}`
   ].join("\n");
 }

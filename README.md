@@ -109,7 +109,7 @@ Core routes:
 
 ## External URL Policy
 
-External public URLs are centralized in `src/data/externalUrls.ts` and consumed through `src/data/siteConfig.ts`, `src/data/profiles.ts`, and `src/data/site.ts`.
+External public URLs are resolved through `src/config/externalLinks.ts`, surfaced through `src/data/externalUrls.ts`, and consumed through `src/data/siteConfig.ts`, `src/data/profiles.ts`, and `src/data/site.ts`.
 
 Canonical URL rules:
 
@@ -121,10 +121,18 @@ Canonical URL rules:
 
 Do not add staging URLs, `www.exafuse.de` variants, fake profile URLs, or `href="#"` placeholders to production-facing content.
 
-Recommended scan:
+Exafuse launch mode:
+
+- `EXAFUSE_LINK_MODE = "production-safe"` keeps migration-sensitive Exafuse deep links on safe production routes.
+- `EXAFUSE_LINK_MODE = "post-migration"` should be used only after the production Exafuse paths are verified.
+- Follow `docs/exafuse-migration-switch.md` before changing link mode.
+
+Public proof metrics are centralized in `src/data/publicClaims.ts`. Do not hard-code CS15 bridge metrics or other proof numbers in page components.
+
+Recommended audits:
 
 ```bash
-rg -n "pages\.dev|exafuse-website-react|https://www\.exafuse\.de|href=\"#\"|TODO|draft" src public AGENTS.md
+npm run audit:all
 ```
 
 ## AI-Readable Files
@@ -215,10 +223,12 @@ These steps require account access and can be completed in GitHub, Google Search
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.
+- Run `docs/ai-answer-tests.md` after major AI-readable or schema changes.
 
 ## Next Roadmap
 
 - Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs when the profiles are created.
+- Switch Exafuse link mode only after following `docs/exafuse-migration-switch.md`.
 - Replace working-draft source categories on the curated research page with verified citation links.
 - Add more buyer-facing RFQ examples and public-safe tool outputs.
 - Keep glossary pages aligned with source notes and standards references.

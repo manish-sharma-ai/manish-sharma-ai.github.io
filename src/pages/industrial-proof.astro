@@ -10,6 +10,7 @@ import {
   EXAFUSE_PROOF_CASES,
   EXAFUSE_SOURCE_LINKS
 } from "@data/exafuse";
+import { getClaimSourceStatus } from "@data/publicClaims";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Industrial LMD Proof Map - Manish Sharma Lab";
@@ -106,9 +107,18 @@ const jsonLd = {
             </div>
             <a href={item.href} class="rounded-md border border-cyan-300/25 px-3 py-2 text-xs font-bold text-cyan-100 hover:bg-cyan-300/10" target="_blank" rel="noreferrer">Open</a>
           </div>
-          <div class="mt-5 flex flex-wrap gap-2">
-            {item.metrics.map((metric) => <span class="rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-bold text-slate-200">{metric}</span>)}
-          </div>
+          {item.metricClaims?.length > 0 && (
+            <div class="mt-5 flex flex-wrap gap-2">
+              {item.metricClaims.map((claim) => (
+                <span class="rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-bold text-slate-200" data-claim-id={claim.id} title={claim.limitation}>
+                  {claim.shortLabel}
+                </span>
+              ))}
+            </div>
+          )}
+          <p class="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-cyan-100">
+            {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Production link after Exafuse migration"}
+          </p>
           <p class="mt-5 text-sm leading-6 text-slate-300">{item.lesson}</p>
           <p class="mt-4 border-l border-cyan-300/35 pl-4 text-sm font-semibold leading-6 text-cyan-50">{item.labConnection}</p>
           <div class="mt-5 flex flex-wrap gap-2">

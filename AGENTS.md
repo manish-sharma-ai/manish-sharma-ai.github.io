@@ -55,6 +55,8 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Every new claim needs source context or must be clearly framed as interpretation.
 - Do not add fake profile links, fake publications, fake certifications, unsupported metrics, or staging URLs.
 - Preserve the commercial boundary: Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, delivery claims, and company-owned source details.
+- Resolve Exafuse URLs through `src/config/externalLinks.ts`; do not hard-code Exafuse production or staging URLs in page components.
+- Render public proof metrics from `src/data/publicClaims.ts`; do not hard-code CS15 or other proof metrics in page components.
 
 ## Working Tree Rules
 
@@ -84,6 +86,7 @@ Before finishing:
 
 ```bash
 npm run build
+npm run audit:all
 git status --short
 ```
 

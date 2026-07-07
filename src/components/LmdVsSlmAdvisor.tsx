@@ -14,6 +14,15 @@ const defaults = {
   internalChannels: "no"
 };
 
+const exampleValues = {
+  partSize: "large",
+  complexity: "low",
+  jobType: "repair",
+  localAddition: "yes",
+  tolerance: "tight",
+  internalChannels: "no"
+};
+
 export default function LmdVsSlmAdvisor() {
   const [values, setValues] = useState(defaults);
 
@@ -82,13 +91,19 @@ export default function LmdVsSlmAdvisor() {
 
   return (
     <div className="tool-panel">
-      <div className="tool-input-grid">
-        <Select label="Part size" value={values.partSize} options={["small", "medium", "large"]} onChange={(value) => setValues({ ...values, partSize: value })} />
-        <Select label="Geometry complexity" value={values.complexity} options={["low", "medium", "high"]} onChange={(value) => setValues({ ...values, complexity: value })} />
-        <Select label="Job type" value={values.jobType} options={["repair", "new build", "cladding", "prototype"]} onChange={(value) => setValues({ ...values, jobType: value })} />
-        <Select label="Need local material addition" value={values.localAddition} options={["yes", "no"]} onChange={(value) => setValues({ ...values, localAddition: value })} />
-        <Select label="Tolerance requirement" value={values.tolerance} options={["loose", "medium", "tight"]} onChange={(value) => setValues({ ...values, tolerance: value })} />
-        <Select label="Internal channels" value={values.internalChannels} options={["yes", "no"]} onChange={(value) => setValues({ ...values, internalChannels: value })} />
+      <div>
+        <div className="tool-input-grid">
+          <Select label="Part size" value={values.partSize} options={["small", "medium", "large"]} onChange={(value) => setValues({ ...values, partSize: value })} />
+          <Select label="Geometry complexity" value={values.complexity} options={["low", "medium", "high"]} onChange={(value) => setValues({ ...values, complexity: value })} />
+          <Select label="Job type" value={values.jobType} options={["repair", "new build", "cladding", "prototype"]} onChange={(value) => setValues({ ...values, jobType: value })} />
+          <Select label="Need local material addition" value={values.localAddition} options={["yes", "no"]} onChange={(value) => setValues({ ...values, localAddition: value })} />
+          <Select label="Tolerance requirement" value={values.tolerance} options={["loose", "medium", "tight"]} onChange={(value) => setValues({ ...values, tolerance: value })} />
+          <Select label="Internal channels" value={values.internalChannels} options={["yes", "no"]} onChange={(value) => setValues({ ...values, internalChannels: value })} />
+        </div>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <button type="button" onClick={() => setValues(exampleValues)} className="btn btn-secondary">Use example</button>
+          <button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Reset</button>
+        </div>
       </div>
       <ToolResult result={result} />
     </div>
@@ -145,13 +160,17 @@ function ToolResult({
   return (
     <aside className="ordered-card-strong h-fit p-6 md:p-7">
       <p className="metric-label">Advisor output</p>
+      <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
+        Confidence is not approval. This output is a route signal, not a release decision.
+      </p>
       <ResultSection label="Preliminary recommendation" value={result.recommendation} large />
-      <ResultList label="Why" items={result.why} />
+      <ResultList label="Why-signals" items={result.why} />
       <ResultList label="Missing information" items={result.missing} />
       <ResultList label="Risk flags" items={result.riskFlags} />
       <ResultSection label="Suggested next step" value={result.suggestedNextStep} />
+      <ResultSection label="Exafuse RFQ path" value="Use Exafuse for commercial and technical review after the question is structured." />
       <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-      <ActionRow copyText={copyText} rfqSummary={rfqSummary} />
+      <ActionRow copyText={copyText} rfqSummary={rfqSummary} missingChecklist={result.missing.join("\n")} />
     </aside>
   );
 }
@@ -178,11 +197,12 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-function ActionRow({ copyText, rfqSummary }: { copyText: string; rfqSummary: string }) {
+function ActionRow({ copyText, rfqSummary, missingChecklist }: { copyText: string; rfqSummary: string; missingChecklist: string }) {
   return (
     <div className="mt-6 flex flex-wrap gap-3">
       <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-primary">Copy result</button>
       <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
+      <button type="button" onClick={() => copyToClipboard(missingChecklist)} className="btn btn-secondary">Copy missing-information checklist</button>
       <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
       <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
     </div>
@@ -202,6 +222,7 @@ function formatResult(result: {
     `Missing information: ${result.missing.join(", ")}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
     `Suggested next step: ${result.suggestedNextStep}`,
+    "Exafuse RFQ path: Use Exafuse for commercial and technical review after the question is structured.",
     `Disclaimer: ${DISCLAIMER}`
   ].join("\n");
 }

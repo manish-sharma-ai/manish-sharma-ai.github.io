@@ -1,4 +1,6 @@
 import { EXAFUSE_LINKS, SITE_CONFIG } from "./siteConfig";
+import { getRenderableClaimsForCase } from "./publicClaims";
+import { resolveExafuseLink } from "../config/externalLinks";
 
 export const EXAFUSE_BASE = SITE_CONFIG.exafuse.baseUrl;
 
@@ -34,8 +36,9 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS15",
     title: "Duisburg Bridge Components",
     href: EXAFUSE_LINKS.duisburgBridgeCase,
-    evidenceStatus: "Public Exafuse proof",
-    metrics: ["750 kg+", "6 nodes", "219 h", "38 km", "1M+ images"],
+    sourceStatus: resolveExafuseLink("cs15").status,
+    evidenceStatus: "Public Exafuse proof context",
+    metricClaims: getRenderableClaimsForCase("CS15"),
     lesson:
       "Large structural LMD is a CAD-to-production system problem: manufacturability review, path planning, parameter development, monitoring, independent validation, and final inspection.",
     labConnection:
@@ -46,8 +49,9 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS01",
     title: "Forging Hammer Repair",
     href: EXAFUSE_LINKS.forgingHammerCase,
-    evidenceStatus: "Public Exafuse proof",
-    metrics: ["10-20 mm", "impact wear", "bond + toughness"],
+    sourceStatus: resolveExafuseLink("cs01").status,
+    evidenceStatus: "Public Exafuse proof context",
+    metricClaims: getRenderableClaimsForCase("CS01"),
     lesson:
       "A credible hammer repair is not one hardness number. It requires surface preparation, crack context, layer strategy, finishing, bond quality, and release evidence.",
     labConnection:
@@ -58,8 +62,9 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS10",
     title: "Nobufil Extrusion Screw Repair",
     href: EXAFUSE_LINKS.extrusionScrewCase,
-    evidenceStatus: "Public Exafuse proof",
-    metrics: ["local crack", "no spare", "finish after LMD"],
+    sourceStatus: resolveExafuseLink("cs10").status,
+    evidenceStatus: "Public Exafuse proof context",
+    metricClaims: getRenderableClaimsForCase("CS10"),
     lesson:
       "Repair value often comes from a local failure with a large downtime risk. The damaged material must be removed before rebuilding, not hidden below new deposition.",
     labConnection:
@@ -70,8 +75,9 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS13",
     title: "130 mm Build-and-Coat Drill",
     href: EXAFUSE_LINKS.drillBuildCoatCase,
-    evidenceStatus: "Public Exafuse proof",
-    metrics: ["130 mm", "build + coat", "WC-containing alloy"],
+    sourceStatus: resolveExafuseLink("cs13").status,
+    evidenceStatus: "Public Exafuse proof context",
+    metricClaims: getRenderableClaimsForCase("CS13"),
     lesson:
       "LMD can combine geometry creation and functional surface strategy when material compatibility, coating duty, finishing, and validation are planned together.",
     labConnection:

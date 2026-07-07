@@ -4,7 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, DISCLAIMER, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
-import { PROFILE_LINKS } from "@data/profiles";
+import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 import { absoluteUrl } from "@utils/urls";
 
 const title = "Press Kit - Manish Sharma Lab";
@@ -276,7 +276,7 @@ const jsonLd = {
           <SourceLinks links={officialLinks} />
         </div>
         <div class="mt-8">
-          <SourceLinks links={PROFILE_LINKS} />
+          <SourceLinks links={ACTIVE_PROFILE_LINKS} />
         </div>
       </div>
     </div>

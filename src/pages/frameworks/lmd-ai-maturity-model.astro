@@ -2,6 +2,7 @@
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
+import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
@@ -106,6 +107,12 @@ const stages = [
       <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
     </div>
     <PageHeroVisual variant="maturity" class="hidden lg:block" />
+  </section>
+
+  <section class="band py-8">
+    <div class="site-shell">
+      <ProcessLoop variant="micro" title="Maturity loop" />
+    </div>
   </section>
 
   <section class="band section-y">

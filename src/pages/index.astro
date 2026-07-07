@@ -3,12 +3,12 @@ import BentoCard from "@components/BentoCard.astro";
 import BentoGrid from "@components/BentoGrid.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Chip from "@components/Chip.astro";
-import EvidenceRail from "@components/EvidenceRail.astro";
 import HeroLaserVisual from "@components/HeroLaserVisual";
 import Layout from "@layouts/Layout.astro";
+import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
-import VisualPanel from "@components/VisualPanel.astro";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
+import { getClaimSourceStatus } from "@data/publicClaims";
 import { LINKS, PERSON, SAME_AS, SITE } from "@data/site";
 import { EXAFUSE_LINKS } from "@data/siteConfig";
 
@@ -140,6 +140,13 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
     cannot: "It does not prove surface performance without application-specific validation."
   }
 };
+
+const proofDecisionHelp: Record<string, string> = {
+  CS15: "Helps decide how much evidence is needed before large-part LMD monitoring data becomes a defensible engineering discussion.",
+  CS01: "Helps decide whether local wear repair should move into expert review instead of becoming an automatic repair claim.",
+  CS10: "Helps decide which missing RFQ facts block a repairability conversation.",
+  CS13: "Helps decide when build-up and surface function must be planned as one route."
+};
 ---
 
 <Layout title={title} description={description} canonical="/" jsonLd={[websiteJsonLd, personJsonLd, profilePageJsonLd]}>
@@ -148,7 +155,7 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
       <div class="flex flex-wrap gap-2">
         <Chip>Industrial AI & Decision Systems</Chip>
         <Chip tone="steel">LMD / DED proof domain</Chip>
-        <Chip tone="amber">Evidence-bound</Chip>
+        <Chip tone="amber">Decision support only</Chip>
       </div>
       <p class="home-eyebrow metric-label mt-8">Manish Sharma Lab</p>
       <h1 class="mt-4 max-w-5xl text-5xl font-black leading-[0.95] text-white md:text-7xl">
@@ -161,7 +168,7 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
         Decision support only. Not final engineering approval.
       </div>
       <div class="mt-9 flex flex-wrap gap-3">
-        <CTAButton href="/tools" variant="primary">Try the LMD decision tools</CTAButton>
+        <CTAButton href="/tools" variant="primary">Open LMD Decision Workbench</CTAButton>
         <CTAButton href="/thesis" variant="secondary">Read the thesis</CTAButton>
         <CTAButton href={EXAFUSE_LINKS.rfqBuilder} variant="laser" external>Go to Exafuse for RFQs</CTAButton>
       </div>
@@ -183,7 +190,7 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
     </div>
   </section>
 
-  <section class="band section-y">
+  <section class="band py-12">
     <div class="site-shell">
       <SectionHeading eyebrow="Start here" title="Choose the path that matches your question" />
       <BentoGrid class="mt-10">
@@ -236,8 +243,7 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
         />
         <CTAButton href="/evidence" variant="secondary">Open evidence base</CTAButton>
       </div>
-      <VisualPanel title="Inspection-aware AI loop" subtitle="Signals -> assumptions -> decision -> evidence" />
-      <EvidenceRail compact />
+      <ProcessLoop variant="compact" title="Sense -> Model -> Decide -> Verify" subtitle="Keep signals, assumptions, decisions, and verification evidence separate." />
     </div>
   </section>
 
@@ -260,12 +266,24 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
               <Chip tone="steel">Public Exafuse source</Chip>
             </div>
             <h2 class="mt-4 text-2xl font-black leading-tight text-white">{item.title}</h2>
-            {item.metrics?.length > 0 && (
+            {item.metricClaims?.length > 0 && (
               <div class="mt-5 flex flex-wrap gap-2">
-                {item.metrics.map((metric) => <span class="chip chip--steel">{metric}</span>)}
+                {item.metricClaims.map((claim) => (
+                  <span class="chip chip--steel" data-claim-id={claim.id} title={claim.limitation}>{claim.shortLabel}</span>
+                ))}
               </div>
             )}
             <dl class="mt-5 grid gap-4 text-sm leading-6">
+              <div>
+                <dt class="metric-label">Decision it helps</dt>
+                <dd class="mt-1 text-slate-300">{proofDecisionHelp[item.code]}</dd>
+              </div>
+              <div>
+                <dt class="metric-label">Source status</dt>
+                <dd class="mt-1 text-slate-300">
+                  {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Production link after Exafuse migration"}
+                </dd>
+              </div>
               <div>
                 <dt class="metric-label">What it proves</dt>
                 <dd class="mt-1 text-slate-300">{related.proves}</dd>
@@ -281,7 +299,9 @@ const proofFrameworks: Record<string, { label: string; href: string; proves: str
                 </dd>
               </div>
             </dl>
-            <a href={item.href} class="btn btn-laser mt-6" target="_blank" rel="noreferrer">Public Exafuse source</a>
+            <a href={item.href} class="btn btn-laser mt-6" target="_blank" rel="noreferrer">
+              {item.sourceStatus === "production-link-after-migration" ? "Exafuse case link after migration" : "Public Exafuse source"}
+            </a>
           </article>
         );
       })}

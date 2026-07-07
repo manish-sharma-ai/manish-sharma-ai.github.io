@@ -51,7 +51,7 @@ const variants: Record<Variant, {
   layers: string[];
 }> = {
   default: {
-    title: "LMD process signal visual",
+    title: "LMD process signal",
     label: "process layer",
     focus: "AI + LMD",
     subfocus: "signals to evidence",
@@ -62,7 +62,7 @@ const variants: Record<Variant, {
     layers: ["Signal", "Risk", "Evidence"]
   },
   agent: {
-    title: "Agent schema and safety boundary visual",
+    title: "Agent schema and safety boundary",
     label: "agent map",
     focus: "schemas + limits",
     subfocus: "prompt to structured review",
@@ -73,7 +73,7 @@ const variants: Record<Variant, {
     layers: ["Use for", "Do not use", "Escalate"]
   },
   contact: {
-    title: "Contact route visual",
+    title: "Contact routes",
     label: "route map",
     focus: "contact paths",
     subfocus: "public lab to Exafuse",
@@ -84,7 +84,7 @@ const variants: Record<Variant, {
     layers: ["Professional", "Technical", "Industrial"]
   },
   evidence: {
-    title: "Evidence ladder visual",
+    title: "Evidence ladder",
     label: "proof boundary",
     focus: "quality evidence",
     subfocus: "monitoring is not release",
@@ -95,7 +95,7 @@ const variants: Record<Variant, {
     layers: ["Process signal", "Inspection", "Validation", "Field evidence"]
   },
   frameworks: {
-    title: "Framework stack visual",
+    title: "Framework stack",
     label: "decision layer",
     focus: "frameworks",
     subfocus: "risk to evidence",
@@ -106,7 +106,7 @@ const variants: Record<Variant, {
     layers: ["Question", "Signal", "Evidence", "Decision"]
   },
   quality: {
-    title: "Quality evidence ladder visual",
+    title: "Quality evidence ladder",
     label: "evidence ladder",
     focus: "quality proof",
     subfocus: "monitoring to inspection",
@@ -117,7 +117,7 @@ const variants: Record<Variant, {
     layers: ["Signal", "AI flag", "NDT", "Release evidence"]
   },
   repairability: {
-    title: "Repairability scoring visual",
+    title: "Repairability scoring",
     label: "repair index",
     focus: "repairability",
     subfocus: "material, damage, access",
@@ -128,7 +128,7 @@ const variants: Record<Variant, {
     layers: ["Known facts", "Missing info", "Risk flags", "Candidate band"]
   },
   readiness: {
-    title: "AI readiness visual",
+    title: "AI readiness map",
     label: "data foundation",
     focus: "AI readiness",
     subfocus: "logs to inspection labels",
@@ -139,7 +139,7 @@ const variants: Record<Variant, {
     layers: ["Capture", "Link", "Label", "Validate"]
   },
   failure: {
-    title: "Failure atlas visual",
+    title: "Failure atlas",
     label: "failure map",
     focus: "failure modes",
     subfocus: "signal to validation",
@@ -150,7 +150,7 @@ const variants: Record<Variant, {
     layers: ["Failure mode", "Process signal", "AI visibility", "Validation"]
   },
   maturity: {
-    title: "Maturity model visual",
+    title: "Maturity model",
     label: "maturity path",
     focus: "LMD-AI maturity",
     subfocus: "records to closed loop",
@@ -161,7 +161,7 @@ const variants: Record<Variant, {
     layers: ["Records", "Traceability", "Decision support", "Governance"]
   },
   glossary: {
-    title: "Glossary taxonomy visual",
+    title: "Glossary taxonomy",
     label: "term boundary",
     focus: "terminology",
     subfocus: "LMD, DED, cladding",
@@ -172,7 +172,7 @@ const variants: Record<Variant, {
     layers: ["Parent process", "Route", "Application"]
   },
   lmd: {
-    title: "Laser Metal Deposition taxonomy visual",
+    title: "Laser Metal Deposition taxonomy",
     label: "term focus",
     focus: "LMD",
     subfocus: "local metal addition",
@@ -183,7 +183,7 @@ const variants: Record<Variant, {
     layers: ["Laser route", "Melt zone", "Deposit path"]
   },
   ded: {
-    title: "Directed Energy Deposition taxonomy visual",
+    title: "Directed Energy Deposition taxonomy",
     label: "parent family",
     focus: "DED",
     subfocus: "heat source + feedstock",
@@ -194,7 +194,7 @@ const variants: Record<Variant, {
     layers: ["Family", "Route", "Feedstock"]
   },
   cladding: {
-    title: "Laser cladding taxonomy visual",
+    title: "Laser cladding taxonomy",
     label: "surface route",
     focus: "cladding",
     subfocus: "surface and repair layer",
@@ -205,7 +205,7 @@ const variants: Record<Variant, {
     layers: ["Base", "Interface", "Clad layer"]
   },
   meltpool: {
-    title: "Melt-pool monitoring visual",
+    title: "Melt-pool monitoring signal map",
     label: "monitoring signal",
     focus: "melt pool",
     subfocus: "signal, not certificate",
@@ -216,7 +216,7 @@ const variants: Record<Variant, {
     layers: ["Live signal", "Pattern", "Risk", "Inspection"]
   },
   industrial: {
-    title: "Industrial proof visual",
+    title: "Industrial proof map",
     label: "public case map",
     focus: "industrial proof",
     subfocus: "repair, cladding, build",
@@ -227,7 +227,7 @@ const variants: Record<Variant, {
     layers: ["Large part", "Local repair", "Inspection"]
   },
   notes: {
-    title: "Lab note signal visual",
+    title: "Lab note signal map",
     label: "working note",
     focus: "field notes",
     subfocus: "observation to takeaway",
@@ -238,7 +238,7 @@ const variants: Record<Variant, {
     layers: ["Observation", "Boundary", "Next step"]
   },
   profile: {
-    title: "Public identity graph visual",
+    title: "Public identity graph",
     label: "entity map",
     focus: "Manish Sharma",
     subfocus: "AI for LMD",
@@ -249,7 +249,7 @@ const variants: Record<Variant, {
     layers: ["Person", "Domain", "Company", "Public work"]
   },
   research: {
-    title: "Research source network visual",
+    title: "Research source network",
     label: "source terrain",
     focus: "research map",
     subfocus: "standards, reviews, cases",
@@ -260,7 +260,7 @@ const variants: Record<Variant, {
     layers: ["Terminology", "Monitoring", "AI", "Quality"]
   },
   tools: {
-    title: "LMD tool console visual",
+    title: "LMD tool console",
     label: "tool console",
     focus: "LMD tools",
     subfocus: "input to recommendation",
@@ -290,7 +290,7 @@ const sourceNodes = [
 <div
   class:list={["page-hero-visual glass-panel relative overflow-hidden rounded-lg p-3 md:p-4", className]}
   style={`--page-visual-accent: ${visual.accent}`}
-  aria-label={`${visual.title} visual`}
+  aria-label={visual.title}
 >
   <svg class="aspect-[16/10] w-full" viewBox="0 0 920 575" role="img" aria-labelledby={`${titleId} ${descId}`}>
     <title id={titleId}>{visual.title}</title>
@@ -598,9 +598,5 @@ const sourceNodes = [
       </g>
     )}
 
-    <g font-family="JetBrains Mono, Consolas, monospace" font-size="10" fill="#9cc9d9" opacity="0.72">
-      <text x="52" y="526">{visual.title}</text>
-      <text x="678" y="526">preliminary decision support</text>
-    </g>
   </svg>
 </div>

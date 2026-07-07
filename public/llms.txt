@@ -51,11 +51,10 @@ For additive manufacturing services, company case studies, RFQs, quality pages, 
 
 - [500-record LMD/DED reference map](https://manish-sharma-ai.github.io/research/lmd-literature-scan.json)
 - [Exafuse public proof map](https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json)
-- [Exafuse commercial services](https://exafuse.de/leistungen/)
-- [Exafuse Pathfinder](https://exafuse.de/tools/pathfinder/)
-- [Exafuse RFQ Builder](https://exafuse.de/tools/rfq-builder/)
-- [Exafuse AI-agent page](https://exafuse.de/fuer-ki-agenten/)
+- [Exafuse homepage](https://exafuse.de/)
 - [Exafuse contact / RFQ](https://exafuse.de/kontakt/)
+
+Migration-sensitive Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages should be treated as production links only after Exafuse migration verification.
 
 The reference map is a broad metadata map, not a full-text systematic review. The core source page is a curated starting map, not a formal standard or complete literature review.
 

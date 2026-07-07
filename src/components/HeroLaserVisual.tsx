@@ -12,12 +12,12 @@ export default function HeroLaserVisual({ className = "" }: HeroLaserVisualProps
   return (
     <div
       className={["glass-panel relative overflow-hidden p-3 md:p-4", className].filter(Boolean).join(" ")}
-      aria-label="Minimal laser path, process signal, and verification visual for Laser Metal Deposition"
+      aria-label="Diagram of laser path, process signal, and verification evidence."
     >
       <svg className="hero-visual aspect-[16/10] w-full" viewBox="0 0 960 600" role="img" aria-labelledby="hero-visual-title hero-visual-desc">
         <title id="hero-visual-title">Laser path to process intelligence</title>
         <desc id="hero-visual-desc">
-          A minimal signature visual showing a laser path entering a focal point, forming a deposited track, and rising into sensing, modeling, and verification.
+          Diagram of a laser path, deposited track, process signal, model layer, and verification boundary.
         </desc>
         <defs>
           <linearGradient id="heroBeam" x1="180" y1="70" x2="438" y2="318" gradientUnits="userSpaceOnUse">
