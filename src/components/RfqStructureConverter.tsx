@@ -3,7 +3,7 @@ import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
-const EXAFUSE_URL = EXAFUSE_LINKS.contact;
+const EXAFUSE_URL = EXAFUSE_LINKS.rfqBuilder;
 
 const partTerms = ["shaft", "die", "gear", "valve", "hammer", "mold", "tool", "bracket", "node", "component"];
 const materialTerms = ["steel", "stainless", "aluminium", "aluminum", "inconel", "nickel", "copper", "titanium", "unknown"];
@@ -106,7 +106,7 @@ export default function RfqStructureConverter() {
           <button type="button" onClick={() => copyToClipboard(resultText)} className="btn btn-primary">Copy result</button>
           <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
           <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-          <a href={EXAFUSE_URL} className="btn btn-secondary" target="_blank" rel="noreferrer">Visit Exafuse</a>
+          <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
         </div>
       </aside>
     </div>

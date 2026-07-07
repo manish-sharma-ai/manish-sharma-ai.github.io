@@ -10,7 +10,7 @@ Every AI coding agent working in this repository must read this file before edit
 - Repository: `manish-sharma-ai/manish-sharma-ai.github.io`
 - GitHub profile for Manish: `https://github.com/aiwithms`
 - Public category: Manish Sharma - Industrial AI & Decision Systems
-- Primary promise: Industrial AI for decisions you can verify.
+- Primary promise: AI for Laser Metal Deposition decisions you can verify.
 - Established public proof domain: AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany
 - Company connection: Exafuse, Germany
 
@@ -52,6 +52,9 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Keep this disclaimer language where relevant:
   `Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.`
 - Public Exafuse pages may be used as public proof context, but do not claim confidential involvement, certification, guaranteed outcomes, or engineering approval.
+- Every new claim needs source context or must be clearly framed as interpretation.
+- Do not add fake profile links, fake publications, fake certifications, unsupported metrics, or staging URLs.
+- Preserve the commercial boundary: Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, delivery claims, and company-owned source details.
 
 ## Working Tree Rules
 
@@ -198,7 +201,8 @@ When updating SEO-sensitive content:
 - Premium, ordered, dark graphite/black-metal design.
 - Clear hierarchy, symmetric layouts, readable menus, accessible contrast.
 - Avoid generic portfolio feel.
-- Keep navigation understandable: thesis, work/proof, LMD/DED domain, tools, writing, about, and Exafuse.
+- Keep navigation understandable: thesis, proof, LMD/DED domain, tools, about, resources, and Exafuse.
+- Keep primary navigation compressed. Current primary route labels are Start, Thesis, LMD / DED, Tools, Proof, and About; secondary routes belong in Resources, footer, search, or Site Map.
 - Do not make dropdowns or important text too transparent to read.
 - Optimize large images with WebP/responsive sources when practical.
 

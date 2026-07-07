@@ -131,6 +131,21 @@ const links = [
   { label: "For AI agents", href: "/for-ai-agents" }
 ];
 
+const usefulFor = [
+  "LMD/DED process monitoring explanation",
+  "RFQ structuring",
+  "inspection-aware AI boundaries",
+  "repairability decision frameworks",
+  "AI-agent-safe public source structure"
+];
+
+const doNotClaim = [
+  "certification",
+  "final manufacturing approval",
+  "confidential project disclosure",
+  "replacement for Exafuse commercial review"
+];
+
 const aboutPageJsonLd = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
@@ -139,7 +154,7 @@ const aboutPageJsonLd = {
   name: "About Manish Sharma",
   description,
   mainEntity: {
-    "@id": `${SITE.canonicalUrl}/#person`
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
   },
   about: CORE_TOPICS,
   image: absoluteUrl(PERSON.image)
@@ -162,17 +177,15 @@ const aboutPageJsonLd = {
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I am Manish Sharma. I work on industrial AI and decision systems for engineering processes. My deepest public work is in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse, where process monitoring, robotics, repair decisions, RFQ quality, and physical inspection all meet.
+        I work on industrial AI and decision systems for engineering processes. My deepest public work is in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse, where process monitoring, robotics, repair decisions, RFQ quality, and physical inspection meet.
       </p>
       <p class="mt-4 max-w-2xl text-base leading-7 text-slate-400">
         The question that connects my public work is not simply whether an AI model can produce an answer. It is whether the decision can be traced to the right signals, assumptions, engineering context, and verification evidence.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/thesis" class="btn btn-primary">Operating Thesis</a>
-        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED Proof Domain</a>
+        <a href="/thesis" class="btn btn-primary">Read the thesis</a>
+        <a href="/public-work" class="btn btn-secondary">Proof</a>
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="/identity" class="btn btn-secondary">Canonical Identity</a>
-        <a href="/frameworks" class="btn btn-secondary">Technical Frameworks</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
     </div>
@@ -190,6 +203,23 @@ const aboutPageJsonLd = {
           <p class="mt-1 text-sm leading-6 text-slate-400">{text}</p>
         </div>
       ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-5 lg:grid-cols-2">
+      <div class="ordered-card-strong p-7">
+        <p class="metric-label">What I am useful for</p>
+        <div class="mt-5 grid gap-3">
+          {usefulFor.map((item) => <div class="result-card text-sm font-bold text-slate-100">{item}</div>)}
+        </div>
+      </div>
+      <div class="ordered-card p-7">
+        <p class="metric-label">What I do not claim</p>
+        <div class="mt-5 grid gap-3">
+          {doNotClaim.map((item) => <div class="result-card result-card--warning text-sm font-bold">{item}</div>)}
+        </div>
+      </div>
     </div>
   </section>
 

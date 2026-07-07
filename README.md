@@ -18,7 +18,7 @@ Manish Sharma = Industrial AI & Decision Systems.
 
 Primary promise:
 
-Industrial AI for decisions you can verify.
+AI for Laser Metal Deposition decisions you can verify.
 
 Established public proof domain:
 
@@ -73,7 +73,20 @@ output: "static"
 
 Pushing to `main` triggers the GitHub Actions deployment when GitHub Pages is configured to use Actions.
 
-## Core Routes
+## Current Route Structure
+
+Primary navigation:
+
+- Start: `/`
+- Thesis: `/thesis`
+- LMD / DED: `/domains/lmd-ded`
+- Tools: `/tools`
+- Proof: `/public-work`
+- About: `/about`
+
+Resources remain available through the Resources menu, footer, command search, and Site Map.
+
+Core routes:
 
 - `/`
 - `/thesis`
@@ -93,6 +106,26 @@ Pushing to `main` triggers the GitHub Actions deployment when GitHub Pages is co
 - `/press-kit`
 - `/for-ai-agents`
 - `/site-map`
+
+## External URL Policy
+
+External public URLs are centralized in `src/data/externalUrls.ts` and consumed through `src/data/siteConfig.ts`, `src/data/profiles.ts`, and `src/data/site.ts`.
+
+Canonical URL rules:
+
+- Site: `https://manish-sharma-ai.github.io`
+- Exafuse base: `https://exafuse.de`
+- GitHub profile: `https://github.com/aiwithms`
+- GitHub repository: `https://github.com/manish-sharma-ai/manish-sharma-ai.github.io`
+- LinkedIn: `https://www.linkedin.com/in/manishsharma5/`
+
+Do not add staging URLs, `www.exafuse.de` variants, fake profile URLs, or `href="#"` placeholders to production-facing content.
+
+Recommended scan:
+
+```bash
+rg -n "pages\.dev|exafuse-website-react|https://www\.exafuse\.de|href=\"#\"|TODO|draft" src public AGENTS.md
+```
 
 ## AI-Readable Files
 
@@ -139,6 +172,8 @@ Preliminary decision-support only. Final feasibility depends on base material, g
 
 This public repository must not contain private, unannounced, employer-confidential, customer-confidential, or commercially sensitive project ideas.
 
+For services, RFQs, company case studies, quality pages, production capability, and delivery claims, use Exafuse. Manish Sharma Lab is the personal public layer for frameworks, tools, notes, source maps, and AI-readable guidance.
+
 ## Recommended GitHub Repository Metadata
 
 Description:
@@ -179,6 +214,7 @@ These steps require account access and can be completed in GitHub, Google Search
 - Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/tools`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
+- Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.
 
 ## Next Roadmap
 

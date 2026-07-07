@@ -1,5 +1,5 @@
 import { PROFILE_URLS, JSON_LD_SAME_AS } from "./profiles";
-import { PERSON_ID, SITE_CONFIG, WEBSITE_ID } from "./siteConfig";
+import { EXAFUSE_LINKS, PERSON_ID, SITE_CONFIG, WEBSITE_ID } from "./siteConfig";
 
 export const SITE = {
   name: SITE_CONFIG.site.name,
@@ -78,12 +78,11 @@ export const METHOD_LOOP = [
 ];
 
 export const PRIMARY_NAV_ITEMS = [
+  { label: "Start", href: "/" },
   { label: "Thesis", href: "/thesis" },
-  { label: "Work & Proof", href: "/public-work" },
   { label: "LMD / DED", href: "/domains/lmd-ded" },
-  { label: "Frameworks", href: "/frameworks" },
   { label: "Tools", href: "/tools" },
-  { label: "Writing", href: "/lab-notes" },
+  { label: "Proof", href: "/public-work" },
   { label: "About", href: "/about" }
 ];
 
@@ -475,9 +474,9 @@ export const RELATED_LINK_SETS = [
     eyebrow: "Agent workflow",
     title: "Turn vague requests into usable LMD data",
     links: [
-      { label: "Industrial AI Thesis", href: "/thesis", description: "Sense, Model, Decide, Verify." },
-      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The applied proof domain for these tools." },
       { label: "RFQ Toolkit", href: "/agent-pack", description: "Schema, prompts, rules, and checklists." },
+      { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder, description: "Commercial RFQ route for company review." },
+      { label: "Industrial AI Thesis", href: "/thesis", description: "Sense, Model, Decide, Verify." },
       { label: "Tools", href: "/tools", description: "Frontend-only LMD advisors and RFQ structuring." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance for automated assistants." }
     ]

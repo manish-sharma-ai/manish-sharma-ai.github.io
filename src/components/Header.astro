@@ -10,25 +10,27 @@ const isActive = (href: string) => {
 };
 
 const primaryNav = [
+  { label: "Start", href: "/" },
   { label: "Thesis", href: "/thesis" },
-  { label: "Proof", href: "/public-work" },
   { label: "LMD / DED", href: "/domains/lmd-ded" },
-  { label: "Frameworks", href: "/frameworks" },
-  { label: "Writing", href: "/lab-notes" }
+  { label: "Tools", href: "/tools" },
+  { label: "Proof", href: "/public-work" },
+  { label: "About", href: "/about" }
 ];
 
-const moreNav = [
-  { label: "Tools", href: "/tools", description: "Interactive LMD decision helpers" },
+const resourceNav = [
+  { label: "Frameworks", href: "/frameworks", description: "Quality, repairability, readiness, failure, maturity" },
   { label: "Agent Pack", href: "/agent-pack", description: "Schemas, prompts, rules, checklists" },
   { label: "Evidence", href: "/evidence", description: "Source layer and public proof map" },
-  { label: "Identity", href: "/identity", description: "Canonical machine-readable profile" },
-  { label: "About", href: "/about", description: "Human background and public context" },
+  { label: "Lab Notes", href: "/lab-notes", description: "Applied LMD/DED decision notes" },
+  { label: "Glossary", href: "/glossary", description: "Definitions for LMD, DED, cladding, monitoring" },
   { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use reference for assistants" },
+  { label: "Identity", href: "/identity", description: "Canonical machine-readable profile" },
   { label: "Press Kit", href: "/press-kit", description: "Approved bios and claim boundaries" },
   { label: "Site Map", href: "/site-map", description: "Complete route and file index" }
 ];
 
-const moreActive = moreNav.some((item) => isActive(item.href));
+const resourcesActive = resourceNav.some((item) => isActive(item.href));
 ---
 
 <header class="site-header" data-site-header>
@@ -48,12 +50,12 @@ const moreActive = moreNav.some((item) => isActive(item.href));
         </a>
       ))}
       <details class="relative" data-nav-flyout>
-        <summary class:list={["nav-trigger list-none", moreActive ? "is-active" : ""]} aria-expanded="false">
-          More
+        <summary class:list={["nav-trigger list-none", resourcesActive ? "is-active" : ""]} aria-expanded="false">
+          Resources
         </summary>
         <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(92vw,34rem)] -translate-x-1/2 rounded-[24px] border border-cyan-100/14 p-4">
           <div class="grid gap-2 sm:grid-cols-2" aria-label="Secondary navigation">
-            {moreNav.map((item) => (
+            {resourceNav.map((item) => (
               <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]}>
                 <span class="text-sm font-black">{item.label}</span>
                 <span class="text-xs leading-5 text-slate-500">{item.description}</span>

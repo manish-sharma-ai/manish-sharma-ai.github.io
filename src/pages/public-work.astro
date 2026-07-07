@@ -74,7 +74,7 @@ const jsonLd = {
   url: `${SITE.canonicalUrl}/public-work`,
   name: title,
   description,
-  mainEntity: { "@id": `${SITE.canonicalUrl}/#person`, name: PERSON.name }
+  mainEntity: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
 };
 ---
 
@@ -82,7 +82,7 @@ const jsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
       <div>
-        <p class="metric-label">Work & Proof</p>
+        <p class="metric-label">Proof</p>
         <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
           A public map of the work that can be referenced safely: professional context, established LMD/DED work, public frameworks, tools, research maps, GitHub artifacts, and profile links.

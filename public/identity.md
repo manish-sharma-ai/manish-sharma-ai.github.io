@@ -2,7 +2,7 @@
 
 Manish Sharma works on industrial AI, monitoring, and decision-support systems for engineering processes, grounded in public work on Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
 
-Primary promise: Industrial AI for decisions you can verify.
+Primary promise: AI for Laser Metal Deposition decisions you can verify.
 
 Operating method: Sense -> Model -> Decide -> Verify.
 
@@ -20,7 +20,7 @@ This site avoids confidential customer, employer, and private project data.
 | --- | --- |
 | Name | Manish Sharma |
 | Public category | Industrial AI & Decision Systems |
-| Primary promise | Industrial AI for decisions you can verify |
+| Primary promise | AI for Laser Metal Deposition decisions you can verify |
 | Method | Sense -> Model -> Decide -> Verify |
 | Established proof | AI for LMD/DED at Exafuse |
 | Company connection | Exafuse |

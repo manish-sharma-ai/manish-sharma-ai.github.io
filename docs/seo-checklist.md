@@ -6,7 +6,7 @@ Date: 2026-07-07
 
 - Canonical site: `https://manish-sharma-ai.github.io`
 - Primary identity page: `https://manish-sharma-ai.github.io/identity`
-- Person ID: `https://manish-sharma-ai.github.io/#person`
+- Person ID: `https://manish-sharma-ai.github.io/identity#manish-sharma`
 - Website ID: `https://manish-sharma-ai.github.io/#website`
 - Do not use the personal GitHub Pages account URL as a site URL.
 
@@ -27,7 +27,7 @@ Date: 2026-07-07
 
 ## Structured Data
 
-- Person JSON-LD uses `https://manish-sharma-ai.github.io/#person`.
+- Person JSON-LD uses `https://manish-sharma-ai.github.io/identity#manish-sharma`.
 - WebSite JSON-LD uses `https://manish-sharma-ai.github.io/#website`.
 - ProfilePage main entity points to the Person ID.
 - Article or TechArticle author points to the Person ID.
@@ -59,9 +59,9 @@ Check each major route for:
 Run before release:
 
 ```bash
-rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public docs README.md AGENTS.md
+rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public AGENTS.md
 rg -n "href=\"#\"" src public README.md
-rg -n -F "aiwithms.github.io" src public docs README.md AGENTS.md
+rg -n -F "aiwithms.github.io" src public AGENTS.md
 ```
 
 Expected results:

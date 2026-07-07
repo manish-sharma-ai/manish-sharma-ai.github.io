@@ -19,7 +19,7 @@ const personDescription =
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  "@id": `${SITE.canonicalUrl}/#person`,
+  "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
   name: PERSON.name,
   description: personDescription,
   image: absoluteUrl(PERSON.image),
@@ -42,7 +42,7 @@ const profilePageJsonLd = {
   name: title,
   description,
   mainEntity: {
-    "@id": `${SITE.canonicalUrl}/#person`
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
   }
 };
 
@@ -78,7 +78,7 @@ const fields = [
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/thesis" class="btn btn-primary">Read the thesis</a>
         <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED proof domain</a>
-        <a href="/public-work" class="btn btn-secondary">Work & Proof</a>
+        <a href="/public-work" class="btn btn-secondary">Proof</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
     </div>

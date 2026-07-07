@@ -1,6 +1,16 @@
+import {
+  EXAFUSE_BASE_URL,
+  EXAFUSE_EN_URLS,
+  EXAFUSE_URLS,
+  GITHUB_PROFILE_URL,
+  GITHUB_REPO_URL,
+  LINKEDIN_URL,
+  MANISH_SITE_URL
+} from "./externalUrls";
+
 export const SITE_CONFIG = {
   site: {
-    baseUrl: "https://manish-sharma-ai.github.io",
+    baseUrl: MANISH_SITE_URL,
     name: "Manish Sharma Lab",
     owner: "Manish Sharma",
     category: "Industrial AI & Decision Systems",
@@ -8,12 +18,12 @@ export const SITE_CONFIG = {
     description:
       "Inspection-aware AI and decision systems for industrial additive manufacturing, LMD/DED, repair, monitoring and evidence-based manufacturing decisions.",
     defaultOgImage: "/og-image.png",
-    repository: "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io"
+    repository: GITHUB_REPO_URL
   },
   person: {
     name: "Manish Sharma",
     positioning: "Industrial AI and decision systems for additive manufacturing",
-    promise: "Industrial AI for decisions you can verify.",
+    promise: "AI for Laser Metal Deposition decisions you can verify.",
     method: "Sense -> Model -> Decide -> Verify",
     shortBio:
       "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with a public proof domain around LMD/DED, repair, and evidence-based manufacturing decisions.",
@@ -32,8 +42,8 @@ export const SITE_CONFIG = {
       "AI readiness for manufacturing"
     ],
     links: {
-      linkedin: "https://www.linkedin.com/in/manishsharma5/",
-      github: "https://github.com/aiwithms",
+      linkedin: LINKEDIN_URL,
+      github: GITHUB_PROFILE_URL,
       exafuseProfile: null,
       orcid: null,
       zenodo: null,
@@ -43,60 +53,15 @@ export const SITE_CONFIG = {
     }
   },
   exafuse: {
-    baseUrl: "https://exafuse.de",
-    canonicalLinks: {
-      homepage: "https://exafuse.de/",
-      services: "https://exafuse.de/leistungen/",
-      metalAdditiveManufacturing: "https://exafuse.de/leistungen/bauteilherstellung/",
-      repair: "https://exafuse.de/leistungen/modifikation-reparatur/",
-      laserCladding: "https://exafuse.de/leistungen/laser-cladding/",
-      technology: "https://exafuse.de/technologie/",
-      quality: "https://exafuse.de/qualitaet/",
-      materials: "https://exafuse.de/werkstoffe/",
-      caseStudies: "https://exafuse.de/fallstudien/",
-      duisburgBridgeCase: "https://exafuse.de/fallstudien/duisburger-bruecke-lmd-fallstudie/",
-      forgingHammerCase: "https://exafuse.de/fallstudien/schmiedehammer-reparatur-lmd/",
-      extrusionScrewCase: "https://exafuse.de/fallstudien/extrusionsschnecke-reparatur-lmd/",
-      drillBuildCoatCase: "https://exafuse.de/fallstudien/bombenbohrer-lmd-aufbau-beschichtung/",
-      knowledgeLmd: "https://exafuse.de/wissen/laser-metal-deposition-ded-lbm/",
-      knowledgeLmdVsSlm: "https://exafuse.de/wissen/lmd-vs-slm-lpbf/",
-      knowledgeLargePartLmd: "https://exafuse.de/wissen/grosse-bauteile-laser-metal-deposition/",
-      knowledgeMonitoring: "https://exafuse.de/wissen/lmd-prozessueberwachung-qualitaet/",
-      knowledgeBreitbahnDed: "https://exafuse.de/wissen/breitbahn-ded-lmd/",
-      knowledgePowder2024: "https://exafuse.de/wissen/lmd-pulver-jahresrueckblick-2024/",
-      knowledgeHammerRepair: "https://exafuse.de/wissen/lmd-reparatur-schmiedehammer/",
-      knowledgeNeuralImageProcessing: "https://exafuse.de/wissen/neuronale-bildverarbeitung-lmd/",
-      knowledge: "https://exafuse.de/wissen/",
-      tools: "https://exafuse.de/tools/",
-      pathfinder: "https://exafuse.de/tools/pathfinder/",
-      rfqBuilder: "https://exafuse.de/tools/rfq-builder/",
-      aiAgents: "https://exafuse.de/fuer-ki-agenten/",
-      contact: "https://exafuse.de/kontakt/"
-    }
+    baseUrl: EXAFUSE_BASE_URL,
+    canonicalLinks: EXAFUSE_URLS
   },
   exafuseEn: {
-    canonicalLinks: {
-      homepage: "https://exafuse.de/en/",
-      services: "https://exafuse.de/en/services/",
-      metalAdditiveManufacturing: "https://exafuse.de/en/services/metal-additive-manufacturing/",
-      repair: "https://exafuse.de/en/services/repair-modification/",
-      laserCladding: "https://exafuse.de/en/services/laser-cladding/",
-      technology: "https://exafuse.de/en/technology/",
-      quality: "https://exafuse.de/en/quality/",
-      caseStudies: "https://exafuse.de/en/case-studies/",
-      duisburgBridgeCase: "https://exafuse.de/en/case-studies/duisburg-bridge-lmd-case-study/",
-      knowledge: "https://exafuse.de/en/knowledge/",
-      knowledgeLmd: "https://exafuse.de/en/knowledge/laser-metal-deposition-ded-lbm/",
-      knowledgeLmdVsSlm: "https://exafuse.de/en/knowledge/lmd-vs-slm-lpbf/",
-      pathfinder: "https://exafuse.de/en/tools/pathfinder/",
-      rfqBuilder: "https://exafuse.de/en/tools/rfq-builder/",
-      aiAgents: "https://exafuse.de/en/for-ai-agents/",
-      contact: "https://exafuse.de/en/contact/"
-    }
+    canonicalLinks: EXAFUSE_EN_URLS
   }
 } as const;
 
-export const PERSON_ID = `${SITE_CONFIG.site.baseUrl}/#person`;
+export const PERSON_ID = `${SITE_CONFIG.site.baseUrl}/identity#manish-sharma`;
 export const WEBSITE_ID = `${SITE_CONFIG.site.baseUrl}/#website`;
 export const EXAFUSE_LINKS = SITE_CONFIG.exafuse.canonicalLinks;
 export const EXAFUSE_EN_LINKS = SITE_CONFIG.exafuseEn.canonicalLinks;

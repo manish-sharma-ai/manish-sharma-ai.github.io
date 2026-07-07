@@ -1,32 +1,107 @@
 ---
+import BentoCard from "@components/BentoCard.astro";
+import CTAButton from "@components/CTAButton.astro";
+import Chip from "@components/Chip.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
-import { LINKS } from "@data/site";
+import SectionHeading from "@components/SectionHeading.astro";
+import { LINKS, SITE } from "@data/site";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
-const title = "Contact - Manish Sharma Lab";
+const title = "Contact Routes - Manish Sharma Lab";
 const description =
-  "For professional questions about industrial AI and decision systems, connect with Manish Sharma on LinkedIn. For industrial Laser Metal Deposition services, case studies, or RFQs, visit Exafuse.";
+  "Contact route selector for Manish Sharma Lab: LinkedIn for professional discussion, Exafuse for industrial RFQs and services, GitHub for public code and technical artifacts.";
+
+const contactJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": `${SITE.canonicalUrl}/contact#page`,
+  url: `${SITE.canonicalUrl}/contact`,
+  name: title,
+  description,
+  mainEntity: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma` }
+};
+
+const routes = [
+  {
+    eyebrow: "Professional / technical discussion",
+    title: "LinkedIn",
+    description: "Use LinkedIn for public professional context, technical discussion, and non-confidential collaboration questions.",
+    href: LINKS.linkedin,
+    cta: "Open LinkedIn"
+  },
+  {
+    eyebrow: "Industrial RFQ / services / case studies",
+    title: "Exafuse",
+    description: "For services, RFQs, company case studies, quality pages, production capability, and delivery claims, use Exafuse.",
+    href: EXAFUSE_LINKS.contact,
+    cta: "Go to Exafuse"
+  },
+  {
+    eyebrow: "Code / public tools / technical artifacts",
+    title: "GitHub",
+    description: "Use GitHub for public code, website source, tool artifacts, and technical repository context.",
+    href: LINKS.github,
+    cta: "Open GitHub"
+  }
+];
 ---
 
-<Layout title={title} description={description} canonical="/contact">
-  <section class="site-shell py-16 md:py-20">
-    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="glass-panel rounded-lg p-8 md:p-10">
-        <p class="metric-label">Contact</p>
-        <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">Contact</h1>
-        <p class="mt-6 text-xl leading-9 text-slate-200">
-          For professional questions about industrial AI, decision systems, and public technical work, connect with me on LinkedIn.
-        </p>
-        <p class="mt-4 text-xl leading-9 text-slate-200">
-          For industrial Laser Metal Deposition services, case studies, or RFQs, visit Exafuse.
-        </p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
-          <a href={LINKS.github} class="btn btn-secondary" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
+<Layout title={title} description={description} canonical="/contact" jsonLd={contactJsonLd}>
+  <section class="site-shell inner-hero-grid section-y">
+    <div>
+      <div class="flex flex-wrap gap-2">
+        <Chip>Contact routes</Chip>
+        <Chip tone="steel">Public-safe only</Chip>
+        <Chip tone="amber">No confidential data</Chip>
       </div>
-      <PageHeroVisual variant="contact" class="hidden lg:block" />
+      <p class="metric-label mt-8">Choose the right route</p>
+      <h1 class="mt-4 max-w-5xl text-5xl font-black leading-tight text-white md:text-6xl">
+        Contact without crossing the wrong boundary.
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+        Manish Sharma Lab is a public technical site. Use the route below that matches the question, and keep confidential or safety-critical material out of this personal site.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <CTAButton href={LINKS.linkedin} variant="primary" external>LinkedIn</CTAButton>
+        <CTAButton href={EXAFUSE_LINKS.contact} variant="laser" external>Exafuse RFQ / contact</CTAButton>
+        <CTAButton href={LINKS.github} variant="secondary" external>GitHub</CTAButton>
+      </div>
+    </div>
+    <PageHeroVisual variant="contact" class="hidden lg:block" />
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Route selector"
+        title="Use the right channel"
+        description="This keeps personal technical discussion, company-owned commercial work, and public code artifacts separated."
+      />
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        {routes.map((route) => (
+          <BentoCard href={route.href} eyebrow={route.eyebrow} title={route.title} description={route.description} cta={route.cta} external strong />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-5 lg:grid-cols-2">
+      <div class="ordered-card-strong p-7">
+        <p class="metric-label">Do not send</p>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-white">No confidential or safety-critical approval requests.</h2>
+        <p class="mt-4 leading-7 text-slate-300">
+          Do not send confidential customer data, unpublished employer information, or safety-critical approval requests through this personal site.
+        </p>
+      </div>
+      <div class="ordered-card p-7">
+        <p class="metric-label">Commercial boundary</p>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-white">For services, RFQs, and company claims, use Exafuse.</h2>
+        <p class="mt-4 leading-7 text-slate-300">
+          Manish Sharma Lab explains public frameworks, notes, source maps, and AI-readable guidance. Exafuse owns commercial review, delivery claims, and company case-study details.
+        </p>
+      </div>
     </div>
   </section>
 </Layout>
