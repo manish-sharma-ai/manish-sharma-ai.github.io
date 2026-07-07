@@ -1,9 +1,16 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import DecisionBriefCard from "./DecisionBriefCard";
+import type { DecisionBrief } from "../lib/decisionBrief";
+import {
+  COCKPIT_PRESETS,
+  WORN_SHAFT_SCENARIO,
+  createDecisionBrief,
+  getCockpitPreset
+} from "../lib/decisionBrief";
 
-const DISCLAIMER =
-  "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
 const DEFAULT_EXAFUSE_URL = "/contact";
 const DEFAULT_EXAFUSE_LABEL = "Contact routes";
+const OUTPUT_BOUNDARY_LABELS = ["Confidence is not approval", "Missing information", "Risk flags", "Evidence needed"];
 
 const situations = [
   {
@@ -23,8 +30,8 @@ const situations = [
   {
     id: "cladding",
     label: "Add coating/cladding",
-    route: "/brief-template",
-    tool: "Decision brief template",
+    route: "/tools#lmd-decision-cockpit",
+    tool: "LMD Decision Brief",
     action: "Structure coating function, base material, surface target, finishing, and inspection needs."
   },
   {
@@ -68,45 +75,6 @@ const riskOptions = [
   ["noInspection", "No inspection path?"]
 ] as const;
 
-const examples = [
-  {
-    label: "Worn shaft near bearing seat",
-    situation: "repair",
-    info: ["materialKnown", "photosAvailable", "toleranceKnown"],
-    risk: ["highDowntime", "tightTolerance"]
-  },
-  {
-    label: "Large cracked steel component",
-    situation: "repair",
-    info: ["materialKnown", "photosAvailable"],
-    risk: ["highDowntime", "noInspection"]
-  },
-  {
-    label: "Surface wear / cladding request",
-    situation: "cladding",
-    info: ["materialKnown", "photosAvailable", "operatingKnown"],
-    risk: ["tightTolerance"]
-  },
-  {
-    label: "New part with fine internal channels",
-    situation: "compare",
-    info: ["drawingAvailable", "toleranceKnown", "operatingKnown"],
-    risk: ["tightTolerance"]
-  },
-  {
-    label: "Bridge-like large structural LMD context",
-    situation: "new-build",
-    info: ["materialKnown", "drawingAvailable", "inspectionKnown"],
-    risk: ["safetyCritical", "highDowntime"]
-  },
-  {
-    label: "Monitoring signal / melt-pool anomaly",
-    situation: "monitoring",
-    info: ["photosAvailable", "inspectionKnown"],
-    risk: ["noInspection"]
-  }
-] as const;
-
 type SituationId = (typeof situations)[number]["id"];
 type InfoId = (typeof infoOptions)[number][0];
 type RiskId = (typeof riskOptions)[number][0];
@@ -115,32 +83,75 @@ interface CockpitProps {
   exafuseUrl?: string;
   exafuseLabel?: string;
   compact?: boolean;
+  defaultMode?: "example" | "blank";
 }
 
-const emptyState = {
-  situation: "repair" as SituationId,
-  info: [] as InfoId[],
-  risk: [] as RiskId[]
+interface CockpitState {
+  situation: SituationId;
+  info: InfoId[];
+  risk: RiskId[];
+}
+
+const emptyState: CockpitState = {
+  situation: "repair",
+  info: [],
+  risk: []
 };
+
+const wornShaftPreset = getCockpitPreset("worn-shaft") ?? COCKPIT_PRESETS[0];
+
+function stateFromPreset(presetId: string): CockpitState {
+  const preset = getCockpitPreset(presetId) ?? wornShaftPreset;
+  return {
+    situation: preset.state.situation as SituationId,
+    info: [...preset.state.info] as InfoId[],
+    risk: [...preset.state.risk] as RiskId[]
+  };
+}
+
+function labelForInfo(id: InfoId) {
+  return infoOptions.find(([optionId]) => optionId === id)?.[1].replace("?", "") ?? id;
+}
+
+function labelForRisk(id: RiskId) {
+  return riskOptions.find(([optionId]) => optionId === id)?.[1].replace("?", "") ?? id;
+}
 
 export default function LmdDecisionCockpit({
   exafuseUrl = DEFAULT_EXAFUSE_URL,
   exafuseLabel = DEFAULT_EXAFUSE_LABEL,
-  compact = false
+  compact = false,
+  defaultMode = "example"
 }: CockpitProps) {
-  const [state, setState] = useState(emptyState);
+  const defaultPresetId = defaultMode === "example" ? "worn-shaft" : null;
+  const [state, setState] = useState<CockpitState>(defaultMode === "example" ? stateFromPreset("worn-shaft") : emptyState);
+  const [activePresetId, setActivePresetId] = useState<string | null>(defaultPresetId);
+
+  useEffect(() => {
+    const loadHashPreset = () => {
+      const match = window.location.hash.match(/preset=([^&]+)/);
+      const preset = match ? getCockpitPreset(decodeURIComponent(match[1])) : undefined;
+      if (!preset) return;
+      setState(stateFromPreset(preset.id));
+      setActivePresetId(preset.id);
+    };
+
+    loadHashPreset();
+    window.addEventListener("hashchange", loadHashPreset);
+    return () => window.removeEventListener("hashchange", loadHashPreset);
+  }, []);
 
   const result = useMemo(() => {
     const situation = situations.find((item) => item.id === state.situation) ?? situations[0];
     const known = infoOptions
       .filter(([id]) => state.info.includes(id))
-      .map(([, label]) => label.replace("?", "").toLowerCase());
+      .map(([id]) => labelForInfo(id).toLowerCase());
     const missing = infoOptions
       .filter(([id]) => !state.info.includes(id))
-      .map(([, label]) => label.replace("?", "").toLowerCase());
+      .map(([id]) => labelForInfo(id).toLowerCase());
     const selectedRisks = riskOptions
       .filter(([id]) => state.risk.includes(id))
-      .map(([, label]) => label.replace("?", "").toLowerCase());
+      .map(([id]) => labelForRisk(id).toLowerCase());
 
     const riskFlags = selectedRisks.length
       ? selectedRisks.map((risk) => `${risk} can change the route or evidence burden.`)
@@ -169,6 +180,40 @@ export default function LmdDecisionCockpit({
           ? "Ready for preliminary discussion"
           : "Ready for expert review";
 
+    const decisionSignal = `${situation.label}: start with ${situation.tool}.`;
+    const activePreset = activePresetId ? getCockpitPreset(activePresetId) : undefined;
+    const brief =
+      activePreset?.brief ??
+      createDecisionBrief({
+        situation: decisionSignal,
+        component: "Component not specified in cockpit selections.",
+        goal: situation.action,
+        material: state.risk.includes("unknownMaterial")
+          ? "Unknown material flagged."
+          : state.info.includes("materialKnown")
+            ? "Material marked known; exact grade still needs review context."
+            : "Material not yet specified.",
+        geometryOrSize: state.info.includes("drawingAvailable")
+          ? "Drawing/CAD marked available."
+          : "Geometry, CAD, or drawing not yet available.",
+        damageOrBuildArea:
+          state.situation === "repair"
+            ? "Damage or wear area needs depth, extent, access, and finishing context."
+            : state.situation === "cladding"
+              ? "Surface function, build area, and finishing route need definition."
+              : "Build area or feature context needs definition.",
+        availableData: known.length ? known : ["No concrete input facts selected yet."],
+        knownFacts: known.length ? known : ["No concrete input facts selected yet."],
+        missingInformation: missing,
+        riskFlags,
+        evidenceNeeded,
+        preliminaryRoute: decisionSignal,
+        reviewReadiness,
+        nextAction: situation.action,
+        exafuseReviewRoute: `${exafuseLabel}. Exafuse performs commercial and technical review after the question is structured.`,
+        generatedFrom: "LMD Decision Cockpit"
+      });
+
     return {
       situation,
       known,
@@ -176,30 +221,78 @@ export default function LmdDecisionCockpit({
       riskFlags,
       evidenceNeeded,
       reviewReadiness,
-      decisionSignal: `${situation.label}: start with ${situation.tool}.`,
+      decisionSignal,
       nextAction: situation.action,
-      toolRoute: situation.route
+      toolRoute: situation.route,
+      brief
     };
-  }, [state]);
+  }, [activePresetId, exafuseLabel, state]);
 
-  const brief = formatBrief(result, exafuseLabel, exafuseUrl);
-  const rfqSummary = formatRfqSummary(result, exafuseLabel, exafuseUrl);
+  function loadPreset(id: string) {
+    const preset = getCockpitPreset(id);
+    if (!preset) return;
+    setState(stateFromPreset(preset.id));
+    setActivePresetId(preset.id);
+  }
+
+  function startBlank() {
+    setState(emptyState);
+    setActivePresetId(null);
+  }
+
+  function updateState(nextState: CockpitState) {
+    setState(nextState);
+    setActivePresetId(null);
+  }
+
+  const activePreset = activePresetId ? getCockpitPreset(activePresetId) : undefined;
 
   return (
     <section id="lmd-decision-cockpit" className="ordered-card-strong scroll-mt-24 p-5 md:p-7">
-      <div className="grid gap-8 xl:grid-cols-[0.92fr_1.08fr]">
+      <div className="grid gap-8 xl:grid-cols-[0.88fr_1.12fr]">
         <div>
           <div className="flex flex-wrap gap-2">
             <span className="chip">LMD Decision Cockpit</span>
-            <span className="chip chip--steel">Frontend-only</span>
+            <span className="chip chip--steel">LMD Decision Brief v1.0</span>
             <span className="chip chip--amber">No input tracking</span>
           </div>
           <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
-            Start with a part, not a perfect RFQ.
+            Start with a rough LMD question. Leave with a brief.
           </h2>
           <p className="mt-4 text-sm leading-6 text-slate-300 md:text-base md:leading-7">
-            Pick the situation, mark what is known, then expose what is missing, risky, and needed as evidence. Inputs stay in this browser session only.
+            Pick the situation, mark what is known, then expose missing information, risk flags, evidence needed, and an Exafuse review route. Inputs stay in this browser session only.
           </p>
+
+          <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4">
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => loadPreset("worn-shaft")}
+                className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-primary" : "btn-secondary"}`}
+              >
+                Show example
+              </button>
+              <button
+                type="button"
+                onClick={startBlank}
+                className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-secondary" : "btn-primary"}`}
+              >
+                Start blank
+              </button>
+            </div>
+            {activePreset ? (
+              <p className="mt-3 text-sm font-semibold leading-6 text-cyan-50">
+                Public-safe dummy example: {activePreset.scenario}
+              </p>
+            ) : (
+              <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
+                Blank mode: make selections below. No backend, no storage, no analytics around inputs.
+              </p>
+            )}
+            <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+              Default example text: {WORN_SHAFT_SCENARIO}
+            </p>
+          </div>
 
           <div className="mt-6 grid gap-5">
             <fieldset>
@@ -209,7 +302,7 @@ export default function LmdDecisionCockpit({
                   <button
                     key={situation.id}
                     type="button"
-                    onClick={() => setState((current) => ({ ...current, situation: situation.id }))}
+                    onClick={() => updateState({ ...state, situation: situation.id })}
                     className={`rounded-lg border p-3 text-left text-sm font-bold leading-5 transition ${
                       state.situation === situation.id
                         ? "border-cyan-300/70 bg-cyan-300/14 text-white"
@@ -231,10 +324,10 @@ export default function LmdDecisionCockpit({
                     label={label}
                     checked={state.info.includes(id)}
                     onChange={(checked) =>
-                      setState((current) => ({
-                        ...current,
-                        info: checked ? [...current.info, id] : current.info.filter((item) => item !== id)
-                      }))
+                      updateState({
+                        ...state,
+                        info: checked ? [...state.info, id] : state.info.filter((item) => item !== id)
+                      })
                     }
                   />
                 ))}
@@ -250,10 +343,10 @@ export default function LmdDecisionCockpit({
                     label={label}
                     checked={state.risk.includes(id)}
                     onChange={(checked) =>
-                      setState((current) => ({
-                        ...current,
-                        risk: checked ? [...current.risk, id] : current.risk.filter((item) => item !== id)
-                      }))
+                      updateState({
+                        ...state,
+                        risk: checked ? [...state.risk, id] : state.risk.filter((item) => item !== id)
+                      })
                     }
                     risk
                   />
@@ -263,22 +356,16 @@ export default function LmdDecisionCockpit({
 
             {!compact && (
               <div>
-                <p className="metric-label">Use example</p>
+                <p className="metric-label">Public-safe presets</p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {examples.map((example) => (
+                  {COCKPIT_PRESETS.map((preset) => (
                     <button
-                      key={example.label}
+                      key={preset.id}
                       type="button"
-                      onClick={() =>
-                        setState({
-                          situation: example.situation as SituationId,
-                          info: [...example.info] as InfoId[],
-                          risk: [...example.risk] as RiskId[]
-                        })
-                      }
-                      className="btn btn-secondary"
+                      onClick={() => loadPreset(preset.id)}
+                      className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId === preset.id ? "btn-primary" : "btn-secondary"}`}
                     >
-                      {example.label}
+                      {preset.label}
                     </button>
                   ))}
                 </div>
@@ -286,39 +373,31 @@ export default function LmdDecisionCockpit({
             )}
 
             <div className="flex flex-wrap gap-3">
-              <button type="button" onClick={() => setState(emptyState)} className="btn btn-secondary">
-                Reset
+              <button type="button" onClick={startBlank} className="btn btn-secondary">
+                Reset blank
               </button>
-              <a href="/demo" className="btn btn-secondary">90-second demo</a>
+              <a href="/demo" className="btn btn-secondary">
+                90-second demo
+              </a>
+              <a href="/brief-template" className="btn btn-secondary">
+                Brief template
+              </a>
             </div>
           </div>
         </div>
 
-        <aside className="ordered-card h-fit p-5 md:p-6">
-          <p className="metric-label">Cockpit output</p>
-          <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
-            Confidence is not approval. This is a route signal, not engineering release.
-          </p>
+        <aside className="ordered-card h-fit p-5 md:p-6" aria-label={OUTPUT_BOUNDARY_LABELS.join(" / ")}>
           <ResultSection label="Decision signal" value={result.decisionSignal} large />
-          <ResultSection label="Review readiness" value={result.reviewReadiness} />
-          <ResultSection label="Best matching tool" value={result.situation.tool} />
-          <ResultList label="Known facts" items={result.known.length ? result.known : ["No concrete input facts selected yet."]} />
-          <ResultList label="Missing information" items={result.missing} />
-          <ResultList label="Risk flags" items={result.riskFlags} />
-          <ResultList label="Evidence needed" items={result.evidenceNeeded} />
-          <ResultSection label="Next action" value={result.nextAction} />
-          <ResultSection label="Exafuse review route" value={`${exafuseLabel}. Exafuse performs commercial and technical review.`} />
-          <ResultSection label="Boundary" value={DISCLAIMER} tone="warning" />
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button type="button" onClick={() => copyToClipboard(brief)} className="btn btn-primary">Copy brief</button>
-            <a href={result.toolRoute} className="btn btn-secondary">Open matching tool</a>
-            <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">
-              Prepare Exafuse-ready RFQ summary
-            </button>
-            <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>
-              {exafuseLabel}
-            </a>
-          </div>
+          <DecisionBriefCard
+            brief={result.brief as DecisionBrief}
+            eyebrow="Cockpit output"
+            title={result.brief.briefVersion}
+            exafuseUrl={exafuseUrl}
+            exafuseLabel={exafuseLabel}
+            matchingToolHref={result.toolRoute}
+            matchingToolLabel="Open matching tool"
+            compact={compact}
+          />
         </aside>
       </div>
     </section>
@@ -360,91 +439,18 @@ function Toggle({
 function ResultSection({
   label,
   value,
-  large = false,
-  tone = "default"
+  large = false
 }: {
   label: string;
   value: string;
   large?: boolean;
-  tone?: "default" | "warning";
 }) {
   return (
-    <div className="mt-5">
+    <div className="mb-5">
       <p className="text-sm font-bold text-white">{label}:</p>
-      <p className={`${tone === "warning" ? "result-card result-card--warning" : "result-card text-slate-300"} mt-2 leading-6 ${large ? "text-xl font-black text-white md:text-2xl" : "text-sm"}`}>
+      <p className={`result-card mt-2 leading-6 text-slate-300 ${large ? "text-xl font-black text-white md:text-2xl" : "text-sm"}`}>
         {value}
       </p>
     </div>
   );
-}
-
-function ResultList({ label, items }: { label: string; items: string[] }) {
-  return (
-    <div className="mt-5">
-      <p className="text-sm font-bold text-white">{label}:</p>
-      <ul className="mt-2 grid gap-2 text-sm text-slate-300">
-        {items.map((item) => <li key={item} className="result-card">{item}</li>)}
-      </ul>
-    </div>
-  );
-}
-
-function formatBrief(
-  result: {
-    decisionSignal: string;
-    reviewReadiness: string;
-    situation: { tool: string };
-    known: string[];
-    missing: string[];
-    riskFlags: string[];
-    evidenceNeeded: string[];
-    nextAction: string;
-  },
-  exafuseLabel: string,
-  exafuseUrl: string
-) {
-  return [
-    "## LMD Decision Cockpit brief",
-    "",
-    `Decision signal: ${result.decisionSignal}`,
-    `Review readiness: ${result.reviewReadiness}`,
-    `Best matching tool: ${result.situation.tool}`,
-    `Known facts: ${result.known.join(", ") || "none selected"}`,
-    `Missing information: ${result.missing.join(", ") || "none flagged"}`,
-    `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
-    `Next action: ${result.nextAction}`,
-    `Exafuse review route: ${exafuseLabel} (${exafuseUrl})`,
-    "Confidence is not approval.",
-    DISCLAIMER
-  ].join("\n");
-}
-
-function formatRfqSummary(
-  result: {
-    decisionSignal: string;
-    known: string[];
-    missing: string[];
-    riskFlags: string[];
-    evidenceNeeded: string[];
-  },
-  exafuseLabel: string,
-  exafuseUrl: string
-) {
-  return [
-    "## Exafuse-ready RFQ preparation summary",
-    "",
-    `Initial request: ${result.decisionSignal}`,
-    `Known facts: ${result.known.join(", ") || "none selected"}`,
-    `Missing facts to collect: ${result.missing.join(", ") || "none flagged"}`,
-    `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
-    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
-    "Confidence is not approval.",
-    DISCLAIMER
-  ].join("\n");
-}
-
-function copyToClipboard(value: string) {
-  void navigator.clipboard?.writeText(value);
 }

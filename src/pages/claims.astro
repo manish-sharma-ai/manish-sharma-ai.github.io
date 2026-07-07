@@ -9,22 +9,25 @@ const title = "Public Claim Ledger";
 const description =
   "Human-readable ledger for public claims, source status, limitations, allowed pages, and review dates used by Manish Sharma Lab.";
 
+const activeClaims = PUBLIC_CLAIMS.filter((claim) => claim.confidence !== "do-not-render");
+const heldClaims = PUBLIC_CLAIMS.filter((claim) => claim.confidence === "do-not-render");
+
 const groups = [
   {
     label: "Exafuse public proof context",
-    claims: PUBLIC_CLAIMS.filter((claim) => claim.sourceType === "exafuse-public")
+    claims: activeClaims.filter((claim) => claim.sourceType === "exafuse-public")
   },
   {
     label: "Personal/public profile facts",
-    claims: PUBLIC_CLAIMS.filter((claim) => ["personal-public", "public-profile"].includes(claim.sourceType))
+    claims: activeClaims.filter((claim) => ["personal-public", "public-profile"].includes(claim.sourceType))
   },
   {
     label: "Research/publication facts",
-    claims: PUBLIC_CLAIMS.filter((claim) => claim.sourceType === "published-paper")
+    claims: activeClaims.filter((claim) => claim.sourceType === "published-paper")
   },
   {
     label: "Literature/reference map facts",
-    claims: PUBLIC_CLAIMS.filter((claim) => claim.id.includes("literature"))
+    claims: activeClaims.filter((claim) => claim.id.includes("literature"))
   }
 ].filter((group) => group.claims.length > 0);
 
@@ -49,7 +52,7 @@ const jsonLd = {
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Public claims should be auditable.</h1>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        This page renders the public claim registry as a human-readable ledger. Metrics and profile facts are not free-floating marketing copy; they carry source status, allowed pages, review dates, and limitations.
+        This page renders active public claims as a human-readable ledger. Metrics and profile facts are not free-floating marketing copy; they carry source status, allowed pages, review dates, and limitations.
       </p>
     </div>
   </section>
@@ -61,7 +64,7 @@ const jsonLd = {
           <SectionHeading eyebrow="Claim group" title={group.label} />
           <div class="mt-8 grid gap-5 lg:grid-cols-2">
             {group.claims.map((claim) => {
-              const displayValue = claim.confidence === "do-not-render" ? "Held for source review" : `${claim.value} ${claim.unit}`.trim();
+              const displayValue = `${claim.value} ${claim.unit}`.trim();
               const fields = [
                 ["Value", displayValue, false],
                 ["Claim label", claim.fullText, false],
@@ -98,6 +101,53 @@ const jsonLd = {
       ))}
     </div>
   </section>
+
+  {heldClaims.length > 0 && (
+    <section class="site-shell section-y">
+      <details class="ordered-card-strong p-6 md:p-7">
+        <summary class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <span>
+            <span class="metric-label">Review queue</span>
+            <span class="mt-2 block text-3xl font-black text-white">Held for source review</span>
+          </span>
+          <span class="chip chip--amber">Collapsed by default</span>
+        </summary>
+        <p class="mt-5 max-w-3xl rounded-lg border border-amber-300/25 bg-amber-400/10 p-4 text-sm font-bold leading-6 text-amber-50">
+          These are not active public claims and should not be used in page copy until source verification is complete.
+        </p>
+        <div class="mt-8 grid gap-5 lg:grid-cols-2">
+          {heldClaims.map((claim) => {
+            const fields = [
+              ["Value", "Held for source review"],
+              ["Claim label", claim.fullText],
+              ["Source status", "Not active public copy"],
+              ["Source type", claim.sourceType],
+              ["Last reviewed", claim.lastReviewed],
+              ["Allowed pages", "Not allowed on public pages until reviewed."],
+              ["Limitation", claim.limitation]
+            ];
+            return (
+              <article class="ordered-card p-5" data-claim-id={claim.id}>
+                <div class="flex flex-wrap gap-2">
+                  <span class="chip chip--steel">{claim.sourceType}</span>
+                  <span class="chip chip--amber">{claim.confidence}</span>
+                </div>
+                <h2 class="mt-4 text-2xl font-black text-white">{claim.shortLabel}</h2>
+                <dl class="mt-5 grid gap-3 text-sm leading-6">
+                  {fields.map(([label, value]) => (
+                    <div>
+                      <dt class="font-black text-white">{label}</dt>
+                      <dd class="mt-1 text-slate-300">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
+            );
+          })}
+        </div>
+      </details>
+    </section>
+  )}
 
   <section class="site-shell section-y">
     <div class="ordered-card p-6">

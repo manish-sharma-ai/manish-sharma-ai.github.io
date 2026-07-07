@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import DecisionBriefCard from "./DecisionBriefCard";
+import { createDecisionBrief } from "../lib/decisionBrief";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
@@ -97,8 +99,24 @@ export default function RfqStructureConverter({
     };
   }, [text]);
 
-  const resultText = formatResult(parsed, exafuseLabel);
-  const rfqSummary = formatRfqSummary(parsed, exafuseLabel, exafuseUrl);
+  const brief = createDecisionBrief({
+    situation: "RFQ prompt-to-structure conversion for an LMD/DED, repair, or cladding request.",
+    component: parsed.part,
+    goal: "Turn free text into a bounded review brief with known facts, missing facts, risk flags, and evidence needs.",
+    material: parsed.material,
+    geometryOrSize: parsed.known.find((item) => item.includes("dimensions")) ?? "Geometry or size not yet fully specified.",
+    damageOrBuildArea: parsed.damage,
+    availableData: parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."],
+    knownFacts: parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."],
+    missingInformation: parsed.missing.length ? parsed.missing : ["No major missing field detected by keyword rules."],
+    riskFlags: parsed.riskFlags,
+    evidenceNeeded: parsed.evidenceNeeded,
+    preliminaryRoute: parsed.recommendation,
+    reviewReadiness: parsed.reviewReadiness,
+    nextAction: parsed.suggestedNextStep,
+    exafuseReviewRoute: `${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`,
+    generatedFrom: "RFQ Prompt-to-Structure Converter"
+  });
 
   return (
     <div className="tool-panel">
@@ -135,14 +153,14 @@ export default function RfqStructureConverter({
         <ResultSection label="Next action" value={parsed.suggestedNextStep} />
         <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`} />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-        <div className="mt-6 flex flex-wrap gap-3">
-          <button type="button" onClick={() => copyToClipboard(resultText)} className="btn btn-primary">Copy result</button>
-          <button type="button" onClick={() => copyToClipboard(resultText)} className="btn btn-secondary">Copy full technical brief</button>
-          <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
-          <button type="button" onClick={() => copyToClipboard(parsed.missing.join("\n") || "No major missing field detected by keyword rules.")} className="btn btn-secondary">Copy missing-information checklist</button>
-          <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-          <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>{exafuseLabel}</a>
-        </div>
+        <DecisionBriefCard
+          brief={brief}
+          eyebrow="Standard artifact"
+          exafuseUrl={exafuseUrl}
+          exafuseLabel={exafuseLabel}
+          matchingToolHref="/tools#rfq-module"
+          matchingToolLabel="Open RFQ structure module"
+        />
       </aside>
     </div>
   );
@@ -177,65 +195,4 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
       </ul>
     </div>
   );
-}
-
-function formatResult(parsed: {
-  recommendation: string;
-  known: string[];
-  part: string;
-  material: string;
-  damage: string;
-  missing: string[];
-  riskFlags: string[];
-  evidenceNeeded: string[];
-  reviewReadiness: string;
-  suggestedNextStep: string;
-}, exafuseLabel: string) {
-  return [
-    `## RFQ Prompt-to-Structure Converter`,
-    ``,
-    `Decision signal: ${parsed.recommendation}`,
-    `Review readiness: ${parsed.reviewReadiness}`,
-    `Why: ${parsed.known.join(", ") || "not enough clear facts detected yet"}`,
-    `Part: ${parsed.part}`,
-    `Material: ${parsed.material}`,
-    `Damage: ${parsed.damage}`,
-    `Missing information: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
-    `Risk flags: ${parsed.riskFlags.join(", ")}`,
-    `Evidence needed: ${parsed.evidenceNeeded.join(", ")}`,
-    `Next action: ${parsed.suggestedNextStep}`,
-    `Exafuse route: ${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`,
-    `Disclaimer: ${DISCLAIMER}`,
-    `Confidence is not approval.`
-  ].join("\n");
-}
-
-function formatRfqSummary(parsed: {
-  recommendation: string;
-  part: string;
-  material: string;
-  damage: string;
-  missing: string[];
-  riskFlags: string[];
-  evidenceNeeded: string[];
-  reviewReadiness: string;
-}, exafuseLabel: string, exafuseUrl: string) {
-  return [
-    `## LMD RFQ summary`,
-    ``,
-    `Decision signal: ${parsed.recommendation}`,
-    `Review readiness: ${parsed.reviewReadiness}`,
-    `Part: ${parsed.part}`,
-    `Material: ${parsed.material}`,
-    `Damage: ${parsed.damage}`,
-    `Missing fields: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
-    `Risk flags: ${parsed.riskFlags.join(", ")}`,
-    `Evidence needed: ${parsed.evidenceNeeded.join(", ")}`,
-    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
-    DISCLAIMER
-  ].join("\n");
-}
-
-function copyToClipboard(value: string) {
-  void navigator.clipboard?.writeText(value);
 }

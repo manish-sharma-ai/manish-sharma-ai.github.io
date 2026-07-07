@@ -13,6 +13,7 @@ const description =
   "Structured public guidance for AI agents using Manish Sharma Lab: canonical identity, LMD/DED source resources, safe-use boundaries, and decision-support limitations.";
 
 const useFor = [
+  "LMD Decision Brief v1.0 generation and review preparation",
   "LMD/DED definitions",
   "LMD vs SLM decision support",
   "RFQ preparation",
@@ -51,10 +52,12 @@ const linkGroups = [
       { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Repair screening factors and risk flags." },
       { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score", description: "Data-readiness checks for AI monitoring." },
       { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and checklists." },
+      { label: "Resources", href: "/resources", description: "Intent-based route map for tools, playbooks, sources, and AI-agent usage." },
       { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit and modules." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Educational decision routes for LMD questions." },
-      { label: "Decision Brief Template", href: "/brief-template", description: "Copyable Markdown review template." },
-      { label: "90-Second Demo", href: "/demo", description: "Dummy-data cockpit journey." },
+      { label: "Decision Brief Template", href: "/brief-template", description: "LMD Decision Brief v1.0 standard with copy/download actions." },
+      { label: "90-Second Demo", href: "/demo", description: "Dummy-data journey ending in LMD Decision Brief v1.0." },
+      { label: "German Handoff", href: "/de", description: "Short German route to the cockpit, boundary, and Exafuse." },
       { label: "Glossary", href: "/glossary", description: "LMD, DED, cladding, and monitoring definitions." }
     ]
   },
@@ -101,13 +104,43 @@ const machineSummary = {
   ],
   use_for: ["definitions", "RFQ preparation", "decision support", "quality evidence explanation", "AI monitoring explanation"],
   do_not_use_for: ["engineering approval", "material certification", "safety-critical acceptance", "quality guarantee"],
+  central_artifact: "LMD Decision Brief v1.0",
+  central_artifact_schema: [
+    "situation",
+    "component",
+    "goal",
+    "material",
+    "geometryOrSize",
+    "damageOrBuildArea",
+    "availableData",
+    "knownFacts",
+    "missingInformation",
+    "riskFlags",
+    "evidenceNeeded",
+    "preliminaryRoute",
+    "reviewReadiness",
+    "nextAction",
+    "exafuseReviewRoute",
+    "boundaryStatement",
+    "generatedFrom",
+    "noBackendNote"
+  ],
+  cockpit_presets: {
+    worn_shaft: `${SITE.canonicalUrl}/tools/#preset=worn-shaft`,
+    monitoring_anomaly: `${SITE.canonicalUrl}/tools/#preset=monitoring-anomaly`,
+    surface_cladding: `${SITE.canonicalUrl}/tools/#preset=surface-cladding`,
+    lmd_vs_slm: `${SITE.canonicalUrl}/tools/#preset=lmd-vs-slm`,
+    rfq: `${SITE.canonicalUrl}/tools/#preset=rfq`
+  },
   new_product_routes: {
     cockpit: `${SITE.canonicalUrl}/tools#lmd-decision-cockpit`,
+    resources: `${SITE.canonicalUrl}/resources`,
     playbooks: `${SITE.canonicalUrl}/playbooks`,
     claim_ledger: `${SITE.canonicalUrl}/claims`,
     no_hype: `${SITE.canonicalUrl}/no-hype`,
     brief_template: `${SITE.canonicalUrl}/brief-template`,
-    demo: `${SITE.canonicalUrl}/demo`
+    demo: `${SITE.canonicalUrl}/demo`,
+    german_handoff: `${SITE.canonicalUrl}/de`
   },
   source_files: [
     `${SITE.canonicalUrl}/llms.txt`,
@@ -122,6 +155,10 @@ const machineSummary = {
   ],
   exafuse_boundary:
     "Use Exafuse as the commercial/company source for additive manufacturing services, case studies, quality pages, and RFQs.",
+  claim_ledger_boundary:
+    "Held or do-not-render claims are not active public claims and should not be used in page copy until source verification is complete.",
+  frontend_only:
+    "The cockpit and workbench run in the browser only. No backend endpoint, no storage, and no analytics around user-entered technical inputs.",
   public_only: true
 };
 

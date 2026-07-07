@@ -16,6 +16,8 @@ const sections = [
   ["Common mistake", "Sending a short request and asking for feasibility before the technical review facts exist."],
   ["Better decision question", "What information is missing, and which missing field could change the process route or evidence burden?"],
   ["What evidence is needed", "Exact material grade, drawing/CAD, photos, damage depth, dimensions, tolerance, operating conditions, inspection requirement, and deadline."],
+  ["What changes the decision", "Unknown material, missing damage depth, missing CAD, tight tolerance, service load, inspection requirement, and deadline pressure can all change the route."],
+  ["Related playbook/tool", "Use the RFQ preparation playbook, RFQ preset, and LMD Decision Brief v1.0 template before asking for feasibility."],
   ["Exafuse route if commercial review is needed", `${exafuseRfqLink.label}: use Exafuse for company-owned technical and commercial review.`],
   ["Boundary disclaimer", DISCLAIMER]
 ];
@@ -51,7 +53,8 @@ const jsonLd = {
         { label: "RFQ structure module", href: "/tools#rfq-module" },
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "Decision Brief Template", href: "/brief-template" },
-        { label: "LMD repair playbook", href: "/playbooks" },
+        { label: "RFQ preparation playbook", href: "/playbooks#rfq-preparation" },
+        { label: "Run RFQ cockpit preset", href: "/tools/#preset=rfq" },
         { label: exafuseRfqLink.label, href: exafuseRfqLink.href }
       ]}
     />

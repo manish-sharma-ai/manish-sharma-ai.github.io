@@ -1,45 +1,38 @@
-const template = `# LMD decision brief
+import type { DecisionBrief } from "../lib/decisionBrief";
+import {
+  formatDecisionBriefJson,
+  formatDecisionBriefMarkdown,
+  formatDecisionBriefTemplateMarkdown
+} from "../lib/decisionBrief";
 
-## Part / component
+interface BriefTemplateActionsProps {
+  exampleBrief?: DecisionBrief;
+}
 
-## Goal
+const template = formatDecisionBriefTemplateMarkdown();
 
-## Material
-
-## Geometry / size
-
-## Damage or build area
-
-## Available data
-
-## Missing data
-
-## Service conditions
-
-## Tolerance / finishing
-
-## Inspection requirement
-
-## Risk flags
-
-## Process route considered
-
-## Evidence needed
-
-## Next action
-
-## Exafuse review route
-
-Confidence is not approval.
-
-Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
-`;
-
-export default function BriefTemplateActions() {
+export default function BriefTemplateActions({ exampleBrief }: BriefTemplateActionsProps) {
   return (
-    <div className="flex flex-wrap gap-3">
-      <button type="button" onClick={() => copyToClipboard(template)} className="btn btn-primary">Copy Markdown template</button>
-      <button type="button" onClick={downloadTemplate} className="btn btn-secondary">Download .md</button>
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <button type="button" onClick={() => copyToClipboard(template)} className="btn btn-primary min-w-0 whitespace-normal text-left">
+        Copy Markdown template
+      </button>
+      <button type="button" onClick={() => download("lmd-decision-brief-v1-template.md", template, "text/markdown;charset=utf-8")} className="btn btn-secondary min-w-0 whitespace-normal text-left">
+        Download .md
+      </button>
+      {exampleBrief && (
+        <>
+          <button type="button" onClick={() => copyToClipboard(formatDecisionBriefMarkdown(exampleBrief))} className="btn btn-secondary min-w-0 whitespace-normal text-left">
+            Copy filled example
+          </button>
+          <button type="button" onClick={() => download("lmd-decision-brief-v1-example.md", formatDecisionBriefMarkdown(exampleBrief), "text/markdown;charset=utf-8")} className="btn btn-secondary min-w-0 whitespace-normal text-left">
+            Download example .md
+          </button>
+          <button type="button" onClick={() => download("lmd-decision-brief-v1-example.json", formatDecisionBriefJson(exampleBrief), "application/json;charset=utf-8")} className="btn btn-secondary min-w-0 whitespace-normal text-left">
+            Download example .json
+          </button>
+        </>
+      )}
     </div>
   );
 }
@@ -48,12 +41,12 @@ function copyToClipboard(value: string) {
   void navigator.clipboard?.writeText(value);
 }
 
-function downloadTemplate() {
-  const blob = new Blob([template], { type: "text/markdown;charset=utf-8" });
+function download(filename: string, value: string, mime: string) {
+  const blob = new Blob([value], { type: mime });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "lmd-decision-brief-template.md";
+  link.download = filename;
   document.body.appendChild(link);
   link.click();
   link.remove();

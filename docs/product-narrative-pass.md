@@ -2,6 +2,8 @@
 
 This pass moves Manish Sharma Lab from a reference-heavy site toward a decision cockpit.
 
+The current central artifact is `LMD Decision Brief v1.0`.
+
 ## Why
 
 The public experience should make the core idea usable quickly:
@@ -13,10 +15,25 @@ The public experience should make the core idea usable quickly:
 5. Show what evidence is needed.
 6. Route serious commercial/technical review to Exafuse.
 7. Keep the boundary visible: confidence is not approval.
+8. Let the visitor copy or download a clean Decision Brief.
 
 ## Guided Cockpit
 
-`src/components/LmdDecisionCockpit.tsx` is frontend-only. It does not use backend services, analytics, network calls, or localStorage. It accepts public-safe user selections, then produces known facts, missing information, risk flags, evidence needed, readiness, next action, and Exafuse review route.
+`src/components/LmdDecisionCockpit.tsx` is frontend-only. It does not use backend services, analytics, network calls, or localStorage. It accepts public-safe user selections, then produces `LMD Decision Brief v1.0` with known facts, missing information, risk flags, evidence needed, readiness, next action, and Exafuse review route.
+
+The shared model and copy/export logic live in:
+
+- `src/lib/decisionBrief.ts`
+- `src/components/DecisionBriefCard.tsx`
+- `src/components/DecisionBriefExport.tsx`
+
+Current public-safe presets are:
+
+- `worn-shaft`
+- `monitoring-anomaly`
+- `surface-cladding`
+- `lmd-vs-slm`
+- `rfq`
 
 ## Public-Safe Data Rules
 
@@ -32,7 +49,7 @@ Exafuse owns commercial services, RFQs, company case studies, quality pages, pro
 
 ## Claim Ledger
 
-Public metrics and source claims must come from `src/data/publicClaims.ts` and be rendered through `/claims` where source status, allowed pages, last reviewed date, and limitations stay visible.
+Public metrics and source claims must come from `src/data/publicClaims.ts` and be rendered through `/claims` where source status, allowed pages, last reviewed date, and limitations stay visible. Claims marked `do-not-render` belong only in the collapsed `Held for source review` section or internal docs until verified.
 
 ## Adding Playbooks
 
@@ -47,10 +64,11 @@ Add short, practical playbooks to `/playbooks/` using the existing structure:
 - What AI cannot prove
 - Matching tool/framework
 - Copyable checklist
+- Copyable LMD Decision Brief starter
 
 ## Adding Dummy Scenarios
 
-Add examples to `LmdDecisionCockpit.tsx` only when they are generic and public-safe. Avoid exact customer, employer, or confidential details.
+Add examples to `src/lib/decisionBrief.ts` only when they are generic and public-safe. Avoid exact customer, employer, or confidential details. Link presets with hash URLs such as `/tools/#preset=worn-shaft`.
 
 ## Adding Lab Notes
 
@@ -73,7 +91,11 @@ When adding public routes, update:
 - `public/llms.txt`
 - `public/llms-full.txt`
 - `public/research/exafuse-public-proof-map.json` when Exafuse proof context is affected
+- `public/agent-pack/lmd-decision-rules.md`
+- `public/agent-pack/lmd-prompt-library.md`
+- `public/agent-pack/lmd-quality-checklist.md`
 - `README.md`
 - `docs/final-100-checklist.md`
+- `docs/decision-brief-standard.md`
 
 Run `npm run audit:all` before committing.

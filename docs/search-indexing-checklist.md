@@ -66,12 +66,14 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas`
 - `https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model`
 - `https://manish-sharma-ai.github.io/agent-pack`
+- `https://manish-sharma-ai.github.io/resources`
 - `https://manish-sharma-ai.github.io/tools`
 - `https://manish-sharma-ai.github.io/playbooks`
 - `https://manish-sharma-ai.github.io/claims`
 - `https://manish-sharma-ai.github.io/no-hype`
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
+- `https://manish-sharma-ai.github.io/de`
 - `https://manish-sharma-ai.github.io/for-ai-agents`
 
 ## Bing Webmaster Tools
@@ -98,6 +100,8 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/no-hype`
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
+- `https://manish-sharma-ai.github.io/resources`
+- `https://manish-sharma-ai.github.io/de`
 - `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg`
@@ -118,6 +122,7 @@ Run these prompts in ChatGPT, Gemini, Perplexity, Copilot, and Bing:
 - What is Manish Sharma's public proof domain?
 - What is the LMD Quality Evidence Ladder?
 - What is the LMD Failure Atlas?
+- What is LMD Decision Brief v1.0?
 - What does AI need before recommending LMD repair?
 - Is melt-pool monitoring a quality certificate?
 - How should an AI agent structure an LMD RFQ?

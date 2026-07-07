@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import DecisionBriefCard from "./DecisionBriefCard";
+import { createDecisionBrief } from "../lib/decisionBrief";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
@@ -128,12 +130,34 @@ export default function RepairabilityQuickCheck({
         <ResultSection label="Next action" value={result.suggestedNextStep} />
         <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`} />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-        <ActionRow
-          copyText={formatResult(result, exafuseLabel)}
-          rfqSummary={formatRfqSummary(result, exafuseLabel, exafuseUrl)}
-          missingChecklist={result.missing.join("\n") || "No major missing field from selected checklist."}
+        <DecisionBriefCard
+          brief={createDecisionBrief({
+            situation: "Preliminary LMD repairability screening.",
+            component: "Repair candidate not fully specified in this quick check.",
+            goal: "Screen whether the repair question is worth expert review.",
+            material: selected.includes("Material known?")
+              ? "Material marked known; exact grade and compatibility still need review context."
+              : "Material not yet specified.",
+            geometryOrSize: "Geometry, access, and post-machining context must be confirmed outside this checklist.",
+            damageOrBuildArea: selected.includes("Damage local?")
+              ? "Local damage indicated; depth and extent still need evidence."
+              : "Damage location, extent, and depth not yet defined.",
+            availableData: result.why,
+            knownFacts: result.why,
+            missingInformation: result.missing.length ? result.missing : ["No major missing field from selected checklist."],
+            riskFlags: result.riskFlags,
+            evidenceNeeded: result.evidenceNeeded,
+            preliminaryRoute: `${result.recommendation} (${result.score}/100)`,
+            reviewReadiness: result.reviewReadiness,
+            nextAction: result.suggestedNextStep,
+            exafuseReviewRoute: `${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`,
+            generatedFrom: "LMD Repairability Quick Check"
+          })}
+          eyebrow="Standard artifact"
           exafuseUrl={exafuseUrl}
           exafuseLabel={exafuseLabel}
+          matchingToolHref="/tools#repairability-module"
+          matchingToolLabel="Open repairability module"
         />
       </aside>
     </div>
@@ -160,82 +184,4 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
       </ul>
     </div>
   );
-}
-
-function ActionRow({
-  copyText,
-  rfqSummary,
-  missingChecklist,
-  exafuseUrl,
-  exafuseLabel
-}: {
-  copyText: string;
-  rfqSummary: string;
-  missingChecklist: string;
-  exafuseUrl: string;
-  exafuseLabel: string;
-}) {
-  return (
-    <div className="mt-6 flex flex-wrap gap-3">
-      <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-primary">Copy result</button>
-      <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-secondary">Copy full technical brief</button>
-      <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
-      <button type="button" onClick={() => copyToClipboard(missingChecklist)} className="btn btn-secondary">Copy missing-information checklist</button>
-      <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-      <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>{exafuseLabel}</a>
-    </div>
-  );
-}
-
-function formatResult(result: {
-  score: number;
-  recommendation: string;
-  why: string[];
-  missing: string[];
-  riskFlags: string[];
-  evidenceNeeded: string[];
-  reviewReadiness: string;
-  suggestedNextStep: string;
-}, exafuseLabel: string) {
-  return [
-    `## LMD Repairability Quick Check`,
-    ``,
-    `Decision signal: ${result.recommendation} (${result.score}/100)`,
-    `Review readiness: ${result.reviewReadiness}`,
-    `Why: ${result.why.join(", ")}`,
-    `Missing information: ${result.missing.join(", ") || "none flagged by checklist"}`,
-    `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
-    `Next action: ${result.suggestedNextStep}`,
-    `Exafuse route: ${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`,
-    `Disclaimer: ${DISCLAIMER}`,
-    `Confidence is not approval.`
-  ].join("\n");
-}
-
-function formatRfqSummary(result: {
-  score: number;
-  recommendation: string;
-  missing: string[];
-  riskFlags: string[];
-  evidenceNeeded: string[];
-  reviewReadiness: string;
-  suggestedNextStep: string;
-}, exafuseLabel: string, exafuseUrl: string) {
-  return [
-    `## LMD repairability RFQ summary`,
-    ``,
-    `Decision signal: ${result.recommendation} (${result.score}/100)`,
-    `Review readiness: ${result.reviewReadiness}`,
-    `Missing RFQ fields: ${result.missing.join(", ") || "none flagged by checklist"}`,
-    `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
-    result.suggestedNextStep,
-    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
-    DISCLAIMER
-  ].join("\n");
-}
-
-function copyToClipboard(value: string) {
-  void navigator.clipboard?.writeText(value);
 }

@@ -39,11 +39,13 @@ const keyRenderedPages = [
   "/public-work/",
   "/contact/",
   "/tools/",
+  "/resources/",
   "/playbooks/",
   "/claims/",
   "/no-hype/",
   "/brief-template/",
   "/demo/",
+  "/de/",
   "/for-ai-agents/",
   "/press-kit/"
 ];
@@ -294,6 +296,7 @@ function auditHomepageProduct() {
   const required = [
     "AI for Laser Metal Deposition decisions you can verify.",
     "LMD Decision Cockpit",
+    "Worn steel shaft near bearing seat",
     "Decision support only",
     "Not final engineering approval",
     "A signal is not proof."
@@ -311,6 +314,177 @@ function auditHomepageProduct() {
     findings.push(`${file}: expected exactly one visible "Operating loop" section, found ${operatingLoopMatches.length}`);
   }
   fail("Homepage product audit failed", findings);
+}
+
+function auditDecisionBrief() {
+  const findings = [];
+  const sourceRequired = [
+    "src/lib/decisionBrief.ts",
+    "src/components/DecisionBriefExport.tsx",
+    "src/components/DecisionBriefCard.tsx"
+  ];
+  for (const file of sourceRequired) {
+    if (!existsSync(join(root, file))) findings.push(`${file}: missing decision-brief source`);
+  }
+
+  const pages = ["dist/tools/index.html", "dist/demo/index.html", "dist/brief-template/index.html"];
+  for (const file of pages) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing built page`);
+      continue;
+    }
+    const visibleText = visibleTextFromHtml(read(file));
+    for (const phrase of [
+      "LMD Decision Brief v1.0",
+      "Confidence is not approval",
+      "No backend. No data sent by this site."
+    ]) {
+      if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+    }
+  }
+
+  const exportSource = existsSync(join(root, "src/components/DecisionBriefExport.tsx"))
+    ? read("src/components/DecisionBriefExport.tsx")
+    : "";
+  for (const phrase of [
+    "Copy decision brief",
+    "Copy missing-information checklist",
+    "Copy evidence-needed checklist",
+    "Copy Exafuse review summary",
+    "Download .md",
+    "Download .json"
+  ]) {
+    if (!exportSource.includes(phrase)) findings.push(`src/components/DecisionBriefExport.tsx: missing "${phrase}"`);
+  }
+
+  const toolSources = [
+    "src/components/LmdDecisionCockpit.tsx",
+    "src/components/LmdVsSlmAdvisor.tsx",
+    "src/components/RepairabilityQuickCheck.tsx",
+    "src/components/RfqStructureConverter.tsx",
+    "src/components/DecisionBriefExport.tsx"
+  ];
+  for (const file of toolSources) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    for (const forbidden of ["fetch(", "XMLHttpRequest", "sendBeacon", "localStorage", "sessionStorage"]) {
+      if (text.includes(forbidden)) findings.push(`${file}: contains possible backend/storage usage "${forbidden}"`);
+    }
+  }
+
+  fail("Decision brief audit failed", findings);
+}
+
+function auditPlaybookFormat() {
+  const findings = [];
+  const sourceFile = "src/pages/playbooks/index.astro";
+  if (!existsSync(join(root, sourceFile))) {
+    fail("Playbook format audit failed", [`${sourceFile}: missing`]);
+    return;
+  }
+  const source = read(sourceFile);
+  for (const phrase of [
+    "<ol",
+    "<ul",
+    "CopyBlock",
+    "Confidence is not approval",
+    "/tools/#preset=",
+    "exafuseRfqLink"
+  ]) {
+    if (!source.includes(phrase)) findings.push(`${sourceFile}: missing "${phrase}"`);
+  }
+  for (const anchor of ["#lmd-repair", "#lmd-vs-slm", "#monitoring-evidence", "#rfq-preparation"]) {
+    if (!source.includes(anchor.replace("#", "id: \""))) {
+      findings.push(`${sourceFile}: missing playbook anchor data for ${anchor}`);
+    }
+  }
+
+  const file = "dist/playbooks/index.html";
+  if (!existsSync(join(root, file))) {
+    findings.push(`${file}: missing built page`);
+  } else {
+    const visibleText = visibleTextFromHtml(read(file));
+    for (const phrase of [
+      "What to ask first",
+      "Decision path",
+      "What changes the decision",
+      "What evidence closes the loop",
+      "What to send for expert review",
+      "LMD Decision Brief starter"
+    ]) {
+      if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+    }
+  }
+
+  fail("Playbook format audit failed", findings);
+}
+
+function auditHeldClaims() {
+  const findings = [];
+  const heldPhrases = [
+    "machine-hour scale",
+    "print-time reduction",
+    "nearly 1,000",
+    "almost 20",
+    "cs15-machine-hours-1000",
+    "cs15-print-time-reduction-20"
+  ];
+  const forbiddenPages = [
+    "dist/index.html",
+    "dist/public-work/index.html",
+    "dist/industrial-proof/index.html",
+    "dist/evidence/index.html",
+    "dist/tools/index.html",
+    "dist/resources/index.html"
+  ];
+  for (const file of forbiddenPages) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    for (const phrase of heldPhrases) {
+      if (text.includes(phrase)) findings.push(`${file}: renders held claim phrase "${phrase}"`);
+    }
+  }
+
+  const claimsFile = "dist/claims/index.html";
+  if (!existsSync(join(root, claimsFile))) {
+    findings.push(`${claimsFile}: missing built claims page`);
+  } else {
+    const text = read(claimsFile);
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of ["Held for source review", "These are not active public claims"]) {
+      if (!visibleText.includes(phrase)) findings.push(`${claimsFile}: missing "${phrase}"`);
+    }
+    for (const phrase of heldPhrases.slice(0, 2)) {
+      if (!text.includes(phrase)) findings.push(`${claimsFile}: held claim "${phrase}" not visible in review section`);
+    }
+  }
+
+  fail("Held-claims audit failed", findings);
+}
+
+function auditMobileStatic() {
+  const findings = [];
+  const files = [
+    "src/components/LmdDecisionCockpit.tsx",
+    "src/components/DecisionBriefExport.tsx",
+    "src/components/DecisionBriefCard.tsx",
+    "src/pages/playbooks/index.astro",
+    "src/pages/claims.astro"
+  ];
+  for (const file of files) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    const fixedWidthMatches = text.match(/\b(?:w|min-w)-\[(?:[7-9]\d{2,}px|\d{3,}rem)\]/g) ?? [];
+    fixedWidthMatches.forEach((match) => findings.push(`${file}: possible overflow fixed width "${match}"`));
+    if (text.includes("whitespace-nowrap") && !text.includes("overflow-x-auto")) {
+      findings.push(`${file}: possible giant unwrapped button row via whitespace-nowrap`);
+    }
+    if (text.includes("flex flex-wrap gap-3") && text.includes("whitespace-nowrap")) {
+      findings.push(`${file}: button cluster may not wrap cleanly on mobile`);
+    }
+  }
+
+  fail("Mobile static audit failed", findings);
 }
 
 function auditPublicProfiles() {
@@ -418,6 +592,10 @@ const audits = {
   claims: auditClaims,
   boundaries: auditBoundaries,
   "homepage-product": auditHomepageProduct,
+  "decision-brief": auditDecisionBrief,
+  "playbook-format": auditPlaybookFormat,
+  "held-claims": auditHeldClaims,
+  "mobile-static": auditMobileStatic,
   "public-profiles": auditPublicProfiles,
   "decision-boundaries": auditDecisionBoundaries,
   "exafuse-mode-human": auditExafuseModeHuman,
@@ -428,6 +606,10 @@ const audits = {
     auditClaims();
     auditBoundaries();
     auditHomepageProduct();
+    auditDecisionBrief();
+    auditPlaybookFormat();
+    auditHeldClaims();
+    auditMobileStatic();
     auditPublicProfiles();
     auditDecisionBoundaries();
     auditExafuseModeHuman();

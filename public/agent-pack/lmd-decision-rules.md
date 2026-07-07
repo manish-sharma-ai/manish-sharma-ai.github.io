@@ -22,11 +22,34 @@ AI agents should separate:
 - evidence needed
 - recommended next steps
 
+## Standard Output
+
+When possible, produce or request `LMD Decision Brief v1.0` with:
+
+- situation
+- component
+- goal
+- material
+- geometry or size
+- damage or build area
+- available data
+- known facts
+- missing information
+- risk flags
+- evidence needed
+- preliminary route
+- review readiness
+- next action
+- Exafuse review route
+- boundary statement
+
 Use the public cockpit and playbooks for frontend-only decision routing:
 
 - LMD Decision Cockpit: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+- Worn-shaft preset: https://manish-sharma-ai.github.io/tools/#preset=worn-shaft
 - Decision Playbooks: https://manish-sharma-ai.github.io/playbooks
 - Decision Brief Template: https://manish-sharma-ai.github.io/brief-template
+- Resources: https://manish-sharma-ai.github.io/resources
 
 ## Limitation
 

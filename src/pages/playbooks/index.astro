@@ -4,69 +4,82 @@ import CTAButton from "@components/CTAButton.astro";
 import CopyBlock from "@components/CopyBlock";
 import Layout from "@layouts/Layout.astro";
 import { resolveExafuseLink } from "../../config/externalLinks";
+import { BRIEF_VERSION, createDecisionBrief, formatDecisionBriefMarkdown } from "../../lib/decisionBrief";
 import { PERSON, SITE } from "@data/site";
 
 const title = "LMD Decision Playbooks";
 const description =
-  "Practical Laser Metal Deposition playbooks for repair, process route selection, monitoring evidence, and RFQ preparation.";
+  "Practical Laser Metal Deposition playbooks for repair, process route selection, monitoring evidence, and RFQ preparation with copyable LMD Decision Brief starters.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const playbooks = [
   {
+    id: "lmd-repair",
     title: "LMD repair playbook",
-    situation: "A damaged or worn part may be repairable by local deposition, rebuild, cladding, machining, or replacement.",
+    summary: "Use when a damaged or worn part might be repaired by local deposition, rebuild, cladding, machining, or replacement.",
     badAssumption: "Local damage automatically means repair is feasible.",
+    situation: "A repair request should stay provisional until material, damage, access, machining, and inspection evidence are visible.",
     inputs: ["material grade", "damage depth and extent", "photos", "drawing/CAD", "tolerance target", "service conditions", "inspection requirement"],
-    path: ["Confirm material and base-part condition.", "Map damage and access.", "Check post-machining and inspection route.", "Flag criticality.", "Prepare expert-review package."],
+    path: ["Confirm material and base-part condition.", "Map damage depth, extent, and access.", "Check post-machining and inspection route.", "Flag criticality and downtime pressure.", "Prepare an expert-review package."],
+    whatChanges: ["unknown material", "cracks beyond visible damage", "tight tolerance", "no post-machining route", "safety-critical service", "no inspection plan"],
     evidence: ["material compatibility", "damage map", "machining allowance", "inspection plan", "acceptance criteria"],
+    send: ["part and material grade", "damage photos and depth", "drawing/CAD", "tolerance and finishing need", "operating conditions", "inspection requirement", "commercial route to Exafuse"],
     aiCan: "Structure the RFQ, expose missing facts, compare route signals, and create a review checklist.",
     aiCannot: "Approve repair, certify material, or decide safety-critical release.",
     matchingTool: { label: "LMD Repairability Quick Check", href: "/tools#repairability-module" },
     framework: { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
-    whatChanges: ["Unknown material", "Cracks beyond visible damage", "Tight tolerance", "No post-machining route", "Safety-critical service", "No inspection plan"],
-    checklist: ["Part and material grade", "Damage photos and depth", "Drawing/CAD", "Tolerance and finishing need", "Operating conditions", "Inspection requirement", "Commercial route to Exafuse"]
+    preset: { label: "Run worn-shaft preset", href: "/tools/#preset=worn-shaft" }
   },
   {
+    id: "lmd-vs-slm",
     title: "LMD vs SLM / LPBF route-selection playbook",
-    situation: "A part or feature could be considered for LMD/DED, SLM/LPBF, hybrid manufacturing, machining, or replacement.",
+    summary: "Use when a part or feature could be considered for LMD/DED, SLM/LPBF, hybrid manufacturing, machining, or replacement.",
     badAssumption: "One metal AM acronym is automatically better.",
+    situation: "Route choice should be based on scale, local addition, complexity, tolerance, material, post-processing, and inspection burden.",
     inputs: ["part size", "feature size", "internal channels", "local addition need", "material", "tolerance", "qualification requirement"],
-    path: ["Check scale and local deposition need.", "Check complexity and internal features.", "Check tolerance and post-processing.", "Compare inspection burden.", "Escalate balanced cases."],
+    path: ["Check scale and local deposition need.", "Check complexity and internal features.", "Check tolerance and post-processing.", "Compare inspection burden.", "Escalate balanced cases to expert review."],
+    whatChanges: ["feature size", "internal channels", "part size", "need for local deposition", "tolerance target", "material and qualification requirements"],
     evidence: ["geometry envelope", "feature accessibility", "material route", "finishing plan", "inspection and qualification requirement"],
+    send: ["part envelope", "feature complexity", "internal-channel requirement", "material", "tolerance", "post-processing plan", "inspection requirement"],
     aiCan: "Make the route trade-offs explicit and stop unsupported process claims.",
     aiCannot: "Guarantee feasibility or replace process engineering review.",
     matchingTool: { label: "LMD vs SLM Advisor", href: "/tools#route-module" },
     framework: { label: "LMD RFQ Toolkit", href: "/agent-pack" },
-    whatChanges: ["Feature size", "Internal channels", "Part size", "Need for local deposition", "Tolerance target", "Material and qualification requirements"],
-    checklist: ["Part envelope", "Feature complexity", "Internal-channel requirement", "Material", "Tolerance", "Post-processing plan", "Inspection requirement"]
+    preset: { label: "Run route-selection preset", href: "/tools/#preset=lmd-vs-slm" }
   },
   {
+    id: "monitoring-evidence",
     title: "Process monitoring vs quality evidence playbook",
-    situation: "A process signal, melt-pool image, camera anomaly, or drift trend needs interpretation.",
+    summary: "Use when a process signal, melt-pool image, camera anomaly, or drift trend needs interpretation.",
     badAssumption: "A monitoring signal proves final quality.",
+    situation: "Monitoring evidence should be treated as process awareness until it is linked to inspection and acceptance context.",
     inputs: ["signal type", "sensor context", "calibration context", "linked part/track/layer", "inspection result", "acceptance criteria"],
-    path: ["Classify the signal.", "Check sensor and image context.", "Look for correlation with inspection.", "Separate awareness from proof.", "Define next evidence."],
+    path: ["Classify the signal.", "Check sensor, lighting, and calibration context.", "Link signal to job, track, layer, or part record.", "Look for correlation with inspection.", "Define the next evidence required."],
+    whatChanges: ["correlation with inspection", "drift history", "sensor calibration", "image quality", "process repeatability", "acceptance criteria"],
     evidence: ["dimensional inspection", "NDT when risk requires it", "material evidence", "metallography when relevant", "expert review"],
+    send: ["signal source", "sensor condition", "linked job context", "inspection evidence", "acceptance criteria", "review decision", "boundary note"],
     aiCan: "Flag anomalies, summarize drift, and suggest inspection questions.",
     aiCannot: "Prove material quality, fatigue behavior, service safety, or certification.",
     matchingTool: { label: "Signal is not proof explainer", href: "/thesis#signal-is-not-proof" },
     framework: { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
-    whatChanges: ["Correlation with inspection", "Drift history", "Sensor calibration", "Image quality", "Process repeatability", "Acceptance criteria"],
-    checklist: ["Signal source", "Sensor condition", "Linked job context", "Inspection evidence", "Acceptance criteria", "Review decision", "Boundary note"]
+    preset: { label: "Run monitoring preset", href: "/tools/#preset=monitoring-anomaly" }
   },
   {
+    id: "rfq-preparation",
     title: "RFQ preparation playbook",
-    situation: "A buyer has a rough LMD, repair, cladding, or DED question but not enough structure for review.",
+    summary: "Use when a buyer has a rough LMD, repair, cladding, or DED question but not enough structure for review.",
     badAssumption: "A short request is enough for feasibility.",
+    situation: "A useful RFQ names known facts, missing fields, risk flags, evidence needed, and where expert review begins.",
     inputs: ["part/component", "goal", "material", "damage/build area", "photos", "drawing/CAD", "service conditions", "deadline"],
-    path: ["Extract known facts.", "List missing information.", "Flag risk.", "State evidence needed.", "Prepare a compact review brief."],
+    path: ["Extract known facts.", "List missing information.", "Flag route-changing risks.", "State evidence needed.", "Prepare a compact review brief."],
+    whatChanges: ["missing material grade", "missing drawing/CAD", "missing damage depth", "missing operating conditions", "missing tolerance", "missing deadline"],
     evidence: ["material grade", "drawing/CAD", "damage depth", "operating conditions", "tolerance", "inspection requirement", "deadline"],
+    send: ["part/component", "goal", "material", "damage/build area", "available files", "missing fields", "risk flags", "Exafuse review route"],
     aiCan: "Convert free text into a structured RFQ summary and missing-information checklist.",
     aiCannot: "Make a commercial feasibility decision or replace Exafuse review.",
     matchingTool: { label: "RFQ Prompt-to-Structure Converter", href: "/tools#rfq-module" },
     framework: { label: "LMD RFQ Toolkit", href: "/agent-pack" },
-    whatChanges: ["Missing material grade", "Missing drawing/CAD", "Missing damage depth", "Missing operating conditions", "Missing tolerance", "Missing deadline"],
-    checklist: ["Part/component", "Goal", "Material", "Damage/build area", "Available files", "Missing fields", "Risk flags", "Exafuse review route"]
+    preset: { label: "Run RFQ preset", href: "/tools/#preset=rfq" }
   }
 ];
 
@@ -80,6 +93,7 @@ const jsonLd = {
   author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
   hasPart: playbooks.map((playbook) => ({
     "@type": "TechArticle",
+    "@id": `${SITE.canonicalUrl}/playbooks#${playbook.id}`,
     name: playbook.title,
     about: playbook.inputs
   }))
@@ -92,14 +106,14 @@ const jsonLd = {
       <div class="flex flex-wrap gap-2">
         <Badge>Decision playbooks</Badge>
         <Badge tone="steel">Practical routes</Badge>
-        <Badge tone="laser">Decision support only</Badge>
+        <Badge tone="laser">{BRIEF_VERSION}</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Decision playbooks for LMD questions.</h1>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        These are short decision routes for repair, process selection, monitoring evidence, and RFQ preparation. They turn a vague question into inputs, risks, evidence, and a next action.
+        These are short decision routes for repair, process selection, monitoring evidence, and RFQ preparation. Each playbook ends in a copyable {BRIEF_VERSION} starter.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <CTAButton href="/tools#lmd-decision-cockpit" variant="primary">Start cockpit</CTAButton>
+        <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start cockpit</CTAButton>
         <CTAButton href="/brief-template" variant="secondary">Open brief template</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
@@ -109,26 +123,34 @@ const jsonLd = {
   <section class="band section-y">
     <div class="site-shell grid gap-6">
       {playbooks.map((playbook) => {
-        const checklist = [
-          `# ${playbook.title} checklist`,
-          "",
-          ...playbook.checklist.map((item) => `- [ ] ${item}`),
-          "",
-          "Confidence is not approval.",
-          "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review."
-        ].join("\n");
+        const starterBrief = createDecisionBrief({
+          situation: playbook.situation,
+          component: "To be specified.",
+          goal: playbook.summary,
+          material: "Exact material grade to be specified.",
+          geometryOrSize: "Geometry, dimensions, CAD/drawing, and feature context to be specified.",
+          damageOrBuildArea: "Damage, build, or cladding area to be specified.",
+          availableData: playbook.inputs.map((item) => `${item}: to be checked`),
+          knownFacts: ["To be filled from the RFQ or review notes."],
+          missingInformation: playbook.inputs,
+          riskFlags: playbook.whatChanges,
+          evidenceNeeded: playbook.evidence,
+          preliminaryRoute: playbook.title,
+          reviewReadiness: "Not enough information until checklist fields are filled.",
+          nextAction: `Use ${playbook.matchingTool.label}, then prepare an Exafuse-ready review package.`,
+          exafuseReviewRoute: `${exafuseRfqLink.label}. Exafuse performs commercial and technical review.`,
+          generatedFrom: `${playbook.title} starter`
+        });
+        const starterMarkdown = formatDecisionBriefMarkdown(starterBrief);
 
         return (
-          <article class="ordered-card-strong p-6 md:p-7">
-            <div class="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+          <article id={playbook.id} class="ordered-card-strong scroll-mt-24 p-6 md:p-7">
+            <div class="grid gap-8 lg:grid-cols-[0.86fr_1.14fr]">
               <div>
                 <p class="metric-label">Playbook</p>
                 <h2 class="mt-3 text-3xl font-black leading-tight text-white">{playbook.title}</h2>
+                <p class="mt-4 text-sm font-bold leading-6 text-cyan-50">{playbook.summary}</p>
                 <dl class="mt-6 grid gap-4 text-sm leading-6">
-                  <div>
-                    <dt class="font-black text-white">When this matters</dt>
-                    <dd class="mt-1 text-slate-300">{playbook.situation}</dd>
-                  </div>
                   <div>
                     <dt class="font-black text-white">Common bad assumption</dt>
                     <dd class="mt-1 text-orange-100">{playbook.badAssumption}</dd>
@@ -145,27 +167,45 @@ const jsonLd = {
                 <div class="mt-6 flex flex-wrap gap-3">
                   <CTAButton href={playbook.matchingTool.href} variant="primary">{playbook.matchingTool.label}</CTAButton>
                   <CTAButton href={playbook.framework.href} variant="secondary">{playbook.framework.label}</CTAButton>
+                  <CTAButton href={playbook.preset.href} variant="secondary">{playbook.preset.label}</CTAButton>
                   <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
                 </div>
+                <p class="mt-5 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold leading-6 text-amber-50">
+                  Confidence is not approval. Use the playbook to structure the question, not to release a part.
+                </p>
               </div>
               <div class="grid gap-5">
-                {[
-                  ["What to ask first", playbook.inputs],
-                  ["Decision path", playbook.path],
-                  ["What changes the decision", playbook.whatChanges],
-                  ["What evidence closes the loop", playbook.evidence],
-                  ["What to send for expert review", playbook.checklist]
-                ].map(([blockTitle, items]) => (
-                  <div class="ordered-card p-5">
-                    <h3 class="text-lg font-black text-white">{blockTitle}</h3>
-                    <div class="mt-3 flex flex-wrap gap-2">
-                      {(items as string[]).map((item) => (
-                        <span class="rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-bold leading-5 text-slate-300">{item}</span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <CopyBlock client:load label={`${playbook.title} checklist`} text={checklist} />
+                <div class="ordered-card p-5">
+                  <h3 class="text-lg font-black text-white">What to ask first</h3>
+                  <ul class="mt-3 grid gap-2 text-sm leading-6 text-slate-300">
+                    {playbook.inputs.map((item) => <li class="result-card">{item}</li>)}
+                  </ul>
+                </div>
+                <div class="ordered-card p-5">
+                  <h3 class="text-lg font-black text-white">Decision path</h3>
+                  <ol class="mt-3 grid list-decimal gap-2 pl-5 text-sm leading-6 text-slate-300">
+                    {playbook.path.map((item) => <li>{item}</li>)}
+                  </ol>
+                </div>
+                <div class="ordered-card p-5">
+                  <h3 class="text-lg font-black text-white">What changes the decision</h3>
+                  <ul class="mt-3 grid gap-2 text-sm leading-6 text-slate-300">
+                    {playbook.whatChanges.map((item) => <li class="result-card result-card--warning">{item}</li>)}
+                  </ul>
+                </div>
+                <div class="ordered-card p-5">
+                  <h3 class="text-lg font-black text-white">What evidence closes the loop</h3>
+                  <ul class="mt-3 grid gap-2 text-sm leading-6 text-slate-300">
+                    {playbook.evidence.map((item) => <li class="result-card">{item}</li>)}
+                  </ul>
+                </div>
+                <div class="ordered-card p-5">
+                  <h3 class="text-lg font-black text-white">What to send for expert review</h3>
+                  <ul class="mt-3 grid gap-2 text-sm leading-6 text-slate-300">
+                    {playbook.send.map((item) => <li class="result-card">{item}</li>)}
+                  </ul>
+                </div>
+                <CopyBlock client:load label={`${playbook.title} - LMD Decision Brief starter`} text={starterMarkdown} />
               </div>
             </div>
           </article>

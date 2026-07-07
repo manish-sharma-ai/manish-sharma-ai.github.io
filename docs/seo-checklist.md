@@ -61,14 +61,14 @@ Run before release:
 ```bash
 rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public AGENTS.md
 rg -n "href=\"#\"" src public README.md
-rg -n -F "aiwithms.github.io" src public AGENTS.md
+rg -n "aiwithms.*github\.io|github\.io.*aiwithms" src public AGENTS.md
 ```
 
 Expected results:
 
 - No staging Exafuse domains.
 - No active `#` profile links.
-- The personal GitHub Pages account URL appears only as a warning, if at all.
+- The personal GitHub Pages account URL should not appear as a site canonical.
 
 ## Post-Launch Manual Checks
 

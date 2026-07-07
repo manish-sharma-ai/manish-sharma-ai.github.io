@@ -1,0 +1,120 @@
+---
+import Badge from "@components/Badge.astro";
+import CTAButton from "@components/CTAButton.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
+import { PERSON, SITE } from "@data/site";
+
+const title = "Resources";
+const description =
+  "Intent-based resource map for Manish Sharma Lab: process choice, repairability, RFQ preparation, monitoring limits, sources, claims, and AI-agent usage.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
+
+const resourceGroups = [
+  {
+    intent: "I need to choose a process",
+    links: [
+      { label: "LMD Decision Workbench", href: "/tools", description: "Start with the cockpit or route module." },
+      { label: "LMD vs SLM Advisor", href: "/tools#route-module", description: "Compare early LMD/DED and SLM/LPBF route signals." },
+      { label: "LMD vs SLM lab note", href: "/lab-notes/lmd-vs-slm-decision-signals", description: "Read the practical decision signals." },
+      { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition", description: "Keep the process vocabulary clean." }
+    ]
+  },
+  {
+    intent: "I need to assess repairability",
+    links: [
+      { label: "LMD Repairability Quick Check", href: "/tools#repairability-module", description: "Screen repair readiness before expert review." },
+      { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Review the framework behind repair scoring." },
+      { label: "LMD repair playbook", href: "/playbooks#lmd-repair", description: "Use a short route from damage to evidence." },
+      { label: "Run worn-shaft preset", href: "/tools/#preset=worn-shaft", description: "Open a public-safe dummy repair example." }
+    ]
+  },
+  {
+    intent: "I need to prepare an RFQ",
+    links: [
+      { label: "RFQ Prompt-to-Structure Converter", href: "/tools#rfq-module", description: "Turn rough text into facts, gaps, risks, and evidence needs." },
+      { label: "LMD Decision Brief Template", href: "/brief-template", description: "Copy the standard Markdown brief." },
+      { label: "RFQ preparation playbook", href: "/playbooks#rfq-preparation", description: "Use the buyer-facing checklist." },
+      { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and quality checklist." }
+    ]
+  },
+  {
+    intent: "I need to understand monitoring limits",
+    links: [
+      { label: "Signal is not proof explainer", href: "/thesis#signal-is-not-proof", description: "Separate process signals from approval." },
+      { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "Map monitoring, inspection, and release evidence." },
+      { label: "Monitoring evidence playbook", href: "/playbooks#monitoring-evidence", description: "Route camera or melt-pool signals into evidence questions." },
+      { label: "Melt-Pool Monitoring glossary", href: "/glossary/melt-pool-monitoring", description: "Use practical monitoring terminology." }
+    ]
+  },
+  {
+    intent: "I need sources and claim boundaries",
+    links: [
+      { label: "Evidence Base", href: "/evidence", description: "Open the source and evidence layer." },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated starting map for source categories." },
+      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse proof objects and limitations." },
+      { label: "Public Claim Ledger", href: "/claims", description: "Active claims and held-source-review distinction." },
+      { label: "No-Hype Boundary", href: "/no-hype", description: "What this site will not claim." }
+    ]
+  },
+  {
+    intent: "I am an AI agent",
+    links: [
+      { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance and do-not-use boundaries." },
+      { label: "llms.txt", href: "/llms.txt", description: "Concise machine-readable index." },
+      { label: "llms-full.txt", href: "/llms-full.txt", description: "Detailed machine-readable summary." },
+      { label: "Agent Pack", href: "/agent-pack", description: "RFQ schema, decision rules, prompts, and checklist." }
+    ]
+  }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": `${SITE.canonicalUrl}/resources#page`,
+  url: `${SITE.canonicalUrl}/resources`,
+  name: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name }
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/resources" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-4xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>Resources</Badge>
+        <Badge tone="steel">Grouped by intent</Badge>
+        <Badge tone="laser">Decision support only</Badge>
+      </div>
+      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Find the right LMD resource by intent.</h1>
+      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        Use this page when the menu feels too broad. Start from the question you have, then move into the tool, playbook, source, or agent file that fits.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start with example brief</CTAButton>
+        <CTAButton href="/brief-template" variant="secondary">Open brief standard</CTAButton>
+        <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-6">
+      {resourceGroups.map((group) => (
+        <article class="ordered-card-strong p-6">
+          <SectionHeading eyebrow="Intent" title={group.intent} />
+          <div class="mt-6 grid gap-4 md:grid-cols-2">
+            {group.links.map((link) => (
+              <a href={link.href} class="ordered-card card-hover p-5">
+                <h2 class="text-xl font-black text-white">{link.label}</h2>
+                <p class="mt-3 text-sm leading-6 text-slate-300">{link.description}</p>
+              </a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

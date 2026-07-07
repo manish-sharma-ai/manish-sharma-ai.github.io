@@ -13,7 +13,7 @@ import { SITE } from "@data/site";
 
 const title = "LMD Decision Workbench - Manish Sharma Lab";
 const description =
-  "Frontend-only LMD Decision Workbench for turning vague LMD/DED questions into known facts, missing information, risk flags, and a next action.";
+  "Frontend-only LMD Decision Workbench for turning vague LMD/DED questions into LMD Decision Brief v1.0: known facts, missing information, risk flags, evidence needed, and a next action.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const toolStats = [
@@ -94,7 +94,7 @@ const toolBlocks = [
         LMD Decision Workbench
       </h1>
       <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-        Turn a vague LMD/DED request into known facts, missing information, risk flags, and a next action.
+        Turn a vague LMD/DED request into <strong class="text-white">LMD Decision Brief v1.0</strong>: known facts, missing information, risk flags, evidence needed, and a next action.
       </p>
       <p class="mt-4 max-w-3xl text-base leading-7 text-slate-400">
         Outputs are preliminary decision-support only. Final feasibility depends on material, geometry, service conditions, inspection requirements, and expert review.
@@ -104,6 +104,7 @@ const toolBlocks = [
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="#lmd-decision-cockpit" variant="primary">Start Decision Cockpit</CTAButton>
+        <CTAButton href="/demo" variant="secondary">90-second demo</CTAButton>
         <CTAButton href="/agent-pack" variant="secondary">Open RFQ Toolkit</CTAButton>
         <CTAButton href="/thesis" variant="secondary">Read the thesis</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
@@ -113,7 +114,7 @@ const toolBlocks = [
   </section>
 
   <section class="site-shell section-y">
-    <LmdDecisionCockpit client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+    <LmdDecisionCockpit client:load defaultMode="example" exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
   </section>
 
   <section class="band">

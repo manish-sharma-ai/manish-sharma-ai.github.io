@@ -16,6 +16,8 @@ const sections = [
   ["Common mistake", "Interpreting a clean camera stream as proof that material quality, geometry, and service safety are all acceptable."],
   ["Better decision question", "What inspection evidence is needed to interpret this signal for the specific part risk?"],
   ["What evidence is needed", "Sensor context, calibration context, linked track/layer/part record, dimensional inspection, NDT or material evidence where risk requires it, and expert review."],
+  ["What changes the decision", "Signal-to-part traceability, sensor condition, correlation with inspection, acceptance criteria, and part criticality change what the camera evidence can support."],
+  ["Related playbook/tool", "Use the monitoring/evidence playbook or monitoring-anomaly cockpit preset before turning a signal into an LMD Decision Brief v1.0."],
   ["Exafuse route if commercial review is needed", `${exafuseRfqLink.label}: use Exafuse for company-owned technical and commercial review.`],
   ["Boundary disclaimer", DISCLAIMER]
 ];
@@ -51,7 +53,8 @@ const jsonLd = {
         { label: "Signal is not proof", href: "/thesis#signal-is-not-proof" },
         { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
         { label: "Melt-Pool Monitoring glossary", href: "/glossary/melt-pool-monitoring" },
-        { label: "LMD Decision Workbench", href: "/tools#lmd-decision-cockpit" },
+        { label: "Monitoring/evidence playbook", href: "/playbooks#monitoring-evidence" },
+        { label: "Run monitoring cockpit preset", href: "/tools/#preset=monitoring-anomaly" },
         { label: exafuseRfqLink.label, href: exafuseRfqLink.href }
       ]}
     />

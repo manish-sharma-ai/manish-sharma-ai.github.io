@@ -3,13 +3,24 @@
   "source_base": "https://exafuse.de",
   "link_mode": "production-safe",
   "purpose": "Public Exafuse proof-map signals used to strengthen Manish Sharma Lab without duplicating company service pages or treating process-monitoring content as certification.",
+  "central_artifact": "LMD Decision Brief v1.0",
+  "artifact_boundary": "The brief is preliminary decision-support only. It is not engineering approval, material certification, safety-critical acceptance, or a quality guarantee.",
   "manish_sharma_lab_routes": {
     "decision_cockpit": "https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit",
+    "resources": "https://manish-sharma-ai.github.io/resources",
     "playbooks": "https://manish-sharma-ai.github.io/playbooks",
     "claim_ledger": "https://manish-sharma-ai.github.io/claims",
     "no_hype_boundary": "https://manish-sharma-ai.github.io/no-hype",
     "brief_template": "https://manish-sharma-ai.github.io/brief-template",
-    "demo": "https://manish-sharma-ai.github.io/demo"
+    "demo": "https://manish-sharma-ai.github.io/demo",
+    "german_handoff": "https://manish-sharma-ai.github.io/de"
+  },
+  "public_safe_cockpit_presets": {
+    "worn_shaft": "https://manish-sharma-ai.github.io/tools/#preset=worn-shaft",
+    "monitoring_anomaly": "https://manish-sharma-ai.github.io/tools/#preset=monitoring-anomaly",
+    "surface_cladding": "https://manish-sharma-ai.github.io/tools/#preset=surface-cladding",
+    "lmd_vs_slm": "https://manish-sharma-ai.github.io/tools/#preset=lmd-vs-slm",
+    "rfq": "https://manish-sharma-ai.github.io/tools/#preset=rfq"
   },
   "canonical_links": {
     "homepage": "https://exafuse.de/",
@@ -44,7 +55,8 @@
         "multi-node manufacturing context",
         "robot-path and monitoring scale context",
         "independent validation context where production source confirms it"
-      ]
+      ],
+      "decision_pattern": "https://manish-sharma-ai.github.io/playbooks#monitoring-evidence"
     },
     {
       "code": "CS01",
@@ -59,7 +71,8 @@
         "surface preparation",
         "finishing and inspection",
         "hardness is not enough by itself"
-      ]
+      ],
+      "decision_pattern": "https://manish-sharma-ai.github.io/playbooks#lmd-repair"
     },
     {
       "code": "CS10",
@@ -73,7 +86,8 @@
         "downtime and spare-part pressure",
         "remove damaged material before LMD",
         "finish geometry after deposition"
-      ]
+      ],
+      "decision_pattern": "https://manish-sharma-ai.github.io/playbooks#rfq-preparation"
     },
     {
       "code": "CS13",
@@ -86,7 +100,8 @@
         "build-and-coat workflow context",
         "geometry build-up plus functional coating",
         "surface function requires application-specific validation"
-      ]
+      ],
+      "decision_pattern": "https://manish-sharma-ai.github.io/tools/#preset=surface-cladding"
     }
   ],
   "knowledge_articles": [

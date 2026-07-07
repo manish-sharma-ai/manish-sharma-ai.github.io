@@ -49,6 +49,13 @@ const evidenceRules = [
   }
 ];
 
+const proofDecisionPatterns: Record<string, { label: string; href: string }> = {
+  CS15: { label: "Use monitoring/evidence playbook", href: "/playbooks#monitoring-evidence" },
+  CS01: { label: "Use repair playbook", href: "/playbooks#lmd-repair" },
+  CS10: { label: "Use RFQ preparation playbook", href: "/playbooks#rfq-preparation" },
+  CS13: { label: "Use cladding preset", href: "/tools/#preset=surface-cladding" }
+};
+
 const pageJsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -207,7 +214,9 @@ const pageJsonLd = {
       <div>
         <ExafuseMigrationNotice />
         <div class="mt-6 grid gap-4 md:grid-cols-2">
-        {EXAFUSE_PROOF_CASES.map((item) => (
+        {EXAFUSE_PROOF_CASES.map((item) => {
+          const pattern = proofDecisionPatterns[item.code];
+          return (
           <article class="ordered-card-strong p-5">
             <p class="metric-label">{item.code}</p>
             <h2 class="mt-3 text-xl font-black text-white">{item.title}</h2>
@@ -227,11 +236,17 @@ const pageJsonLd = {
               {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Production link after Exafuse migration"}
             </p>
             <p class="mt-4 text-sm leading-6 text-slate-400">{item.lesson}</p>
-            <a href={item.href} class="mt-4 inline-block text-xs font-bold uppercase tracking-[0.18em] text-cyan-100 hover:text-white" target="_blank" rel="noreferrer">
-              {item.sourceStatus === "production-link-after-migration" ? "Exafuse case link after migration" : "Open Exafuse source"}
-            </a>
+            <p class="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm font-semibold leading-6 text-slate-300">
+              This proof object does not approve your part; it shows what questions to structure.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href={pattern.href} class="btn btn-primary">{pattern.label}</a>
+              <a href={item.href} class="btn btn-laser" target="_blank" rel="noreferrer">
+                {item.sourceStatus === "production-link-after-migration" ? "Exafuse case link after migration" : "Open Exafuse source"}
+              </a>
+            </div>
           </article>
-        ))}
+        )})}
         </div>
       </div>
     </div>

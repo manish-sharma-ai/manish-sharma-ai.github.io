@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import DecisionBriefCard from "./DecisionBriefCard";
+import { createDecisionBrief } from "../lib/decisionBrief";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
@@ -179,19 +181,24 @@ function ToolResult({
   exafuseUrl: string;
   exafuseLabel: string;
 }) {
-  const copyText = formatResult(result);
-  const rfqSummary = [
-    `## LMD vs SLM RFQ summary`,
-    ``,
-    `Recommendation: ${result.recommendation}`,
-    `Review readiness: ${result.reviewReadiness}`,
-    `Missing information: ${result.missing.join(", ")}`,
-    `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
-    result.suggestedNextStep,
-    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
-    DISCLAIMER
-  ].join("\n");
+  const brief = createDecisionBrief({
+    situation: "Process-route comparison between LMD/DED and SLM/LPBF.",
+    component: "Part or feature candidate not fully specified in this quick advisor.",
+    goal: "Compare early process-selection signals before committing to LMD, SLM/LPBF, hybrid manufacturing, or review.",
+    material: "Material grade still required for any serious recommendation.",
+    geometryOrSize: "Advisor inputs cover part size, complexity, local addition, tolerance, and internal-channel signals.",
+    damageOrBuildArea: "Route-selection context; repair/cladding/build area must be clarified in the RFQ.",
+    availableData: result.why,
+    knownFacts: result.why,
+    missingInformation: result.missing,
+    riskFlags: result.riskFlags,
+    evidenceNeeded: result.evidenceNeeded,
+    preliminaryRoute: result.recommendation,
+    reviewReadiness: result.reviewReadiness,
+    nextAction: result.suggestedNextStep,
+    exafuseReviewRoute: `${exafuseLabel}. Use Exafuse for commercial and technical review after the route question is structured.`,
+    generatedFrom: "LMD vs SLM Advisor"
+  });
 
   return (
     <aside className="ordered-card-strong h-fit p-6 md:p-7">
@@ -208,7 +215,14 @@ function ToolResult({
       <ResultSection label="Next action" value={result.suggestedNextStep} />
       <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the question is structured.`} />
       <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-      <ActionRow copyText={copyText} rfqSummary={rfqSummary} missingChecklist={result.missing.join("\n")} exafuseUrl={exafuseUrl} exafuseLabel={exafuseLabel} />
+      <DecisionBriefCard
+        brief={brief}
+        eyebrow="Standard artifact"
+        exafuseUrl={exafuseUrl}
+        exafuseLabel={exafuseLabel}
+        matchingToolHref="/tools#route-module"
+        matchingToolLabel="Open route module"
+      />
     </aside>
   );
 }
@@ -233,58 +247,4 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
       </ul>
     </div>
   );
-}
-
-function ActionRow({
-  copyText,
-  rfqSummary,
-  missingChecklist,
-  exafuseUrl,
-  exafuseLabel
-}: {
-  copyText: string;
-  rfqSummary: string;
-  missingChecklist: string;
-  exafuseUrl: string;
-  exafuseLabel: string;
-}) {
-  return (
-    <div className="mt-6 flex flex-wrap gap-3">
-      <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-primary">Copy result</button>
-      <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-secondary">Copy full technical brief</button>
-      <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
-      <button type="button" onClick={() => copyToClipboard(missingChecklist)} className="btn btn-secondary">Copy missing-information checklist</button>
-      <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-      <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>{exafuseLabel}</a>
-    </div>
-  );
-}
-
-function formatResult(result: {
-  recommendation: string;
-  why: string[];
-  missing: string[];
-  riskFlags: string[];
-  evidenceNeeded: string[];
-  reviewReadiness: string;
-  suggestedNextStep: string;
-}) {
-  return [
-    `## LMD vs SLM Advisor`,
-    ``,
-    `Decision signal: ${result.recommendation}`,
-    `Review readiness: ${result.reviewReadiness}`,
-    `Why: ${result.why.join(" ")}`,
-    `Missing information: ${result.missing.join(", ")}`,
-    `Risk flags: ${result.riskFlags.join(", ")}`,
-    `Evidence needed: ${result.evidenceNeeded.join(", ")}`,
-    `Next action: ${result.suggestedNextStep}`,
-    `Exafuse route: Use Exafuse for commercial and technical review after the question is structured.`,
-    `Disclaimer: ${DISCLAIMER}`,
-    `Confidence is not approval.`
-  ].join("\n");
-}
-
-function copyToClipboard(value: string) {
-  void navigator.clipboard?.writeText(value);
 }

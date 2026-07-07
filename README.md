@@ -20,6 +20,10 @@ Primary promise:
 
 AI for Laser Metal Deposition decisions you can verify.
 
+Central artifact:
+
+LMD Decision Brief v1.0.
+
 Established public proof domain:
 
 AI, monitoring, RFQ intelligence, and decision-support resources for Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
@@ -100,12 +104,14 @@ Core routes:
 - `/industrial-proof`
 - `/frameworks`
 - `/agent-pack`
+- `/resources`
 - `/tools`
 - `/playbooks`
 - `/claims`
 - `/no-hype`
 - `/brief-template`
 - `/demo`
+- `/de`
 - `/lab-notes`
 - `/glossary`
 - `/press-kit`
@@ -157,6 +163,10 @@ npm run audit:links
 npm run audit:claims
 npm run audit:boundaries
 npm run audit:homepage-product
+npm run audit:decision-brief
+npm run audit:playbook-format
+npm run audit:held-claims
+npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
@@ -180,6 +190,7 @@ npm run audit:links:report
 - `/brief-template`
 - `/demo`
 - `/research/core-lmd-ai-sources`
+- `/resources`
 - `/research/lmd-literature-scan.json`
 - `/research/exafuse-public-proof-map.json`
 - `/frameworks/lmd-quality-evidence-ladder.md`
@@ -189,6 +200,23 @@ npm run audit:links:report
 - `/agent-pack/lmd-decision-rules.md`
 - `/agent-pack/lmd-prompt-library.md`
 - `/agent-pack/lmd-quality-checklist.md`
+- `/de`
+
+## LMD Decision Brief v1.0
+
+The central artifact of the site is `LMD Decision Brief v1.0`.
+
+It appears across the cockpit, tools, demo, template, and playbooks. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts, missing information, risk flags, evidence needed, preliminary route, review readiness, next action, Exafuse review route, boundary statement, generated-from note, and no-backend note.
+
+Public-safe cockpit presets:
+
+- `/tools/#preset=worn-shaft`
+- `/tools/#preset=monitoring-anomaly`
+- `/tools/#preset=surface-cladding`
+- `/tools/#preset=lmd-vs-slm`
+- `/tools/#preset=rfq`
+
+Implementation and maintenance rules live in `docs/decision-brief-standard.md`.
 
 ## Public Profile Links
 
@@ -248,7 +276,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
 - Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
-- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/tools`, `/playbooks`, `/claims`, `/no-hype`, `/brief-template`, `/demo`, `/for-ai-agents`, and `/site-map`.
+- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/playbooks`, `/claims`, `/no-hype`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.

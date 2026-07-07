@@ -16,6 +16,8 @@ const sections = [
   ["Common mistake", "Keeping images, logs, RFQ notes, operator comments, and inspection results in separate islands."],
   ["Better decision question", "Can a reviewer see why this signal, score, or recommendation was produced and what evidence supports it?"],
   ["What evidence is needed", "Linked job context, input facts, process records, operator notes, inspection results, review decisions, and revision history."],
+  ["What changes the decision", "Traceability changes the decision when it links the input facts, process signal, review rationale, inspection result, and final boundary in one record."],
+  ["Related playbook/tool", "Use the monitoring/evidence playbook, AI readiness framework, or LMD Decision Brief v1.0 template to keep the decision trail compact."],
   ["Exafuse route if commercial review is needed", `${exafuseRfqLink.label}: use Exafuse for company-owned technical and commercial review.`],
   ["Boundary disclaimer", DISCLAIMER]
 ];
@@ -50,7 +52,8 @@ const jsonLd = {
       links={[
         { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
         { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
-        { label: "Decision Playbooks", href: "/playbooks" },
+        { label: "Monitoring/evidence playbook", href: "/playbooks#monitoring-evidence" },
+        { label: "Decision Brief Template", href: "/brief-template" },
         { label: "For AI Agents", href: "/for-ai-agents" },
         { label: exafuseRfqLink.label, href: exafuseRfqLink.href }
       ]}

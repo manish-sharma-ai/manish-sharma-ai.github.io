@@ -16,6 +16,8 @@ const sections = [
   ["Common mistake", "Treating a worn area as a surface problem without asking how much build-up and finishing allowance are needed."],
   ["Better decision question", "What final geometry, tolerance, and inspection route must the deposited height support?"],
   ["What evidence is needed", "Damage depth, target height, machining allowance, drawing/CAD, tolerance requirement, and post-machining inspection plan."],
+  ["What changes the decision", "Final tolerance, damage depth, machining access, heat-sensitive geometry, and inspection access can turn a promising repair into a review-only candidate."],
+  ["Related playbook/tool", "Use the LMD repair playbook and the worn-shaft cockpit preset before preparing an LMD Decision Brief v1.0."],
   ["Exafuse route if commercial review is needed", `${exafuseRfqLink.label}: use Exafuse for company-owned technical and commercial review.`],
   ["Boundary disclaimer", DISCLAIMER]
 ];
@@ -49,7 +51,8 @@ const jsonLd = {
     <LabNoteFooter
       links={[
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
-        { label: "LMD Decision Workbench", href: "/tools#repairability-module" },
+        { label: "LMD repair playbook", href: "/playbooks#lmd-repair" },
+        { label: "Run worn-shaft cockpit preset", href: "/tools/#preset=worn-shaft" },
         { label: "Decision Brief Template", href: "/brief-template" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: exafuseRfqLink.label, href: exafuseRfqLink.href }

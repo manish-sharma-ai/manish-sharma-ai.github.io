@@ -136,6 +136,7 @@ export const NAV_GROUPS = [
     label: "Workbench",
     description: "Tools, RFQ resources, lab notes, and AI-agent guidance.",
     items: [
+      { label: "Resources", href: "/resources", description: "Intent-based map for tools, playbooks, sources, and AI-agent guidance." },
       { label: "Tools", href: "/tools", description: "Decision cockpit, LMD vs SLM, repairability, and RFQ structuring tools." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Practical routes for repair, process selection, monitoring evidence, and RFQ preparation." },
       { label: "90-Second Demo", href: "/demo", description: "Dummy-data journey from vague request to decision brief." },
@@ -143,6 +144,7 @@ export const NAV_GROUPS = [
       { label: "RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, decision rules, and RFQ checklists." },
       { label: "Lab Notes", href: "/lab-notes", description: "Applied public notes from the LMD/DED proof domain." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance for automated assistants." },
+      { label: "German Handoff", href: "/de", description: "Short German page routing visitors to the cockpit, boundary, and Exafuse." },
       { label: "Site Map", href: "/site-map", description: "A complete linked map of the website and public assets." }
     ]
   }
@@ -364,10 +366,12 @@ export const COMMAND_PAGES = [
   { title: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas", group: "Frameworks", description: "Map failure modes, signals, AI visibility, and validation evidence." },
   { title: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model", group: "Frameworks", description: "Move from manual records to validated AI decision support." },
   { title: "LMD RFQ Toolkit", href: "/agent-pack", group: "Workbench", description: "Schemas, prompts, rules, and checklists for safer LMD RFQ preparation." },
+  { title: "Resources", href: "/resources", group: "Workbench", description: "Intent-based resource map for process choice, repairability, RFQs, monitoring limits, sources, claims, and AI-agent usage." },
   { title: "Tools", href: "/tools", group: "Workbench", description: "Frontend-only decision cockpit, repairability, LMD vs SLM, and RFQ structuring aids." },
   { title: "Decision Playbooks", href: "/playbooks", group: "Workbench", description: "Practical decision routes for repair, process selection, monitoring evidence, and RFQ preparation." },
   { title: "LMD Decision Brief Template", href: "/brief-template", group: "Workbench", description: "Copyable Markdown template for preparing review briefs." },
   { title: "90-Second LMD Decision Demo", href: "/demo", group: "Workbench", description: "Dummy-data journey from vague request to structured decision brief." },
+  { title: "German Handoff", href: "/de", group: "Workbench", description: "Short German summary and routing page for LMD/DED decision support and Exafuse review." },
   { title: "Lab Notes", href: "/lab-notes", group: "Workbench", description: "Applied notes on monitoring, RFQ quality, repairability, terminology, and inspection evidence." },
   ...LAB_NOTES.map((note) => ({ title: note.title, href: note.href, group: "Lab Notes", description: note.description })),
   { title: "Glossary", href: "/glossary", group: "Established Domain", description: "Definitions that keep LMD/DED, cladding, monitoring, and RFQ language precise." },
@@ -425,6 +429,7 @@ export const SITE_MAP_GROUPS = [
     label: "Workbench",
     description: "Interactive and structured resources for LMD decisions, RFQ workflows, and AI-agent use.",
     links: [
+      { label: "Resources", href: "/resources", description: "Intent-based map for tools, playbooks, sources, and AI-agent guidance." },
       { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit, advisors, and structuring tools." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Practical decision routes for repair, process selection, monitoring evidence, and RFQ preparation." },
       { label: "LMD Decision Brief Template", href: "/brief-template", description: "Copyable Markdown brief template." },
@@ -432,6 +437,7 @@ export const SITE_MAP_GROUPS = [
       { label: "RFQ Toolkit", href: "/agent-pack", description: "RFQ schema, prompts, rules, and quality checklist." },
       { label: "Lab Notes", href: "/lab-notes", description: "Applied public notes from the LMD/DED proof domain." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "How automated assistants should use and not use this site." },
+      { label: "German Handoff", href: "/de", description: "Short German page routing visitors to cockpit, boundary, and Exafuse." },
       { label: "Site Map", href: "/site-map", description: "Every page and public machine-readable asset." }
     ]
   },

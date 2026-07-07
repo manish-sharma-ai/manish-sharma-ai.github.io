@@ -88,7 +88,7 @@ See `docs/exafuse-link-map.md` for status.
 ```bash
 rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public AGENTS.md
 rg -n "href=\"#\"" src public README.md
-rg -n -F "aiwithms.github.io" src public AGENTS.md
+rg -n "aiwithms.*github\.io|github\.io.*aiwithms" src public AGENTS.md
 ```
 
 ## 2026-07-07 Visual Pass Note

@@ -11,10 +11,11 @@ Every AI coding agent working in this repository must read this file before edit
 - GitHub profile for Manish: `https://github.com/aiwithms`
 - Public category: Manish Sharma - Industrial AI & Decision Systems
 - Primary promise: AI for Laser Metal Deposition decisions you can verify.
+- Central artifact: LMD Decision Brief v1.0
 - Established public proof domain: AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany
 - Company connection: Exafuse, Germany
 
-Never replace the canonical site with `https://aiwithms.github.io`. That URL is only relevant as a GitHub profile/account context, not as the website canonical URL.
+Never replace the canonical site with the `aiwithms` GitHub Pages URL. The `aiwithms` account is only relevant as GitHub profile/account context, not as the website canonical URL.
 
 ## Stack
 
@@ -61,6 +62,8 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Do not render image-generation prompts, diagram helper text, or long SVG descriptions as visible page text. Decorative visuals should keep internals out of rendered text and use concise accessibility labels.
 - Keep identity facts unambiguous: `aiwithms` is the GitHub profile, `manish-sharma-ai` is the GitHub organization/site repository owner, and `manish-sharma-ai/manish-sharma-ai.github.io` is the repository.
 - Keep the homepage cockpit-first. A first-time visitor should be able to start the LMD Decision Cockpit before proof maps or long reference sections.
+- Keep LMD Decision Brief v1.0 as the central product artifact across cockpit, tools, demo, template, playbooks, and AI-readable files.
+- Cockpit presets must be public-safe dummy examples only and must not use backend storage, analytics, or confidential data.
 - Public identity, links, profile, and press-kit pages must show only verified public profile URLs. Track planned profiles in `docs/profile-roadmap.md`.
 
 ## Working Tree Rules
@@ -227,6 +230,10 @@ npm run audit:links
 npm run audit:claims
 npm run audit:boundaries
 npm run audit:homepage-product
+npm run audit:decision-brief
+npm run audit:playbook-format
+npm run audit:held-claims
+npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
@@ -250,8 +257,10 @@ Also confirm `docs/final-100-checklist.md` still matches the current public surf
 - Frameworks: `https://manish-sharma-ai.github.io/frameworks`
 - Agent Pack: `https://manish-sharma-ai.github.io/agent-pack`
 - Tools: `https://manish-sharma-ai.github.io/tools`
+- Resources: `https://manish-sharma-ai.github.io/resources`
 - Lab Notes: `https://manish-sharma-ai.github.io/lab-notes`
 - Glossary: `https://manish-sharma-ai.github.io/glossary`
 - Press Kit: `https://manish-sharma-ai.github.io/press-kit`
 - For AI Agents: `https://manish-sharma-ai.github.io/for-ai-agents`
+- German Handoff: `https://manish-sharma-ai.github.io/de`
 - Site Map: `https://manish-sharma-ai.github.io/site-map`

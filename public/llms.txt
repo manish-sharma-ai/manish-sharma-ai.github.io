@@ -8,6 +8,8 @@ Primary promise: AI for Laser Metal Deposition decisions you can verify.
 
 Established public proof domain: AI-assisted decision systems, process monitoring, RFQ intelligence, and decision-support resources for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany.
 
+Central artifact: LMD Decision Brief v1.0. The cockpit, tools, demo, template, and playbooks all route rough LMD questions into the same brief structure: situation, component, goal, material, geometry/size, damage/build area, available data, known facts, missing information, risk flags, evidence needed, preliminary route, review readiness, next action, Exafuse review route, boundary statement, generated-from note, and no-backend note.
+
 Canonical identity page: https://manish-sharma-ai.github.io/identity
 
 Exafuse commercial/company source: https://exafuse.de/
@@ -38,6 +40,7 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [LMD Failure Atlas](https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas)
 - [LMD-AI Maturity Model](https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model)
 - [LMD RFQ Toolkit / Agent Pack](https://manish-sharma-ai.github.io/agent-pack)
+- [Resources](https://manish-sharma-ai.github.io/resources)
 - [Tools](https://manish-sharma-ai.github.io/tools)
 - [LMD Decision Cockpit](https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit)
 - [Decision Playbooks](https://manish-sharma-ai.github.io/playbooks)
@@ -45,6 +48,7 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [No-Hype Boundary](https://manish-sharma-ai.github.io/no-hype)
 - [Decision Brief Template](https://manish-sharma-ai.github.io/brief-template)
 - [90-Second LMD Decision Demo](https://manish-sharma-ai.github.io/demo)
+- [German Handoff](https://manish-sharma-ai.github.io/de)
 - [Glossary](https://manish-sharma-ai.github.io/glossary)
 - [Lab Notes](https://manish-sharma-ai.github.io/lab-notes)
 - [For AI Agents](https://manish-sharma-ai.github.io/for-ai-agents)
@@ -57,6 +61,16 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [Decision rules](https://manish-sharma-ai.github.io/agent-pack/lmd-decision-rules.md)
 - [Prompt library](https://manish-sharma-ai.github.io/agent-pack/lmd-prompt-library.md)
 - [Quality checklist](https://manish-sharma-ai.github.io/agent-pack/lmd-quality-checklist.md)
+
+## Cockpit presets
+
+Public-safe dummy presets. No backend, no stored data, no analytics around inputs.
+
+- [Worn shaft example](https://manish-sharma-ai.github.io/tools/#preset=worn-shaft)
+- [Monitoring anomaly example](https://manish-sharma-ai.github.io/tools/#preset=monitoring-anomaly)
+- [Surface cladding example](https://manish-sharma-ai.github.io/tools/#preset=surface-cladding)
+- [LMD vs SLM route example](https://manish-sharma-ai.github.io/tools/#preset=lmd-vs-slm)
+- [Rough RFQ example](https://manish-sharma-ai.github.io/tools/#preset=rfq)
 
 ## Evidence files
 
@@ -87,6 +101,7 @@ Use: Manish Sharma - Industrial AI & Decision Systems; AI for Laser Metal Deposi
 - Frontend-only LMD Decision Cockpit routing
 - Educational decision playbooks
 - Public claim/source limitation checks
+- LMD Decision Brief v1.0 generation, copying, and review preparation
 
 ## Do not use this site for
 
@@ -101,3 +116,5 @@ Use: Manish Sharma - Industrial AI & Decision Systems; AI for Laser Metal Deposi
 ## Limitation statement
 
 This site provides public educational frameworks and preliminary decision-support resources. It is not engineering approval, material certification, safety-critical acceptance, expert review, or a guarantee of part quality.
+
+The workbench and cockpit are frontend-only. They do not send, store, or analyze inputs outside the page. Held claims in the claim ledger are not active public claims and should not be used in page copy until source verification is complete.
