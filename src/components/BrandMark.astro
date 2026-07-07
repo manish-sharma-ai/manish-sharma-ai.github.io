@@ -1,0 +1,47 @@
+---
+interface Props {
+  class?: string;
+  title?: string;
+  uid?: string;
+}
+
+const { class: className = "", title, uid = "brand-mark" } = Astro.props;
+const labelled = Boolean(title);
+const beamId = `${uid}-beam`;
+const trackId = `${uid}-track`;
+const focusId = `${uid}-focus`;
+---
+
+<span class:list={["brand-mark", className]} aria-hidden={labelled ? undefined : "true"}>
+  <svg
+    viewBox="0 0 64 64"
+    role={labelled ? "img" : undefined}
+    aria-label={labelled ? title : undefined}
+    focusable="false"
+  >
+    {labelled && <title>{title}</title>}
+    <defs>
+      <linearGradient id={beamId} x1="14" y1="10" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#83f0ff" stop-opacity="0.2" />
+        <stop offset="0.58" stop-color="#34ddff" />
+        <stop offset="1" stop-color="#ffd27a" />
+      </linearGradient>
+      <linearGradient id={trackId} x1="12" y1="44" x2="52" y2="35" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#6d7e89" />
+        <stop offset="0.52" stop-color="#d8faff" />
+        <stop offset="1" stop-color="#34ddff" />
+      </linearGradient>
+      <radialGradient id={focusId} cx="32" cy="32" r="12" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#fff3c4" />
+        <stop offset="0.36" stop-color="#ffd27a" />
+        <stop offset="1" stop-color="#ff6b35" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+    <path class="brand-mark__beam" d="M15 11 L32 32" stroke={`url(#${beamId})`} stroke-width="3.4" stroke-linecap="round" />
+    <circle class="brand-mark__halo" cx="32" cy="32" r="12" fill={`url(#${focusId})`} />
+    <circle class="brand-mark__focus" cx="32" cy="32" r="3.8" fill="#ffd27a" />
+    <path class="brand-mark__track" d="M13 44 C23 38 33 39 43 34 C47 32 50 29 53 26" stroke={`url(#${trackId})`} stroke-width="3.4" stroke-linecap="round" fill="none" />
+    <path class="brand-mark__signal" d="M38 25 C43 18 49 16 54 13" stroke="#83f0ff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.72" />
+    <circle cx="54" cy="13" r="2.4" fill="#83f0ff" />
+  </svg>
+</span>

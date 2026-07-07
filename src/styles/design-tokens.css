@@ -10,11 +10,11 @@
   --section-gap-tablet: 72px;
   --section-gap-mobile: 56px;
   --card-pad: 24px;
-  --card-radius: 8px;
-  --card-radius-sm: 6px;
-  --panel-chamfer: 18px;
-  --button-radius: 7px;
-  --control-radius: 6px;
+  --card-radius: 16px;
+  --card-radius-sm: 12px;
+  --panel-radius: 24px;
+  --button-radius: 999px;
+  --control-radius: 10px;
   --header-height: 72px;
 
   --bg: #030507;
@@ -29,8 +29,8 @@
   --surface-glass-strong: rgba(15, 23, 34, 0.88);
   --surface-ink: rgba(1, 4, 7, 0.66);
   --panel-border: rgba(154, 209, 226, 0.18);
-  --panel-border-strong: rgba(75, 215, 255, 0.34);
-  --panel-border-hot: rgba(255, 181, 71, 0.32);
+  --panel-border-strong: rgba(131, 240, 255, 0.26);
+  --panel-border-hot: rgba(255, 181, 71, 0.24);
   --line: rgba(154, 209, 226, 0.15);
   --line-strong: rgba(154, 209, 226, 0.3);
   --line-faint: rgba(154, 209, 226, 0.08);
@@ -51,14 +51,14 @@
   --danger-surface: rgba(255, 107, 53, 0.11);
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  --cyan-glow-sm: 0 0 18px rgba(52, 221, 255, 0.2);
-  --cyan-glow-md: 0 0 34px rgba(52, 221, 255, 0.18);
-  --cyan-glow-lg: 0 0 72px rgba(52, 221, 255, 0.16);
-  --amber-glow-sm: 0 0 18px rgba(255, 182, 76, 0.2);
-  --amber-glow-md: 0 0 42px rgba(255, 107, 53, 0.18);
-  --shadow-soft: 0 28px 90px rgba(0, 0, 0, 0.48);
-  --shadow-card: 0 22px 58px rgba(0, 0, 0, 0.36);
-  --shadow-card-hard: 0 16px 42px rgba(0, 0, 0, 0.52);
+  --cyan-glow-sm: 0 0 18px rgba(52, 221, 255, 0.12);
+  --cyan-glow-md: 0 0 36px rgba(52, 221, 255, 0.1);
+  --cyan-glow-lg: 0 0 72px rgba(52, 221, 255, 0.1);
+  --amber-glow-sm: 0 0 18px rgba(255, 182, 76, 0.1);
+  --amber-glow-md: 0 0 40px rgba(255, 107, 53, 0.1);
+  --shadow-soft: 0 28px 90px rgba(0, 0, 0, 0.42);
+  --shadow-card: 0 20px 54px rgba(0, 0, 0, 0.3);
+  --shadow-card-hard: 0 18px 48px rgba(0, 0, 0, 0.38);
   --shadow-glow: var(--cyan-glow-md);
   --duration-fast: 140ms;
   --duration-med: 220ms;
@@ -78,6 +78,7 @@
     --section-gap: var(--section-gap-mobile);
     --grid-gap: 16px;
     --card-pad: 18px;
-    --panel-chamfer: 13px;
+    --card-radius: 14px;
+    --panel-radius: 18px;
   }
 }

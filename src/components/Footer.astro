@@ -1,4 +1,5 @@
 ---
+import BrandMark from "@components/BrandMark.astro";
 import { LINKS, SITE } from "@data/site";
 
 const footerColumns = [
@@ -45,7 +46,7 @@ const footerColumns = [
   <div class="site-shell grid gap-8 py-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
     <div class="ordered-card-strong p-6 md:p-7">
       <div class="flex items-center gap-3">
-        <span class="brand-mark">MS</span>
+        <BrandMark uid="footer-brand-mark" />
         <div>
           <p class="text-sm font-black text-white">Manish Sharma Lab</p>
           <p class="metric-label mt-1">Industrial AI / Decision Systems</p>

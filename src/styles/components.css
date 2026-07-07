@@ -6,6 +6,7 @@
 .visual-panel {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   border: 1px solid var(--panel-border);
   border-radius: var(--card-radius);
   background:
@@ -16,14 +17,6 @@
     inset 0 -1px 0 rgba(52, 221, 255, 0.035),
     0 12px 36px rgba(0, 0, 0, 0.26);
   backdrop-filter: blur(18px);
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--panel-chamfer)) 0,
-    100% var(--panel-chamfer),
-    100% 100%,
-    var(--panel-chamfer) 100%,
-    0 calc(100% - var(--panel-chamfer))
-  );
 }
 
 .glass-panel::before,
@@ -43,7 +36,7 @@
   z-index: 0;
   pointer-events: none;
   content: "";
-  clip-path: inherit;
+  border-radius: inherit;
 }
 
 .glass-panel > *,
@@ -63,10 +56,10 @@
 .link-card::before,
 .visual-panel::before {
   background:
-    linear-gradient(90deg, rgba(52, 221, 255, 0.36), transparent 26%) top left / 42% 1px no-repeat,
-    linear-gradient(90deg, transparent, rgba(255, 182, 76, 0.28)) bottom right / 38% 1px no-repeat,
+    linear-gradient(90deg, rgba(52, 221, 255, 0.22), transparent 30%) top left / 52% 1px no-repeat,
+    linear-gradient(90deg, transparent, rgba(255, 182, 76, 0.14)) bottom right / 42% 1px no-repeat,
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 28%);
-  opacity: 0.7;
+  opacity: 0.62;
 }
 
 .glass-panel::after,
@@ -76,11 +69,9 @@
 .link-card::after,
 .visual-panel::after {
   background:
-    linear-gradient(var(--accent), var(--accent)) top left / 24px 1px no-repeat,
-    linear-gradient(var(--accent), var(--accent)) top left / 1px 24px no-repeat,
-    linear-gradient(var(--amber), var(--amber)) bottom right / 24px 1px no-repeat,
-    linear-gradient(var(--amber), var(--amber)) bottom right / 1px 24px no-repeat;
-  opacity: 0.44;
+    radial-gradient(circle at 18% 0%, rgba(52, 221, 255, 0.08), transparent 42%),
+    radial-gradient(circle at 94% 100%, rgba(255, 182, 76, 0.055), transparent 38%);
+  opacity: 0.8;
 }
 
 .ordered-card-strong,
@@ -88,9 +79,9 @@
 .visual-panel {
   border-color: var(--panel-border-strong);
   background:
-    radial-gradient(circle at 18% 0%, rgba(52, 221, 255, 0.13), transparent 20rem),
-    radial-gradient(circle at 96% 82%, rgba(255, 107, 53, 0.07), transparent 18rem),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.018)),
+    radial-gradient(circle at 18% 0%, rgba(52, 221, 255, 0.08), transparent 21rem),
+    radial-gradient(circle at 96% 82%, rgba(255, 107, 53, 0.035), transparent 18rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.016)),
     var(--surface-glass-strong);
   box-shadow:
     var(--shadow-card),
@@ -126,9 +117,9 @@
 .card-hover:hover,
 .link-card:hover,
 .bento-card:hover {
-  border-color: rgba(52, 221, 255, 0.48);
-  box-shadow: var(--shadow-card-hard), var(--cyan-glow-md);
-  transform: translateY(-4px);
+  border-color: rgba(52, 221, 255, 0.34);
+  box-shadow: var(--shadow-card-hard), var(--cyan-glow-sm);
+  transform: translateY(-2px);
 }
 
 .card-hover:focus-visible,
@@ -167,7 +158,7 @@
   font-size: 0.72rem;
   font-weight: 850;
   line-height: 1;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025), var(--cyan-glow-sm);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
 }
 
 .chip::before {
@@ -187,7 +178,7 @@
     linear-gradient(180deg, rgba(255, 182, 76, 0.13), rgba(255, 107, 53, 0.05)),
     rgba(15, 8, 4, 0.56);
   color: #ffe2a8;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025), var(--amber-glow-sm);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.025);
 }
 
 .chip--steel {
@@ -213,12 +204,12 @@
   height: 1px;
   content: "";
   background: linear-gradient(90deg, rgba(52, 221, 255, 0.76), rgba(52, 221, 255, 0.14));
-  box-shadow: var(--cyan-glow-sm);
+  box-shadow: none;
 }
 
 .section-heading-mark::after {
   background: linear-gradient(90deg, rgba(255, 182, 76, 0.42), transparent);
-  box-shadow: var(--amber-glow-sm);
+  box-shadow: none;
 }
 
 .section-heading-mark span {
@@ -246,7 +237,7 @@
 
 .btn,
 .utility-button {
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  overflow: hidden;
 }
 
 .btn {
@@ -268,18 +259,18 @@
 }
 
 .btn-primary {
-  border: 1px solid rgba(52, 221, 255, 0.62);
+  border: 1px solid rgba(52, 221, 255, 0.46);
   background:
-    linear-gradient(135deg, rgba(52, 221, 255, 0.28), rgba(47, 128, 255, 0.13)),
+    linear-gradient(135deg, rgba(52, 221, 255, 0.2), rgba(47, 128, 255, 0.09)),
     rgba(4, 15, 21, 0.9);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--cyan-glow-md);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--cyan-glow-sm);
   color: #f4fdff;
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  border-color: rgba(131, 240, 255, 0.82);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), var(--cyan-glow-lg);
+  border-color: rgba(131, 240, 255, 0.66);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), var(--cyan-glow-md);
 }
 
 .btn-secondary {
@@ -304,18 +295,18 @@
 }
 
 .btn-laser {
-  border: 1px solid rgba(255, 182, 76, 0.48);
+  border: 1px solid rgba(255, 182, 76, 0.34);
   background:
-    linear-gradient(135deg, rgba(255, 77, 46, 0.24), rgba(255, 182, 76, 0.12)),
+    linear-gradient(135deg, rgba(255, 77, 46, 0.14), rgba(255, 182, 76, 0.08)),
     rgba(20, 8, 4, 0.74);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), var(--amber-glow-md);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   color: #fff6ef;
 }
 
 .btn-laser:hover,
 .btn-laser:focus-visible {
-  border-color: rgba(255, 210, 122, 0.74);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 58px rgba(255, 107, 53, 0.22);
+  border-color: rgba(255, 210, 122, 0.56);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), var(--amber-glow-sm);
 }
 
 .disabled-card {
@@ -376,17 +367,25 @@
   height: 44px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(52, 221, 255, 0.32);
-  border-radius: var(--card-radius);
+  border: 1px solid rgba(154, 209, 226, 0.22);
+  border-radius: 15px;
   background:
-    linear-gradient(135deg, rgba(52, 221, 255, 0.2), rgba(255, 182, 76, 0.065)),
+    radial-gradient(circle at 46% 46%, rgba(52, 221, 255, 0.12), transparent 58%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
     rgba(255, 255, 255, 0.045);
-  box-shadow: var(--cyan-glow-sm);
-  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), var(--cyan-glow-sm);
   color: #eafdff;
-  font-family: var(--font-mono);
-  font-size: 0.92rem;
-  font-weight: 900;
+}
+
+.brand-mark svg {
+  width: 30px;
+  height: 30px;
+  overflow: visible;
+}
+
+.brand-mark__halo,
+.brand-mark__focus {
+  transform-origin: center;
 }
 
 .primary-nav {
@@ -458,15 +457,15 @@
 .nav-panel {
   border: 1px solid rgba(154, 209, 226, 0.18);
   background:
-    radial-gradient(circle at 18% 0%, rgba(52, 221, 255, 0.12), transparent 20rem),
-    radial-gradient(circle at 92% 82%, rgba(255, 107, 53, 0.09), transparent 17rem),
+    radial-gradient(circle at 18% 0%, rgba(52, 221, 255, 0.07), transparent 20rem),
+    radial-gradient(circle at 92% 82%, rgba(255, 107, 53, 0.045), transparent 17rem),
     linear-gradient(180deg, rgba(13, 23, 31, 0.98), rgba(3, 5, 8, 0.995)),
     #05080c;
   box-shadow:
     0 32px 84px rgba(0, 0, 0, 0.76),
     inset 0 1px 0 rgba(255, 255, 255, 0.075);
   backdrop-filter: blur(22px);
-  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  border-radius: calc(var(--card-radius) + 4px);
 }
 
 .nav-panel::before {
@@ -475,8 +474,8 @@
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(90deg, rgba(52, 221, 255, 0.38), transparent 34%) top left / 50% 1px no-repeat,
-    linear-gradient(90deg, transparent, rgba(255, 182, 76, 0.28)) bottom right / 42% 1px no-repeat;
+    linear-gradient(90deg, rgba(52, 221, 255, 0.22), transparent 34%) top left / 50% 1px no-repeat,
+    linear-gradient(90deg, transparent, rgba(255, 182, 76, 0.14)) bottom right / 42% 1px no-repeat;
 }
 
 .nav-menu-link,
@@ -519,10 +518,9 @@
   border: 1px solid rgba(154, 209, 226, 0.2);
   border-radius: var(--card-radius);
   background:
-    radial-gradient(circle at 22% 0%, rgba(52, 221, 255, 0.1), transparent 18rem),
+    radial-gradient(circle at 22% 0%, rgba(52, 221, 255, 0.06), transparent 18rem),
     linear-gradient(180deg, rgba(11, 18, 26, 0.98), rgba(2, 5, 8, 0.995));
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.78), var(--cyan-glow-sm);
-  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
 }
 
 .prose-lab {
@@ -675,7 +673,6 @@ input:hover {
   border-radius: var(--card-radius);
   background: rgba(154, 209, 226, 0.09);
   overflow: hidden;
-  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
 }
 
 .hero-proof-console__item {
@@ -706,14 +703,13 @@ input:hover {
   min-height: 540px;
   container-type: inline-size;
   border: 1px solid var(--panel-border-strong);
-  border-radius: var(--card-radius);
+  border-radius: var(--panel-radius);
   background:
-    radial-gradient(circle at 66% 18%, rgba(52, 221, 255, 0.16), transparent 18rem),
-    radial-gradient(circle at 24% 86%, rgba(255, 107, 53, 0.08), transparent 16rem),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.018)),
+    radial-gradient(circle at 66% 18%, rgba(52, 221, 255, 0.09), transparent 18rem),
+    radial-gradient(circle at 24% 86%, rgba(255, 107, 53, 0.035), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.016)),
     rgba(6, 11, 17, 0.86);
   box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));
 }
 
 .cockpit-panel::before,
@@ -737,10 +733,9 @@ input:hover {
 .cockpit-panel::after {
   z-index: 2;
   background:
-    linear-gradient(90deg, rgba(52, 221, 255, 0.44), transparent 32%) top left / 52% 1px no-repeat,
-    linear-gradient(90deg, transparent, rgba(255, 182, 76, 0.32)) bottom right / 46% 1px no-repeat,
-    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 5px);
-  opacity: 0.58;
+    linear-gradient(90deg, rgba(52, 221, 255, 0.22), transparent 34%) top left / 52% 1px no-repeat,
+    linear-gradient(90deg, transparent, rgba(255, 182, 76, 0.12)) bottom right / 46% 1px no-repeat;
+  opacity: 0.7;
 }
 
 .cockpit-grid {
@@ -772,7 +767,6 @@ input:hover {
     linear-gradient(90deg, rgba(52, 221, 255, 0.08), transparent),
     rgba(0, 0, 0, 0.28);
   padding: 16px;
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 }
 
 .smdv-loop {
@@ -808,7 +802,6 @@ input:hover {
     linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
     rgba(2, 8, 12, 0.62);
   padding: 1rem;
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
 }
 
 .smdv-node__index {

@@ -4,12 +4,12 @@ The Manish Sharma Lab logo is designed as a compact technical identity mark for 
 
 ## Concept
 
-The mark combines four ideas:
+The mark combines four ideas in one restrained path system:
 
-- Laser beam: the orange diagonal line represents focused industrial energy input.
-- Melt pool: the warm central glow represents the local process zone.
-- Deposited bead: the cyan/steel curved path represents additive material deposition.
-- AI graph: the small connected nodes represent decision systems, monitoring, and RFQ intelligence.
+- Incoming laser path: the cool-to-warm diagonal stroke represents focused industrial energy input.
+- Focal interaction point: the warm center represents the local process zone.
+- Deposited track: the steel/cyan curve represents additive material deposition.
+- Rising intelligence path: the small upward signal represents sensing, modeling, and verification.
 
 The goal is to feel like a premium engineering lab, not a generic developer monogram.
 
@@ -39,10 +39,10 @@ Avoid stretching, recoloring, rotating, or adding extra effects. The mark alread
 
 - Graphite: `#050608`
 - Panel graphite: `#071018`
-- Cyan accent: `#33d6ff`
+- Cyan accent: `#34ddff`
 - Electric blue: `#2f80ff`
 - Laser orange/red: `#ff4d2e`
-- Melt-pool amber: `#ffb547`
+- Melt-pool amber: `#ffd27a`
 
 ## Brand Sentence
 

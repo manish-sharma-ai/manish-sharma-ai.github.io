@@ -1,42 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Manish Sharma Lab">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Manish Sharma Lab laser-path mark">
   <defs>
-    <linearGradient id="bg" x1="24" y1="22" x2="232" y2="236" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#070b10"/>
-      <stop offset="0.5" stop-color="#0b1219"/>
-      <stop offset="1" stop-color="#050608"/>
+    <linearGradient id="bg" x1="36" y1="24" x2="220" y2="232" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#101820"/>
+      <stop offset="0.55" stop-color="#071017"/>
+      <stop offset="1" stop-color="#030506"/>
     </linearGradient>
-    <linearGradient id="border" x1="38" y1="24" x2="218" y2="232" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#33d6ff" stop-opacity="0.62"/>
-      <stop offset="0.52" stop-color="#ffffff" stop-opacity="0.14"/>
-      <stop offset="1" stop-color="#ffb547" stop-opacity="0.5"/>
+    <linearGradient id="edge" x1="34" y1="28" x2="222" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#83f0ff" stop-opacity="0.52"/>
+      <stop offset="0.58" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ffd27a" stop-opacity="0.36"/>
     </linearGradient>
-    <linearGradient id="bead" x1="50" y1="150" x2="208" y2="176" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#3f4f5b"/>
-      <stop offset="0.44" stop-color="#8da5b2"/>
-      <stop offset="1" stop-color="#33d6ff"/>
+    <linearGradient id="beam" x1="67" y1="43" x2="132" y2="130" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#83f0ff" stop-opacity="0.22"/>
+      <stop offset="0.62" stop-color="#34ddff"/>
+      <stop offset="1" stop-color="#ffd27a"/>
     </linearGradient>
-    <linearGradient id="laser" x1="80" y1="52" x2="129" y2="138" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ff4d2e" stop-opacity="0.2"/>
-      <stop offset="0.62" stop-color="#ff4d2e"/>
-      <stop offset="1" stop-color="#ffdd9a"/>
+    <linearGradient id="track" x1="50" y1="178" x2="208" y2="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#647782"/>
+      <stop offset="0.48" stop-color="#d8faff"/>
+      <stop offset="1" stop-color="#34ddff"/>
     </linearGradient>
-    <radialGradient id="melt" cx="128" cy="138" r="42" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fff4ca"/>
-      <stop offset="0.28" stop-color="#ffb547"/>
-      <stop offset="0.64" stop-color="#ff4d2e" stop-opacity="0.58"/>
-      <stop offset="1" stop-color="#ff4d2e" stop-opacity="0"/>
+    <radialGradient id="focus" cx="128" cy="128" r="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff3c4"/>
+      <stop offset="0.36" stop-color="#ffd27a"/>
+      <stop offset="1" stop-color="#ff6b35" stop-opacity="0"/>
     </radialGradient>
   </defs>
-  <rect x="9" y="9" width="238" height="238" rx="56" fill="#020304"/>
-  <rect x="18" y="18" width="220" height="220" rx="48" fill="url(#bg)" stroke="url(#border)" stroke-width="2"/>
-  <path d="M52 169c29-24 54-24 78-5 27 21 50 22 78-4" fill="none" stroke="#17222c" stroke-width="34" stroke-linecap="round"/>
-  <path d="M52 168c29-23 54-23 78-4 27 20 50 21 78-4" fill="none" stroke="url(#bead)" stroke-width="11" stroke-linecap="round"/>
-  <path d="M79 52l49 86" fill="none" stroke="#ff4d2e" stroke-opacity="0.18" stroke-width="24" stroke-linecap="round"/>
-  <path d="M79 52l49 86" fill="none" stroke="url(#laser)" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="128" cy="138" r="39" fill="url(#melt)"/>
-  <ellipse cx="128" cy="141" rx="27" ry="10" fill="#fff3c4" opacity="0.48"/>
-  <path d="M170 72l29 22M170 72l-1 41M199 94l-30 19" fill="none" stroke="#33d6ff" stroke-opacity="0.66" stroke-width="2"/>
-  <circle cx="170" cy="72" r="7" fill="#9bf0ff"/>
-  <circle cx="199" cy="94" r="6" fill="#33d6ff"/>
-  <circle cx="169" cy="113" r="5" fill="#2f80ff"/>
+  <rect x="16" y="16" width="224" height="224" rx="54" fill="#020304"/>
+  <rect x="24" y="24" width="208" height="208" rx="46" fill="url(#bg)" stroke="url(#edge)" stroke-width="2"/>
+  <path d="M66 45 L128 128" fill="none" stroke="url(#beam)" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="128" cy="128" r="48" fill="url(#focus)"/>
+  <circle cx="128" cy="128" r="14" fill="#ffd27a"/>
+  <path d="M51 176 C90 151 126 154 164 136 C181 128 194 116 207 104" fill="none" stroke="url(#track)" stroke-width="13" stroke-linecap="round"/>
+  <path d="M151 101 C170 73 194 63 214 52" fill="none" stroke="#83f0ff" stroke-width="7" stroke-linecap="round" opacity="0.76"/>
+  <circle cx="214" cy="52" r="9" fill="#83f0ff"/>
 </svg>
