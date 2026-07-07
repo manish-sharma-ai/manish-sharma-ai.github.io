@@ -1,0 +1,13 @@
+---
+interface Props {
+  class?: string;
+  band?: boolean;
+  compact?: boolean;
+}
+
+const { class: className = "", band = false, compact = false } = Astro.props;
+---
+
+<section class:list={[band ? "section-band" : "", compact ? "section section--compact" : "section", className]}>
+  <slot />
+</section>

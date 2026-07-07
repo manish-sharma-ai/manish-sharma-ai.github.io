@@ -1,4 +1,6 @@
 ---
+import LinkCard from "@components/LinkCard.astro";
+
 interface LinkItem {
   label: string;
   href?: string | null;
@@ -14,35 +16,5 @@ const { links } = Astro.props;
 ---
 
 <div class="equal-card-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-  {
-    links.map((link) =>
-      link.href ? (
-        <a
-          href={link.href}
-          class="ordered-card card-hover group flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-200"
-          target={link.href.startsWith("http") ? "_blank" : undefined}
-          rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-        >
-          <span>
-            <span class="block">{link.label}</span>
-            {link.description && <span class="mt-1 block text-xs font-semibold leading-5 text-slate-500">{link.description}</span>}
-          </span>
-          <span class="font-mono text-cyan-200/80 transition group-hover:translate-x-1 group-focus-visible:translate-x-1">&rarr;</span>
-        </a>
-      ) : (
-        <div
-          class="ordered-card disabled-card flex min-h-16 items-center justify-between gap-4 p-4 text-sm font-bold text-slate-500"
-          aria-disabled="true"
-        >
-          <span>
-            <span class="block">{link.label}</span>
-            <span class="mt-1 block text-xs font-semibold leading-5 text-slate-500">{link.description ?? "Profile planned."}</span>
-          </span>
-          <span class="rounded-md border border-white/10 bg-white/[0.035] px-2 py-1 text-xs font-black uppercase text-slate-400">
-            {link.status ?? "Planned"}
-          </span>
-        </div>
-      )
-    )
-  }
+  {links.map((link) => <LinkCard {...link} />)}
 </div>

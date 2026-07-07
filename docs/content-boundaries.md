@@ -83,3 +83,12 @@ AI is not framed as:
 - Material qualification
 - Quality guarantee
 - Replacement for expert review
+
+## 2026-07-07 Visual System Pass
+
+The July 2026 visual redesign changed layout, navigation, cards, tools, and page hierarchy. It did not change the ownership model:
+
+- Manish Sharma Lab remains the personal expert and public explanation layer.
+- Exafuse remains the commercial service, RFQ, company case-study, quality, production capability, and delivery-claim layer.
+- The tools and frameworks remain preliminary decision support only.
+- No confidential employer/customer material should be added to visual demos, hidden routes, screenshots, source maps, or draft pages.

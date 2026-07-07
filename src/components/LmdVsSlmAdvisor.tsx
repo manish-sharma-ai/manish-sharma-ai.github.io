@@ -81,8 +81,8 @@ export default function LmdVsSlmAdvisor() {
   }, [values]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-      <div className="grid content-start gap-4 sm:grid-cols-2">
+    <div className="tool-panel">
+      <div className="tool-input-grid">
         <Select label="Part size" value={values.partSize} options={["small", "medium", "large"]} onChange={(value) => setValues({ ...values, partSize: value })} />
         <Select label="Geometry complexity" value={values.complexity} options={["low", "medium", "high"]} onChange={(value) => setValues({ ...values, complexity: value })} />
         <Select label="Job type" value={values.jobType} options={["repair", "new build", "cladding", "prototype"]} onChange={(value) => setValues({ ...values, jobType: value })} />
@@ -107,12 +107,12 @@ function Select({
   onChange: (value: string) => void;
 }) {
   return (
-    <label className="ordered-card grid gap-2 p-4 text-sm font-bold text-white">
+    <label className="tool-field">
       {label}
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="min-h-11 rounded-md border border-white/10 bg-graphite-950 px-3 text-slate-100"
+        className="px-3"
       >
         {options.map((option) => (
           <option key={option} value={option}>{option}</option>
@@ -143,7 +143,7 @@ function ToolResult({
   ].join("\n");
 
   return (
-    <aside className="ordered-card-strong h-fit p-6">
+    <aside className="ordered-card-strong h-fit p-6 md:p-7">
       <p className="metric-label">Advisor output</p>
       <ResultSection label="Preliminary recommendation" value={result.recommendation} large />
       <ResultList label="Why" items={result.why} />
@@ -160,7 +160,7 @@ function ResultSection({ label, value, large = false, tone = "default" }: { labe
   return (
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
-      <p className={`${tone === "warning" ? "border border-orange-300/25 bg-orange-500/10 text-orange-50" : "ordered-card text-slate-300"} mt-2 rounded-md p-3 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
+      <p className={`${tone === "warning" ? "result-card result-card--warning" : "result-card text-slate-300"} mt-2 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
         {value}
       </p>
     </div>
@@ -172,7 +172,7 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
       <ul className="mt-2 grid gap-2 text-sm text-slate-300">
-        {items.map((item) => <li key={item} className="ordered-card px-3 py-2">{item}</li>)}
+        {items.map((item) => <li key={item} className="result-card">{item}</li>)}
       </ul>
     </div>
   );

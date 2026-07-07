@@ -1,0 +1,35 @@
+---
+interface Props {
+  href?: string | null;
+  label: string;
+  description?: string;
+  status?: string;
+}
+
+const { href, label, description, status } = Astro.props;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class="link-card card-hover content-between"
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noreferrer" : undefined}
+    >
+      <span>
+        <span class="block text-sm font-black text-white">{label}</span>
+        {description && <span class="mt-2 block text-xs leading-5 text-slate-400">{description}</span>}
+      </span>
+      <span class="mt-5 font-mono text-xs font-black uppercase text-cyan-100">Open</span>
+    </a>
+  ) : (
+    <div class="link-card disabled-card content-between" aria-disabled="true">
+      <span>
+        <span class="block text-sm font-black text-slate-400">{label}</span>
+        <span class="mt-2 block text-xs leading-5 text-slate-500">{description ?? "Planned profile."}</span>
+      </span>
+      <span class="chip chip--steel mt-5 w-fit">{status ?? "Planned"}</span>
+    </div>
+  )
+}

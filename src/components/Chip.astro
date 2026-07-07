@@ -1,0 +1,12 @@
+---
+interface Props {
+  tone?: "default" | "amber" | "steel";
+}
+
+const { tone = "default" } = Astro.props;
+const toneClass = tone === "amber" ? "chip--amber" : tone === "steel" ? "chip--steel" : "";
+---
+
+<span class:list={["chip", toneClass]}>
+  <slot />
+</span>

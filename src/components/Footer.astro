@@ -1,34 +1,83 @@
 ---
-import { LINKS, NAV_GROUPS, SITE } from "@data/site";
+import { LINKS, SITE } from "@data/site";
+
+const footerColumns = [
+  {
+    label: "Core",
+    links: [
+      { label: "Thesis", href: "/thesis" },
+      { label: "Proof", href: "/public-work" },
+      { label: "LMD / DED", href: "/domains/lmd-ded" },
+      { label: "Frameworks", href: "/frameworks" }
+    ]
+  },
+  {
+    label: "Workbench",
+    links: [
+      { label: "Tools", href: "/tools" },
+      { label: "Agent Pack", href: "/agent-pack" },
+      { label: "Lab Notes", href: "/lab-notes" },
+      { label: "For AI Agents", href: "/for-ai-agents" }
+    ]
+  },
+  {
+    label: "Identity",
+    links: [
+      { label: "Identity", href: "/identity" },
+      { label: "About", href: "/about" },
+      { label: "Public Profile", href: "/profile/public-profile" },
+      { label: "Press Kit", href: "/press-kit" }
+    ]
+  },
+  {
+    label: "External",
+    links: [
+      { label: "Exafuse", href: LINKS.exafuse, external: true },
+      { label: "GitHub", href: LINKS.github, external: true },
+      { label: "LinkedIn", href: LINKS.linkedin, external: true },
+      { label: "Repository", href: SITE.repoUrl, external: true }
+    ]
+  }
+];
 ---
 
-<footer class="border-t border-white/10 bg-black/28">
-  <div class="site-shell grid gap-10 py-12 lg:grid-cols-[1.25fr_1.75fr]">
-    <div>
+<footer class="border-t border-white/10 bg-black/30">
+  <div class="site-shell grid gap-8 py-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
+    <div class="ordered-card-strong p-6 md:p-7">
       <div class="flex items-center gap-3">
-        <img src="/brand/manish-sharma-lab-mark.svg" alt="" class="h-10 w-10" width="40" height="40" loading="lazy" decoding="async" />
-        <p class="metric-label">Manish Sharma Lab</p>
+        <span class="brand-mark">MS</span>
+        <div>
+          <p class="text-sm font-black text-white">Manish Sharma Lab</p>
+          <p class="metric-label mt-1">Industrial AI / Decision Systems</p>
+        </div>
       </div>
-      <p class="mt-3 max-w-xl text-lg font-semibold text-white">
-        Industrial AI and decision systems for engineering processes, grounded in public LMD/DED work at Exafuse.
+      <p class="mt-6 max-w-xl text-xl font-black leading-tight text-white">
+        Industrial AI for decisions you can verify.
       </p>
-      <p class="mt-4 text-sm leading-6 text-slate-400">
-        {SITE.primaryPromise} Public decision-support content. Not engineering approval.
+      <p class="mt-4 max-w-xl text-sm leading-6 text-slate-400">
+        Public frameworks, source maps, tools, lab notes, and AI-agent guidance. Commercial services, RFQs, delivery claims, and company case studies belong to Exafuse.
       </p>
-      <div class="mt-6 flex flex-wrap gap-2">
-        <a href="/site-map" class="btn btn-secondary min-h-10 px-3 py-2 text-sm">Site Map</a>
-        <button type="button" data-command-trigger class="btn btn-secondary min-h-10 px-3 py-2 text-sm">Search</button>
-        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="btn btn-laser min-h-10 px-3 py-2 text-sm">Exafuse</a>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/contact" class="btn btn-primary min-h-10 px-4 py-2 text-sm">Contact</a>
+        <button type="button" data-command-trigger class="btn btn-secondary min-h-10 px-4 py-2 text-sm">Search</button>
+        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="btn btn-laser min-h-10 px-4 py-2 text-sm">Visit Exafuse</a>
       </div>
     </div>
 
-    <div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-      {NAV_GROUPS.map((group) => (
-        <div class="ordered-card p-4">
-          <p class="metric-label">{group.label}</p>
-          <div class="mt-4 grid gap-2 text-sm text-slate-300">
-            {group.items.slice(0, 6).map((item) => (
-              <a href={item.href} class="footer-link -mx-2 rounded-md px-2 py-1 leading-5 hover:bg-white/[0.045]">{item.label}</a>
+    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      {footerColumns.map((column) => (
+        <div class="ordered-card p-5">
+          <p class="metric-label">{column.label}</p>
+          <div class="mt-4 grid gap-2">
+            {column.links.map((item) => (
+              <a
+                href={item.href}
+                class="footer-link rounded-xl px-2 py-1.5 text-sm font-bold leading-5 text-slate-300 hover:bg-white/[0.045]"
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {item.label}
+              </a>
             ))}
           </div>
         </div>
@@ -36,14 +85,11 @@ import { LINKS, NAV_GROUPS, SITE } from "@data/site";
     </div>
   </div>
 
-  <div class="site-shell grid gap-6 border-t border-white/10 py-6 text-sm text-slate-500 md:grid-cols-[1fr_auto] md:items-center">
+  <div class="site-shell grid gap-4 border-t border-white/10 py-6 text-sm text-slate-500 md:grid-cols-[1fr_auto] md:items-center">
     <div class="flex flex-wrap gap-x-5 gap-y-2">
       <span>&copy; {new Date().getFullYear()} Manish Sharma Lab.</span>
-      <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="footer-link">Website repository</a>
-      <a href={LINKS.github} target="_blank" rel="noreferrer" class="footer-link">GitHub profile</a>
-      <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="footer-link">LinkedIn</a>
-      <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="footer-link">Exafuse</a>
+      <span>Decision-support content, not engineering approval.</span>
     </div>
-    <span>Canonical site: {SITE.canonicalUrl}</span>
+    <span>Canonical: {SITE.canonicalUrl}</span>
   </div>
 </footer>

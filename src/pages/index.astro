@@ -1,15 +1,18 @@
 ---
-import Badge from "@components/Badge.astro";
+import BentoCard from "@components/BentoCard.astro";
+import BentoGrid from "@components/BentoGrid.astro";
+import CTAButton from "@components/CTAButton.astro";
+import Chip from "@components/Chip.astro";
 import EvidenceRail from "@components/EvidenceRail.astro";
 import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import VisualPanel from "@components/VisualPanel.astro";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
 
-const title = "Manish Sharma Lab - Industrial AI & Decision Systems";
+const title = "Manish Sharma Lab - AI for Laser Metal Deposition";
 const description =
-  "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse.";
+  "Manish Sharma Lab publishes inspection-aware AI frameworks, RFQ tools, process-monitoring notes, and source maps for Laser Metal Deposition, Directed Energy Deposition, repair, cladding, and metal additive manufacturing.";
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
@@ -20,7 +23,7 @@ const websiteJsonLd = {
   description,
   inLanguage: "en",
   author: {
-    "@id": `${SITE.canonicalUrl}/#person`
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`
   },
   potentialAction: {
     "@type": "SearchAction",
@@ -29,192 +32,197 @@ const websiteJsonLd = {
   }
 };
 
-const identityStrip = [
-  ["Name", PERSON.name],
-  ["Category", SITE.publicCategory],
-  ["Established proof", "AI for LMD / DED at Exafuse"],
-  ["Method", "Sense -> Model -> Decide -> Verify"],
-  ["Boundary", "Decision support connected to engineering evidence"]
+const proofStrip = [
+  ["Primary entity", PERSON.name],
+  ["Public proof domain", "AI for LMD / DED at Exafuse"],
+  ["Operating loop", "Sense -> Model -> Decide -> Verify"],
+  ["Boundary", "Decision support, not final approval"]
 ];
 
 const flagshipAssets = [
   {
     title: "LMD Quality Evidence Ladder",
     href: "/frameworks/lmd-quality-evidence-ladder",
-    text: "Separate process signals, AI anomaly flags, inspection evidence, and final quality proof.",
-    label: "Verify"
+    text: "Separates process signals, AI flags, inspection evidence, and final quality claims.",
+    label: "Quality evidence"
   },
   {
     title: "LMD Repairability Index",
     href: "/frameworks/lmd-repairability-index",
-    text: "Screen material, damage, access, machining, inspection, economics, and risk before recommending repair.",
-    label: "Decide"
+    text: "Screens material, damage, access, machining, inspection, economics, and criticality before a repair recommendation hardens.",
+    label: "Repair decisions"
   },
   {
-    title: "LMD RFQ Toolkit",
+    title: "LMD RFQ Toolkit / Agent Pack",
     href: "/agent-pack",
-    text: "Turn vague LMD requests into known facts, missing information, risks, and next steps.",
-    label: "Structure"
+    text: "Turns vague LMD requests into facts, missing fields, risk flags, prompt patterns, and RFQ-ready summaries.",
+    label: "RFQ intelligence"
   }
 ];
 
-const additionalAssets = [
+const frameworkHighlights = [
   FRAMEWORKS[2],
   FRAMEWORKS[4],
   FRAMEWORKS[5],
   {
-    title: "Core LMD-AI Sources",
-    href: "/research/core-lmd-ai-sources",
-    idea: "Curated starting map for LMD, DED, process monitoring, AI, repair, quality, and terminology sources.",
-    status: "Source map"
-  },
-  {
     title: "Tools",
     href: "/tools",
-    idea: "Frontend-only tools for LMD vs SLM, repairability, and RFQ structuring.",
+    idea: "Frontend-only helpers for process selection, repairability screening, AI readiness, and RFQ structuring.",
     status: "Workbench"
   },
   {
-    title: "Glossary",
-    href: "/glossary",
-    idea: "Definitions for LMD, DED, laser cladding, and melt-pool monitoring.",
-    status: "Definitions"
+    title: "Core LMD-AI Sources",
+    href: "/research/core-lmd-ai-sources",
+    idea: "Curated source map for LMD, DED, process monitoring, AI, repair, quality, and terminology.",
+    status: "Source map"
+  },
+  {
+    title: "For AI Agents",
+    href: "/for-ai-agents",
+    idea: "Machine-readable guidance for safe use, limitations, source files, and canonical identity.",
+    status: "AI-readable"
   }
 ];
 
-const latestLabNotes = [...LAB_NOTES].slice(-3).reverse();
+const latestLabNotes = LAB_NOTES.slice(0, 3);
 ---
 
 <Layout title={title} description={description} canonical="/" jsonLd={websiteJsonLd}>
-  <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.96fr_1.04fr] lg:py-20">
+  <section class="site-shell home-hero-grid section-y">
     <div>
       <div class="flex flex-wrap gap-2">
-        <Badge>Manish Sharma Lab</Badge>
-        <Badge tone="steel">Industrial AI / Decision Systems</Badge>
-        <Badge tone="laser">LMD / DED proof domain</Badge>
+        <Chip>Manish Sharma Lab</Chip>
+        <Chip tone="steel">Industrial AI cockpit</Chip>
+        <Chip tone="amber">Exafuse public proof domain</Chip>
       </div>
       <p class="metric-label mt-8">Manish Sharma Lab</p>
-      <h1 class="mt-4 text-5xl font-black leading-[0.98] text-white md:text-7xl">
-        Industrial AI for decisions you can verify.
+      <h1 class="mt-4 max-w-5xl text-5xl font-black leading-[0.98] text-white md:text-7xl">
+        AI for Laser Metal Deposition.
       </h1>
       <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-        I build AI, monitoring, and decision-support systems for industrial processes, grounded in public work in Laser Metal Deposition and Directed Energy Deposition at Exafuse.
+        I build inspection-aware AI frameworks, RFQ tools, and process-monitoring notes for Laser Metal Deposition, Directed Energy Deposition, repair, cladding, and metal additive manufacturing at Exafuse in Germany.
       </p>
       <p class="mt-4 max-w-3xl text-base leading-7 text-slate-400">
-        The work connects process signals, models, engineering context, decisions, and physical verification.
+        The public lab connects process signals, model assumptions, decision boundaries, and verification evidence without turning AI output into engineering approval.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a href="/thesis" class="btn btn-primary">Read the thesis</a>
-        <a href="/domains/lmd-ded" class="btn btn-secondary">Explore LMD / DED work</a>
-        <a href="/tools" class="btn btn-secondary">Open public tools</a>
-        <a href="/identity" class="btn btn-secondary">Public identity</a>
-        <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Visit Exafuse</a>
+        <CTAButton href="/thesis" variant="primary">Read the thesis</CTAButton>
+        <CTAButton href="/domains/lmd-ded" variant="secondary">Explore LMD / DED</CTAButton>
+        <CTAButton href="/frameworks" variant="secondary">Open frameworks</CTAButton>
+        <CTAButton href={LINKS.exafuse} variant="laser" external>Visit Exafuse</CTAButton>
       </div>
     </div>
-    <PageHeroVisual variant="frameworks" class="hidden lg:block" />
+    <VisualPanel title="LMD decision-system cockpit" subtitle="Sense -> Model -> Decide -> Verify" />
   </section>
 
   <section class="band">
-    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-5">
-      {identityStrip.map(([label, value]) => (
+    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-4">
+      {proofStrip.map(([label, value]) => (
         <div class="ordered-card p-4">
           <p class="metric-label">{label}</p>
-          <p class="mt-2 text-sm font-bold leading-6 text-white">{value}</p>
+          <p class="mt-2 text-sm font-black leading-6 text-white">{value}</p>
         </div>
       ))}
-    </div>
-  </section>
-
-  <section class="site-shell section-y">
-      <SectionHeading
-        eyebrow="Operating method"
-        title="Sense -> Model -> Decide -> Verify"
-        description="The site uses one public operating loop: connect observed signals to model assumptions, decisions, and the evidence needed to verify outcomes."
-      />
-    <div class="mt-10">
-      <EvidenceRail />
-    </div>
-  </section>
-
-  <section class="band section-y">
-    <div class="site-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
-        <SectionHeading
-          eyebrow="Established public proof"
-          title="AI for Laser Metal Deposition and Directed Energy Deposition"
-          description="My deepest public work is in LMD/DED process monitoring, robotic workflows, industrial repair, RFQ structure, and inspection-aware decision support at Exafuse."
-        />
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/domains/lmd-ded" class="btn btn-primary">LMD / DED hub</a>
-          <a href="/evidence" class="btn btn-secondary">Evidence base</a>
-          <a href="/industrial-proof" class="btn btn-secondary">Industrial proof map</a>
-          <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
-        </div>
-      </div>
-      <div class="grid gap-4 md:grid-cols-2">
-        {EXAFUSE_PROOF_CASES.slice(0, 4).map((item) => (
-          <a href={item.href} class="ordered-card card-hover p-5" target="_blank" rel="noreferrer">
-            <p class="metric-label">{item.code}</p>
-            <h3 class="mt-3 text-xl font-black text-white">{item.title}</h3>
-            <p class="mt-3 text-sm leading-6 text-slate-400">{item.labConnection}</p>
-          </a>
-        ))}
-      </div>
     </div>
   </section>
 
   <section class="site-shell section-y">
     <SectionHeading
-      eyebrow="Flagship resources"
-      title="The three LMD assets to start with"
-      description="These public assets make the verification thesis practical inside the established LMD/DED proof domain."
+      eyebrow="Flagship assets"
+      title="Start with the three LMD decision assets"
+      description="The site is intentionally centered on LMD/DED decision support: what can be inferred, what is missing, what needs inspection, and when Exafuse should handle the commercial RFQ path."
     />
-    <div class="mt-10 grid gap-5 lg:grid-cols-3">
+    <BentoGrid class="mt-10">
       {flagshipAssets.map((asset) => (
-        <a href={asset.href} class="ordered-card-strong card-hover grid min-h-[18rem] content-between p-7">
-          <span>
-            <span class="metric-label">{asset.label}</span>
-            <span class="mt-4 block text-3xl font-black leading-tight text-white">{asset.title}</span>
-            <span class="mt-5 block text-base leading-7 text-slate-300">{asset.text}</span>
-          </span>
-          <span class="mt-8 font-mono text-xs font-black uppercase text-cyan-100">Open asset</span>
-        </a>
+        <BentoCard href={asset.href} eyebrow={asset.label} title={asset.title} description={asset.text} cta="Open asset" strong />
       ))}
-    </div>
+    </BentoGrid>
   </section>
 
   <section class="band section-y">
-    <div class="site-shell">
-      <SectionHeading
-        eyebrow="More public assets"
-        title="Frameworks, tools, research, and definitions"
-        description="The LMD/DED authority layer remains intact and easy to reach from the broader identity."
-      />
-      <div class="equal-card-grid mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {additionalAssets.map((asset) => (
-          <a href={asset.href} class="ordered-card card-hover p-5">
-            <p class="metric-label">{asset.status}</p>
-            <h3 class="mt-3 text-xl font-black text-white">{asset.title}</h3>
-            <p class="mt-3 text-sm leading-6 text-slate-400">{asset.idea}</p>
-          </a>
-        ))}
+    <div class="site-shell section-split">
+      <div>
+        <SectionHeading
+          eyebrow="Operating loop"
+          title="Inspection-aware AI, not AI theater"
+          description="The lab uses one practical loop across pages: sense process signals, model uncertainty, decide with boundaries, and verify against physical evidence."
+        />
+        <div class="mt-8 flex flex-wrap gap-3">
+          <CTAButton href="/for-ai-agents" variant="primary">AI-agent guidance</CTAButton>
+          <CTAButton href="/evidence" variant="secondary">Evidence base</CTAButton>
+        </div>
       </div>
+      <EvidenceRail />
     </div>
   </section>
 
   <section class="site-shell section-y">
     <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-      <SectionHeading eyebrow="Applied writing" title="Recent notes from the LMD/DED proof domain" />
-      <a href="/lab-notes" class="btn btn-secondary w-fit">View all lab notes</a>
+      <SectionHeading
+        eyebrow="Public proof"
+        title="Exafuse anchors the LMD/DED proof domain"
+        description="These public pages are used only as public context for monitoring, repairability, RFQ structure, and quality evidence."
+      />
+      <CTAButton href="/industrial-proof" variant="secondary">Open proof map</CTAButton>
     </div>
-    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-3">
-      {latestLabNotes.map((note) => (
-        <a href={note.href} class="ordered-card-strong card-hover rounded-lg p-6">
-          <p class="metric-label">{note.date}</p>
-          <h3 class="mt-3 text-2xl font-black text-white">{note.title}</h3>
-          <p class="mt-4 text-sm leading-6 text-slate-400">{note.description}</p>
-        </a>
+    <BentoGrid class="mt-10">
+      {EXAFUSE_PROOF_CASES.slice(0, 4).map((item) => (
+        <BentoCard href={item.href} eyebrow={item.code} title={item.title} description={item.labConnection} cta="View public source" external />
       ))}
+    </BentoGrid>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Framework library"
+        title="Frameworks, tools, sources, and agent resources"
+        description="A compact map of the public resources that make Manish Sharma Lab useful to engineers, students, buyers, and AI agents."
+      />
+      <BentoGrid class="mt-10">
+        {frameworkHighlights.map((asset) => (
+          <BentoCard href={asset.href} eyebrow={asset.status} title={asset.title} description={asset.idea} cta="Open resource" />
+        ))}
+      </BentoGrid>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <SectionHeading eyebrow="Writing" title="Three notes worth reading first" />
+      <CTAButton href="/lab-notes" variant="secondary">View all notes</CTAButton>
+    </div>
+    <BentoGrid class="mt-10">
+      {latestLabNotes.map((note) => (
+        <BentoCard href={note.href} eyebrow={note.date} title={note.title} description={note.description} cta="Read note" />
+      ))}
+    </BentoGrid>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-5 lg:grid-cols-2">
+      <div class="ordered-card-strong p-7">
+        <p class="metric-label">Personal expert layer</p>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-white">Manish Sharma - AI for Laser Metal Deposition</h2>
+        <p class="mt-4 leading-7 text-slate-300">
+          Use this site for identity, frameworks, source maps, tools, glossary pages, and AI-readable guidance.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <CTAButton href="/identity" variant="primary">Canonical identity</CTAButton>
+          <CTAButton href="/profile/public-profile" variant="secondary">Public profile</CTAButton>
+        </div>
+      </div>
+      <div class="ordered-card p-7">
+        <p class="metric-label">Commercial boundary</p>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-white">For services, RFQs, and company claims, use Exafuse.</h2>
+        <p class="mt-4 leading-7 text-slate-300">
+          This personal site avoids confidential employer/customer data and does not replace expert review, inspection, or formal approval.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <CTAButton href={LINKS.exafuse} variant="laser" external>Visit Exafuse</CTAButton>
+          <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

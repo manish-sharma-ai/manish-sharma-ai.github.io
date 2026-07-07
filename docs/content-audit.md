@@ -6,12 +6,12 @@ Date: 2026-07-07
 
 This audit covers staging-domain cleanup, canonical-site usage, public/private boundaries, planned-profile handling, source placeholders, and overclaim language.
 
-Search terms checked:
+Search themes checked:
 
-- `exafuse-website-react.pages.dev`
-- `pages.dev`
+- old Cloudflare Pages staging host
+- generic staging-host mentions
 - `staging Exafuse`
-- `production URL pending review`
+- old production-review wording
 - `planned profile`
 - `source link to be added`
 - `coming soon`
@@ -64,4 +64,3 @@ These are not issues; they are required claim boundaries.
 ## Public Boundary
 
 No confidential Exafuse, customer, machine, process, material, pricing, inspection, or private project data should be added to this repository. Exafuse remains the canonical commercial source for services, RFQs, case studies, production capability, and quality/company claims.
-

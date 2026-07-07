@@ -4,141 +4,130 @@ Date: 2026-07-07
 
 ## Direction
 
-Manish Sharma Lab should feel like an industrial AI lab and verification cockpit: dark, ordered, technical, premium, and useful. It should not look like a generic portfolio, a plain documentation wiki, a crypto dashboard, or a flashy AI landing page.
+Manish Sharma Lab should feel like a premium industrial AI lab and decision-system cockpit: dark, ordered, symmetrical, fast, technical, and useful. It should not feel like a generic portfolio, a service-agency landing page, a plain documentation wiki, or a flashy AI demo.
 
-The design should make the public strategy clear:
+The public split stays clear:
 
-- Manish Sharma Lab owns the personal expert layer: identity, thesis, frameworks, source maps, tools, lab notes, glossary, and AI-agent guidance.
+- Manish Sharma Lab owns identity, thesis, frameworks, source maps, public tools, lab notes, glossary pages, and AI-agent guidance.
 - Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, and delivery claims.
-- AI and monitoring content is decision support only, not engineering approval.
+- AI/process-monitoring outputs are preliminary decision support, not engineering approval.
 
-## Tokens
+## CSS Files
 
-Core CSS variables live in `src/styles/global.css`.
+The strict visual system is split into:
 
-| Token | Purpose | Current value |
+- `src/styles/design-tokens.css`: colors, spacing, radii, shadows, typography tokens, motion timing.
+- `src/styles/layout.css`: containers, responsive grids, section rhythm, bento grid, hero grids, bands.
+- `src/styles/components.css`: cards, buttons, chips, header, footer, command palette, tool panels, cockpit visual, hover/focus states.
+- `src/styles/global.css`: imports the system files and Tailwind layers.
+
+## Core Tokens
+
+| Token | Purpose | Value |
 | --- | --- | --- |
+| `--page-max` | Main content width | `1240px` |
+| `--section-gap` | Section vertical rhythm | `96px` desktop, smaller on tablet/mobile |
+| `--card-radius` | Premium cockpit cards | `24px` desktop, `18px` mobile |
 | `--bg` | Page canvas | `#050608` |
-| `--panel` | Standard glass/card surface | `rgba(13, 18, 24, 0.78)` |
-| `--panel-strong` | Strong card surface | `rgba(18, 24, 32, 0.88)` |
-| `--line` | Subtle card and grid border | `rgba(156, 201, 217, 0.16)` |
-| `--line-strong` | Emphasized border | `rgba(156, 201, 217, 0.26)` |
-| `--text` | Primary text | `#edf7fb` |
-| `--muted` | Secondary text | `#9bb0bd` |
-| `--cyan` | Primary technical accent | `#33d6ff` |
-| `--blue` | Secondary technical accent | `#2f80ff` |
-| `--laser` | Laser/action accent | `#ff4d2e` |
+| `--surface` | Standard panel surface | `rgba(13, 18, 24, 0.72)` |
+| `--line` | Subtle technical border | `rgba(156, 201, 217, 0.15)` |
+| `--accent` | Primary technical accent | `#33d6ff` |
 | `--amber` | Caution/evidence accent | `#ffb547` |
+| `--laser` | Exafuse/action accent | `#ff5c38` |
 
-## Typography
+## Layout Rules
 
-- Use the existing system sans stack for body and headings.
-- Use the existing mono stack for metric labels, route labels, schema blocks, and short machine-readable identifiers.
-- Keep body copy at 16px or larger.
-- Do not use negative letter spacing.
-- Reserve very large type for true page heroes. Cards, panels, and utility surfaces should use tighter headings.
+- Use `.site-shell` or `PageContainer.astro` for max-width alignment.
+- Use `.section-y` or `Section.astro` for vertical rhythm.
+- Use `.band` for full-width separators, not decorative floating page sections.
+- Use `.bento-grid`, `BentoGrid.astro`, and `BentoCard.astro` for resource clusters.
+- Use `.inner-hero-grid` and `.home-hero-grid` for hero pages with a cockpit visual panel.
+- Mobile must stack cleanly without horizontal overflow.
 
-## Layout
+## Components
 
-- Use `.site-shell` as the main max-width container.
-- Use `.section-y` for vertical rhythm.
-- Use `.band` for full-width section separation.
-- Keep desktop layouts aligned to clear grids, usually two columns or responsive bento grids.
-- Mobile should stack without horizontal overflow and with comfortable tap targets.
+Shared visual components:
 
-## Cards
-
-Primary classes:
-
-- `.ordered-card`: standard surface for cards, link cards, small panels, and tool output sections.
-- `.ordered-card-strong`: stronger surface for hero support panels, important source blocks, and primary framework cards.
-- `.card-hover`: interactive lift and focus treatment for linked cards.
-- `.disabled-card`: planned profile or unavailable resource state.
-
-Rules:
-
-- Use cards for repeated items, tool panels, link cards, and structured evidence blocks.
-- Do not nest decorative cards inside other cards.
-- Keep card radii at `0.5rem`.
-- Use consistent padding: `p-4`, `p-5`, or `p-6` depending on density.
+- `SiteShell.astro`
+- `Header.astro`
+- `Footer.astro`
+- `MobileMenu.astro`
+- `PageContainer.astro`
+- `Section.astro`
+- `SectionHeading.astro`
+- `BentoGrid.astro`
+- `BentoCard.astro`
+- `LinkCard.astro`
+- `CTAButton.astro`
+- `Chip.astro`
+- `VisualPanel.astro`
+- `EvidenceRail.astro`
+- `SourceLinks.astro`
 
 ## Navigation
 
-Primary desktop navigation:
+Desktop header has three zones:
 
-- Thesis
-- Work & Proof
-- LMD / DED
-- Frameworks
-- Tools
-- Writing
-- About
+- Brand: `Manish Sharma Lab`, industrial AI cockpit.
+- Primary nav, maximum five visible links: Thesis, Proof, LMD / DED, Frameworks, Writing.
+- Actions: Search, Exafuse, Contact.
 
-Utility actions:
+Secondary pages live under `More`. Mobile uses grouped navigation with large tap targets.
 
-- Search
-- Exafuse
-- Contact / Links
+## Cards And Buttons
 
-Mobile navigation should keep grouped sections from `NAV_GROUPS` and avoid wrapping dense inline lists.
+- `.ordered-card`: standard surface.
+- `.ordered-card-strong`: emphasized evidence/hero/primary panels.
+- `.bento-card`: linked resource cards.
+- `.link-card`: source and profile links, including disabled planned states.
+- `.btn-primary`: main site action.
+- `.btn-secondary`: internal supporting action.
+- `.btn-laser`: Exafuse/commercial boundary action.
 
-## Reusable Components
+Avoid nested decorative cards. Use nested result cards only inside tools where the surface represents distinct output fields.
 
-Core components:
+## Tool Panels
 
-- `Header.astro`
-- `Footer.astro`
-- `Layout.astro`
-- `SectionHeading.astro`
-- `PageHeroVisual.astro`
-- `EvidenceRail.astro`
-- `SourceLinks.astro`
-- `RelatedLinks.astro`
-- `CommandPalette.astro`
-- `FrameworkCard.astro`
-- `LabNoteFooter.astro`
+Tool islands should use:
 
-Use `EvidenceRail.astro` when a page needs to explain the operating method:
+- `.tool-panel`
+- `.tool-input-grid`
+- `.tool-field`
+- `.result-card`
+- `.result-card--warning`
 
-1. Sense
-2. Model
-3. Decide
-4. Verify
+Every tool output should show:
 
-Use `SourceLinks.astro` instead of raw inline link walls.
-
-## Motion
-
-- Motion should be subtle: hover lift, signal-line drift, card state, and command-palette transitions.
-- Avoid constant or distracting animation.
-- `prefers-reduced-motion` is handled globally by simplifying transitions and animations.
+- Preliminary recommendation
+- Why
+- Missing information
+- Risk flags
+- Suggested next step
+- Disclaimer
 
 ## Accessibility
 
-- Keep visible focus states through `:focus-visible`.
-- Preserve the skip link.
-- Search, nav, links, buttons, and tool controls must remain keyboard reachable.
-- Do not hide critical information behind hover-only states.
-- Use caution/orange surfaces only for warnings, boundaries, or limitations.
+- Preserve skip link and visible `:focus-visible` states.
+- Keep touch targets near or above 44px.
+- Do not hide important information behind hover-only states.
+- Use amber/orange surfaces for warnings and limitations only.
+- Motion is subtle and respects `prefers-reduced-motion`.
 
-## Content Rules
+## Content Guardrails
 
-Use:
+Use wording such as:
 
-- Inspection-aware
-- Decision support
-- Public proof
-- Evidence path
-- Human review
-- Expert review
-- Verification
+- inspection-aware
+- preliminary decision support
+- public proof domain
+- evidence path
+- expert review
+- verification
 
-Avoid:
+Avoid wording that implies:
 
-- Final engineering approval
-- Guaranteed repair feasibility
-- Final quality proof
-- Certification claims
-- Confidential employer/customer claims
-- Unsupported job titles, awards, degrees, publications, or project roles
-
+- final engineering approval
+- guaranteed repair feasibility
+- final quality proof
+- material certification
+- confidential employer/customer proof

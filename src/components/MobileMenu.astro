@@ -1,0 +1,70 @@
+---
+import { LINKS } from "@data/site";
+
+const normalize = (value: string) => (value === "/" ? "/" : value.replace(/\/$/, ""));
+const currentPath = normalize(Astro.url.pathname);
+const isActive = (href: string) => {
+  const normalizedHref = normalize(href);
+  return currentPath === normalizedHref || (normalizedHref !== "/" && currentPath.startsWith(`${normalizedHref}/`));
+};
+
+const groups = [
+  {
+    label: "Primary",
+    items: [
+      { label: "Thesis", href: "/thesis" },
+      { label: "Proof", href: "/public-work" },
+      { label: "LMD / DED", href: "/domains/lmd-ded" },
+      { label: "Frameworks", href: "/frameworks" },
+      { label: "Writing", href: "/lab-notes" }
+    ]
+  },
+  {
+    label: "More",
+    items: [
+      { label: "Tools", href: "/tools" },
+      { label: "About", href: "/about" },
+      { label: "Identity", href: "/identity" },
+      { label: "Press Kit", href: "/press-kit" },
+      { label: "For AI Agents", href: "/for-ai-agents" },
+      { label: "Site Map", href: "/site-map" }
+    ]
+  },
+  {
+    label: "External",
+    items: [
+      { label: "Exafuse", href: LINKS.exafuse },
+      { label: "GitHub", href: LINKS.github },
+      { label: "LinkedIn", href: LINKS.linkedin }
+    ]
+  }
+];
+---
+
+<details class="group relative justify-self-end xl:hidden" data-mobile-menu>
+  <summary class="utility-button list-none px-4 py-2 text-white">Menu</summary>
+  <div class="nav-panel absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,28rem)] overflow-auto rounded-[24px] border border-cyan-100/14 p-4">
+    <nav class="grid gap-4" aria-label="Mobile navigation">
+      {groups.map((group) => (
+        <div class="ordered-card p-3">
+          <p class="metric-label px-2 py-2">{group.label}</p>
+          <div class="grid gap-1">
+            {group.items.map((item) => (
+              <a
+                href={item.href}
+                class:list={["nav-menu-link py-3 text-sm", isActive(item.href) ? "is-active" : ""]}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+      <button type="button" data-command-trigger class="utility-button justify-start px-4 py-3 text-left text-sm text-white">
+        Search all pages
+      </button>
+    </nav>
+  </div>
+</details>

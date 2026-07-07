@@ -1,74 +1,94 @@
 ---
-import Badge from "@components/Badge.astro";
+import CTAButton from "@components/CTAButton.astro";
+import Chip from "@components/Chip.astro";
 import Layout from "@layouts/Layout.astro";
 import LmdVsSlmAdvisor from "@components/LmdVsSlmAdvisor";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
 import RepairabilityQuickCheck from "@components/RepairabilityQuickCheck";
 import RfqStructureConverter from "@components/RfqStructureConverter";
 import SectionHeading from "@components/SectionHeading.astro";
+import VisualPanel from "@components/VisualPanel.astro";
 import { EXAFUSE_LINKS } from "@data/siteConfig";
 
-const title = "LMD Tools - Manish Sharma Lab";
+const title = "LMD Decision Tools and RFQ Workbench - Manish Sharma Lab";
 const description =
-  "Frontend-only tools for LMD vs SLM comparison, LMD repairability quick checks, and RFQ prompt-to-structure conversion.";
+  "Frontend-only LMD decision-support tools for LMD vs SLM comparison, LMD repairability screening, and RFQ prompt-to-structure conversion.";
+
+const toolStats = [
+  ["Runtime", "Frontend-only"],
+  ["Data sent", "None by this site"],
+  ["Output type", "Preliminary decision support"],
+  ["Final route", "Expert review / Exafuse RFQ"]
+];
 ---
 
 <Layout title={title} description={description} canonical="/tools">
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-    <div class="max-w-4xl">
+  <section class="site-shell inner-hero-grid section-y">
+    <div>
       <div class="flex flex-wrap gap-2">
-        <Badge>Frontend-only</Badge>
-        <Badge tone="steel">No backend</Badge>
-        <Badge tone="laser">Decision-support only</Badge>
-        <Badge tone="steel">Applied proof domain: LMD / DED</Badge>
+        <Chip>Workbench</Chip>
+        <Chip tone="steel">No backend</Chip>
+        <Chip tone="amber">Decision-support only</Chip>
       </div>
-      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">LMD Tools</h1>
-      <p class="mt-6 text-lg leading-8 text-slate-300">
-        Lightweight interactive tools for early LMD thinking. They help structure decisions and missing information; they do not replace expert feasibility review.
+      <p class="metric-label mt-8">LMD decision tools</p>
+      <h1 class="mt-4 max-w-5xl text-5xl font-black leading-tight text-white md:text-6xl">
+        Early signals, missing fields, and RFQ structure.
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+        Use these lightweight tools to structure early LMD/DED thinking before a feasibility review. They surface preliminary recommendations, why-signals, missing information, risk flags, suggested next steps, and the decision-support disclaimer.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/agent-pack" class="btn btn-primary">Open RFQ Toolkit</a>
-        <a href={EXAFUSE_LINKS.pathfinder} class="btn btn-secondary" target="_blank" rel="noreferrer">Exafuse Pathfinder</a>
-        <a href={EXAFUSE_LINKS.rfqBuilder} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse RFQ Builder</a>
+        <CTAButton href="/agent-pack" variant="primary">Open RFQ Toolkit</CTAButton>
+        <CTAButton href="/frameworks/lmd-repairability-index" variant="secondary">Repairability Index</CTAButton>
+        <CTAButton href={EXAFUSE_LINKS.pathfinder} variant="secondary" external>Exafuse Pathfinder</CTAButton>
+        <CTAButton href={EXAFUSE_LINKS.rfqBuilder} variant="laser" external>Exafuse RFQ Builder</CTAButton>
       </div>
     </div>
-    <PageHeroVisual variant="tools" class="hidden lg:block" />
+    <VisualPanel title="RFQ workbench cockpit" subtitle="Inputs -> gaps -> risks -> next action" />
+  </section>
+
+  <section class="band">
+    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-4">
+      {toolStats.map(([label, value]) => (
+        <div class="ordered-card p-4">
+          <p class="metric-label">{label}</p>
+          <p class="mt-2 text-sm font-black leading-6 text-white">{value}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Tool 1"
+      title="LMD vs SLM Advisor"
+      description="Compare early process-selection signals for Laser Metal Deposition and SLM/LPBF."
+    />
+    <div class="mt-10">
+      <LmdVsSlmAdvisor client:load />
+    </div>
   </section>
 
   <section class="band section-y">
     <div class="site-shell">
       <SectionHeading
-        eyebrow="Tool 1"
-        title="LMD vs SLM Advisor"
-        description="Compare early decision signals for Laser Metal Deposition and SLM/LPBF."
+        eyebrow="Tool 2"
+        title="LMD Repairability Quick Check"
+        description="Screen whether an industrial part has enough preliminary signals to be reviewed as an LMD repair candidate."
       />
       <div class="mt-10">
-        <LmdVsSlmAdvisor client:load />
+        <RepairabilityQuickCheck client:load />
       </div>
     </div>
   </section>
 
   <section class="site-shell section-y">
     <SectionHeading
-      eyebrow="Tool 2"
-      title="LMD Repairability Quick Check"
-      description="Screen whether an industrial part has enough signals to be a preliminary LMD repair candidate."
+      eyebrow="Tool 3"
+      title="RFQ Prompt-to-Structure Converter"
+      description="Turn free text into known facts, missing fields, risk flags, and a copyable RFQ summary."
     />
     <div class="mt-10">
-      <RepairabilityQuickCheck client:load />
-    </div>
-  </section>
-
-  <section class="band section-y">
-    <div class="site-shell">
-      <SectionHeading
-        eyebrow="Tool 3"
-        title="RFQ Prompt-to-Structure Converter"
-        description="A basic heuristic demo that turns free text into a structured RFQ preview and missing-information list."
-      />
-      <div class="mt-10">
-        <RfqStructureConverter client:load />
-      </div>
+      <RfqStructureConverter client:load />
     </div>
   </section>
 </Layout>

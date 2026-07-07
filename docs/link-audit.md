@@ -90,3 +90,7 @@ rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public docs README.md A
 rg -n "href=\"#\"" src public README.md
 rg -n -F "aiwithms.github.io" src public docs README.md AGENTS.md
 ```
+
+## 2026-07-07 Visual Pass Note
+
+The visual-system pass did not intentionally add staging or placeholder external links. Header, footer, homepage, tools, frameworks, and AI-agent CTAs use existing canonical internal routes or production Exafuse/Profile URLs from `src/data/site.ts` and `src/data/siteConfig.ts`.

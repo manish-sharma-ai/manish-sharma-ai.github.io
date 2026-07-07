@@ -79,17 +79,17 @@ export default function RfqStructureConverter() {
   const rfqSummary = formatRfqSummary(parsed);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-      <label className="grid gap-2 text-sm font-bold text-white">
+    <div className="tool-panel">
+      <label className="tool-field">
         Repair request text
         <textarea
           value={text}
           onChange={(event) => setText(event.target.value)}
           rows={12}
-          className="ordered-card min-h-[24rem] p-4 text-sm leading-6 text-slate-100 outline-none transition focus:border-cyan-300/50"
+          className="min-h-[24rem] p-4 text-sm leading-6 text-slate-100 outline-none"
         />
       </label>
-      <aside className="ordered-card-strong p-6">
+      <aside className="ordered-card-strong p-6 md:p-7">
         <p className="metric-label">Structured RFQ output</p>
         <ResultSection label="Preliminary recommendation" value={parsed.recommendation} large />
         <ResultList label="Why" items={parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."]} />
@@ -117,7 +117,7 @@ function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="font-bold text-white">{label}</p>
-      <p className="ordered-card mt-1 px-3 py-2 text-slate-300">{value}</p>
+      <p className="result-card mt-1 text-slate-300">{value}</p>
     </div>
   );
 }
@@ -126,7 +126,7 @@ function ResultSection({ label, value, large = false, tone = "default" }: { labe
   return (
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
-      <p className={`${tone === "warning" ? "border border-orange-300/25 bg-orange-500/10 text-orange-50" : "ordered-card text-slate-300"} mt-2 rounded-md p-3 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
+      <p className={`${tone === "warning" ? "result-card result-card--warning" : "result-card text-slate-300"} mt-2 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
         {value}
       </p>
     </div>
@@ -138,7 +138,7 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
       <ul className="mt-2 grid gap-2 text-sm text-slate-300">
-        {items.map((item) => <li key={item} className="ordered-card px-3 py-2">{item}</li>)}
+        {items.map((item) => <li key={item} className="result-card">{item}</li>)}
       </ul>
     </div>
   );

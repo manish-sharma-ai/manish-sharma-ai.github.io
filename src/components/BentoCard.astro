@@ -1,0 +1,40 @@
+---
+interface Props {
+  href?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  cta?: string;
+  class?: string;
+  strong?: boolean;
+  external?: boolean;
+}
+
+const {
+  href,
+  eyebrow,
+  title,
+  description,
+  cta = "Open",
+  class: className = "",
+  strong = false,
+  external = false
+} = Astro.props;
+
+const Tag = href ? "a" : "article";
+---
+
+<Tag
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noreferrer" : undefined}
+  class:list={["bento-card content-between", href ? "card-hover" : "", strong ? "bento-card--strong ordered-card-strong" : "ordered-card", className]}
+>
+  <span>
+    {eyebrow && <span class="metric-label">{eyebrow}</span>}
+    {title && <span class="mt-3 block text-2xl font-black leading-tight text-white">{title}</span>}
+    {description && <span class="mt-4 block text-sm leading-6 text-slate-300">{description}</span>}
+    <slot />
+  </span>
+  {href && <span class="mt-6 border-t border-white/10 pt-4 font-mono text-xs font-black uppercase text-cyan-100">{cta}</span>}
+</Tag>

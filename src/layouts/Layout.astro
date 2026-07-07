@@ -4,6 +4,7 @@ import Footer from "@components/Footer.astro";
 import CommandPalette from "@components/CommandPalette.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import RelatedLinks from "@components/RelatedLinks.astro";
+import SiteShell from "@components/SiteShell.astro";
 import { COMMAND_PAGES, SITE } from "@data/site";
 import { absoluteUrl, canonicalPath } from "@utils/urls";
 import "@styles/global.css";
@@ -100,13 +101,15 @@ const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <Header />
-    <Breadcrumbs path={canonical} title={titleText} />
-    <main id="main-content">
-      <slot />
-      <RelatedLinks path={canonical} />
-    </main>
-    <Footer />
-    <CommandPalette pages={COMMAND_PAGES} />
+    <SiteShell>
+      <Header />
+      <Breadcrumbs path={canonical} title={titleText} />
+      <main id="main-content">
+        <slot />
+        <RelatedLinks path={canonical} />
+      </main>
+      <Footer />
+      <CommandPalette pages={COMMAND_PAGES} />
+    </SiteShell>
   </body>
 </html>

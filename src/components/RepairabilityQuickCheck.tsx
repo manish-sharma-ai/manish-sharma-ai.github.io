@@ -51,10 +51,10 @@ export default function RepairabilityQuickCheck() {
   }, [selected, safetyCritical]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+    <div className="tool-panel">
       <div className="grid content-start gap-3">
         {questions.map((question) => (
-          <label key={question} className="ordered-card flex items-start gap-3 p-4 text-sm font-semibold text-slate-200">
+          <label key={question} className="tool-field grid-cols-[auto_1fr] items-start gap-3 text-sm font-semibold text-slate-200">
             <input
               type="checkbox"
               checked={selected.includes(question)}
@@ -66,7 +66,7 @@ export default function RepairabilityQuickCheck() {
             <span>{question}</span>
           </label>
         ))}
-        <label className="flex items-start gap-3 rounded-lg border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-semibold text-orange-50">
+        <label className="flex items-start gap-3 rounded-[18px] border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-semibold text-orange-50">
           <input
             type="checkbox"
             checked={safetyCritical}
@@ -76,7 +76,7 @@ export default function RepairabilityQuickCheck() {
           <span>Safety critical?</span>
         </label>
       </div>
-      <aside className="ordered-card-strong h-fit p-6">
+      <aside className="ordered-card-strong h-fit p-6 md:p-7">
         <p className="metric-label">Quick-check output</p>
         <p className="mt-4 font-mono text-5xl font-black text-white">{result.score}</p>
         <ResultSection label="Preliminary recommendation" value={result.recommendation} large />
@@ -95,7 +95,7 @@ function ResultSection({ label, value, large = false, tone = "default" }: { labe
   return (
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
-      <p className={`${tone === "warning" ? "border border-orange-300/25 bg-orange-500/10 text-orange-50" : "ordered-card text-slate-300"} mt-2 rounded-md p-3 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
+      <p className={`${tone === "warning" ? "result-card result-card--warning" : "result-card text-slate-300"} mt-2 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
         {value}
       </p>
     </div>
@@ -107,7 +107,7 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
       <ul className="mt-2 grid gap-2 text-sm text-slate-300">
-        {items.map((item) => <li key={item} className="ordered-card px-3 py-2">{item}</li>)}
+        {items.map((item) => <li key={item} className="result-card">{item}</li>)}
       </ul>
     </div>
   );
