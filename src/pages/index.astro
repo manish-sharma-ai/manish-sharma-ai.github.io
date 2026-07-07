@@ -1,10 +1,11 @@
 ---
 import Badge from "@components/Badge.astro";
+import EvidenceRail from "@components/EvidenceRail.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
-import { FRAMEWORKS, LAB_NOTES, LINKS, METHOD_LOOP, PERSON, SITE } from "@data/site";
+import { FRAMEWORKS, LAB_NOTES, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Lab - Industrial AI & Decision Systems";
 const description =
@@ -125,19 +126,13 @@ const latestLabNotes = [...LAB_NOTES].slice(-3).reverse();
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading
-      eyebrow="Operating method"
-      title="Sense -> Model -> Decide -> Verify"
-      description="The site uses one public operating loop: connect observed signals to model assumptions, decisions, and the evidence needed to verify outcomes."
-    />
-    <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-      {METHOD_LOOP.map((stage, index) => (
-        <article class="ordered-card-strong p-6">
-          <p class="metric-label">0{index + 1}</p>
-          <h2 class="mt-3 text-3xl font-black text-white">{stage.label.toUpperCase()}</h2>
-          <p class="mt-4 text-sm leading-6 text-slate-300">{stage.text}</p>
-        </article>
-      ))}
+      <SectionHeading
+        eyebrow="Operating method"
+        title="Sense -> Model -> Decide -> Verify"
+        description="The site uses one public operating loop: connect observed signals to model assumptions, decisions, and the evidence needed to verify outcomes."
+      />
+    <div class="mt-10">
+      <EvidenceRail />
     </div>
   </section>
 

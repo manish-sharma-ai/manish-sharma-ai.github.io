@@ -35,30 +35,54 @@ const doNotUse = [
   "evidence of private or confidential work"
 ];
 
-const links = [
-  { label: "Canonical profile page", href: "/identity" },
-  { label: "Industrial AI thesis", href: "/thesis" },
-  { label: "LMD / DED domain hub", href: "/domains/lmd-ded" },
-  { label: "Manish Sharma public profile", href: "/profile/public-profile" },
-  { label: "Evidence Base", href: "/evidence" },
-  { label: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources" },
-  { label: "Industrial Proof Map", href: "/industrial-proof" },
-  { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json" },
-  { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" },
-  { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
-  { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
-  { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
-  { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
-  { label: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model" },
-  { label: "LMD RFQ Toolkit", href: "/agent-pack" },
-  { label: "Tools", href: "/tools" },
-  { label: "Glossary", href: "/glossary" },
-  { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json" },
-  { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md" },
-  { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" },
-  { label: "Quality Checklist", href: "/agent-pack/lmd-quality-checklist.md" },
-  { label: "Exafuse commercial services", href: EXAFUSE_LINKS.services },
-  { label: "Exafuse contact / RFQ", href: EXAFUSE_LINKS.contact }
+const linkGroups = [
+  {
+    title: "Canonical identity and thesis",
+    links: [
+      { label: "Canonical profile page", href: "/identity" },
+      { label: "Industrial AI thesis", href: "/thesis" },
+      { label: "Manish Sharma public profile", href: "/profile/public-profile" },
+      { label: "Public work", href: "/public-work" }
+    ]
+  },
+  {
+    title: "LMD/DED evidence and proof",
+    links: [
+      { label: "LMD / DED domain hub", href: "/domains/lmd-ded" },
+      { label: "Evidence Base", href: "/evidence" },
+      { label: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources" },
+      { label: "Industrial Proof Map", href: "/industrial-proof" },
+      { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json" },
+      { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" }
+    ]
+  },
+  {
+    title: "Framework and tool resources",
+    links: [
+      { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
+      { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
+      { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
+      { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
+      { label: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model" },
+      { label: "LMD RFQ Toolkit", href: "/agent-pack" },
+      { label: "Tools", href: "/tools" },
+      { label: "Glossary", href: "/glossary" }
+    ]
+  },
+  {
+    title: "Agent Pack source files and Exafuse boundary",
+    links: [
+      { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json" },
+      { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md" },
+      { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md" },
+      { label: "Quality Checklist", href: "/agent-pack/lmd-quality-checklist.md" },
+      { label: "Exafuse commercial services", href: EXAFUSE_LINKS.services },
+      { label: "Exafuse Pathfinder", href: EXAFUSE_LINKS.pathfinder },
+      { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder },
+      { label: "Exafuse AI-agent page", href: EXAFUSE_LINKS.aiAgents },
+      { label: "Exafuse contact / RFQ", href: EXAFUSE_LINKS.contact }
+    ]
+  }
 ];
 
 const machineSummary = {
@@ -168,8 +192,15 @@ const jsonLd = {
 
   <section class="site-shell section-y">
     <SectionHeading eyebrow="Important links" title="Reference resources" />
-    <div class="mt-8">
-      <SourceLinks links={links} />
+    <div class="mt-10 grid gap-8">
+      {linkGroups.map((group) => (
+        <section>
+          <h2 class="text-2xl font-black text-white">{group.title}</h2>
+          <div class="mt-5">
+            <SourceLinks links={group.links} />
+          </div>
+        </section>
+      ))}
     </div>
   </section>
 

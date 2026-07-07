@@ -1,10 +1,10 @@
 # Link Audit
 
-Date: 2026-07-06
+Date: 2026-07-07
 
 ## Scope
 
-This audit covers public links, staging-domain cleanup, canonical-site usage, profile links, Exafuse links, and source-placeholder handling for Manish Sharma Lab.
+This audit covers public links, staging-domain cleanup, canonical-site usage, profile links, Exafuse links, and working-draft source-note handling for Manish Sharma Lab.
 
 ## Staging Links Found
 
@@ -22,6 +22,10 @@ This audit covers public links, staging-domain cleanup, canonical-site usage, pr
 - Exafuse technology: `https://exafuse.de/technologie/`
 - Exafuse quality: `https://exafuse.de/qualitaet/`
 - Exafuse case studies: `https://exafuse.de/fallstudien/`
+- Exafuse tools: `https://exafuse.de/tools/`
+- Exafuse Pathfinder: `https://exafuse.de/tools/pathfinder/`
+- Exafuse RFQ Builder: `https://exafuse.de/tools/rfq-builder/`
+- Exafuse AI-agent page: `https://exafuse.de/fuer-ki-agenten/`
 - Exafuse contact/RFQ: `https://exafuse.de/kontakt/`
 
 ## Pages Changed
@@ -82,7 +86,7 @@ See `docs/exafuse-link-map.md` for status.
 ## Verification Commands
 
 ```bash
-rg -n "<staging-exafuse-domain>|<old-www-exafuse-domain>" src public docs README.md AGENTS.md
-rg -n "<hash-placeholder-profile-links>" src public docs README.md
-rg -n "<wrong-github-pages-canonical>" src public docs README.md AGENTS.md
+rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public docs README.md AGENTS.md
+rg -n "href=\"#\"" src public README.md
+rg -n -F "aiwithms.github.io" src public docs README.md AGENTS.md
 ```

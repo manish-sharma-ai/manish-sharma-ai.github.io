@@ -6,6 +6,7 @@ import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "LMD RFQ Toolkit";
 const description = "Schemas, prompts, and decision rules for clearer Laser Metal Deposition RFQs.";
@@ -100,7 +101,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/agent-pack" jsonLd={jsonLd}>
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/agent-pack" jsonLd={jsonLd}>
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
@@ -114,6 +115,11 @@ const jsonLd = {
       <p class="mt-6 text-lg leading-8 text-slate-300">
         This page is for engineers, buyers, developers, and AI assistants that need to turn vague part descriptions into useful RFQ information. It helps organize the work; it does not make final engineering decisions.
       </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/tools" class="btn btn-primary">Open tools</a>
+        <a href={EXAFUSE_LINKS.pathfinder} class="btn btn-secondary" target="_blank" rel="noreferrer">Exafuse Pathfinder</a>
+        <a href={EXAFUSE_LINKS.rfqBuilder} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse RFQ Builder</a>
+      </div>
     </div>
     <PageHeroVisual variant="agent" class="hidden lg:block" />
   </section>

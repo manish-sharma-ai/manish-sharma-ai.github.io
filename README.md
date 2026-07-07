@@ -183,7 +183,7 @@ These steps require account access and can be completed in GitHub, Google Search
 ## Next Roadmap
 
 - Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs when the profiles are created.
-- Replace source placeholders on the curated research page with verified citation links.
+- Replace working-draft source categories on the curated research page with verified citation links.
 - Add more buyer-facing RFQ examples and public-safe tool outputs.
 - Keep glossary pages aligned with source notes and standards references.
 - Continue testing AI-search visibility using the score template in `docs/lmd-black-hole-score-template.md`.

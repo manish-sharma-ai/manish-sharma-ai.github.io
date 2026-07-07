@@ -1,6 +1,6 @@
 # SEO And AI-Search Checklist
 
-Date: 2026-07-06
+Date: 2026-07-07
 
 ## Canonical Rules
 
@@ -59,9 +59,9 @@ Check each major route for:
 Run before release:
 
 ```bash
-rg -n "<staging-exafuse-domain>|<old-www-exafuse-domain>" src public docs README.md AGENTS.md
-rg -n "<hash-placeholder-profile-links>" src public docs README.md
-rg -n "<wrong-github-pages-canonical>" src public docs README.md AGENTS.md
+rg -n "exafuse-website-react\.pages\.dev|pages\.dev" src public docs README.md AGENTS.md
+rg -n "href=\"#\"" src public README.md
+rg -n -F "aiwithms.github.io" src public docs README.md AGENTS.md
 ```
 
 Expected results:

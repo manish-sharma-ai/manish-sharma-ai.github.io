@@ -27,7 +27,7 @@ Rules:
 - Add a URL only after Manish confirms the real public profile.
 - Keep planned profile UI disabled or marked planned.
 
-## Source Placeholders To Resolve
+## Working-Draft Sources To Resolve
 
 - Verified standards or terminology page for additive manufacturing and DED/LMD terminology.
 - Verified public resource for NIST/additive manufacturing/DED context.
@@ -43,7 +43,7 @@ Rules:
 - `/about`: verify any education, role, talk, award, publication, and credential statements against LinkedIn/CV before treating them as official.
 - `/press-kit`: verify bios before reuse in external media.
 - `/research/core-lmd-ai-sources`: replace working-draft source categories with verified links only.
-- `public/research/exafuse-public-proof-map.json`: verify pending Exafuse production URLs after launch.
+- `public/research/exafuse-public-proof-map.json`: verify Exafuse production URLs after cutover.
 
 ## Safe Wording
 

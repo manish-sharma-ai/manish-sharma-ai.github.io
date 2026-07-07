@@ -3,6 +3,7 @@ interface Page {
   title: string;
   href: string;
   group: string;
+  description?: string;
 }
 
 interface Props {
@@ -71,7 +72,7 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
     const render = () => {
       const query = input.value.trim().toLowerCase();
       matches = (query
-        ? pages.filter((page) => `${page.title} ${page.group} ${page.href}`.toLowerCase().includes(query))
+        ? pages.filter((page) => `${page.title} ${page.group} ${page.href} ${page.description || ""}`.toLowerCase().includes(query))
         : pages
       ).slice(0, 12);
 
@@ -102,7 +103,16 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         meta.className = "font-mono text-xs text-slate-500";
         meta.textContent = `${page.group} - ${page.href}`;
 
-        link.append(title, meta);
+        link.append(title);
+
+        if (page.description) {
+          const description = document.createElement("span");
+          description.className = "text-xs leading-5 text-slate-400";
+          description.textContent = page.description;
+          link.append(description);
+        }
+
+        link.append(meta);
         link.addEventListener("mouseenter", () => {
           activeIndex = index;
           updateActiveResult();

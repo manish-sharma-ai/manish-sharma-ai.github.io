@@ -1,10 +1,11 @@
 ---
 import Badge from "@components/Badge.astro";
+import EvidenceRail from "@components/EvidenceRail.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { METHOD_LOOP, PERSON, SITE } from "@data/site";
+import { PERSON, SITE } from "@data/site";
 import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "Industrial AI for Decisions You Can Verify";
@@ -119,14 +120,8 @@ const jsonLd = {
         title="Sense, Model, Decide, Verify"
         description="This is a practical operating model for public industrial-AI work, not a claim to own a new discipline."
       />
-      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {METHOD_LOOP.map((stage, index) => (
-          <article class="ordered-card-strong p-6">
-            <p class="metric-label">0{index + 1}</p>
-            <h2 class="mt-3 text-3xl font-black text-white">{stage.label.toUpperCase()}</h2>
-            <p class="mt-4 text-sm leading-6 text-slate-300">{stage.text}</p>
-          </article>
-        ))}
+      <div class="mt-10">
+        <EvidenceRail />
       </div>
     </div>
   </section>

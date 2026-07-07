@@ -46,7 +46,7 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS01",
     title: "Forging Hammer Repair",
     href: EXAFUSE_LINKS.forgingHammerCase,
-    evidenceStatus: "Public Exafuse proof - production URL pending review",
+    evidenceStatus: "Public Exafuse proof",
     metrics: ["10-20 mm", "impact wear", "bond + toughness"],
     lesson:
       "A credible hammer repair is not one hardness number. It requires surface preparation, crack context, layer strategy, finishing, bond quality, and release evidence.",
@@ -58,7 +58,7 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS10",
     title: "Nobufil Extrusion Screw Repair",
     href: EXAFUSE_LINKS.extrusionScrewCase,
-    evidenceStatus: "Public Exafuse proof - production URL pending review",
+    evidenceStatus: "Public Exafuse proof",
     metrics: ["local crack", "no spare", "finish after LMD"],
     lesson:
       "Repair value often comes from a local failure with a large downtime risk. The damaged material must be removed before rebuilding, not hidden below new deposition.",
@@ -70,7 +70,7 @@ export const EXAFUSE_PROOF_CASES = [
     code: "CS13",
     title: "130 mm Build-and-Coat Drill",
     href: EXAFUSE_LINKS.drillBuildCoatCase,
-    evidenceStatus: "Public Exafuse proof - production URL pending review",
+    evidenceStatus: "Public Exafuse proof",
     metrics: ["130 mm", "build + coat", "WC-containing alloy"],
     lesson:
       "LMD can combine geometry creation and functional surface strategy when material compatibility, coating duty, finishing, and validation are planned together.",
@@ -101,7 +101,7 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
     code: "A06",
     title: "Large-part LMD productivity",
     href: EXAFUSE_LINKS.knowledgeLargePartLmd,
-    evidenceStatus: "Production URL pending Exafuse launch/review",
+    evidenceStatus: "Public Exafuse knowledge context",
     signal:
       "Large LMD depends on bead width, overlap, heat management, machining allowance, fixturing, and inspection planning."
   },
@@ -109,7 +109,7 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
     code: "A12",
     title: "Monitoring and control",
     href: EXAFUSE_LINKS.knowledgeMonitoring,
-    evidenceStatus: "Production URL pending Exafuse launch/review",
+    evidenceStatus: "Public Exafuse knowledge context",
     signal:
       "Monitoring tracks process consistency through melt-pool behavior, path execution, deposition continuity, and thermal history; it does not replace final inspection or qualification."
   },
@@ -117,7 +117,7 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
     code: "A21",
     title: "BreitBahnDED research spotlight",
     href: EXAFUSE_LINKS.knowledgeBreitbahnDed,
-    evidenceStatus: "Production URL pending Exafuse launch/review",
+    evidenceStatus: "Public Exafuse knowledge context",
     signal:
       "Wide-bead LMD research is useful context for productivity, deposition strategy, and model limits, but should not be treated as production qualification evidence."
   },
@@ -125,7 +125,7 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
     code: "A25",
     title: "2024 Year in Powder",
     href: EXAFUSE_LINKS.knowledgePowder2024,
-    evidenceStatus: "Production URL pending Exafuse launch/review",
+    evidenceStatus: "Public Exafuse knowledge context",
     signal:
       "Material-consumption summaries can provide public scale context, but they should not be overread as process qualification or customer proof."
   },
@@ -133,7 +133,7 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
     code: "A29",
     title: "Forging hammer repair evaluation",
     href: EXAFUSE_LINKS.knowledgeHammerRepair,
-    evidenceStatus: "Production URL pending Exafuse launch/review",
+    evidenceStatus: "Public Exafuse knowledge context",
     signal:
       "Repair fit should be framed around local accessible damage, viable base material, metallurgical bond, machinability, inspection, and explicit release criteria."
   },
@@ -141,7 +141,7 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
     code: "A37",
     title: "Neural image processing in LMD",
     href: EXAFUSE_LINKS.knowledgeNeuralImageProcessing,
-    evidenceStatus: "Production URL pending Exafuse launch/review",
+    evidenceStatus: "Public Exafuse knowledge context",
     signal:
       "Image models are research and interpretation tools for segmentation, normalization, and visual understanding; outputs must be validated against process context and inspection evidence."
   }
@@ -157,6 +157,10 @@ export const EXAFUSE_CORE_LINKS = [
   { label: "Quality", href: EXAFUSE_LINKS.quality },
   { label: "Materials", href: EXAFUSE_LINKS.materials },
   { label: "Case studies", href: EXAFUSE_LINKS.caseStudies },
+  { label: "Exafuse tools", href: EXAFUSE_LINKS.tools },
+  { label: "Exafuse Pathfinder", href: EXAFUSE_LINKS.pathfinder },
+  { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder },
+  { label: "Exafuse AI-agent page", href: EXAFUSE_LINKS.aiAgents },
   { label: "Contact / RFQ", href: EXAFUSE_LINKS.contact }
 ];
 

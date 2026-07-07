@@ -2,14 +2,19 @@ export const SITE_CONFIG = {
   site: {
     baseUrl: "https://manish-sharma-ai.github.io",
     name: "Manish Sharma Lab",
+    owner: "Manish Sharma",
+    category: "Industrial AI & Decision Systems",
     title: "Industrial AI and Decision Systems",
     description:
-      "Public expert layer for industrial AI, inspection-aware decision systems, LMD/DED, additive manufacturing repair, evidence interpretation, and AI-assisted manufacturing decisions.",
+      "Inspection-aware AI and decision systems for industrial additive manufacturing, LMD/DED, repair, monitoring and evidence-based manufacturing decisions.",
     defaultOgImage: "/og-image.png",
     repository: "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io"
   },
   person: {
     name: "Manish Sharma",
+    positioning: "Industrial AI and decision systems for additive manufacturing",
+    promise: "Industrial AI for decisions you can verify.",
+    method: "Sense -> Model -> Decide -> Verify",
     shortBio:
       "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with a public proof domain around LMD/DED, repair, and evidence-based manufacturing decisions.",
     longBio:
@@ -23,7 +28,8 @@ export const SITE_CONFIG = {
       "Additive manufacturing repair",
       "Monitoring interpretation",
       "Evidence ladders",
-      "Repairability scoring"
+      "Repairability scoring",
+      "AI readiness for manufacturing"
     ],
     links: {
       linkedin: "https://www.linkedin.com/in/manishsharma5/",
@@ -60,8 +66,32 @@ export const SITE_CONFIG = {
       knowledgePowder2024: "https://exafuse.de/wissen/lmd-pulver-jahresrueckblick-2024/",
       knowledgeHammerRepair: "https://exafuse.de/wissen/lmd-reparatur-schmiedehammer/",
       knowledgeNeuralImageProcessing: "https://exafuse.de/wissen/neuronale-bildverarbeitung-lmd/",
+      knowledge: "https://exafuse.de/wissen/",
+      tools: "https://exafuse.de/tools/",
+      pathfinder: "https://exafuse.de/tools/pathfinder/",
+      rfqBuilder: "https://exafuse.de/tools/rfq-builder/",
       aiAgents: "https://exafuse.de/fuer-ki-agenten/",
       contact: "https://exafuse.de/kontakt/"
+    }
+  },
+  exafuseEn: {
+    canonicalLinks: {
+      homepage: "https://exafuse.de/en/",
+      services: "https://exafuse.de/en/services/",
+      metalAdditiveManufacturing: "https://exafuse.de/en/services/metal-additive-manufacturing/",
+      repair: "https://exafuse.de/en/services/repair-modification/",
+      laserCladding: "https://exafuse.de/en/services/laser-cladding/",
+      technology: "https://exafuse.de/en/technology/",
+      quality: "https://exafuse.de/en/quality/",
+      caseStudies: "https://exafuse.de/en/case-studies/",
+      duisburgBridgeCase: "https://exafuse.de/en/case-studies/duisburg-bridge-lmd-case-study/",
+      knowledge: "https://exafuse.de/en/knowledge/",
+      knowledgeLmd: "https://exafuse.de/en/knowledge/laser-metal-deposition-ded-lbm/",
+      knowledgeLmdVsSlm: "https://exafuse.de/en/knowledge/lmd-vs-slm-lpbf/",
+      pathfinder: "https://exafuse.de/en/tools/pathfinder/",
+      rfqBuilder: "https://exafuse.de/en/tools/rfq-builder/",
+      aiAgents: "https://exafuse.de/en/for-ai-agents/",
+      contact: "https://exafuse.de/en/contact/"
     }
   }
 } as const;
@@ -69,3 +99,4 @@ export const SITE_CONFIG = {
 export const PERSON_ID = `${SITE_CONFIG.site.baseUrl}/#person`;
 export const WEBSITE_ID = `${SITE_CONFIG.site.baseUrl}/#website`;
 export const EXAFUSE_LINKS = SITE_CONFIG.exafuse.canonicalLinks;
+export const EXAFUSE_EN_LINKS = SITE_CONFIG.exafuseEn.canonicalLinks;

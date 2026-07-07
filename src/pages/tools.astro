@@ -6,8 +6,9 @@ import PageHeroVisual from "@components/PageHeroVisual.astro";
 import RepairabilityQuickCheck from "@components/RepairabilityQuickCheck";
 import RfqStructureConverter from "@components/RfqStructureConverter";
 import SectionHeading from "@components/SectionHeading.astro";
+import { EXAFUSE_LINKS } from "@data/siteConfig";
 
-const title = "LMD Tools — Manish Sharma Lab";
+const title = "LMD Tools - Manish Sharma Lab";
 const description =
   "Frontend-only tools for LMD vs SLM comparison, LMD repairability quick checks, and RFQ prompt-to-structure conversion.";
 ---
@@ -25,6 +26,11 @@ const description =
       <p class="mt-6 text-lg leading-8 text-slate-300">
         Lightweight interactive tools for early LMD thinking. They help structure decisions and missing information; they do not replace expert feasibility review.
       </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/agent-pack" class="btn btn-primary">Open RFQ Toolkit</a>
+        <a href={EXAFUSE_LINKS.pathfinder} class="btn btn-secondary" target="_blank" rel="noreferrer">Exafuse Pathfinder</a>
+        <a href={EXAFUSE_LINKS.rfqBuilder} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse RFQ Builder</a>
+      </div>
     </div>
     <PageHeroVisual variant="tools" class="hidden lg:block" />
   </section>

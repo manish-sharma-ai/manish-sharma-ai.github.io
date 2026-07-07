@@ -1,6 +1,7 @@
 ---
 import Badge from "@components/Badge.astro";
 import EvidenceFactGrid from "@components/EvidenceFactGrid.astro";
+import EvidenceRail from "@components/EvidenceRail.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
@@ -117,6 +118,17 @@ const pageJsonLd = {
           <p class="mt-2 text-sm leading-6 text-slate-400">{item.detail}</p>
         </article>
       ))}
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <SectionHeading
+      eyebrow="Evidence rail"
+      title="From signal to verification"
+      description="A monitoring signal becomes useful only when it can be routed through model assumptions, decision context, and the inspection evidence needed to verify the claim."
+    />
+    <div class="mt-10">
+      <EvidenceRail />
     </div>
   </section>
 

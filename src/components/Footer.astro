@@ -13,11 +13,12 @@ import { LINKS, NAV_GROUPS, SITE } from "@data/site";
         Industrial AI and decision systems for engineering processes, grounded in public LMD/DED work at Exafuse.
       </p>
       <p class="mt-4 text-sm leading-6 text-slate-400">
-        {SITE.primaryPromise} Public technical content is decision-support oriented and connected to engineering evidence.
+        {SITE.primaryPromise} Public decision-support content. Not engineering approval.
       </p>
       <div class="mt-6 flex flex-wrap gap-2">
         <a href="/site-map" class="btn btn-secondary min-h-10 px-3 py-2 text-sm">Site Map</a>
         <button type="button" data-command-trigger class="btn btn-secondary min-h-10 px-3 py-2 text-sm">Search</button>
+        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="btn btn-laser min-h-10 px-3 py-2 text-sm">Exafuse</a>
       </div>
     </div>
 
@@ -41,6 +42,7 @@ import { LINKS, NAV_GROUPS, SITE } from "@data/site";
       <a href={SITE.repoUrl} target="_blank" rel="noreferrer" class="footer-link">Website repository</a>
       <a href={LINKS.github} target="_blank" rel="noreferrer" class="footer-link">GitHub profile</a>
       <a href={LINKS.linkedin} target="_blank" rel="noreferrer" class="footer-link">LinkedIn</a>
+      <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="footer-link">Exafuse</a>
     </div>
     <span>Canonical site: {SITE.canonicalUrl}</span>
   </div>
