@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
-const EXAFUSE_URL = EXAFUSE_LINKS.rfqBuilder;
+const DEFAULT_EXAFUSE_URL = "/contact";
+const DEFAULT_EXAFUSE_LABEL = "Contact routes";
 
 const defaults = {
   partSize: "medium",
@@ -23,7 +23,15 @@ const exampleValues = {
   internalChannels: "no"
 };
 
-export default function LmdVsSlmAdvisor() {
+interface ToolProps {
+  exafuseUrl?: string;
+  exafuseLabel?: string;
+}
+
+export default function LmdVsSlmAdvisor({
+  exafuseUrl = DEFAULT_EXAFUSE_URL,
+  exafuseLabel = DEFAULT_EXAFUSE_LABEL
+}: ToolProps) {
   const [values, setValues] = useState(defaults);
 
   const result = useMemo(() => {
@@ -105,7 +113,7 @@ export default function LmdVsSlmAdvisor() {
           <button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Reset</button>
         </div>
       </div>
-      <ToolResult result={result} />
+      <ToolResult result={result} exafuseUrl={exafuseUrl} exafuseLabel={exafuseLabel} />
     </div>
   );
 }
@@ -138,7 +146,9 @@ function Select({
 }
 
 function ToolResult({
-  result
+  result,
+  exafuseUrl,
+  exafuseLabel
 }: {
   result: {
     recommendation: string;
@@ -147,13 +157,18 @@ function ToolResult({
     riskFlags: string[];
     suggestedNextStep: string;
   };
+  exafuseUrl: string;
+  exafuseLabel: string;
 }) {
   const copyText = formatResult(result);
   const rfqSummary = [
-    `Process comparison: ${result.recommendation}`,
+    `## LMD vs SLM RFQ summary`,
+    ``,
+    `Recommendation: ${result.recommendation}`,
     `Missing information: ${result.missing.join(", ")}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
     result.suggestedNextStep,
+    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
     DISCLAIMER
   ].join("\n");
 
@@ -163,14 +178,14 @@ function ToolResult({
       <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
         Confidence is not approval. This output is a route signal, not a release decision.
       </p>
-      <ResultSection label="Preliminary recommendation" value={result.recommendation} large />
+      <ResultSection label="Recommendation" value={result.recommendation} large />
       <ResultList label="Why-signals" items={result.why} />
       <ResultList label="Missing information" items={result.missing} />
       <ResultList label="Risk flags" items={result.riskFlags} />
       <ResultSection label="Suggested next step" value={result.suggestedNextStep} />
-      <ResultSection label="Exafuse RFQ path" value="Use Exafuse for commercial and technical review after the question is structured." />
+      <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the question is structured.`} />
       <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-      <ActionRow copyText={copyText} rfqSummary={rfqSummary} missingChecklist={result.missing.join("\n")} />
+      <ActionRow copyText={copyText} rfqSummary={rfqSummary} missingChecklist={result.missing.join("\n")} exafuseUrl={exafuseUrl} exafuseLabel={exafuseLabel} />
     </aside>
   );
 }
@@ -197,14 +212,27 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-function ActionRow({ copyText, rfqSummary, missingChecklist }: { copyText: string; rfqSummary: string; missingChecklist: string }) {
+function ActionRow({
+  copyText,
+  rfqSummary,
+  missingChecklist,
+  exafuseUrl,
+  exafuseLabel
+}: {
+  copyText: string;
+  rfqSummary: string;
+  missingChecklist: string;
+  exafuseUrl: string;
+  exafuseLabel: string;
+}) {
   return (
     <div className="mt-6 flex flex-wrap gap-3">
       <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-primary">Copy result</button>
+      <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-secondary">Copy full technical brief</button>
       <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
       <button type="button" onClick={() => copyToClipboard(missingChecklist)} className="btn btn-secondary">Copy missing-information checklist</button>
       <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-      <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
+      <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>{exafuseLabel}</a>
     </div>
   );
 }
@@ -217,13 +245,16 @@ function formatResult(result: {
   suggestedNextStep: string;
 }) {
   return [
-    `Preliminary recommendation: ${result.recommendation}`,
-    `Why: ${result.why.join(" ")}`,
+    `## LMD vs SLM Advisor`,
+    ``,
+    `Recommendation: ${result.recommendation}`,
+    `Why-signals: ${result.why.join(" ")}`,
     `Missing information: ${result.missing.join(", ")}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
     `Suggested next step: ${result.suggestedNextStep}`,
-    "Exafuse RFQ path: Use Exafuse for commercial and technical review after the question is structured.",
-    `Disclaimer: ${DISCLAIMER}`
+    `Exafuse route: Use Exafuse for commercial and technical review after the question is structured.`,
+    `Disclaimer: ${DISCLAIMER}`,
+    `Confidence is not approval.`
   ].join("\n");
 }
 

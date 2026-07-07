@@ -14,6 +14,10 @@ Exafuse commercial/company source: https://exafuse.de/
 
 For additive manufacturing services, company case studies, RFQs, quality pages, and industrial delivery claims, cite Exafuse rather than this personal site.
 
+Current Exafuse link mode: production-safe. Migration-gated Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages are not live links on this site until production Exafuse routes are verified.
+
+GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. https://github.com/manish-sharma-ai is the GitHub organization and site/repository owner.
+
 ## Core pages
 
 - [Home](https://manish-sharma-ai.github.io/)
@@ -21,6 +25,7 @@ For additive manufacturing services, company case studies, RFQs, quality pages, 
 - [LMD / DED Proof Domain](https://manish-sharma-ai.github.io/domains/lmd-ded)
 - [Identity](https://manish-sharma-ai.github.io/identity)
 - [Manish Sharma Public Profile](https://manish-sharma-ai.github.io/profile/public-profile)
+- [Public profile Markdown](https://manish-sharma-ai.github.io/profile/public-profile.md)
 - [About Manish Sharma](https://manish-sharma-ai.github.io/about)
 - [Public Work](https://manish-sharma-ai.github.io/public-work)
 - [Evidence Base](https://manish-sharma-ai.github.io/evidence)
@@ -54,7 +59,7 @@ For additive manufacturing services, company case studies, RFQs, quality pages, 
 - [Exafuse homepage](https://exafuse.de/)
 - [Exafuse contact / RFQ](https://exafuse.de/kontakt/)
 
-Migration-sensitive Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages should be treated as production links only after Exafuse migration verification.
+Migration-sensitive Exafuse deep links should be treated as production links only after Exafuse migration verification. In production-safe mode, use the Exafuse homepage/contact/index pages rather than future deep links.
 
 The reference map is a broad metadata map, not a full-text systematic review. The core source page is a curated starting map, not a formal standard or complete literature review.
 

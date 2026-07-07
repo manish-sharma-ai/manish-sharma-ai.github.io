@@ -4,8 +4,8 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { resolveExafuseLink } from "../../config/externalLinks";
 import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "AI for Laser Metal Deposition and Directed Energy Deposition";
 const subtitle = "The established technical proof domain behind Manish Sharma Lab.";
@@ -72,16 +72,16 @@ const aiLimits = [
 ];
 
 const exafuseLinks = [
-  { label: "Exafuse additive manufacturing service", href: EXAFUSE_LINKS.metalAdditiveManufacturing },
-  { label: "Exafuse modification and repair", href: EXAFUSE_LINKS.repair },
-  { label: "Exafuse laser cladding", href: EXAFUSE_LINKS.laserCladding },
-  { label: "Exafuse technology", href: EXAFUSE_LINKS.technology },
-  { label: "Exafuse quality", href: EXAFUSE_LINKS.quality },
-  { label: "Duisburg bridge LMD case", href: EXAFUSE_LINKS.duisburgBridgeCase },
-  { label: "Exafuse LMD / DED-LB/M guide", href: EXAFUSE_LINKS.knowledgeLmd },
-  { label: "Exafuse LMD vs SLM / LPBF guide", href: EXAFUSE_LINKS.knowledgeLmdVsSlm },
-  { label: "Exafuse Pathfinder", href: EXAFUSE_LINKS.pathfinder },
-  { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder }
+  resolveExafuseLink("metalAm"),
+  resolveExafuseLink("repair"),
+  resolveExafuseLink("cladding"),
+  resolveExafuseLink("technology"),
+  resolveExafuseLink("quality"),
+  resolveExafuseLink("cs15"),
+  resolveExafuseLink("lmdGuide"),
+  resolveExafuseLink("lmdVsSlmGuide"),
+  resolveExafuseLink("pathfinder"),
+  resolveExafuseLink("rfq")
 ];
 
 const toolLinks = [

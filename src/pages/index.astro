@@ -7,14 +7,15 @@ import HeroLaserVisual from "@components/HeroLaserVisual";
 import Layout from "@layouts/Layout.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { getClaimSourceStatus } from "@data/publicClaims";
 import { LINKS, PERSON, SAME_AS, SITE } from "@data/site";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "Manish Sharma Lab - AI for Laser Metal Deposition Decisions";
 const description =
   "AI for Laser Metal Deposition decisions you can verify: inspection-aware frameworks, RFQ tools, process-monitoring notes, public Exafuse proof context, and evidence-bound AI guidance.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -170,7 +171,7 @@ const proofDecisionHelp: Record<string, string> = {
       <div class="mt-9 flex flex-wrap gap-3">
         <CTAButton href="/tools" variant="primary">Open LMD Decision Workbench</CTAButton>
         <CTAButton href="/thesis" variant="secondary">Read the thesis</CTAButton>
-        <CTAButton href={EXAFUSE_LINKS.rfqBuilder} variant="laser" external>Go to Exafuse for RFQs</CTAButton>
+        <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>
     <div class="grid gap-4">
@@ -328,7 +329,7 @@ const proofDecisionHelp: Record<string, string> = {
           This personal site avoids confidential employer/customer data and does not replace expert review, inspection, certification, or formal approval.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <CTAButton href={EXAFUSE_LINKS.rfqBuilder} variant="laser" external>Prepare Exafuse RFQ</CTAButton>
+          <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
           <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
         </div>
       </div>

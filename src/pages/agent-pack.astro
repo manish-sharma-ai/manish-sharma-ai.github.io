@@ -5,8 +5,8 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "LMD RFQ Toolkit";
 const description = "Schemas, prompts, and decision rules for clearer Laser Metal Deposition RFQs.";
@@ -88,6 +88,9 @@ const downloads = [
   { label: "Quality checklist Markdown", href: "/agent-pack/lmd-quality-checklist.md" }
 ];
 
+const pathfinderLink = resolveExafuseLink("pathfinder");
+const rfqLink = resolveExafuseLink("rfq");
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -117,8 +120,8 @@ const jsonLd = {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/tools" class="btn btn-primary">Open tools</a>
-        <a href={EXAFUSE_LINKS.pathfinder} class="btn btn-secondary" target="_blank" rel="noreferrer">Exafuse Pathfinder</a>
-        <a href={EXAFUSE_LINKS.rfqBuilder} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse RFQ Builder</a>
+        <a href={pathfinderLink.href} class="btn btn-secondary" target="_blank" rel="noreferrer">{pathfinderLink.label}</a>
+        <a href={rfqLink.href} class="btn btn-laser" target="_blank" rel="noreferrer">{rfqLink.label}</a>
       </div>
     </div>
     <PageHeroVisual variant="agent" class="hidden lg:block" />

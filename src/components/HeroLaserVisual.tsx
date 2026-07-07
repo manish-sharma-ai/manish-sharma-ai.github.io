@@ -12,13 +12,10 @@ export default function HeroLaserVisual({ className = "" }: HeroLaserVisualProps
   return (
     <div
       className={["glass-panel relative overflow-hidden p-3 md:p-4", className].filter(Boolean).join(" ")}
-      aria-label="Diagram of laser path, process signal, and verification evidence."
+      role="img"
+      aria-label="Laser path, process signal, and verification boundary."
     >
-      <svg className="hero-visual aspect-[16/10] w-full" viewBox="0 0 960 600" role="img" aria-labelledby="hero-visual-title hero-visual-desc">
-        <title id="hero-visual-title">Laser path to process intelligence</title>
-        <desc id="hero-visual-desc">
-          Diagram of a laser path, deposited track, process signal, model layer, and verification boundary.
-        </desc>
+      <svg className="hero-visual aspect-[16/10] w-full" viewBox="0 0 960 600" aria-hidden="true" focusable="false">
         <defs>
           <linearGradient id="heroBeam" x1="180" y1="70" x2="438" y2="318" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#83f0ff" stopOpacity="0.08" />
@@ -63,10 +60,10 @@ export default function HeroLaserVisual({ className = "" }: HeroLaserVisualProps
           ))}
         </g>
 
-        <g fontFamily="JetBrains Mono, Consolas, monospace">
-          <text x="74" y="86" fill="#92a8b5" fontSize="12" letterSpacing="1.8">
-            LASER PATH / PROCESS SIGNAL / VERIFICATION
-          </text>
+        <g opacity="0.82">
+          <rect x="74" y="78" width="116" height="8" rx="4" fill="#92a8b5" opacity="0.42" />
+          <rect x="204" y="78" width="74" height="8" rx="4" fill="#34ddff" opacity="0.5" />
+          <rect x="292" y="78" width="96" height="8" rx="4" fill="#ffd27a" opacity="0.46" />
         </g>
 
         <path
@@ -105,20 +102,13 @@ export default function HeroLaserVisual({ className = "" }: HeroLaserVisualProps
           <g key={node.label} className="signal-dot">
             <circle cx={node.x} cy={node.y} r={index === 2 ? 25 : 18} fill={index === 2 ? "rgba(255, 210, 122, 0.09)" : "rgba(52, 221, 255, 0.1)"} />
             <circle cx={node.x} cy={node.y} r={index === 2 ? 6 : 5} fill={index === 2 ? "#ffd27a" : "#83f0ff"} />
-            <text x={node.x - 22} y={node.y + 38} fill="#92a8b5" fontFamily="JetBrains Mono, Consolas, monospace" fontSize="10">
-              {node.label}
-            </text>
           </g>
         ))}
 
         <g className="readout-card" transform="translate(676 390)">
           <rect width="172" height="72" rx="18" fill="rgba(8, 14, 20, 0.72)" stroke="rgba(154, 209, 226, 0.16)" />
-          <text x="20" y="31" fill="#92a8b5" fontFamily="JetBrains Mono, Consolas, monospace" fontSize="10">
-            CLAIM BOUNDARY
-          </text>
-          <text x="20" y="52" fill="#d8faff" fontFamily="Inter, Arial, sans-serif" fontSize="15" fontWeight="800">
-            evidence before approval
-          </text>
+          <rect x="20" y="24" width="82" height="8" rx="4" fill="#92a8b5" opacity="0.52" />
+          <rect x="20" y="44" width="128" height="10" rx="5" fill="#d8faff" opacity="0.58" />
         </g>
       </svg>
     </div>

@@ -26,8 +26,11 @@ This site avoids confidential customer, employer, and private project data.
 | Company connection | Exafuse |
 | Location | Germany |
 | Core topics | industrial AI, decision support systems, process monitoring, machine vision, robotics, engineering evidence, LMD, DED, DED-LB/M, laser cladding, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing |
-| Active public profiles | Website, Exafuse, LinkedIn, GitHub |
+| Active public profiles | Website, Exafuse, LinkedIn, GitHub profile |
 | Planned profiles | ORCID, Zenodo, Hugging Face, Google Scholar, ResearchGate |
+| GitHub profile | aiwithms - https://github.com/aiwithms |
+| Site/repository owner | manish-sharma-ai - https://github.com/manish-sharma-ai |
+| Website repository | https://github.com/manish-sharma-ai/manish-sharma-ai.github.io |
 
 ## sameAs
 
@@ -36,6 +39,8 @@ Only real URLs should be used in JSON-LD sameAs.
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms
 - Exafuse: https://exafuse.de/
+
+GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-ai` is the GitHub organization and site/repository owner for this GitHub Pages site.
 
 Planned, no public URL yet:
 

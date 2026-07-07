@@ -126,13 +126,33 @@ Exafuse launch mode:
 - `EXAFUSE_LINK_MODE = "production-safe"` keeps migration-sensitive Exafuse deep links on safe production routes.
 - `EXAFUSE_LINK_MODE = "post-migration"` should be used only after the production Exafuse paths are verified.
 - Follow `docs/exafuse-migration-switch.md` before changing link mode.
+- Human-facing labels must also follow link mode. In `production-safe`, do not show labels such as "Exafuse Pathfinder", "Exafuse RFQ Builder", or individual case-study deep-link titles unless they clearly say the link is after migration.
 
 Public proof metrics are centralized in `src/data/publicClaims.ts`. Do not hard-code CS15 bridge metrics or other proof numbers in page components.
+
+Visual text rule:
+
+- Decorative SVG/diagram internals should not leak prompt-like text into rendered page output.
+- Use concise wrapper labels or alt text for accessibility.
+- Do not render image-generation prompts, diagram descriptions, or helper strings as page text.
+
+Identity alias rule:
+
+- GitHub profile: `https://github.com/aiwithms`
+- Site/repository owner: `https://github.com/manish-sharma-ai`
+- Repository: `https://github.com/manish-sharma-ai/manish-sharma-ai.github.io`
+- Do not blur the personal GitHub profile with the GitHub organization/repository owner.
 
 Recommended audits:
 
 ```bash
+npm run audit:visual-text
+npm run audit:rendered-text
+npm run audit:links
+npm run audit:claims
+npm run audit:boundaries
 npm run audit:all
+npm run audit:links:report
 ```
 
 ## AI-Readable Files
@@ -142,6 +162,7 @@ npm run audit:all
 - `/llms-full.txt`
 - `/identity.md`
 - `/about.md`
+- `/profile/public-profile.md`
 - `/thesis.md`
 - `/profile/public-profile`
 - `/research/core-lmd-ai-sources`
@@ -224,6 +245,7 @@ These steps require account access and can be completed in GitHub, Google Search
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.
 - Run `docs/ai-answer-tests.md` after major AI-readable or schema changes.
+- Run `docs/final-100-checklist.md` before a precision release.
 
 ## Next Roadmap
 

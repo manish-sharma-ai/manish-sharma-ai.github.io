@@ -7,6 +7,42 @@ const root = process.cwd();
 const sourceRoots = ["src", "public"].filter((path) => existsSync(join(root, path)));
 const distRoot = existsSync(join(root, "dist")) ? ["dist"] : [];
 
+const visualLeakPhrases = [
+  "technical cockpit visual",
+  "Framework stack visual",
+  "Industrial proof visual",
+  "Contact route visual",
+  "Public identity graph visual",
+  "dark technical visual",
+  "style prompt",
+  "image prompt",
+  "Diagram of a laser path",
+  "Diagram of frameworks",
+  "Diagram of industrial proof",
+  "Diagram of contact paths",
+  "Diagram of Manish Sharma connecting",
+  "route map contact paths",
+  "entity map Manish Sharma",
+  "laser path to process intelligenceDiagram",
+  "Framework stack  Diagram",
+  "Industrial proof map  Diagram",
+  "Contact routes  Diagram",
+  "Public identity graph  Diagram",
+  "Question Signal Evidence Decision RFQ Risk Evidence Decision",
+  "LASER PATH / PROCESS SIGNAL / VERIFICATION"
+];
+
+const keyRenderedPages = [
+  "/",
+  "/thesis/",
+  "/domains/lmd-ded/",
+  "/public-work/",
+  "/contact/",
+  "/tools/",
+  "/for-ai-agents/",
+  "/press-kit/"
+];
+
 function walk(dir) {
   const abs = join(root, dir);
   if (!existsSync(abs)) return [];
@@ -32,31 +68,73 @@ function scanFiles(roots, extensions = [".astro", ".tsx", ".ts", ".js", ".mjs", 
 function fail(title, findings) {
   if (findings.length === 0) return;
   console.error(`\n${title}`);
-  findings.slice(0, 80).forEach((finding) => console.error(`- ${finding}`));
-  if (findings.length > 80) console.error(`- ... ${findings.length - 80} more`);
+  findings.slice(0, 100).forEach((finding) => console.error(`- ${finding}`));
+  if (findings.length > 100) console.error(`- ... ${findings.length - 100} more`);
   process.exitCode = 1;
 }
 
+function decodeEntities(value) {
+  return value
+    .replaceAll("&amp;", "&")
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#39;", "'")
+    .replaceAll("&#x27;", "'");
+}
+
+function visibleTextFromHtml(html) {
+  const body = html.match(/<body[\s\S]*?>([\s\S]*?)<\/body>/i)?.[1] ?? html;
+  return decodeEntities(
+    body
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
+      .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+}
+
+function pagePathToDistFile(pathname) {
+  if (pathname === "/") return "dist/index.html";
+  return `dist${pathname.replace(/\/$/, "")}/index.html`;
+}
+
+function exafuseMode() {
+  const configPath = "src/config/externalLinks.ts";
+  if (!existsSync(join(root, configPath))) return "unknown";
+  return read(configPath).match(/EXAFUSE_LINK_MODE:\s*ExafuseLinkMode\s*=\s*"([^"]+)"/)?.[1] ?? "unknown";
+}
+
 function auditVisualText() {
-  const badPhrases = [
-    "technical cockpit visual",
-    "Framework stack visual",
-    "Industrial proof visual",
-    "Contact route visual",
-    "Public identity graph visual",
-    "dark technical visual",
-    "style prompt",
-    "image prompt",
-    "preliminary decision support"
-  ];
-  const files = scanFiles([...sourceRoots, ...distRoot]);
   const findings = [];
-  for (const { file, text } of files) {
-    for (const phrase of badPhrases) {
-      if (text.includes(phrase)) findings.push(`${file}: contains "${phrase}"`);
+  for (const { file, text } of scanFiles(distRoot, [".html", ".js", ".json", ".txt"])) {
+    const visibleText = file.endsWith(".html") ? visibleTextFromHtml(text) : "";
+    for (const phrase of visualLeakPhrases) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
+      if (text.includes(phrase)) findings.push(`${file}: built output contains "${phrase}"`);
     }
   }
   fail("Visual text audit failed", findings);
+}
+
+function auditRenderedText() {
+  const findings = [];
+  for (const pathname of keyRenderedPages) {
+    const file = pagePathToDistFile(pathname);
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing built page for ${pathname}`);
+      continue;
+    }
+    const text = read(file);
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of visualLeakPhrases) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: rendered text contains "${phrase}"`);
+    }
+  }
+  fail("Rendered text audit failed", findings);
 }
 
 function auditLinks() {
@@ -86,7 +164,25 @@ function auditLinks() {
   );
   for (const { file, text } of srcFiles) {
     if (/https:\/\/(www\.)?exafuse\.de/.test(text)) {
-      findings.push(`${file}: hard-coded Exafuse URL outside resolver`);
+      findings.push(`${file}: hard-coded Exafuse URL outside resolver/config`);
+    }
+  }
+
+  if (exafuseMode() === "production-safe") {
+    const unsafeLabels = [
+      "Duisburg bridge LMD case",
+      "Exafuse Pathfinder",
+      "Exafuse RFQ Builder",
+      "Exafuse LMD / DED-LB/M guide",
+      "Exafuse LMD vs SLM"
+    ];
+    for (const { file, text } of scanFiles(distRoot, [".html"])) {
+      const visibleText = visibleTextFromHtml(text);
+      for (const label of unsafeLabels) {
+        if (visibleText.includes(label)) {
+          findings.push(`${file}: production-safe rendered text contains migration-gated label "${label}"`);
+        }
+      }
     }
   }
 
@@ -98,6 +194,16 @@ function auditLinks() {
   }
 
   fail("Link audit failed", findings);
+}
+
+function auditLinksReport() {
+  const files = scanFiles([...sourceRoots, ...distRoot]);
+  const rows = [];
+  for (const { file, text } of files) {
+    const matches = text.match(/https?:\/\/[^\s"'<>),]+/g) ?? [];
+    [...new Set(matches)].sort().forEach((url) => rows.push(`${file}\t${url}`));
+  }
+  console.log(rows.length ? rows.join("\n") : "No external links found.");
 }
 
 function auditClaims() {
@@ -173,11 +279,14 @@ function auditBoundaries() {
 
 const audits = {
   "visual-text": auditVisualText,
+  "rendered-text": auditRenderedText,
   links: auditLinks,
+  "links:report": auditLinksReport,
   claims: auditClaims,
   boundaries: auditBoundaries,
   all() {
     auditVisualText();
+    auditRenderedText();
     auditLinks();
     auditClaims();
     auditBoundaries();

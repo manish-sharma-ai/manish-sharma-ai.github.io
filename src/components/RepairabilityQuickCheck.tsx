@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
-const EXAFUSE_URL = EXAFUSE_LINKS.rfqBuilder;
+const DEFAULT_EXAFUSE_URL = "/contact";
+const DEFAULT_EXAFUSE_LABEL = "Contact routes";
 
 const questions = [
   "Material known?",
@@ -24,7 +24,15 @@ const exampleSelected = [
   "Downtime important?"
 ];
 
-export default function RepairabilityQuickCheck() {
+interface ToolProps {
+  exafuseUrl?: string;
+  exafuseLabel?: string;
+}
+
+export default function RepairabilityQuickCheck({
+  exafuseUrl = DEFAULT_EXAFUSE_URL,
+  exafuseLabel = DEFAULT_EXAFUSE_LABEL
+}: ToolProps) {
   const [selected, setSelected] = useState<string[]>(["Damage local?", "Access possible?", "Downtime important?"]);
   const [safetyCritical, setSafetyCritical] = useState(false);
 
@@ -95,14 +103,20 @@ export default function RepairabilityQuickCheck() {
           Confidence is not approval. This score screens review readiness; it does not approve repair.
         </p>
         <p className="mt-4 font-mono text-5xl font-black text-white">{result.score}</p>
-        <ResultSection label="Preliminary recommendation" value={result.recommendation} large />
+        <ResultSection label="Recommendation" value={result.recommendation} large />
         <ResultList label="Why-signals" items={result.why} />
         <ResultList label="Missing information" items={result.missing.length ? result.missing : ["No major missing field from selected checklist."]} />
         <ResultList label="Risk flags" items={result.riskFlags} />
         <ResultSection label="Suggested next step" value={result.suggestedNextStep} />
-        <ResultSection label="Exafuse RFQ path" value="Use Exafuse for commercial and technical review after the repair question is structured." />
+        <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`} />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
-        <ActionRow copyText={formatResult(result)} rfqSummary={formatRfqSummary(result)} missingChecklist={result.missing.join("\n") || "No major missing field from selected checklist."} />
+        <ActionRow
+          copyText={formatResult(result, exafuseLabel)}
+          rfqSummary={formatRfqSummary(result, exafuseLabel, exafuseUrl)}
+          missingChecklist={result.missing.join("\n") || "No major missing field from selected checklist."}
+          exafuseUrl={exafuseUrl}
+          exafuseLabel={exafuseLabel}
+        />
       </aside>
     </div>
   );
@@ -130,14 +144,27 @@ function ResultList({ label, items }: { label: string; items: string[] }) {
   );
 }
 
-function ActionRow({ copyText, rfqSummary, missingChecklist }: { copyText: string; rfqSummary: string; missingChecklist: string }) {
+function ActionRow({
+  copyText,
+  rfqSummary,
+  missingChecklist,
+  exafuseUrl,
+  exafuseLabel
+}: {
+  copyText: string;
+  rfqSummary: string;
+  missingChecklist: string;
+  exafuseUrl: string;
+  exafuseLabel: string;
+}) {
   return (
     <div className="mt-6 flex flex-wrap gap-3">
       <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-primary">Copy result</button>
+      <button type="button" onClick={() => copyToClipboard(copyText)} className="btn btn-secondary">Copy full technical brief</button>
       <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
       <button type="button" onClick={() => copyToClipboard(missingChecklist)} className="btn btn-secondary">Copy missing-information checklist</button>
       <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-      <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
+      <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>{exafuseLabel}</a>
     </div>
   );
 }
@@ -149,15 +176,18 @@ function formatResult(result: {
   missing: string[];
   riskFlags: string[];
   suggestedNextStep: string;
-}) {
+}, exafuseLabel: string) {
   return [
-    `Preliminary recommendation: ${result.recommendation} (${result.score}/100)`,
-    `Why: ${result.why.join(", ")}`,
+    `## LMD Repairability Quick Check`,
+    ``,
+    `Recommendation: ${result.recommendation} (${result.score}/100)`,
+    `Why-signals: ${result.why.join(", ")}`,
     `Missing information: ${result.missing.join(", ") || "none flagged by checklist"}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
     `Suggested next step: ${result.suggestedNextStep}`,
-    "Exafuse RFQ path: Use Exafuse for commercial and technical review after the repair question is structured.",
-    `Disclaimer: ${DISCLAIMER}`
+    `Exafuse route: ${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`,
+    `Disclaimer: ${DISCLAIMER}`,
+    `Confidence is not approval.`
   ].join("\n");
 }
 
@@ -167,12 +197,15 @@ function formatRfqSummary(result: {
   missing: string[];
   riskFlags: string[];
   suggestedNextStep: string;
-}) {
+}, exafuseLabel: string, exafuseUrl: string) {
   return [
-    `LMD repairability quick check: ${result.recommendation} (${result.score}/100)`,
+    `## LMD repairability RFQ summary`,
+    ``,
+    `Recommendation: ${result.recommendation} (${result.score}/100)`,
     `Missing RFQ fields: ${result.missing.join(", ") || "none flagged by checklist"}`,
     `Risk flags: ${result.riskFlags.join(", ")}`,
     result.suggestedNextStep,
+    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
     DISCLAIMER
   ].join("\n");
 }

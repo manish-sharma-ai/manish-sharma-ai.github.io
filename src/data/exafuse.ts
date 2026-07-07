@@ -1,8 +1,22 @@
 import { EXAFUSE_LINKS, SITE_CONFIG } from "./siteConfig";
 import { getRenderableClaimsForCase } from "./publicClaims";
-import { resolveExafuseLink } from "../config/externalLinks";
+import { resolveExafuseLink, type ExafuseUrlKey } from "../config/externalLinks";
 
 export const EXAFUSE_BASE = SITE_CONFIG.exafuse.baseUrl;
+
+function sourceLink(key: ExafuseUrlKey, description?: string) {
+  const link = resolveExafuseLink(key);
+  return {
+    label: link.label,
+    href: link.href,
+    status: link.status,
+    description:
+      description ??
+      (link.migrationGated
+        ? "Current target is a safe Exafuse production route until the post-migration page is verified."
+        : "Verified production Exafuse route.")
+  };
+}
 
 export const EXAFUSE_CAPABILITY_SIGNALS = [
   {
@@ -154,31 +168,31 @@ export const EXAFUSE_KNOWLEDGE_SIGNALS = [
 ];
 
 export const EXAFUSE_CORE_LINKS = [
-  { label: "Exafuse homepage", href: EXAFUSE_LINKS.homepage },
-  { label: "Commercial services", href: EXAFUSE_LINKS.services },
-  { label: "Metal additive manufacturing", href: EXAFUSE_LINKS.metalAdditiveManufacturing },
-  { label: "Modification and repair", href: EXAFUSE_LINKS.repair },
-  { label: "Laser cladding", href: EXAFUSE_LINKS.laserCladding },
-  { label: "Technology", href: EXAFUSE_LINKS.technology },
-  { label: "Quality", href: EXAFUSE_LINKS.quality },
-  { label: "Materials", href: EXAFUSE_LINKS.materials },
-  { label: "Case studies", href: EXAFUSE_LINKS.caseStudies },
-  { label: "Exafuse tools", href: EXAFUSE_LINKS.tools },
-  { label: "Exafuse Pathfinder", href: EXAFUSE_LINKS.pathfinder },
-  { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder },
-  { label: "Exafuse AI-agent page", href: EXAFUSE_LINKS.aiAgents },
-  { label: "Contact / RFQ", href: EXAFUSE_LINKS.contact }
+  sourceLink("home"),
+  sourceLink("services"),
+  sourceLink("metalAm"),
+  sourceLink("repair"),
+  sourceLink("cladding"),
+  sourceLink("technology"),
+  sourceLink("quality"),
+  sourceLink("materials"),
+  sourceLink("caseStudies"),
+  sourceLink("tools"),
+  sourceLink("pathfinder"),
+  sourceLink("rfq"),
+  sourceLink("aiAgents"),
+  sourceLink("contact", "Commercial RFQ and company contact route.")
 ];
 
 export const EXAFUSE_SOURCE_LINKS = [
   ...EXAFUSE_CORE_LINKS,
-  { label: "Duisburg bridge LMD case", href: EXAFUSE_LINKS.duisburgBridgeCase },
-  { label: "Forging hammer repair case", href: EXAFUSE_LINKS.forgingHammerCase },
-  { label: "Extrusion screw repair case", href: EXAFUSE_LINKS.extrusionScrewCase },
-  { label: "Build-and-coat drill case", href: EXAFUSE_LINKS.drillBuildCoatCase },
-  { label: "LMD / DED-LB/M guide", href: EXAFUSE_LINKS.knowledgeLmd },
-  { label: "LMD vs SLM / LPBF guide", href: EXAFUSE_LINKS.knowledgeLmdVsSlm },
-  { label: "Large-part LMD guide", href: EXAFUSE_LINKS.knowledgeLargePartLmd },
-  { label: "Monitoring and quality guide", href: EXAFUSE_LINKS.knowledgeMonitoring },
-  { label: "AI agents page", href: EXAFUSE_LINKS.aiAgents }
+  sourceLink("cs15"),
+  sourceLink("cs01"),
+  sourceLink("cs10"),
+  sourceLink("cs13"),
+  sourceLink("lmdGuide"),
+  sourceLink("lmdVsSlmGuide"),
+  sourceLink("largePartLmdGuide"),
+  sourceLink("monitoringGuide"),
+  sourceLink("aiAgents")
 ];

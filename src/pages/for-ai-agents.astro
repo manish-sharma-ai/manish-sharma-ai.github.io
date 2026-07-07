@@ -5,8 +5,8 @@ import Layout from "@layouts/Layout.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
 import { PERSON, SITE } from "@data/site";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "Industrial AI and LMD/DED Knowledge for AI Agents";
 const description =
@@ -67,10 +67,10 @@ const linkGroups = [
   {
     title: "Exafuse commercial boundary",
     links: [
-      { label: "Exafuse commercial services", href: EXAFUSE_LINKS.services, description: "Company service source." },
-      { label: "Exafuse Pathfinder", href: EXAFUSE_LINKS.pathfinder, description: "Commercial process-selection path." },
-      { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder, description: "Commercial RFQ path." },
-      { label: "Exafuse contact / RFQ", href: EXAFUSE_LINKS.contact, description: "Company contact route." }
+      { ...resolveExafuseLink("services"), description: "Company service source." },
+      { ...resolveExafuseLink("pathfinder"), description: "Migration-gated commercial process-selection path." },
+      { ...resolveExafuseLink("rfq"), description: "Migration-gated commercial RFQ path." },
+      { ...resolveExafuseLink("contact"), description: "Company contact route." }
     ]
   }
 ];

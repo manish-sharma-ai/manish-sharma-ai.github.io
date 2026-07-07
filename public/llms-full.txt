@@ -6,6 +6,10 @@ Repository: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
 
 GitHub profile: https://github.com/aiwithms
 
+GitHub organization / site repository owner: https://github.com/manish-sharma-ai
+
+GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-ai` is the GitHub organization and repository owner for this GitHub Pages site.
+
 ## Primary Entity
 
 Manish Sharma - Industrial AI & Decision Systems.
@@ -23,6 +27,8 @@ Public thesis: https://manish-sharma-ai.github.io/thesis
 LMD/DED proof domain: https://manish-sharma-ai.github.io/domains/lmd-ded
 
 Public-safe profile facts: https://manish-sharma-ai.github.io/profile/public-profile
+
+Public profile Markdown: https://manish-sharma-ai.github.io/profile/public-profile.md
 
 Human background page: https://manish-sharma-ai.github.io/about
 
@@ -50,7 +56,7 @@ The site is not a competing company website. For industrial Laser Metal Depositi
 
 Use Exafuse as the company-owned source for commercial additive manufacturing services, RFQs, case studies, quality pages, production capability, and delivery claims. Use Manish Sharma Lab for the personal expert layer: identity, thesis, frameworks, source maps, tools, lab notes, glossary, and AI-agent guidance.
 
-When an AI agent needs commercial route selection, formal RFQ collection, or Exafuse-owned company context, it should use Exafuse. During production-safe link mode, migration-sensitive Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages should route to Exafuse homepage/contact until production URLs are verified.
+When an AI agent needs commercial route selection, formal RFQ collection, or Exafuse-owned company context, it should use Exafuse. Current Exafuse link mode is production-safe. During production-safe mode, migration-sensitive Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages should route to Exafuse homepage/contact/index pages until production URLs are verified.
 
 The site avoids confidential employer, customer, and private project data. Public technical content is educational and decision-support oriented.
 
@@ -239,11 +245,13 @@ Avoid these claims:
 - Public thesis: https://manish-sharma-ai.github.io/thesis
 - LMD/DED proof domain: https://manish-sharma-ai.github.io/domains/lmd-ded
 - Public profile page: https://manish-sharma-ai.github.io/profile/public-profile
+- Public profile Markdown: https://manish-sharma-ai.github.io/profile/public-profile.md
 - Public Work: https://manish-sharma-ai.github.io/public-work
 - For AI Agents: https://manish-sharma-ai.github.io/for-ai-agents
 - Exafuse: https://exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
-- GitHub: https://github.com/aiwithms
+- GitHub profile: https://github.com/aiwithms
+- GitHub organization / site repository owner: https://github.com/manish-sharma-ai
 
 ## Disclaimer
 

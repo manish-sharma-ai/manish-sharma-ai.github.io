@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
-const EXAFUSE_URL = EXAFUSE_LINKS.rfqBuilder;
+const DEFAULT_EXAFUSE_URL = "/contact";
+const DEFAULT_EXAFUSE_LABEL = "Contact routes";
 
 const partTerms = ["shaft", "die", "gear", "valve", "hammer", "mold", "tool", "bracket", "node", "component"];
 const materialTerms = ["steel", "stainless", "aluminium", "aluminum", "inconel", "nickel", "copper", "titanium", "unknown"];
@@ -11,7 +11,15 @@ const damageTerms = ["worn", "wear", "corrosion", "crack", "cracked", "broken", 
 const exampleText =
   "Repair a worn stainless steel shaft with local damage near the bearing seat. Photos are available but CAD is missing. Need tight tolerance and hardness requirement.";
 
-export default function RfqStructureConverter() {
+interface ToolProps {
+  exafuseUrl?: string;
+  exafuseLabel?: string;
+}
+
+export default function RfqStructureConverter({
+  exafuseUrl = DEFAULT_EXAFUSE_URL,
+  exafuseLabel = DEFAULT_EXAFUSE_LABEL
+}: ToolProps) {
   const [text, setText] = useState(exampleText);
 
   const parsed = useMemo(() => {
@@ -77,8 +85,8 @@ export default function RfqStructureConverter() {
     };
   }, [text]);
 
-  const resultText = formatResult(parsed);
-  const rfqSummary = formatRfqSummary(parsed);
+  const resultText = formatResult(parsed, exafuseLabel);
+  const rfqSummary = formatRfqSummary(parsed, exafuseLabel, exafuseUrl);
 
   return (
     <div className="tool-panel">
@@ -100,7 +108,7 @@ export default function RfqStructureConverter() {
         <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
           Confidence is not approval. This parser structures a request; it does not decide feasibility.
         </p>
-        <ResultSection label="Preliminary recommendation" value={parsed.recommendation} large />
+        <ResultSection label="Recommendation" value={parsed.recommendation} large />
         <ResultList label="Why-signals" items={parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."]} />
         <div className="mt-5 grid gap-3 text-sm">
           <Field label="Part" value={parsed.part} />
@@ -110,14 +118,15 @@ export default function RfqStructureConverter() {
         <ResultList label="Missing information" items={parsed.missing.length ? parsed.missing : ["No major missing field detected by keyword rules."]} />
         <ResultList label="Risk flags" items={parsed.riskFlags} />
         <ResultSection label="Suggested next step" value={parsed.suggestedNextStep} />
-        <ResultSection label="Exafuse RFQ path" value="Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured." />
+        <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`} />
         <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
         <div className="mt-6 flex flex-wrap gap-3">
           <button type="button" onClick={() => copyToClipboard(resultText)} className="btn btn-primary">Copy result</button>
+          <button type="button" onClick={() => copyToClipboard(resultText)} className="btn btn-secondary">Copy full technical brief</button>
           <button type="button" onClick={() => copyToClipboard(rfqSummary)} className="btn btn-secondary">Copy RFQ summary</button>
           <button type="button" onClick={() => copyToClipboard(parsed.missing.join("\n") || "No major missing field detected by keyword rules.")} className="btn btn-secondary">Copy missing-information checklist</button>
           <a href="/agent-pack" className="btn btn-secondary">Open RFQ Toolkit</a>
-          <a href={EXAFUSE_URL} className="btn btn-laser" target="_blank" rel="noreferrer">Prepare Exafuse RFQ</a>
+          <a href={exafuseUrl} className="btn btn-laser" target={exafuseUrl.startsWith("http") ? "_blank" : undefined} rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}>{exafuseLabel}</a>
         </div>
       </aside>
     </div>
@@ -164,18 +173,21 @@ function formatResult(parsed: {
   missing: string[];
   riskFlags: string[];
   suggestedNextStep: string;
-}) {
+}, exafuseLabel: string) {
   return [
-    `Preliminary recommendation: ${parsed.recommendation}`,
-    `Why: ${parsed.known.join(", ") || "not enough clear facts detected yet"}`,
+    `## RFQ Prompt-to-Structure Converter`,
+    ``,
+    `Recommendation: ${parsed.recommendation}`,
+    `Why-signals: ${parsed.known.join(", ") || "not enough clear facts detected yet"}`,
     `Part: ${parsed.part}`,
     `Material: ${parsed.material}`,
     `Damage: ${parsed.damage}`,
     `Missing information: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
     `Risk flags: ${parsed.riskFlags.join(", ")}`,
     `Suggested next step: ${parsed.suggestedNextStep}`,
-    "Exafuse RFQ path: Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.",
-    `Disclaimer: ${DISCLAIMER}`
+    `Exafuse route: ${exafuseLabel}. Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.`,
+    `Disclaimer: ${DISCLAIMER}`,
+    `Confidence is not approval.`
   ].join("\n");
 }
 
@@ -186,14 +198,17 @@ function formatRfqSummary(parsed: {
   damage: string;
   missing: string[];
   riskFlags: string[];
-}) {
+}, exafuseLabel: string, exafuseUrl: string) {
   return [
-    `RFQ preliminary recommendation: ${parsed.recommendation}`,
+    `## LMD RFQ summary`,
+    ``,
+    `Recommendation: ${parsed.recommendation}`,
     `Part: ${parsed.part}`,
     `Material: ${parsed.material}`,
     `Damage: ${parsed.damage}`,
     `Missing fields: ${parsed.missing.join(", ") || "none detected by keyword rules"}`,
     `Risk flags: ${parsed.riskFlags.join(", ")}`,
+    `Exafuse route: ${exafuseLabel} (${exafuseUrl})`,
     DISCLAIMER
   ].join("\n");
 }

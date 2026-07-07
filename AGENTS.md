@@ -56,7 +56,10 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Do not add fake profile links, fake publications, fake certifications, unsupported metrics, or staging URLs.
 - Preserve the commercial boundary: Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, delivery claims, and company-owned source details.
 - Resolve Exafuse URLs through `src/config/externalLinks.ts`; do not hard-code Exafuse production or staging URLs in page components.
+- Keep Exafuse labels synchronized with `EXAFUSE_LINK_MODE`. In `production-safe`, do not render labels such as "Exafuse Pathfinder", "Exafuse RFQ Builder", or individual case-study deep-link labels as if those future routes are live.
 - Render public proof metrics from `src/data/publicClaims.ts`; do not hard-code CS15 or other proof metrics in page components.
+- Do not render image-generation prompts, diagram helper text, or long SVG descriptions as visible page text. Decorative visuals should keep internals out of rendered text and use concise accessibility labels.
+- Keep identity facts unambiguous: `aiwithms` is the GitHub profile, `manish-sharma-ai` is the GitHub organization/site repository owner, and `manish-sharma-ai/manish-sharma-ai.github.io` is the repository.
 
 ## Working Tree Rules
 
@@ -208,6 +211,24 @@ When updating SEO-sensitive content:
 - Keep primary navigation compressed. Current primary route labels are Start, Thesis, LMD / DED, Tools, Proof, and About; secondary routes belong in Resources, footer, search, or Site Map.
 - Do not make dropdowns or important text too transparent to read.
 - Optimize large images with WebP/responsive sources when practical.
+
+## Final Release Checklist
+
+Before committing a precision or trust-hardening release, run:
+
+```bash
+npm run check
+npm run build
+npm run audit:visual-text
+npm run audit:rendered-text
+npm run audit:links
+npm run audit:claims
+npm run audit:boundaries
+npm run audit:all
+git diff --check
+```
+
+Also confirm `docs/final-100-checklist.md` still matches the current public surface.
 
 ## Useful Live URLs
 

@@ -1,5 +1,6 @@
 import { PROFILE_URLS, JSON_LD_SAME_AS } from "./profiles";
-import { EXAFUSE_LINKS, PERSON_ID, SITE_CONFIG, WEBSITE_ID } from "./siteConfig";
+import { PERSON_ID, SITE_CONFIG, WEBSITE_ID } from "./siteConfig";
+import { resolveExafuseLink } from "../config/externalLinks";
 
 export const SITE = {
   name: SITE_CONFIG.site.name,
@@ -42,6 +43,7 @@ export const LINKS = {
 };
 
 export const SAME_AS = JSON_LD_SAME_AS;
+const EXAFUSE_RFQ_ROUTE = resolveExafuseLink("rfq");
 
 export const CORE_TOPICS = [
   "Industrial AI",
@@ -475,7 +477,7 @@ export const RELATED_LINK_SETS = [
     title: "Turn vague requests into usable LMD data",
     links: [
       { label: "RFQ Toolkit", href: "/agent-pack", description: "Schema, prompts, rules, and checklists." },
-      { label: "Exafuse RFQ Builder", href: EXAFUSE_LINKS.rfqBuilder, description: "Commercial RFQ route for company review." },
+      { label: EXAFUSE_RFQ_ROUTE.label, href: EXAFUSE_RFQ_ROUTE.href, description: "Commercial RFQ route for company review." },
       { label: "Industrial AI Thesis", href: "/thesis", description: "Sense, Model, Decide, Verify." },
       { label: "Tools", href: "/tools", description: "Frontend-only LMD advisors and RFQ structuring." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance for automated assistants." }

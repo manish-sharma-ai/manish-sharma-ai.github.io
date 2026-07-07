@@ -20,12 +20,35 @@ export const PROFILE_URLS = {
   exafuse: SITE_CONFIG.exafuse.canonicalLinks.homepage,
   linkedin: SITE_CONFIG.person.links.linkedin,
   github: SITE_CONFIG.person.links.github,
+  githubOrganization: "https://github.com/manish-sharma-ai",
   repository: SITE_CONFIG.site.repository,
   orcid: SITE_CONFIG.person.links.orcid,
   zenodo: SITE_CONFIG.person.links.zenodo,
   huggingFace: SITE_CONFIG.person.links.huggingFace,
   googleScholar: SITE_CONFIG.person.links.googleScholar,
   researchGate: SITE_CONFIG.person.links.researchGate
+} as const;
+
+export const GITHUB_IDENTITY = {
+  profile: {
+    label: "GitHub profile",
+    slug: "aiwithms",
+    href: PROFILE_URLS.github,
+    description: "Personal public GitHub profile for Manish Sharma."
+  },
+  repositoryOwner: {
+    label: "Site/repository owner",
+    slug: "manish-sharma-ai",
+    href: PROFILE_URLS.githubOrganization,
+    description: "GitHub organization that owns the GitHub Pages repository."
+  },
+  repository: {
+    label: "Website repository",
+    slug: "manish-sharma-ai/manish-sharma-ai.github.io",
+    href: PROFILE_URLS.repository,
+    description: "Public source repository for this website."
+  },
+  aliases: [] as string[]
 } as const;
 
 export const PROFILE_LINKS: ProfileLink[] = [
@@ -52,7 +75,7 @@ export const PROFILE_LINKS: ProfileLink[] = [
   },
   {
     key: "github",
-    label: "GitHub",
+    label: "GitHub profile",
     href: PROFILE_URLS.github,
     status: "active",
     description: "Personal GitHub profile."

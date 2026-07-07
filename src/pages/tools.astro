@@ -7,12 +7,13 @@ import ProcessLoop from "@components/ProcessLoop.astro";
 import RepairabilityQuickCheck from "@components/RepairabilityQuickCheck";
 import RfqStructureConverter from "@components/RfqStructureConverter";
 import SectionHeading from "@components/SectionHeading.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
 import { SITE } from "@data/site";
-import { EXAFUSE_LINKS } from "@data/siteConfig";
 
 const title = "LMD Decision Workbench - Manish Sharma Lab";
 const description =
   "Frontend-only LMD Decision Workbench for turning vague LMD/DED questions into known facts, missing information, risk flags, and a next action.";
+const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const toolStats = [
   ["Runtime", "Frontend-only"],
@@ -87,10 +88,13 @@ const toolBlocks = [
       <p class="mt-4 max-w-3xl text-base leading-7 text-slate-400">
         Outputs are preliminary decision-support only. Final feasibility depends on material, geometry, service conditions, inspection requirements, and expert review.
       </p>
+      <p class="mt-3 max-w-3xl text-sm font-bold leading-6 text-cyan-100">
+        This browser tool does not send, store, or analyze your inputs outside this page.
+      </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="/agent-pack" variant="primary">Open RFQ Toolkit</CTAButton>
         <CTAButton href="/thesis" variant="secondary">Read the thesis</CTAButton>
-        <CTAButton href={EXAFUSE_LINKS.rfqBuilder} variant="laser" external>Prepare Exafuse RFQ</CTAButton>
+        <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>
     <ProcessLoop variant="compact" title="Inputs -> gaps -> risks -> next action" subtitle="The workbench keeps the loop short: structure the question, expose uncertainty, then route serious cases to expert review." />
@@ -125,9 +129,9 @@ const toolBlocks = [
           </div>
         </div>
         <div class="mt-10">
-          {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:load />}
-          {tool.component === "repairability" && <RepairabilityQuickCheck client:load />}
-          {tool.component === "rfq" && <RfqStructureConverter client:load />}
+          {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+          {tool.component === "repairability" && <RepairabilityQuickCheck client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+          {tool.component === "rfq" && <RfqStructureConverter client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
         </div>
       </div>
     </section>
@@ -149,7 +153,7 @@ const toolBlocks = [
           Final feasibility depends on material, geometry, service conditions, inspection requirements, and expert review. Use Exafuse for RFQs, services, company claims, and technical/commercial decisions.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <CTAButton href={EXAFUSE_LINKS.rfqBuilder} variant="laser" external>Prepare Exafuse RFQ</CTAButton>
+          <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
           <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
         </div>
       </div>
