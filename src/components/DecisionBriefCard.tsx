@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { DecisionBrief } from "../lib/decisionBrief";
+import { formatTechnicalDecisionBrief } from "../lib/decisionBrief";
 import DecisionBriefExport from "./DecisionBriefExport";
 
 interface DecisionBriefCardProps {
@@ -24,6 +26,17 @@ export default function DecisionBriefCard({
   showExport = true,
   compact = false
 }: DecisionBriefCardProps) {
+  if (compact) {
+    return (
+      <CompactBriefPreview
+        brief={brief}
+        eyebrow={eyebrow}
+        title={title}
+        fullBriefHref={matchingToolHref ?? "/tools#lmd-decision-cockpit"}
+      />
+    );
+  }
+
   return (
     <div className="print-brief grid gap-5" data-brief-version={brief.briefVersion}>
       <div>
@@ -153,4 +166,72 @@ function howToUseBrief() {
     "Resolve critical gaps before treating the package as review-ready.",
     "Route commercial/company review to Exafuse when a real part or RFQ is involved."
   ];
+}
+
+function CompactBriefPreview({
+  brief,
+  eyebrow,
+  title,
+  fullBriefHref
+}: {
+  brief: DecisionBrief;
+  eyebrow: string;
+  title: string;
+  fullBriefHref: string;
+}) {
+  const [copied, setCopied] = useState(false);
+  const criticalGaps = brief.missingCritical.slice(0, 3);
+  const riskFlags = brief.riskFlags.slice(0, 3);
+
+  async function copyBrief() {
+    await navigator.clipboard?.writeText(formatTechnicalDecisionBrief(brief));
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 1600);
+  }
+
+  return (
+    <div className="grid gap-5" data-compact-brief-preview="homepage">
+      <div>
+        <p className="metric-label">{eyebrow}</p>
+        <h3 className="mt-3 text-2xl font-black leading-tight text-white">Compact brief preview</h3>
+        <p className="mt-2 text-sm font-bold leading-6 text-cyan-100">{title}</p>
+      </div>
+
+      <div className="grid gap-3">
+        <BriefField label="Decision signal" value={brief.preliminaryRoute} large />
+        <div className="grid gap-3 md:grid-cols-3">
+          <BriefField label="Brief completeness" value={brief.briefCompleteness} />
+          <BriefField label="Expert-review package status" value={brief.expertReviewPackageStatus} />
+          <BriefField label="Evidence burden" value={brief.evidenceBurden} />
+        </div>
+        <BriefList label="Top 3 critical gaps" items={criticalGaps} warning />
+        <BriefList label="Top 3 risk flags" items={riskFlags} warning />
+        <BriefField label="Next action" value={brief.nextAction} />
+        <div>
+          <p className="text-sm font-bold text-white">Boundary:</p>
+          <p className="result-card result-card--warning mt-2 text-sm font-black leading-6">Confidence is not approval.</p>
+        </div>
+      </div>
+
+      <section aria-labelledby="compact-brief-actions">
+        <h4 id="compact-brief-actions" className="metric-label mb-2">Compact preview actions</h4>
+        <ul className="flex flex-wrap gap-3">
+          <li>
+            <button type="button" onClick={copyBrief} className="btn btn-primary">
+              {copied ? "Copied" : "Copy brief"}
+            </button>
+            <span className="sr-only">; </span>
+          </li>
+          <li>
+            <a href={fullBriefHref} className="btn btn-secondary">Open full brief</a>
+            <span className="sr-only">; </span>
+          </li>
+          <li>
+            <a href="/tools#lmd-decision-cockpit" className="btn btn-secondary">Start your own brief</a>
+            <span className="sr-only">; </span>
+          </li>
+        </ul>
+      </section>
+    </div>
+  );
 }

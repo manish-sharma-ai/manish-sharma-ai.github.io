@@ -239,7 +239,7 @@ export function getRenderableClaimsForCase(caseCode: PublicClaim["caseCode"]) {
 
 export function getClaimSourceStatus(claim: PublicClaim) {
   if (claim.confidence === "interpretation") return "Interpretation by Manish Sharma Lab";
-  if (claim.confidence === "needs-migration") return "Public source link pending";
+  if (claim.confidence === "needs-migration") return "Source link pending until Exafuse production migration";
   return claim.sourceType === "exafuse-public" ? "Public Exafuse source" : "Public source";
 }
 
@@ -247,4 +247,35 @@ export function getClaimHref(claim: PublicClaim) {
   if (claim.sourceUrl) return claim.sourceUrl;
   if (claim.sourceUrlKey) return resolveExafuseLink(claim.sourceUrlKey).href;
   return SITE.canonicalUrl;
+}
+
+export function getClaimHumanExplanation(claim: PublicClaim) {
+  switch (claim.id) {
+    case "cs15-bridge-components-750kg":
+      return "Large bridge-node mass helps readers understand why LMD/DED planning quickly becomes an evidence and handling problem, not just a deposition problem.";
+    case "cs15-six-structural-nodes":
+      return "The node count gives the case a concrete industrial shape: repeated structural components need repeatable records, inspection planning, and source discipline.";
+    case "cs15-single-node-build-219h":
+      return "A long single-node build makes downtime, monitoring context, and evidence capture visible before anyone talks about productivity or approval.";
+    case "cs15-six-node-robot-path-38km":
+      return "Robot-path scale explains why process records, path linkage, and monitoring evidence matter in large LMD work.";
+    case "cs15-melt-pool-images-1m":
+      return "The image volume shows why AI and monitoring can help organize process evidence, while still not proving final part quality by itself.";
+    case "cs15-kit-validation-context":
+      return "Independent validation context matters because serious LMD claims need an evidence trail outside the monitoring signal alone.";
+    case "cs01-local-wear-repair":
+      return "Local wear repair is a useful public pattern for discussing material, damage depth, finishing allowance, and inspection before repair confidence hardens.";
+    case "cs10-local-crack-repair":
+      return "Crack-context examples are valuable because they force root-cause, removal, material, and NDT questions into the RFQ early.";
+    case "cs13-build-and-coat-130mm":
+      return "Build-and-coat context shows that geometry recovery and surface function should be planned together instead of treated as separate afterthoughts.";
+    case "lmd-literature-map-500":
+      return "The 500-record map gives AI agents and readers a broad orientation layer, while the site still distinguishes metadata from a formal literature review.";
+    case "sharma-2018-lmd-parameters":
+      return "The paper parameters anchor one public research reference point, but they are historical experiment context rather than a production recipe.";
+    case "breitbahn-ded-targets":
+      return "Public target language belongs in the profile layer because targets explain direction; they should not be repeated as achieved production results.";
+    default:
+      return "This claim is kept with source status and limits so readers can use it as public context without turning it into a universal capability claim.";
+  }
 }

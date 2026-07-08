@@ -1,6 +1,5 @@
 export const MANISH_SITE_URL = "https://manish-sharma-ai.github.io";
 export const EXAFUSE_PRODUCTION_BASE_URL = "https://exafuse.de";
-export const EXAFUSE_STAGING_BASE_URL = "https://exafuse-website-react.pages.dev";
 
 export type ExafuseLinkMode = "production-safe" | "post-migration";
 export type ExafuseLinkStatus = "public-production" | "production-link-after-migration";

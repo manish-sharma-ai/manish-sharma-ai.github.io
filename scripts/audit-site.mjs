@@ -327,6 +327,16 @@ function auditHomepageProduct() {
     "AI for Laser Metal Deposition decisions you can verify.",
     "LMD Decision Cockpit",
     "Public-safe dummy example: worn steel shaft near bearing seat.",
+    "Compact brief preview",
+    "Decision signal",
+    "Brief completeness",
+    "Expert-review package status",
+    "Evidence burden",
+    "Top 3 critical gaps",
+    "Top 3 risk flags",
+    "Copy brief",
+    "Open full brief",
+    "Start your own brief",
     "Decision support only",
     "Not final engineering approval",
     "A signal is not proof."
@@ -350,6 +360,18 @@ function auditHomepageProduct() {
   if (operatingLoopH2Matches.length !== 1) {
     findings.push(`${file}: expected exactly one H2 matching "Sense -> Model -> Decide -> Verify", found ${operatingLoopH2Matches.length}`);
   }
+  for (const phrase of [
+    "How to use this brief",
+    "Copy Exafuse email draft",
+    "Copy AI-safe summary",
+    "Download .json",
+    "Open mail client with draft"
+  ]) {
+    if (visibleText.includes(phrase)) findings.push(`${file}: homepage should not render full brief wall phrase "${phrase}"`);
+  }
+  if (!text.includes('data-compact-brief-preview="homepage"')) {
+    findings.push(`${file}: missing compact brief preview marker`);
+  }
   fail("Homepage product audit failed", findings);
 }
 
@@ -364,7 +386,7 @@ function auditBriefArtifact() {
     if (!existsSync(join(root, file))) findings.push(`${file}: missing decision-brief source`);
   }
 
-  const pages = ["dist/index.html", "dist/tools/index.html", "dist/demo/index.html", "dist/brief-template/index.html"];
+  const pages = ["dist/tools/index.html", "dist/demo/index.html", "dist/brief-template/index.html"];
   for (const file of pages) {
     if (!existsSync(join(root, file))) {
       findings.push(`${file}: missing built page`);
@@ -377,7 +399,10 @@ function auditBriefArtifact() {
       "confidence is not approval",
       "technical decision brief",
       "exafuse-ready email draft",
-      "ai-agent-safe summary"
+      "ai-agent-safe summary",
+      "copy exafuse email draft",
+      "download .json",
+      "how to use this brief"
     ]) {
       if (!visibleLower.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
     }
@@ -812,6 +837,9 @@ function auditHumanMigrationLanguage() {
 function auditControlTextReadability() {
   const findings = [];
   const collapsedStrings = [
+    "Repair damaged/worn part Build new metal feature/part Add coating/cladding",
+    "Worn shaft near bearing seat Monitoring anomaly Surface cladding request",
+    "Copy technical brief Copy Exafuse email draft",
     "Material known?Drawing",
     "Photos available?Damage",
     "Safety critical?High",
@@ -864,9 +892,14 @@ function auditClaimsHumanSurface() {
     "Audit details",
     "Source type/status",
     "Registry id",
-    "Public source link pending"
+    "Source link pending until Exafuse production migration",
+    "Large bridge-node mass helps readers",
+    "The image volume shows why AI and monitoring can help organize process evidence"
   ]) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+  }
+  if (visibleText.includes("It gives readers a bounded public reference point for LMD/DED scale")) {
+    findings.push(`${file}: claim ledger still uses generic why-it-matters boilerplate`);
   }
   if (!html.includes("<details")) findings.push(`${file}: audit details are not collapsed with details`);
   fail("Claims human surface audit failed", findings);

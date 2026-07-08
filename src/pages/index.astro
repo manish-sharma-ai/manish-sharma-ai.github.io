@@ -208,7 +208,7 @@ const proofDecisionPatternText: Record<string, string> = {
   </section>
 
   <section class="site-shell pb-12">
-    <LmdDecisionCockpit client:load defaultMode="example" exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+    <LmdDecisionCockpit client:load defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
   </section>
 
   <section class="band py-10">
@@ -323,7 +323,7 @@ const proofDecisionPatternText: Record<string, string> = {
               <div>
                 <dt class="metric-label">Source status</dt>
                 <dd class="mt-1 text-slate-300">
-                  {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Public source link pending"}
+                  {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Source link pending until Exafuse production migration"}
                 </dd>
               </div>
               <div>

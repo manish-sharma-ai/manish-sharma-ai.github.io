@@ -3,7 +3,7 @@ import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { CLAIM_REVIEW_FEEDBACK_URL } from "@data/briefStandard";
-import { PUBLIC_CLAIMS, getClaimHref, getClaimSourceStatus } from "@data/publicClaims";
+import { PUBLIC_CLAIMS, getClaimHref, getClaimHumanExplanation, getClaimSourceStatus } from "@data/publicClaims";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Public Claim Ledger";
@@ -97,7 +97,7 @@ const jsonLd = {
                     <div>
                       <dt class="font-black text-white">Why it matters</dt>
                       <dd class="mt-1 text-slate-300">
-                        It gives readers a bounded public reference point for LMD/DED scale, source context, or profile facts without turning the source into a universal capability claim.
+                        {getClaimHumanExplanation(claim)}
                       </dd>
                     </div>
                     <div>

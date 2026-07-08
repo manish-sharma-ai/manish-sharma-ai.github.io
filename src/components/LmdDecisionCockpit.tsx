@@ -266,11 +266,13 @@ export default function LmdDecisionCockpit({
           <p className="mt-4 text-sm leading-6 text-slate-300 md:text-base md:leading-7">
             Pick the situation, mark what is known, then expose missing information, risk flags, evidence needed, and an Exafuse review route. Inputs stay in this browser session only.
           </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="chip chip--steel">Technical Decision Brief</span>
-            <span className="chip chip--steel">Exafuse-ready email draft</span>
-            <span className="chip chip--steel">AI-agent-safe summary</span>
-          </div>
+          {!compact && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              <span className="chip chip--steel">Technical Decision Brief</span>
+              <span className="chip chip--steel">Exafuse-ready email draft</span>
+              <span className="chip chip--steel">AI-agent-safe summary</span>
+            </div>
+          )}
 
           <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4" data-public-safe-example={WORN_SHAFT_SCENARIO}>
             <ul className="flex flex-wrap gap-2" aria-label="Example controls">
@@ -313,24 +315,26 @@ export default function LmdDecisionCockpit({
           <div className="mt-6 grid gap-5">
             <fieldset>
               <legend className="metric-label">1. What is the situation?</legend>
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              <ul className="mt-3 grid gap-2 sm:grid-cols-2" aria-label="Situation choices">
                 {situations.map((situation) => (
-                  <button
-                    key={situation.id}
-                    type="button"
-                    onClick={() => updateState({ ...state, situation: situation.id })}
-                    aria-pressed={state.situation === situation.id}
-                    aria-label={`Choose situation: ${situation.label}`}
-                    className={`rounded-lg border p-3 text-left text-sm font-bold leading-5 transition ${
-                      state.situation === situation.id
-                        ? "border-cyan-300/70 bg-cyan-300/14 text-white"
-                        : "border-white/10 bg-white/[0.035] text-slate-300 hover:border-cyan-300/35 hover:text-white"
-                    }`}
-                  >
-                    {situation.label}
-                  </button>
+                  <li key={situation.id}>
+                    <button
+                      type="button"
+                      onClick={() => updateState({ ...state, situation: situation.id })}
+                      aria-pressed={state.situation === situation.id}
+                      aria-label={`Choose situation: ${situation.label}`}
+                      className={`h-full w-full rounded-lg border p-3 text-left text-sm font-bold leading-5 transition ${
+                        state.situation === situation.id
+                          ? "border-cyan-300/70 bg-cyan-300/14 text-white"
+                          : "border-white/10 bg-white/[0.035] text-slate-300 hover:border-cyan-300/35 hover:text-white"
+                      }`}
+                    >
+                      {situation.label}
+                    </button>
+                    <span className="sr-only">; </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </fieldset>
 
             <fieldset>
@@ -375,20 +379,22 @@ export default function LmdDecisionCockpit({
             {!compact && (
               <div>
                 <p className="metric-label">Public-safe presets</p>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <ul className="mt-3 flex flex-wrap gap-2" aria-label="Public-safe presets">
                   {COCKPIT_PRESETS.map((preset) => (
-                    <button
-                      key={preset.id}
-                      type="button"
-                      onClick={() => loadPreset(preset.id)}
-                      aria-pressed={activePresetId === preset.id}
-                      aria-label={`Load public-safe preset: ${preset.label}`}
-                      className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId === preset.id ? "btn-primary" : "btn-secondary"}`}
-                    >
-                      {preset.label}
-                    </button>
+                    <li key={preset.id}>
+                      <button
+                        type="button"
+                        onClick={() => loadPreset(preset.id)}
+                        aria-pressed={activePresetId === preset.id}
+                        aria-label={`Load public-safe preset: ${preset.label}`}
+                        className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId === preset.id ? "btn-primary" : "btn-secondary"}`}
+                      >
+                        {preset.label}
+                      </button>
+                      <span className="sr-only">; </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
@@ -423,8 +429,8 @@ export default function LmdDecisionCockpit({
             title={result.brief.briefVersion}
             exafuseUrl={exafuseUrl}
             exafuseLabel={exafuseLabel}
-            matchingToolHref={result.toolRoute}
-            matchingToolLabel="Open matching tool"
+            matchingToolHref={compact && activePresetId ? `/tools/#preset=${activePresetId}` : compact ? "/tools#lmd-decision-cockpit" : result.toolRoute}
+            matchingToolLabel={compact ? "Open full brief" : "Open matching tool"}
             compact={compact}
           />
         </aside>
