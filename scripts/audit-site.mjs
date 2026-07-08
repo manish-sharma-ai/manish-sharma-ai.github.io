@@ -3,6 +3,8 @@ import { join, relative } from "node:path";
 
 const mode = process.argv[2] ?? "all";
 const root = process.cwd();
+const canonicalSite = "https://manishsharma.dev";
+const oldGithubPagesSite = "https://manish-sharma-ai.github.io";
 
 const sourceRoots = ["src", "public"].filter((path) => existsSync(join(root, path)));
 const distRoot = existsSync(join(root, "dist")) ? ["dist"] : [];
@@ -1296,6 +1298,106 @@ function auditSeoSocial() {
   fail("SEO/social audit failed", findings);
 }
 
+function auditCanonicalDomain() {
+  const findings = [];
+  const requiredFiles = [
+    "dist/index.html",
+    "dist/tools/index.html",
+    "dist/brief-standard/index.html",
+    "dist/llms.txt",
+    "dist/llms-full.txt",
+    "dist/robots.txt",
+    "dist/sitemap-index.xml",
+    "dist/sitemap-0.xml",
+    "dist/schemas/lmd-decision-brief-v1.schema.json"
+  ];
+
+  if (distRoot.length === 0) {
+    findings.push("dist: missing production output; run npm run build before audit:canonical-domain");
+  }
+
+  for (const file of requiredFiles) {
+    if (!existsSync(join(root, file))) findings.push(`${file}: missing`);
+  }
+
+  const cnameFile = "dist/CNAME";
+  if (!existsSync(join(root, cnameFile))) {
+    findings.push(`${cnameFile}: missing`);
+  } else if (read(cnameFile).trim() !== "manishsharma.dev") {
+    findings.push(`${cnameFile}: must contain exactly "manishsharma.dev"`);
+  }
+
+  for (const { file, text } of scanFiles(distRoot, [".html", ".js", ".json", ".txt", ".xml", ".md", ".svg"])) {
+    if (text.includes(oldGithubPagesSite)) {
+      findings.push(`${file}: contains old GitHub Pages site URL "${oldGithubPagesSite}"`);
+    }
+    for (const bad of ["pages.dev", "exafuse-website-react", "www.exafuse.de"]) {
+      if (text.includes(bad)) findings.push(`${file}: contains staging or wrong production host "${bad}"`);
+    }
+  }
+
+  const routeChecks = [
+    "/",
+    "/identity/",
+    "/tools/",
+    "/brief-standard/",
+    "/brief-template/",
+    "/demo/",
+    "/for-ai-agents/"
+  ];
+  for (const route of routeChecks) {
+    const file = pagePathToDistFile(route);
+    if (!existsSync(join(root, file))) continue;
+    const html = read(file);
+    const canonicalUrl = `${canonicalSite}${route === "/" ? "/" : route.replace(/\/$/, "")}`;
+    for (const marker of [
+      `<link rel="canonical" href="${canonicalUrl}"`,
+      `<meta property="og:url" content="${canonicalUrl}"`,
+      `<meta property="og:image" content="${canonicalSite}/og-image.png"`,
+      `<meta name="twitter:image" content="${canonicalSite}/og-image.png"`
+    ]) {
+      if (!html.includes(marker)) findings.push(`${file}: missing "${marker}"`);
+    }
+    if (!html.includes(`${canonicalSite}/identity#manish-sharma`)) {
+      findings.push(`${file}: missing canonical Person @id reference`);
+    }
+  }
+
+  const textExpectations = [
+    ["dist/robots.txt", `Sitemap: ${canonicalSite}/sitemap-index.xml`],
+    ["dist/llms.txt", `Canonical site: ${canonicalSite}`],
+    ["dist/llms-full.txt", `Canonical URL: ${canonicalSite}`],
+    ["dist/llms.txt", `${canonicalSite}/brief-standard`],
+    ["dist/llms.txt", `${canonicalSite}/schemas/lmd-decision-brief-v1.schema.json`],
+    ["dist/llms.txt", `${canonicalSite}/examples/lmd-decision-brief-worn-shaft-v1.json`],
+    ["dist/llms-full.txt", `${canonicalSite}/brief-standard`],
+    ["dist/llms-full.txt", `${canonicalSite}/schemas/lmd-decision-brief-v1.schema.json`],
+    ["dist/llms-full.txt", `${canonicalSite}/examples/lmd-decision-brief-worn-shaft-v1.json`],
+    ["dist/schemas/lmd-decision-brief-v1.schema.json", `"${canonicalSite}/schemas/lmd-decision-brief-v1.schema.json"`],
+    ["dist/sitemap-index.xml", `${canonicalSite}/sitemap-0.xml`],
+    ["dist/sitemap-0.xml", `${canonicalSite}/brief-standard`]
+  ];
+  for (const [file, expected] of textExpectations) {
+    if (!existsSync(join(root, file))) continue;
+    if (!read(file).includes(expected)) findings.push(`${file}: missing "${expected}"`);
+  }
+
+  const configPath = "src/config/externalLinks.ts";
+  if (!existsSync(join(root, configPath))) {
+    findings.push(`${configPath}: missing`);
+  } else {
+    const config = read(configPath);
+    if (!config.includes(`MANISH_SITE_URL = "${canonicalSite}"`)) {
+      findings.push(`${configPath}: MANISH_SITE_URL is not ${canonicalSite}`);
+    }
+    if (!config.includes('EXAFUSE_LINK_MODE: ExafuseLinkMode = "production-safe"')) {
+      findings.push(`${configPath}: EXAFUSE_LINK_MODE is not production-safe`);
+    }
+  }
+
+  fail("Canonical-domain audit failed", findings);
+}
+
 const audits = {
   "visual-text": auditVisualText,
   "rendered-text": auditRenderedText,
@@ -1328,6 +1430,7 @@ const audits = {
   "rubric-format": auditRubricFormat,
   preflight: auditPreflight,
   "seo-social": auditSeoSocial,
+  "canonical-domain": auditCanonicalDomain,
   all() {
     auditVisualText();
     auditRenderedText();
@@ -1359,6 +1462,7 @@ const audits = {
     auditRubricFormat();
     auditPreflight();
     auditSeoSocial();
+    auditCanonicalDomain();
   }
 };
 
