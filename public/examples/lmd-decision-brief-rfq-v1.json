@@ -1,0 +1,99 @@
+{
+  "briefVersion": "LMD Decision Brief v1.0",
+  "artifactType": "LMD Decision Brief",
+  "status": "Preliminary decision support",
+  "notValidFor": [
+    "approval",
+    "certification",
+    "release",
+    "safety-critical acceptance",
+    "quality guarantee"
+  ],
+  "outputMode": "JSON handoff",
+  "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+  "noBackendNote": "No backend. No data sent by this site.",
+  "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client.",
+  "brief": {
+    "briefVersion": "LMD Decision Brief v1.0",
+    "artifactType": "LMD Decision Brief",
+    "status": "Preliminary decision support",
+    "preparedFor": "Expert review / RFQ discussion",
+    "notValidFor": [
+      "approval",
+      "certification",
+      "release",
+      "safety-critical acceptance",
+      "quality guarantee"
+    ],
+    "outputMode": "JSON handoff",
+    "situation": "Public-safe dummy example: rough LMD repair RFQ.",
+    "component": "Industrial component not yet fully identified",
+    "goal": "Turn a vague RFQ into known facts, gaps, risk flags, evidence needs, and review route.",
+    "material": "Material grade missing.",
+    "geometryOrSize": "Geometry not yet provided.",
+    "damageOrBuildArea": "Damage area mentioned but depth not defined.",
+    "availableData": [
+      "Photos may be available"
+    ],
+    "knownFacts": [
+      "Repair intent",
+      "Local damage implied",
+      "Downtime pressure possible"
+    ],
+    "missingInformation": [
+      "Exact material grade",
+      "Damage depth",
+      "Photos",
+      "Drawing/CAD",
+      "Dimensions",
+      "Tolerance",
+      "Operating conditions",
+      "Inspection requirement",
+      "Deadline"
+    ],
+    "missingCritical": [
+      "Exact material grade",
+      "Damage depth",
+      "Drawing/CAD",
+      "Dimensions",
+      "Operating conditions",
+      "Inspection requirement"
+    ],
+    "missingUseful": [
+      "Photos",
+      "Tolerance",
+      "Deadline"
+    ],
+    "missingOptional": [
+      "Prior repair history",
+      "Budget estimate",
+      "Reference part"
+    ],
+    "riskFlags": [
+      "Unknown material blocks firm repair recommendations.",
+      "Missing geometry and damage depth can change the route.",
+      "Downtime pressure should not remove inspection requirements."
+    ],
+    "evidenceNeeded": [
+      "Material grade",
+      "Drawing/CAD or dimensional sketch",
+      "Damage depth and photos",
+      "Tolerance target",
+      "Inspection requirement",
+      "Expert review"
+    ],
+    "preliminaryRoute": "Use the RFQ Prompt-to-Structure Converter before asking for feasibility.",
+    "reviewReadiness": "Not enough information",
+    "briefCompleteness": "Ready for preliminary discussion",
+    "expertReviewPackageStatus": "Not ready",
+    "completenessNote": "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "evidenceBurden": "High inspection burden",
+    "evidenceBurdenNote": "Evidence burden is a planning label, not release approval.",
+    "nextAction": "Ask for missing fields and prepare a compact Exafuse-ready review summary.",
+    "exafuseReviewRoute": "Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.",
+    "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+    "generatedFrom": "LMD Decision Cockpit public-safe RFQ preset",
+    "noBackendNote": "No backend. No data sent by this site.",
+    "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client."
+  }
+}

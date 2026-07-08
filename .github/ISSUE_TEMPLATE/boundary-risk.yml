@@ -1,0 +1,50 @@
+name: Boundary risk
+description: Flag wording that may overclaim AI, monitoring, feasibility, quality, or Exafuse/customer involvement.
+title: "Boundary risk: "
+labels: ["boundary-risk", "claim-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include confidential employer/customer data or safety-critical approval requests.
+  - type: input
+    id: page
+    attributes:
+      label: Page or file
+      placeholder: https://manish-sharma-ai.github.io/...
+    validations:
+      required: true
+  - type: textarea
+    id: wording
+    attributes:
+      label: Wording to review
+      description: Quote the public wording that may need a boundary fix.
+    validations:
+      required: true
+  - type: dropdown
+    id: risk_type
+    attributes:
+      label: Risk type
+      options:
+        - AI/process monitoring overclaim
+        - Feasibility or repairability overclaim
+        - Approval/certification/release implication
+        - Confidentiality risk
+        - Exafuse/customer involvement ambiguity
+        - Other public-safe boundary risk
+    validations:
+      required: true
+  - type: textarea
+    id: safer_wording
+    attributes:
+      label: Safer wording suggestion
+      description: Optional public-safe replacement wording.
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundary check
+      options:
+        - label: This does not include confidential employer/customer data.
+          required: true
+        - label: This does not request engineering approval, certification, release, safety-critical acceptance, or a quality guarantee.
+          required: true

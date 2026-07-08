@@ -4,6 +4,10 @@ This pass moves Manish Sharma Lab from a reference-heavy site toward a decision 
 
 The current central artifact is `LMD Decision Brief v1.0`.
 
+Public standard route: `/brief-standard/`
+
+Machine-readable schema: `/schemas/lmd-decision-brief-v1.schema.json`
+
 ## Why
 
 The public experience should make the core idea usable quickly:
@@ -47,6 +51,8 @@ Current public-safe presets are:
 - Markdown
 - JSON
 - Print / save as PDF
+
+Public-safe example artifacts live under `/examples/` and should remain generic dummy data, not customer cases.
 
 Email drafts are manual drafts only. The user decides what to send. Do not add automatic sending, backend endpoints, input analytics, or input storage.
 
@@ -111,9 +117,11 @@ When adding public routes, update:
 - `public/agent-pack/lmd-decision-rules.md`
 - `public/agent-pack/lmd-prompt-library.md`
 - `public/agent-pack/lmd-quality-checklist.md`
+- `public/schemas/lmd-decision-brief-v1.schema.json`
+- `public/examples/`
 - `README.md`
 - `docs/final-100-checklist.md`
 - `docs/decision-brief-standard.md`
 - `docs/artifact-lifecycle.md`
 
-Run `npm run audit:all` before committing.
+Run `npm run audit:brief-schema` and `npm run audit:all` before committing.

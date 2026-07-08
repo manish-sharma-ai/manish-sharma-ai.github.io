@@ -1,0 +1,203 @@
+---
+import Badge from "@components/Badge.astro";
+import CopyBlock from "@components/CopyBlock";
+import CTAButton from "@components/CTAButton.astro";
+import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import {
+  BRIEF_CORE_FIELDS,
+  BRIEF_DO_NOT_USE_FOR,
+  BRIEF_EXAMPLES,
+  BRIEF_OUTPUT_MODES,
+  BRIEF_QUALITY_RUBRIC,
+  BRIEF_SCHEMA_PATH,
+  BRIEF_STANDARD_GITHUB_ISSUES,
+  BRIEF_STATUS_LINES,
+  BRIEF_USE_FOR
+} from "@data/briefStandard";
+import { PERSON, SITE } from "@data/site";
+import {
+  BRIEF_VERSION,
+  BOUNDARY_STATEMENT,
+  NO_AUTOMATIC_SENDING_NOTE,
+  NO_BACKEND_NOTE,
+  WORN_SHAFT_BRIEF,
+  formatAiAgentPrompt,
+  formatDecisionBriefTemplateMarkdown,
+  formatExafuseEmailDraft,
+  formatInternalEngineeringMessage
+} from "../lib/decisionBrief";
+
+const title = "LMD Decision Brief v1.0 Standard";
+const description =
+  "Public, portable standard for turning rough Laser Metal Deposition, DED, repair, cladding, monitoring, and RFQ questions into bounded review briefs.";
+
+const markdownStarter = formatDecisionBriefTemplateMarkdown();
+const aiAgentPrompt = formatAiAgentPrompt(WORN_SHAFT_BRIEF);
+const internalMessage = formatInternalEngineeringMessage(WORN_SHAFT_BRIEF);
+const emailDraft = formatExafuseEmailDraft(WORN_SHAFT_BRIEF);
+
+const standardLinks = [
+  { label: "Public JSON schema", href: BRIEF_SCHEMA_PATH, description: "Validates the exported JSON handoff wrapper and nested brief object." },
+  { label: "Blank Markdown template", href: "/brief-template", description: "Human-friendly starter for review preparation." },
+  { label: "LMD Decision Workbench", href: "/tools", description: "Generate a brief locally in the browser." },
+  { label: "90-second demo", href: "/demo", description: "Dummy-data walkthrough from vague request to structured brief." },
+  { label: "AI-agent guidance", href: "/for-ai-agents", description: "Safe-use and do-not-use boundaries for assistants." }
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "@id": `${SITE.canonicalUrl}/brief-standard#article`,
+  url: `${SITE.canonicalUrl}/brief-standard`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  about: ["Laser Metal Deposition", "Directed Energy Deposition", "Decision Support", "RFQ Intelligence"],
+  version: "v1.0",
+  isAccessibleForFree: true
+};
+---
+
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/brief-standard" jsonLd={jsonLd}>
+  <section class="site-shell section-y">
+    <div class="max-w-5xl">
+      <div class="flex flex-wrap gap-2">
+        <Badge>{BRIEF_VERSION}</Badge>
+        <Badge tone="steel">Public standard</Badge>
+        <Badge tone="amber">Decision support only</Badge>
+      </div>
+      <p class="metric-label mt-8">Decision brief standard</p>
+      <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">LMD Decision Brief v1.0 Standard</h1>
+      <p class="mt-6 max-w-4xl text-lg leading-8 text-slate-300 md:text-xl">
+        The LMD Decision Brief v1.0 is a public, portable, bounded format for turning rough LMD, DED, repair, cladding, monitoring, and RFQ questions into known facts, missing information, risk flags, evidence needs, and a next action.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start cockpit</CTAButton>
+        <CTAButton href="/brief-template" variant="secondary">Open blank template</CTAButton>
+        <CTAButton href="/demo" variant="secondary">View 90-second demo</CTAButton>
+        <a class="btn btn-secondary" href={BRIEF_SCHEMA_PATH} download>Download JSON schema</a>
+        <CTAButton href="#copy-markdown-starter" variant="ghost">Copy Markdown starter</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-5 lg:grid-cols-[0.42fr_0.58fr]">
+      <article class="ordered-card-strong p-6">
+        <p class="metric-label">Status block</p>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-white">Portable, bounded, review-oriented.</h2>
+        <p class="mt-4 text-sm font-bold leading-6 text-cyan-100">
+          {NO_BACKEND_NOTE} {NO_AUTOMATIC_SENDING_NOTE}
+        </p>
+      </article>
+      <dl class="grid gap-3">
+        {BRIEF_STATUS_LINES.map(([label, value]) => (
+          <div class="ordered-card grid gap-2 p-4 sm:grid-cols-[11rem_1fr]">
+            <dt class="metric-label">{label}:</dt>
+            <dd class="text-sm font-bold leading-6 text-slate-200">{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-5 lg:grid-cols-2">
+      <article class="ordered-card-strong p-6">
+        <SectionHeading eyebrow="What it solves" title="A shared structure before the recommendation hardens" />
+        <ul class="mt-6 grid gap-3 text-sm leading-6 text-slate-300">
+          {[
+            "Separates known facts from missing information.",
+            "Makes critical, useful, and optional gaps visible.",
+            "Keeps risk flags and evidence needs attached to the next action.",
+            "Provides a stable artifact for RFQ discussion, expert review, AI-agent context, and internal notes."
+          ].map((item) => <li class="result-card">{item}</li>)}
+        </ul>
+      </article>
+      <article class="ordered-card p-6">
+        <SectionHeading eyebrow="Core fields" title="Minimum fields that make a brief useful" />
+        <ul class="mt-6 grid gap-2 sm:grid-cols-2">
+          {BRIEF_CORE_FIELDS.map((field) => <li class="result-card text-sm font-semibold leading-6 text-slate-300">{field}</li>)}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell grid gap-5 lg:grid-cols-2">
+      <article class="ordered-card-strong p-6">
+        <SectionHeading eyebrow="Output modes" title="One source object, multiple travel modes" />
+        <ul class="mt-6 grid gap-2 sm:grid-cols-2">
+          {BRIEF_OUTPUT_MODES.map((mode) => <li class="result-card text-sm font-semibold leading-6 text-slate-300">{mode}</li>)}
+        </ul>
+      </article>
+      <article class="ordered-card p-6">
+        <SectionHeading eyebrow="Brief quality rubric" title="What makes a brief useful?" />
+        <p class="mt-4 text-sm font-bold leading-6 text-amber-100">
+          This rubric checks brief quality, not technical feasibility.
+        </p>
+        <ul class="mt-6 grid gap-2 sm:grid-cols-2">
+          {BRIEF_QUALITY_RUBRIC.map((item) => <li class="result-card text-sm font-semibold leading-6 text-slate-300">{item}</li>)}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="site-shell section-y">
+    <div class="grid gap-5 lg:grid-cols-2">
+      <article class="ordered-card-strong p-6">
+        <SectionHeading eyebrow="Use for" title="Appropriate support contexts" />
+        <ul class="mt-6 grid gap-3 text-sm leading-6 text-slate-300">
+          {BRIEF_USE_FOR.map((item) => <li class="result-card">{item}</li>)}
+        </ul>
+      </article>
+      <article class="ordered-card p-6">
+        <SectionHeading eyebrow="Do not use for" title="Boundary conditions" />
+        <ul class="mt-6 grid gap-3 text-sm leading-6 text-slate-300">
+          {BRIEF_DO_NOT_USE_FOR.map((item) => <li class="result-card result-card--warning">{item}</li>)}
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Schema and examples"
+        title="Public files for people, tools, and AI agents"
+        description="The examples are dummy public-safe briefs. They are not customer cases and do not include confidential process or inspection data."
+      />
+      <div class="mt-8 grid gap-8">
+        <SourceLinks links={standardLinks} />
+        <SourceLinks links={BRIEF_EXAMPLES} />
+      </div>
+    </div>
+  </section>
+
+  <section id="adoption" class="site-shell section-y scroll-mt-24">
+    <SectionHeading
+      eyebrow="Adoption package"
+      title="Copy the standard into a review workflow"
+      description="Use these starters as public-safe structure. Remove confidential employer, customer, drawing, material, pricing, inspection, and process details unless you are explicitly allowed to share them."
+    />
+    <div class="mt-8 grid gap-5 lg:grid-cols-2">
+      <div id="copy-markdown-starter">
+        <CopyBlock client:load label="Copy Markdown starter" text={markdownStarter} />
+      </div>
+      <CopyBlock client:load label="Copy AI-agent prompt" text={aiAgentPrompt} />
+      <CopyBlock client:load label="Copy internal engineering message" text={internalMessage} />
+      <CopyBlock client:load label="Copy Exafuse review email draft" text={emailDraft} />
+    </div>
+    <div class="ordered-card-strong mt-8 p-6">
+      <p class="metric-label">Boundary reminder</p>
+      <p class="mt-3 text-sm font-bold leading-6 text-amber-100">{BOUNDARY_STATEMENT}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <CTAButton href={BRIEF_STANDARD_GITHUB_ISSUES} variant="secondary" external>Suggest a public-safe improvement on GitHub</CTAButton>
+        <CTAButton href={BRIEF_SCHEMA_PATH} variant="secondary">Open schema</CTAButton>
+        <CTAButton href="/for-ai-agents" variant="secondary">AI-agent guidance</CTAButton>
+      </div>
+    </div>
+  </section>
+</Layout>

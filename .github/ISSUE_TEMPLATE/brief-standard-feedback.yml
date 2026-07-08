@@ -1,0 +1,32 @@
+name: Brief standard feedback
+description: Suggest a public-safe improvement to the LMD Decision Brief v1.0 standard.
+title: "Brief standard feedback: "
+labels: ["brief-standard", "public-safe-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include confidential employer/customer data or safety-critical approval requests.
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Suggested improvement
+      description: What should change in the public standard, schema, examples, or adoption text?
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why it matters
+      description: Explain the practical RFQ, review, AI-agent, or documentation problem this solves.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundary check
+      options:
+        - label: This does not include confidential employer/customer data.
+          required: true
+        - label: This does not request engineering approval, certification, release, safety-critical acceptance, or a quality guarantee.
+          required: true

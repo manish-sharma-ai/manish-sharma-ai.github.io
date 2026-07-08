@@ -31,9 +31,15 @@ Human-facing labels should be buyer/source oriented:
 - `Request Exafuse review`
 - `Discuss with Exafuse`
 - `View Exafuse after migration`
-- `Case source after migration`
 
 Helper text: `New Exafuse case/tool deep links activate after production migration.`
+
+Do not render these strings in human HTML:
+
+- `Case source after migration`
+- `RFQ path after migration`
+- `Pathfinder after migration`
+- `Builder after migration`
 
 Machine-readable files may keep explicit migration-mode details where useful.
 
@@ -45,5 +51,10 @@ Machine-readable files may keep explicit migration-mode details where useful.
 - `audit:claims-human-surface`
 - `audit:ai-safe-summary`
 - `audit:email-manual-boundary`
+- `audit:brief-schema`
+- `audit:human-exafuse-ctas`
+- `audit:rubric-format`
+- `audit:preflight`
+- `audit:seo-social`
 
 These should remain included in `audit:all`.

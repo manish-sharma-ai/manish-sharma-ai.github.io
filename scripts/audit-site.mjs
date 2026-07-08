@@ -43,6 +43,7 @@ const keyRenderedPages = [
   "/playbooks/",
   "/claims/",
   "/no-hype/",
+  "/brief-standard/",
   "/brief-template/",
   "/demo/",
   "/de/",
@@ -774,7 +775,7 @@ function auditHumanMigrationLanguage() {
     }
   }
   const externalConfig = existsSync(join(root, "src/config/externalLinks.ts")) ? read("src/config/externalLinks.ts") : "";
-  for (const phrase of ["Request Exafuse review", "Discuss with Exafuse", "Contact Exafuse", "View Exafuse after migration", "Case source after migration"]) {
+  for (const phrase of ["Request Exafuse review", "Discuss with Exafuse", "Contact Exafuse", "View Exafuse after migration"]) {
     if (!externalConfig.includes(phrase)) findings.push(`src/config/externalLinks.ts: missing human label "${phrase}"`);
   }
   for (const file of ["dist/evidence/index.html", "dist/public-work/index.html"]) {
@@ -895,6 +896,348 @@ function auditEmailManualBoundary() {
   fail("Email manual boundary audit failed", findings);
 }
 
+function auditBriefSchema() {
+  const findings = [];
+  const schemaFile = "public/schemas/lmd-decision-brief-v1.schema.json";
+  const exampleFiles = [
+    "public/examples/lmd-decision-brief-worn-shaft-v1.json",
+    "public/examples/lmd-decision-brief-monitoring-anomaly-v1.json",
+    "public/examples/lmd-decision-brief-surface-cladding-v1.json",
+    "public/examples/lmd-decision-brief-rfq-v1.json"
+  ];
+  const markdownExample = "public/examples/lmd-decision-brief-worn-shaft-v1.md";
+
+  if (!existsSync(join(root, schemaFile))) findings.push(`${schemaFile}: missing`);
+  if (!existsSync(join(root, markdownExample))) findings.push(`${markdownExample}: missing`);
+  if (findings.length > 0) {
+    fail("Brief schema audit failed", findings);
+    return;
+  }
+
+  let schema;
+  try {
+    schema = JSON.parse(read(schemaFile));
+  } catch (error) {
+    findings.push(`${schemaFile}: invalid JSON (${error.message})`);
+  }
+
+  const topRequired = schema?.required ?? [];
+  const briefSchema = schema?.$defs?.decisionBrief ?? {};
+  const briefRequired = briefSchema.required ?? [];
+  const arrayFields = [
+    "notValidFor",
+    "availableData",
+    "knownFacts",
+    "missingInformation",
+    "missingCritical",
+    "missingUseful",
+    "missingOptional",
+    "riskFlags",
+    "evidenceNeeded"
+  ];
+  const requiredBoundaryPhrases = [
+    "Preliminary decision-support only",
+    "Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review",
+    "No backend",
+    "No automatic sending"
+  ];
+  const notValidForRequired = ["approval", "certification", "release", "safety-critical acceptance", "quality guarantee"];
+  const enumChecks = [
+    ["briefVersion", schema?.properties?.briefVersion?.const],
+    ["artifactType", schema?.properties?.artifactType?.const],
+    ["status", schema?.properties?.status?.const],
+    ["outputMode", schema?.properties?.outputMode?.const]
+  ];
+  const nestedEnumChecks = [
+    ["briefVersion", briefSchema.properties?.briefVersion?.const],
+    ["artifactType", briefSchema.properties?.artifactType?.const],
+    ["status", briefSchema.properties?.status?.const],
+    ["preparedFor", briefSchema.properties?.preparedFor?.const],
+    ["briefCompleteness", briefSchema.properties?.briefCompleteness?.enum],
+    ["expertReviewPackageStatus", briefSchema.properties?.expertReviewPackageStatus?.enum],
+    ["evidenceBurden", briefSchema.properties?.evidenceBurden?.enum]
+  ];
+
+  for (const phrase of ["$id", "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json", "quality guarantee"]) {
+    if (!read(schemaFile).includes(phrase)) findings.push(`${schemaFile}: missing "${phrase}"`);
+  }
+
+  for (const file of exampleFiles) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing`);
+      continue;
+    }
+    let data;
+    try {
+      data = JSON.parse(read(file));
+    } catch (error) {
+      findings.push(`${file}: invalid JSON (${error.message})`);
+      continue;
+    }
+    for (const field of topRequired) {
+      if (data[field] === undefined) findings.push(`${file}: missing top-level field "${field}"`);
+    }
+    for (const [field, expected] of enumChecks) {
+      if (expected !== undefined && data[field] !== expected) findings.push(`${file}: ${field} must be "${expected}"`);
+    }
+    if (!data.brief || typeof data.brief !== "object") {
+      findings.push(`${file}: missing nested brief object`);
+      continue;
+    }
+    for (const field of briefRequired) {
+      if (data.brief[field] === undefined) findings.push(`${file}: missing brief field "${field}"`);
+    }
+    for (const field of arrayFields) {
+      const target = field === "notValidFor" ? data[field] : data.brief[field];
+      if (!Array.isArray(target)) findings.push(`${file}: ${field} must be an array`);
+      if (Array.isArray(target) && target.length === 0) findings.push(`${file}: ${field} must not be empty`);
+    }
+    for (const value of notValidForRequired) {
+      if (!data.notValidFor?.includes(value)) findings.push(`${file}: top-level notValidFor missing "${value}"`);
+      if (!data.brief.notValidFor?.includes(value)) findings.push(`${file}: brief notValidFor missing "${value}"`);
+    }
+    for (const [field, expected] of nestedEnumChecks) {
+      if (Array.isArray(expected) && !expected.includes(data.brief[field])) {
+        findings.push(`${file}: brief.${field} has non-schema value "${data.brief[field]}"`);
+      } else if (typeof expected === "string" && data.brief[field] !== expected) {
+        findings.push(`${file}: brief.${field} must be "${expected}"`);
+      }
+    }
+    const serialized = JSON.stringify(data);
+    for (const phrase of requiredBoundaryPhrases) {
+      if (!serialized.includes(phrase)) findings.push(`${file}: missing boundary phrase "${phrase}"`);
+    }
+    for (const bad of ["pages.dev", "exafuse-website-react", "www.exafuse.de"]) {
+      if (serialized.includes(bad)) findings.push(`${file}: contains staging or wrong production host "${bad}"`);
+    }
+    for (const regex of [/\bfeasible\b/i, /\bapproved\b/i, /\bcertified\b/i, /\bqualified\b/i, /\bguaranteed\b/i]) {
+      const match = serialized.match(regex);
+      if (match) findings.push(`${file}: contains unsafe positive word "${match[0]}"`);
+    }
+  }
+
+  const libSource = existsSync(join(root, "src/lib/decisionBrief.ts")) ? read("src/lib/decisionBrief.ts") : "";
+  for (const phrase of ["formatDecisionBriefJson", "WORN_SHAFT_BRIEF", "COCKPIT_PRESETS", "quality guarantee"]) {
+    if (!libSource.includes(phrase)) findings.push(`src/lib/decisionBrief.ts: missing generated fixture marker "${phrase}"`);
+  }
+  const exportSource = existsSync(join(root, "src/components/DecisionBriefExport.tsx"))
+    ? read("src/components/DecisionBriefExport.tsx")
+    : "";
+  if (!exportSource.includes("formatDecisionBriefJson(brief)")) {
+    findings.push("src/components/DecisionBriefExport.tsx: exported JSON is not generated through formatDecisionBriefJson(brief)");
+  }
+  if (!read(markdownExample).includes("Not valid for: approval, certification, release, safety-critical acceptance, or quality guarantee")) {
+    findings.push(`${markdownExample}: missing updated not-valid-for line`);
+  }
+
+  fail("Brief schema audit failed", findings);
+}
+
+function auditHumanExafuseCtas() {
+  const findings = [];
+  const forbidden = [
+    "Case source after migration",
+    "RFQ path after migration",
+    "Pathfinder after migration",
+    "Builder after migration"
+  ];
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of forbidden) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: human HTML contains "${phrase}"`);
+    }
+  }
+  fail("Human Exafuse CTA audit failed", findings);
+}
+
+function auditRubricFormat() {
+  const findings = [];
+  const builtFiles = ["dist/brief-template/index.html", "dist/brief-standard/index.html", "dist/tools/index.html"];
+  for (const file of builtFiles) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing built page`);
+      continue;
+    }
+    const html = read(file);
+    const visibleText = visibleTextFromHtml(html);
+    if (html.includes("Exact material grade visible Geometry/drawing available")) {
+      findings.push(`${file}: brief rubric renders as run-on text`);
+    }
+    if (!html.includes("<ul") || !html.includes("<li")) {
+      findings.push(`${file}: expected rubric/checklist list markup`);
+    }
+    if (!visibleText.includes("This rubric checks brief quality, not technical feasibility.")) {
+      findings.push(`${file}: missing rubric boundary explanation`);
+    }
+  }
+  const sourceFiles = ["src/pages/brief-template.astro", "src/pages/brief-standard.astro", "src/pages/tools.astro"];
+  for (const file of sourceFiles) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing source page`);
+      continue;
+    }
+    const source = read(file);
+    if (!source.includes("BRIEF_QUALITY_RUBRIC.map") || !source.includes("<li")) {
+      findings.push(`${file}: rubric should render BRIEF_QUALITY_RUBRIC as list items`);
+    }
+  }
+  fail("Rubric format audit failed", findings);
+}
+
+function sitemapText() {
+  return scanFiles(["dist"], [".xml"])
+    .filter(({ file }) => file.startsWith("dist/sitemap"))
+    .map(({ text }) => text)
+    .join("\n");
+}
+
+function preflightBoundaryContext(text, index, phrase) {
+  const window = text.slice(Math.max(0, index - 600), Math.min(text.length, index + phrase.length + 180)).toLowerCase();
+  return [
+    "not valid for",
+    "do_not_use_for",
+    "do not use for",
+    "do not use this site as",
+    "do not use this site for",
+    "do not use",
+    "not final",
+    "not engineering",
+    "not approval",
+    "not certification",
+    "not release",
+    "cannot",
+    "replacement for expert review",
+    "limitation",
+    "boundary",
+    "explicit limitations"
+  ].some((marker) => window.includes(marker));
+}
+
+function auditPreflight() {
+  const findings = [];
+  const expectedRoutes = [
+    "/",
+    "/thesis/",
+    "/domains/lmd-ded/",
+    "/identity/",
+    "/profile/public-profile/",
+    "/resources/",
+    "/tools/",
+    "/brief-standard/",
+    "/brief-template/",
+    "/demo/",
+    "/for-ai-agents/",
+    "/site-map/"
+  ];
+  const expectedFiles = [
+    "dist/robots.txt",
+    "dist/llms.txt",
+    "dist/llms-full.txt",
+    "dist/identity.md",
+    "dist/agent-pack/lmd-rfq-schema.json",
+    "dist/agent-pack/lmd-decision-rules.md",
+    "dist/agent-pack/lmd-prompt-library.md",
+    "dist/agent-pack/lmd-quality-checklist.md",
+    "dist/schemas/lmd-decision-brief-v1.schema.json",
+    "dist/examples/lmd-decision-brief-worn-shaft-v1.json",
+    "dist/examples/lmd-decision-brief-worn-shaft-v1.md",
+    "dist/examples/lmd-decision-brief-monitoring-anomaly-v1.json",
+    "dist/examples/lmd-decision-brief-surface-cladding-v1.json",
+    "dist/examples/lmd-decision-brief-rfq-v1.json"
+  ];
+  const sitemap = sitemapText();
+
+  for (const route of expectedRoutes) {
+    const file = pagePathToDistFile(route);
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing built route`);
+      continue;
+    }
+    const html = read(file);
+    const visibleText = visibleTextFromHtml(html);
+    if ((html.match(/<h1\b/gi) ?? []).length !== 1) findings.push(`${file}: expected exactly one H1`);
+    if (!/<title>[^<]{8,}<\/title>/i.test(html)) findings.push(`${file}: missing nonempty title`);
+    if (!/<meta name="description" content="[^"]{20,}"/i.test(html)) findings.push(`${file}: missing nonempty description`);
+    if (!/<link rel="canonical" href="https:\/\/manish-sharma-ai\.github\.io[^"]*"/i.test(html)) {
+      findings.push(`${file}: missing canonical URL`);
+    }
+    for (const phrase of ["TODO", "FIXME", "Default example text:", "audit marker", "test marker", "debug"]) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
+    }
+    for (const bad of ["pages.dev", "exafuse-website-react", "www.exafuse.de"]) {
+      if (html.includes(bad)) findings.push(`${file}: contains staging or wrong production host "${bad}"`);
+    }
+    const lowerVisible = visibleText.toLowerCase();
+    for (const unsafe of ["final engineering approval", "material certification", "quality guarantee", "safety-critical acceptance"]) {
+      let index = lowerVisible.indexOf(unsafe);
+      while (index >= 0) {
+        if (!preflightBoundaryContext(lowerVisible, index, unsafe)) {
+          findings.push(`${file}: visible text contains unsafe phrase without boundary context "${unsafe}"`);
+          break;
+        }
+        index = lowerVisible.indexOf(unsafe, index + unsafe.length);
+      }
+    }
+    const routeUrl = `https://manish-sharma-ai.github.io${route === "/" ? "/" : route}`;
+    if (!sitemap.includes(routeUrl)) findings.push(`sitemap: missing ${routeUrl}`);
+  }
+
+  for (const file of expectedFiles) {
+    if (!existsSync(join(root, file))) findings.push(`${file}: missing public build artifact`);
+  }
+  for (const file of ["dist/llms.txt", "dist/llms-full.txt"]) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    for (const phrase of [
+      "https://manish-sharma-ai.github.io/brief-standard",
+      "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json",
+      "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json"
+    ]) {
+      if (!text.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+    }
+  }
+  if (!existsSync(join(root, ".github/workflows/deploy.yml"))) findings.push(".github/workflows/deploy.yml: missing deploy workflow");
+  fail("Preflight audit failed", findings);
+}
+
+function auditSeoSocial() {
+  const findings = [];
+  const pages = [
+    "/",
+    "/thesis/",
+    "/domains/lmd-ded/",
+    "/identity/",
+    "/resources/",
+    "/tools/",
+    "/brief-standard/",
+    "/brief-template/",
+    "/demo/",
+    "/for-ai-agents/"
+  ];
+  for (const route of pages) {
+    const file = pagePathToDistFile(route);
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing built page`);
+      continue;
+    }
+    const html = read(file);
+    for (const marker of [
+      '<meta property="og:title"',
+      '<meta property="og:description"',
+      '<meta property="og:type"',
+      '<meta property="og:url"',
+      '<link rel="canonical"',
+      '<meta name="twitter:card"',
+      '<meta name="twitter:title"',
+      '<meta name="twitter:description"'
+    ]) {
+      if (!html.includes(marker)) findings.push(`${file}: missing ${marker}`);
+    }
+    if (!html.includes("https://manish-sharma-ai.github.io")) findings.push(`${file}: missing canonical host in metadata`);
+  }
+  fail("SEO/social audit failed", findings);
+}
+
 const audits = {
   "visual-text": auditVisualText,
   "rendered-text": auditRenderedText,
@@ -921,6 +1264,11 @@ const audits = {
   "claims-human-surface": auditClaimsHumanSurface,
   "ai-safe-summary": auditAiSafeSummary,
   "email-manual-boundary": auditEmailManualBoundary,
+  "brief-schema": auditBriefSchema,
+  "human-exafuse-ctas": auditHumanExafuseCtas,
+  "rubric-format": auditRubricFormat,
+  preflight: auditPreflight,
+  "seo-social": auditSeoSocial,
   all() {
     auditVisualText();
     auditRenderedText();
@@ -946,6 +1294,11 @@ const audits = {
     auditClaimsHumanSurface();
     auditAiSafeSummary();
     auditEmailManualBoundary();
+    auditBriefSchema();
+    auditHumanExafuseCtas();
+    auditRubricFormat();
+    auditPreflight();
+    auditSeoSocial();
   }
 };
 

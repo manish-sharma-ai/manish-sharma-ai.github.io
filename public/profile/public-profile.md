@@ -17,6 +17,7 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 | Site/repository owner | manish-sharma-ai - https://github.com/manish-sharma-ai |
 | Website repository | https://github.com/manish-sharma-ai/manish-sharma-ai.github.io |
 | Exafuse | https://exafuse.de/ |
+| Central public artifact | LMD Decision Brief v1.0 Standard - https://manish-sharma-ai.github.io/brief-standard |
 
 ## Public Technical Themes
 
@@ -30,6 +31,7 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 - Industrial repair
 - RFQ intelligence
 - Engineering evidence
+- LMD Decision Brief v1.0 standard, schema, and public-safe examples
 
 ## Boundary
 

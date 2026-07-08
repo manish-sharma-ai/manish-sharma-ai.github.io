@@ -8,6 +8,7 @@ import ProcessLoop from "@components/ProcessLoop.astro";
 import RepairabilityQuickCheck from "@components/RepairabilityQuickCheck";
 import RfqStructureConverter from "@components/RfqStructureConverter";
 import SectionHeading from "@components/SectionHeading.astro";
+import { BRIEF_QUALITY_RUBRIC } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { SITE } from "@data/site";
 
@@ -21,17 +22,6 @@ const toolStats = [
   ["Data sent", "None by this site"],
   ["Output type", "Preliminary decision-support"],
   ["Final route", "Expert review / Exafuse RFQ"]
-];
-
-const briefRubric = [
-  "Exact material grade visible",
-  "Geometry/drawing available",
-  "Damage/build area described",
-  "Service conditions stated",
-  "Tolerance/finishing need stated",
-  "Inspection requirement stated",
-  "Risk flags not hidden",
-  "Next action clear"
 ];
 
 const workbenchJsonLd = {
@@ -118,45 +108,28 @@ const toolBlocks = [
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="#lmd-decision-cockpit" variant="primary">Start Decision Cockpit</CTAButton>
+        <CTAButton href="/brief-standard" variant="secondary">Brief standard</CTAButton>
         <CTAButton href="/demo" variant="secondary">90-second demo</CTAButton>
         <CTAButton href="/agent-pack" variant="secondary">Open RFQ Toolkit</CTAButton>
-        <CTAButton href="/thesis" variant="secondary">Read the thesis</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>
-    <ProcessLoop variant="compact" title="Inputs -> gaps -> risks -> next action" subtitle="The workbench keeps the loop short: structure the question, expose uncertainty, then route serious cases to expert review." />
+    <div class="ordered-card-strong p-5">
+      <p class="metric-label">Workbench status</p>
+      <h2 class="mt-3 text-2xl font-black leading-tight text-white">Browser-local decision support.</h2>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+        {toolStats.map(([label, value]) => (
+          <div class="ordered-card p-4">
+            <p class="metric-label">{label}</p>
+            <p class="mt-2 text-sm font-black leading-6 text-white">{value}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   </section>
 
   <section class="site-shell section-y">
     <LmdDecisionCockpit client:load defaultMode="example" exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
-  </section>
-
-  <section class="band">
-    <div class="site-shell grid gap-3 py-6 sm:grid-cols-2 lg:grid-cols-4">
-      {toolStats.map(([label, value]) => (
-        <div class="ordered-card p-4">
-          <p class="metric-label">{label}</p>
-          <p class="mt-2 text-sm font-black leading-6 text-white">{value}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="site-shell section-y">
-    <div class="ordered-card-strong grid gap-6 p-6 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
-      <div>
-        <p class="metric-label">Brief quality rubric</p>
-        <h2 class="mt-3 text-3xl font-black leading-tight text-white">What makes a brief useful?</h2>
-        <p class="mt-4 text-sm font-bold leading-6 text-amber-100">
-          This rubric checks brief quality, not technical feasibility.
-        </p>
-      </div>
-      <div class="grid gap-2 sm:grid-cols-2">
-        {briefRubric.map((item) => (
-          <span class="result-card text-sm font-semibold leading-6 text-slate-300">{item}</span>
-        ))}
-      </div>
-    </div>
   </section>
 
   {toolBlocks.map((tool, index) => (
@@ -190,6 +163,29 @@ const toolBlocks = [
       </div>
     </section>
   ))}
+
+  <section class="site-shell section-y">
+    <div class="ordered-card-strong grid gap-6 p-6 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
+      <div>
+        <p class="metric-label">Brief quality rubric</p>
+        <h2 class="mt-3 text-3xl font-black leading-tight text-white">What makes a brief useful?</h2>
+        <p class="mt-4 text-sm font-bold leading-6 text-amber-100">
+          This rubric checks brief quality, not technical feasibility.
+        </p>
+      </div>
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {BRIEF_QUALITY_RUBRIC.map((item) => (
+          <li class="result-card text-sm font-semibold leading-6 text-slate-300">{item}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <ProcessLoop variant="compact" title="Inputs -> gaps -> risks -> next action" subtitle="The workbench keeps the loop short: structure the question, expose uncertainty, then route serious cases to expert review." />
+    </div>
+  </section>
 
   <section class="band section-y">
     <div class="site-shell grid gap-5 lg:grid-cols-2">

@@ -4,13 +4,27 @@
 
 It turns rough LMD, DED, repair, cladding, monitoring, and RFQ questions into a copyable review structure. It is preliminary decision-support only.
 
+Public standard route: `https://manish-sharma-ai.github.io/brief-standard`
+
+Adoption package: `https://manish-sharma-ai.github.io/brief-standard#adoption`
+
+Machine-readable schema: `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
+
+Public-safe examples:
+
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json`
+
 ## Schema
 
 - `briefVersion`: `LMD Decision Brief v1.0`
 - `artifactType`: `LMD Decision Brief`
 - `status`: `Preliminary decision support`
 - `preparedFor`: `Expert review / RFQ discussion`
-- `notValidFor`: `approval`, `certification`, `release`, `safety-critical acceptance`
+- `notValidFor`: `approval`, `certification`, `release`, `safety-critical acceptance`, `quality guarantee`
 - `outputMode`
 - `situation`
 - `component`
@@ -52,6 +66,8 @@ Current cockpit presets:
 - `surface-cladding`
 - `lmd-vs-slm`
 - `rfq`
+
+The public `/examples/` files must validate against `public/schemas/lmd-decision-brief-v1.schema.json`. They are sample artifacts, not customer cases.
 
 Do not add customer names, hidden Exafuse details, part drawings, private process parameters, pricing, or confidential inspection data.
 
@@ -125,6 +141,28 @@ Always preserve:
 
 Use Exafuse as the commercial and company review route. Manish Sharma Lab structures public decision-support material; it does not provide company services, engineering approval, material certification, safety-critical acceptance, or quality guarantees.
 
+## Adoption Package
+
+The public standard page should expose copyable public-safe text for:
+
+- Markdown starter
+- AI-agent prompt
+- internal engineering message
+- Exafuse review email draft
+
+These starters are review-preparation aids only. They must keep the boundary statement visible and must warn against confidential employer/customer data.
+
+## Public Feedback
+
+Use GitHub issue templates for public-safe feedback:
+
+- `.github/ISSUE_TEMPLATE/brief-standard-feedback.yml`
+- `.github/ISSUE_TEMPLATE/claim-review.yml`
+- `.github/ISSUE_TEMPLATE/broken-link.yml`
+- `.github/ISSUE_TEMPLATE/boundary-risk.yml`
+
+Each template must warn: `Do not include confidential employer/customer data or safety-critical approval requests.`
+
 ## Adding A Cockpit Preset
 
 1. Add the preset in `src/lib/decisionBrief.ts`.
@@ -133,6 +171,7 @@ Use Exafuse as the commercial and company review route. Manish Sharma Lab struct
 4. Add or confirm a URL hash route such as `/tools/#preset=example-id`.
 5. Link it only where it helps a public decision path.
 6. Run `npm run audit:brief-artifact`, `npm run audit:brief-boundaries`, `npm run audit:a11y-static`, and `npm run audit:mobile-static`.
+7. If the preset has a public example file, run `npm run audit:brief-schema`.
 
 ## Adding A Playbook
 
@@ -167,3 +206,14 @@ When the brief schema, presets, routes, or claim boundaries change, update:
 - `README.md`
 - `AGENTS.md`
 - `docs/artifact-lifecycle.md`
+
+Required release audits:
+
+```bash
+npm run audit:brief-schema
+npm run audit:human-exafuse-ctas
+npm run audit:rubric-format
+npm run audit:preflight
+npm run audit:seo-social
+npm run audit:all
+```

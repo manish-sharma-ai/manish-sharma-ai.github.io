@@ -8,6 +8,8 @@ The shared model lives in `src/lib/decisionBrief.ts`.
 
 Every cockpit, workbench, demo, template, and playbook output should use the shared `DecisionBrief` object rather than inventing a separate summary format.
 
+The public standard route is `/brief-standard/`. The schema is `public/schemas/lmd-decision-brief-v1.schema.json`. Public examples live in `public/examples/`.
+
 Required generated fields:
 
 - known facts
@@ -22,6 +24,9 @@ Required generated fields:
 - Exafuse review route
 - boundary statement
 - no-backend note
+- no-automatic-sending note
+
+The JSON export wrapper and every public JSON example must validate against the public schema. Run `npm run audit:brief-schema` after changing fields, enums, boundaries, examples, or export behavior.
 
 ## Travel Modes
 
@@ -74,4 +79,5 @@ When adding a preset:
 3. Include grouped missing information when practical.
 4. Route proof patterns to public-safe presets, not confidential case detail.
 5. Update `public/llms.txt`, `public/llms-full.txt`, and agent-pack files when fields or modes change.
-6. Run `npm run check`, `npm run build`, `npm run audit:all`, and `git diff --check`.
+6. Add or update any matching public example under `public/examples/` only if it remains generic and public-safe.
+7. Run `npm run check`, `npm run build`, `npm run audit:brief-schema`, `npm run audit:all`, and `git diff --check`.

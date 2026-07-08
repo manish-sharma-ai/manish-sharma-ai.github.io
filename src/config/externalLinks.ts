@@ -120,7 +120,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs15: {
     label: "CS15 Duisburg Bridge Components",
-    productionSafeLabel: "Case source after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/duisburger-bruecke-lmd-fallstudie/",
     statusInProductionSafe: "production-link-after-migration",
@@ -128,7 +128,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs01: {
     label: "CS01 Forging Hammer Repair",
-    productionSafeLabel: "Case source after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/schmiedehammer-reparatur-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -136,7 +136,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs10: {
     label: "CS10 Nobufil Extrusion Screw Repair",
-    productionSafeLabel: "Case source after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/extrusionsschnecke-reparatur-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -144,7 +144,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs13: {
     label: "CS13 130 mm Build-and-Coat Drill",
-    productionSafeLabel: "Case source after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/bombenbohrer-lmd-aufbau-beschichtung/",
     statusInProductionSafe: "production-link-after-migration",

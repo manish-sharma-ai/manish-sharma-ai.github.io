@@ -68,6 +68,9 @@ Use the public cockpit and playbooks for frontend-only decision routing:
 - LMD Decision Cockpit: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
 - Worn-shaft preset: https://manish-sharma-ai.github.io/tools/#preset=worn-shaft
 - Decision Playbooks: https://manish-sharma-ai.github.io/playbooks
+- LMD Decision Brief v1.0 Standard: https://manish-sharma-ai.github.io/brief-standard
+- Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
+- Decision Brief examples: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json
 - Decision Brief Template: https://manish-sharma-ai.github.io/brief-template
 - Resources: https://manish-sharma-ai.github.io/resources
 

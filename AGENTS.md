@@ -63,8 +63,10 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Keep identity facts unambiguous: `aiwithms` is the GitHub profile, `manish-sharma-ai` is the GitHub organization/site repository owner, and `manish-sharma-ai/manish-sharma-ai.github.io` is the repository.
 - Keep the homepage cockpit-first. A first-time visitor should be able to start the LMD Decision Cockpit before proof maps or long reference sections.
 - Keep LMD Decision Brief v1.0 as the central product artifact across cockpit, tools, demo, template, playbooks, and AI-readable files.
+- Treat `/brief-standard/` as the public, portable LMD Decision Brief v1.0 standard. Keep its schema, examples, adoption package, AI-readable files, and docs synchronized.
 - Keep the three portable output modes synchronized: Technical Decision Brief, Exafuse-ready email draft, and AI-agent-safe summary.
 - Treat brief completeness as a context-quality label, not feasibility. Treat evidence burden as a planning label, not approval.
+- Keep not-valid-for boundaries synchronized: approval, certification, release, safety-critical acceptance, and quality guarantee.
 - Email drafts must stay client-side/manual. Do not add automatic sending, backend endpoints, input analytics, or input storage.
 - Missing information should stay grouped as critical gaps, useful gaps, and optional context wherever the shared brief is rendered or exported.
 - Cockpit presets must be public-safe dummy examples only and must not use backend storage, analytics, or confidential data.
@@ -93,6 +95,7 @@ During work:
   - `public/llms-full.txt`
   - `README.md`
   - `docs/search-indexing-checklist.md`
+  - `docs/decision-brief-standard.md` when the route affects LMD Decision Brief v1.0
 
 Before finishing:
 
@@ -197,6 +200,12 @@ Important public files:
 - `public/thesis.md`
 - `public/research/lmd-literature-scan.json`
 - `public/research/exafuse-public-proof-map.json`
+- `public/schemas/lmd-decision-brief-v1.schema.json`
+- `public/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `public/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `public/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `public/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `public/examples/lmd-decision-brief-rfq-v1.json`
 - `public/agent-pack/lmd-rfq-schema.json`
 - `public/agent-pack/lmd-decision-rules.md`
 - `public/agent-pack/lmd-prompt-library.md`
@@ -246,6 +255,11 @@ npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
+npm run audit:brief-schema
+npm run audit:human-exafuse-ctas
+npm run audit:rubric-format
+npm run audit:preflight
+npm run audit:seo-social
 npm run audit:all
 git diff --check
 ```
@@ -267,6 +281,7 @@ Also confirm `docs/final-100-checklist.md` still matches the current public surf
 - Agent Pack: `https://manish-sharma-ai.github.io/agent-pack`
 - Tools: `https://manish-sharma-ai.github.io/tools`
 - Resources: `https://manish-sharma-ai.github.io/resources`
+- Brief Standard: `https://manish-sharma-ai.github.io/brief-standard`
 - Lab Notes: `https://manish-sharma-ai.github.io/lab-notes`
 - Glossary: `https://manish-sharma-ai.github.io/glossary`
 - Press Kit: `https://manish-sharma-ai.github.io/press-kit`

@@ -20,6 +20,12 @@ Date: 2026-07-07
 - `public/thesis.md`
 - `public/research/lmd-literature-scan.json`
 - `public/research/exafuse-public-proof-map.json`
+- `public/schemas/lmd-decision-brief-v1.schema.json`
+- `public/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `public/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `public/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `public/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `public/examples/lmd-decision-brief-rfq-v1.json`
 - `public/agent-pack/lmd-rfq-schema.json`
 - `public/agent-pack/lmd-decision-rules.md`
 - `public/agent-pack/lmd-prompt-library.md`
@@ -76,4 +82,5 @@ Expected results:
 - Submit the same sitemap in Bing Webmaster Tools.
 - Request indexing for `/`, `/identity`, `/thesis`, `/domains/lmd-ded`, `/evidence`, `/industrial-proof`, `/agent-pack`, `/tools`, `/for-ai-agents`, and `/site-map`.
 - Check that GitHub repository metadata uses the canonical URL.
+- Request indexing for `/brief-standard` and check `/schemas/lmd-decision-brief-v1.schema.json`.
 - Run weekly prompt visibility tests from `docs/lmd-black-hole-score-template.md`.

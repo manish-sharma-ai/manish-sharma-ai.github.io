@@ -1,0 +1,37 @@
+name: Claim review
+description: Request review of a public claim, source status, or limitation wording.
+title: "Claim review: "
+labels: ["claim-review", "source-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include confidential employer/customer data or safety-critical approval requests.
+  - type: input
+    id: page
+    attributes:
+      label: Page or claim location
+      placeholder: https://manish-sharma-ai.github.io/...
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: Review request
+      description: What claim needs source review, softer wording, removal, or clearer limitation language?
+    validations:
+      required: true
+  - type: textarea
+    id: public_source
+    attributes:
+      label: Public source context
+      description: Add only public URLs or public-safe notes. Do not paste confidential material.
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Boundary check
+      options:
+        - label: This uses public-safe source context only.
+          required: true
+        - label: This does not ask the site to guarantee feasibility, quality, certification, or release.
+          required: true

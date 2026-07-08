@@ -9,7 +9,7 @@ Manish Sharma Lab links to Exafuse as the company/commercial source. The product
 - `https://exafuse.de/`
 - `https://exafuse.de/kontakt/`
 - Existing production service, technology, quality, material, case-index, and knowledge-index pages that are verified live.
-- Buyer-facing labels such as `Contact Exafuse`, `Request Exafuse review`, `Discuss with Exafuse`, `View Exafuse after migration`, and `Case source after migration`.
+- Buyer-facing labels such as `Contact Exafuse`, `Request Exafuse review`, `Discuss with Exafuse`, and `View Exafuse after migration`.
 
 ## Migration-Gated Links
 

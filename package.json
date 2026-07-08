@@ -34,6 +34,11 @@
     "audit:claims-human-surface": "node scripts/audit-site.mjs claims-human-surface",
     "audit:ai-safe-summary": "node scripts/audit-site.mjs ai-safe-summary",
     "audit:email-manual-boundary": "node scripts/audit-site.mjs email-manual-boundary",
+    "audit:brief-schema": "node scripts/audit-site.mjs brief-schema",
+    "audit:human-exafuse-ctas": "node scripts/audit-site.mjs human-exafuse-ctas",
+    "audit:rubric-format": "node scripts/audit-site.mjs rubric-format",
+    "audit:preflight": "node scripts/audit-site.mjs preflight",
+    "audit:seo-social": "node scripts/audit-site.mjs seo-social",
     "audit:all": "node scripts/audit-site.mjs all"
   },
   "dependencies": {

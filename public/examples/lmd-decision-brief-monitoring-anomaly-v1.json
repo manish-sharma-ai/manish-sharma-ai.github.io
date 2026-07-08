@@ -1,0 +1,88 @@
+{
+  "briefVersion": "LMD Decision Brief v1.0",
+  "artifactType": "LMD Decision Brief",
+  "status": "Preliminary decision support",
+  "notValidFor": [
+    "approval",
+    "certification",
+    "release",
+    "safety-critical acceptance",
+    "quality guarantee"
+  ],
+  "outputMode": "JSON handoff",
+  "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+  "noBackendNote": "No backend. No data sent by this site.",
+  "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client.",
+  "brief": {
+    "briefVersion": "LMD Decision Brief v1.0",
+    "artifactType": "LMD Decision Brief",
+    "status": "Preliminary decision support",
+    "preparedFor": "Expert review / RFQ discussion",
+    "notValidFor": [
+      "approval",
+      "certification",
+      "release",
+      "safety-critical acceptance",
+      "quality guarantee"
+    ],
+    "outputMode": "JSON handoff",
+    "situation": "Public-safe dummy example: melt-pool or camera anomaly needs interpretation.",
+    "component": "LMD job with process signal anomaly",
+    "goal": "Separate process awareness from quality evidence.",
+    "material": "Material not specified.",
+    "geometryOrSize": "Track/layer context not yet linked to full part geometry.",
+    "damageOrBuildArea": "Process signal anomaly; physical defect not confirmed.",
+    "availableData": [
+      "Process signal or image available",
+      "Inspection requirement mentioned"
+    ],
+    "knownFacts": [
+      "Monitoring signal exists",
+      "Inspection requirement mentioned"
+    ],
+    "missingInformation": [
+      "Sensor context",
+      "Calibration context",
+      "Linked track/layer/part record",
+      "Inspection result",
+      "Acceptance criteria"
+    ],
+    "missingCritical": [
+      "Linked track/layer/part record",
+      "Inspection result",
+      "Acceptance criteria"
+    ],
+    "missingUseful": [
+      "Sensor context",
+      "Calibration context"
+    ],
+    "missingOptional": [
+      "Prior signal history"
+    ],
+    "riskFlags": [
+      "A process signal does not prove final part quality.",
+      "Unlinked signal data can create false confidence.",
+      "No inspection result has been connected to the signal."
+    ],
+    "evidenceNeeded": [
+      "Linked job and layer context",
+      "Sensor condition or calibration context",
+      "Dimensional or NDT evidence where risk requires it",
+      "Inspection result",
+      "Expert review"
+    ],
+    "preliminaryRoute": "Use the Quality Evidence Ladder before treating the signal as proof.",
+    "reviewReadiness": "Requires formal inspection / qualification planning",
+    "briefCompleteness": "Requires formal inspection / qualification planning",
+    "expertReviewPackageStatus": "Requires formal qualification planning",
+    "completenessNote": "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "evidenceBurden": "Formal qualification burden",
+    "evidenceBurdenNote": "Evidence burden is a planning label, not release approval.",
+    "nextAction": "Connect the signal to inspection evidence before making a quality claim.",
+    "exafuseReviewRoute": "Use Exafuse for commercial and technical review when the monitoring question affects a real job or acceptance route.",
+    "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+    "generatedFrom": "LMD Decision Cockpit public-safe monitoring preset",
+    "noBackendNote": "No backend. No data sent by this site.",
+    "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client."
+  }
+}

@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
@@ -82,6 +83,9 @@ const checklist = [
 ];
 
 const downloads = [
+  { label: "LMD Decision Brief v1.0 Standard", href: "/brief-standard" },
+  { label: "Decision Brief JSON schema", href: BRIEF_SCHEMA_PATH },
+  ...BRIEF_EXAMPLES.map((example) => ({ label: example.label, href: example.href })),
   { label: "RFQ schema JSON", href: "/agent-pack/lmd-rfq-schema.json" },
   { label: "Decision rules Markdown", href: "/agent-pack/lmd-decision-rules.md" },
   { label: "Prompt library Markdown", href: "/agent-pack/lmd-prompt-library.md" },

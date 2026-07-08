@@ -3,6 +3,7 @@ import Badge from "@components/Badge.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
+import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { PERSON, SITE } from "@data/site";
 
@@ -34,7 +35,8 @@ const resourceGroups = [
     intent: "I need to prepare an RFQ",
     links: [
       { label: "RFQ Prompt-to-Structure Converter", href: "/tools#rfq-module", description: "Turn rough text into facts, gaps, risks, and evidence needs." },
-      { label: "LMD Decision Brief Template", href: "/brief-template", description: "Copy the standard Markdown brief." },
+      { label: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", description: "Use the public standard, schema, examples, and adoption package." },
+      { label: "LMD Decision Brief Template", href: "/brief-template", description: "Copy the blank Markdown starter." },
       { label: "RFQ preparation playbook", href: "/playbooks#rfq-preparation", description: "Use the buyer-facing checklist." },
       { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and quality checklist." }
     ]
@@ -64,7 +66,9 @@ const resourceGroups = [
       { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance and do-not-use boundaries." },
       { label: "llms.txt", href: "/llms.txt", description: "Concise machine-readable index." },
       { label: "llms-full.txt", href: "/llms-full.txt", description: "Detailed machine-readable summary." },
-      { label: "Agent Pack", href: "/agent-pack", description: "RFQ schema, decision rules, prompts, and checklist." }
+      { label: "Agent Pack", href: "/agent-pack", description: "RFQ schema, decision rules, prompts, and checklist." },
+      { label: "Decision Brief JSON schema", href: BRIEF_SCHEMA_PATH, description: "Machine-readable validation contract for JSON handoff." },
+      ...BRIEF_EXAMPLES.map((example) => ({ ...example, description: `Public-safe example: ${example.description}` }))
     ]
   }
 ];
@@ -94,7 +98,7 @@ const jsonLd = {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start with example brief</CTAButton>
-        <CTAButton href="/brief-template" variant="secondary">Open brief standard</CTAButton>
+        <CTAButton href="/brief-standard" variant="secondary">Open brief standard</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>

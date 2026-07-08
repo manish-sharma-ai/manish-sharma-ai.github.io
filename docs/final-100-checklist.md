@@ -8,6 +8,8 @@ Use this before a public release.
 - Homepage cockpit shows the public-safe worn-shaft example without requiring a click.
 - A first-time visitor can start a guided decision flow within 90 seconds.
 - `LMD Decision Brief v1.0` is visible across tools, demo, template, and playbooks.
+- `/brief-standard/` presents LMD Decision Brief v1.0 as a public, portable, bounded standard.
+- Public schema and example files exist under `/schemas/` and `/examples/`.
 - Decision Brief outputs support Technical Decision Brief, Exafuse-ready email draft, AI-agent-safe summary, missing-information checklist, evidence-needed checklist, `.md` download, `.json` download, and print/PDF.
 - Brief completeness is visible and clearly not feasibility.
 - Evidence burden is visible and clearly not release approval.
@@ -16,6 +18,7 @@ Use this before a public release.
 - Exafuse mode is correct for the current production site.
 - No staging URLs appear in `dist`.
 - No unsafe post-migration Exafuse deep-link labels appear in production-safe mode.
+- Human pages do not render "Case source after migration", "RFQ path after migration", "Pathfinder after migration", or "Builder after migration".
 - Press kit links are verified and unambiguous.
 - Public identity/profile/link pages do not render planned profiles.
 - GitHub profile, repository owner, and repository are clearly separated.
@@ -57,6 +60,11 @@ npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
+npm run audit:brief-schema
+npm run audit:human-exafuse-ctas
+npm run audit:rubric-format
+npm run audit:preflight
+npm run audit:seo-social
 npm run audit:all
 git diff --check
 ```

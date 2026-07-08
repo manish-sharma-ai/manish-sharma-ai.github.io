@@ -1,0 +1,98 @@
+{
+  "briefVersion": "LMD Decision Brief v1.0",
+  "artifactType": "LMD Decision Brief",
+  "status": "Preliminary decision support",
+  "notValidFor": [
+    "approval",
+    "certification",
+    "release",
+    "safety-critical acceptance",
+    "quality guarantee"
+  ],
+  "outputMode": "JSON handoff",
+  "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+  "noBackendNote": "No backend. No data sent by this site.",
+  "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client.",
+  "brief": {
+    "briefVersion": "LMD Decision Brief v1.0",
+    "artifactType": "LMD Decision Brief",
+    "status": "Preliminary decision support",
+    "preparedFor": "Expert review / RFQ discussion",
+    "notValidFor": [
+      "approval",
+      "certification",
+      "release",
+      "safety-critical acceptance",
+      "quality guarantee"
+    ],
+    "outputMode": "JSON handoff",
+    "situation": "Public-safe dummy example: worn steel shaft near bearing seat.",
+    "component": "Shaft near bearing seat",
+    "goal": "Screen whether local LMD repair is worth expert review.",
+    "material": "Steel material family mentioned; exact grade not confirmed.",
+    "geometryOrSize": "Local bearing-seat area; dimensions not yet provided.",
+    "damageOrBuildArea": "Local wear near bearing seat; damage depth not yet provided.",
+    "availableData": [
+      "Photos available",
+      "CAD missing",
+      "Tight tolerance mentioned"
+    ],
+    "knownFacts": [
+      "Steel material family",
+      "Photos available",
+      "Local wear near bearing seat",
+      "Tight tolerance mentioned"
+    ],
+    "missingInformation": [
+      "Exact material grade",
+      "CAD/drawing",
+      "Damage depth",
+      "Dimensions",
+      "Operating conditions",
+      "Inspection requirement",
+      "Deadline"
+    ],
+    "missingCritical": [
+      "Exact material grade",
+      "CAD/drawing",
+      "Damage depth",
+      "Dimensions",
+      "Operating conditions",
+      "Inspection requirement"
+    ],
+    "missingUseful": [
+      "Deadline",
+      "Machining allowance"
+    ],
+    "missingOptional": [
+      "Prior repair history",
+      "Reference part"
+    ],
+    "riskFlags": [
+      "Tight tolerance likely requires post-machining and dimensional inspection.",
+      "Unknown service conditions can change material compatibility and evidence needs.",
+      "CAD/drawing missing, so geometry recovery cannot be assessed yet."
+    ],
+    "evidenceNeeded": [
+      "Confirmed material grade",
+      "Damage map and depth estimate",
+      "Machining allowance",
+      "Tolerance target",
+      "Inspection requirement",
+      "Expert review"
+    ],
+    "preliminaryRoute": "Screen with LMD Repairability Quick Check before expert review.",
+    "reviewReadiness": "Ready for preliminary discussion",
+    "briefCompleteness": "Ready for preliminary discussion",
+    "expertReviewPackageStatus": "Not ready",
+    "completenessNote": "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "evidenceBurden": "High inspection burden",
+    "evidenceBurdenNote": "Evidence burden is a planning label, not release approval.",
+    "nextAction": "Prepare an Exafuse-ready review package with missing facts clearly marked.",
+    "exafuseReviewRoute": "Use Exafuse for commercial and technical review after material, geometry, damage, and inspection facts are structured.",
+    "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+    "generatedFrom": "LMD Decision Cockpit public-safe worn-shaft example",
+    "noBackendNote": "No backend. No data sent by this site.",
+    "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client."
+  }
+}

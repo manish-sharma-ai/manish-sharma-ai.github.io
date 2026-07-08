@@ -20,6 +20,8 @@ Core LMD-AI sources: https://manish-sharma-ai.github.io/research/core-lmd-ai-sou
 
 Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
 
+LMD Decision Brief v1.0 Standard: https://manish-sharma-ai.github.io/brief-standard
+
 ## Summary
 
 Public profile materials describe Manish Sharma as working on industrial AI and decision-support systems, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.

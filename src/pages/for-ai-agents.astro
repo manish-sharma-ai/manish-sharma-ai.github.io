@@ -5,6 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
+import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH, BRIEF_STANDARD_GITHUB_ISSUES } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { PERSON, SITE } from "@data/site";
 
@@ -56,6 +57,7 @@ const linkGroups = [
       { label: "Resources", href: "/resources", description: "Intent-based route map for tools, playbooks, sources, and AI-agent usage." },
       { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit and modules." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Educational decision routes for LMD questions." },
+      { label: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", description: "Public standard, schema, examples, adoption text, and GitHub feedback route." },
       { label: "Decision Brief Template", href: "/brief-template", description: "LMD Decision Brief v1.0 standard with copy/download actions." },
       { label: "90-Second Demo", href: "/demo", description: "Dummy-data journey ending in LMD Decision Brief v1.0." },
       { label: "German Handoff", href: "/de", description: "Short German route to the cockpit, boundary, and Exafuse." },
@@ -67,6 +69,8 @@ const linkGroups = [
     links: [
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source-category map." },
       { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json", description: "Broad metadata scan." },
+      { label: "Decision Brief JSON schema", href: BRIEF_SCHEMA_PATH, description: "Public validation contract for JSON handoff exports." },
+      ...BRIEF_EXAMPLES,
       { label: "RFQ Schema", href: "/agent-pack/lmd-rfq-schema.json", description: "Structured RFQ fields." },
       { label: "Prompt Library", href: "/agent-pack/lmd-prompt-library.md", description: "Prompt patterns with missing-field checks." },
       { label: "Decision Rules", href: "/agent-pack/lmd-decision-rules.md", description: "Rules for preliminary decision-support." },
@@ -106,6 +110,13 @@ const machineSummary = {
   use_for: ["definitions", "RFQ preparation", "decision support", "quality evidence explanation", "AI monitoring explanation"],
   do_not_use_for: ["engineering approval", "material certification", "safety-critical acceptance", "quality guarantee"],
   central_artifact: "LMD Decision Brief v1.0",
+  central_artifact_standard: `${SITE.canonicalUrl}/brief-standard`,
+  central_artifact_adoption_package: `${SITE.canonicalUrl}/brief-standard#adoption`,
+  central_artifact_schema_url: `${SITE.canonicalUrl}${BRIEF_SCHEMA_PATH}`,
+  central_artifact_examples: BRIEF_EXAMPLES.map((example) => `${SITE.canonicalUrl}${example.href}`),
+  feedback_route: BRIEF_STANDARD_GITHUB_ISSUES,
+  public_standard_wording:
+    "LMD Decision Brief v1.0 is a public, portable, bounded format for known facts, missing information, risk flags, evidence needs, and next action.",
   central_artifact_schema: [
     "situation",
     "artifactType",
@@ -170,6 +181,7 @@ const machineSummary = {
     playbooks: `${SITE.canonicalUrl}/playbooks`,
     claim_ledger: `${SITE.canonicalUrl}/claims`,
     no_hype: `${SITE.canonicalUrl}/no-hype`,
+    brief_standard: `${SITE.canonicalUrl}/brief-standard`,
     brief_template: `${SITE.canonicalUrl}/brief-template`,
     demo: `${SITE.canonicalUrl}/demo`,
     german_handoff: `${SITE.canonicalUrl}/de`
@@ -179,6 +191,8 @@ const machineSummary = {
     `${SITE.canonicalUrl}/llms-full.txt`,
     `${SITE.canonicalUrl}/identity.md`,
     `${SITE.canonicalUrl}/profile/public-profile.md`,
+    `${SITE.canonicalUrl}${BRIEF_SCHEMA_PATH}`,
+    ...BRIEF_EXAMPLES.map((example) => `${SITE.canonicalUrl}${example.href}`),
     `${SITE.canonicalUrl}/agent-pack/lmd-rfq-schema.json`,
     `${SITE.canonicalUrl}/agent-pack/lmd-decision-rules.md`,
     `${SITE.canonicalUrl}/agent-pack/lmd-prompt-library.md`,
@@ -187,6 +201,8 @@ const machineSummary = {
   ],
   exafuse_boundary:
     "Use Exafuse as the commercial/company source for additive manufacturing services, case studies, quality pages, and RFQs.",
+  exafuse_link_mode:
+    "Production-safe mode uses verified live Exafuse public routes. Migration-gated case/tool deep links are not shown as live human CTAs until verified.",
   claim_ledger_boundary:
     "Held or do-not-render claims are not active public claims and should not be used in page copy until source verification is complete.",
   frontend_only:
@@ -222,6 +238,7 @@ const jsonLd = {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="/identity" variant="primary">Canonical profile page</CTAButton>
+        <CTAButton href="/brief-standard" variant="secondary">Brief standard</CTAButton>
         <CTAButton href="/agent-pack" variant="secondary">LMD Agent Pack</CTAButton>
         <CTAButton href="/research/core-lmd-ai-sources" variant="secondary">Core source map</CTAButton>
       </div>

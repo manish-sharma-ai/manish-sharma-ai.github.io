@@ -10,6 +10,8 @@ Established public proof domain: AI for Laser Metal Deposition, Directed Energy 
 
 This site is Manish Sharma's public technical lab for inspection-aware industrial AI and decision systems. It contains frameworks, lab notes, RFQ resources, glossary pages, tools, and LMD/DED decision-support ideas.
 
+Central public artifact: LMD Decision Brief v1.0 Standard - https://manish-sharma-ai.github.io/brief-standard
+
 It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit Exafuse: https://exafuse.de/
 
 This site avoids confidential customer, employer, and private project data.
@@ -65,6 +67,8 @@ GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-
 - LMD Repairability Index: https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index
 - LMD Failure Atlas: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
 - LMD-AI Maturity Model: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
+- LMD Decision Brief v1.0 Standard: https://manish-sharma-ai.github.io/brief-standard
+- LMD Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
 
 ## Limitation
 

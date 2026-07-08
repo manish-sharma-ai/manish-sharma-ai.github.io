@@ -4,6 +4,9 @@ import BriefTemplateActions from "@components/BriefTemplateActions";
 import CTAButton from "@components/CTAButton.astro";
 import DecisionBriefCard from "@components/DecisionBriefCard";
 import Layout from "@layouts/Layout.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import SourceLinks from "@components/SourceLinks.astro";
+import { BRIEF_EXAMPLES, BRIEF_OUTPUT_MODES, BRIEF_QUALITY_RUBRIC, BRIEF_SCHEMA_PATH } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import {
   BRIEF_VERSION,
@@ -31,26 +34,6 @@ const when = [
   "Before comparing LMD with SLM/LPBF, machining, replacement, or cladding.",
   "When process monitoring produces a signal that needs inspection context.",
   "When a buyer request is too vague for a serious technical review."
-];
-
-const outputModes = [
-  "Technical Decision Brief",
-  "Exafuse-Ready Email Draft",
-  "AI-Agent-Safe Summary",
-  "Markdown and JSON handoff",
-  "Grouped missing-information and evidence checklists",
-  "Print / save as PDF"
-];
-
-const briefRubric = [
-  "Exact material grade visible",
-  "Geometry/drawing available",
-  "Damage/build area described",
-  "Service conditions stated",
-  "Tolerance/finishing need stated",
-  "Inspection requirement stated",
-  "Risk flags not hidden",
-  "Next action clear"
 ];
 
 const jsonLd = {
@@ -86,7 +69,9 @@ const jsonLd = {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start cockpit with this structure</CTAButton>
+        <CTAButton href="/brief-standard" variant="secondary">Open public standard</CTAButton>
         <CTAButton href="/demo" variant="secondary">See filled demo</CTAButton>
+        <CTAButton href={BRIEF_SCHEMA_PATH} variant="secondary">Open JSON schema</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>
@@ -117,7 +102,7 @@ const jsonLd = {
         <p class="metric-label">Brief standard notes</p>
         <h2 class="mt-3 text-2xl font-black text-white">One source object, multiple travel modes.</h2>
         <ul class="mt-5 grid gap-3 text-sm leading-6 text-slate-300">
-          {outputModes.map((item) => <li class="result-card">{item}</li>)}
+          {BRIEF_OUTPUT_MODES.map((item) => <li class="result-card">{item}</li>)}
         </ul>
         <p class="mt-5 text-sm font-bold leading-6 text-amber-100">
           No backend, no input storage, no analytics around entered technical content, and no automatic email sending.
@@ -129,10 +114,24 @@ const jsonLd = {
         <p class="mt-4 text-sm font-bold leading-6 text-amber-100">
           This rubric checks brief quality, not technical feasibility.
         </p>
-        <div class="mt-5 grid gap-2 sm:grid-cols-2">
-          {briefRubric.map((item) => <span class="result-card text-sm font-semibold leading-6 text-slate-300">{item}</span>)}
-        </div>
+        <ul class="mt-5 grid gap-2 sm:grid-cols-2">
+          {BRIEF_QUALITY_RUBRIC.map((item) => <li class="result-card text-sm font-semibold leading-6 text-slate-300">{item}</li>)}
+        </ul>
       </article>
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Standard files"
+        title="Schema and public-safe examples"
+        description="Use these files when the brief needs to travel through tools, RFQ notes, AI-agent prompts, or docs without changing its boundary."
+      />
+      <div class="mt-8 grid gap-8">
+        <SourceLinks links={[{ label: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", description: "Human-readable public standard and adoption package." }, { label: "JSON schema", href: BRIEF_SCHEMA_PATH, description: "Machine-readable schema for exported JSON handoffs." }]} />
+        <SourceLinks links={BRIEF_EXAMPLES} />
+      </div>
     </div>
   </section>
 

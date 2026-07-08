@@ -2,7 +2,7 @@ export const BRIEF_VERSION = "LMD Decision Brief v1.0";
 export const BRIEF_ARTIFACT_TYPE = "LMD Decision Brief";
 export const BRIEF_STATUS = "Preliminary decision support";
 export const BRIEF_PREPARED_FOR = "Expert review / RFQ discussion";
-export const BRIEF_NOT_VALID_FOR = ["approval", "certification", "release", "safety-critical acceptance"];
+export const BRIEF_NOT_VALID_FOR = ["approval", "certification", "release", "safety-critical acceptance", "quality guarantee"];
 
 export const BOUNDARY_STATEMENT =
   "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";

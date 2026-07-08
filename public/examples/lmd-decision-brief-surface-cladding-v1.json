@@ -1,0 +1,90 @@
+{
+  "briefVersion": "LMD Decision Brief v1.0",
+  "artifactType": "LMD Decision Brief",
+  "status": "Preliminary decision support",
+  "notValidFor": [
+    "approval",
+    "certification",
+    "release",
+    "safety-critical acceptance",
+    "quality guarantee"
+  ],
+  "outputMode": "JSON handoff",
+  "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+  "noBackendNote": "No backend. No data sent by this site.",
+  "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client.",
+  "brief": {
+    "briefVersion": "LMD Decision Brief v1.0",
+    "artifactType": "LMD Decision Brief",
+    "status": "Preliminary decision support",
+    "preparedFor": "Expert review / RFQ discussion",
+    "notValidFor": [
+      "approval",
+      "certification",
+      "release",
+      "safety-critical acceptance",
+      "quality guarantee"
+    ],
+    "outputMode": "JSON handoff",
+    "situation": "Public-safe dummy example: surface cladding request.",
+    "component": "Worn surface or functional coating area",
+    "goal": "Clarify whether cladding or build-up should move to expert review.",
+    "material": "Base material family mentioned; exact grade not confirmed.",
+    "geometryOrSize": "Surface area not dimensioned yet.",
+    "damageOrBuildArea": "Surface wear or coating area; depth and function not fully defined.",
+    "availableData": [
+      "Photos available",
+      "Operating duty partly known"
+    ],
+    "knownFacts": [
+      "Surface function matters",
+      "Base material family mentioned",
+      "Photos available"
+    ],
+    "missingInformation": [
+      "Exact material grade",
+      "Coating function",
+      "Wear/corrosion/heat duty",
+      "Surface area dimensions",
+      "Finishing requirement",
+      "Inspection requirement"
+    ],
+    "missingCritical": [
+      "Exact material grade",
+      "Coating function",
+      "Wear/corrosion/heat duty",
+      "Inspection requirement"
+    ],
+    "missingUseful": [
+      "Surface area dimensions",
+      "Finishing requirement"
+    ],
+    "missingOptional": [
+      "Prior repair history"
+    ],
+    "riskFlags": [
+      "Coating function can change material selection.",
+      "Tight final geometry requires machining and inspection planning."
+    ],
+    "evidenceNeeded": [
+      "Material grade",
+      "Duty and surface-function target",
+      "Damage/build-area map",
+      "Finishing plan",
+      "Inspection requirement"
+    ],
+    "preliminaryRoute": "Structure as a cladding/build-up decision brief before expert review.",
+    "reviewReadiness": "Ready for preliminary discussion",
+    "briefCompleteness": "Ready for preliminary discussion",
+    "expertReviewPackageStatus": "Not ready",
+    "completenessNote": "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "evidenceBurden": "High inspection burden",
+    "evidenceBurdenNote": "Evidence burden is a planning label, not release approval.",
+    "nextAction": "Collect coating duty, area dimensions, finishing, and inspection requirements.",
+    "exafuseReviewRoute": "Use Exafuse for commercial and technical review after surface function and evidence needs are clear.",
+    "boundaryStatement": "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.",
+    "generatedFrom": "LMD Decision Cockpit public-safe cladding preset",
+    "noBackendNote": "No backend. No data sent by this site.",
+    "noAutomaticSendingNote": "No automatic sending. Nothing is sent unless you send it from your own email client."
+  }
+}

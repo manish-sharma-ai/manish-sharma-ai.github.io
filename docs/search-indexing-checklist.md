@@ -71,6 +71,7 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/playbooks`
 - `https://manish-sharma-ai.github.io/claims`
 - `https://manish-sharma-ai.github.io/no-hype`
+- `https://manish-sharma-ai.github.io/brief-standard`
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
 - `https://manish-sharma-ai.github.io/de`
@@ -98,9 +99,16 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/playbooks`
 - `https://manish-sharma-ai.github.io/claims`
 - `https://manish-sharma-ai.github.io/no-hype`
+- `https://manish-sharma-ai.github.io/brief-standard`
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
 - `https://manish-sharma-ai.github.io/resources`
+- `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json`
 - `https://manish-sharma-ai.github.io/de`
 - `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
 - `https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg`

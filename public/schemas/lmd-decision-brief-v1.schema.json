@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json",
+  "title": "LMD Decision Brief v1.0",
+  "description": "Portable JSON handoff schema for browser-local LMD Decision Brief v1.0 exports. It is preliminary decision-support only.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "briefVersion",
+    "artifactType",
+    "status",
+    "notValidFor",
+    "outputMode",
+    "boundaryStatement",
+    "noBackendNote",
+    "noAutomaticSendingNote",
+    "brief"
+  ],
+  "properties": {
+    "briefVersion": {
+      "const": "LMD Decision Brief v1.0"
+    },
+    "artifactType": {
+      "const": "LMD Decision Brief"
+    },
+    "status": {
+      "const": "Preliminary decision support"
+    },
+    "notValidFor": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "enum": ["approval", "certification", "release", "safety-critical acceptance", "quality guarantee"]
+      }
+    },
+    "outputMode": {
+      "const": "JSON handoff"
+    },
+    "boundaryStatement": {
+      "type": "string",
+      "minLength": 40
+    },
+    "noBackendNote": {
+      "type": "string",
+      "minLength": 10
+    },
+    "noAutomaticSendingNote": {
+      "type": "string",
+      "minLength": 10
+    },
+    "brief": {
+      "$ref": "#/$defs/decisionBrief"
+    }
+  },
+  "$defs": {
+    "stringList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "decisionBrief": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "briefVersion",
+        "artifactType",
+        "status",
+        "preparedFor",
+        "notValidFor",
+        "outputMode",
+        "situation",
+        "component",
+        "goal",
+        "material",
+        "geometryOrSize",
+        "damageOrBuildArea",
+        "availableData",
+        "knownFacts",
+        "missingInformation",
+        "missingCritical",
+        "missingUseful",
+        "missingOptional",
+        "riskFlags",
+        "evidenceNeeded",
+        "preliminaryRoute",
+        "reviewReadiness",
+        "briefCompleteness",
+        "expertReviewPackageStatus",
+        "completenessNote",
+        "evidenceBurden",
+        "evidenceBurdenNote",
+        "nextAction",
+        "exafuseReviewRoute",
+        "boundaryStatement",
+        "generatedFrom",
+        "noBackendNote",
+        "noAutomaticSendingNote"
+      ],
+      "properties": {
+        "briefVersion": {
+          "const": "LMD Decision Brief v1.0"
+        },
+        "artifactType": {
+          "const": "LMD Decision Brief"
+        },
+        "status": {
+          "const": "Preliminary decision support"
+        },
+        "preparedFor": {
+          "const": "Expert review / RFQ discussion"
+        },
+        "notValidFor": {
+          "type": "array",
+          "minItems": 5,
+          "items": {
+            "enum": ["approval", "certification", "release", "safety-critical acceptance", "quality guarantee"]
+          }
+        },
+        "outputMode": {
+          "enum": ["Technical Decision Brief", "Exafuse review summary", "JSON handoff"]
+        },
+        "situation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "component": {
+          "type": "string",
+          "minLength": 1
+        },
+        "goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "material": {
+          "type": "string",
+          "minLength": 1
+        },
+        "geometryOrSize": {
+          "type": "string",
+          "minLength": 1
+        },
+        "damageOrBuildArea": {
+          "type": "string",
+          "minLength": 1
+        },
+        "availableData": {
+          "$ref": "#/$defs/stringList"
+        },
+        "knownFacts": {
+          "$ref": "#/$defs/stringList"
+        },
+        "missingInformation": {
+          "$ref": "#/$defs/stringList"
+        },
+        "missingCritical": {
+          "$ref": "#/$defs/stringList"
+        },
+        "missingUseful": {
+          "$ref": "#/$defs/stringList"
+        },
+        "missingOptional": {
+          "$ref": "#/$defs/stringList"
+        },
+        "riskFlags": {
+          "$ref": "#/$defs/stringList"
+        },
+        "evidenceNeeded": {
+          "$ref": "#/$defs/stringList"
+        },
+        "preliminaryRoute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewReadiness": {
+          "type": "string",
+          "minLength": 1
+        },
+        "briefCompleteness": {
+          "enum": [
+            "Too vague for useful review",
+            "Ready for preliminary discussion",
+            "Ready for expert review package",
+            "Requires formal inspection / qualification planning"
+          ]
+        },
+        "expertReviewPackageStatus": {
+          "enum": [
+            "Not ready",
+            "Partially ready",
+            "Ready for expert review",
+            "Requires formal qualification planning"
+          ]
+        },
+        "completenessNote": {
+          "type": "string",
+          "minLength": 20
+        },
+        "evidenceBurden": {
+          "enum": [
+            "Low screening burden",
+            "Moderate review burden",
+            "High inspection burden",
+            "Formal qualification burden"
+          ]
+        },
+        "evidenceBurdenNote": {
+          "type": "string",
+          "minLength": 20
+        },
+        "nextAction": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exafuseReviewRoute": {
+          "type": "string",
+          "minLength": 1
+        },
+        "boundaryStatement": {
+          "type": "string",
+          "minLength": 40
+        },
+        "generatedFrom": {
+          "type": "string",
+          "minLength": 1
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "noBackendNote": {
+          "type": "string",
+          "minLength": 10
+        },
+        "noAutomaticSendingNote": {
+          "type": "string",
+          "minLength": 10
+        }
+      }
+    }
+  }
+}

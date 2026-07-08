@@ -109,6 +109,7 @@ Core routes:
 - `/playbooks`
 - `/claims`
 - `/no-hype`
+- `/brief-standard`
 - `/brief-template`
 - `/demo`
 - `/de`
@@ -175,6 +176,11 @@ npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
+npm run audit:brief-schema
+npm run audit:human-exafuse-ctas
+npm run audit:rubric-format
+npm run audit:preflight
+npm run audit:seo-social
 npm run audit:all
 npm run audit:links:report
 ```
@@ -192,8 +198,15 @@ npm run audit:links:report
 - `/playbooks`
 - `/claims`
 - `/no-hype`
+- `/brief-standard`
 - `/brief-template`
 - `/demo`
+- `/schemas/lmd-decision-brief-v1.schema.json`
+- `/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `/examples/lmd-decision-brief-rfq-v1.json`
 - `/research/core-lmd-ai-sources`
 - `/resources`
 - `/research/lmd-literature-scan.json`
@@ -211,7 +224,18 @@ npm run audit:links:report
 
 The central artifact of the site is `LMD Decision Brief v1.0`.
 
-It appears across the cockpit, tools, demo, template, and playbooks. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, and no-backend note.
+It appears across the cockpit, tools, public standard, demo, template, playbooks, schema, and examples. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
+
+Public standard and machine-readable files:
+
+- `/brief-standard`
+- `/brief-standard#adoption`
+- `/schemas/lmd-decision-brief-v1.schema.json`
+- `/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `/examples/lmd-decision-brief-rfq-v1.json`
 
 Portable output modes:
 
@@ -229,6 +253,7 @@ Artifact boundaries:
 - Confidence is not approval.
 - Brief completeness is not feasibility.
 - Evidence burden is a planning label, not release approval.
+- Not-valid-for boundaries include approval, certification, release, safety-critical acceptance, and quality guarantee.
 - Email drafts are manual drafts only; the site does not automatically send email.
 - The cockpit/workbench are frontend-only: no backend endpoints, no input storage, and no analytics around user-entered technical content.
 
@@ -302,7 +327,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
 - Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
-- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/playbooks`, `/claims`, `/no-hype`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
+- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/playbooks`, `/claims`, `/no-hype`, `/brief-standard`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.

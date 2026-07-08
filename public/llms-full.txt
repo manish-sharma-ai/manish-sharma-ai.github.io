@@ -24,6 +24,25 @@ Central artifact: LMD Decision Brief v1.0.
 
 The central artifact turns rough LMD, DED, repair, cladding, monitoring, or RFQ questions into a standard structure: briefVersion, artifactType, status, preparedFor, notValidFor, outputMode, situation, component, goal, material, geometry or size, damage or build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
 
+Public standard:
+https://manish-sharma-ai.github.io/brief-standard
+
+Adoption package:
+https://manish-sharma-ai.github.io/brief-standard#adoption
+
+Decision Brief JSON schema:
+https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
+
+Public-safe Decision Brief examples:
+
+- Worn shaft JSON: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json
+- Worn shaft Markdown: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md
+- Monitoring anomaly JSON: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json
+- Surface cladding JSON: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json
+- Rough RFQ JSON: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json
+
+The standard is public, portable, and bounded. It is prepared for expert review / RFQ discussion and is not valid for approval, certification, release, safety-critical acceptance, or quality guarantee.
+
 Portable output modes:
 
 - Technical Decision Brief for engineering/review preparation.
@@ -132,6 +151,11 @@ https://manish-sharma-ai.github.io/no-hype
 
 The no-hype page defines claim boundaries: AI does not certify LMD quality; monitoring does not replace inspection; confidence is not approval; scores and RFQ structure are not final feasibility.
 
+LMD Decision Brief v1.0 Standard:
+https://manish-sharma-ai.github.io/brief-standard
+
+The standard page defines version v1.0, status, data behavior, core fields, output modes, use-for and do-not-use-for boundaries, public schema, public examples, and a copyable adoption package. The adoption package includes a Markdown starter, AI-agent prompt, internal engineering message, and Exafuse review email draft. These are review-preparation aids only.
+
 Decision Brief Template:
 https://manish-sharma-ai.github.io/brief-template
 
@@ -227,6 +251,9 @@ Source files:
 - Decision rules: https://manish-sharma-ai.github.io/agent-pack/lmd-decision-rules.md
 - Prompt library: https://manish-sharma-ai.github.io/agent-pack/lmd-prompt-library.md
 - Quality checklist: https://manish-sharma-ai.github.io/agent-pack/lmd-quality-checklist.md
+- Decision Brief standard: https://manish-sharma-ai.github.io/brief-standard
+- Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
+- Decision Brief examples: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json, https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json, https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json, https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json
 - Decision cockpit route: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
 - Decision playbooks: https://manish-sharma-ai.github.io/playbooks
 - Claim ledger: https://manish-sharma-ai.github.io/claims
@@ -374,6 +401,7 @@ Avoid these claims:
 - Public profile Markdown: https://manish-sharma-ai.github.io/profile/public-profile.md
 - Public Work: https://manish-sharma-ai.github.io/public-work
 - Resources: https://manish-sharma-ai.github.io/resources
+- Brief Standard: https://manish-sharma-ai.github.io/brief-standard
 - For AI Agents: https://manish-sharma-ai.github.io/for-ai-agents
 - German handoff: https://manish-sharma-ai.github.io/de
 - Exafuse: https://exafuse.de/
