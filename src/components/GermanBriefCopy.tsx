@@ -21,7 +21,7 @@ export default function GermanBriefCopy() {
       aria-label="Deutschen LMD-Entscheidungsbrief kopieren"
     >
       {copied ? <Check aria-hidden="true" className="h-4 w-4 shrink-0" /> : <Clipboard aria-hidden="true" className="h-4 w-4 shrink-0" />}
-      <span>{copied ? "Kopiert" : "Deutschen Kurzbrief kopieren"}</span>
+      <span>{copied ? "Kopiert" : "Kurzbrief kopieren"}</span>
     </button>
   );
 }

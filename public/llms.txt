@@ -8,7 +8,7 @@ Primary promise: AI for Laser Metal Deposition decisions you can verify.
 
 Established public proof domain: AI-assisted decision systems, process monitoring, RFQ intelligence, and decision-support resources for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany.
 
-Central artifact: LMD Decision Brief v1.0. The cockpit, tools, demo, template, and playbooks all route rough LMD questions into the same brief structure: situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, and no-backend note.
+Central artifact: LMD Decision Brief v1.0. The cockpit, tools, demo, template, and playbooks all route rough LMD questions into the same brief structure: briefVersion, artifactType, status, preparedFor, notValidFor, outputMode, situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
 
 Portable output modes:
 - Technical Decision Brief
@@ -18,9 +18,9 @@ Portable output modes:
 - Evidence-needed checklist with evidence burden
 - Markdown, JSON, and print/PDF-friendly handoff
 
-Brief completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation. Evidence burden is a planning label, not release approval.
+Brief completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence. Expert-review package status describes whether the package is ready for expert review, not approval. Evidence burden is a planning label, not release approval.
 
-Email drafts are client-side only. This site does not automatically send email, store inputs, add analytics around inputs, or call backend endpoints for user-entered technical content.
+Email drafts are client-side only. Manual draft only. Nothing is sent unless the user sends it from their own email client. This site does not automatically send email, store inputs, add analytics around inputs, or call backend endpoints for user-entered technical content.
 
 Canonical identity page: https://manish-sharma-ai.github.io/identity
 

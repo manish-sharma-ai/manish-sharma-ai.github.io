@@ -20,11 +20,13 @@ Use this checklist for AI-assisted Laser Metal Deposition RFQ preparation and ev
 - risk flags visible
 - evidence needed listed
 - preliminary route marked as decision-support only
-- brief completeness included and clearly not treated as feasibility
+- brief completeness included and clearly not treated as feasibility, approval, or release evidence
+- expert-review package status included and clearly not treated as approval
 - evidence burden included and clearly not treated as release approval
 - Exafuse review route included where commercial or technical review is needed
 - boundary statement included
 - no-backend/no-storage note preserved for web-tool output
+- no-automatic-sending note preserved for web-tool output
 - email draft treated as manual copy or user-initiated mail-client handoff only
 - AI-agent-safe summary includes do-not-use boundaries
 

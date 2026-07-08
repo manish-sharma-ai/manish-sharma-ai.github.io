@@ -7,6 +7,11 @@ It turns rough LMD, DED, repair, cladding, monitoring, and RFQ questions into a 
 ## Schema
 
 - `briefVersion`: `LMD Decision Brief v1.0`
+- `artifactType`: `LMD Decision Brief`
+- `status`: `Preliminary decision support`
+- `preparedFor`: `Expert review / RFQ discussion`
+- `notValidFor`: `approval`, `certification`, `release`, `safety-critical acceptance`
+- `outputMode`
 - `situation`
 - `component`
 - `goal`
@@ -25,6 +30,7 @@ It turns rough LMD, DED, repair, cladding, monitoring, and RFQ questions into a 
 - `reviewReadiness`
 - `briefCompleteness`
 - `completenessNote`
+- `expertReviewPackageStatus`
 - `evidenceBurden`
 - `evidenceBurdenNote`
 - `nextAction`
@@ -33,6 +39,7 @@ It turns rough LMD, DED, repair, cladding, monitoring, and RFQ questions into a 
 - `generatedFrom`
 - `createdAt` optional and client-side only if used
 - `noBackendNote`
+- `noAutomaticSendingNote`
 
 ## Public-Safe Examples
 
@@ -60,7 +67,7 @@ Brief outputs should support:
 - Download `.md`
 - Download `.json`
 - Print / save as PDF
-- Open mail client with a user-controlled draft where appropriate
+- Open mail client with a user-controlled draft where appropriate; label it `Open mail client with draft`
 - Copy internal engineering message
 - Copy LinkedIn-safe snippet
 - Copy AI-agent prompt
@@ -79,14 +86,25 @@ All three modes must preserve the same boundary statement and the no-backend not
 
 Brief completeness states:
 
-- `Too vague for review`
+- `Too vague for useful review`
 - `Ready for preliminary discussion`
 - `Ready for expert review package`
-- `Needs formal inspection / qualification planning`
+- `Requires formal inspection / qualification planning`
 
 Required note:
 
-`Completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation.`
+`Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.`
+
+Expert-review package status states:
+
+- `Not ready`
+- `Partially ready`
+- `Ready for expert review`
+- `Requires formal qualification planning`
+
+Required note:
+
+`Expert-review package status describes whether the current package is ready for expert review, not approval.`
 
 Evidence burden states:
 

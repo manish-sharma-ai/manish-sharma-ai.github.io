@@ -9,7 +9,7 @@ Manish Sharma Lab links to Exafuse as the company/commercial source. The product
 - `https://exafuse.de/`
 - `https://exafuse.de/kontakt/`
 - Existing production service, technology, quality, material, case-index, and knowledge-index pages that are verified live.
-- Generic labels such as `Exafuse contact`, `Exafuse case link after migration`, and `Exafuse knowledge link after migration`.
+- Buyer-facing labels such as `Contact Exafuse`, `Request Exafuse review`, `Discuss with Exafuse`, `View Exafuse after migration`, and `Case source after migration`.
 
 ## Migration-Gated Links
 
@@ -21,7 +21,7 @@ These should not render as live deep links while `EXAFUSE_LINK_MODE` is `product
 - New LMD/DED knowledge article deep links
 - New AI-agent page
 
-In production-safe mode, those routes must point to a safe production index/contact page and use an after-migration label.
+In production-safe mode, those routes must point to a safe production index/contact page and use a buyer-facing or source-status label. Public helper text should say: `New Exafuse case/tool deep links activate after production migration.`
 
 ## Switch To Post-Migration Mode
 

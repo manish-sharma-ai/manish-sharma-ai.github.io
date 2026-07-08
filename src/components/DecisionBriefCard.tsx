@@ -29,6 +29,14 @@ export default function DecisionBriefCard({
       <div>
         <p className="metric-label">{eyebrow}</p>
         <h3 className="mt-3 text-2xl font-black leading-tight text-white">{title}</h3>
+        <div className="mt-4 rounded-lg border border-cyan-300/24 bg-cyan-300/8 p-4">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <BriefMeta label="Artifact" value={brief.briefVersion} />
+            <BriefMeta label="Status" value={brief.status} />
+            <BriefMeta label="Prepared for" value={brief.preparedFor} />
+            <BriefMeta label="Not valid for" value={formatNotValidFor(brief.notValidFor)} />
+          </div>
+        </div>
         <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
           {brief.boundaryStatement}
         </p>
@@ -40,6 +48,18 @@ export default function DecisionBriefCard({
       </div>
 
       <div className="grid gap-3">
+        <div className="grid gap-3 md:grid-cols-2">
+          <BriefList label="How to use this brief" items={howToUseBrief()} />
+          <BriefList
+            label="Metadata"
+            items={[
+              `Generated from: ${brief.generatedFrom}`,
+              `Mode: ${brief.outputMode}`,
+              brief.noBackendNote,
+              brief.noAutomaticSendingNote
+            ]}
+          />
+        </div>
         <BriefField label="Situation" value={brief.situation} large />
         <div className="grid gap-3 md:grid-cols-2">
           <BriefField label="Component" value={brief.component} />
@@ -49,6 +69,7 @@ export default function DecisionBriefCard({
           <BriefField label="Damage or build area" value={brief.damageOrBuildArea} />
           <BriefField label="Review readiness" value={brief.reviewReadiness} />
           <BriefField label="Brief completeness" value={brief.briefCompleteness} />
+          <BriefField label="Expert-review package status" value={brief.expertReviewPackageStatus} />
           <BriefField label="Evidence burden" value={brief.evidenceBurden} />
         </div>
         <BriefField label="Completeness note" value={brief.completenessNote} />
@@ -96,6 +117,15 @@ function BriefField({ label, value, large = false }: { label: string; value: str
   );
 }
 
+function BriefMeta({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="metric-label">{label}</p>
+      <p className="mt-1 text-sm font-black leading-5 text-white">{value}</p>
+    </div>
+  );
+}
+
 function BriefList({ label, items, warning = false }: { label: string; items: string[]; warning?: boolean }) {
   return (
     <div>
@@ -109,4 +139,18 @@ function BriefList({ label, items, warning = false }: { label: string; items: st
       </ul>
     </div>
   );
+}
+
+function formatNotValidFor(items: string[]) {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")}, or ${items[items.length - 1]}`;
+}
+
+function howToUseBrief() {
+  return [
+    "Use it to prepare a useful RFQ or expert-review conversation.",
+    "Treat completeness and evidence burden as planning labels, not a result.",
+    "Resolve critical gaps before treating the package as review-ready.",
+    "Route commercial/company review to Exafuse when a real part or RFQ is involved."
+  ];
 }

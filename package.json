@@ -28,6 +28,12 @@
     "audit:public-profiles": "node scripts/audit-site.mjs public-profiles",
     "audit:decision-boundaries": "node scripts/audit-site.mjs decision-boundaries",
     "audit:exafuse-mode-human": "node scripts/audit-site.mjs exafuse-mode-human",
+    "audit:brief-status-consistency": "node scripts/audit-site.mjs brief-status-consistency",
+    "audit:human-migration-language": "node scripts/audit-site.mjs human-migration-language",
+    "audit:control-text-readability": "node scripts/audit-site.mjs control-text-readability",
+    "audit:claims-human-surface": "node scripts/audit-site.mjs claims-human-surface",
+    "audit:ai-safe-summary": "node scripts/audit-site.mjs ai-safe-summary",
+    "audit:email-manual-boundary": "node scripts/audit-site.mjs email-manual-boundary",
     "audit:all": "node scripts/audit-site.mjs all"
   },
   "dependencies": {

@@ -239,7 +239,7 @@ export function getRenderableClaimsForCase(caseCode: PublicClaim["caseCode"]) {
 
 export function getClaimSourceStatus(claim: PublicClaim) {
   if (claim.confidence === "interpretation") return "Interpretation by Manish Sharma Lab";
-  if (claim.confidence === "needs-migration") return "Production link after Exafuse migration";
+  if (claim.confidence === "needs-migration") return "Source activates after Exafuse production migration";
   return claim.sourceType === "exafuse-public" ? "Public Exafuse source" : "Public source";
 }
 

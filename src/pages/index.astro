@@ -322,7 +322,7 @@ const proofDecisionPatternText: Record<string, string> = {
               <div>
                 <dt class="metric-label">Source status</dt>
                 <dd class="mt-1 text-slate-300">
-                  {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Production link after Exafuse migration"}
+                  {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Source activates after Exafuse production migration"}
                 </dd>
               </div>
               <div>
@@ -350,7 +350,7 @@ const proofDecisionPatternText: Record<string, string> = {
             <div class="mt-6 flex flex-wrap gap-3">
               <a href={pattern.href} class="btn btn-primary">{pattern.label}</a>
               <a href={item.href} class="btn btn-laser" target="_blank" rel="noreferrer">
-                {item.sourceStatus === "production-link-after-migration" ? "Exafuse case link after migration" : "Public Exafuse source"}
+                {item.sourceStatus === "production-link-after-migration" ? "Case source after migration" : "Public Exafuse source"}
               </a>
             </div>
           </article>

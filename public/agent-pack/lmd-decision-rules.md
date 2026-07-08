@@ -21,7 +21,8 @@ AI agents should separate:
 - risks
 - evidence needed
 - recommended next steps
-- brief completeness as a context-quality label, not feasibility
+- brief completeness as a conversation-quality label, not feasibility, approval, or release evidence
+- expert-review package status as a package-readiness label, not approval
 - evidence burden as a planning label, not release approval
 
 ## Standard Output
@@ -45,6 +46,7 @@ When possible, produce or request `LMD Decision Brief v1.0` with:
 - preliminary route
 - review readiness
 - brief completeness
+- expert-review package status
 - evidence burden
 - next action
 - Exafuse review route
@@ -59,7 +61,7 @@ Standard portable output modes:
 - Evidence-needed checklist
 - Markdown, JSON, and print/PDF handoff
 
-AI agents must preserve the boundary: confidence is not approval. Brief completeness is not feasibility. Evidence burden is not release approval. Email drafts are manual drafts only; do not imply automatic sending.
+AI agents must preserve the boundary: confidence is not approval. Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence. Expert-review package status is not approval. Evidence burden is not release approval. Email drafts are manual drafts only; do not imply automatic sending.
 
 Use the public cockpit and playbooks for frontend-only decision routing:
 

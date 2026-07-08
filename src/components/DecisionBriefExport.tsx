@@ -1,4 +1,5 @@
 import { Check, Clipboard, Download, Mail, Printer } from "lucide-react";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
@@ -57,78 +58,115 @@ export default function DecisionBriefExport({
     <div className="no-print mt-6">
       <div className="mb-4 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold leading-6 text-amber-50">
         Do not include confidential customer or employer data unless you are allowed to share it.
+        <br />
+        Manual draft only. Nothing is sent unless you send it from your own email client.
       </div>
-      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-        <ActionButton
-          copied={copied === "technical"}
-          onClick={() => copy("technical", markdown)}
-          label="Copy technical brief"
-        />
-        <ActionButton
-          copied={copied === "email"}
-          onClick={() => copy("email", emailDraft)}
-          label="Copy Exafuse email draft"
-        />
-        <ActionButton
-          copied={copied === "ai"}
-          onClick={() => copy("ai", aiSummary)}
-          label="Copy AI-safe summary"
-        />
-        <ActionButton
-          copied={copied === "missing"}
-          onClick={() => copy("missing", formatMissingInformationChecklist(brief))}
-          label="Copy missing-information checklist"
-        />
-        <ActionButton
-          copied={copied === "evidence"}
-          onClick={() => copy("evidence", formatEvidenceNeededChecklist(brief))}
-          label="Copy evidence-needed checklist"
-        />
-        <DownloadButton label="Download .md" filename="lmd-decision-brief-v1.md" content={markdown} mime="text/markdown;charset=utf-8" />
-        <DownloadButton label="Download .json" filename="lmd-decision-brief-v1.json" content={json} mime="application/json;charset=utf-8" />
-        <button
-          type="button"
-          onClick={printBrief}
-          className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left"
-          aria-label="Print or save this LMD Decision Brief as PDF"
-        >
-          <Printer aria-hidden="true" className="h-4 w-4 shrink-0" />
-          <span>Print / save as PDF</span>
-        </button>
-      </div>
+      <section aria-labelledby="brief-copy-actions">
+        <h4 id="brief-copy-actions" className="metric-label mb-2">Copy and export</h4>
+        <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          <ActionItem>
+            <ActionButton
+              copied={copied === "technical"}
+              onClick={() => copy("technical", markdown)}
+              label="Copy technical brief"
+            />
+          </ActionItem>
+          <ActionItem>
+            <ActionButton
+              copied={copied === "email"}
+              onClick={() => copy("email", emailDraft)}
+              label="Copy Exafuse email draft"
+            />
+          </ActionItem>
+          <ActionItem>
+            <ActionButton
+              copied={copied === "ai"}
+              onClick={() => copy("ai", aiSummary)}
+              label="Copy AI-safe summary"
+            />
+          </ActionItem>
+          <ActionItem>
+            <ActionButton
+              copied={copied === "missing"}
+              onClick={() => copy("missing", formatMissingInformationChecklist(brief))}
+              label="Copy missing-information checklist"
+            />
+          </ActionItem>
+          <ActionItem>
+            <ActionButton
+              copied={copied === "evidence"}
+              onClick={() => copy("evidence", formatEvidenceNeededChecklist(brief))}
+              label="Copy evidence-needed checklist"
+            />
+          </ActionItem>
+          <ActionItem>
+            <DownloadButton label="Download .md" filename="lmd-decision-brief-v1.md" content={markdown} mime="text/markdown;charset=utf-8" />
+          </ActionItem>
+          <ActionItem>
+            <DownloadButton label="Download .json" filename="lmd-decision-brief-v1.json" content={json} mime="application/json;charset=utf-8" />
+          </ActionItem>
+          <ActionItem>
+            <button
+              type="button"
+              onClick={printBrief}
+              className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left"
+              aria-label="Print or save this LMD Decision Brief as PDF"
+            >
+              <Printer aria-hidden="true" className="h-4 w-4 shrink-0" />
+              <span>Print / save as PDF</span>
+            </button>
+          </ActionItem>
+        </ul>
+      </section>
 
       {!compact && (
-        <div className="mt-4 flex flex-wrap gap-3">
+        <section className="mt-4" aria-labelledby="brief-next-actions">
+          <h4 id="brief-next-actions" className="metric-label mb-2">Next actions</h4>
+          <p className="mb-3 text-xs font-bold leading-5 text-slate-400">
+            Review before sending. Remove confidential data if needed.
+          </p>
+          <ul className="flex flex-wrap gap-3">
           {matchingToolHref && (
-            <a href={matchingToolHref} className="btn btn-secondary">
-              {matchingToolLabel}
-            </a>
+            <ActionItem>
+              <a href={matchingToolHref} className="btn btn-secondary">
+                {matchingToolLabel}
+              </a>
+            </ActionItem>
           )}
-          <a href={toolkitHref} className="btn btn-secondary">
-            Open RFQ Toolkit
-          </a>
-          <a href="/for-ai-agents" className="btn btn-secondary">
-            AI-agent guidance
-          </a>
-          <a
-            href={mailtoHref}
-            className="btn btn-secondary"
-            aria-label="Open mail client with local Exafuse-ready email draft"
-          >
-            <Mail aria-hidden="true" className="h-4 w-4 shrink-0" />
-            Open mail client
-          </a>
-          {exafuseUrl && (
+          <ActionItem>
+            <a href={toolkitHref} className="btn btn-secondary">
+              Open RFQ Toolkit
+            </a>
+          </ActionItem>
+          <ActionItem>
+            <a href="/for-ai-agents" className="btn btn-secondary">
+              AI-agent guidance
+            </a>
+          </ActionItem>
+          <ActionItem>
             <a
-              href={exafuseUrl}
-              className="btn btn-laser"
-              target={exafuseUrl.startsWith("http") ? "_blank" : undefined}
-              rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}
+              href={mailtoHref}
+              className="btn btn-secondary"
+              aria-label="Open mail client with local Exafuse-ready email draft"
             >
-              {exafuseLabel}
+              <Mail aria-hidden="true" className="h-4 w-4 shrink-0" />
+              Open mail client with draft
             </a>
+          </ActionItem>
+          {exafuseUrl && (
+            <ActionItem>
+              <a
+                href={exafuseUrl}
+                className="btn btn-laser"
+                target={exafuseUrl.startsWith("http") ? "_blank" : undefined}
+                rel={exafuseUrl.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {exafuseLabel}
+              </a>
+            </ActionItem>
           )}
-        </div>
+          </ul>
+        </section>
       )}
 
       {!compact && (
@@ -140,31 +178,48 @@ export default function DecisionBriefExport({
           <p className="mt-3 text-sm leading-6 text-slate-400">
             These snippets are generated locally from the same brief. They do not post, send, track, or store anything.
           </p>
-          <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-            <ActionButton
-              copied={copied === "internal"}
-              onClick={() => copy("internal", formatInternalEngineeringMessage(brief))}
-              label="Copy internal engineering message"
-            />
-            <ActionButton
-              copied={copied === "linkedin"}
-              onClick={() => copy("linkedin", formatLinkedInSafeSnippet(brief))}
-              label="Copy LinkedIn-safe snippet"
-            />
-            <ActionButton
-              copied={copied === "prompt"}
-              onClick={() => copy("prompt", formatAiAgentPrompt(brief))}
-              label="Copy AI-agent prompt"
-            />
-            <ActionButton
-              copied={copied === "exafuse"}
-              onClick={() => copy("exafuse", formatExafuseReviewSummary(brief))}
-              label="Copy Exafuse review summary"
-            />
-          </div>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+            <ActionItem>
+              <ActionButton
+                copied={copied === "internal"}
+                onClick={() => copy("internal", formatInternalEngineeringMessage(brief))}
+                label="Copy internal engineering message"
+              />
+            </ActionItem>
+            <ActionItem>
+              <ActionButton
+                copied={copied === "linkedin"}
+                onClick={() => copy("linkedin", formatLinkedInSafeSnippet(brief))}
+                label="Copy LinkedIn-safe snippet"
+              />
+            </ActionItem>
+            <ActionItem>
+              <ActionButton
+                copied={copied === "prompt"}
+                onClick={() => copy("prompt", formatAiAgentPrompt(brief))}
+                label="Copy AI-agent prompt"
+              />
+            </ActionItem>
+            <ActionItem>
+              <ActionButton
+                copied={copied === "exafuse"}
+                onClick={() => copy("exafuse", formatExafuseReviewSummary(brief))}
+                label="Copy Exafuse review summary"
+              />
+            </ActionItem>
+          </ul>
         </details>
       )}
     </div>
+  );
+}
+
+function ActionItem({ children }: { children: ReactNode }) {
+  return (
+    <li>
+      {children}
+      <span className="sr-only">; </span>
+    </li>
   );
 }
 

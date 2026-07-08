@@ -173,7 +173,7 @@ export default function LmdDecisionCockpit({
     ];
 
     const reviewReadiness = state.risk.includes("safetyCritical") || state.risk.includes("noInspection")
-      ? "Requires formal inspection/qualification planning"
+      ? "Requires formal inspection / qualification planning"
       : missing.length > 4
         ? "Not enough information"
         : missing.length > 2
@@ -273,26 +273,32 @@ export default function LmdDecisionCockpit({
           </div>
 
           <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4" data-public-safe-example={WORN_SHAFT_SCENARIO}>
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => loadPreset("worn-shaft")}
-                aria-pressed={Boolean(activePresetId)}
-                aria-label="Show public-safe worn-shaft example"
-                className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-primary" : "btn-secondary"}`}
-              >
-                Show example
-              </button>
-              <button
-                type="button"
-                onClick={startBlank}
-                aria-pressed={!activePresetId}
-                aria-label="Start blank LMD Decision Brief"
-                className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-secondary" : "btn-primary"}`}
-              >
-                Start blank
-              </button>
-            </div>
+            <ul className="flex flex-wrap gap-2" aria-label="Example controls">
+              <li>
+                <button
+                  type="button"
+                  onClick={() => loadPreset("worn-shaft")}
+                  aria-pressed={Boolean(activePresetId)}
+                  aria-label="Show public-safe worn-shaft example"
+                  className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-primary" : "btn-secondary"}`}
+                >
+                  Show example
+                </button>
+                <span className="sr-only">; </span>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={startBlank}
+                  aria-pressed={!activePresetId}
+                  aria-label="Start blank LMD Decision Brief"
+                  className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-secondary" : "btn-primary"}`}
+                >
+                  Start blank
+                </button>
+                <span className="sr-only">; </span>
+              </li>
+            </ul>
             {activePreset ? (
               <p className="mt-3 text-sm font-semibold leading-6 text-cyan-50">
                 Public-safe dummy example: {activeExampleText}
@@ -386,17 +392,26 @@ export default function LmdDecisionCockpit({
               </div>
             )}
 
-            <div className="flex flex-wrap gap-3">
-              <button type="button" onClick={startBlank} className="btn btn-secondary">
-                Reset blank
-              </button>
-              <a href="/demo" className="btn btn-secondary">
-                90-second demo
-              </a>
-              <a href="/brief-template" className="btn btn-secondary">
-                Brief template
-              </a>
-            </div>
+            <ul className="flex flex-wrap gap-3" aria-label="Cockpit utility links">
+              <li>
+                <button type="button" onClick={startBlank} className="btn btn-secondary">
+                  Reset blank
+                </button>
+                <span className="sr-only">; </span>
+              </li>
+              <li>
+                <a href="/demo" className="btn btn-secondary">
+                  90-second demo
+                </a>
+                <span className="sr-only">; </span>
+              </li>
+              <li>
+                <a href="/brief-template" className="btn btn-secondary">
+                  Brief template
+                </a>
+                <span className="sr-only">; </span>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -445,7 +460,7 @@ function Toggle({
         onChange={(event) => onChange(event.target.checked)}
         className="mt-1 accent-cyan-300"
       />
-      <span>{label}</span>
+      <span>{label}<span className="sr-only">; </span></span>
     </label>
   );
 }

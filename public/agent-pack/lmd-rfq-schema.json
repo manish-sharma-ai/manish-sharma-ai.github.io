@@ -38,6 +38,16 @@
   },
   "decision_brief": {
     "version": "LMD Decision Brief v1.0",
+    "artifact_type": "LMD Decision Brief",
+    "status": "Preliminary decision support",
+    "prepared_for": "Expert review / RFQ discussion",
+    "not_valid_for": [
+      "approval",
+      "certification",
+      "release",
+      "safety-critical acceptance"
+    ],
+    "output_mode": "",
     "output_modes": [
       "Technical Decision Brief",
       "Exafuse-ready email draft",
@@ -47,10 +57,14 @@
       "Print/PDF"
     ],
     "brief_completeness": "",
-    "brief_completeness_note": "Completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation.",
+    "brief_completeness_note": "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "expert_review_package_status": "",
+    "expert_review_package_status_note": "Expert-review package status describes whether the package is ready for expert review, not approval.",
     "evidence_burden": "",
     "evidence_burden_note": "Evidence burden is a planning label, not release approval.",
-    "boundary": "Confidence is not approval. Preliminary decision-support only."
+    "boundary": "Confidence is not approval. Preliminary decision-support only.",
+    "no_backend_note": "No backend. No data sent by this site.",
+    "no_automatic_sending_note": "No automatic sending. Nothing is sent unless you send it from your own email client."
   },
   "missing_information": {
     "critical_gaps": [],

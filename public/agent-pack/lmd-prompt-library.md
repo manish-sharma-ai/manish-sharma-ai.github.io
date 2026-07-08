@@ -8,7 +8,7 @@ Help me prepare an RFQ for Laser Metal Deposition repair. Ask me for missing inf
 
 ## Prompt 2
 
-Convert this vague repair request into `LMD Decision Brief v1.0`. Separate situation, component, goal, material, geometry or size, damage or build area, available data, known facts, missing information grouped as critical/useful/optional, risk flags, evidence needed, preliminary route, review readiness, brief completeness, evidence burden, next action, Exafuse review route, and boundary statement.
+Convert this vague repair request into `LMD Decision Brief v1.0`. Separate situation, component, goal, material, geometry or size, damage or build area, available data, known facts, missing information grouped as critical/useful/optional, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, status, not-valid-for boundary, no-backend note, and no-automatic-sending note.
 
 ## Prompt 3
 
@@ -20,7 +20,7 @@ Explain what AI process monitoring can and cannot prove in Laser Metal Depositio
 
 ## Prompt 5
 
-Create an AI-agent-safe summary from this LMD Decision Brief. Use it only for preliminary structuring, RFQ preparation context, and missing-information checks. Do not infer feasibility, engineering approval, material certification, safety-critical acceptance, or quality guarantee.
+Create an AI-agent-safe summary from this LMD Decision Brief. Start with "AI-Agent-Safe LMD Decision Summary". Use it only for preliminary structuring, RFQ preparation, and missing-information review. Do not infer feasibility, approval, certification, release, safety-critical acceptance, or quality guarantee.
 
 ## Prompt 6
 

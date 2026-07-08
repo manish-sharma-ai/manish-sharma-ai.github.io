@@ -7,6 +7,7 @@ export type ExafuseLinkStatus = "public-production" | "production-link-after-mig
 export type ExafuseLinkGroup = "core" | "case" | "knowledge" | "rfq-tool";
 
 export const EXAFUSE_LINK_MODE: ExafuseLinkMode = "production-safe";
+export const EXAFUSE_MIGRATION_HELPER = "New Exafuse case/tool deep links activate after production migration.";
 
 export type ExafuseUrlKey =
   | "home"
@@ -103,7 +104,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   rfq: {
     label: "Exafuse RFQ Builder",
-    productionSafeLabel: "Exafuse RFQ path after migration",
+    productionSafeLabel: "Request Exafuse review",
     productionSafePath: "/kontakt/",
     postMigrationPath: "/tools/rfq-builder/",
     statusInProductionSafe: "production-link-after-migration",
@@ -111,7 +112,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   pathfinder: {
     label: "Exafuse Pathfinder",
-    productionSafeLabel: "Exafuse RFQ path after migration",
+    productionSafeLabel: "Discuss with Exafuse",
     productionSafePath: "/kontakt/",
     postMigrationPath: "/tools/pathfinder/",
     statusInProductionSafe: "production-link-after-migration",
@@ -119,7 +120,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs15: {
     label: "CS15 Duisburg Bridge Components",
-    productionSafeLabel: "Exafuse case link after migration",
+    productionSafeLabel: "Case source after migration",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/duisburger-bruecke-lmd-fallstudie/",
     statusInProductionSafe: "production-link-after-migration",
@@ -127,7 +128,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs01: {
     label: "CS01 Forging Hammer Repair",
-    productionSafeLabel: "Exafuse case link after migration",
+    productionSafeLabel: "Case source after migration",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/schmiedehammer-reparatur-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -135,7 +136,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs10: {
     label: "CS10 Nobufil Extrusion Screw Repair",
-    productionSafeLabel: "Exafuse case link after migration",
+    productionSafeLabel: "Case source after migration",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/extrusionsschnecke-reparatur-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -143,7 +144,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs13: {
     label: "CS13 130 mm Build-and-Coat Drill",
-    productionSafeLabel: "Exafuse case link after migration",
+    productionSafeLabel: "Case source after migration",
     productionSafePath: "/fallstudien/",
     postMigrationPath: "/fallstudien/bombenbohrer-lmd-aufbau-beschichtung/",
     statusInProductionSafe: "production-link-after-migration",
@@ -215,7 +216,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   lmdGuide: {
     label: "Exafuse LMD guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/laser-metal-deposition-ded-lbm/",
     statusInProductionSafe: "production-link-after-migration",
@@ -223,7 +224,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   lmdVsSlmGuide: {
     label: "Exafuse LMD vs SLM guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-vs-slm-lpbf/",
     statusInProductionSafe: "production-link-after-migration",
@@ -231,7 +232,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   largePartLmdGuide: {
     label: "Exafuse large-part LMD guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/grosse-bauteile-laser-metal-deposition/",
     statusInProductionSafe: "production-link-after-migration",
@@ -239,7 +240,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   monitoringGuide: {
     label: "Exafuse monitoring guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-prozessueberwachung-qualitaet/",
     statusInProductionSafe: "production-link-after-migration",
@@ -247,7 +248,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   breitbahnDedGuide: {
     label: "Exafuse BreitbahnDED guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/breitbahn-ded-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -255,7 +256,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   powder2024Guide: {
     label: "Exafuse 2024 powder review",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-pulver-jahresrueckblick-2024/",
     statusInProductionSafe: "production-link-after-migration",
@@ -263,7 +264,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   hammerRepairGuide: {
     label: "Exafuse hammer repair guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-reparatur-schmiedehammer/",
     statusInProductionSafe: "production-link-after-migration",
@@ -271,7 +272,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   neuralImageProcessingGuide: {
     label: "Exafuse neural image-processing guide",
-    productionSafeLabel: "Exafuse knowledge link after migration",
+    productionSafeLabel: "View Exafuse after migration",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/neuronale-bildverarbeitung-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -279,7 +280,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   aiAgents: {
     label: "Exafuse AI-agent page",
-    productionSafeLabel: "Exafuse AI-agent path after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/kontakt/",
     postMigrationPath: "/fuer-ki-agenten/",
     statusInProductionSafe: "production-link-after-migration",
@@ -287,7 +288,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   tools: {
     label: "Exafuse tools",
-    productionSafeLabel: "Exafuse tool path after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/kontakt/",
     postMigrationPath: "/tools/",
     statusInProductionSafe: "production-link-after-migration",

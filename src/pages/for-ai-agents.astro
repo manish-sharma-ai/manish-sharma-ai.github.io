@@ -108,6 +108,12 @@ const machineSummary = {
   central_artifact: "LMD Decision Brief v1.0",
   central_artifact_schema: [
     "situation",
+    "artifactType",
+    "status",
+    "preparedFor",
+    "notValidFor",
+    "outputMode",
+    "noAutomaticSendingNote",
     "component",
     "goal",
     "material",
@@ -124,6 +130,7 @@ const machineSummary = {
     "preliminaryRoute",
     "reviewReadiness",
     "briefCompleteness",
+    "expertReviewPackageStatus",
     "evidenceBurden",
     "nextAction",
     "exafuseReviewRoute",
@@ -143,7 +150,9 @@ const machineSummary = {
   ],
   central_artifact_boundaries: {
     confidence: "Confidence is not approval.",
-    completeness: "Brief completeness is not feasibility.",
+    completeness: "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    expert_review_package_status:
+      "Expert-review package status describes whether the current package is ready for expert review, not whether the part is acceptable.",
     evidence_burden: "Evidence burden is a planning label, not release approval.",
     email: "Email drafts are manual and client-side only. No automatic sending.",
     ai_safe_summary: "Use only for preliminary structuring, RFQ preparation context, and missing-information checks."

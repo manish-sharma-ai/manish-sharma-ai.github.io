@@ -16,11 +16,12 @@
     "Print/PDF-friendly handoff"
   ],
   "artifact_planning_labels": {
-    "brief_completeness": "Completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation.",
+    "brief_completeness": "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "expert_review_package_status": "Expert-review package status describes whether the current package is ready for expert review, not approval.",
     "evidence_burden": "Evidence burden is a planning label, not release approval.",
     "missing_information_groups": ["critical gaps", "useful gaps", "optional context"]
   },
-  "no_backend_rule": "The cockpit and workbench are frontend-only: no backend endpoints, no input storage, no analytics around user-entered technical content, and no automatic email sending.",
+  "no_backend_rule": "The cockpit and workbench are frontend-only: no backend endpoints, no input storage, no analytics around user-entered technical content, and no automatic email sending. Manual email drafts are not sent unless the user sends them from their own email client.",
   "manish_sharma_lab_routes": {
     "decision_cockpit": "https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit",
     "resources": "https://manish-sharma-ai.github.io/resources",

@@ -1,12 +1,17 @@
 export const BRIEF_VERSION = "LMD Decision Brief v1.0";
+export const BRIEF_ARTIFACT_TYPE = "LMD Decision Brief";
+export const BRIEF_STATUS = "Preliminary decision support";
+export const BRIEF_PREPARED_FOR = "Expert review / RFQ discussion";
+export const BRIEF_NOT_VALID_FOR = ["approval", "certification", "release", "safety-critical acceptance"];
 
 export const BOUNDARY_STATEMENT =
   "Confidence is not approval. Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
 
 export const NO_BACKEND_NOTE = "No backend. No data sent by this site.";
+export const NO_AUTOMATIC_SENDING_NOTE = "No automatic sending. Nothing is sent unless you send it from your own email client.";
 
 export const BRIEF_COMPLETENESS_NOTE =
-  "Completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation.";
+  "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.";
 
 export const EVIDENCE_BURDEN_NOTE = "Evidence burden is a planning label, not release approval.";
 
@@ -14,10 +19,16 @@ export const GERMAN_BRIEF_BOUNDARY =
   "Entscheidungshilfe, keine technische Freigabe. Prozesssignale sind kein Qualitätsnachweis. Die endgültige Bewertung erfordert Fachprüfung, Inspektion und geeignete Nachweise.";
 
 export type BriefCompleteness =
-  | "Too vague for review"
+  | "Too vague for useful review"
   | "Ready for preliminary discussion"
   | "Ready for expert review package"
-  | "Needs formal inspection / qualification planning";
+  | "Requires formal inspection / qualification planning";
+
+export type ExpertReviewPackageStatus =
+  | "Not ready"
+  | "Partially ready"
+  | "Ready for expert review"
+  | "Requires formal qualification planning";
 
 export type EvidenceBurden =
   | "Low screening burden"
@@ -27,6 +38,11 @@ export type EvidenceBurden =
 
 export interface DecisionBrief {
   briefVersion: typeof BRIEF_VERSION;
+  artifactType: typeof BRIEF_ARTIFACT_TYPE;
+  status: typeof BRIEF_STATUS;
+  preparedFor: typeof BRIEF_PREPARED_FOR;
+  notValidFor: string[];
+  outputMode: string;
   situation: string;
   component: string;
   goal: string;
@@ -44,6 +60,7 @@ export interface DecisionBrief {
   preliminaryRoute: string;
   reviewReadiness: string;
   briefCompleteness: BriefCompleteness;
+  expertReviewPackageStatus: ExpertReviewPackageStatus;
   completenessNote: typeof BRIEF_COMPLETENESS_NOTE;
   evidenceBurden: EvidenceBurden;
   evidenceBurdenNote: typeof EVIDENCE_BURDEN_NOTE;
@@ -53,6 +70,7 @@ export interface DecisionBrief {
   generatedFrom: string;
   createdAt?: string;
   noBackendNote: string;
+  noAutomaticSendingNote: string;
 }
 
 export interface CockpitPreset {
@@ -67,7 +85,21 @@ export interface CockpitPreset {
   brief: DecisionBrief;
 }
 
-type BriefInput = Partial<Omit<DecisionBrief, "briefVersion" | "boundaryStatement" | "noBackendNote">>;
+type BriefInput = Partial<
+  Omit<
+    DecisionBrief,
+    | "briefVersion"
+    | "artifactType"
+    | "status"
+    | "preparedFor"
+    | "notValidFor"
+    | "boundaryStatement"
+    | "noBackendNote"
+    | "noAutomaticSendingNote"
+    | "completenessNote"
+    | "evidenceBurdenNote"
+  >
+>;
 
 function asList(items?: string[]) {
   return items?.filter(Boolean) ?? [];
@@ -129,15 +161,32 @@ function inferBriefCompleteness({
   knownFacts: string[];
 }): BriefCompleteness {
   if (riskFlags.some((risk) => includesAny(risk, ["safety-critical", "safety critical", "no inspection", "qualification"]))) {
-    return "Needs formal inspection / qualification planning";
+    return "Requires formal inspection / qualification planning";
   }
-  if (missingCritical.length >= 4 || knownFacts.length === 0 || knownFacts.some((fact) => fact.toLowerCase().includes("no concrete"))) {
-    return "Too vague for review";
+  if (knownFacts.length === 0 || knownFacts.some((fact) => fact.toLowerCase().includes("no concrete"))) {
+    return "Too vague for useful review";
   }
   if (missingCritical.length > 0 || missingUseful.length > 2) {
     return "Ready for preliminary discussion";
   }
   return "Ready for expert review package";
+}
+
+function inferExpertReviewPackageStatus({
+  missingCritical,
+  missingUseful,
+  riskFlags
+}: {
+  missingCritical: string[];
+  missingUseful: string[];
+  riskFlags: string[];
+}): ExpertReviewPackageStatus {
+  if (riskFlags.some((risk) => includesAny(risk, ["safety-critical", "safety critical", "no inspection", "qualification"]))) {
+    return "Requires formal qualification planning";
+  }
+  if (missingCritical.length > 0) return "Not ready";
+  if (missingUseful.length > 0 || riskFlags.length > 1) return "Partially ready";
+  return "Ready for expert review";
 }
 
 function inferEvidenceBurden({
@@ -206,9 +255,21 @@ export function createDecisionBrief(input: BriefInput): DecisionBrief {
       evidenceNeeded,
       situation
     });
+  const expertReviewPackageStatus =
+    input.expertReviewPackageStatus ??
+    inferExpertReviewPackageStatus({
+      missingCritical: groupedMissing.missingCritical,
+      missingUseful: groupedMissing.missingUseful,
+      riskFlags
+    });
 
   return {
     briefVersion: BRIEF_VERSION,
+    artifactType: BRIEF_ARTIFACT_TYPE,
+    status: BRIEF_STATUS,
+    preparedFor: BRIEF_PREPARED_FOR,
+    notValidFor: [...BRIEF_NOT_VALID_FOR],
+    outputMode: input.outputMode ?? "Technical Decision Brief",
     situation,
     component: input.component ?? "Component not yet specified.",
     goal: input.goal ?? "Clarify whether LMD/DED, repair, cladding, or another route is worth expert review.",
@@ -226,6 +287,7 @@ export function createDecisionBrief(input: BriefInput): DecisionBrief {
     preliminaryRoute: input.preliminaryRoute ?? "Structure the question before choosing a process route.",
     reviewReadiness: input.reviewReadiness ?? "Not enough information",
     briefCompleteness,
+    expertReviewPackageStatus,
     completenessNote: BRIEF_COMPLETENESS_NOTE,
     evidenceBurden,
     evidenceBurdenNote: EVIDENCE_BURDEN_NOTE,
@@ -236,7 +298,8 @@ export function createDecisionBrief(input: BriefInput): DecisionBrief {
     boundaryStatement: BOUNDARY_STATEMENT,
     generatedFrom: input.generatedFrom ?? "Manish Sharma Lab decision-support resource",
     createdAt: input.createdAt,
-    noBackendNote: NO_BACKEND_NOTE
+    noBackendNote: NO_BACKEND_NOTE,
+    noAutomaticSendingNote: NO_AUTOMATIC_SENDING_NOTE
   };
 }
 
@@ -291,6 +354,9 @@ export const WORN_SHAFT_BRIEF = createDecisionBrief({
   ],
   preliminaryRoute: "Screen with LMD Repairability Quick Check before expert review.",
   reviewReadiness: "Ready for preliminary discussion",
+  briefCompleteness: "Ready for preliminary discussion",
+  expertReviewPackageStatus: "Not ready",
+  evidenceBurden: "High inspection burden",
   nextAction: "Prepare an Exafuse-ready review package with missing facts clearly marked.",
   exafuseReviewRoute:
     "Use Exafuse for commercial and technical review after material, geometry, damage, and inspection facts are structured.",
@@ -354,7 +420,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
         "Expert review"
       ],
       preliminaryRoute: "Use the Quality Evidence Ladder before treating the signal as proof.",
-      reviewReadiness: "Requires formal inspection/qualification planning",
+      reviewReadiness: "Requires formal inspection / qualification planning",
       nextAction: "Connect the signal to inspection evidence before making a quality claim.",
       exafuseReviewRoute:
         "Use Exafuse for commercial and technical review when the monitoring question affects a real job or acceptance route.",
@@ -548,9 +614,48 @@ function groupedMissingMarkdown(brief: DecisionBrief) {
   ].join("\n");
 }
 
+function notValidForText(items: string[]) {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")}, or ${items[items.length - 1]}`;
+}
+
+function briefStandardHeader(brief: DecisionBrief, title: string = brief.artifactType) {
+  return [
+    `# ${brief.briefVersion}`,
+    "",
+    title,
+    `Status: ${brief.status}`,
+    `Prepared for: ${brief.preparedFor}`,
+    `Not valid for: ${notValidForText(brief.notValidFor)}`
+  ].join("\n");
+}
+
+function briefMetadataMarkdown(brief: DecisionBrief) {
+  return [
+    "Generated from: " + brief.generatedFrom,
+    "Mode: " + brief.outputMode,
+    "No backend: " + brief.noBackendNote,
+    "No automatic sending: " + brief.noAutomaticSendingNote,
+    "Boundary: " + brief.boundaryStatement
+  ];
+}
+
+function howToUseBriefMarkdown() {
+  return [
+    "Use it to prepare a useful RFQ or expert-review conversation.",
+    "Treat completeness and evidence burden as planning labels, not a result.",
+    "Resolve critical gaps before treating the package as review-ready.",
+    "Route commercial/company review to Exafuse when a real part or RFQ is involved."
+  ];
+}
+
 export function formatTechnicalDecisionBrief(brief: DecisionBrief) {
   return [
-    `# ${brief.briefVersion} - Technical Decision Brief`,
+    briefStandardHeader(brief, "Technical Decision Brief"),
+    "",
+    section("Metadata", briefMetadataMarkdown(brief)),
+    "",
+    section("How to use this brief", howToUseBriefMarkdown()),
     "",
     section("Situation", brief.situation),
     "",
@@ -572,6 +677,8 @@ export function formatTechnicalDecisionBrief(brief: DecisionBrief) {
     "",
     section("Brief completeness", `${brief.briefCompleteness}\n\n${brief.completenessNote}`),
     "",
+    section("Expert-review package status", brief.expertReviewPackageStatus),
+    "",
     section("Evidence burden", `${brief.evidenceBurden}\n\n${brief.evidenceBurdenNote}`),
     "",
     section("Known facts", brief.knownFacts),
@@ -587,11 +694,7 @@ export function formatTechnicalDecisionBrief(brief: DecisionBrief) {
     "",
     section("Exafuse review route", brief.exafuseReviewRoute),
     "",
-    section("Generated from", brief.generatedFrom),
-    "",
-    section("Boundary", brief.boundaryStatement),
-    "",
-    brief.noBackendNote
+    section("Boundary", `${brief.boundaryStatement}\n\n${brief.noBackendNote}\n\n${brief.noAutomaticSendingNote}`)
   ].join("\n");
 }
 
@@ -600,7 +703,21 @@ export function formatDecisionBriefMarkdown(brief: DecisionBrief) {
 }
 
 export function formatDecisionBriefJson(brief: DecisionBrief) {
-  return JSON.stringify(brief, null, 2);
+  return JSON.stringify(
+    {
+      briefVersion: brief.briefVersion,
+      artifactType: brief.artifactType,
+      status: brief.status,
+      notValidFor: brief.notValidFor,
+      outputMode: "JSON handoff",
+      boundaryStatement: brief.boundaryStatement,
+      noBackendNote: brief.noBackendNote,
+      noAutomaticSendingNote: brief.noAutomaticSendingNote,
+      brief: { ...brief, outputMode: "JSON handoff" }
+    },
+    null,
+    2
+  );
 }
 
 export function formatChecklist(title: string, items: string[]) {
@@ -635,7 +752,7 @@ export function formatEvidenceNeededChecklist(brief: DecisionBrief) {
 
 export function formatExafuseReviewSummary(brief: DecisionBrief) {
   return [
-    `# ${brief.briefVersion} - Exafuse review summary`,
+    briefStandardHeader({ ...brief, outputMode: "Exafuse review summary" }, "Exafuse review summary"),
     "",
     `Situation: ${brief.situation}`,
     `Component: ${brief.component}`,
@@ -646,6 +763,7 @@ export function formatExafuseReviewSummary(brief: DecisionBrief) {
     `Preliminary route: ${brief.preliminaryRoute}`,
     `Review readiness: ${brief.reviewReadiness}`,
     `Brief completeness: ${brief.briefCompleteness}`,
+    `Expert-review package status: ${brief.expertReviewPackageStatus}`,
     `Evidence burden: ${brief.evidenceBurden}`,
     "",
     section("Known facts", brief.knownFacts),
@@ -661,7 +779,8 @@ export function formatExafuseReviewSummary(brief: DecisionBrief) {
     `Exafuse route: ${brief.exafuseReviewRoute}`,
     "",
     brief.boundaryStatement,
-    brief.noBackendNote
+    brief.noBackendNote,
+    brief.noAutomaticSendingNote
   ].join("\n");
 }
 
@@ -675,7 +794,9 @@ export function formatExafuseEmailDraft(brief: DecisionBrief) {
     formatTechnicalDecisionBrief(brief),
     "",
     "Important:",
-    "This is a preliminary decision-support brief generated locally in the browser. It is not an engineering approval. Please review material, geometry, service conditions, inspection requirements, and feasibility.",
+    "This was generated locally in the browser.",
+    "Please review; this is not approval.",
+    "This is a preliminary decision-support brief. Please review material, geometry, service conditions, inspection requirements, and feasibility.",
     "",
     "Do not include confidential customer or employer data unless you are allowed to share it.",
     "",
@@ -689,17 +810,18 @@ export function formatAiAgentSafeSummary(brief: DecisionBrief) {
   return [
     "# AI-Agent-Safe LMD Decision Summary",
     "",
-    "Use this as:",
-    "- preliminary LMD/DED decision-support context",
-    "- RFQ preparation context",
-    "- missing-information checklist",
+    "Use for: preliminary structuring, RFQ preparation, missing-information review",
     "",
-    "Do not use this as:",
-    "- engineering approval",
-    "- material certification",
-    "- safety-critical acceptance",
-    "- quality guarantee",
-    "- replacement for Exafuse review",
+    "Do not use for: approval, certification, release, safety-critical acceptance, quality guarantee",
+    "",
+    "Source context: generated from " + brief.generatedFrom + ".",
+    "Commercial/company review: Exafuse.",
+    "Boundary signal is not proof: process signals and AI summaries must remain linked to inspection and expert review.",
+    "Status: no backend/no automatic sending/user-provided context only.",
+    "",
+    `Brief completeness: ${brief.briefCompleteness}`,
+    `Expert-review package status: ${brief.expertReviewPackageStatus}`,
+    `Evidence burden: ${brief.evidenceBurden}`,
     "",
     section("Known facts", brief.knownFacts),
     "",
@@ -710,9 +832,7 @@ export function formatAiAgentSafeSummary(brief: DecisionBrief) {
     "",
     section("Evidence needed", brief.evidenceNeeded),
     "",
-    section("Brief completeness", `${brief.briefCompleteness}\n\n${brief.completenessNote}`),
-    "",
-    section("Evidence burden", `${brief.evidenceBurden}\n\n${brief.evidenceBurdenNote}`),
+    section("Brief status notes", [brief.completenessNote, brief.evidenceBurdenNote]),
     "",
     section("Next action", brief.nextAction),
     "",
@@ -724,7 +844,8 @@ export function formatAiAgentSafeSummary(brief: DecisionBrief) {
     "",
     section("Boundary", brief.boundaryStatement),
     "",
-    brief.noBackendNote
+    brief.noBackendNote,
+    brief.noAutomaticSendingNote
   ].join("\n");
 }
 
@@ -778,7 +899,22 @@ export function formatExafuseMailtoHref(brief: DecisionBrief) {
 
 export function formatDecisionBriefTemplateMarkdown() {
   return [
-    `# ${BRIEF_VERSION} - Technical Decision Brief`,
+    `# ${BRIEF_VERSION}`,
+    "",
+    "Technical Decision Brief",
+    `Status: ${BRIEF_STATUS}`,
+    `Prepared for: ${BRIEF_PREPARED_FOR}`,
+    `Not valid for: ${notValidForText(BRIEF_NOT_VALID_FOR)}`,
+    "",
+    "## Metadata",
+    "- Generated from: Blank LMD Decision Brief starter",
+    "- Mode: Technical Decision Brief",
+    `- No backend: ${NO_BACKEND_NOTE}`,
+    `- No automatic sending: ${NO_AUTOMATIC_SENDING_NOTE}`,
+    `- Boundary: ${BOUNDARY_STATEMENT}`,
+    "",
+    "## How to use this brief",
+    listMarkdown(howToUseBriefMarkdown()),
     "",
     "## Situation",
     "",
@@ -800,9 +936,12 @@ export function formatDecisionBriefTemplateMarkdown() {
     "## Review readiness",
     "",
     "## Brief completeness",
-    "Too vague for review / Ready for preliminary discussion / Ready for expert review package / Needs formal inspection / qualification planning",
+    "Too vague for useful review / Ready for preliminary discussion / Ready for expert review package / Requires formal inspection / qualification planning",
     "",
     BRIEF_COMPLETENESS_NOTE,
+    "",
+    "## Expert-review package status",
+    "Not ready / Partially ready / Ready for expert review / Requires formal qualification planning",
     "",
     "## Evidence burden",
     "Low screening burden / Moderate review burden / High inspection burden / Formal qualification burden",
@@ -835,13 +974,19 @@ export function formatDecisionBriefTemplateMarkdown() {
     "## Boundary",
     BOUNDARY_STATEMENT,
     "",
-    NO_BACKEND_NOTE
+    NO_BACKEND_NOTE,
+    "",
+    NO_AUTOMATIC_SENDING_NOTE
   ].join("\n");
 }
 
 export function formatGermanDecisionBriefTemplateMarkdown() {
   return [
     "# LMD-Entscheidungsbrief v1.0",
+    "",
+    "Status: Vorläufige Entscheidungshilfe",
+    "Geeignet für: Vorbereitung von Fachprüfung / RFQ-Gespräch",
+    "Nicht geeignet für: Freigabe, Zertifizierung, Bauteilabnahme oder sicherheitskritische Entscheidung",
     "",
     "## Ausgangssituation",
     "",

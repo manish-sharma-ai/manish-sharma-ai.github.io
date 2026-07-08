@@ -375,10 +375,10 @@ function auditBriefArtifact() {
     "formatTechnicalDecisionBrief",
     "formatExafuseEmailDraft",
     "formatAiAgentSafeSummary",
-    "Do not use this as:",
-    "engineering approval",
-    "material certification",
-    "safety-critical acceptance",
+    "Use for: preliminary structuring, RFQ preparation, missing-information review",
+    "Do not use for: approval, certification, release, safety-critical acceptance, quality guarantee",
+    "Commercial/company review: Exafuse.",
+    "Status: no backend/no automatic sending/user-provided context only.",
     "quality guarantee",
     "Confidence is not approval"
   ]) {
@@ -536,7 +536,7 @@ function auditPlaybookFormat() {
       "What changes the decision",
       "What evidence closes the loop",
       "What to send for expert review",
-      "LMD Decision Brief starter"
+      "Copy standard brief starter"
     ]) {
       if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
     }
@@ -700,7 +700,7 @@ function auditExafuseModeHuman() {
         }
       }
     }
-    const modeNotice = "Some Exafuse case and tool links are migration-gated";
+    const modeNotice = "New Exafuse case/tool deep links activate after production migration.";
     for (const file of ["dist/domains/lmd-ded/index.html", "dist/public-work/index.html"]) {
       if (existsSync(join(root, file)) && !visibleTextFromHtml(read(file)).includes(modeNotice)) {
         findings.push(`${file}: missing Exafuse migration notice`);
@@ -708,6 +708,191 @@ function auditExafuseModeHuman() {
     }
   }
   fail("Exafuse human link-mode audit failed", findings);
+}
+
+function auditBriefStatusConsistency() {
+  const findings = [];
+  const libFile = "src/lib/decisionBrief.ts";
+  if (!existsSync(join(root, libFile))) {
+    fail("Brief status consistency audit failed", [`${libFile}: missing`]);
+    return;
+  }
+  const source = read(libFile);
+  for (const phrase of [
+    "Too vague for useful review",
+    "Ready for preliminary discussion",
+    "Ready for expert review package",
+    "Requires formal inspection / qualification planning",
+    "ExpertReviewPackageStatus",
+    "Not ready",
+    "Partially ready",
+    "Ready for expert review",
+    "Requires formal qualification planning",
+    "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence.",
+    "expertReviewPackageStatus: \"Not ready\"",
+    "evidenceBurden: \"High inspection burden\""
+  ]) {
+    if (!source.includes(phrase)) findings.push(`${libFile}: missing "${phrase}"`);
+  }
+  for (const old of ["Too vague for review", "Needs formal inspection / qualification planning"]) {
+    if (source.includes(old)) findings.push(`${libFile}: contains old state "${old}"`);
+  }
+
+  for (const file of ["dist/demo/index.html", "dist/brief-template/index.html", "dist/tools/index.html"]) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing built page`);
+      continue;
+    }
+    const visibleText = visibleTextFromHtml(read(file));
+    for (const phrase of [
+      "Ready for preliminary discussion",
+      "Expert-review package status",
+      "Not ready",
+      "High inspection burden",
+      "Completeness describes whether the brief can support a useful conversation. It is not feasibility, approval, or release evidence."
+    ]) {
+      if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+    }
+  }
+  fail("Brief status consistency audit failed", findings);
+}
+
+function auditHumanMigrationLanguage() {
+  const findings = [];
+  const forbiddenHuman = [
+    "Exafuse RFQ path after migration",
+    "Exafuse case link after migration",
+    "Exafuse tool path after migration",
+    "Exafuse AI-agent path after migration",
+    "Exafuse knowledge link after migration",
+    "Production link after Exafuse migration"
+  ];
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of forbiddenHuman) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains old migration phrase "${phrase}"`);
+    }
+  }
+  const externalConfig = existsSync(join(root, "src/config/externalLinks.ts")) ? read("src/config/externalLinks.ts") : "";
+  for (const phrase of ["Request Exafuse review", "Discuss with Exafuse", "Contact Exafuse", "View Exafuse after migration", "Case source after migration"]) {
+    if (!externalConfig.includes(phrase)) findings.push(`src/config/externalLinks.ts: missing human label "${phrase}"`);
+  }
+  for (const file of ["dist/evidence/index.html", "dist/public-work/index.html"]) {
+    if (!existsSync(join(root, file))) continue;
+    const visibleText = visibleTextFromHtml(read(file));
+    if (!visibleText.includes("New Exafuse case/tool deep links activate after production migration.")) {
+      findings.push(`${file}: missing production migration helper text`);
+    }
+  }
+  fail("Human migration language audit failed", findings);
+}
+
+function auditControlTextReadability() {
+  const findings = [];
+  const collapsedStrings = [
+    "Material known?Drawing",
+    "Photos available?Damage",
+    "Safety critical?High",
+    "Copy technical brief Copy",
+    "Download .md Download",
+    "Show example Start blank",
+    "Reset blank90-second demo"
+  ];
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of collapsedStrings) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: visible controls collapse into "${phrase}"`);
+    }
+  }
+  const cockpitSource = "src/components/LmdDecisionCockpit.tsx";
+  if (!existsSync(join(root, cockpitSource))) {
+    findings.push(`${cockpitSource}: missing control source`);
+  } else {
+    const source = read(cockpitSource);
+    for (const phrase of ["<fieldset", "<legend", "<ul", "<li", "aria-pressed", "sr-only"]) {
+      if (!source.includes(phrase)) findings.push(`${cockpitSource}: missing control-readability marker "${phrase}"`);
+    }
+  }
+  const exportSource = "src/components/DecisionBriefExport.tsx";
+  if (!existsSync(join(root, exportSource))) {
+    findings.push(`${exportSource}: missing control source`);
+  } else {
+    const source = read(exportSource);
+    for (const phrase of ["<section", "<ul", "<li", "sr-only", "aria-labelledby", "Open mail client with draft"]) {
+      if (!source.includes(phrase)) findings.push(`${exportSource}: missing control-readability marker "${phrase}"`);
+    }
+  }
+  fail("Control text readability audit failed", findings);
+}
+
+function auditClaimsHumanSurface() {
+  const findings = [];
+  const file = "dist/claims/index.html";
+  if (!existsSync(join(root, file))) {
+    fail("Claims human surface audit failed", [`${file}: missing built claims page`]);
+    return;
+  }
+  const html = read(file);
+  const visibleText = visibleTextFromHtml(html);
+  for (const phrase of [
+    "Claims are public context, not transferable feasibility or approval.",
+    "Claim",
+    "Why it matters",
+    "Limitation",
+    "Audit details",
+    "Source type/status",
+    "Registry id",
+    "Source activates after Exafuse production migration"
+  ]) {
+    if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+  }
+  if (!html.includes("<details")) findings.push(`${file}: audit details are not collapsed with details`);
+  fail("Claims human surface audit failed", findings);
+}
+
+function auditAiSafeSummary() {
+  const findings = [];
+  const file = "src/lib/decisionBrief.ts";
+  if (!existsSync(join(root, file))) {
+    fail("AI-safe summary audit failed", [`${file}: missing`]);
+    return;
+  }
+  const source = read(file);
+  for (const phrase of [
+    "AI-Agent-Safe LMD Decision Summary",
+    "Use for: preliminary structuring, RFQ preparation, missing-information review",
+    "Do not use for: approval, certification, release, safety-critical acceptance, quality guarantee",
+    "Source context: generated from",
+    "Commercial/company review: Exafuse.",
+    "Boundary signal is not proof",
+    "Status: no backend/no automatic sending/user-provided context only."
+  ]) {
+    if (!source.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+  }
+  fail("AI-safe summary audit failed", findings);
+}
+
+function auditEmailManualBoundary() {
+  const findings = [];
+  const exportFile = "src/components/DecisionBriefExport.tsx";
+  const libFile = "src/lib/decisionBrief.ts";
+  const exportSource = existsSync(join(root, exportFile)) ? read(exportFile) : "";
+  const libSource = existsSync(join(root, libFile)) ? read(libFile) : "";
+  for (const phrase of [
+    "Manual draft only. Nothing is sent unless you send it from your own email client.",
+    "Open mail client with draft",
+    "Review before sending. Remove confidential data if needed."
+  ]) {
+    if (!exportSource.includes(phrase)) findings.push(`${exportFile}: missing "${phrase}"`);
+  }
+  for (const phrase of [
+    "This was generated locally in the browser.",
+    "Please review; this is not approval.",
+    "NO_AUTOMATIC_SENDING_NOTE"
+  ]) {
+    if (!libSource.includes(phrase)) findings.push(`${libFile}: missing "${phrase}"`);
+  }
+  fail("Email manual boundary audit failed", findings);
 }
 
 const audits = {
@@ -730,6 +915,12 @@ const audits = {
   "public-profiles": auditPublicProfiles,
   "decision-boundaries": auditDecisionBoundaries,
   "exafuse-mode-human": auditExafuseModeHuman,
+  "brief-status-consistency": auditBriefStatusConsistency,
+  "human-migration-language": auditHumanMigrationLanguage,
+  "control-text-readability": auditControlTextReadability,
+  "claims-human-surface": auditClaimsHumanSurface,
+  "ai-safe-summary": auditAiSafeSummary,
+  "email-manual-boundary": auditEmailManualBoundary,
   all() {
     auditVisualText();
     auditRenderedText();
@@ -749,6 +940,12 @@ const audits = {
     auditPublicProfiles();
     auditDecisionBoundaries();
     auditExafuseModeHuman();
+    auditBriefStatusConsistency();
+    auditHumanMigrationLanguage();
+    auditControlTextReadability();
+    auditClaimsHumanSurface();
+    auditAiSafeSummary();
+    auditEmailManualBoundary();
   }
 };
 
