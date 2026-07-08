@@ -16,10 +16,17 @@ It turns rough LMD, DED, repair, cladding, monitoring, and RFQ questions into a 
 - `availableData`
 - `knownFacts`
 - `missingInformation`
+- `missingCritical`
+- `missingUseful`
+- `missingOptional`
 - `riskFlags`
 - `evidenceNeeded`
 - `preliminaryRoute`
 - `reviewReadiness`
+- `briefCompleteness`
+- `completenessNote`
+- `evidenceBurden`
+- `evidenceBurdenNote`
 - `nextAction`
 - `exafuseReviewRoute`
 - `boundaryStatement`
@@ -45,14 +52,52 @@ Do not add customer names, hidden Exafuse details, part drawings, private proces
 
 Brief outputs should support:
 
-- Copy decision brief
+- Copy technical brief
+- Copy Exafuse email draft
+- Copy AI-agent-safe summary
 - Copy missing-information checklist
 - Copy evidence-needed checklist
-- Copy Exafuse review summary
 - Download `.md`
 - Download `.json`
+- Print / save as PDF
+- Open mail client with a user-controlled draft where appropriate
+- Copy internal engineering message
+- Copy LinkedIn-safe snippet
+- Copy AI-agent prompt
 
-Exports are client-side only. Do not add a backend, endpoint, analytics event, storage, or input logging around user-entered technical content.
+Exports are client-side only. Do not add a backend, endpoint, analytics event, storage, automatic sending, or input logging around user-entered technical content.
+
+## Output Modes
+
+1. Technical Decision Brief: engineering/review preparation.
+2. Exafuse-ready email draft: manual email draft; the user chooses what to send.
+3. AI-agent-safe summary: bounded summary for preliminary structuring and RFQ preparation context.
+
+All three modes must preserve the same boundary statement and the no-backend note.
+
+## Planning Labels
+
+Brief completeness states:
+
+- `Too vague for review`
+- `Ready for preliminary discussion`
+- `Ready for expert review package`
+- `Needs formal inspection / qualification planning`
+
+Required note:
+
+`Completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation.`
+
+Evidence burden states:
+
+- `Low screening burden`
+- `Moderate review burden`
+- `High inspection burden`
+- `Formal qualification burden`
+
+Required note:
+
+`Evidence burden is a planning label, not release approval.`
 
 ## Boundary
 
@@ -69,7 +114,7 @@ Use Exafuse as the commercial and company review route. Manish Sharma Lab struct
 3. Include a matching `DecisionBrief` object.
 4. Add or confirm a URL hash route such as `/tools/#preset=example-id`.
 5. Link it only where it helps a public decision path.
-6. Run `npm run audit:decision-brief` and `npm run audit:mobile-static`.
+6. Run `npm run audit:brief-artifact`, `npm run audit:brief-boundaries`, `npm run audit:a11y-static`, and `npm run audit:mobile-static`.
 
 ## Adding A Playbook
 
@@ -103,3 +148,4 @@ When the brief schema, presets, routes, or claim boundaries change, update:
 - `public/agent-pack/lmd-quality-checklist.md`
 - `README.md`
 - `AGENTS.md`
+- `docs/artifact-lifecycle.md`

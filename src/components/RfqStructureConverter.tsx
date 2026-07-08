@@ -109,6 +109,11 @@ export default function RfqStructureConverter({
     availableData: parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."],
     knownFacts: parsed.known.length ? parsed.known : ["Not enough clear facts detected yet."],
     missingInformation: parsed.missing.length ? parsed.missing : ["No major missing field detected by keyword rules."],
+    missingCritical: parsed.missing.filter((item) =>
+      ["exact material grade", "damage depth", "drawing/CAD", "dimensions", "operating conditions", "inspection requirement"].includes(item)
+    ),
+    missingUseful: parsed.missing.filter((item) => ["photos", "tolerance", "deadline"].includes(item)),
+    missingOptional: ["prior repair history", "preferred process", "budget estimate", "reference part"],
     riskFlags: parsed.riskFlags,
     evidenceNeeded: parsed.evidenceNeeded,
     preliminaryRoute: parsed.recommendation,

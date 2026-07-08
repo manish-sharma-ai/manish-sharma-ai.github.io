@@ -246,6 +246,10 @@ export default function LmdDecisionCockpit({
   }
 
   const activePreset = activePresetId ? getCockpitPreset(activePresetId) : undefined;
+  const activeExampleText =
+    activePreset?.id === "worn-shaft"
+      ? "worn steel shaft near bearing seat."
+      : activePreset?.scenario;
 
   return (
     <section id="lmd-decision-cockpit" className="ordered-card-strong scroll-mt-24 p-5 md:p-7">
@@ -262,12 +266,19 @@ export default function LmdDecisionCockpit({
           <p className="mt-4 text-sm leading-6 text-slate-300 md:text-base md:leading-7">
             Pick the situation, mark what is known, then expose missing information, risk flags, evidence needed, and an Exafuse review route. Inputs stay in this browser session only.
           </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <span className="chip chip--steel">Technical Decision Brief</span>
+            <span className="chip chip--steel">Exafuse-ready email draft</span>
+            <span className="chip chip--steel">AI-agent-safe summary</span>
+          </div>
 
-          <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4">
+          <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4" data-public-safe-example={WORN_SHAFT_SCENARIO}>
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
                 onClick={() => loadPreset("worn-shaft")}
+                aria-pressed={Boolean(activePresetId)}
+                aria-label="Show public-safe worn-shaft example"
                 className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-primary" : "btn-secondary"}`}
               >
                 Show example
@@ -275,6 +286,8 @@ export default function LmdDecisionCockpit({
               <button
                 type="button"
                 onClick={startBlank}
+                aria-pressed={!activePresetId}
+                aria-label="Start blank LMD Decision Brief"
                 className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-secondary" : "btn-primary"}`}
               >
                 Start blank
@@ -282,16 +295,13 @@ export default function LmdDecisionCockpit({
             </div>
             {activePreset ? (
               <p className="mt-3 text-sm font-semibold leading-6 text-cyan-50">
-                Public-safe dummy example: {activePreset.scenario}
+                Public-safe dummy example: {activeExampleText}
               </p>
             ) : (
               <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
                 Blank mode: make selections below. No backend, no storage, no analytics around inputs.
               </p>
             )}
-            <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
-              Default example text: {WORN_SHAFT_SCENARIO}
-            </p>
           </div>
 
           <div className="mt-6 grid gap-5">
@@ -303,6 +313,8 @@ export default function LmdDecisionCockpit({
                     key={situation.id}
                     type="button"
                     onClick={() => updateState({ ...state, situation: situation.id })}
+                    aria-pressed={state.situation === situation.id}
+                    aria-label={`Choose situation: ${situation.label}`}
                     className={`rounded-lg border p-3 text-left text-sm font-bold leading-5 transition ${
                       state.situation === situation.id
                         ? "border-cyan-300/70 bg-cyan-300/14 text-white"
@@ -363,6 +375,8 @@ export default function LmdDecisionCockpit({
                       key={preset.id}
                       type="button"
                       onClick={() => loadPreset(preset.id)}
+                      aria-pressed={activePresetId === preset.id}
+                      aria-label={`Load public-safe preset: ${preset.label}`}
                       className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId === preset.id ? "btn-primary" : "btn-secondary"}`}
                     >
                       {preset.label}

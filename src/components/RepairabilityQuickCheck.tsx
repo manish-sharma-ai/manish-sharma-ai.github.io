@@ -87,28 +87,31 @@ export default function RepairabilityQuickCheck({
   return (
     <div className="tool-panel">
       <div className="grid content-start gap-3">
-        {questions.map((question) => (
-          <label key={question} className="tool-field grid-cols-[auto_1fr] items-start gap-3 text-sm font-semibold text-slate-200">
+        <fieldset className="grid gap-3">
+          <legend className="metric-label mb-1">Repairability inputs</legend>
+          {questions.map((question) => (
+            <label key={question} className="tool-field grid-cols-[auto_1fr] items-start gap-3 text-sm font-semibold text-slate-200">
+              <input
+                type="checkbox"
+                checked={selected.includes(question)}
+                onChange={(event) =>
+                  setSelected((current) => event.target.checked ? [...current, question] : current.filter((item) => item !== question))
+                }
+                className="mt-1 accent-cyan-300"
+              />
+              <span>{question}</span>
+            </label>
+          ))}
+          <label className="flex items-start gap-3 rounded-[18px] border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-semibold text-orange-50">
             <input
               type="checkbox"
-              checked={selected.includes(question)}
-              onChange={(event) =>
-                setSelected((current) => event.target.checked ? [...current, question] : current.filter((item) => item !== question))
-              }
-              className="mt-1 accent-cyan-300"
+              checked={safetyCritical}
+              onChange={(event) => setSafetyCritical(event.target.checked)}
+              className="mt-1 accent-orange-400"
             />
-            <span>{question}</span>
+            <span>Safety critical?</span>
           </label>
-        ))}
-        <label className="flex items-start gap-3 rounded-[18px] border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-semibold text-orange-50">
-          <input
-            type="checkbox"
-            checked={safetyCritical}
-            onChange={(event) => setSafetyCritical(event.target.checked)}
-            className="mt-1 accent-orange-400"
-          />
-          <span>Safety critical?</span>
-        </label>
+        </fieldset>
         <div className="mt-2 flex flex-wrap gap-3">
           <button type="button" onClick={() => { setSelected(exampleSelected); setSafetyCritical(false); }} className="btn btn-secondary">Use example</button>
           <button type="button" onClick={() => { setSelected(["Damage local?", "Access possible?", "Downtime important?"]); setSafetyCritical(false); }} className="btn btn-secondary">Reset</button>
@@ -145,6 +148,13 @@ export default function RepairabilityQuickCheck({
             availableData: result.why,
             knownFacts: result.why,
             missingInformation: result.missing.length ? result.missing : ["No major missing field from selected checklist."],
+            missingCritical: result.missing.filter((item) =>
+              ["material", "damage", "post-machining", "inspection", "expert approval"].some((term) => item.includes(term))
+            ),
+            missingUseful: result.missing.filter((item) =>
+              ["replacement cost", "downtime", "access"].some((term) => item.includes(term))
+            ),
+            missingOptional: ["prior repair history", "reference part", "budget estimate"],
             riskFlags: result.riskFlags,
             evidenceNeeded: result.evidenceNeeded,
             preliminaryRoute: `${result.recommendation} (${result.score}/100)`,

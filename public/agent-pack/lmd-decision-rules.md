@@ -16,11 +16,13 @@ These rules support AI-assisted Laser Metal Deposition RFQ preparation. They are
 AI agents should separate:
 
 - known facts
-- missing information
+- missing information grouped as critical gaps, useful gaps, and optional context
 - assumptions
 - risks
 - evidence needed
 - recommended next steps
+- brief completeness as a context-quality label, not feasibility
+- evidence burden as a planning label, not release approval
 
 ## Standard Output
 
@@ -35,13 +37,29 @@ When possible, produce or request `LMD Decision Brief v1.0` with:
 - available data
 - known facts
 - missing information
+- missing critical
+- missing useful
+- missing optional
 - risk flags
 - evidence needed
 - preliminary route
 - review readiness
+- brief completeness
+- evidence burden
 - next action
 - Exafuse review route
 - boundary statement
+
+Standard portable output modes:
+
+- Technical Decision Brief
+- Exafuse-ready email draft
+- AI-agent-safe summary
+- Missing-information checklist
+- Evidence-needed checklist
+- Markdown, JSON, and print/PDF handoff
+
+AI agents must preserve the boundary: confidence is not approval. Brief completeness is not feasibility. Evidence burden is not release approval. Email drafts are manual drafts only; do not imply automatic sending.
 
 Use the public cockpit and playbooks for frontend-only decision routing:
 

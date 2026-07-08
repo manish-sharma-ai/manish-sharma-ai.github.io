@@ -15,11 +15,11 @@ The public experience should make the core idea usable quickly:
 5. Show what evidence is needed.
 6. Route serious commercial/technical review to Exafuse.
 7. Keep the boundary visible: confidence is not approval.
-8. Let the visitor copy or download a clean Decision Brief.
+8. Let the visitor copy, download, print, or email-draft a clean Decision Brief.
 
 ## Guided Cockpit
 
-`src/components/LmdDecisionCockpit.tsx` is frontend-only. It does not use backend services, analytics, network calls, or localStorage. It accepts public-safe user selections, then produces `LMD Decision Brief v1.0` with known facts, missing information, risk flags, evidence needed, readiness, next action, and Exafuse review route.
+`src/components/LmdDecisionCockpit.tsx` is frontend-only. It does not use backend services, analytics, network calls, or localStorage. It accepts public-safe user selections, then produces `LMD Decision Brief v1.0` with known facts, grouped missing information, risk flags, evidence needed, readiness, brief completeness, evidence burden, next action, and Exafuse review route.
 
 The shared model and copy/export logic live in:
 
@@ -34,6 +34,23 @@ Current public-safe presets are:
 - `surface-cladding`
 - `lmd-vs-slm`
 - `rfq`
+
+## Portable Output Modes
+
+`LMD Decision Brief v1.0` should travel outside the site as:
+
+- Technical Decision Brief
+- Exafuse-ready email draft
+- AI-agent-safe summary
+- Missing-information checklist
+- Evidence-needed checklist
+- Markdown
+- JSON
+- Print / save as PDF
+
+Email drafts are manual drafts only. The user decides what to send. Do not add automatic sending, backend endpoints, input analytics, or input storage.
+
+Brief completeness is not feasibility. Evidence burden is not release approval. Both labels exist to improve the next conversation, not to approve a part.
 
 ## Public-Safe Data Rules
 
@@ -97,5 +114,6 @@ When adding public routes, update:
 - `README.md`
 - `docs/final-100-checklist.md`
 - `docs/decision-brief-standard.md`
+- `docs/artifact-lifecycle.md`
 
 Run `npm run audit:all` before committing.

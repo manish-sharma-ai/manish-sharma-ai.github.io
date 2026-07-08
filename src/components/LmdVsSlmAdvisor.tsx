@@ -191,6 +191,15 @@ function ToolResult({
     availableData: result.why,
     knownFacts: result.why,
     missingInformation: result.missing,
+    missingCritical: result.missing.filter((item) =>
+      ["material grade", "part drawing", "CAD", "service conditions", "inspection requirement"].some((term) =>
+        item.toLowerCase().includes(term.toLowerCase())
+      )
+    ),
+    missingUseful: result.missing.filter((item) =>
+      ["post-machining", "damage depth", "repair area"].some((term) => item.toLowerCase().includes(term.toLowerCase()))
+    ),
+    missingOptional: ["batch/economics context", "reference route preference"],
     riskFlags: result.riskFlags,
     evidenceNeeded: result.evidenceNeeded,
     preliminaryRoute: result.recommendation,

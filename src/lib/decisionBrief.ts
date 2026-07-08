@@ -5,6 +5,26 @@ export const BOUNDARY_STATEMENT =
 
 export const NO_BACKEND_NOTE = "No backend. No data sent by this site.";
 
+export const BRIEF_COMPLETENESS_NOTE =
+  "Completeness is not feasibility. It only describes whether the brief contains enough context for a useful next conversation.";
+
+export const EVIDENCE_BURDEN_NOTE = "Evidence burden is a planning label, not release approval.";
+
+export const GERMAN_BRIEF_BOUNDARY =
+  "Entscheidungshilfe, keine technische Freigabe. Prozesssignale sind kein Qualitätsnachweis. Die endgültige Bewertung erfordert Fachprüfung, Inspektion und geeignete Nachweise.";
+
+export type BriefCompleteness =
+  | "Too vague for review"
+  | "Ready for preliminary discussion"
+  | "Ready for expert review package"
+  | "Needs formal inspection / qualification planning";
+
+export type EvidenceBurden =
+  | "Low screening burden"
+  | "Moderate review burden"
+  | "High inspection burden"
+  | "Formal qualification burden";
+
 export interface DecisionBrief {
   briefVersion: typeof BRIEF_VERSION;
   situation: string;
@@ -16,10 +36,17 @@ export interface DecisionBrief {
   availableData: string[];
   knownFacts: string[];
   missingInformation: string[];
+  missingCritical: string[];
+  missingUseful: string[];
+  missingOptional: string[];
   riskFlags: string[];
   evidenceNeeded: string[];
   preliminaryRoute: string;
   reviewReadiness: string;
+  briefCompleteness: BriefCompleteness;
+  completenessNote: typeof BRIEF_COMPLETENESS_NOTE;
+  evidenceBurden: EvidenceBurden;
+  evidenceBurdenNote: typeof EVIDENCE_BURDEN_NOTE;
   nextAction: string;
   exafuseReviewRoute: string;
   boundaryStatement: string;
@@ -46,22 +73,162 @@ function asList(items?: string[]) {
   return items?.filter(Boolean) ?? [];
 }
 
+function unique(items: string[]) {
+  return [...new Set(items.map((item) => item.trim()).filter(Boolean))];
+}
+
+function includesAny(value: string, needles: string[]) {
+  const lower = value.toLowerCase();
+  return needles.some((needle) => lower.includes(needle));
+}
+
+function groupMissingInformation(items: string[], riskFlags: string[]) {
+  const criticalTerms = [
+    "exact material grade",
+    "material grade",
+    "damage depth",
+    "geometry",
+    "drawing",
+    "cad",
+    "dimensions",
+    "service conditions",
+    "operating conditions",
+    "inspection requirement",
+    "inspection path",
+    "acceptance criteria"
+  ];
+  const usefulTerms = ["photos", "deadline", "downtime", "machining allowance", "post-machining", "tolerance", "finishing"];
+  const criticalRisk = riskFlags.some((risk) =>
+    includesAny(risk, ["safety-critical", "safety critical", "no inspection", "unknown material", "crack", "qualification"])
+  );
+
+  const missingCritical = items.filter((item) => includesAny(item, criticalTerms));
+  const missingUseful = items.filter((item) => !missingCritical.includes(item) && includesAny(item, usefulTerms));
+  const missingOptional = items.filter((item) => !missingCritical.includes(item) && !missingUseful.includes(item));
+
+  if (criticalRisk && !missingCritical.some((item) => includesAny(item, ["inspection", "qualification"]))) {
+    missingCritical.push("Inspection requirement for safety-critical or high-risk cases");
+  }
+
+  return {
+    missingCritical: unique(missingCritical),
+    missingUseful: unique(missingUseful),
+    missingOptional: unique(missingOptional)
+  };
+}
+
+function inferBriefCompleteness({
+  missingCritical,
+  missingUseful,
+  riskFlags,
+  knownFacts
+}: {
+  missingCritical: string[];
+  missingUseful: string[];
+  riskFlags: string[];
+  knownFacts: string[];
+}): BriefCompleteness {
+  if (riskFlags.some((risk) => includesAny(risk, ["safety-critical", "safety critical", "no inspection", "qualification"]))) {
+    return "Needs formal inspection / qualification planning";
+  }
+  if (missingCritical.length >= 4 || knownFacts.length === 0 || knownFacts.some((fact) => fact.toLowerCase().includes("no concrete"))) {
+    return "Too vague for review";
+  }
+  if (missingCritical.length > 0 || missingUseful.length > 2) {
+    return "Ready for preliminary discussion";
+  }
+  return "Ready for expert review package";
+}
+
+function inferEvidenceBurden({
+  missingCritical,
+  riskFlags,
+  evidenceNeeded,
+  situation
+}: {
+  missingCritical: string[];
+  riskFlags: string[];
+  evidenceNeeded: string[];
+  situation: string;
+}): EvidenceBurden {
+  const combined = [...riskFlags, ...evidenceNeeded, situation].join(" | ");
+  if (includesAny(combined, ["safety-critical", "safety critical", "qualification", "acceptance", "release criteria"])) {
+    return "Formal qualification burden";
+  }
+  if (
+    missingCritical.length >= 3 ||
+    includesAny(combined, ["unknown material", "no inspection", "tight tolerance", "crack", "monitoring", "anomaly"])
+  ) {
+    return "High inspection burden";
+  }
+  if (missingCritical.length > 0 || riskFlags.length > 1) {
+    return "Moderate review burden";
+  }
+  return "Low screening burden";
+}
+
 export function createDecisionBrief(input: BriefInput): DecisionBrief {
+  const knownFacts = asList(input.knownFacts);
+  const inputMissing = asList(input.missingInformation);
+  const riskFlags = asList(input.riskFlags);
+  const evidenceNeeded = asList(input.evidenceNeeded);
+  const hasGroupedMissing =
+    asList(input.missingCritical).length > 0 ||
+    asList(input.missingUseful).length > 0 ||
+    asList(input.missingOptional).length > 0;
+  const groupedMissing = hasGroupedMissing
+    ? {
+        missingCritical: asList(input.missingCritical),
+        missingUseful: asList(input.missingUseful),
+        missingOptional: asList(input.missingOptional)
+      }
+    : groupMissingInformation(inputMissing, riskFlags);
+  const missingInformation = unique([
+    ...groupedMissing.missingCritical,
+    ...groupedMissing.missingUseful,
+    ...groupedMissing.missingOptional,
+    ...inputMissing
+  ]);
+  const situation = input.situation ?? "LMD/DED question not yet structured.";
+  const briefCompleteness =
+    input.briefCompleteness ??
+    inferBriefCompleteness({
+      missingCritical: groupedMissing.missingCritical,
+      missingUseful: groupedMissing.missingUseful,
+      riskFlags,
+      knownFacts
+    });
+  const evidenceBurden =
+    input.evidenceBurden ??
+    inferEvidenceBurden({
+      missingCritical: groupedMissing.missingCritical,
+      riskFlags,
+      evidenceNeeded,
+      situation
+    });
+
   return {
     briefVersion: BRIEF_VERSION,
-    situation: input.situation ?? "LMD/DED question not yet structured.",
+    situation,
     component: input.component ?? "Component not yet specified.",
     goal: input.goal ?? "Clarify whether LMD/DED, repair, cladding, or another route is worth expert review.",
     material: input.material ?? "Material not yet specified.",
     geometryOrSize: input.geometryOrSize ?? "Geometry or size not yet specified.",
     damageOrBuildArea: input.damageOrBuildArea ?? "Damage or build area not yet specified.",
     availableData: asList(input.availableData),
-    knownFacts: asList(input.knownFacts),
-    missingInformation: asList(input.missingInformation),
-    riskFlags: asList(input.riskFlags),
-    evidenceNeeded: asList(input.evidenceNeeded),
+    knownFacts,
+    missingInformation,
+    missingCritical: unique(groupedMissing.missingCritical),
+    missingUseful: unique(groupedMissing.missingUseful),
+    missingOptional: unique(groupedMissing.missingOptional),
+    riskFlags,
+    evidenceNeeded,
     preliminaryRoute: input.preliminaryRoute ?? "Structure the question before choosing a process route.",
     reviewReadiness: input.reviewReadiness ?? "Not enough information",
+    briefCompleteness,
+    completenessNote: BRIEF_COMPLETENESS_NOTE,
+    evidenceBurden,
+    evidenceBurdenNote: EVIDENCE_BURDEN_NOTE,
     nextAction: input.nextAction ?? "Collect missing information and prepare a bounded review package.",
     exafuseReviewRoute:
       input.exafuseReviewRoute ??
@@ -99,6 +266,16 @@ export const WORN_SHAFT_BRIEF = createDecisionBrief({
     "Inspection requirement",
     "Deadline"
   ],
+  missingCritical: [
+    "Exact material grade",
+    "CAD/drawing",
+    "Damage depth",
+    "Dimensions",
+    "Operating conditions",
+    "Inspection requirement"
+  ],
+  missingUseful: ["Deadline", "Machining allowance"],
+  missingOptional: ["Prior repair history", "Reference part"],
   riskFlags: [
     "Tight tolerance likely requires post-machining and dimensional inspection.",
     "Unknown service conditions can change material compatibility and evidence needs.",
@@ -157,6 +334,13 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
         "Inspection result",
         "Acceptance criteria"
       ],
+      missingCritical: [
+        "Linked track/layer/part record",
+        "Inspection result",
+        "Acceptance criteria"
+      ],
+      missingUseful: ["Sensor context", "Calibration context"],
+      missingOptional: ["Prior signal history"],
       riskFlags: [
         "A process signal does not prove final part quality.",
         "Unlinked signal data can create false confidence.",
@@ -203,6 +387,14 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
         "Finishing requirement",
         "Inspection requirement"
       ],
+      missingCritical: [
+        "Exact material grade",
+        "Coating function",
+        "Wear/corrosion/heat duty",
+        "Inspection requirement"
+      ],
+      missingUseful: ["Surface area dimensions", "Finishing requirement"],
+      missingOptional: ["Prior repair history"],
       riskFlags: [
         "Coating function can change material selection.",
         "Tight final geometry requires machining and inspection planning."
@@ -247,6 +439,9 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
         "Post-processing plan",
         "Inspection requirement"
       ],
+      missingCritical: ["Exact material grade", "Feature dimensions", "Inspection requirement"],
+      missingUseful: ["Post-processing plan"],
+      missingOptional: ["Batch/economics context", "Reference part"],
       riskFlags: [
         "Tight tolerance requires post-processing and inspection.",
         "Balanced route signals may need manual expert comparison."
@@ -295,6 +490,16 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
         "Inspection requirement",
         "Deadline"
       ],
+      missingCritical: [
+        "Exact material grade",
+        "Damage depth",
+        "Drawing/CAD",
+        "Dimensions",
+        "Operating conditions",
+        "Inspection requirement"
+      ],
+      missingUseful: ["Photos", "Tolerance", "Deadline"],
+      missingOptional: ["Prior repair history", "Budget estimate", "Reference part"],
       riskFlags: [
         "Unknown material blocks firm repair recommendations.",
         "Missing geometry and damage depth can change the route.",
@@ -330,9 +535,22 @@ function section(title: string, body: string | string[]) {
   return [`## ${title}`, Array.isArray(body) ? listMarkdown(body) : body || "Not specified."].join("\n");
 }
 
-export function formatDecisionBriefMarkdown(brief: DecisionBrief) {
+function groupedMissingMarkdown(brief: DecisionBrief) {
   return [
-    `# ${brief.briefVersion}`,
+    "### Critical gaps",
+    listMarkdown(brief.missingCritical),
+    "",
+    "### Useful gaps",
+    listMarkdown(brief.missingUseful),
+    "",
+    "### Optional context",
+    listMarkdown(brief.missingOptional)
+  ].join("\n");
+}
+
+export function formatTechnicalDecisionBrief(brief: DecisionBrief) {
+  return [
+    `# ${brief.briefVersion} - Technical Decision Brief`,
     "",
     section("Situation", brief.situation),
     "",
@@ -352,9 +570,14 @@ export function formatDecisionBriefMarkdown(brief: DecisionBrief) {
     "",
     section("Review readiness", brief.reviewReadiness),
     "",
+    section("Brief completeness", `${brief.briefCompleteness}\n\n${brief.completenessNote}`),
+    "",
+    section("Evidence burden", `${brief.evidenceBurden}\n\n${brief.evidenceBurdenNote}`),
+    "",
     section("Known facts", brief.knownFacts),
     "",
-    section("Missing information", brief.missingInformation),
+    "## Missing information",
+    groupedMissingMarkdown(brief),
     "",
     section("Risk flags", brief.riskFlags),
     "",
@@ -372,6 +595,10 @@ export function formatDecisionBriefMarkdown(brief: DecisionBrief) {
   ].join("\n");
 }
 
+export function formatDecisionBriefMarkdown(brief: DecisionBrief) {
+  return formatTechnicalDecisionBrief(brief);
+}
+
 export function formatDecisionBriefJson(brief: DecisionBrief) {
   return JSON.stringify(brief, null, 2);
 }
@@ -381,11 +608,29 @@ export function formatChecklist(title: string, items: string[]) {
 }
 
 export function formatMissingInformationChecklist(brief: DecisionBrief) {
-  return formatChecklist(`${brief.briefVersion} - Missing-information checklist`, brief.missingInformation);
+  return [
+    `# ${brief.briefVersion} - Missing-information checklist`,
+    "",
+    "## Critical gaps",
+    ...(brief.missingCritical.length ? brief.missingCritical.map((item) => `- [ ] ${item}`) : ["- [ ] Not specified."]),
+    "",
+    "## Useful gaps",
+    ...(brief.missingUseful.length ? brief.missingUseful.map((item) => `- [ ] ${item}`) : ["- [ ] Not specified."]),
+    "",
+    "## Optional context",
+    ...(brief.missingOptional.length ? brief.missingOptional.map((item) => `- [ ] ${item}`) : ["- [ ] Not specified."]),
+    "",
+    brief.completenessNote
+  ].join("\n");
 }
 
 export function formatEvidenceNeededChecklist(brief: DecisionBrief) {
-  return formatChecklist(`${brief.briefVersion} - Evidence-needed checklist`, brief.evidenceNeeded);
+  return [
+    formatChecklist(`${brief.briefVersion} - Evidence-needed checklist`, brief.evidenceNeeded),
+    "",
+    `Evidence burden: ${brief.evidenceBurden}`,
+    brief.evidenceBurdenNote
+  ].join("\n");
 }
 
 export function formatExafuseReviewSummary(brief: DecisionBrief) {
@@ -400,10 +645,13 @@ export function formatExafuseReviewSummary(brief: DecisionBrief) {
     `Damage or build area: ${brief.damageOrBuildArea}`,
     `Preliminary route: ${brief.preliminaryRoute}`,
     `Review readiness: ${brief.reviewReadiness}`,
+    `Brief completeness: ${brief.briefCompleteness}`,
+    `Evidence burden: ${brief.evidenceBurden}`,
     "",
     section("Known facts", brief.knownFacts),
     "",
-    section("Missing information", brief.missingInformation),
+    "## Missing information",
+    groupedMissingMarkdown(brief),
     "",
     section("Risk flags", brief.riskFlags),
     "",
@@ -417,9 +665,120 @@ export function formatExafuseReviewSummary(brief: DecisionBrief) {
   ].join("\n");
 }
 
+export function formatExafuseEmailDraft(brief: DecisionBrief) {
+  const subject = `LMD review request - ${brief.component} / ${brief.situation} - preliminary decision brief`;
+  const body = [
+    "Hello Exafuse team,",
+    "",
+    "I would like to request a preliminary review for the following LMD/DED question.",
+    "",
+    formatTechnicalDecisionBrief(brief),
+    "",
+    "Important:",
+    "This is a preliminary decision-support brief generated locally in the browser. It is not an engineering approval. Please review material, geometry, service conditions, inspection requirements, and feasibility.",
+    "",
+    "Do not include confidential customer or employer data unless you are allowed to share it.",
+    "",
+    "Best regards,"
+  ].join("\n");
+
+  return [`Subject: ${subject}`, "", "Body:", body].join("\n");
+}
+
+export function formatAiAgentSafeSummary(brief: DecisionBrief) {
+  return [
+    "# AI-Agent-Safe LMD Decision Summary",
+    "",
+    "Use this as:",
+    "- preliminary LMD/DED decision-support context",
+    "- RFQ preparation context",
+    "- missing-information checklist",
+    "",
+    "Do not use this as:",
+    "- engineering approval",
+    "- material certification",
+    "- safety-critical acceptance",
+    "- quality guarantee",
+    "- replacement for Exafuse review",
+    "",
+    section("Known facts", brief.knownFacts),
+    "",
+    "## Missing information",
+    groupedMissingMarkdown(brief),
+    "",
+    section("Risk flags", brief.riskFlags),
+    "",
+    section("Evidence needed", brief.evidenceNeeded),
+    "",
+    section("Brief completeness", `${brief.briefCompleteness}\n\n${brief.completenessNote}`),
+    "",
+    section("Evidence burden", `${brief.evidenceBurden}\n\n${brief.evidenceBurdenNote}`),
+    "",
+    section("Next action", brief.nextAction),
+    "",
+    "## Commercial/company review",
+    "Use Exafuse for services, RFQs, delivery claims, case studies, and company review.",
+    "",
+    "## AI-agent guidance",
+    "More safe-use guidance: https://manish-sharma-ai.github.io/for-ai-agents/",
+    "",
+    section("Boundary", brief.boundaryStatement),
+    "",
+    brief.noBackendNote
+  ].join("\n");
+}
+
+export function formatInternalEngineeringMessage(brief: DecisionBrief) {
+  return [
+    "Here is the current LMD question.",
+    "",
+    `Component: ${brief.component}`,
+    `Preliminary route: ${brief.preliminaryRoute}`,
+    `Brief completeness: ${brief.briefCompleteness}`,
+    `Evidence burden: ${brief.evidenceBurden}`,
+    "",
+    "Critical gaps are:",
+    listMarkdown(brief.missingCritical),
+    "",
+    "Risk flags:",
+    listMarkdown(brief.riskFlags),
+    "",
+    `Suggested next step: ${brief.nextAction}`,
+    "",
+    brief.boundaryStatement
+  ].join("\n");
+}
+
+export function formatLinkedInSafeSnippet(brief: DecisionBrief) {
+  return [
+    "I used a public-safe LMD Decision Brief format to separate known facts, missing information, risk flags, and evidence needed.",
+    "",
+    "Key principle: a signal is not proof.",
+    "",
+    `Current brief completeness: ${brief.briefCompleteness}.`,
+    `Evidence burden: ${brief.evidenceBurden}.`,
+    "",
+    "This is decision-support structure, not feasibility approval."
+  ].join("\n");
+}
+
+export function formatAiAgentPrompt(brief: DecisionBrief) {
+  return [
+    "Use this LMD Decision Brief only for preliminary structuring. Do not infer feasibility or approval.",
+    "",
+    formatAiAgentSafeSummary(brief)
+  ].join("\n");
+}
+
+export function formatExafuseMailtoHref(brief: DecisionBrief) {
+  const subject = `LMD review request - ${brief.component} / ${brief.situation} - preliminary decision brief`;
+  const body = formatExafuseEmailDraft(brief).replace(/^Subject:.*\n\nBody:\n/, "");
+  return `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function formatDecisionBriefTemplateMarkdown() {
   return [
-    `# ${BRIEF_VERSION}`,
+    `# ${BRIEF_VERSION} - Technical Decision Brief`,
     "",
     "## Situation",
     "",
@@ -440,10 +799,27 @@ export function formatDecisionBriefTemplateMarkdown() {
     "",
     "## Review readiness",
     "",
+    "## Brief completeness",
+    "Too vague for review / Ready for preliminary discussion / Ready for expert review package / Needs formal inspection / qualification planning",
+    "",
+    BRIEF_COMPLETENESS_NOTE,
+    "",
+    "## Evidence burden",
+    "Low screening burden / Moderate review burden / High inspection burden / Formal qualification burden",
+    "",
+    EVIDENCE_BURDEN_NOTE,
+    "",
     "## Known facts",
     "- ",
     "",
     "## Missing information",
+    "### Critical gaps",
+    "- ",
+    "",
+    "### Useful gaps",
+    "- ",
+    "",
+    "### Optional context",
     "- ",
     "",
     "## Risk flags",
@@ -460,5 +836,38 @@ export function formatDecisionBriefTemplateMarkdown() {
     BOUNDARY_STATEMENT,
     "",
     NO_BACKEND_NOTE
+  ].join("\n");
+}
+
+export function formatGermanDecisionBriefTemplateMarkdown() {
+  return [
+    "# LMD-Entscheidungsbrief v1.0",
+    "",
+    "## Ausgangssituation",
+    "",
+    "## Bauteil",
+    "",
+    "## Ziel",
+    "",
+    "## Material",
+    "",
+    "## Vorhandene Daten",
+    "- ",
+    "",
+    "## Fehlende Informationen",
+    "- ",
+    "",
+    "## Risiken",
+    "- ",
+    "",
+    "## Benötigte Nachweise",
+    "- ",
+    "",
+    "## Nächster Schritt",
+    "",
+    "## Exafuse-Prüfroute",
+    "",
+    "## Grenze",
+    GERMAN_BRIEF_BOUNDARY
   ].join("\n");
 }

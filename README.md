@@ -163,7 +163,12 @@ npm run audit:links
 npm run audit:claims
 npm run audit:boundaries
 npm run audit:homepage-product
+npm run audit:brief-artifact
 npm run audit:decision-brief
+npm run audit:brief-boundaries
+npm run audit:debug-text
+npm run audit:a11y-static
+npm run audit:german-brief
 npm run audit:playbook-format
 npm run audit:held-claims
 npm run audit:mobile-static
@@ -206,7 +211,26 @@ npm run audit:links:report
 
 The central artifact of the site is `LMD Decision Brief v1.0`.
 
-It appears across the cockpit, tools, demo, template, and playbooks. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts, missing information, risk flags, evidence needed, preliminary route, review readiness, next action, Exafuse review route, boundary statement, generated-from note, and no-backend note.
+It appears across the cockpit, tools, demo, template, and playbooks. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, and no-backend note.
+
+Portable output modes:
+
+- Technical Decision Brief
+- Exafuse-ready email draft
+- AI-agent-safe summary
+- Missing-information checklist grouped as critical/useful/optional
+- Evidence-needed checklist with evidence burden
+- Markdown download
+- JSON download
+- Print / save as PDF
+
+Artifact boundaries:
+
+- Confidence is not approval.
+- Brief completeness is not feasibility.
+- Evidence burden is a planning label, not release approval.
+- Email drafts are manual drafts only; the site does not automatically send email.
+- The cockpit/workbench are frontend-only: no backend endpoints, no input storage, and no analytics around user-entered technical content.
 
 Public-safe cockpit presets:
 
@@ -217,6 +241,8 @@ Public-safe cockpit presets:
 - `/tools/#preset=rfq`
 
 Implementation and maintenance rules live in `docs/decision-brief-standard.md`.
+
+Artifact lifecycle and future-preset rules live in `docs/artifact-lifecycle.md`.
 
 ## Public Profile Links
 

@@ -296,7 +296,7 @@ function auditHomepageProduct() {
   const required = [
     "AI for Laser Metal Deposition decisions you can verify.",
     "LMD Decision Cockpit",
-    "Worn steel shaft near bearing seat",
+    "Public-safe dummy example: worn steel shaft near bearing seat.",
     "Decision support only",
     "Not final engineering approval",
     "A signal is not proof."
@@ -304,19 +304,26 @@ function auditHomepageProduct() {
   for (const phrase of required) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
   }
+  for (const phrase of ["Default example text:", "audit marker", "test marker", "placeholder for audit", "debug", "TODO", "FIXME"]) {
+    if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
+  }
   const cockpitIndex = visibleText.indexOf("LMD Decision Cockpit");
   const proofIndex = visibleText.indexOf("Public proof");
   if (cockpitIndex < 0 || proofIndex < 0 || cockpitIndex > proofIndex) {
     findings.push(`${file}: LMD Decision Cockpit should appear before Public proof`);
   }
-  const operatingLoopMatches = visibleText.match(/Operating loop/g) ?? [];
-  if (operatingLoopMatches.length !== 1) {
-    findings.push(`${file}: expected exactly one visible "Operating loop" section, found ${operatingLoopMatches.length}`);
+  const operatingLoopSections = text.match(/data-operating-loop="homepage"/g) ?? [];
+  if (operatingLoopSections.length !== 1) {
+    findings.push(`${file}: expected exactly one homepage operating-loop section, found ${operatingLoopSections.length}`);
+  }
+  const operatingLoopH2Matches = text.match(/<h2[^>]*>\s*Sense\s*(?:-&gt;|->)\s*Model\s*(?:-&gt;|->)\s*Decide\s*(?:-&gt;|->)\s*Verify\s*<\/h2>/g) ?? [];
+  if (operatingLoopH2Matches.length !== 1) {
+    findings.push(`${file}: expected exactly one H2 matching "Sense -> Model -> Decide -> Verify", found ${operatingLoopH2Matches.length}`);
   }
   fail("Homepage product audit failed", findings);
 }
 
-function auditDecisionBrief() {
+function auditBriefArtifact() {
   const findings = [];
   const sourceRequired = [
     "src/lib/decisionBrief.ts",
@@ -327,19 +334,22 @@ function auditDecisionBrief() {
     if (!existsSync(join(root, file))) findings.push(`${file}: missing decision-brief source`);
   }
 
-  const pages = ["dist/tools/index.html", "dist/demo/index.html", "dist/brief-template/index.html"];
+  const pages = ["dist/index.html", "dist/tools/index.html", "dist/demo/index.html", "dist/brief-template/index.html"];
   for (const file of pages) {
     if (!existsSync(join(root, file))) {
       findings.push(`${file}: missing built page`);
       continue;
     }
     const visibleText = visibleTextFromHtml(read(file));
+    const visibleLower = visibleText.toLowerCase();
     for (const phrase of [
-      "LMD Decision Brief v1.0",
-      "Confidence is not approval",
-      "No backend. No data sent by this site."
+      "lmd decision brief v1.0",
+      "confidence is not approval",
+      "technical decision brief",
+      "exafuse-ready email draft",
+      "ai-agent-safe summary"
     ]) {
-      if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+      if (!visibleLower.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
     }
   }
 
@@ -347,14 +357,32 @@ function auditDecisionBrief() {
     ? read("src/components/DecisionBriefExport.tsx")
     : "";
   for (const phrase of [
-    "Copy decision brief",
+    "Copy technical brief",
+    "Copy Exafuse email draft",
+    "Copy AI-safe summary",
     "Copy missing-information checklist",
     "Copy evidence-needed checklist",
-    "Copy Exafuse review summary",
     "Download .md",
-    "Download .json"
+    "Download .json",
+    "Print / save as PDF",
+    "Open mail client"
   ]) {
     if (!exportSource.includes(phrase)) findings.push(`src/components/DecisionBriefExport.tsx: missing "${phrase}"`);
+  }
+
+  const libSource = existsSync(join(root, "src/lib/decisionBrief.ts")) ? read("src/lib/decisionBrief.ts") : "";
+  for (const phrase of [
+    "formatTechnicalDecisionBrief",
+    "formatExafuseEmailDraft",
+    "formatAiAgentSafeSummary",
+    "Do not use this as:",
+    "engineering approval",
+    "material certification",
+    "safety-critical acceptance",
+    "quality guarantee",
+    "Confidence is not approval"
+  ]) {
+    if (!libSource.includes(phrase)) findings.push(`src/lib/decisionBrief.ts: missing "${phrase}"`);
   }
 
   const toolSources = [
@@ -372,7 +400,105 @@ function auditDecisionBrief() {
     }
   }
 
-  fail("Decision brief audit failed", findings);
+  fail("Brief artifact audit failed", findings);
+}
+
+function auditDecisionBrief() {
+  auditBriefArtifact();
+}
+
+function boundaryNegated(text, index, phrase) {
+  const window = text.slice(Math.max(0, index - 80), Math.min(text.length, index + phrase.length + 80)).toLowerCase();
+  return ["not ", "no ", "do not", "does not", "cannot", "never", "not as", "not release", "without"].some((marker) => window.includes(marker));
+}
+
+function auditBriefBoundaries() {
+  const findings = [];
+  const explicitUnsafe = [
+    /brief completeness\s+(?:is|=|as|means)\s+feasibility/i,
+    /brief completeness[^.]{0,80}feasibility score/i,
+    /evidence burden\s+(?:is|=|as|means)\s+approval/i,
+    /repairability score\s+(?:approves|approval|is approval)/i,
+    /monitoring\s+(?:certifies|certification|proves final quality|proves quality)/i
+  ];
+  for (const { file, text } of scanFiles([...sourceRoots, ...distRoot])) {
+    for (const regex of explicitUnsafe) {
+      const match = text.match(regex);
+      if (match) findings.push(`${file}: unsafe boundary wording "${match[0]}"`);
+    }
+    for (const phrase of ["automatic sending", "automatically sends", "sends automatically", "auto-sends"]) {
+      const lower = text.toLowerCase();
+      const index = lower.indexOf(phrase);
+      if (index >= 0 && !boundaryNegated(lower, index, phrase)) {
+        findings.push(`${file}: email wording implies automatic sending via "${phrase}"`);
+      }
+    }
+  }
+  fail("Brief boundary audit failed", findings);
+}
+
+function auditDebugText() {
+  const findings = [];
+  const phrases = ["Default example text", "debug", "TODO", "FIXME", "placeholder for audit", "test marker", "audit marker"];
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of phrases) {
+      if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
+    }
+  }
+  fail("Debug text audit failed", findings);
+}
+
+function auditA11yStatic() {
+  const findings = [];
+  const cockpitFile = "src/components/LmdDecisionCockpit.tsx";
+  if (!existsSync(join(root, cockpitFile))) {
+    findings.push(`${cockpitFile}: missing cockpit source`);
+  } else {
+    const cockpit = read(cockpitFile);
+    for (const phrase of ["<fieldset", "<legend", "aria-pressed", "aria-label"]) {
+      if (!cockpit.includes(phrase)) findings.push(`${cockpitFile}: missing "${phrase}"`);
+    }
+  }
+
+  const exportFile = "src/components/DecisionBriefExport.tsx";
+  if (!existsSync(join(root, exportFile))) {
+    findings.push(`${exportFile}: missing export source`);
+  } else {
+    const source = read(exportFile);
+    for (const phrase of ["aria-label={label}", "Copy technical brief", "Download .json", "Print / save as PDF"]) {
+      if (!source.includes(phrase)) findings.push(`${exportFile}: missing accessible/export control "${phrase}"`);
+    }
+    if (/<button[^>]*>\s*<\/button>/i.test(source)) findings.push(`${exportFile}: contains empty button`);
+  }
+
+  for (const file of ["src/components/LmdDecisionCockpit.tsx", "src/components/DecisionBriefCard.tsx", "src/components/DecisionBriefExport.tsx"]) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    const fixedWidthMatches = text.match(/\b(?:w|min-w)-\[(?:[7-9]\d{2,}px|\d{3,}rem)\]/g) ?? [];
+    fixedWidthMatches.forEach((match) => findings.push(`${file}: possible fixed-width overflow "${match}"`));
+  }
+  fail("Static accessibility audit failed", findings);
+}
+
+function auditGermanBrief() {
+  const file = "dist/de/index.html";
+  const findings = [];
+  if (!existsSync(join(root, file))) {
+    fail("German brief audit failed", [`${file}: missing built German page`]);
+    return;
+  }
+  const visibleText = visibleTextFromHtml(read(file));
+  for (const phrase of [
+    "LMD-Entscheidungsbrief v1.0",
+    "Entscheidungshilfe, keine technische Freigabe. Prozesssignale sind kein Qualitätsnachweis. Die endgültige Bewertung erfordert Fachprüfung, Inspektion und geeignete Nachweise."
+  ]) {
+    if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+  }
+  if (visibleText.includes("Preliminary decision-support only")) {
+    findings.push(`${file}: English boundary paragraph appears on German handoff page`);
+  }
+  fail("German brief audit failed", findings);
 }
 
 function auditPlaybookFormat() {
@@ -592,7 +718,12 @@ const audits = {
   claims: auditClaims,
   boundaries: auditBoundaries,
   "homepage-product": auditHomepageProduct,
+  "brief-artifact": auditBriefArtifact,
   "decision-brief": auditDecisionBrief,
+  "brief-boundaries": auditBriefBoundaries,
+  "debug-text": auditDebugText,
+  "a11y-static": auditA11yStatic,
+  "german-brief": auditGermanBrief,
   "playbook-format": auditPlaybookFormat,
   "held-claims": auditHeldClaims,
   "mobile-static": auditMobileStatic,
@@ -606,7 +737,12 @@ const audits = {
     auditClaims();
     auditBoundaries();
     auditHomepageProduct();
+    auditBriefArtifact();
     auditDecisionBrief();
+    auditBriefBoundaries();
+    auditDebugText();
+    auditA11yStatic();
+    auditGermanBrief();
     auditPlaybookFormat();
     auditHeldClaims();
     auditMobileStatic();

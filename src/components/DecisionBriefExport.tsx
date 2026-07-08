@@ -1,12 +1,18 @@
-import { Check, Clipboard, Download } from "lucide-react";
+import { Check, Clipboard, Download, Mail, Printer } from "lucide-react";
 import { useState } from "react";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
+  formatAiAgentPrompt,
+  formatAiAgentSafeSummary,
   formatDecisionBriefJson,
-  formatDecisionBriefMarkdown,
   formatEvidenceNeededChecklist,
+  formatExafuseEmailDraft,
+  formatExafuseMailtoHref,
   formatExafuseReviewSummary,
-  formatMissingInformationChecklist
+  formatInternalEngineeringMessage,
+  formatLinkedInSafeSnippet,
+  formatMissingInformationChecklist,
+  formatTechnicalDecisionBrief
 } from "../lib/decisionBrief";
 
 interface DecisionBriefExportProps {
@@ -19,7 +25,7 @@ interface DecisionBriefExportProps {
   compact?: boolean;
 }
 
-type CopyKey = "brief" | "missing" | "evidence" | "exafuse" | null;
+type CopyKey = "technical" | "missing" | "evidence" | "email" | "ai" | "internal" | "linkedin" | "prompt" | "exafuse" | null;
 
 export default function DecisionBriefExport({
   brief,
@@ -31,8 +37,11 @@ export default function DecisionBriefExport({
   compact = false
 }: DecisionBriefExportProps) {
   const [copied, setCopied] = useState<CopyKey>(null);
-  const markdown = formatDecisionBriefMarkdown(brief);
+  const markdown = formatTechnicalDecisionBrief(brief);
   const json = formatDecisionBriefJson(brief);
+  const emailDraft = formatExafuseEmailDraft(brief);
+  const aiSummary = formatAiAgentSafeSummary(brief);
+  const mailtoHref = formatExafuseMailtoHref(brief);
 
   async function copy(key: Exclude<CopyKey, null>, value: string) {
     await navigator.clipboard?.writeText(value);
@@ -40,13 +49,30 @@ export default function DecisionBriefExport({
     window.setTimeout(() => setCopied(null), 1600);
   }
 
+  function printBrief() {
+    window.print();
+  }
+
   return (
-    <div className="mt-6">
+    <div className="no-print mt-6">
+      <div className="mb-4 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold leading-6 text-amber-50">
+        Do not include confidential customer or employer data unless you are allowed to share it.
+      </div>
       <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
         <ActionButton
-          copied={copied === "brief"}
-          onClick={() => copy("brief", markdown)}
-          label="Copy decision brief"
+          copied={copied === "technical"}
+          onClick={() => copy("technical", markdown)}
+          label="Copy technical brief"
+        />
+        <ActionButton
+          copied={copied === "email"}
+          onClick={() => copy("email", emailDraft)}
+          label="Copy Exafuse email draft"
+        />
+        <ActionButton
+          copied={copied === "ai"}
+          onClick={() => copy("ai", aiSummary)}
+          label="Copy AI-safe summary"
         />
         <ActionButton
           copied={copied === "missing"}
@@ -58,13 +84,17 @@ export default function DecisionBriefExport({
           onClick={() => copy("evidence", formatEvidenceNeededChecklist(brief))}
           label="Copy evidence-needed checklist"
         />
-        <ActionButton
-          copied={copied === "exafuse"}
-          onClick={() => copy("exafuse", formatExafuseReviewSummary(brief))}
-          label="Copy Exafuse review summary"
-        />
         <DownloadButton label="Download .md" filename="lmd-decision-brief-v1.md" content={markdown} mime="text/markdown;charset=utf-8" />
         <DownloadButton label="Download .json" filename="lmd-decision-brief-v1.json" content={json} mime="application/json;charset=utf-8" />
+        <button
+          type="button"
+          onClick={printBrief}
+          className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left"
+          aria-label="Print or save this LMD Decision Brief as PDF"
+        >
+          <Printer aria-hidden="true" className="h-4 w-4 shrink-0" />
+          <span>Print / save as PDF</span>
+        </button>
       </div>
 
       {!compact && (
@@ -77,6 +107,17 @@ export default function DecisionBriefExport({
           <a href={toolkitHref} className="btn btn-secondary">
             Open RFQ Toolkit
           </a>
+          <a href="/for-ai-agents" className="btn btn-secondary">
+            AI-agent guidance
+          </a>
+          <a
+            href={mailtoHref}
+            className="btn btn-secondary"
+            aria-label="Open mail client with local Exafuse-ready email draft"
+          >
+            <Mail aria-hidden="true" className="h-4 w-4 shrink-0" />
+            Open mail client
+          </a>
           {exafuseUrl && (
             <a
               href={exafuseUrl}
@@ -88,6 +129,40 @@ export default function DecisionBriefExport({
             </a>
           )}
         </div>
+      )}
+
+      {!compact && (
+        <details className="ordered-card mt-4 p-4">
+          <summary className="flex cursor-pointer items-center justify-between gap-4 text-sm font-black text-white">
+            <span>Copy share snippets</span>
+            <span className="metric-label">No auto-posting</span>
+          </summary>
+          <p className="mt-3 text-sm leading-6 text-slate-400">
+            These snippets are generated locally from the same brief. They do not post, send, track, or store anything.
+          </p>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+            <ActionButton
+              copied={copied === "internal"}
+              onClick={() => copy("internal", formatInternalEngineeringMessage(brief))}
+              label="Copy internal engineering message"
+            />
+            <ActionButton
+              copied={copied === "linkedin"}
+              onClick={() => copy("linkedin", formatLinkedInSafeSnippet(brief))}
+              label="Copy LinkedIn-safe snippet"
+            />
+            <ActionButton
+              copied={copied === "prompt"}
+              onClick={() => copy("prompt", formatAiAgentPrompt(brief))}
+              label="Copy AI-agent prompt"
+            />
+            <ActionButton
+              copied={copied === "exafuse"}
+              onClick={() => copy("exafuse", formatExafuseReviewSummary(brief))}
+              label="Copy Exafuse review summary"
+            />
+          </div>
+        </details>
       )}
     </div>
   );
@@ -103,7 +178,12 @@ function ActionButton({
   label: string;
 }) {
   return (
-    <button type="button" onClick={onClick} className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left">
+    <button
+      type="button"
+      onClick={onClick}
+      className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left"
+      aria-label={label}
+    >
       {copied ? <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-cyan-200" /> : <Clipboard aria-hidden="true" className="h-4 w-4 shrink-0" />}
       <span>{copied ? "Copied" : label}</span>
     </button>
@@ -126,6 +206,7 @@ function DownloadButton({
       type="button"
       onClick={() => download(filename, content, mime)}
       className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left"
+      aria-label={label}
     >
       <Download aria-hidden="true" className="h-4 w-4 shrink-0" />
       <span>{label}</span>

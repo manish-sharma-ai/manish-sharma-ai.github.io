@@ -46,10 +46,17 @@ const jsonLd = {
 };
 
 const proofDecisionPatterns: Record<string, { label: string; href: string }> = {
-  CS15: { label: "Use monitoring/evidence playbook", href: "/playbooks#monitoring-evidence" },
-  CS01: { label: "Use repair playbook", href: "/playbooks#lmd-repair" },
-  CS10: { label: "Use RFQ preparation playbook", href: "/playbooks#rfq-preparation" },
-  CS13: { label: "Use cladding preset", href: "/tools/#preset=surface-cladding" }
+  CS15: { label: "Start a brief from this pattern", href: "/tools/#preset=monitoring-anomaly" },
+  CS01: { label: "Start a brief from this pattern", href: "/tools/#preset=worn-shaft" },
+  CS10: { label: "Start a brief from this pattern", href: "/tools/#preset=rfq" },
+  CS13: { label: "Start a brief from this pattern", href: "/tools/#preset=surface-cladding" }
+};
+
+const proofDecisionPatternText: Record<string, string> = {
+  CS15: "Large-scale LMD requires evidence planning, monitoring context, and an inspection boundary.",
+  CS01: "Local repair needs material, damage depth, machining route, and inspection plan.",
+  CS10: "Repair/RFQ quality depends on complete facts, downtime context, and service context.",
+  CS13: "Build-and-coat routes need geometry, surface function, material, finishing, and validation."
 };
 ---
 
@@ -130,15 +137,19 @@ const proofDecisionPatterns: Record<string, { label: string; href: string }> = {
           </p>
           <p class="mt-5 text-sm leading-6 text-slate-300">{item.lesson}</p>
           <p class="mt-4 border-l border-cyan-300/35 pl-4 text-sm font-semibold leading-6 text-cyan-50">{item.labConnection}</p>
+          <div class="mt-4 rounded-lg border border-cyan-300/20 bg-cyan-300/8 p-3">
+            <p class="metric-label">Decision pattern extracted</p>
+            <p class="mt-2 text-sm font-semibold leading-6 text-cyan-50">{proofDecisionPatternText[item.code]}</p>
+          </div>
           <p class="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm font-semibold leading-6 text-slate-300">
-            This proof object does not approve your part; it shows what questions to structure.
+            This is a pattern, not a transfer of feasibility.
           </p>
           <div class="mt-5 flex flex-wrap gap-2">
             {item.relevance.map((signal) => (
               <span class="rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-bold text-slate-300">{signal}</span>
             ))}
           </div>
-          <a href={pattern.href} class="btn btn-primary mt-6">Use this as a decision pattern</a>
+          <a href={pattern.href} class="btn btn-primary mt-6">{pattern.label}</a>
         </article>
       )})}
     </div>
