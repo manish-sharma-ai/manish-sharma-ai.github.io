@@ -81,5 +81,5 @@
   <text x="210" y="710" class="label">Before any recommendation hardens</text>
   <text x="210" y="755" class="small">Collect material grade, CAD/drawing, damage depth, operating conditions, tolerance, photos, and inspection requirement.</text>
   <text x="210" y="795" class="small">Preliminary decision-support only. Expert review decides feasibility; inspection decides evidence.</text>
-  <text x="80" y="930" class="mono">CANONICAL: https://manish-sharma-ai.github.io/decision-map</text>
+  <text x="80" y="930" class="mono">CANONICAL: https://manishsharma.dev/decision-map</text>
 </svg>

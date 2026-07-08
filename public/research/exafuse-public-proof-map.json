@@ -23,30 +23,30 @@
   },
   "no_backend_rule": "The cockpit and workbench are frontend-only: no backend endpoints, no input storage, no analytics around user-entered technical content, and no automatic email sending. Manual email drafts are not sent unless the user sends them from their own email client.",
   "manish_sharma_lab_routes": {
-    "decision_cockpit": "https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit",
-    "resources": "https://manish-sharma-ai.github.io/resources",
-    "playbooks": "https://manish-sharma-ai.github.io/playbooks",
-    "claim_ledger": "https://manish-sharma-ai.github.io/claims",
-    "no_hype_boundary": "https://manish-sharma-ai.github.io/no-hype",
-    "brief_standard": "https://manish-sharma-ai.github.io/brief-standard",
-    "brief_template": "https://manish-sharma-ai.github.io/brief-template",
-    "brief_schema": "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json",
-    "demo": "https://manish-sharma-ai.github.io/demo",
-    "german_handoff": "https://manish-sharma-ai.github.io/de"
+    "decision_cockpit": "https://manishsharma.dev/tools#lmd-decision-cockpit",
+    "resources": "https://manishsharma.dev/resources",
+    "playbooks": "https://manishsharma.dev/playbooks",
+    "claim_ledger": "https://manishsharma.dev/claims",
+    "no_hype_boundary": "https://manishsharma.dev/no-hype",
+    "brief_standard": "https://manishsharma.dev/brief-standard",
+    "brief_template": "https://manishsharma.dev/brief-template",
+    "brief_schema": "https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json",
+    "demo": "https://manishsharma.dev/demo",
+    "german_handoff": "https://manishsharma.dev/de"
   },
   "decision_brief_examples": {
-    "worn_shaft_json": "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json",
-    "worn_shaft_markdown": "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md",
-    "monitoring_anomaly_json": "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json",
-    "surface_cladding_json": "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json",
-    "rough_rfq_json": "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json"
+    "worn_shaft_json": "https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json",
+    "worn_shaft_markdown": "https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.md",
+    "monitoring_anomaly_json": "https://manishsharma.dev/examples/lmd-decision-brief-monitoring-anomaly-v1.json",
+    "surface_cladding_json": "https://manishsharma.dev/examples/lmd-decision-brief-surface-cladding-v1.json",
+    "rough_rfq_json": "https://manishsharma.dev/examples/lmd-decision-brief-rfq-v1.json"
   },
   "public_safe_cockpit_presets": {
-    "worn_shaft": "https://manish-sharma-ai.github.io/tools/#preset=worn-shaft",
-    "monitoring_anomaly": "https://manish-sharma-ai.github.io/tools/#preset=monitoring-anomaly",
-    "surface_cladding": "https://manish-sharma-ai.github.io/tools/#preset=surface-cladding",
-    "lmd_vs_slm": "https://manish-sharma-ai.github.io/tools/#preset=lmd-vs-slm",
-    "rfq": "https://manish-sharma-ai.github.io/tools/#preset=rfq"
+    "worn_shaft": "https://manishsharma.dev/tools/#preset=worn-shaft",
+    "monitoring_anomaly": "https://manishsharma.dev/tools/#preset=monitoring-anomaly",
+    "surface_cladding": "https://manishsharma.dev/tools/#preset=surface-cladding",
+    "lmd_vs_slm": "https://manishsharma.dev/tools/#preset=lmd-vs-slm",
+    "rfq": "https://manishsharma.dev/tools/#preset=rfq"
   },
   "canonical_links": {
     "homepage": "https://exafuse.de/",
@@ -82,7 +82,7 @@
         "robot-path and monitoring scale context",
         "independent validation context where production source confirms it"
       ],
-      "decision_pattern": "https://manish-sharma-ai.github.io/tools/#preset=monitoring-anomaly",
+      "decision_pattern": "https://manishsharma.dev/tools/#preset=monitoring-anomaly",
       "decision_pattern_extracted": "Large-scale LMD requires evidence planning, monitoring context, and an inspection boundary.",
       "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
     },
@@ -100,7 +100,7 @@
         "finishing and inspection",
         "hardness is not enough by itself"
       ],
-      "decision_pattern": "https://manish-sharma-ai.github.io/tools/#preset=worn-shaft",
+      "decision_pattern": "https://manishsharma.dev/tools/#preset=worn-shaft",
       "decision_pattern_extracted": "Local repair needs material, damage depth, machining route, and inspection plan.",
       "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
     },
@@ -117,7 +117,7 @@
         "remove damaged material before LMD",
         "finish geometry after deposition"
       ],
-      "decision_pattern": "https://manish-sharma-ai.github.io/tools/#preset=rfq",
+      "decision_pattern": "https://manishsharma.dev/tools/#preset=rfq",
       "decision_pattern_extracted": "Repair/RFQ quality depends on complete facts, downtime context, and service context.",
       "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
     },
@@ -133,7 +133,7 @@
         "geometry build-up plus functional coating",
         "surface function requires application-specific validation"
       ],
-      "decision_pattern": "https://manish-sharma-ai.github.io/tools/#preset=surface-cladding",
+      "decision_pattern": "https://manishsharma.dev/tools/#preset=surface-cladding",
       "decision_pattern_extracted": "Build-and-coat routes need geometry, surface function, material, finishing, and validation.",
       "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
     }

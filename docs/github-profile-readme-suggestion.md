@@ -8,7 +8,7 @@ Industrial AI & Decision Systems
 
 I am Manish Sharma. I work on industrial AI, monitoring, and decision-support systems for engineering processes, grounded in public work on Laser Metal Deposition, Directed Energy Deposition, laser cladding, industrial repair, and metal additive manufacturing at Exafuse in Germany.
 
-Public technical lab: https://manish-sharma-ai.github.io
+Public technical lab: https://manishsharma.dev
 
 ## Focus Areas
 
@@ -37,6 +37,6 @@ Avoid pinning or naming future repositories until they are public and ready.
 
 ## Links
 
-- Website: https://manish-sharma-ai.github.io
+- Website: https://manishsharma.dev
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - Exafuse: https://exafuse.de/

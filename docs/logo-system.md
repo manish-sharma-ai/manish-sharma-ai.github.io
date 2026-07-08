@@ -22,10 +22,10 @@ The goal is to feel like a premium engineering lab, not a generic developer mono
 
 Public URLs:
 
-- https://manish-sharma-ai.github.io/brand/manish-sharma-lab-mark.svg
-- https://manish-sharma-ai.github.io/brand/manish-sharma-lab-logo.svg
-- https://manish-sharma-ai.github.io/favicon.svg
-- https://manish-sharma-ai.github.io/og-image.png
+- https://manishsharma.dev/brand/manish-sharma-lab-mark.svg
+- https://manishsharma.dev/brand/manish-sharma-lab-logo.svg
+- https://manishsharma.dev/favicon.svg
+- https://manishsharma.dev/og-image.png
 
 ## Usage
 

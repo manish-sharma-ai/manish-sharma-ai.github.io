@@ -11,7 +11,7 @@ body:
     id: affected_page
     attributes:
       label: Affected page
-      placeholder: https://manish-sharma-ai.github.io/brief-standard/
+      placeholder: https://manishsharma.dev/brief-standard/
     validations:
       required: true
   - type: dropdown

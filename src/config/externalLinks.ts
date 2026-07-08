@@ -1,4 +1,4 @@
-export const MANISH_SITE_URL = "https://manish-sharma-ai.github.io";
+export const MANISH_SITE_URL = "https://manishsharma.dev";
 export const EXAFUSE_PRODUCTION_BASE_URL = "https://exafuse.de";
 
 export type ExafuseLinkMode = "production-safe" | "post-migration";

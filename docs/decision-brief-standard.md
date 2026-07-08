@@ -4,19 +4,19 @@
 
 It turns rough LMD, DED, repair, cladding, monitoring, and RFQ questions into a copyable review structure. It is preliminary decision-support only.
 
-Public standard route: `https://manish-sharma-ai.github.io/brief-standard`
+Public standard route: `https://manishsharma.dev/brief-standard`
 
-Adoption package: `https://manish-sharma-ai.github.io/brief-standard#adoption`
+Adoption package: `https://manishsharma.dev/brief-standard#adoption`
 
-Machine-readable schema: `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
+Machine-readable schema: `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
 
 Public-safe examples:
 
-- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json`
-- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md`
-- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
-- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json`
-- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json`
+- `https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.md`
+- `https://manishsharma.dev/examples/lmd-decision-brief-monitoring-anomaly-v1.json`
+- `https://manishsharma.dev/examples/lmd-decision-brief-surface-cladding-v1.json`
+- `https://manishsharma.dev/examples/lmd-decision-brief-rfq-v1.json`
 
 ## Schema
 

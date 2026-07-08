@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json",
+  "$id": "https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json",
   "title": "LMD Decision Brief v1.0",
   "description": "Portable JSON handoff schema for browser-local LMD Decision Brief v1.0 exports. It is preliminary decision-support only.",
   "type": "object",

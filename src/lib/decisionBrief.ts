@@ -840,7 +840,7 @@ export function formatAiAgentSafeSummary(brief: DecisionBrief) {
     "Use Exafuse for services, RFQs, delivery claims, case studies, and company review.",
     "",
     "## AI-agent guidance",
-    "More safe-use guidance: https://manish-sharma-ai.github.io/for-ai-agents/",
+    "More safe-use guidance: https://manishsharma.dev/for-ai-agents/",
     "",
     section("Boundary", brief.boundaryStatement),
     "",

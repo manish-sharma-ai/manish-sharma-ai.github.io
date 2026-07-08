@@ -1012,7 +1012,7 @@ function auditBriefSchema() {
     ["evidenceBurden", briefSchema.properties?.evidenceBurden?.enum]
   ];
 
-  for (const phrase of ["$id", "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json", "quality guarantee"]) {
+  for (const phrase of ["$id", "https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json", "quality guarantee"]) {
     if (!read(schemaFile).includes(phrase)) findings.push(`${schemaFile}: missing "${phrase}"`);
   }
 
@@ -1209,7 +1209,7 @@ function auditPreflight() {
     if ((html.match(/<h1\b/gi) ?? []).length !== 1) findings.push(`${file}: expected exactly one H1`);
     if (!/<title>[^<]{8,}<\/title>/i.test(html)) findings.push(`${file}: missing nonempty title`);
     if (!/<meta name="description" content="[^"]{20,}"/i.test(html)) findings.push(`${file}: missing nonempty description`);
-    if (!/<link rel="canonical" href="https:\/\/manish-sharma-ai\.github\.io[^"]*"/i.test(html)) {
+    if (!/<link rel="canonical" href="https:\/\/manishsharma\.dev[^"]*"/i.test(html)) {
       findings.push(`${file}: missing canonical URL`);
     }
     for (const phrase of ["TODO", "FIXME", "Default example text:", "audit marker", "test marker", "debug"]) {
@@ -1229,7 +1229,7 @@ function auditPreflight() {
         index = lowerVisible.indexOf(unsafe, index + unsafe.length);
       }
     }
-    const routeUrl = `https://manish-sharma-ai.github.io${route === "/" ? "/" : route}`;
+    const routeUrl = `https://manishsharma.dev${route === "/" ? "/" : route}`;
     if (!sitemap.includes(routeUrl)) findings.push(`sitemap: missing ${routeUrl}`);
   }
 
@@ -1240,9 +1240,9 @@ function auditPreflight() {
     if (!existsSync(join(root, file))) continue;
     const text = read(file);
     for (const phrase of [
-      "https://manish-sharma-ai.github.io/brief-standard",
-      "https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json",
-      "https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json"
+      "https://manishsharma.dev/brief-standard",
+      "https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json",
+      "https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json"
     ]) {
       if (!text.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
     }
@@ -1288,7 +1288,7 @@ function auditSeoSocial() {
     ]) {
       if (!html.includes(marker)) findings.push(`${file}: missing ${marker}`);
     }
-    if (!html.includes("https://manish-sharma-ai.github.io")) findings.push(`${file}: missing canonical host in metadata`);
+    if (!html.includes("https://manishsharma.dev")) findings.push(`${file}: missing canonical host in metadata`);
     for (const bad of ["pages.dev", "exafuse-website-react", "www.exafuse.de"]) {
       if (html.includes(bad)) findings.push(`${file}: contains staging or wrong production host "${bad}"`);
     }

@@ -76,7 +76,7 @@ Pages reviewed during this pass:
 - No fake publications, credentials, or certifications added.
 - AI/process-monitoring outputs remain decision-support only.
 - Exafuse remains the source for services, RFQs, company case studies, and delivery claims.
-- Canonical site remains `https://manish-sharma-ai.github.io`.
+- Canonical site remains `https://manishsharma.dev`.
 
 ## Remaining Design Follow-Ups
 

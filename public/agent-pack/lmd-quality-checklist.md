@@ -43,14 +43,14 @@ Use this checklist for AI-assisted Laser Metal Deposition RFQ preparation and ev
 
 ## Related Public Tools
 
-- LMD Decision Cockpit: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
-- Decision Playbooks: https://manish-sharma-ai.github.io/playbooks
-- LMD Decision Brief v1.0 Standard: https://manish-sharma-ai.github.io/brief-standard
-- Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
-- Decision Brief examples: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json
-- Decision Brief Template: https://manish-sharma-ai.github.io/brief-template
-- Resources: https://manish-sharma-ai.github.io/resources
-- No-Hype Boundary: https://manish-sharma-ai.github.io/no-hype
+- LMD Decision Cockpit: https://manishsharma.dev/tools#lmd-decision-cockpit
+- Decision Playbooks: https://manishsharma.dev/playbooks
+- LMD Decision Brief v1.0 Standard: https://manishsharma.dev/brief-standard
+- Decision Brief JSON schema: https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json
+- Decision Brief examples: https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json
+- Decision Brief Template: https://manishsharma.dev/brief-template
+- Resources: https://manishsharma.dev/resources
+- No-Hype Boundary: https://manishsharma.dev/no-hype
 
 ## Limitation
 

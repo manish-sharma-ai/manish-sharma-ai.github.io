@@ -31,4 +31,4 @@ Use this ladder when designing LMD monitoring workflows or RFQ evidence requirem
 
 Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
 
-Canonical page: https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder
+Canonical page: https://manishsharma.dev/frameworks/lmd-quality-evidence-ladder

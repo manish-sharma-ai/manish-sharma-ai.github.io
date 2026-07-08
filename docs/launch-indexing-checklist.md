@@ -13,13 +13,13 @@ git diff --check
 
 After pushing, confirm the GitHub Actions deployment passes and verify:
 
-- `https://manish-sharma-ai.github.io/`
-- `https://manish-sharma-ai.github.io/site-map/`
-- `https://manish-sharma-ai.github.io/brief-standard/`
-- `https://manish-sharma-ai.github.io/decision-map/`
-- `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
-- `https://manish-sharma-ai.github.io/llms.txt`
-- `https://manish-sharma-ai.github.io/llms-full.txt`
+- `https://manishsharma.dev/`
+- `https://manishsharma.dev/site-map/`
+- `https://manishsharma.dev/brief-standard/`
+- `https://manishsharma.dev/decision-map/`
+- `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
+- `https://manishsharma.dev/llms.txt`
+- `https://manishsharma.dev/llms-full.txt`
 
 Then run:
 
@@ -32,41 +32,41 @@ npm run smoke:live
 Submit this sitemap in Google Search Console and Bing Webmaster Tools:
 
 ```text
-https://manish-sharma-ai.github.io/sitemap-index.xml
+https://manishsharma.dev/sitemap-index.xml
 ```
 
 ## Request Indexing
 
 Prioritize:
 
-- `https://manish-sharma-ai.github.io/`
-- `https://manish-sharma-ai.github.io/identity`
-- `https://manish-sharma-ai.github.io/domains/lmd-ded`
-- `https://manish-sharma-ai.github.io/tools`
-- `https://manish-sharma-ai.github.io/decision-map`
-- `https://manish-sharma-ai.github.io/brief-standard`
-- `https://manish-sharma-ai.github.io/brief-template`
-- `https://manish-sharma-ai.github.io/demo`
-- `https://manish-sharma-ai.github.io/claims`
-- `https://manish-sharma-ai.github.io/no-hype`
-- `https://manish-sharma-ai.github.io/resources`
-- `https://manish-sharma-ai.github.io/for-ai-agents`
-- `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
-- `https://manish-sharma-ai.github.io/site-map`
+- `https://manishsharma.dev/`
+- `https://manishsharma.dev/identity`
+- `https://manishsharma.dev/domains/lmd-ded`
+- `https://manishsharma.dev/tools`
+- `https://manishsharma.dev/decision-map`
+- `https://manishsharma.dev/brief-standard`
+- `https://manishsharma.dev/brief-template`
+- `https://manishsharma.dev/demo`
+- `https://manishsharma.dev/claims`
+- `https://manishsharma.dev/no-hype`
+- `https://manishsharma.dev/resources`
+- `https://manishsharma.dev/for-ai-agents`
+- `https://manishsharma.dev/research/core-lmd-ai-sources`
+- `https://manishsharma.dev/site-map`
 
 ## AI-Readable Files
 
 Check:
 
-- `https://manish-sharma-ai.github.io/llms.txt`
-- `https://manish-sharma-ai.github.io/llms-full.txt`
-- `https://manish-sharma-ai.github.io/identity.md`
-- `https://manish-sharma-ai.github.io/profile/public-profile.md`
-- `https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.md`
-- `https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.svg`
-- `https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json`
-- `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
-- `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json`
+- `https://manishsharma.dev/llms.txt`
+- `https://manishsharma.dev/llms-full.txt`
+- `https://manishsharma.dev/identity.md`
+- `https://manishsharma.dev/profile/public-profile.md`
+- `https://manishsharma.dev/decision-map/lmd-decision-map-v1.md`
+- `https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg`
+- `https://manishsharma.dev/research/exafuse-public-proof-map.json`
+- `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
+- `https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json`
 
 ## Manual Signals
 

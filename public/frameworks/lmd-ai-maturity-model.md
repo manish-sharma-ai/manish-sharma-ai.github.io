@@ -60,4 +60,4 @@ Next move: treat deployment as a qualification program, not a software toggle.
 
 Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
 
-Canonical page: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
+Canonical page: https://manishsharma.dev/frameworks/lmd-ai-maturity-model

@@ -13,7 +13,7 @@ This audit covers public links, staging-domain cleanup, canonical-site usage, pr
 
 ## Production Links Used
 
-- Canonical site: `https://manish-sharma-ai.github.io`
+- Canonical site: `https://manishsharma.dev`
 - Exafuse base: `https://exafuse.de`
 - Exafuse services: `https://exafuse.de/leistungen/`
 - Exafuse metal additive manufacturing: `https://exafuse.de/leistungen/bauteilherstellung/`
@@ -52,7 +52,7 @@ This audit covers public links, staging-domain cleanup, canonical-site usage, pr
 
 Active public URLs:
 
-- Site: `https://manish-sharma-ai.github.io`
+- Site: `https://manishsharma.dev`
 - Exafuse: `https://exafuse.de/`
 - LinkedIn: `https://www.linkedin.com/in/manishsharma5/`
 - GitHub: `https://github.com/aiwithms`

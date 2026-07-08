@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://manish-sharma-ai.github.io",
+  site: "https://manishsharma.dev",
   base: "/",
   output: "static",
   integrations: [

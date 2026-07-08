@@ -1,6 +1,6 @@
 # Manish Sharma Lab
 
-Canonical site: https://manish-sharma-ai.github.io
+Canonical site: https://manishsharma.dev
 
 GitHub organization: https://github.com/manish-sharma-ai
 
@@ -70,7 +70,7 @@ The repository deploys to GitHub Pages through `.github/workflows/deploy.yml`.
 Astro config:
 
 ```js
-site: "https://manish-sharma-ai.github.io"
+site: "https://manishsharma.dev"
 base: "/"
 output: "static"
 ```
@@ -126,7 +126,7 @@ External public URLs are resolved through `src/config/externalLinks.ts`, surface
 
 Canonical URL rules:
 
-- Site: `https://manish-sharma-ai.github.io`
+- Site: `https://manishsharma.dev`
 - Exafuse base: `https://exafuse.de`
 - GitHub profile: `https://github.com/aiwithms`
 - GitHub repository: `https://github.com/manish-sharma-ai/manish-sharma-ai.github.io`
@@ -290,7 +290,7 @@ The map is preliminary decision-support only. It should preserve missing informa
 
 Active:
 
-- Site: https://manish-sharma-ai.github.io
+- Site: https://manishsharma.dev
 - Exafuse: https://exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms
@@ -313,7 +313,7 @@ Description:
 Manish Sharma Lab - AI for Laser Metal Deposition, DED, process monitoring, RFQ intelligence, and metal additive manufacturing.
 
 Website:
-https://manish-sharma-ai.github.io
+https://manishsharma.dev
 
 Topics:
 
@@ -343,7 +343,7 @@ Topics:
 These steps require account access and can be completed in GitHub, Google Search Console, and Bing Webmaster Tools after a content release:
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
-- Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
+- Submit `https://manishsharma.dev/sitemap-index.xml` in Google Search Console.
 - Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/decision-map`, `/playbooks`, `/claims`, `/no-hype`, `/brief-standard`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.

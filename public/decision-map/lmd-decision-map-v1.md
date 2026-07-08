@@ -1,6 +1,6 @@
 # Laser Metal Deposition Decision Map v1
 
-Canonical page: https://manish-sharma-ai.github.io/decision-map
+Canonical page: https://manishsharma.dev/decision-map
 
 Author: Manish Sharma
 

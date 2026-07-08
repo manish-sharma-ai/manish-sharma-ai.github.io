@@ -1,6 +1,6 @@
 # Manish Sharma Lab
 
-Canonical site: https://manish-sharma-ai.github.io
+Canonical site: https://manishsharma.dev
 
 Primary entity: Manish Sharma - Industrial AI & Decision Systems.
 
@@ -10,18 +10,18 @@ Established public proof domain: AI-assisted decision systems, process monitorin
 
 Central artifact: LMD Decision Brief v1.0. The cockpit, tools, demo, template, playbooks, schema, and examples all route rough LMD questions into the same brief structure: briefVersion, artifactType, status, preparedFor, notValidFor, outputMode, situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
 
-Public standard: https://manish-sharma-ai.github.io/brief-standard
+Public standard: https://manishsharma.dev/brief-standard
 
-Adoption package: https://manish-sharma-ai.github.io/brief-standard#adoption
+Adoption package: https://manishsharma.dev/brief-standard#adoption
 
-Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
+Decision Brief JSON schema: https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json
 
 Public-safe Decision Brief examples:
-- https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json
-- https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md
-- https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json
-- https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json
-- https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json
+- https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json
+- https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.md
+- https://manishsharma.dev/examples/lmd-decision-brief-monitoring-anomaly-v1.json
+- https://manishsharma.dev/examples/lmd-decision-brief-surface-cladding-v1.json
+- https://manishsharma.dev/examples/lmd-decision-brief-rfq-v1.json
 
 Portable output modes:
 - Technical Decision Brief
@@ -35,7 +35,7 @@ Brief completeness describes whether the brief can support a useful conversation
 
 Email drafts are client-side only. Manual draft only. Nothing is sent unless the user sends it from their own email client. This site does not automatically send email, store inputs, add analytics around inputs, or call backend endpoints for user-entered technical content.
 
-Canonical identity page: https://manish-sharma-ai.github.io/identity
+Canonical identity page: https://manishsharma.dev/identity
 
 Exafuse commercial/company source: https://exafuse.de/
 
@@ -47,71 +47,71 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 
 ## Core pages
 
-- [Home](https://manish-sharma-ai.github.io/)
-- [Industrial AI Thesis](https://manish-sharma-ai.github.io/thesis)
-- [LMD / DED Proof Domain](https://manish-sharma-ai.github.io/domains/lmd-ded)
-- [Identity](https://manish-sharma-ai.github.io/identity)
-- [Manish Sharma Public Profile](https://manish-sharma-ai.github.io/profile/public-profile)
-- [Public profile Markdown](https://manish-sharma-ai.github.io/profile/public-profile.md)
-- [About Manish Sharma](https://manish-sharma-ai.github.io/about)
-- [Public Work](https://manish-sharma-ai.github.io/public-work)
-- [Evidence Base](https://manish-sharma-ai.github.io/evidence)
-- [Core Sources for AI and Laser Metal Deposition](https://manish-sharma-ai.github.io/research/core-lmd-ai-sources)
-- [Industrial Proof Map](https://manish-sharma-ai.github.io/industrial-proof)
-- [Laser Metal Deposition Decision Map](https://manish-sharma-ai.github.io/decision-map)
-- [Frameworks](https://manish-sharma-ai.github.io/frameworks)
-- [LMD Quality Evidence Ladder](https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder)
-- [LMD Repairability Index](https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index)
-- [LMD-AI Readiness Score](https://manish-sharma-ai.github.io/frameworks/lmd-ai-readiness-score)
-- [LMD Failure Atlas](https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas)
-- [LMD-AI Maturity Model](https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model)
-- [LMD RFQ Toolkit / Agent Pack](https://manish-sharma-ai.github.io/agent-pack)
-- [Resources](https://manish-sharma-ai.github.io/resources)
-- [Tools](https://manish-sharma-ai.github.io/tools)
-- [LMD Decision Map](https://manish-sharma-ai.github.io/decision-map)
-- [LMD Decision Cockpit](https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit)
-- [Decision Playbooks](https://manish-sharma-ai.github.io/playbooks)
-- [Public Claim Ledger](https://manish-sharma-ai.github.io/claims)
-- [No-Hype Boundary](https://manish-sharma-ai.github.io/no-hype)
-- [LMD Decision Brief v1.0 Standard](https://manish-sharma-ai.github.io/brief-standard)
-- [Decision Brief Template](https://manish-sharma-ai.github.io/brief-template)
-- [90-Second LMD Decision Demo](https://manish-sharma-ai.github.io/demo)
-- [German Handoff](https://manish-sharma-ai.github.io/de)
-- [Glossary](https://manish-sharma-ai.github.io/glossary)
-- [Lab Notes](https://manish-sharma-ai.github.io/lab-notes)
-- [For AI Agents](https://manish-sharma-ai.github.io/for-ai-agents)
-- [Press Kit](https://manish-sharma-ai.github.io/press-kit)
-- [Site Map](https://manish-sharma-ai.github.io/site-map)
+- [Home](https://manishsharma.dev/)
+- [Industrial AI Thesis](https://manishsharma.dev/thesis)
+- [LMD / DED Proof Domain](https://manishsharma.dev/domains/lmd-ded)
+- [Identity](https://manishsharma.dev/identity)
+- [Manish Sharma Public Profile](https://manishsharma.dev/profile/public-profile)
+- [Public profile Markdown](https://manishsharma.dev/profile/public-profile.md)
+- [About Manish Sharma](https://manishsharma.dev/about)
+- [Public Work](https://manishsharma.dev/public-work)
+- [Evidence Base](https://manishsharma.dev/evidence)
+- [Core Sources for AI and Laser Metal Deposition](https://manishsharma.dev/research/core-lmd-ai-sources)
+- [Industrial Proof Map](https://manishsharma.dev/industrial-proof)
+- [Laser Metal Deposition Decision Map](https://manishsharma.dev/decision-map)
+- [Frameworks](https://manishsharma.dev/frameworks)
+- [LMD Quality Evidence Ladder](https://manishsharma.dev/frameworks/lmd-quality-evidence-ladder)
+- [LMD Repairability Index](https://manishsharma.dev/frameworks/lmd-repairability-index)
+- [LMD-AI Readiness Score](https://manishsharma.dev/frameworks/lmd-ai-readiness-score)
+- [LMD Failure Atlas](https://manishsharma.dev/frameworks/lmd-failure-atlas)
+- [LMD-AI Maturity Model](https://manishsharma.dev/frameworks/lmd-ai-maturity-model)
+- [LMD RFQ Toolkit / Agent Pack](https://manishsharma.dev/agent-pack)
+- [Resources](https://manishsharma.dev/resources)
+- [Tools](https://manishsharma.dev/tools)
+- [LMD Decision Map](https://manishsharma.dev/decision-map)
+- [LMD Decision Cockpit](https://manishsharma.dev/tools#lmd-decision-cockpit)
+- [Decision Playbooks](https://manishsharma.dev/playbooks)
+- [Public Claim Ledger](https://manishsharma.dev/claims)
+- [No-Hype Boundary](https://manishsharma.dev/no-hype)
+- [LMD Decision Brief v1.0 Standard](https://manishsharma.dev/brief-standard)
+- [Decision Brief Template](https://manishsharma.dev/brief-template)
+- [90-Second LMD Decision Demo](https://manishsharma.dev/demo)
+- [German Handoff](https://manishsharma.dev/de)
+- [Glossary](https://manishsharma.dev/glossary)
+- [Lab Notes](https://manishsharma.dev/lab-notes)
+- [For AI Agents](https://manishsharma.dev/for-ai-agents)
+- [Press Kit](https://manishsharma.dev/press-kit)
+- [Site Map](https://manishsharma.dev/site-map)
 
 ## Agent Pack source files
 
-- [Decision Brief JSON schema](https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json)
-- [Worn shaft example JSON](https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json)
-- [Worn shaft example Markdown](https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md)
-- [Monitoring anomaly example JSON](https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json)
-- [Surface cladding example JSON](https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json)
-- [Rough RFQ example JSON](https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json)
-- [RFQ schema](https://manish-sharma-ai.github.io/agent-pack/lmd-rfq-schema.json)
-- [Decision rules](https://manish-sharma-ai.github.io/agent-pack/lmd-decision-rules.md)
-- [Prompt library](https://manish-sharma-ai.github.io/agent-pack/lmd-prompt-library.md)
-- [Quality checklist](https://manish-sharma-ai.github.io/agent-pack/lmd-quality-checklist.md)
-- [LMD Decision Map Markdown](https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.md)
-- [LMD Decision Map SVG](https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.svg)
+- [Decision Brief JSON schema](https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json)
+- [Worn shaft example JSON](https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json)
+- [Worn shaft example Markdown](https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.md)
+- [Monitoring anomaly example JSON](https://manishsharma.dev/examples/lmd-decision-brief-monitoring-anomaly-v1.json)
+- [Surface cladding example JSON](https://manishsharma.dev/examples/lmd-decision-brief-surface-cladding-v1.json)
+- [Rough RFQ example JSON](https://manishsharma.dev/examples/lmd-decision-brief-rfq-v1.json)
+- [RFQ schema](https://manishsharma.dev/agent-pack/lmd-rfq-schema.json)
+- [Decision rules](https://manishsharma.dev/agent-pack/lmd-decision-rules.md)
+- [Prompt library](https://manishsharma.dev/agent-pack/lmd-prompt-library.md)
+- [Quality checklist](https://manishsharma.dev/agent-pack/lmd-quality-checklist.md)
+- [LMD Decision Map Markdown](https://manishsharma.dev/decision-map/lmd-decision-map-v1.md)
+- [LMD Decision Map SVG](https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg)
 
 ## Cockpit presets
 
 Public-safe dummy presets. No backend, no stored data, no analytics around inputs.
 
-- [Worn shaft example](https://manish-sharma-ai.github.io/tools/#preset=worn-shaft)
-- [Monitoring anomaly example](https://manish-sharma-ai.github.io/tools/#preset=monitoring-anomaly)
-- [Surface cladding example](https://manish-sharma-ai.github.io/tools/#preset=surface-cladding)
-- [LMD vs SLM route example](https://manish-sharma-ai.github.io/tools/#preset=lmd-vs-slm)
-- [Rough RFQ example](https://manish-sharma-ai.github.io/tools/#preset=rfq)
+- [Worn shaft example](https://manishsharma.dev/tools/#preset=worn-shaft)
+- [Monitoring anomaly example](https://manishsharma.dev/tools/#preset=monitoring-anomaly)
+- [Surface cladding example](https://manishsharma.dev/tools/#preset=surface-cladding)
+- [LMD vs SLM route example](https://manishsharma.dev/tools/#preset=lmd-vs-slm)
+- [Rough RFQ example](https://manishsharma.dev/tools/#preset=rfq)
 
 ## Evidence files
 
-- [500-record LMD/DED reference map](https://manish-sharma-ai.github.io/research/lmd-literature-scan.json)
-- [Exafuse public proof map](https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json)
+- [500-record LMD/DED reference map](https://manishsharma.dev/research/lmd-literature-scan.json)
+- [Exafuse public proof map](https://manishsharma.dev/research/exafuse-public-proof-map.json)
 - [Exafuse homepage](https://exafuse.de/)
 - [Exafuse contact / RFQ](https://exafuse.de/kontakt/)
 

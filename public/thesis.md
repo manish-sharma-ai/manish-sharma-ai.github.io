@@ -27,12 +27,12 @@ The established public proof domain for this thesis is AI for Laser Metal Deposi
 
 ## Links
 
-- LMD / DED domain hub: https://manish-sharma-ai.github.io/domains/lmd-ded
-- LMD Quality Evidence Ladder: https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder
-- LMD Repairability Index: https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index
-- LMD RFQ Toolkit: https://manish-sharma-ai.github.io/agent-pack
-- Evidence Base: https://manish-sharma-ai.github.io/evidence
-- About Manish Sharma: https://manish-sharma-ai.github.io/about
+- LMD / DED domain hub: https://manishsharma.dev/domains/lmd-ded
+- LMD Quality Evidence Ladder: https://manishsharma.dev/frameworks/lmd-quality-evidence-ladder
+- LMD Repairability Index: https://manishsharma.dev/frameworks/lmd-repairability-index
+- LMD RFQ Toolkit: https://manishsharma.dev/agent-pack
+- Evidence Base: https://manishsharma.dev/evidence
+- About Manish Sharma: https://manishsharma.dev/about
 
 ## Limitation
 

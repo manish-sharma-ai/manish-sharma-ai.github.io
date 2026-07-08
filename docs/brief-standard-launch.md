@@ -4,10 +4,10 @@ Use this when changing `/brief-standard/`, the public schema, examples, or expor
 
 ## Public Contract
 
-- Route: `https://manish-sharma-ai.github.io/brief-standard`
-- Adoption section: `https://manish-sharma-ai.github.io/brief-standard#adoption`
-- Schema: `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
-- Examples: `https://manish-sharma-ai.github.io/examples/`
+- Route: `https://manishsharma.dev/brief-standard`
+- Adoption section: `https://manishsharma.dev/brief-standard#adoption`
+- Schema: `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
+- Examples: `https://manishsharma.dev/examples/`
 
 The standard is preliminary decision-support only. It is prepared for expert review / RFQ discussion and is not valid for approval, certification, release, safety-critical acceptance, or quality guarantee.
 

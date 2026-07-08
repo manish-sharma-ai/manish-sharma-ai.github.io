@@ -5,7 +5,7 @@ Every AI coding agent working in this repository must read this file before edit
 ## Project Identity
 
 - Project: Manish Sharma Lab
-- Canonical site: `https://manish-sharma-ai.github.io`
+- Canonical site: `https://manishsharma.dev`
 - GitHub organization: `manish-sharma-ai`
 - Repository: `manish-sharma-ai/manish-sharma-ai.github.io`
 - GitHub profile for Manish: `https://github.com/aiwithms`
@@ -41,7 +41,7 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 ## Non-Negotiable Site Rules
 
 - Keep `astro.config.*` configured for:
-  - `site: "https://manish-sharma-ai.github.io"`
+  - `site: "https://manishsharma.dev"`
   - `base: "/"`
   - static output
 - Keep deployment through `.github/workflows/deploy.yml`.
@@ -131,8 +131,8 @@ gh run watch <latest-run-id> --exit-status
 After the deploy passes, verify important live URLs when the change affects deployed pages or assets:
 
 ```bash
-curl -fsSI https://manish-sharma-ai.github.io/ | head -n 1
-curl -fsSI https://manish-sharma-ai.github.io/site-map/ | head -n 1
+curl -fsSI https://manishsharma.dev/ | head -n 1
+curl -fsSI https://manishsharma.dev/site-map/ | head -n 1
 ```
 
 If `gh` is not authenticated or unavailable, still commit locally and tell Manish the exact commands needed to push and verify deployment.
@@ -214,7 +214,7 @@ Important public files:
 
 When updating SEO-sensitive content:
 
-- Keep canonical URLs on `https://manish-sharma-ai.github.io`.
+- Keep canonical URLs on `https://manishsharma.dev`.
 - Keep JSON-LD IDs stable where possible.
 - Keep the `Person` identity centered on Manish Sharma.
 - Use the broad public category "Industrial AI & Decision Systems" on top-level identity surfaces.
@@ -271,23 +271,23 @@ Also confirm `docs/final-100-checklist.md` still matches the current public surf
 
 ## Useful Live URLs
 
-- Home: `https://manish-sharma-ai.github.io/`
-- Thesis: `https://manish-sharma-ai.github.io/thesis`
-- LMD/DED domain: `https://manish-sharma-ai.github.io/domains/lmd-ded`
-- About: `https://manish-sharma-ai.github.io/about`
-- Identity: `https://manish-sharma-ai.github.io/identity`
-- Public Profile: `https://manish-sharma-ai.github.io/profile/public-profile`
-- Public Work: `https://manish-sharma-ai.github.io/public-work`
-- Evidence: `https://manish-sharma-ai.github.io/evidence`
-- Industrial Proof Map: `https://manish-sharma-ai.github.io/industrial-proof`
-- Frameworks: `https://manish-sharma-ai.github.io/frameworks`
-- Agent Pack: `https://manish-sharma-ai.github.io/agent-pack`
-- Tools: `https://manish-sharma-ai.github.io/tools`
-- Resources: `https://manish-sharma-ai.github.io/resources`
-- Brief Standard: `https://manish-sharma-ai.github.io/brief-standard`
-- Lab Notes: `https://manish-sharma-ai.github.io/lab-notes`
-- Glossary: `https://manish-sharma-ai.github.io/glossary`
-- Press Kit: `https://manish-sharma-ai.github.io/press-kit`
-- For AI Agents: `https://manish-sharma-ai.github.io/for-ai-agents`
-- German Handoff: `https://manish-sharma-ai.github.io/de`
-- Site Map: `https://manish-sharma-ai.github.io/site-map`
+- Home: `https://manishsharma.dev/`
+- Thesis: `https://manishsharma.dev/thesis`
+- LMD/DED domain: `https://manishsharma.dev/domains/lmd-ded`
+- About: `https://manishsharma.dev/about`
+- Identity: `https://manishsharma.dev/identity`
+- Public Profile: `https://manishsharma.dev/profile/public-profile`
+- Public Work: `https://manishsharma.dev/public-work`
+- Evidence: `https://manishsharma.dev/evidence`
+- Industrial Proof Map: `https://manishsharma.dev/industrial-proof`
+- Frameworks: `https://manishsharma.dev/frameworks`
+- Agent Pack: `https://manishsharma.dev/agent-pack`
+- Tools: `https://manishsharma.dev/tools`
+- Resources: `https://manishsharma.dev/resources`
+- Brief Standard: `https://manishsharma.dev/brief-standard`
+- Lab Notes: `https://manishsharma.dev/lab-notes`
+- Glossary: `https://manishsharma.dev/glossary`
+- Press Kit: `https://manishsharma.dev/press-kit`
+- For AI Agents: `https://manishsharma.dev/for-ai-agents`
+- German Handoff: `https://manishsharma.dev/de`
+- Site Map: `https://manishsharma.dev/site-map`

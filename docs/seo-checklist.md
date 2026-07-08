@@ -4,10 +4,10 @@ Date: 2026-07-07
 
 ## Canonical Rules
 
-- Canonical site: `https://manish-sharma-ai.github.io`
-- Primary identity page: `https://manish-sharma-ai.github.io/identity`
-- Person ID: `https://manish-sharma-ai.github.io/identity#manish-sharma`
-- Website ID: `https://manish-sharma-ai.github.io/#website`
+- Canonical site: `https://manishsharma.dev`
+- Primary identity page: `https://manishsharma.dev/identity`
+- Person ID: `https://manishsharma.dev/identity#manish-sharma`
+- Website ID: `https://manishsharma.dev/#website`
 - Do not use the personal GitHub Pages account URL as a site URL.
 
 ## Required Public Files
@@ -33,8 +33,8 @@ Date: 2026-07-07
 
 ## Structured Data
 
-- Person JSON-LD uses `https://manish-sharma-ai.github.io/identity#manish-sharma`.
-- WebSite JSON-LD uses `https://manish-sharma-ai.github.io/#website`.
+- Person JSON-LD uses `https://manishsharma.dev/identity#manish-sharma`.
+- WebSite JSON-LD uses `https://manishsharma.dev/#website`.
 - ProfilePage main entity points to the Person ID.
 - Article or TechArticle author points to the Person ID.
 - `sameAs` uses only real URLs: LinkedIn, GitHub, and Exafuse.
@@ -78,7 +78,7 @@ Expected results:
 
 ## Post-Launch Manual Checks
 
-- Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
+- Submit `https://manishsharma.dev/sitemap-index.xml` in Google Search Console.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Request indexing for `/`, `/identity`, `/thesis`, `/domains/lmd-ded`, `/evidence`, `/industrial-proof`, `/agent-pack`, `/tools`, `/for-ai-agents`, and `/site-map`.
 - Check that GitHub repository metadata uses the canonical URL.

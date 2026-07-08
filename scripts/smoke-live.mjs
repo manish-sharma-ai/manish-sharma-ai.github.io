@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-const SITE = "https://manish-sharma-ai.github.io";
+const SITE = "https://manishsharma.dev";
 const root = process.cwd();
 
 const checks = [

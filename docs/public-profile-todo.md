@@ -6,7 +6,7 @@ This file tracks profile facts and public identity items that need human review 
 
 ## Active Public Profiles
 
-- Website: `https://manish-sharma-ai.github.io`
+- Website: `https://manishsharma.dev`
 - LinkedIn: `https://www.linkedin.com/in/manishsharma5/`
 - GitHub: `https://github.com/aiwithms`
 - Exafuse: `https://exafuse.de/`

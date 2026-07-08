@@ -25,7 +25,7 @@ The brief separates:
 It runs in the browser, has no backend, and does not send or store inputs. It is decision support only. It is not approval, certification, release evidence, or a quality guarantee.
 
 Start here:
-https://manish-sharma-ai.github.io/brief-standard/
+https://manishsharma.dev/brief-standard/
 
 ## LinkedIn Launch Post - Version B
 
@@ -36,7 +36,7 @@ That is the core boundary behind LMD Decision Brief v1.0.
 I built a browser-local, no-backend format for turning rough Laser Metal Deposition and DED questions into a structured review brief: facts, gaps, risk flags, evidence needed, and an expert-review route.
 
 Public standard:
-https://manish-sharma-ai.github.io/brief-standard/
+https://manishsharma.dev/brief-standard/
 
 It is preliminary decision support, not approval, certification, release evidence, or a quality guarantee.
 
@@ -68,7 +68,7 @@ decision support only, not approval, certification, release evidence, safety-cri
 
 7. Public standard, schema, and examples:
 
-https://manish-sharma-ai.github.io/brief-standard/
+https://manishsharma.dev/brief-standard/
 
 8. Best use: prepare better LMD/DED review conversations before expert assessment.
 
@@ -76,7 +76,7 @@ https://manish-sharma-ai.github.io/brief-standard/
 
 LMD Decision Brief v1.0 is now the central public artifact of Manish Sharma Lab. It is a browser-local, no-backend decision-support format for structuring rough LMD/DED, repair, cladding, monitoring, and RFQ questions into known facts, grouped missing information, risk flags, evidence needed, and an expert-review route.
 
-Public standard: https://manish-sharma-ai.github.io/brief-standard/
+Public standard: https://manishsharma.dev/brief-standard/
 
 ## Email To Expert Reviewer
 
@@ -86,7 +86,7 @@ Hi [Name],
 
 I published a public decision-support format for early LMD/DED review preparation:
 
-https://manish-sharma-ai.github.io/brief-standard/
+https://manishsharma.dev/brief-standard/
 
 I am not asking for confidential information, certification, legal review, engineering approval, or feasibility approval.
 
@@ -107,25 +107,25 @@ Manish
 Submit the sitemap:
 
 ```text
-https://manish-sharma-ai.github.io/sitemap-index.xml
+https://manishsharma.dev/sitemap-index.xml
 ```
 
 Inspect these URLs:
 
-- `https://manish-sharma-ai.github.io/`
-- `https://manish-sharma-ai.github.io/tools/`
-- `https://manish-sharma-ai.github.io/brief-standard/`
-- `https://manish-sharma-ai.github.io/brief-template/`
-- `https://manish-sharma-ai.github.io/demo/`
-- `https://manish-sharma-ai.github.io/claims/`
-- `https://manish-sharma-ai.github.io/no-hype/`
-- `https://manish-sharma-ai.github.io/for-ai-agents/`
-- `https://manish-sharma-ai.github.io/llms.txt`
-- `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
+- `https://manishsharma.dev/`
+- `https://manishsharma.dev/tools/`
+- `https://manishsharma.dev/brief-standard/`
+- `https://manishsharma.dev/brief-template/`
+- `https://manishsharma.dev/demo/`
+- `https://manishsharma.dev/claims/`
+- `https://manishsharma.dev/no-hype/`
+- `https://manishsharma.dev/for-ai-agents/`
+- `https://manishsharma.dev/llms.txt`
+- `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
 
 ## Bing Webmaster Checklist
 
-- Submit `https://manish-sharma-ai.github.io/sitemap-index.xml`.
+- Submit `https://manishsharma.dev/sitemap-index.xml`.
 - Inspect the same priority URLs listed for Google Search Console.
 - Confirm `robots.txt`, `llms.txt`, and the schema URL return `200 OK`.
 - Recheck after GitHub Pages cache has refreshed.

@@ -1,26 +1,26 @@
 # About Manish Sharma
 
-Canonical identity page: https://manish-sharma-ai.github.io/identity
+Canonical identity page: https://manishsharma.dev/identity
 
-Public thesis: https://manish-sharma-ai.github.io/thesis
+Public thesis: https://manishsharma.dev/thesis
 
-LMD/DED proof domain: https://manish-sharma-ai.github.io/domains/lmd-ded
+LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
 
-Public-safe profile facts: https://manish-sharma-ai.github.io/profile/public-profile
+Public-safe profile facts: https://manishsharma.dev/profile/public-profile
 
-Human background page: https://manish-sharma-ai.github.io/about
+Human background page: https://manishsharma.dev/about
 
-Profile image: https://manish-sharma-ai.github.io/images/manish-sharma-profile.webp
+Profile image: https://manishsharma.dev/images/manish-sharma-profile.webp
 
-Press kit: https://manish-sharma-ai.github.io/press-kit
+Press kit: https://manishsharma.dev/press-kit
 
-Evidence base: https://manish-sharma-ai.github.io/evidence
+Evidence base: https://manishsharma.dev/evidence
 
-Core LMD-AI sources: https://manish-sharma-ai.github.io/research/core-lmd-ai-sources
+Core LMD-AI sources: https://manishsharma.dev/research/core-lmd-ai-sources
 
-Industrial proof map: https://manish-sharma-ai.github.io/industrial-proof
+Industrial proof map: https://manishsharma.dev/industrial-proof
 
-LMD Decision Brief v1.0 Standard: https://manish-sharma-ai.github.io/brief-standard
+LMD Decision Brief v1.0 Standard: https://manishsharma.dev/brief-standard
 
 ## Summary
 
@@ -53,11 +53,11 @@ Selected public work may include published technical work, event talks, public p
 
 ## Public Links
 
-- Site: https://manish-sharma-ai.github.io
-- Identity: https://manish-sharma-ai.github.io/identity
-- Public thesis: https://manish-sharma-ai.github.io/thesis
-- LMD/DED proof domain: https://manish-sharma-ai.github.io/domains/lmd-ded
-- Public profile facts: https://manish-sharma-ai.github.io/profile/public-profile
+- Site: https://manishsharma.dev
+- Identity: https://manishsharma.dev/identity
+- Public thesis: https://manishsharma.dev/thesis
+- LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
+- Public profile facts: https://manishsharma.dev/profile/public-profile
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub: https://github.com/aiwithms
 - Exafuse: https://exafuse.de/

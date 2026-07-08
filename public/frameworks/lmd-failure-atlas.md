@@ -90,4 +90,4 @@ Decision action: stop firm recommendations if material grade or feedstock tracea
 
 Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
 
-Canonical page: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
+Canonical page: https://manishsharma.dev/frameworks/lmd-failure-atlas

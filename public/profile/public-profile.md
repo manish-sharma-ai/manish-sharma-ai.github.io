@@ -11,15 +11,15 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 | Primary promise | AI for Laser Metal Deposition decisions you can verify |
 | Company connection | Exafuse, Germany |
 | Location | Germany |
-| Website | https://manish-sharma-ai.github.io |
+| Website | https://manishsharma.dev |
 | LinkedIn | https://www.linkedin.com/in/manishsharma5/ |
 | GitHub profile | aiwithms - https://github.com/aiwithms |
 | Site/repository owner | manish-sharma-ai - https://github.com/manish-sharma-ai |
 | Website repository | https://github.com/manish-sharma-ai/manish-sharma-ai.github.io |
 | Exafuse | https://exafuse.de/ |
-| Central public artifact | LMD Decision Brief v1.0 Standard - https://manish-sharma-ai.github.io/brief-standard |
-| Named framework | The LMD-AI Maturity Model by Manish Sharma - https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model |
-| Decision map | Laser Metal Deposition Decision Map - https://manish-sharma-ai.github.io/decision-map |
+| Central public artifact | LMD Decision Brief v1.0 Standard - https://manishsharma.dev/brief-standard |
+| Named framework | The LMD-AI Maturity Model by Manish Sharma - https://manishsharma.dev/frameworks/lmd-ai-maturity-model |
+| Decision map | Laser Metal Deposition Decision Map - https://manishsharma.dev/decision-map |
 
 ## Public Technical Themes
 
