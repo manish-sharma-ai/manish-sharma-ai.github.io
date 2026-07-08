@@ -16,6 +16,7 @@ After pushing, confirm the GitHub Actions deployment passes and verify:
 - `https://manish-sharma-ai.github.io/`
 - `https://manish-sharma-ai.github.io/site-map/`
 - `https://manish-sharma-ai.github.io/brief-standard/`
+- `https://manish-sharma-ai.github.io/decision-map/`
 - `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
 - `https://manish-sharma-ai.github.io/llms.txt`
 - `https://manish-sharma-ai.github.io/llms-full.txt`
@@ -42,6 +43,7 @@ Prioritize:
 - `https://manish-sharma-ai.github.io/identity`
 - `https://manish-sharma-ai.github.io/domains/lmd-ded`
 - `https://manish-sharma-ai.github.io/tools`
+- `https://manish-sharma-ai.github.io/decision-map`
 - `https://manish-sharma-ai.github.io/brief-standard`
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
@@ -60,6 +62,8 @@ Check:
 - `https://manish-sharma-ai.github.io/llms-full.txt`
 - `https://manish-sharma-ai.github.io/identity.md`
 - `https://manish-sharma-ai.github.io/profile/public-profile.md`
+- `https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.md`
+- `https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.svg`
 - `https://manish-sharma-ai.github.io/research/exafuse-public-proof-map.json`
 - `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
 - `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json`

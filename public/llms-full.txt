@@ -136,6 +136,16 @@ Public-safe cockpit presets:
 - LMD vs SLM route: https://manish-sharma-ai.github.io/tools/#preset=lmd-vs-slm
 - Rough RFQ: https://manish-sharma-ai.github.io/tools/#preset=rfq
 
+Laser Metal Deposition Decision Map:
+https://manish-sharma-ai.github.io/decision-map
+
+The decision map is a browser-local route screen for repair, cladding, large-part additive manufacturing, SLM/LPBF alternatives, machining, welding, replacement, and expert-review paths. It produces preliminary route signals, missing information, risk flags, evidence needed, and an LMD Decision Brief v1.0 handoff. It is not a feasibility decision, final engineering approval, material certification, or quality guarantee.
+
+Static decision map source files:
+
+- Markdown: https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.md
+- SVG: https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.svg
+
 Decision Playbooks:
 https://manish-sharma-ai.github.io/playbooks
 
@@ -239,7 +249,7 @@ Connects failure modes, process signals, AI visibility, validation evidence, and
 LMD-AI Maturity Model:
 https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
 
-Describes maturity stages from scattered craft memory to traceable records, inspection-linked analytics, validated AI decision support, and controlled closed-loop development candidates.
+The LMD-AI Maturity Model by Manish Sharma describes six maturity levels: Level 0 manual observation, Level 1 sensor recording, Level 2 offline analysis, Level 3 real-time decision support, Level 4 semi-closed-loop correction, and Level 5 validated closed-loop control.
 
 ## Agent Pack
 
@@ -255,6 +265,9 @@ Source files:
 - Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
 - Decision Brief examples: https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json, https://manish-sharma-ai.github.io/examples/lmd-decision-brief-monitoring-anomaly-v1.json, https://manish-sharma-ai.github.io/examples/lmd-decision-brief-surface-cladding-v1.json, https://manish-sharma-ai.github.io/examples/lmd-decision-brief-rfq-v1.json
 - Decision cockpit route: https://manish-sharma-ai.github.io/tools#lmd-decision-cockpit
+- LMD Decision Map: https://manish-sharma-ai.github.io/decision-map
+- LMD Decision Map Markdown: https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.md
+- LMD Decision Map SVG: https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.svg
 - Decision playbooks: https://manish-sharma-ai.github.io/playbooks
 - Claim ledger: https://manish-sharma-ai.github.io/claims
 - No-hype boundary: https://manish-sharma-ai.github.io/no-hype
@@ -344,6 +357,7 @@ Use this site for:
 - Technical brief, Exafuse email draft, AI-agent-safe summary, Markdown, JSON, grouped checklist, and print/PDF handoff from the same brief object
 - LMD/DED definitions
 - LMD vs SLM decision support
+- LMD Decision Map route screening
 - RFQ preparation
 - Repairability scoring
 - Process monitoring explanations
@@ -401,6 +415,7 @@ Avoid these claims:
 - Public profile Markdown: https://manish-sharma-ai.github.io/profile/public-profile.md
 - Public Work: https://manish-sharma-ai.github.io/public-work
 - Resources: https://manish-sharma-ai.github.io/resources
+- LMD Decision Map: https://manish-sharma-ai.github.io/decision-map
 - Brief Standard: https://manish-sharma-ai.github.io/brief-standard
 - For AI Agents: https://manish-sharma-ai.github.io/for-ai-agents
 - German handoff: https://manish-sharma-ai.github.io/de

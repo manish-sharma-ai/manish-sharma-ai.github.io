@@ -106,6 +106,7 @@ Core routes:
 - `/agent-pack`
 - `/resources`
 - `/tools`
+- `/decision-map`
 - `/playbooks`
 - `/claims`
 - `/no-hype`
@@ -211,6 +212,9 @@ npm run smoke:live
 - `/examples/lmd-decision-brief-rfq-v1.json`
 - `/research/core-lmd-ai-sources`
 - `/resources`
+- `/decision-map`
+- `/decision-map/lmd-decision-map-v1.md`
+- `/decision-map/lmd-decision-map-v1.svg`
 - `/research/lmd-literature-scan.json`
 - `/research/exafuse-public-proof-map.json`
 - `/frameworks/lmd-quality-evidence-ladder.md`
@@ -271,6 +275,17 @@ Implementation and maintenance rules live in `docs/decision-brief-standard.md`.
 
 Artifact lifecycle and future-preset rules live in `docs/artifact-lifecycle.md`.
 
+## Laser Metal Deposition Decision Map
+
+`/decision-map` is a browser-local route map for repair, cladding, large-part additive manufacturing, SLM/LPBF alternatives, machining, welding, replacement, and expert-review paths.
+
+Public source files:
+
+- `/decision-map/lmd-decision-map-v1.md`
+- `/decision-map/lmd-decision-map-v1.svg`
+
+The map is preliminary decision-support only. It should preserve missing information, risk flags, evidence needs, and expert-review routing instead of presenting route screening as feasibility approval.
+
 ## Public Profile Links
 
 Active:
@@ -329,7 +344,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
 - Submit `https://manish-sharma-ai.github.io/sitemap-index.xml` in Google Search Console.
-- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/playbooks`, `/claims`, `/no-hype`, `/brief-standard`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
+- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/decision-map`, `/playbooks`, `/claims`, `/no-hype`, `/brief-standard`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.

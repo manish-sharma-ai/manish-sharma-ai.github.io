@@ -7,18 +7,18 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
-const title = "LMD-AI Maturity Model";
+const title = "The LMD-AI Maturity Model by Manish Sharma";
 const description =
-  "A staged model for moving Laser Metal Deposition workflows from manual records to usable data capture, analytics, AI decision support, and validated closed-loop development.";
+  "A six-level framework for moving Laser Metal Deposition workflows from manual observation to sensor recording, offline analysis, real-time decision support, semi-closed-loop correction, and validated closed-loop control.";
 
 const frameworkBrief = [
-  ["Definition", "A staged model for moving LMD workflows from scattered records to validated AI decision support and controlled closed-loop development candidates."],
+  ["Definition", "A six-level model for moving LMD workflows from manual observation to validated closed-loop control candidates."],
   ["Problem it solves", "Organizations often jump to model claims before data capture, traceability, inspection linkage, and governance are ready."],
   ["Who it is for", "Manufacturing teams, engineers, AI developers, students, and managers planning LMD data maturity."],
   ["Inputs required", "RFQ records, material traceability, CAD/path linkage, logs, monitoring data, inspection outcomes, labels, comparable jobs, governance, and review rules."],
-  ["Output", "A maturity stage and the next practical capability to build."],
+  ["Output", "A maturity level and the next practical capability to build."],
   ["Evidence needed", "Traceable records, linked inspection outcomes, validation results, drift checks, escalation rules, and model-update control."],
-  ["Limitations", "It is a planning framework, not a qualification system or proof that closed-loop control is safe."],
+  ["Limitations", "It is a planning framework, not a qualification system or proof that closed-loop control is ready or safe."],
   ["Example use case", "Deciding whether a team should improve job IDs and inspection links before starting AI anomaly detection."],
   ["Thesis connection", "Sense records, model maturity, decide the next data capability, and verify with measured outcomes."]
 ];
@@ -49,50 +49,50 @@ const jsonLd = {
 const stages = [
   {
     level: "0",
-    title: "Scattered craft memory",
-    signal: "Knowledge lives in people, screenshots, PDFs, and machine-side notes.",
-    capability: "AI can only summarize generic guidance.",
+    title: "Manual observation",
+    signal: "Operators watch the process and record judgment in notes, photos, or memory.",
+    capability: "AI has no reliable process history to learn from.",
     next: "Start collecting consistent RFQ, material, parameter, photo, and inspection records."
   },
   {
     level: "1",
-    title: "Basic digital records",
-    signal: "Machine logs, photos, drawings, and inspection results exist but are not reliably linked.",
-    capability: "AI can help with search, checklists, and missing-information prompts.",
+    title: "Sensor recording",
+    signal: "Images, melt-pool video, machine logs, powder feed, laser power, and robot path data are recorded.",
+    capability: "AI can help organize records, but linkage to outcomes is still weak.",
     next: "Create job IDs that connect RFQ, CAD/path, parameters, feedstock, and inspection evidence."
   },
   {
     level: "2",
-    title: "Traceable process history",
-    signal: "Jobs have linked material, geometry, parameters, feedstock batches, and operator notes.",
-    capability: "AI can support offline analytics and risk summaries.",
+    title: "Offline analysis",
+    signal: "Jobs have linked material, geometry, parameters, feedstock batches, monitoring data, and operator notes.",
+    capability: "AI can classify anomalies after the job and support offline risk summaries.",
     next: "Connect process signals to measured inspection outcomes and comparable build families."
   },
   {
     level: "3",
-    title: "Inspection-linked analytics",
+    title: "Real-time decision support",
     signal: "Monitoring data, parameter changes, inspection results, and defect labels can be analyzed together.",
-    capability: "AI can provide anomaly triage, evidence routing, and repairability decision support.",
+    capability: "AI can warn operators during the build and route signals into evidence questions.",
     next: "Validate model behavior against known outcomes and define escalation rules."
   },
   {
     level: "4",
-    title: "Validated AI decision support",
-    signal: "AI outputs are tested, bounded, logged, reviewed, and connected to expert decisions.",
-    capability: "AI can support RFQ review, process monitoring interpretation, and inspection planning.",
+    title: "Semi-closed-loop correction",
+    signal: "AI outputs are tested, bounded, logged, reviewed, and connected to expert decisions and controlled parameter-change recommendations.",
+    capability: "AI can recommend parameter adjustments under engineering governance.",
     next: "Build governance for model updates, drift checks, and closed-loop experiments."
   },
   {
     level: "5",
-    title: "Closed-loop development candidate",
+    title: "Validated closed-loop control",
     signal: "Validated feedback loops connect process, inspection, and outcome data across repeated jobs.",
-    capability: "AI may support controlled closed-loop development under engineering governance.",
+    capability: "AI may adjust the process automatically only with inspection-backed validation and controlled qualification.",
     next: "Treat deployment as a qualification program, not a software toggle."
   }
 ];
 ---
 
-<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-maturity-model" jsonLd={jsonLd}>
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-maturity-model" jsonLd={jsonLd}>
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
@@ -102,7 +102,7 @@ const stages = [
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
-        A maturity model for moving from scattered LMD records to inspection-linked analytics, validated AI decision support, and closed-loop development.
+        A six-level model for moving from manual LMD observation to sensor recording, offline analysis, real-time decision support, semi-closed-loop correction, and validated closed-loop control.
       </p>
       <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
     </div>

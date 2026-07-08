@@ -138,6 +138,7 @@ export const NAV_GROUPS = [
     items: [
       { label: "Resources", href: "/resources", description: "Intent-based map for tools, playbooks, sources, and AI-agent guidance." },
       { label: "Tools", href: "/tools", description: "Decision cockpit, LMD vs SLM, repairability, and RFQ structuring tools." },
+      { label: "LMD Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement questions." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Practical routes for repair, process selection, monitoring evidence, and RFQ preparation." },
       { label: "90-Second Demo", href: "/demo", description: "Dummy-data journey from vague request to decision brief." },
       { label: "LMD Decision Brief Standard", href: "/brief-standard", description: "Public standard, schema, examples, and adoption package." },
@@ -369,6 +370,7 @@ export const COMMAND_PAGES = [
   { title: "LMD RFQ Toolkit", href: "/agent-pack", group: "Workbench", description: "Schemas, prompts, rules, and checklists for safer LMD RFQ preparation." },
   { title: "Resources", href: "/resources", group: "Workbench", description: "Intent-based resource map for process choice, repairability, RFQs, monitoring limits, sources, claims, and AI-agent usage." },
   { title: "Tools", href: "/tools", group: "Workbench", description: "Frontend-only decision cockpit, repairability, LMD vs SLM, and RFQ structuring aids." },
+  { title: "Laser Metal Deposition Decision Map", href: "/decision-map", group: "Workbench", description: "Interactive route map for repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
   { title: "Decision Playbooks", href: "/playbooks", group: "Workbench", description: "Practical decision routes for repair, process selection, monitoring evidence, and RFQ preparation." },
   { title: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", group: "Workbench", description: "Public, portable standard with schema, examples, adoption text, and boundaries." },
   { title: "LMD Decision Brief Template", href: "/brief-template", group: "Workbench", description: "Copyable Markdown template for preparing review briefs." },
@@ -433,6 +435,7 @@ export const SITE_MAP_GROUPS = [
     links: [
       { label: "Resources", href: "/resources", description: "Intent-based map for tools, playbooks, sources, and AI-agent guidance." },
       { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit, advisors, and structuring tools." },
+      { label: "LMD Decision Map", href: "/decision-map", description: "Interactive route map for repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Practical decision routes for repair, process selection, monitoring evidence, and RFQ preparation." },
       { label: "LMD Decision Brief Standard", href: "/brief-standard", description: "Public standard, JSON schema, example briefs, and adoption package." },
       { label: "LMD Decision Brief Template", href: "/brief-template", description: "Copyable Markdown brief template." },
@@ -525,7 +528,7 @@ export const RELATED_LINK_SETS = [
     ]
   },
   {
-    exact: ["/agent-pack", "/tools", "/for-ai-agents", "/brief-standard", "/brief-template", "/demo", "/resources"],
+    exact: ["/agent-pack", "/tools", "/decision-map", "/for-ai-agents", "/brief-standard", "/brief-template", "/demo", "/resources"],
     eyebrow: "Agent workflow",
     title: "Turn vague requests into usable LMD data",
     links: [
@@ -533,6 +536,7 @@ export const RELATED_LINK_SETS = [
       { label: EXAFUSE_RFQ_ROUTE.label, href: EXAFUSE_RFQ_ROUTE.href, description: "Commercial RFQ route for company review." },
       { label: "Industrial AI Thesis", href: "/thesis", description: "Sense, Model, Decide, Verify." },
       { label: "Tools", href: "/tools", description: "Frontend-only LMD decision cockpit, advisors, and RFQ structuring." },
+      { label: "LMD Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement questions." },
       { label: "LMD Decision Brief Standard", href: "/brief-standard", description: "Public standard, schema, examples, adoption package, and boundaries." },
       { label: "Decision Brief Template", href: "/brief-template", description: "Copyable structure for review-ready summaries." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance for automated assistants." }

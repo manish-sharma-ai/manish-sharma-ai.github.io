@@ -16,6 +16,7 @@ const resourceGroups = [
   {
     intent: "I need to choose a process",
     links: [
+      { label: "Laser Metal Deposition Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
       { label: "LMD Decision Workbench", href: "/tools", description: "Start with the cockpit or route module." },
       { label: "LMD vs SLM Advisor", href: "/tools#route-module", description: "Compare early LMD/DED and SLM/LPBF route signals." },
       { label: "LMD vs SLM lab note", href: "/lab-notes/lmd-vs-slm-decision-signals", description: "Read the practical decision signals." },
@@ -98,6 +99,7 @@ const jsonLd = {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start with example brief</CTAButton>
+        <CTAButton href="/decision-map" variant="secondary">Open decision map</CTAButton>
         <CTAButton href="/brief-standard" variant="secondary">Open brief standard</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>

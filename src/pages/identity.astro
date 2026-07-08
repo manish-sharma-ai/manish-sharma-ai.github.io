@@ -54,6 +54,8 @@ const fields = [
   ["Company connection", PERSON.company],
   ["Location", PERSON.location],
   ["Operating method", "Sense -> Model -> Decide -> Verify"],
+  ["Named framework", "The LMD-AI Maturity Model by Manish Sharma"],
+  ["Decision map", `${SITE.canonicalUrl}/decision-map`],
   ["Core public topics", CORE_TOPICS.join(", ")],
   ["GitHub profile", `${GITHUB_IDENTITY.profile.slug} - ${GITHUB_IDENTITY.profile.href}`],
   ["Site/repository owner", `${GITHUB_IDENTITY.repositoryOwner.slug} - ${GITHUB_IDENTITY.repositoryOwner.href}`],
@@ -80,6 +82,7 @@ const fields = [
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/thesis" class="btn btn-primary">Read the thesis</a>
         <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED proof domain</a>
+        <a href="/decision-map" class="btn btn-secondary">LMD Decision Map</a>
         <a href="/public-work" class="btn btn-secondary">Proof</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>

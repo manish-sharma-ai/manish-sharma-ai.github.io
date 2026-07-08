@@ -32,6 +32,8 @@ Use this before a public release.
 - Workbench outputs include missing information, risk flags, evidence needed, next action, and "Confidence is not approval."
 - Playbooks use real lists, stable anchors, and copyable LMD Decision Brief starters.
 - `/resources/` groups site assets by user intent.
+- `/decision-map/` routes repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement questions as preliminary decision support.
+- Decision map Markdown and SVG source files exist under `/decision-map/`.
 - `/de/` includes LMD-Entscheidungsbrief v1.0, German boundary text, a German mini-template, and routes visitors to cockpit, no-hype boundary, and Exafuse.
 - AI-agent files are updated after identity, link, or source-map changes.
 - `llms.txt`, `llms-full.txt`, identity Markdown, and public profile Markdown match the human pages.

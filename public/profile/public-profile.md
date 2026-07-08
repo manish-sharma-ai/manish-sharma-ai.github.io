@@ -18,6 +18,8 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 | Website repository | https://github.com/manish-sharma-ai/manish-sharma-ai.github.io |
 | Exafuse | https://exafuse.de/ |
 | Central public artifact | LMD Decision Brief v1.0 Standard - https://manish-sharma-ai.github.io/brief-standard |
+| Named framework | The LMD-AI Maturity Model by Manish Sharma - https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model |
+| Decision map | Laser Metal Deposition Decision Map - https://manish-sharma-ai.github.io/decision-map |
 
 ## Public Technical Themes
 
@@ -32,6 +34,8 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 - RFQ intelligence
 - Engineering evidence
 - LMD Decision Brief v1.0 standard, schema, and public-safe examples
+- The LMD-AI Maturity Model by Manish Sharma
+- Laser Metal Deposition Decision Map
 
 ## Boundary
 

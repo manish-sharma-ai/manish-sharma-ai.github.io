@@ -66,7 +66,8 @@ GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-
 - LMD Quality Evidence Ladder: https://manish-sharma-ai.github.io/frameworks/lmd-quality-evidence-ladder
 - LMD Repairability Index: https://manish-sharma-ai.github.io/frameworks/lmd-repairability-index
 - LMD Failure Atlas: https://manish-sharma-ai.github.io/frameworks/lmd-failure-atlas
-- LMD-AI Maturity Model: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
+- The LMD-AI Maturity Model by Manish Sharma: https://manish-sharma-ai.github.io/frameworks/lmd-ai-maturity-model
+- Laser Metal Deposition Decision Map: https://manish-sharma-ai.github.io/decision-map
 - LMD Decision Brief v1.0 Standard: https://manish-sharma-ai.github.io/brief-standard
 - LMD Decision Brief JSON schema: https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json
 

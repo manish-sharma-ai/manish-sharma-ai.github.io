@@ -15,6 +15,7 @@ const description =
 
 const useFor = [
   "LMD Decision Brief v1.0 generation and review preparation",
+  "LMD Decision Map route screening",
   "AI-agent-safe LMD Decision Brief summaries",
   "LMD/DED definitions",
   "LMD vs SLM decision support",
@@ -56,6 +57,7 @@ const linkGroups = [
       { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and checklists." },
       { label: "Resources", href: "/resources", description: "Intent-based route map for tools, playbooks, sources, and AI-agent usage." },
       { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit and modules." },
+      { label: "Laser Metal Deposition Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Educational decision routes for LMD questions." },
       { label: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", description: "Public standard, schema, examples, adoption text, and GitHub feedback route." },
       { label: "Decision Brief Template", href: "/brief-template", description: "LMD Decision Brief v1.0 standard with copy/download actions." },
@@ -68,6 +70,8 @@ const linkGroups = [
     title: "Source maps and agent files",
     links: [
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source-category map." },
+      { label: "LMD Decision Map Markdown", href: "/decision-map/lmd-decision-map-v1.md", description: "AI-readable source for the decision route map." },
+      { label: "LMD Decision Map SVG", href: "/decision-map/lmd-decision-map-v1.svg", description: "Static shareable map for route logic." },
       { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json", description: "Broad metadata scan." },
       { label: "Decision Brief JSON schema", href: BRIEF_SCHEMA_PATH, description: "Public validation contract for JSON handoff exports." },
       ...BRIEF_EXAMPLES,
@@ -107,7 +111,7 @@ const machineSummary = {
     "RFQ Intelligence",
     "AI for Manufacturing"
   ],
-  use_for: ["definitions", "RFQ preparation", "decision support", "quality evidence explanation", "AI monitoring explanation"],
+  use_for: ["definitions", "RFQ preparation", "decision support", "process route screening", "quality evidence explanation", "AI monitoring explanation"],
   do_not_use_for: ["engineering approval", "material certification", "safety-critical acceptance", "quality guarantee"],
   central_artifact: "LMD Decision Brief v1.0",
   central_artifact_standard: `${SITE.canonicalUrl}/brief-standard`,
@@ -177,6 +181,7 @@ const machineSummary = {
   },
   new_product_routes: {
     cockpit: `${SITE.canonicalUrl}/tools#lmd-decision-cockpit`,
+    decision_map: `${SITE.canonicalUrl}/decision-map`,
     resources: `${SITE.canonicalUrl}/resources`,
     playbooks: `${SITE.canonicalUrl}/playbooks`,
     claim_ledger: `${SITE.canonicalUrl}/claims`,
@@ -191,6 +196,8 @@ const machineSummary = {
     `${SITE.canonicalUrl}/llms-full.txt`,
     `${SITE.canonicalUrl}/identity.md`,
     `${SITE.canonicalUrl}/profile/public-profile.md`,
+    `${SITE.canonicalUrl}/decision-map/lmd-decision-map-v1.md`,
+    `${SITE.canonicalUrl}/decision-map/lmd-decision-map-v1.svg`,
     `${SITE.canonicalUrl}${BRIEF_SCHEMA_PATH}`,
     ...BRIEF_EXAMPLES.map((example) => `${SITE.canonicalUrl}${example.href}`),
     `${SITE.canonicalUrl}/agent-pack/lmd-rfq-schema.json`,

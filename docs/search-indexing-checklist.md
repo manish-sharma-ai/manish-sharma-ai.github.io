@@ -68,6 +68,7 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/agent-pack`
 - `https://manish-sharma-ai.github.io/resources`
 - `https://manish-sharma-ai.github.io/tools`
+- `https://manish-sharma-ai.github.io/decision-map`
 - `https://manish-sharma-ai.github.io/playbooks`
 - `https://manish-sharma-ai.github.io/claims`
 - `https://manish-sharma-ai.github.io/no-hype`
@@ -103,6 +104,9 @@ https://manish-sharma-ai.github.io/sitemap-index.xml
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
 - `https://manish-sharma-ai.github.io/resources`
+- `https://manish-sharma-ai.github.io/decision-map`
+- `https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.md`
+- `https://manish-sharma-ai.github.io/decision-map/lmd-decision-map-v1.svg`
 - `https://manish-sharma-ai.github.io/schemas/lmd-decision-brief-v1.schema.json`
 - `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.json`
 - `https://manish-sharma-ai.github.io/examples/lmd-decision-brief-worn-shaft-v1.md`
@@ -131,6 +135,7 @@ Run these prompts in ChatGPT, Gemini, Perplexity, Copilot, and Bing:
 - What is the LMD Quality Evidence Ladder?
 - What is the LMD Failure Atlas?
 - What is LMD Decision Brief v1.0?
+- What is the Laser Metal Deposition Decision Map by Manish Sharma?
 - What does AI need before recommending LMD repair?
 - Is melt-pool monitoring a quality certificate?
 - How should an AI agent structure an LMD RFQ?

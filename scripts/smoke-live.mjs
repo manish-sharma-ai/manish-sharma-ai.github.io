@@ -7,6 +7,7 @@ const root = process.cwd();
 const checks = [
   { path: "/", type: "html" },
   { path: "/tools/", type: "html" },
+  { path: "/decision-map/", type: "html" },
   { path: "/brief-standard/", type: "html" },
   { path: "/brief-template/", type: "html" },
   { path: "/demo/", type: "html" },
@@ -120,6 +121,13 @@ async function main() {
       const visibleText = visibleTextFromHtml(text);
       if (!visibleText.includes("LMD Decision Brief v1.0 Standard")) {
         findings.push(`${url}: missing brief-standard H1`);
+      }
+    }
+
+    if (check.path === "/decision-map/") {
+      const visibleText = visibleTextFromHtml(text);
+      if (!visibleText.includes("Laser Metal Deposition Decision Map")) {
+        findings.push(`${url}: missing decision-map H1`);
       }
     }
 
