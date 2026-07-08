@@ -8,23 +8,16 @@ body:
       value: |
         Do not include confidential employer/customer data or safety-critical approval requests.
   - type: input
-    id: page
+    id: affected_page
     attributes:
-      label: Page or file
-      placeholder: https://manish-sharma-ai.github.io/...
-    validations:
-      required: true
-  - type: textarea
-    id: wording
-    attributes:
-      label: Wording to review
-      description: Quote the public wording that may need a boundary fix.
+      label: Affected page
+      placeholder: https://manish-sharma-ai.github.io/no-hype/
     validations:
       required: true
   - type: dropdown
-    id: risk_type
+    id: issue_type
     attributes:
-      label: Risk type
+      label: Issue type
       options:
         - AI/process monitoring overclaim
         - Feasibility or repairability overclaim
@@ -35,10 +28,31 @@ body:
     validations:
       required: true
   - type: textarea
-    id: safer_wording
+    id: public_source
     attributes:
-      label: Safer wording suggestion
-      description: Optional public-safe replacement wording.
+      label: Public source, if any
+      description: Add only public URLs or public-safe context. Do not paste confidential material.
+  - type: textarea
+    id: unclear
+    attributes:
+      label: What is unclear?
+      description: Quote or describe the public wording that may need a boundary fix.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_correction
+    attributes:
+      label: Suggested correction
+      description: Suggest public-safe replacement wording.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary_risk
+    attributes:
+      label: Boundary risk
+      description: Explain the approval, certification, feasibility, quality, Exafuse/customer, or confidentiality risk.
+    validations:
+      required: true
   - type: checkboxes
     id: boundaries
     attributes:

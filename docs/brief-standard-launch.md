@@ -18,10 +18,12 @@ npm run check
 npm run build
 npm run audit:brief-schema
 npm run audit:human-exafuse-ctas
+npm run audit:rendered-public-language
 npm run audit:rubric-format
 npm run audit:preflight
 npm run audit:seo-social
 npm run audit:all
+npm run smoke:live
 git diff --check
 ```
 
@@ -30,7 +32,8 @@ git diff --check
 - Examples must be generic dummy examples.
 - Do not include customer names, drawings, private process parameters, pricing, inspection data, or employer-confidential details.
 - Do not present Exafuse migration-gated deep links as live human CTAs.
-- Keep the migration helper text where production-safe context needs it: `New Exafuse case/tool deep links activate after production migration.`
+- Human-facing pages must use `Contact Exafuse` or `Request Exafuse review` for production-safe Exafuse fallback CTAs.
+- Keep the migration helper text where production-safe context needs it: `New Exafuse case/tool deep links will activate after production migration.`
 
 ## Files To Keep Synchronized
 
@@ -49,3 +52,4 @@ git diff --check
 - `public/agent-pack/lmd-quality-checklist.md`
 - `README.md`
 - `AGENTS.md`
+- `docs/launch-distribution-pack.md`

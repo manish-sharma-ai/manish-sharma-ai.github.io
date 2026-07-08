@@ -18,7 +18,8 @@ Use this before a public release.
 - Exafuse mode is correct for the current production site.
 - No staging URLs appear in `dist`.
 - No unsafe post-migration Exafuse deep-link labels appear in production-safe mode.
-- Human pages do not render "Case source after migration", "RFQ path after migration", "Pathfinder after migration", or "Builder after migration".
+- Human pages do not render "Case source after migration", "RFQ path after migration", "Pathfinder after migration", "Builder after migration", "View Exafuse after migration", or "Source activates after Exafuse production migration".
+- Human pages use "Contact Exafuse" or "Request Exafuse review" for production-safe Exafuse fallback CTAs.
 - Press kit links are verified and unambiguous.
 - Public identity/profile/link pages do not render planned profiles.
 - GitHub profile, repository owner, and repository are clearly separated.
@@ -60,11 +61,13 @@ npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
+npm run audit:rendered-public-language
 npm run audit:brief-schema
 npm run audit:human-exafuse-ctas
 npm run audit:rubric-format
 npm run audit:preflight
 npm run audit:seo-social
 npm run audit:all
+npm run smoke:live
 git diff --check
 ```

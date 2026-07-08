@@ -7,7 +7,7 @@ export type ExafuseLinkStatus = "public-production" | "production-link-after-mig
 export type ExafuseLinkGroup = "core" | "case" | "knowledge" | "rfq-tool";
 
 export const EXAFUSE_LINK_MODE: ExafuseLinkMode = "production-safe";
-export const EXAFUSE_MIGRATION_HELPER = "New Exafuse case/tool deep links activate after production migration.";
+export const EXAFUSE_MIGRATION_HELPER = "New Exafuse case/tool deep links will activate after production migration.";
 
 export type ExafuseUrlKey =
   | "home"
@@ -112,7 +112,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   pathfinder: {
     label: "Exafuse Pathfinder",
-    productionSafeLabel: "Discuss with Exafuse",
+    productionSafeLabel: "Request Exafuse review",
     productionSafePath: "/kontakt/",
     postMigrationPath: "/tools/pathfinder/",
     statusInProductionSafe: "production-link-after-migration",
@@ -216,7 +216,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   lmdGuide: {
     label: "Exafuse LMD guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/laser-metal-deposition-ded-lbm/",
     statusInProductionSafe: "production-link-after-migration",
@@ -224,7 +224,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   lmdVsSlmGuide: {
     label: "Exafuse LMD vs SLM guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-vs-slm-lpbf/",
     statusInProductionSafe: "production-link-after-migration",
@@ -232,7 +232,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   largePartLmdGuide: {
     label: "Exafuse large-part LMD guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/grosse-bauteile-laser-metal-deposition/",
     statusInProductionSafe: "production-link-after-migration",
@@ -240,7 +240,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   monitoringGuide: {
     label: "Exafuse monitoring guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-prozessueberwachung-qualitaet/",
     statusInProductionSafe: "production-link-after-migration",
@@ -248,7 +248,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   breitbahnDedGuide: {
     label: "Exafuse BreitbahnDED guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/breitbahn-ded-lmd/",
     statusInProductionSafe: "production-link-after-migration",
@@ -256,7 +256,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   powder2024Guide: {
     label: "Exafuse 2024 powder review",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-pulver-jahresrueckblick-2024/",
     statusInProductionSafe: "production-link-after-migration",
@@ -264,7 +264,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   hammerRepairGuide: {
     label: "Exafuse hammer repair guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/lmd-reparatur-schmiedehammer/",
     statusInProductionSafe: "production-link-after-migration",
@@ -272,7 +272,7 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   neuralImageProcessingGuide: {
     label: "Exafuse neural image-processing guide",
-    productionSafeLabel: "View Exafuse after migration",
+    productionSafeLabel: "Contact Exafuse",
     productionSafePath: "/wissen/",
     postMigrationPath: "/wissen/neuronale-bildverarbeitung-lmd/",
     statusInProductionSafe: "production-link-after-migration",

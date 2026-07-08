@@ -58,6 +58,7 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Preserve the commercial boundary: Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, delivery claims, and company-owned source details.
 - Resolve Exafuse URLs through `src/config/externalLinks.ts`; do not hard-code Exafuse production or staging URLs in page components.
 - Keep Exafuse labels synchronized with `EXAFUSE_LINK_MODE`. In `production-safe`, do not render labels such as "Exafuse Pathfinder", "Exafuse RFQ Builder", or individual case-study deep-link labels as if those future routes are live.
+- Human-facing pages must not show internal migration CTA language. Use "Contact Exafuse" or "Request Exafuse review" with the small helper text `New Exafuse case/tool deep links will activate after production migration.` where production-safe context is needed.
 - Render public proof metrics from `src/data/publicClaims.ts`; do not hard-code CS15 or other proof metrics in page components.
 - Do not render image-generation prompts, diagram helper text, or long SVG descriptions as visible page text. Decorative visuals should keep internals out of rendered text and use concise accessibility labels.
 - Keep identity facts unambiguous: `aiwithms` is the GitHub profile, `manish-sharma-ai` is the GitHub organization/site repository owner, and `manish-sharma-ai/manish-sharma-ai.github.io` is the repository.
@@ -255,12 +256,14 @@ npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
+npm run audit:rendered-public-language
 npm run audit:brief-schema
 npm run audit:human-exafuse-ctas
 npm run audit:rubric-format
 npm run audit:preflight
 npm run audit:seo-social
 npm run audit:all
+npm run smoke:live
 git diff --check
 ```
 

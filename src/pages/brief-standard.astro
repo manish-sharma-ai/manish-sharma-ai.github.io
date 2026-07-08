@@ -12,7 +12,7 @@ import {
   BRIEF_OUTPUT_MODES,
   BRIEF_QUALITY_RUBRIC,
   BRIEF_SCHEMA_PATH,
-  BRIEF_STANDARD_GITHUB_ISSUES,
+  BRIEF_STANDARD_FEEDBACK_URL,
   BRIEF_STATUS_LINES,
   BRIEF_USE_FOR
 } from "@data/briefStandard";
@@ -31,7 +31,7 @@ import {
 
 const title = "LMD Decision Brief v1.0 Standard";
 const description =
-  "Public, portable standard for turning rough Laser Metal Deposition, DED, repair, cladding, monitoring, and RFQ questions into bounded review briefs.";
+  "Public, portable, no-backend LMD Decision Brief v1.0 standard for preliminary decision support before expert review, not approval or certification.";
 
 const markdownStarter = formatDecisionBriefTemplateMarkdown();
 const aiAgentPrompt = formatAiAgentPrompt(WORN_SHAFT_BRIEF);
@@ -194,7 +194,7 @@ const jsonLd = {
       <p class="metric-label">Boundary reminder</p>
       <p class="mt-3 text-sm font-bold leading-6 text-amber-100">{BOUNDARY_STATEMENT}</p>
       <div class="mt-6 flex flex-wrap gap-3">
-        <CTAButton href={BRIEF_STANDARD_GITHUB_ISSUES} variant="secondary" external>Suggest a public-safe improvement on GitHub</CTAButton>
+        <CTAButton href={BRIEF_STANDARD_FEEDBACK_URL} variant="secondary" external>Suggest a public-safe improvement</CTAButton>
         <CTAButton href={BRIEF_SCHEMA_PATH} variant="secondary">Open schema</CTAButton>
         <CTAButton href="/for-ai-agents" variant="secondary">AI-agent guidance</CTAButton>
       </div>

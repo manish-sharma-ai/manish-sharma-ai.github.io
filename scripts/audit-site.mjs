@@ -32,6 +32,21 @@ const visualLeakPhrases = [
   "LASER PATH / PROCESS SIGNAL / VERIFICATION"
 ];
 
+const publicMigrationLeakPhrases = [
+  "Case source after migration",
+  "RFQ path after migration",
+  "Pathfinder after migration",
+  "Builder after migration",
+  "Source activates after Exafuse production migration",
+  "View Exafuse after migration",
+  "Exafuse RFQ path after migration",
+  "Exafuse case link after migration",
+  "Exafuse tool path after migration",
+  "Exafuse AI-agent path after migration",
+  "Exafuse knowledge link after migration",
+  "Production link after Exafuse migration"
+];
+
 const keyRenderedPages = [
   "/",
   "/thesis/",
@@ -143,6 +158,19 @@ function auditRenderedText() {
     }
   }
   fail("Rendered text audit failed", findings);
+}
+
+function auditRenderedPublicLanguage() {
+  const findings = [];
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const visibleText = visibleTextFromHtml(text);
+    for (const phrase of publicMigrationLeakPhrases) {
+      if (visibleText.includes(phrase)) {
+        findings.push(`${file}: public rendered HTML contains internal migration wording "${phrase}"`);
+      }
+    }
+  }
+  fail("Rendered public-language audit failed", findings);
 }
 
 function auditLinks() {
@@ -701,7 +729,7 @@ function auditExafuseModeHuman() {
         }
       }
     }
-    const modeNotice = "New Exafuse case/tool deep links activate after production migration.";
+    const modeNotice = "New Exafuse case/tool deep links will activate after production migration.";
     for (const file of ["dist/domains/lmd-ded/index.html", "dist/public-work/index.html"]) {
       if (existsSync(join(root, file)) && !visibleTextFromHtml(read(file)).includes(modeNotice)) {
         findings.push(`${file}: missing Exafuse migration notice`);
@@ -760,28 +788,20 @@ function auditBriefStatusConsistency() {
 
 function auditHumanMigrationLanguage() {
   const findings = [];
-  const forbiddenHuman = [
-    "Exafuse RFQ path after migration",
-    "Exafuse case link after migration",
-    "Exafuse tool path after migration",
-    "Exafuse AI-agent path after migration",
-    "Exafuse knowledge link after migration",
-    "Production link after Exafuse migration"
-  ];
   for (const { file, text } of scanFiles(distRoot, [".html"])) {
     const visibleText = visibleTextFromHtml(text);
-    for (const phrase of forbiddenHuman) {
+    for (const phrase of publicMigrationLeakPhrases) {
       if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains old migration phrase "${phrase}"`);
     }
   }
   const externalConfig = existsSync(join(root, "src/config/externalLinks.ts")) ? read("src/config/externalLinks.ts") : "";
-  for (const phrase of ["Request Exafuse review", "Discuss with Exafuse", "Contact Exafuse", "View Exafuse after migration"]) {
+  for (const phrase of ["Request Exafuse review", "Contact Exafuse"]) {
     if (!externalConfig.includes(phrase)) findings.push(`src/config/externalLinks.ts: missing human label "${phrase}"`);
   }
   for (const file of ["dist/evidence/index.html", "dist/public-work/index.html"]) {
     if (!existsSync(join(root, file))) continue;
     const visibleText = visibleTextFromHtml(read(file));
-    if (!visibleText.includes("New Exafuse case/tool deep links activate after production migration.")) {
+    if (!visibleText.includes("New Exafuse case/tool deep links will activate after production migration.")) {
       findings.push(`${file}: missing production migration helper text`);
     }
   }
@@ -843,7 +863,7 @@ function auditClaimsHumanSurface() {
     "Audit details",
     "Source type/status",
     "Registry id",
-    "Source activates after Exafuse production migration"
+    "Public source link pending"
   ]) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
   }
@@ -1035,15 +1055,9 @@ function auditBriefSchema() {
 
 function auditHumanExafuseCtas() {
   const findings = [];
-  const forbidden = [
-    "Case source after migration",
-    "RFQ path after migration",
-    "Pathfinder after migration",
-    "Builder after migration"
-  ];
   for (const { file, text } of scanFiles(distRoot, [".html"])) {
     const visibleText = visibleTextFromHtml(text);
-    for (const phrase of forbidden) {
+    for (const phrase of publicMigrationLeakPhrases) {
       if (visibleText.includes(phrase)) findings.push(`${file}: human HTML contains "${phrase}"`);
     }
   }
@@ -1212,6 +1226,9 @@ function auditSeoSocial() {
     "/brief-standard/",
     "/brief-template/",
     "/demo/",
+    "/claims/",
+    "/no-hype/",
+    "/de/",
     "/for-ai-agents/"
   ];
   for (const route of pages) {
@@ -1234,6 +1251,9 @@ function auditSeoSocial() {
       if (!html.includes(marker)) findings.push(`${file}: missing ${marker}`);
     }
     if (!html.includes("https://manish-sharma-ai.github.io")) findings.push(`${file}: missing canonical host in metadata`);
+    for (const bad of ["pages.dev", "exafuse-website-react", "www.exafuse.de"]) {
+      if (html.includes(bad)) findings.push(`${file}: contains staging or wrong production host "${bad}"`);
+    }
   }
   fail("SEO/social audit failed", findings);
 }
@@ -1241,6 +1261,7 @@ function auditSeoSocial() {
 const audits = {
   "visual-text": auditVisualText,
   "rendered-text": auditRenderedText,
+  "rendered-public-language": auditRenderedPublicLanguage,
   links: auditLinks,
   "links:report": auditLinksReport,
   claims: auditClaims,
@@ -1272,6 +1293,7 @@ const audits = {
   all() {
     auditVisualText();
     auditRenderedText();
+    auditRenderedPublicLanguage();
     auditLinks();
     auditClaims();
     auditBoundaries();

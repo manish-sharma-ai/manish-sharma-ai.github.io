@@ -8,9 +8,9 @@ body:
       value: |
         Do not include confidential employer/customer data or safety-critical approval requests.
   - type: input
-    id: source_page
+    id: affected_page
     attributes:
-      label: Page containing the link
+      label: Affected page
       placeholder: https://manish-sharma-ai.github.io/...
     validations:
       required: true
@@ -22,16 +22,35 @@ body:
     validations:
       required: true
   - type: textarea
-    id: expected
+    id: public_source
     attributes:
-      label: Expected behavior
-      description: What should the link do instead?
+      label: Public source, if any
+      description: Add only public URLs or public-safe context. Do not paste confidential material.
+  - type: textarea
+    id: unclear
+    attributes:
+      label: What is unclear?
+      description: Explain whether the target, label, status, or expected behavior is unclear.
     validations:
       required: true
+  - type: textarea
+    id: suggested_correction
+    attributes:
+      label: Suggested correction
+      description: What should the link do or say instead?
+    validations:
+      required: true
+  - type: textarea
+    id: boundary_risk
+    attributes:
+      label: Boundary risk
+      description: Note any approval, certification, feasibility, quality, Exafuse/customer, or confidentiality risk.
   - type: checkboxes
     id: boundaries
     attributes:
       label: Boundary check
       options:
+        - label: This does not include confidential employer/customer data.
+          required: true
         - label: This report contains only public-safe link information.
           required: true

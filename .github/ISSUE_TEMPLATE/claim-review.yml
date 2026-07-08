@@ -8,30 +8,55 @@ body:
       value: |
         Do not include confidential employer/customer data or safety-critical approval requests.
   - type: input
-    id: page
+    id: affected_page
     attributes:
-      label: Page or claim location
-      placeholder: https://manish-sharma-ai.github.io/...
+      label: Affected page
+      placeholder: https://manish-sharma-ai.github.io/claims/
     validations:
       required: true
-  - type: textarea
-    id: issue
+  - type: dropdown
+    id: issue_type
     attributes:
-      label: Review request
-      description: What claim needs source review, softer wording, removal, or clearer limitation language?
+      label: Issue type
+      options:
+        - Source status
+        - Claim wording
+        - Limitation wording
+        - Allowed page
+        - Boundary risk
+        - Other public-safe claim issue
     validations:
       required: true
   - type: textarea
     id: public_source
     attributes:
-      label: Public source context
+      label: Public source, if any
       description: Add only public URLs or public-safe notes. Do not paste confidential material.
+  - type: textarea
+    id: unclear
+    attributes:
+      label: What is unclear?
+      description: Identify the claim, source status, limitation, or page context that needs review.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_correction
+    attributes:
+      label: Suggested correction
+      description: Suggest public-safe wording, source status, or limitation language.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary_risk
+    attributes:
+      label: Boundary risk
+      description: Note any approval, certification, feasibility, quality, Exafuse/customer, or confidentiality risk.
   - type: checkboxes
     id: boundaries
     attributes:
       label: Boundary check
       options:
-        - label: This uses public-safe source context only.
+        - label: This does not include confidential employer/customer data.
           required: true
         - label: This does not ask the site to guarantee feasibility, quality, certification, or release.
           required: true

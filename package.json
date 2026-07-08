@@ -28,6 +28,7 @@
     "audit:public-profiles": "node scripts/audit-site.mjs public-profiles",
     "audit:decision-boundaries": "node scripts/audit-site.mjs decision-boundaries",
     "audit:exafuse-mode-human": "node scripts/audit-site.mjs exafuse-mode-human",
+    "audit:rendered-public-language": "node scripts/audit-site.mjs rendered-public-language",
     "audit:brief-status-consistency": "node scripts/audit-site.mjs brief-status-consistency",
     "audit:human-migration-language": "node scripts/audit-site.mjs human-migration-language",
     "audit:control-text-readability": "node scripts/audit-site.mjs control-text-readability",
@@ -39,7 +40,8 @@
     "audit:rubric-format": "node scripts/audit-site.mjs rubric-format",
     "audit:preflight": "node scripts/audit-site.mjs preflight",
     "audit:seo-social": "node scripts/audit-site.mjs seo-social",
-    "audit:all": "node scripts/audit-site.mjs all"
+    "audit:all": "node scripts/audit-site.mjs all",
+    "smoke:live": "node scripts/smoke-live.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",

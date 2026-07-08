@@ -7,20 +7,50 @@ body:
     attributes:
       value: |
         Do not include confidential employer/customer data or safety-critical approval requests.
-  - type: textarea
-    id: improvement
+  - type: input
+    id: affected_page
     attributes:
-      label: Suggested improvement
-      description: What should change in the public standard, schema, examples, or adoption text?
+      label: Affected page
+      placeholder: https://manish-sharma-ai.github.io/brief-standard/
+    validations:
+      required: true
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Standard wording
+        - JSON schema
+        - Public example
+        - Adoption copy
+        - Boundary wording
+        - Other public-safe feedback
     validations:
       required: true
   - type: textarea
-    id: reason
+    id: public_source
     attributes:
-      label: Why it matters
-      description: Explain the practical RFQ, review, AI-agent, or documentation problem this solves.
+      label: Public source, if any
+      description: Add only public URLs or public-safe context. Do not paste confidential material.
+  - type: textarea
+    id: unclear
+    attributes:
+      label: What is unclear?
+      description: Describe the confusing field, boundary, example, or workflow step.
     validations:
       required: true
+  - type: textarea
+    id: suggested_correction
+    attributes:
+      label: Suggested correction
+      description: Suggest public-safe wording or structure.
+    validations:
+      required: true
+  - type: textarea
+    id: boundary_risk
+    attributes:
+      label: Boundary risk
+      description: Note any approval, certification, feasibility, quality, Exafuse/customer, or confidentiality risk.
   - type: checkboxes
     id: boundaries
     attributes:

@@ -1,10 +1,12 @@
 ---
+import { EXAFUSE_MIGRATION_HELPER } from "../config/externalLinks";
+
 const { class: className = "" } = Astro.props;
 ---
 
 <aside class:list={["rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-4 text-sm leading-6 text-cyan-50", className]}>
   <p class="font-black text-white">Exafuse link-mode note</p>
   <p class="mt-2">
-    New Exafuse case/tool deep links activate after production migration. Until then, use Exafuse home/contact for company-owned review.
+    {EXAFUSE_MIGRATION_HELPER} Until then, use Exafuse home/contact for company-owned review.
   </p>
 </aside>

@@ -138,7 +138,7 @@ Exafuse launch mode:
 - `EXAFUSE_LINK_MODE = "production-safe"` keeps migration-sensitive Exafuse deep links on safe production routes.
 - `EXAFUSE_LINK_MODE = "post-migration"` should be used only after the production Exafuse paths are verified.
 - Follow `docs/exafuse-migration-switch.md` before changing link mode.
-- Human-facing labels must also follow link mode. In `production-safe`, do not show labels such as "Exafuse Pathfinder", "Exafuse RFQ Builder", or individual case-study deep-link titles unless they clearly say the link is after migration.
+- Human-facing labels must also follow link mode. In `production-safe`, do not show internal migration CTA language such as "Case source after migration", "RFQ path after migration", "Pathfinder after migration", "Builder after migration", or "Source activates after Exafuse production migration". Use "Contact Exafuse" or "Request Exafuse review" with the small helper text: `New Exafuse case/tool deep links will activate after production migration.`
 
 Public proof metrics are centralized in `src/data/publicClaims.ts`. Do not hard-code CS15 bridge metrics or other proof numbers in page components.
 
@@ -176,6 +176,7 @@ npm run audit:mobile-static
 npm run audit:public-profiles
 npm run audit:decision-boundaries
 npm run audit:exafuse-mode-human
+npm run audit:rendered-public-language
 npm run audit:brief-schema
 npm run audit:human-exafuse-ctas
 npm run audit:rubric-format
@@ -183,6 +184,7 @@ npm run audit:preflight
 npm run audit:seo-social
 npm run audit:all
 npm run audit:links:report
+npm run smoke:live
 ```
 
 ## AI-Readable Files
@@ -338,6 +340,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 - Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs only after they are created and verified. Track future profile work in `docs/profile-roadmap.md`.
 - Switch Exafuse link mode only after following `docs/exafuse-migration-switch.md`.
+- Run `npm run smoke:live` after deployment before distribution.
 - Replace working-draft source categories on the curated research page with verified citation links.
 - Add more buyer-facing RFQ examples and public-safe tool outputs.
 - Keep glossary pages aligned with source notes and standards references.

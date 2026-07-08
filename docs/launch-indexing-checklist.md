@@ -20,6 +20,12 @@ After pushing, confirm the GitHub Actions deployment passes and verify:
 - `https://manish-sharma-ai.github.io/llms.txt`
 - `https://manish-sharma-ai.github.io/llms-full.txt`
 
+Then run:
+
+```bash
+npm run smoke:live
+```
+
 ## Submit Sitemaps
 
 Submit this sitemap in Google Search Console and Bing Webmaster Tools:
@@ -39,6 +45,8 @@ Prioritize:
 - `https://manish-sharma-ai.github.io/brief-standard`
 - `https://manish-sharma-ai.github.io/brief-template`
 - `https://manish-sharma-ai.github.io/demo`
+- `https://manish-sharma-ai.github.io/claims`
+- `https://manish-sharma-ai.github.io/no-hype`
 - `https://manish-sharma-ai.github.io/resources`
 - `https://manish-sharma-ai.github.io/for-ai-agents`
 - `https://manish-sharma-ai.github.io/research/core-lmd-ai-sources`
@@ -61,3 +69,4 @@ Check:
 - Update GitHub repository description, website, and topics if they changed.
 - Run prompt visibility tests from `docs/lmd-black-hole-score-template.md`.
 - Record any AI answer drift and update `llms.txt`, `llms-full.txt`, or page copy only if the public source itself needs clarification.
+- Use `docs/launch-distribution-pack.md` for ready-to-copy launch posts, expert-review email text, and the "what not to claim" list.
