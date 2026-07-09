@@ -87,6 +87,11 @@ export default function RepairabilityQuickCheck({
   return (
     <div className="tool-panel">
       <div className="grid content-start gap-3">
+        <div className="tool-pane-heading">
+          <p className="metric-label">Input pane</p>
+          <p className="tool-pane-title">Repairability screening checklist</p>
+          <p className="tool-pane-copy">Mark only public-safe known signals. Unknown material, undefined inspection, and safety-critical service stay visible as risk.</p>
+        </div>
         <fieldset className="grid gap-3">
           <legend className="metric-label mb-1">Repairability inputs</legend>
           {questions.map((question) => (
@@ -112,13 +117,18 @@ export default function RepairabilityQuickCheck({
             <span>Safety critical?</span>
           </label>
         </fieldset>
-        <div className="mt-2 flex flex-wrap gap-3">
-          <button type="button" onClick={() => { setSelected(exampleSelected); setSafetyCritical(false); }} className="btn btn-secondary">Use example</button>
-          <button type="button" onClick={() => { setSelected(["Damage local?", "Access possible?", "Downtime important?"]); setSafetyCritical(false); }} className="btn btn-secondary">Reset</button>
-          <button type="button" onClick={() => { setSelected([]); setSafetyCritical(false); }} className="btn btn-secondary">Clear all inputs</button>
-        </div>
+        <ul className="tool-action-list mt-2" aria-label="Repairability input actions">
+          <li><button type="button" onClick={() => { setSelected(exampleSelected); setSafetyCritical(false); }} className="btn btn-secondary">Use example</button></li>
+          <li><button type="button" onClick={() => { setSelected(["Damage local?", "Access possible?", "Downtime important?"]); setSafetyCritical(false); }} className="btn btn-secondary">Reset</button></li>
+          <li><button type="button" onClick={() => { setSelected([]); setSafetyCritical(false); }} className="btn btn-secondary">Clear all inputs</button></li>
+        </ul>
       </div>
-      <aside className="ordered-card-strong h-fit p-6 md:p-7">
+      <aside className="ordered-card-strong tool-output-rail h-fit p-6 md:p-7">
+        <div className="tool-pane-heading mb-5">
+          <p className="metric-label">Output pane</p>
+          <p className="tool-pane-title">Repairability review brief</p>
+          <p className="tool-pane-copy">The score screens review readiness; it does not approve repair or replace inspection planning.</p>
+        </div>
         <p className="metric-label">Quick-check output</p>
         <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
           Confidence is not approval. This score screens review readiness; it does not approve repair.

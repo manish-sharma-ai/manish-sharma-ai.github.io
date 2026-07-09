@@ -118,6 +118,11 @@ export default function LmdVsSlmAdvisor({
   return (
     <div className="tool-panel">
       <div>
+        <div className="tool-pane-heading mb-4">
+          <p className="metric-label">Input pane</p>
+          <p className="tool-pane-title">Route-selection signals</p>
+          <p className="tool-pane-copy">Adjust the early process signals. The output stays conservative until material, geometry, tolerance, and inspection context are clear.</p>
+        </div>
         <div className="tool-input-grid">
           <Select label="Part size" value={values.partSize} options={["small", "medium", "large"]} onChange={(value) => setValues({ ...values, partSize: value })} />
           <Select label="Geometry complexity" value={values.complexity} options={["low", "medium", "high"]} onChange={(value) => setValues({ ...values, complexity: value })} />
@@ -126,11 +131,11 @@ export default function LmdVsSlmAdvisor({
           <Select label="Tolerance requirement" value={values.tolerance} options={["loose", "medium", "tight"]} onChange={(value) => setValues({ ...values, tolerance: value })} />
           <Select label="Internal channels" value={values.internalChannels} options={["yes", "no"]} onChange={(value) => setValues({ ...values, internalChannels: value })} />
         </div>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <button type="button" onClick={() => setValues(exampleValues)} className="btn btn-secondary">Use example</button>
-          <button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Reset</button>
-          <button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Clear all inputs</button>
-        </div>
+        <ul className="tool-action-list mt-5" aria-label="Process route input actions">
+          <li><button type="button" onClick={() => setValues(exampleValues)} className="btn btn-secondary">Use example</button></li>
+          <li><button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Reset</button></li>
+          <li><button type="button" onClick={() => setValues(defaults)} className="btn btn-secondary">Clear all inputs</button></li>
+        </ul>
       </div>
       <ToolResult result={result} exafuseUrl={exafuseUrl} exafuseLabel={exafuseLabel} />
     </div>
@@ -210,7 +215,12 @@ function ToolResult({
   });
 
   return (
-    <aside className="ordered-card-strong h-fit p-6 md:p-7">
+    <aside className="ordered-card-strong tool-output-rail h-fit p-6 md:p-7">
+      <div className="tool-pane-heading mb-5">
+        <p className="metric-label">Output pane</p>
+        <p className="tool-pane-title">Process-route brief</p>
+        <p className="tool-pane-copy">Use this as a first route signal, then validate the real part context through expert review.</p>
+      </div>
       <p className="metric-label">Advisor output</p>
       <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
         Confidence is not approval. This output is a route signal, not a release decision.

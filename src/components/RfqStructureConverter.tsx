@@ -125,21 +125,34 @@ export default function RfqStructureConverter({
 
   return (
     <div className="tool-panel">
-      <label className="tool-field">
-        Repair request text
-        <textarea
-          value={text}
-          onChange={(event) => setText(event.target.value)}
-          rows={12}
-          className="min-h-[24rem] p-4 text-sm leading-6 text-slate-100 outline-none"
-        />
-        <span className="mt-4 flex flex-wrap gap-3">
-          <button type="button" onClick={() => setText(exampleText)} className="btn btn-secondary">Use example</button>
-          <button type="button" onClick={() => setText("")} className="btn btn-secondary">Reset</button>
-          <button type="button" onClick={() => setText("")} className="btn btn-secondary">Clear all inputs</button>
-        </span>
-      </label>
-      <aside className="ordered-card-strong p-6 md:p-7">
+      <div className="grid content-start gap-3">
+        <div className="tool-pane-heading">
+          <p className="metric-label">Input pane</p>
+          <p className="tool-pane-title">Free-text RFQ intake</p>
+          <p className="tool-pane-copy">Paste a rough request. The parser extracts public-safe hints and keeps missing RFQ fields explicit.</p>
+        </div>
+        <label className="tool-field" htmlFor="rfq-structure-input">
+          Repair request text
+          <textarea
+            id="rfq-structure-input"
+            value={text}
+            onChange={(event) => setText(event.target.value)}
+            rows={12}
+            className="min-h-[24rem] p-4 text-sm leading-6 text-slate-100 outline-none"
+          />
+        </label>
+        <ul className="tool-action-list" aria-label="RFQ text input actions">
+          <li><button type="button" onClick={() => setText(exampleText)} className="btn btn-secondary">Use example</button></li>
+          <li><button type="button" onClick={() => setText("")} className="btn btn-secondary">Reset</button></li>
+          <li><button type="button" onClick={() => setText("")} className="btn btn-secondary">Clear all inputs</button></li>
+        </ul>
+      </div>
+      <aside className="ordered-card-strong tool-output-rail p-6 md:p-7">
+        <div className="tool-pane-heading mb-5">
+          <p className="metric-label">Output pane</p>
+          <p className="tool-pane-title">Structured RFQ brief</p>
+          <p className="tool-pane-copy">The output is copyable decision-support text, not an automatic feasibility decision.</p>
+        </div>
         <p className="metric-label">Structured RFQ output</p>
         <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
           Confidence is not approval. This parser structures a request; it does not decide feasibility.

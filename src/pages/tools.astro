@@ -83,42 +83,49 @@ const toolBlocks = [
 ---
 
 <Layout title={title} description={description} canonical="/tools" jsonLd={workbenchJsonLd}>
-  <section class="site-shell inner-hero-grid section-y">
-    <div>
+  <section class="site-shell tools-hero">
+    <div class="tools-hero__copy">
       <div class="flex flex-wrap gap-2">
         <Chip>LMD Decision Workbench</Chip>
         <Chip tone="steel">No backend</Chip>
         <Chip tone="amber">No data sent by this site</Chip>
       </div>
-      <p class="metric-label mt-8">Frontend-only workbench</p>
+      <p class="metric-label mt-7">Frontend-only workbench</p>
       <h1 class="mt-4 max-w-5xl text-5xl font-black leading-tight text-white md:text-6xl">
         LMD Decision Workbench
       </h1>
-      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+      <p class="tools-hero__lead mt-5 max-w-3xl text-lg leading-8 text-slate-300">
         Turn a vague LMD/DED request into <strong class="text-white">LMD Decision Brief v1.0</strong>: known facts, missing information, risk flags, evidence needed, and a next action.
       </p>
-      <p class="mt-4 max-w-3xl text-base font-bold leading-7 text-cyan-100">
+      <p class="tools-hero__detail mt-4 max-w-3xl text-base font-bold leading-7 text-cyan-100">
         Every standard brief can travel as a Technical Decision Brief, an Exafuse-ready email draft, an AI-agent-safe summary, Markdown, JSON, grouped checklists, and print/PDF.
       </p>
-      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-400">
+      <p class="tools-hero__boundary mt-4 max-w-3xl text-base leading-7 text-slate-400">
         Outputs are preliminary decision-support only. Final feasibility depends on material, geometry, service conditions, inspection requirements, and expert review.
       </p>
-      <p class="mt-3 max-w-3xl text-sm font-bold leading-6 text-cyan-100">
+      <p class="tools-hero__privacy mt-3 max-w-3xl text-sm font-bold leading-6 text-cyan-100">
         This browser tool does not send, store, or analyze your inputs outside this page.
       </p>
-      <div class="mt-8 flex flex-wrap gap-3">
+      <div class="tools-hero-actions mt-7 flex flex-wrap gap-3">
         <CTAButton href="#lmd-decision-cockpit" variant="primary">Start Decision Cockpit</CTAButton>
-        <CTAButton href="/decision-map" variant="secondary">Open Decision Map</CTAButton>
-        <CTAButton href="/brief-standard" variant="secondary">Brief standard</CTAButton>
-        <CTAButton href="/demo" variant="secondary">90-second demo</CTAButton>
-        <CTAButton href="/agent-pack" variant="secondary">Open RFQ Toolkit</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
+        <span class="tools-secondary-actions">
+          <CTAButton href="/decision-map" variant="secondary">Open Decision Map</CTAButton>
+          <CTAButton href="/brief-standard" variant="secondary">Brief standard</CTAButton>
+          <CTAButton href="/demo" variant="secondary">90-second demo</CTAButton>
+          <CTAButton href="/agent-pack" variant="secondary">Open RFQ Toolkit</CTAButton>
+        </span>
       </div>
     </div>
-    <div class="ordered-card-strong p-5">
-      <p class="metric-label">Workbench status</p>
-      <h2 class="mt-3 text-2xl font-black leading-tight text-white">Browser-local decision support.</h2>
-      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+    <div class="ordered-card-strong tools-status-panel p-5">
+      <div>
+        <p class="metric-label">Workbench status</p>
+        <h2 class="mt-3 text-2xl font-black leading-tight text-white">Browser-local decision support.</h2>
+        <p class="mt-3 text-sm leading-6 text-slate-400">
+          The page behaves like a local engineering console: select inputs on the left, review the standard brief on the right, route serious cases to expert review.
+        </p>
+      </div>
+      <div class="tools-status-grid mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
         {toolStats.map(([label, value]) => (
           <div class="ordered-card p-4">
             <p class="metric-label">{label}</p>
@@ -129,16 +136,29 @@ const toolBlocks = [
     </div>
   </section>
 
-  <section class="site-shell section-y">
+  <section class="tool-dock-shell">
+    <div class="site-shell">
+      <nav class="tool-workbench-nav" aria-label="LMD Decision Workbench modules">
+        <a href="#lmd-decision-cockpit">Decision Cockpit</a>
+        <a href="#route-module">Route module</a>
+        <a href="#repairability-module">Repairability</a>
+        <a href="#rfq-module">RFQ structure</a>
+        <a href="/brief-standard">Brief standard</a>
+        <a href={exafuseRfqLink.href} target="_blank" rel="noopener noreferrer">{exafuseRfqLink.label}</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="site-shell section-y pt-0">
     <LmdDecisionCockpit client:load defaultMode="example" exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
   </section>
 
   {toolBlocks.map((tool, index) => (
-    <section id={tool.id} class:list={[index % 2 === 1 ? "band" : "", "section-y", "scroll-mt-24"]}>
+    <section id={tool.id} class:list={[index % 2 === 1 ? "band" : "", "tool-module-section", "section-y", "scroll-mt-24"]}>
       <div class="site-shell">
-        <div class="grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
+        <div class="tool-module-header grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end">
           <SectionHeading eyebrow={tool.eyebrow} title={tool.title} description={`${tool.toolName}: ${tool.description}`} />
-          <div class="ordered-card p-5">
+          <div class="ordered-card tool-module-summary p-5">
             <p class="metric-label">Sample output</p>
             <p class="mt-3 text-sm leading-6 text-slate-300">{tool.output}</p>
             <p class="mt-4 text-sm leading-6 text-slate-500">
@@ -156,7 +176,7 @@ const toolBlocks = [
             </div>
           </div>
         </div>
-        <div class="mt-10">
+        <div class="tool-module-mount mt-8">
           {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
           {tool.component === "repairability" && <RepairabilityQuickCheck client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
           {tool.component === "rfq" && <RfqStructureConverter client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}

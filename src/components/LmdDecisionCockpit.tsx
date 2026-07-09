@@ -252,22 +252,33 @@ export default function LmdDecisionCockpit({
       : activePreset?.scenario;
 
   return (
-    <section id="lmd-decision-cockpit" className="ordered-card-strong scroll-mt-24 p-5 md:p-7">
-      <div className="grid gap-8 xl:grid-cols-[0.88fr_1.12fr]">
+    <section id="lmd-decision-cockpit" className="ordered-card-strong tool-app-frame scroll-mt-24 p-5 md:p-7">
+      <div className="tool-window-bar mb-5">
         <div>
+          <p className="metric-label">Active module</p>
+          <p className="tool-window-title">Decision Cockpit</p>
+        </div>
+        <ul className="tool-window-status" aria-label="Decision Cockpit status">
+          <li>Local session</li>
+          <li>No backend</li>
+          <li>Decision-support only</li>
+        </ul>
+      </div>
+      <div className="tool-workbench-grid">
+        <div className="tool-control-rail">
           <div className="flex flex-wrap gap-2">
             <span className="chip">LMD Decision Cockpit</span>
             <span className="chip chip--steel">LMD Decision Brief v1.0</span>
             <span className="chip chip--amber">No input tracking</span>
           </div>
-          <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
+          <h2 className="cockpit-title mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
             Start with a rough LMD question. Leave with a brief.
           </h2>
           <p className="mt-4 text-sm leading-6 text-slate-300 md:text-base md:leading-7">
             Pick the situation, mark what is known, then expose missing information, risk flags, evidence needed, and an Exafuse review route. Inputs stay in this browser session only.
           </p>
           {!compact && (
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="cockpit-output-modes mt-4 flex flex-wrap gap-2">
               <span className="chip chip--steel">Technical Decision Brief</span>
               <span className="chip chip--steel">Exafuse-ready email draft</span>
               <span className="chip chip--steel">AI-agent-safe summary</span>
@@ -421,7 +432,12 @@ export default function LmdDecisionCockpit({
           </div>
         </div>
 
-        <aside className="ordered-card h-fit p-5 md:p-6" aria-label={OUTPUT_BOUNDARY_LABELS.join(" / ")}>
+        <aside className="ordered-card tool-output-rail h-fit p-5 md:p-6" aria-label={OUTPUT_BOUNDARY_LABELS.join(" / ")}>
+          <div className="tool-pane-heading mb-5">
+            <p className="metric-label">Output pane</p>
+            <p className="tool-pane-title">Standard decision brief</p>
+            <p className="tool-pane-copy">The result updates locally as the situation, evidence, and risk controls change.</p>
+          </div>
           <ResultSection label="Decision signal" value={result.decisionSignal} large />
           <DecisionBriefCard
             brief={result.brief as DecisionBrief}
