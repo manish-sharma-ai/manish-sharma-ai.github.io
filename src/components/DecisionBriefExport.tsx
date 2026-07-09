@@ -110,7 +110,7 @@ export default function DecisionBriefExport({
               type="button"
               onClick={printBrief}
               className="btn btn-secondary w-full min-w-0 justify-start whitespace-normal text-left"
-              aria-label="Print or save this LMD Decision Brief as PDF"
+              aria-label="Print / save as PDF for this LMD Decision Brief"
             >
               <Printer aria-hidden="true" className="h-4 w-4 shrink-0" />
               <span>Print / save as PDF</span>
@@ -144,14 +144,17 @@ export default function DecisionBriefExport({
             </a>
           </ActionItem>
           <ActionItem>
-            <a
-              href={mailtoHref}
+            <button
+              type="button"
+              onClick={() => {
+                window.location.href = mailtoHref;
+              }}
               className="btn btn-secondary"
-              aria-label="Open mail client with local Exafuse-ready email draft"
+              aria-label="Open mail client with draft: local Exafuse-ready email draft"
             >
               <Mail aria-hidden="true" className="h-4 w-4 shrink-0" />
               Open mail client with draft
-            </a>
+            </button>
           </ActionItem>
           {exafuseUrl && (
             <ActionItem>

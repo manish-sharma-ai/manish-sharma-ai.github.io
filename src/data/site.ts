@@ -80,7 +80,7 @@ export const METHOD_LOOP = [
 ];
 
 export const PRIMARY_NAV_ITEMS = [
-  { label: "Start", href: "/" },
+  { label: "Home", href: "/" },
   { label: "Thesis", href: "/thesis" },
   { label: "LMD / DED", href: "/domains/lmd-ded" },
   { label: "Tools", href: "/tools" },

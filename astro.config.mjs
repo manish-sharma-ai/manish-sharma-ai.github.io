@@ -8,6 +8,9 @@ export default defineConfig({
   site: "https://manishsharma.dev",
   base: "/",
   output: "static",
+  build: {
+    inlineStylesheets: "always"
+  },
   integrations: [
     react(),
     tailwind({

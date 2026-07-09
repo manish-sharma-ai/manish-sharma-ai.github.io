@@ -292,7 +292,7 @@ export default function LmdDecisionCockpit({
                   type="button"
                   onClick={() => loadPreset("worn-shaft")}
                   aria-pressed={Boolean(activePresetId)}
-                  aria-label="Show public-safe worn-shaft example"
+                  aria-label="Show example: public-safe worn-shaft example"
                   className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-primary" : "btn-secondary"}`}
                 >
                   Show example
@@ -304,7 +304,7 @@ export default function LmdDecisionCockpit({
                   type="button"
                   onClick={startBlank}
                   aria-pressed={!activePresetId}
-                  aria-label="Start blank LMD Decision Brief"
+                  aria-label="Start blank: LMD Decision Brief"
                   className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-secondary" : "btn-primary"}`}
                 >
                   Start blank
