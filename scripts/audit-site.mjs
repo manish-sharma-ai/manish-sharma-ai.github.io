@@ -953,6 +953,47 @@ function auditEmailManualBoundary() {
   fail("Email manual boundary audit failed", findings);
 }
 
+function auditPublicReviewRecordSchema() {
+  const findings = [];
+  const schemaFile = "public/schemas/public-review-v1.schema.json";
+  const builtSchemaFile = "dist/schemas/public-review-v1.schema.json";
+  if (!existsSync(join(root, schemaFile))) {
+    fail("Public review record schema audit failed", [`${schemaFile}: missing`]);
+    return;
+  }
+
+  let schema;
+  try {
+    schema = JSON.parse(read(schemaFile));
+  } catch (error) {
+    findings.push(`${schemaFile}: invalid JSON (${error.message})`);
+  }
+
+  for (const field of [
+    "recordVersion",
+    "recordType",
+    "audience",
+    "task",
+    "outcome",
+    "timeBand",
+    "boundaryComprehension",
+    "primaryFriction",
+    "publicSafeComment",
+    "noTechnicalDataStatement"
+  ]) {
+    if (!schema?.required?.includes(field)) findings.push(`${schemaFile}: missing required field "${field}"`);
+  }
+  if (schema?.$id !== "https://manishsharma.dev/schemas/public-review-v1.schema.json") findings.push(`${schemaFile}: canonical $id is incorrect`);
+  if (schema?.additionalProperties !== false) findings.push(`${schemaFile}: must reject additional properties`);
+  if (schema?.properties?.recordVersion?.const !== "public-review-v1") findings.push(`${schemaFile}: recordVersion const is incorrect`);
+  if (schema?.properties?.recordType?.const !== "public-safe-review-note") findings.push(`${schemaFile}: recordType const is incorrect`);
+  if (schema?.properties?.publicSafeComment?.maxLength !== 500) findings.push(`${schemaFile}: publicSafeComment maxLength must be 500`);
+  if (schema?.$defs?.choice?.additionalProperties !== false) findings.push(`${schemaFile}: choice records must reject additional properties`);
+  if (!existsSync(join(root, builtSchemaFile))) findings.push(`${builtSchemaFile}: missing built schema`);
+
+  fail("Public review record schema audit failed", findings);
+}
+
 function auditBriefSchema() {
   const findings = [];
   const schemaFile = "public/schemas/lmd-decision-brief-v1.schema.json";
@@ -1662,6 +1703,7 @@ const audits = {
   "claims-human-surface": auditClaimsHumanSurface,
   "ai-safe-summary": auditAiSafeSummary,
   "email-manual-boundary": auditEmailManualBoundary,
+  "public-review-schema": auditPublicReviewRecordSchema,
   "brief-schema": auditBriefSchema,
   "human-exafuse-ctas": auditHumanExafuseCtas,
   "rubric-format": auditRubricFormat,
@@ -1695,6 +1737,7 @@ const audits = {
     auditClaimsHumanSurface();
     auditAiSafeSummary();
     auditEmailManualBoundary();
+    auditPublicReviewRecordSchema();
     auditBriefSchema();
     auditHumanExafuseCtas();
     auditRubricFormat();

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://manishsharma.dev/schemas/public-review-v1.schema.json",
+  "title": "Manish Sharma Lab Public Review Record v1",
+  "description": "Portable, browser-local public-review record. It must not contain technical, customer, employer, personal, credential, safety-critical, identity, device, network, timestamp, or session data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "recordVersion",
+    "recordType",
+    "audience",
+    "task",
+    "outcome",
+    "timeBand",
+    "boundaryComprehension",
+    "primaryFriction",
+    "publicSafeComment",
+    "noTechnicalDataStatement"
+  ],
+  "properties": {
+    "recordVersion": { "const": "public-review-v1" },
+    "recordType": { "const": "public-safe-review-note" },
+    "audience": { "$ref": "#/$defs/choice" },
+    "task": { "$ref": "#/$defs/choice" },
+    "outcome": { "$ref": "#/$defs/choice" },
+    "timeBand": { "$ref": "#/$defs/choice" },
+    "boundaryComprehension": { "$ref": "#/$defs/choice" },
+    "primaryFriction": { "$ref": "#/$defs/choice" },
+    "publicSafeComment": { "type": ["string", "null"], "maxLength": 500 },
+    "noTechnicalDataStatement": {
+      "const": "No technical, customer, employer, personal, credential, or safety-critical data should be included."
+    }
+  },
+  "$defs": {
+    "choice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

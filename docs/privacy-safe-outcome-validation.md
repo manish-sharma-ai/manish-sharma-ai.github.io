@@ -43,6 +43,8 @@ The public `/review/` journey now exposes all six protocol tasks as an executabl
 
 Before sharing a note or JSON record, the participant must remove any technical, customer, employer, personal, credential, or safety-critical information. The record intentionally omits identity, device, network, timestamp, and session fields.
 
+The public record contract is available at `/schemas/public-review-v1.schema.json`. It rejects additional fields so downstream aggregation does not silently grow into tracking.
+
 Participant evidence is still not collected. Do not score real-user validation as complete until the anonymized aggregate results are recorded here.
 
 ## Aggregate Result Record

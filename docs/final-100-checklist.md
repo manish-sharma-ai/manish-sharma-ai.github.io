@@ -43,6 +43,7 @@ Use this before a public release.
 - Tools and cockpit copy clean Markdown, with a download/manual-copy recovery path if Clipboard access is unavailable.
 - Tools remain frontend-only and do not store or send inputs.
 - `/review/` offers public-safe task review, browser-local manual feedback, and a portable record without identity/session metadata; it does not imply participant evidence has been collected.
+- `/schemas/public-review-v1.schema.json` rejects additional fields and retains only the documented public-review record contract.
 - Workbench outputs include missing information, risk flags, evidence needed, next action, and "Confidence is not approval."
 - Cockpit captures optional request role/phase and dimensions/mass plus quantity/timeline context without treating any of them as technical approval evidence.
 - Playbooks use real lists, stable anchors, and copyable LMD Decision Brief starters.

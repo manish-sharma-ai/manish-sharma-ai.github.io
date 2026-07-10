@@ -103,6 +103,8 @@ Trust Center: https://manishsharma.dev/trust
 
 Public review journey: https://manishsharma.dev/review
 
+Public review record schema: https://manishsharma.dev/schemas/public-review-v1.schema.json
+
 AI-readable trust summary: https://manishsharma.dev/trust.md
 
 Lab Notes RSS: https://manishsharma.dev/rss.xml

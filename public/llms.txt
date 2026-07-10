@@ -75,6 +75,7 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [No-Hype Boundary](https://manishsharma.dev/no-hype)
 - [Trust Center](https://manishsharma.dev/trust)
 - [Public review journey](https://manishsharma.dev/review)
+- [Public review record schema](https://manishsharma.dev/schemas/public-review-v1.schema.json)
 - [AI-readable Trust Summary](https://manishsharma.dev/trust.md)
 - [LMD Decision Brief v1.0 Standard](https://manishsharma.dev/brief-standard)
 - [Decision Brief Template](https://manishsharma.dev/brief-template)
