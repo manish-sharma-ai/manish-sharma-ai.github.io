@@ -3,10 +3,14 @@ import DecisionBriefCard from "./DecisionBriefCard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
   COCKPIT_PRESETS,
+  REVIEW_PHASE_OPTIONS,
+  REVIEW_ROLE_OPTIONS,
   WORN_SHAFT_SCENARIO,
   createDecisionBrief,
+  formatReviewContextFacts,
   getCockpitPreset
 } from "../lib/decisionBrief";
+import type { ReviewPhaseId, ReviewRoleId } from "../lib/decisionBrief";
 
 const DEFAULT_EXAFUSE_URL = "/contact";
 const DEFAULT_EXAFUSE_LABEL = "Contact routes";
@@ -64,7 +68,9 @@ const infoOptions = [
   ["damageDepthKnown", "Damage depth known?"],
   ["toleranceKnown", "Tolerance known?"],
   ["operatingKnown", "Operating conditions known?"],
-  ["inspectionKnown", "Inspection requirement known?"]
+  ["inspectionKnown", "Inspection requirement known?"],
+  ["dimensionsKnown", "Dimensions / approximate mass known?"],
+  ["timelineKnown", "Quantity / target date known?"]
 ] as const;
 
 const riskOptions = [
@@ -90,12 +96,16 @@ interface CockpitState {
   situation: SituationId;
   info: InfoId[];
   risk: RiskId[];
+  role: ReviewRoleId | null;
+  phase: ReviewPhaseId | null;
 }
 
 const emptyState: CockpitState = {
   situation: "repair",
   info: [],
-  risk: []
+  risk: [],
+  role: null,
+  phase: null
 };
 
 const wornShaftPreset = getCockpitPreset("worn-shaft") ?? COCKPIT_PRESETS[0];
@@ -105,7 +115,9 @@ function stateFromPreset(presetId: string): CockpitState {
   return {
     situation: preset.state.situation as SituationId,
     info: [...preset.state.info] as InfoId[],
-    risk: [...preset.state.risk] as RiskId[]
+    risk: [...preset.state.risk] as RiskId[],
+    role: null,
+    phase: null
   };
 }
 
@@ -144,9 +156,13 @@ export default function LmdDecisionCockpit({
 
   const result = useMemo(() => {
     const situation = situations.find((item) => item.id === state.situation) ?? situations[0];
-    const known = infoOptions
+    const knownTechnicalFacts = infoOptions
       .filter(([id]) => state.info.includes(id))
       .map(([id]) => labelForInfo(id).toLowerCase());
+    const contextFacts = formatReviewContextFacts(state.role, state.phase);
+    const known = knownTechnicalFacts.length
+      ? [...contextFacts, ...knownTechnicalFacts]
+      : ["No concrete technical facts selected yet.", ...contextFacts];
     const missing = infoOptions
       .filter(([id]) => !state.info.includes(id))
       .map(([id]) => labelForInfo(id).toLowerCase());
@@ -168,6 +184,12 @@ export default function LmdDecisionCockpit({
       state.info.includes("toleranceKnown") || state.risk.includes("tightTolerance")
         ? "Dimensional inspection and post-machining plan"
         : "Tolerance target and finishing route",
+      state.info.includes("dimensionsKnown")
+        ? "Dimensions / approximate mass context"
+        : "Dimensions / approximate mass to be defined",
+      state.info.includes("timelineKnown")
+        ? "Quantity / target date context"
+        : "Quantity / target date to be defined",
       state.situation === "monitoring"
         ? "Correlation between process signal and inspection result"
         : "Part-specific feasibility review"
@@ -203,8 +225,8 @@ export default function LmdDecisionCockpit({
             : state.situation === "cladding"
               ? "Surface function, build area, and finishing route need definition."
               : "Build area or feature context needs definition.",
-        availableData: known.length ? known : ["No concrete input facts selected yet."],
-        knownFacts: known.length ? known : ["No concrete input facts selected yet."],
+        availableData: known,
+        knownFacts: known,
         missingInformation: missing,
         riskFlags,
         evidenceNeeded,
@@ -356,9 +378,58 @@ export default function LmdDecisionCockpit({
               </ul>
             </fieldset>
 
+            <details className="ordered-card p-4" data-review-context>
+              <summary className="flex min-h-11 items-center justify-between gap-3 text-sm font-black text-white">
+                <span>2. What is the review context? <span className="font-semibold text-slate-400">Optional</span></span>
+                <span className="chip chip--steel">{Number(Boolean(state.role)) + Number(Boolean(state.phase))}/2 marked</span>
+              </summary>
+              <div className="mt-4 grid gap-5 border-t border-white/10 pt-4">
+                <fieldset>
+                  <legend className="text-sm font-bold text-white">Who is preparing the brief?</legend>
+                  <p className="mt-1 text-xs leading-5 text-slate-400">This only gives the reviewer context; it does not change technical evidence requirements.</p>
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                    {REVIEW_ROLE_OPTIONS.map((option) => (
+                      <Toggle
+                        key={option.id}
+                        label={option.label}
+                        checked={state.role === option.id}
+                        inputType="radio"
+                        name="review-role"
+                        onChange={(checked) => checked && updateState({ ...state, role: option.id })}
+                      />
+                    ))}
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <legend className="text-sm font-bold text-white">What needs to happen next?</legend>
+                  <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                    {REVIEW_PHASE_OPTIONS.map((option) => (
+                      <Toggle
+                        key={option.id}
+                        label={option.label}
+                        checked={state.phase === option.id}
+                        inputType="radio"
+                        name="review-phase"
+                        onChange={(checked) => checked && updateState({ ...state, phase: option.id })}
+                      />
+                    ))}
+                  </div>
+                </fieldset>
+                {(state.role || state.phase) && (
+                  <button
+                    type="button"
+                    className="btn btn-secondary w-fit"
+                    onClick={() => updateState({ ...state, role: null, phase: null })}
+                  >
+                    Clear optional context
+                  </button>
+                )}
+              </div>
+            </details>
+
             <details className="ordered-card p-4">
               <summary className="flex min-h-11 items-center justify-between gap-3 text-sm font-black text-white">
-                <span>2. What information is available?</span>
+                <span>3. What information is available?</span>
                 <span className="chip chip--steel">{state.info.length}/{infoOptions.length} marked</span>
               </summary>
               <fieldset className="mt-4 border-t border-white/10 pt-4">
@@ -383,7 +454,7 @@ export default function LmdDecisionCockpit({
 
             <details className="ordered-card p-4">
               <summary className="flex min-h-11 items-center justify-between gap-3 text-sm font-black text-white">
-                <span>3. What is the risk?</span>
+                <span>4. What is the risk?</span>
                 <span className="chip chip--amber">{state.risk.length}/{riskOptions.length} flagged</span>
               </summary>
               <fieldset className="mt-4 border-t border-white/10 pt-4">
@@ -482,12 +553,16 @@ function Toggle({
   label,
   checked,
   onChange,
-  risk = false
+  risk = false,
+  inputType = "checkbox",
+  name
 }: {
   label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
   risk?: boolean;
+  inputType?: "checkbox" | "radio";
+  name?: string;
 }) {
   return (
     <label
@@ -500,7 +575,8 @@ function Toggle({
       }`}
     >
       <input
-        type="checkbox"
+        type={inputType}
+        name={name}
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
         className="mt-1 accent-cyan-300"

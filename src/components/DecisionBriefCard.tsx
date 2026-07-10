@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { COPY_UNAVAILABLE_MESSAGE, copyText } from "../lib/clipboard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import { formatTechnicalDecisionBrief } from "../lib/decisionBrief";
 import DecisionBriefExport from "./DecisionBriefExport";
@@ -180,13 +181,20 @@ function CompactBriefPreview({
   fullBriefHref: string;
 }) {
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState<string | null>(null);
   const criticalGaps = brief.missingCritical.slice(0, 3);
   const riskFlags = brief.riskFlags.slice(0, 3);
 
   async function copyBrief() {
-    await navigator.clipboard?.writeText(formatTechnicalDecisionBrief(brief));
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1600);
+    try {
+      await copyText(formatTechnicalDecisionBrief(brief));
+      setCopyError(null);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+      setCopyError(COPY_UNAVAILABLE_MESSAGE);
+    }
   }
 
   return (
@@ -232,6 +240,12 @@ function CompactBriefPreview({
           </li>
         </ul>
       </section>
+      <p className="sr-only" aria-live="polite">{copyError ?? (copied ? "Brief copied." : "")}</p>
+      {copyError && (
+        <p className="rounded-lg border border-orange-300/25 bg-orange-400/10 p-3 text-sm font-bold leading-6 text-orange-50" role="status">
+          {copyError}
+        </p>
+      )}
     </div>
   );
 }

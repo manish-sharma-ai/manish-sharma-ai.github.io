@@ -6,7 +6,7 @@ Baseline commit: `2f94895`
 
 Baseline score: **79.9 / 100**
 
-Release-candidate evidence score: **88.8 / 100**
+Release-candidate evidence score: **89.1 / 100**
 
 Target: **100 / 100 on every criterion, with evidence**
 
@@ -106,34 +106,34 @@ No criterion is rounded up to 100 merely because the implementation is finished.
 
 ## Release-candidate re-score
 
-The 2026-07-10 implementation closes the major repository-controlled gaps: progressive cockpit/workbench controls, task-first homepage paths, verified-source map, Trust Center, RSS, custom 404, German language metadata, complete H1 coverage, keyboard-aware query search, validated internal routes and ordinary fragments, validated preset IDs with runtime-safe hash handling, cacheable CSS, Astro 7, zero production dependency vulnerabilities, unit tests, CI gates, and synchronized AI-readable trust files.
+The 2026-07-10 implementation closes the major repository-controlled gaps: progressive cockpit/workbench controls, task-first homepage paths, verified-source map, Trust Center, RSS, custom 404, German language metadata, complete H1 coverage, keyboard-aware query search, validated internal routes and ordinary fragments, validated preset IDs with runtime-safe hash handling, cacheable CSS, Astro 7, zero production dependency vulnerabilities, unit tests, CI gates, and synchronized AI-readable trust files. A follow-up intake refinement adds optional request role/phase and dimensions/mass plus quantity/timeline context; the mutually exclusive context choices now use accessible radio controls, while copy/export has a browser-local fallback and recovery message. The documented expert heuristic review records the role-based reasoning but does not replace observed user testing.
 
-The release-candidate score is calculated criterion by criterion in the same order as the 50-row table above. Every category contains five criteria, so the overall score is the unweighted mean of all 50 scores: `4,440 / 50 = 88.8`.
+The release-candidate score is calculated criterion by criterion in the same order as the 50-row table above. Every category contains five criteria, so the overall score is the unweighted mean of all 50 scores: `4,454 / 50 = 89.1`.
 
 | Category and criterion numbers | Release-candidate criterion scores, in order | Sum | Average |
 | --- | --- | ---: | ---: |
 | Strategy and positioning (1-5) | 94, 96, 93, 94, 91 | 468 | 93.6 |
 | Information architecture (6-10) | 94, 84, 93, 94, 91 | 456 | 91.2 |
 | Content and editorial quality (11-15) | 92, 94, 90, 84, 84 | 444 | 88.8 |
-| Product utility and conversion (16-20) | 91, 93, 92, 96, 82 | 454 | 90.8 |
+| Product utility and conversion (16-20) | 93, 93, 92, 96, 86 | 460 | 92.0 |
 | Trust and proof (21-25) | 99, 90, 68, 56, 94 | 407 | 81.4 |
 | Visual design (26-30) | 92, 90, 92, 82, 82 | 438 | 87.6 |
 | Accessibility and inclusion (31-35) | 98, 95, 91, 94, 86 | 464 | 92.8 |
-| Engineering and performance (36-40) | 98, 88, 94, 98, 85 | 463 | 92.6 |
+| Engineering and performance (36-40) | 98, 88, 94, 98, 91 | 469 | 93.8 |
 | SEO and discovery (41-45) | 98, 98, 96, 96, 91 | 479 | 95.8 |
-| Operations and validation (46-50) | 63, 40, 98, 88, 78 | 367 | 73.4 |
+| Operations and validation (46-50) | 63, 40, 98, 90, 78 | 369 | 73.8 |
 
 | Category | Baseline | Release candidate | Remaining evidence gate |
 | --- | ---: | ---: | --- |
 | Strategy and positioning | 89.2 | 93.6 | First-viewport comprehension test |
 | Information architecture | 78.2 | 91.2 | Real task-findability review and hub-overlap decisions |
 | Content and editorial quality | 83.0 | 88.8 | External editorial review and ongoing refresh cadence |
-| Product utility and conversion | 79.6 | 90.8 | Timed completion and Exafuse-handoff testing |
+| Product utility and conversion | 79.6 | 92.0 | Timed completion and Exafuse-handoff testing |
 | Trust and proof | 76.4 | 81.4 | Exact Exafuse source migration and real third-party adoption |
 | Visual design | 83.6 | 87.6 | Browser screenshots and owner/user visual sign-off |
 | Accessibility and inclusion | 78.8 | 92.8 | Axe, screen-reader, zoom, contrast, touch, and German-language review |
-| Engineering and performance | 80.0 | 92.6 | Current browser CWV and failure-state interaction checks |
+| Engineering and performance | 80.0 | 93.8 | Current browser CWV and failure-state interaction checks |
 | SEO and discovery | 86.4 | 95.8 | Live crawl/indexing and current share-card review |
-| Operations and validation | 64.0 | 73.4 | Privacy-safe outcome baselines and real-user task testing |
+| Operations and validation | 64.0 | 73.8 | Privacy-safe outcome baselines and real-user task testing |
 
 The strict score cannot honestly reach 100 from repository work alone. The remaining gates require the localhost visual review, current browser measurements, verified live Exafuse deep sources, and observed target-user outcomes. The implementation is ready for those tests; it does not pretend they already happened.

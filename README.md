@@ -246,7 +246,7 @@ npm run smoke:live
 
 The central artifact of the site is `LMD Decision Brief v1.0`.
 
-It appears across the cockpit, tools, public standard, demo, template, playbooks, schema, and examples. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
+It appears across the cockpit, tools, public standard, demo, template, playbooks, schema, and examples. It separates situation, component, goal, material, geometry/size, damage/build area, available data, known facts (including optional request role/phase context), grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
 
 Public standard and machine-readable files:
 

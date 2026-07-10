@@ -10,10 +10,14 @@ Verification on 2026-07-10: the RFQ Builder, Pathfinder, four case-study paths, 
 
 In this mode, migration-sensitive links for new tools, case pages, and knowledge pages resolve to safe production pages such as Exafuse home, case-study index, knowledge index, or contact.
 
+## Research Boundary
+
+A pre-production Exafuse site may be useful for content research and interaction ideas, but it is not a production-link authority. Do not copy its host name, assume its route IDs or slugs will survive cutover, or change a claim status from that research alone. The only switch authority is the final `https://exafuse.de` URL, its rendered supporting content, and a successful live check.
+
 ## Switch Steps
 
 1. Verify the Exafuse production site is live on `https://exafuse.de`.
-2. Check every required production path below with browser and HTTP status.
+2. Check every required production path below with browser and HTTP status. Record the final URL after redirects, the page title, the check date, and whether the page explicitly supports the intended claim or handoff.
 3. Change `EXAFUSE_LINK_MODE` in `src/config/externalLinks.ts` from `"production-safe"` to `"post-migration"`.
 4. Update claim source statuses in `src/data/publicClaims.ts` from `needs-migration` to `publicly-supported` only where the production source explicitly supports the claim.
 5. Update `public/llms.txt` and `public/llms-full.txt` to include verified Exafuse deep links.
@@ -65,3 +69,4 @@ For every claim in `src/data/publicClaims.ts`:
 - `llms.txt` and `llms-full.txt` describe verified Exafuse links only.
 - GitHub Pages deploy succeeds.
 - Live pages return `200 OK`.
+- The post-cutover route list is compared with the registry rather than inferred from pre-production route names.

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { COPY_UNAVAILABLE_MESSAGE } from "../src/lib/clipboard";
 import {
   BOUNDARY_STATEMENT,
   BRIEF_NOT_VALID_FOR,
@@ -13,10 +14,16 @@ import {
   formatExafuseEmailDraft,
   formatExafuseMailtoHref,
   formatMissingInformationChecklist,
+  formatReviewContextFacts,
   getCockpitPreset
 } from "../src/lib/decisionBrief";
 
 describe("LMD Decision Brief invariants", () => {
+  it("provides a non-destructive recovery path when clipboard access is unavailable", () => {
+    expect(COPY_UNAVAILABLE_MESSAGE).toContain("Use a download");
+    expect(COPY_UNAVAILABLE_MESSAGE).toContain("copy it manually");
+  });
+
   it("preserves the canonical identity and not-valid-for boundary", () => {
     const brief = createDecisionBrief({});
 
@@ -42,6 +49,23 @@ describe("LMD Decision Brief invariants", () => {
     expect(brief.missingUseful).toEqual(["Machining allowance"]);
     expect(brief.missingOptional).toEqual(["Optional operator note"]);
     expect(brief.missingInformation).toHaveLength(3);
+  });
+
+  it("keeps role and phase as labeled request context rather than technical proof", () => {
+    expect(formatReviewContextFacts("maintenance", "downtime")).toEqual([
+      "Request role: Maintenance / plant engineering",
+      "Request phase: Respond to downtime or a hard deadline"
+    ]);
+    expect(formatReviewContextFacts(null, null)).toEqual([]);
+
+    const brief = createDecisionBrief({
+      knownFacts: ["Request role: Buyer / sourcing", "No concrete technical facts selected yet."],
+      missingInformation: ["Dimensions / approximate mass", "Quantity / target date"]
+    });
+
+    expect(brief.briefCompleteness).toBe("Too vague for useful review");
+    expect(brief.missingCritical).toContain("Dimensions / approximate mass");
+    expect(brief.missingUseful).toContain("Quantity / target date");
   });
 
   it("escalates safety-critical cases to formal qualification planning", () => {

@@ -1,6 +1,7 @@
 import { Check, Clipboard, Download, Mail, Printer } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { COPY_UNAVAILABLE_MESSAGE, copyText } from "../lib/clipboard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
   formatAiAgentPrompt,
@@ -38,6 +39,7 @@ export default function DecisionBriefExport({
   compact = false
 }: DecisionBriefExportProps) {
   const [copied, setCopied] = useState<CopyKey>(null);
+  const [copyError, setCopyError] = useState<string | null>(null);
   const markdown = formatTechnicalDecisionBrief(brief);
   const json = formatDecisionBriefJson(brief);
   const emailDraft = formatExafuseEmailDraft(brief);
@@ -45,9 +47,15 @@ export default function DecisionBriefExport({
   const mailtoHref = formatExafuseMailtoHref(brief);
 
   async function copy(key: Exclude<CopyKey, null>, value: string) {
-    await navigator.clipboard?.writeText(value);
-    setCopied(key);
-    window.setTimeout(() => setCopied(null), 1600);
+    try {
+      await copyText(value);
+      setCopyError(null);
+      setCopied(key);
+      window.setTimeout(() => setCopied(null), 1600);
+    } catch {
+      setCopied(null);
+      setCopyError(COPY_UNAVAILABLE_MESSAGE);
+    }
   }
 
   function printBrief() {
@@ -61,6 +69,12 @@ export default function DecisionBriefExport({
         <br />
         Manual draft only. Nothing is sent unless you send it from your own email client.
       </div>
+      <p className="sr-only" aria-live="polite">{copyError ?? (copied ? "Brief copied." : "")}</p>
+      {copyError && (
+        <p className="mb-4 rounded-lg border border-orange-300/25 bg-orange-400/10 p-3 text-sm font-bold leading-6 text-orange-50" role="status">
+          {copyError}
+        </p>
+      )}
       <section aria-labelledby="brief-copy-actions">
         <h4 id="brief-copy-actions" className="metric-label mb-2">Copy and export</h4>
         <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">

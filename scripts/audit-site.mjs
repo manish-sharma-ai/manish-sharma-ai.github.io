@@ -1339,6 +1339,27 @@ function auditExperience() {
     if (!html.includes('rel="stylesheet"')) findings.push(`${homeFile}: missing cacheable external stylesheet`);
   }
 
+  const toolsFile = "dist/tools/index.html";
+  if (existsSync(join(root, toolsFile))) {
+    const visibleText = visibleTextFromHtml(read(toolsFile));
+    for (const marker of [
+      "What is the review context?",
+      "Dimensions / approximate mass known?",
+      "Quantity / target date known?",
+      "This only gives the reviewer context; it does not change technical evidence requirements."
+    ]) {
+      if (!visibleText.includes(marker)) findings.push(`${toolsFile}: missing intake-context marker "${marker}"`);
+    }
+  }
+
+  const cockpitSource = "src/components/LmdDecisionCockpit.tsx";
+  if (existsSync(join(root, cockpitSource))) {
+    const source = read(cockpitSource);
+    for (const marker of ['inputType="radio"', 'name="review-role"', 'name="review-phase"', "Clear optional context"]) {
+      if (!source.includes(marker)) findings.push(`${cockpitSource}: missing exclusive optional-context control "${marker}"`);
+    }
+  }
+
   const germanFile = "dist/de/index.html";
   if (existsSync(join(root, germanFile))) {
     const html = read(germanFile);
@@ -1397,6 +1418,17 @@ function auditExperience() {
   }
   for (const marker of ['rawHash.startsWith("preset=")', "document.getElementById(targetId)"]) {
     if (!toolsSource.includes(marker)) findings.push(`src/pages/tools.astro: missing safe hash marker "${marker}"`);
+  }
+
+  const clipboardSource = read("src/lib/clipboard.ts");
+  for (const marker of ['legacyDocument.execCommand("copy")', "COPY_UNAVAILABLE_MESSAGE"]) {
+    if (!clipboardSource.includes(marker)) findings.push(`src/lib/clipboard.ts: missing copy-recovery marker "${marker}"`);
+  }
+  for (const exportFile of ["src/components/DecisionBriefExport.tsx", "src/components/DecisionBriefCard.tsx"]) {
+    const source = read(exportFile);
+    for (const marker of ["copyText(", "COPY_UNAVAILABLE_MESSAGE", 'aria-live="polite"']) {
+      if (!source.includes(marker)) findings.push(`${exportFile}: missing copy-recovery marker "${marker}"`);
+    }
   }
 
   for (const { file, text } of scanFiles(["src"], [".astro"])) {

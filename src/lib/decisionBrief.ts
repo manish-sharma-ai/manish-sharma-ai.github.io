@@ -36,6 +36,35 @@ export type EvidenceBurden =
   | "High inspection burden"
   | "Formal qualification burden";
 
+export const REVIEW_ROLE_OPTIONS = [
+  { id: "maintenance", label: "Maintenance / plant engineering" },
+  { id: "buyer", label: "Buyer / sourcing" },
+  { id: "oem", label: "Product development / OEM" },
+  { id: "research", label: "R&D / technical evaluation" },
+  { id: "quality", label: "Quality / documentation" },
+  { id: "management", label: "Project / operations leadership" }
+] as const;
+
+export const REVIEW_PHASE_OPTIONS = [
+  { id: "explore", label: "Understand options" },
+  { id: "compare", label: "Compare process routes" },
+  { id: "cost-time", label: "Screen cost or timing" },
+  { id: "review", label: "Prepare technical review / RFQ" },
+  { id: "downtime", label: "Respond to downtime or a hard deadline" }
+] as const;
+
+export type ReviewRoleId = (typeof REVIEW_ROLE_OPTIONS)[number]["id"];
+export type ReviewPhaseId = (typeof REVIEW_PHASE_OPTIONS)[number]["id"];
+
+export function formatReviewContextFacts(role?: ReviewRoleId | null, phase?: ReviewPhaseId | null) {
+  const roleLabel = REVIEW_ROLE_OPTIONS.find((option) => option.id === role)?.label;
+  const phaseLabel = REVIEW_PHASE_OPTIONS.find((option) => option.id === phase)?.label;
+  return [
+    ...(roleLabel ? [`Request role: ${roleLabel}`] : []),
+    ...(phaseLabel ? [`Request phase: ${phaseLabel}`] : [])
+  ];
+}
+
 export interface DecisionBrief {
   briefVersion: typeof BRIEF_VERSION;
   artifactType: typeof BRIEF_ARTIFACT_TYPE;
@@ -129,7 +158,17 @@ function groupMissingInformation(items: string[], riskFlags: string[]) {
     "inspection path",
     "acceptance criteria"
   ];
-  const usefulTerms = ["photos", "deadline", "downtime", "machining allowance", "post-machining", "tolerance", "finishing"];
+  const usefulTerms = [
+    "photos",
+    "quantity",
+    "target date",
+    "deadline",
+    "downtime",
+    "machining allowance",
+    "post-machining",
+    "tolerance",
+    "finishing"
+  ];
   const criticalRisk = riskFlags.some((risk) =>
     includesAny(risk, ["safety-critical", "safety critical", "no inspection", "unknown material", "crack", "qualification"])
   );

@@ -22,7 +22,7 @@ Established public proof domain: AI-assisted decision systems, process monitorin
 
 Central artifact: LMD Decision Brief v1.0.
 
-The central artifact turns rough LMD, DED, repair, cladding, monitoring, or RFQ questions into a standard structure: briefVersion, artifactType, status, preparedFor, notValidFor, outputMode, situation, component, goal, material, geometry or size, damage or build area, available data, known facts, grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
+The central artifact turns rough LMD, DED, repair, cladding, monitoring, or RFQ questions into a standard structure: briefVersion, artifactType, status, preparedFor, notValidFor, outputMode, situation, component, goal, material, geometry or size, damage or build area, available data, known facts (including optional request role/phase context), grouped missing information, risk flags, evidence needed, preliminary route, review readiness, brief completeness, expert-review package status, evidence burden, next action, Exafuse review route, boundary statement, generated-from note, no-backend note, and no-automatic-sending note.
 
 Public standard:
 https://manishsharma.dev/brief-standard
@@ -144,7 +144,7 @@ Responsible security contact: https://manishsharma.dev/.well-known/security.txt
 LMD Decision Cockpit:
 https://manishsharma.dev/tools#lmd-decision-cockpit
 
-The cockpit is a frontend-only decision-support flow. It defaults to a public-safe worn-shaft dummy example so a visitor can see value immediately. It helps a visitor choose a situation, mark known information, mark risk flags, and receive LMD Decision Brief v1.0: known facts, missing facts, risk flags, evidence needed, readiness, next action, and Exafuse review route. It does not send, store, analyze, or track user inputs outside the page.
+The cockpit is a frontend-only decision-support flow. It defaults to a public-safe worn-shaft dummy example so a visitor can see value immediately. It helps a visitor choose a situation, optionally preserve request role and project phase, mark technical data (including dimensions/mass and quantity/timeline), mark risk flags, and receive LMD Decision Brief v1.0: known facts, missing facts, risk flags, evidence needed, readiness, next action, and Exafuse review route. Role and phase give reviewer context; they do not replace technical evidence. It does not send, store, analyze, or track user inputs outside the page.
 
 Public-safe cockpit presets:
 

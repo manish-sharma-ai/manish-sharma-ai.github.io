@@ -55,6 +55,10 @@ Public-safe examples:
 - `noBackendNote`
 - `noAutomaticSendingNote`
 
+`knownFacts` can include optional request context such as role or project phase. That context helps an expert understand why the brief is being prepared; it never substitutes for material, geometry, service, inspection, or acceptance information.
+
+`knownFacts` can include optional request context such as role or project phase. That context helps an expert understand why the brief is being prepared; it never substitutes for material, geometry, service, inspection, or acceptance information.
+
 ## Public-Safe Examples
 
 Use generic dummy examples only.
