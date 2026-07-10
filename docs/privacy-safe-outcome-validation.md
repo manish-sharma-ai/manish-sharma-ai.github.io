@@ -39,7 +39,9 @@ Give each participant public-safe dummy data only. Record task outcome, elapsed 
 
 ## Current status
 
-The public `/review/` journey now exposes all six protocol tasks as an executable browser-local task flow. Its manual note captures an optional audience category, selected task, outcome, time band, boundary comprehension, primary friction, and an optional public-safe comment. It does not submit, store, or analyze selections or comments. This makes the protocol easier to run; it does not create participant evidence by itself.
+The public `/review/` journey now exposes all six protocol tasks as an executable browser-local task flow. Its manual note and portable `public-review-v1` JSON record capture an optional audience category, selected task, outcome, time band, boundary comprehension, primary friction, and an optional public-safe comment. It does not submit, store, or analyze selections or comments. This makes the protocol easier to run; it does not create participant evidence by itself.
+
+Before sharing a note or JSON record, the participant must remove any technical, customer, employer, personal, credential, or safety-critical information. The record intentionally omits identity, device, network, timestamp, and session fields.
 
 Participant evidence is still not collected. Do not score real-user validation as complete until the anonymized aggregate results are recorded here.
 

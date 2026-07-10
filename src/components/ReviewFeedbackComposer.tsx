@@ -1,4 +1,4 @@
-import { Check, Clipboard } from "lucide-react";
+import { Check, Clipboard, Download } from "lucide-react";
 import { useMemo, useState } from "react";
 import { copyText } from "../lib/clipboard";
 import {
@@ -9,6 +9,7 @@ import {
   PUBLIC_REVIEW_TASKS,
   PUBLIC_REVIEW_TIME_BANDS,
   formatPublicReviewNote,
+  formatPublicReviewRecordJson,
   type PublicReviewBoundaryId,
   type PublicReviewAudienceId,
   type PublicReviewFrictionId,
@@ -34,6 +35,10 @@ export default function ReviewFeedbackComposer() {
     () => formatPublicReviewNote({ taskId, audienceId, outcomeId, timeBandId, boundaryId, frictionId, comment }),
     [taskId, audienceId, outcomeId, timeBandId, boundaryId, frictionId, comment]
   );
+  const recordJson = useMemo(
+    () => formatPublicReviewRecordJson({ taskId, audienceId, outcomeId, timeBandId, boundaryId, frictionId, comment }),
+    [taskId, audienceId, outcomeId, timeBandId, boundaryId, frictionId, comment]
+  );
 
   async function copyNote() {
     try {
@@ -45,6 +50,18 @@ export default function ReviewFeedbackComposer() {
       setCopied(false);
       setCopyError(COPY_ERROR);
     }
+  }
+
+  function downloadRecord() {
+    const blob = new Blob([recordJson], { type: "application/json;charset=utf-8" });
+    const href = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = href;
+    link.download = "manish-sharma-lab-public-review-v1.json";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(href);
   }
 
   return (
@@ -83,7 +100,7 @@ export default function ReviewFeedbackComposer() {
         </div>
         <div className="rounded-xl border border-white/10 bg-black/20 p-4 md:p-5">
           <p className="metric-label">Your manual feedback note</p>
-          <p className="mt-3 text-sm leading-6 text-slate-400">Review it before copying. Sending it is your own manual choice.</p>
+          <p className="mt-3 text-sm leading-6 text-slate-400">Review it before copying or downloading. Sending it is your own manual choice.</p>
           <textarea
             aria-label="Generated public review note"
             value={note}
@@ -97,6 +114,10 @@ export default function ReviewFeedbackComposer() {
             <button type="button" onClick={copyNote} className="btn btn-primary">
               {copied ? <Check aria-hidden="true" className="h-4 w-4" /> : <Clipboard aria-hidden="true" className="h-4 w-4" />}
               {copied ? "Copied" : "Copy review note"}
+            </button>
+            <button type="button" onClick={downloadRecord} className="btn btn-secondary">
+              <Download aria-hidden="true" className="h-4 w-4" />
+              Download review record .json
             </button>
             <a href="/contact" className="btn btn-secondary">Open contact routes</a>
           </div>

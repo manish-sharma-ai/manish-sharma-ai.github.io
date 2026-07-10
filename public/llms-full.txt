@@ -135,7 +135,7 @@ The Trust Center documents privacy, security posture, accessibility intent, sour
 
 The public application sets no first-party cookies and includes no analytics integration. Interactive tool values are processed in current-page browser memory. There is no application backend, account system, automatic sending, or input database.
 
-The public review journey lets a visitor run a public-safe task and generate a browser-local manual feedback note. It does not submit, store, or analyze review selections or comments, and it does not claim real-user results until anonymized aggregate evidence is recorded through the published protocol.
+The public review journey lets a visitor run a public-safe task and generate a browser-local manual feedback note plus a portable `public-review-v1` JSON record. It does not submit, store, or analyze review selections or comments, and it does not claim real-user results until anonymized aggregate evidence is recorded through the published protocol. The record omits identity, device, network, timestamp, and session fields.
 
 Browser-local processing is not a reason to enter secrets. Do not enter confidential customer or employer information, credentials, personal data, unpublished work, or safety-critical records. Browsers, devices, extensions, hosting infrastructure, copied exports, email clients, and external destinations have their own risks.
 

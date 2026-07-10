@@ -93,6 +93,8 @@ export interface PublicReviewNoteInput {
   comment?: string;
 }
 
+export const PUBLIC_REVIEW_RECORD_VERSION = "public-review-v1";
+
 function optionLabel<T extends { id: string; label: string }>(options: readonly T[], id: string) {
   return options.find((option) => option.id === id)?.label ?? "Not selected";
 }
@@ -110,4 +112,24 @@ export function formatPublicReviewNote(input: PublicReviewNoteInput) {
     `First friction or comment: ${comment}`,
     "Privacy check: no technical, customer, employer, personal, credential, or safety-critical data included."
   ].join("\n");
+}
+
+export function createPublicReviewRecord(input: PublicReviewNoteInput) {
+  const comment = input.comment?.trim() || null;
+  return {
+    recordVersion: PUBLIC_REVIEW_RECORD_VERSION,
+    recordType: "public-safe-review-note",
+    audience: { id: input.audienceId, label: optionLabel(PUBLIC_REVIEW_AUDIENCES, input.audienceId) },
+    task: { id: input.taskId, label: optionLabel(PUBLIC_REVIEW_TASKS, input.taskId) },
+    outcome: { id: input.outcomeId, label: optionLabel(PUBLIC_REVIEW_OUTCOMES, input.outcomeId) },
+    timeBand: { id: input.timeBandId, label: optionLabel(PUBLIC_REVIEW_TIME_BANDS, input.timeBandId) },
+    boundaryComprehension: { id: input.boundaryId, label: optionLabel(PUBLIC_REVIEW_BOUNDARY_RESPONSES, input.boundaryId) },
+    primaryFriction: { id: input.frictionId, label: optionLabel(PUBLIC_REVIEW_FRICTION_OPTIONS, input.frictionId) },
+    publicSafeComment: comment,
+    noTechnicalDataStatement: "No technical, customer, employer, personal, credential, or safety-critical data should be included."
+  };
+}
+
+export function formatPublicReviewRecordJson(input: PublicReviewNoteInput) {
+  return JSON.stringify(createPublicReviewRecord(input), null, 2);
 }

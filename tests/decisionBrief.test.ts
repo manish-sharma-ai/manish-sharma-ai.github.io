@@ -17,7 +17,7 @@ import {
   formatReviewContextFacts,
   getCockpitPreset
 } from "../src/lib/decisionBrief";
-import { PUBLIC_REVIEW_TASKS, formatPublicReviewNote } from "../src/lib/publicReview";
+import { PUBLIC_REVIEW_RECORD_VERSION, PUBLIC_REVIEW_TASKS, createPublicReviewRecord, formatPublicReviewNote, formatPublicReviewRecordJson } from "../src/lib/publicReview";
 
 describe("LMD Decision Brief invariants", () => {
   it("provides a non-destructive recovery path when clipboard access is unavailable", () => {
@@ -159,5 +159,25 @@ describe("LMD Decision Brief invariants", () => {
   it("keeps every published review task aligned with the six-task protocol", () => {
     expect(PUBLIC_REVIEW_TASKS).toHaveLength(6);
     expect(PUBLIC_REVIEW_TASKS.find((task) => task.id === "recovery")?.href).toBe("/404.html");
+  });
+
+  it("creates a portable review record without identity or timing metadata", () => {
+    const input = {
+      taskId: "recovery" as const,
+      audienceId: "not-shared" as const,
+      outcomeId: "completed-with-friction" as const,
+      timeBandId: "two-to-five" as const,
+      boundaryId: "clear" as const,
+      frictionId: "navigation" as const,
+      comment: "The recovery task was easy to find."
+    };
+    const record = createPublicReviewRecord(input);
+    const json = JSON.parse(formatPublicReviewRecordJson(input));
+
+    expect(record.recordVersion).toBe(PUBLIC_REVIEW_RECORD_VERSION);
+    expect(record.task.id).toBe("recovery");
+    expect(record).not.toHaveProperty("identity");
+    expect(record).not.toHaveProperty("timestamp");
+    expect(json.primaryFriction.id).toBe("navigation");
   });
 });
