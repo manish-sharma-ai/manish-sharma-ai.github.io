@@ -17,7 +17,7 @@ import {
   formatReviewContextFacts,
   getCockpitPreset
 } from "../src/lib/decisionBrief";
-import { formatPublicReviewNote } from "../src/lib/publicReview";
+import { PUBLIC_REVIEW_TASKS, formatPublicReviewNote } from "../src/lib/publicReview";
 
 describe("LMD Decision Brief invariants", () => {
   it("provides a non-destructive recovery path when clipboard access is unavailable", () => {
@@ -141,14 +141,23 @@ describe("LMD Decision Brief invariants", () => {
   it("formats a public review note without technical intake fields", () => {
     const note = formatPublicReviewNote({
       taskId: "cockpit",
+      audienceId: "manufacturing-engineer",
       outcomeId: "completed",
       timeBandId: "under-two",
-      boundaryId: "clear"
+      boundaryId: "clear",
+      frictionId: "none"
     });
 
     expect(note).toContain("Create a worn-shaft decision brief");
+    expect(note).toContain("Manufacturing / LMD engineer");
+    expect(note).toContain("No meaningful friction");
     expect(note).toContain("No public-safe comment added.");
     expect(note).toContain("Privacy check:");
     expect(note).not.toContain("material grade");
+  });
+
+  it("keeps every published review task aligned with the six-task protocol", () => {
+    expect(PUBLIC_REVIEW_TASKS).toHaveLength(6);
+    expect(PUBLIC_REVIEW_TASKS.find((task) => task.id === "recovery")?.href).toBe("/404.html");
   });
 });

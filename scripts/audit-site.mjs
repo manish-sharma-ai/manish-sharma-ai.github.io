@@ -1360,6 +1360,9 @@ function auditExperience() {
       "No data collection",
       "Make a privacy-safe review note.",
       "Ready to test, not yet tested",
+      "Review audience (optional)",
+      "Primary friction",
+      "Recover from an invalid route",
       "Do not include customer, employer, personal, credential, technical, or safety-critical information."
     ]) {
       if (!visibleText.includes(marker)) findings.push(`${reviewFile}: missing public-review marker "${marker}"`);
@@ -1371,7 +1374,7 @@ function auditExperience() {
   const publicReviewSource = "src/lib/publicReview.ts";
   if (existsSync(join(root, publicReviewSource))) {
     const source = read(publicReviewSource);
-    for (const marker of ["Privacy check:", "No public-safe comment added.", "public-review note"]) {
+    for (const marker of ["Privacy check:", "No public-safe comment added.", "public-review note", "Audience:", "Primary friction:", "recovery"]) {
       if (!source.includes(marker)) findings.push(`${publicReviewSource}: missing safe-review note marker "${marker}"`);
     }
   } else {

@@ -39,7 +39,7 @@ Give each participant public-safe dummy data only. Record task outcome, elapsed 
 
 ## Current status
 
-The public `/review/` journey now exposes the protocol as an executable browser-local task flow. It creates a copyable manual review note and does not submit, store, or analyze selections or comments. This makes the protocol easier to run; it does not create participant evidence by itself.
+The public `/review/` journey now exposes all six protocol tasks as an executable browser-local task flow. Its manual note captures an optional audience category, selected task, outcome, time band, boundary comprehension, primary friction, and an optional public-safe comment. It does not submit, store, or analyze selections or comments. This makes the protocol easier to run; it does not create participant evidence by itself.
 
 Participant evidence is still not collected. Do not score real-user validation as complete until the anonymized aggregate results are recorded here.
 

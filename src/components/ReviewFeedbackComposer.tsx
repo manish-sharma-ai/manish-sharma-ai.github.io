@@ -3,11 +3,15 @@ import { useMemo, useState } from "react";
 import { copyText } from "../lib/clipboard";
 import {
   PUBLIC_REVIEW_BOUNDARY_RESPONSES,
+  PUBLIC_REVIEW_AUDIENCES,
+  PUBLIC_REVIEW_FRICTION_OPTIONS,
   PUBLIC_REVIEW_OUTCOMES,
   PUBLIC_REVIEW_TASKS,
   PUBLIC_REVIEW_TIME_BANDS,
   formatPublicReviewNote,
   type PublicReviewBoundaryId,
+  type PublicReviewAudienceId,
+  type PublicReviewFrictionId,
   type PublicReviewOutcomeId,
   type PublicReviewTaskId,
   type PublicReviewTimeBandId
@@ -17,16 +21,18 @@ const COPY_ERROR = "Copy is unavailable in this browser. Select the generated no
 
 export default function ReviewFeedbackComposer() {
   const [taskId, setTaskId] = useState<PublicReviewTaskId>("cockpit");
+  const [audienceId, setAudienceId] = useState<PublicReviewAudienceId>("not-shared");
   const [outcomeId, setOutcomeId] = useState<PublicReviewOutcomeId>("completed");
   const [timeBandId, setTimeBandId] = useState<PublicReviewTimeBandId>("under-two");
   const [boundaryId, setBoundaryId] = useState<PublicReviewBoundaryId>("clear");
+  const [frictionId, setFrictionId] = useState<PublicReviewFrictionId>("none");
   const [comment, setComment] = useState("");
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState<string | null>(null);
 
   const note = useMemo(
-    () => formatPublicReviewNote({ taskId, outcomeId, timeBandId, boundaryId, comment }),
-    [taskId, outcomeId, timeBandId, boundaryId, comment]
+    () => formatPublicReviewNote({ taskId, audienceId, outcomeId, timeBandId, boundaryId, frictionId, comment }),
+    [taskId, audienceId, outcomeId, timeBandId, boundaryId, frictionId, comment]
   );
 
   async function copyNote() {
@@ -54,10 +60,12 @@ export default function ReviewFeedbackComposer() {
             Do not include customer, employer, personal, credential, technical, or safety-critical information.
           </div>
           <div className="mt-5 grid gap-4">
+            <SelectField label="Review audience (optional)" value={audienceId} onChange={(value) => setAudienceId(value as PublicReviewAudienceId)} options={PUBLIC_REVIEW_AUDIENCES} />
             <SelectField label="Task reviewed" value={taskId} onChange={(value) => setTaskId(value as PublicReviewTaskId)} options={PUBLIC_REVIEW_TASKS} />
             <SelectField label="Outcome" value={outcomeId} onChange={(value) => setOutcomeId(value as PublicReviewOutcomeId)} options={PUBLIC_REVIEW_OUTCOMES} />
             <SelectField label="Time band" value={timeBandId} onChange={(value) => setTimeBandId(value as PublicReviewTimeBandId)} options={PUBLIC_REVIEW_TIME_BANDS} />
             <SelectField label="Was the decision-support boundary clear?" value={boundaryId} onChange={(value) => setBoundaryId(value as PublicReviewBoundaryId)} options={PUBLIC_REVIEW_BOUNDARY_RESPONSES} />
+            <SelectField label="Primary friction" value={frictionId} onChange={(value) => setFrictionId(value as PublicReviewFrictionId)} options={PUBLIC_REVIEW_FRICTION_OPTIONS} />
             <label className="tool-field" htmlFor="review-public-comment">
               First friction or public-safe comment <span className="text-slate-500">(optional)</span>
               <textarea

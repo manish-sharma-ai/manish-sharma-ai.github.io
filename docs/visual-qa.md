@@ -15,6 +15,7 @@ Check at 360 px, 768 px, 1024 px, and 1440 px where practical:
 - `/domains/lmd-ded`
 - `/de`
 - `/404.html`
+- `/review`
 
 ## Interaction checklist
 
@@ -27,15 +28,16 @@ Check at 360 px, 768 px, 1024 px, and 1440 px where practical:
 - Information and risk controls are progressively disclosed.
 - Secondary workbench modules stay collapsed until requested and open when their hash route is used.
 - Trust, source, 404, and German pages preserve the same hierarchy and contrast as core routes.
+- The public-review page exposes all six protocol tasks, keeps audience/friction notes optional and browser-local, and clearly says that no participant results are claimed.
 - Cards do not overlap; text does not overflow controls or chips.
 - Focus states remain visible at 200% zoom.
 - Reduced-motion mode removes nonessential motion without hiding information.
 
 ## Automated status
 
-- Astro 7 production build: passing, 56 generated pages.
-- Astro diagnostics: 121 files, 0 errors, warnings, or hints.
-- Decision Brief tests: 9 passing.
+- Astro 7 production build: passing, 57 generated pages.
+- Astro diagnostics: 126 files, 0 errors, warnings, or hints.
+- Decision Brief and public-review tests: 12 passing.
 - `audit:all`: passing, including the comprehensive experience/link/fragment audit.
 - Production dependency audit: 0 vulnerabilities.
 - External shared CSS reduced homepage HTML from the 134 KB baseline to about 76 KB and tools HTML from 216 KB to about 167 KB before transfer compression.
