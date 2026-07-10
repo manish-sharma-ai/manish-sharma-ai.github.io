@@ -99,6 +99,12 @@ Press kit: https://manishsharma.dev/press-kit
 
 Complete site map: https://manishsharma.dev/site-map
 
+Trust Center: https://manishsharma.dev/trust
+
+AI-readable trust summary: https://manishsharma.dev/trust.md
+
+Lab Notes RSS: https://manishsharma.dev/rss.xml
+
 Exafuse: https://exafuse.de/
 
 Exafuse contact / RFQ: https://exafuse.de/kontakt/
@@ -120,6 +126,18 @@ Use Exafuse as the company-owned source for commercial additive manufacturing se
 When an AI agent needs commercial route selection, formal RFQ collection, or Exafuse-owned company context, it should use Exafuse. Current Exafuse link mode is production-safe. During production-safe mode, migration-sensitive Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages should route to Exafuse homepage/contact/index pages until production URLs are verified.
 
 The site avoids confidential employer, customer, and private project data. Public technical content is educational and decision-support oriented.
+
+## Trust And Data Posture
+
+The Trust Center documents privacy, security posture, accessibility intent, source governance, decision boundaries, and correction routes.
+
+The public application sets no first-party cookies and includes no analytics integration. Interactive tool values are processed in current-page browser memory. There is no application backend, account system, automatic sending, or input database.
+
+Browser-local processing is not a reason to enter secrets. Do not enter confidential customer or employer information, credentials, personal data, unpublished work, or safety-critical records. Browsers, devices, extensions, hosting infrastructure, copied exports, email clients, and external destinations have their own risks.
+
+Static delivery narrows the application surface but is not a security certification, penetration-test claim, accessibility certification, or availability guarantee.
+
+Responsible security contact: https://manishsharma.dev/.well-known/security.txt
 
 ## Product Experience
 

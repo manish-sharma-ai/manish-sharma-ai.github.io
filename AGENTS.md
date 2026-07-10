@@ -32,7 +32,9 @@ Core commands:
 npm install
 npm run dev
 npm run check
+npm run test
 npm run build
+npm run audit:security
 npm run preview
 ```
 
@@ -262,6 +264,7 @@ npm run audit:human-exafuse-ctas
 npm run audit:rubric-format
 npm run audit:preflight
 npm run audit:seo-social
+npm run audit:experience
 npm run audit:all
 npm run smoke:live
 git diff --check

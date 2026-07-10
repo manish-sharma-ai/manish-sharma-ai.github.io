@@ -50,7 +50,18 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/de" jsonLd={jsonLd}>
+<Layout
+  title={`${title} - Manish Sharma Lab`}
+  description={description}
+  canonical="/de"
+  jsonLd={jsonLd}
+  lang="de"
+  alternates={[
+    { lang: "de", href: "/de" },
+    { lang: "en", href: "/" },
+    { lang: "x-default", href: "/" }
+  ]}
+>
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">

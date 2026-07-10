@@ -27,7 +27,7 @@ const { href, label, description, status } = Astro.props;
     <div class="link-card disabled-card content-between" aria-disabled="true">
       <span>
         <span class="block text-sm font-black text-slate-400">{label}</span>
-        <span class="mt-2 block text-xs leading-5 text-slate-500">{description ?? "Planned profile."}</span>
+        <span class="mt-2 block text-xs leading-5 text-slate-400">{description ?? "Planned profile."}</span>
       </span>
       <span class="chip chip--steel mt-5 w-fit">{status ?? "Planned"}</span>
     </div>

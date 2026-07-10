@@ -3,6 +3,18 @@
 Use this before a public release.
 
 - No visual prompt leakage in rendered text.
+- Every rendered HTML page has exactly one meaningful H1.
+- `/de/` renders with `lang="de"` and reciprocal English/German alternate links.
+- Site search has combobox semantics, a focus trap, background inertness, and working `?q=` deep links.
+- The homepage and tools expose optional controls progressively instead of showing every control at once.
+- A custom noindex 404 page provides search and task recovery.
+- `/trust/`, `/trust.md`, `/.well-known/security.txt`, and `/humans.txt` describe the current posture without claiming certification.
+- `/rss.xml` validates and contains every public lab note.
+- The curated core-source page contains verified sources with explicit useful-for and does-not-prove boundaries; it exposes no internal verification queue.
+- Shared CSS is emitted as a cacheable asset instead of duplicated into every page.
+- Production dependency audit reports zero vulnerabilities at moderate severity or higher.
+- Decision Brief unit tests pass.
+- Pull-request and deploy workflows run security, test, build, and release-audit gates.
 - Homepage operating loop appears once.
 - Homepage puts the LMD Decision Cockpit before proof/resource sections.
 - Homepage cockpit shows the public-safe worn-shaft example without requiring a click.
@@ -44,7 +56,9 @@ Required commands:
 
 ```bash
 npm run check
+npm test
 npm run build
+npm run audit:security
 npm run audit:visual-text
 npm run audit:rendered-text
 npm run audit:links
@@ -69,6 +83,7 @@ npm run audit:human-exafuse-ctas
 npm run audit:rubric-format
 npm run audit:preflight
 npm run audit:seo-social
+npm run audit:experience
 npm run audit:all
 npm run smoke:live
 git diff --check

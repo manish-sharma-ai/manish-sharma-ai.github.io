@@ -4,13 +4,13 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 
-const title = "Links - Manish Sharma Lab";
-const description = "Verified public links for Manish Sharma, Exafuse, GitHub, and LinkedIn.";
+const title = "Verified Links - Manish Sharma Lab";
+const description = "Verified public links for Manish Sharma, Exafuse, GitHub, LinkedIn, and the canonical Manish Sharma Lab website.";
 ---
 
 <Layout title={title} description={description} canonical="/links">
   <section class="site-shell py-16 md:py-20">
-    <SectionHeading eyebrow="Links" title="Verified public profiles and references" description="Only real, verified public URLs are shown on public-facing link pages." />
+    <SectionHeading as="h1" eyebrow="Links" title="Verified public profiles and references" description="Only real, verified public URLs are shown on public-facing link pages." />
     <div class="mt-10">
       <SourceLinks links={ACTIVE_PROFILE_LINKS} />
     </div>

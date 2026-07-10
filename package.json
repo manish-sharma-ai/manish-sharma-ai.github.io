@@ -9,6 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "lint": "astro check",
+    "test": "vitest run",
+    "audit:security": "npm audit --omit=dev --audit-level=moderate",
     "audit:visual-text": "node scripts/audit-site.mjs visual-text",
     "audit:rendered-text": "node scripts/audit-site.mjs rendered-text",
     "audit:links": "node scripts/audit-site.mjs links",
@@ -40,16 +42,16 @@
     "audit:rubric-format": "node scripts/audit-site.mjs rubric-format",
     "audit:preflight": "node scripts/audit-site.mjs preflight",
     "audit:seo-social": "node scripts/audit-site.mjs seo-social",
+    "audit:experience": "node scripts/audit-site.mjs experience",
     "audit:canonical-domain": "node scripts/audit-site.mjs canonical-domain",
     "audit:all": "node scripts/audit-site.mjs all",
-    "smoke:live": "node scripts/smoke-live.mjs"
+    "smoke:live": "node scripts/smoke-live.mjs",
+    "quality": "npm run check && npm run test && npm run build && npm run audit:all"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.0",
-    "@astrojs/react": "^4.0.0",
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/tailwind": "^6.0.0",
-    "astro": "^5.0.0",
+    "@astrojs/react": "^6.0.1",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.0.7",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
@@ -61,6 +63,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.10"
   }
 }

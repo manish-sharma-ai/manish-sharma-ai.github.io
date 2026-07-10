@@ -14,7 +14,7 @@ import { SITE } from "@data/site";
 
 const title = "LMD Decision Workbench - Manish Sharma Lab";
 const description =
-  "Frontend-only LMD Decision Workbench for turning vague LMD/DED questions into LMD Decision Brief v1.0: known facts, missing information, risk flags, evidence needed, and a next action.";
+  "Browser-local LMD Decision Workbench for turning rough LMD/DED questions into known facts, grouped gaps, risk flags, evidence needs, and a next action.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const toolStats = [
@@ -108,13 +108,8 @@ const toolBlocks = [
       </p>
       <div class="tools-hero-actions mt-7 flex flex-wrap gap-3">
         <CTAButton href="#lmd-decision-cockpit" variant="primary">Start Decision Cockpit</CTAButton>
+        <CTAButton href="/demo" variant="secondary">See 90-second demo</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
-        <span class="tools-secondary-actions">
-          <CTAButton href="/decision-map" variant="secondary">Open Decision Map</CTAButton>
-          <CTAButton href="/brief-standard" variant="secondary">Brief standard</CTAButton>
-          <CTAButton href="/demo" variant="secondary">90-second demo</CTAButton>
-          <CTAButton href="/agent-pack" variant="secondary">Open RFQ Toolkit</CTAButton>
-        </span>
       </div>
     </div>
     <div class="ordered-card-strong tools-status-panel p-5">
@@ -151,6 +146,11 @@ const toolBlocks = [
 
   <section class="site-shell section-y pt-0">
     <LmdDecisionCockpit client:visible defaultMode="example" exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+    <noscript>
+      <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
+        Interactive controls require JavaScript. You can still use the <a href="/brief-template" class="font-black text-cyan-100">copyable brief template</a>, review the <a href="/demo" class="font-black text-cyan-100">worked example</a>, or open the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
+      </div>
+    </noscript>
   </section>
 
   {toolBlocks.map((tool, index) => (
@@ -161,7 +161,7 @@ const toolBlocks = [
           <div class="ordered-card tool-module-summary p-5">
             <p class="metric-label">Sample output</p>
             <p class="mt-3 text-sm leading-6 text-slate-300">{tool.output}</p>
-            <p class="mt-4 text-sm leading-6 text-slate-500">
+            <p class="mt-4 text-sm leading-6 text-slate-400">
               Sample outputs are keyword/rule-based and intentionally conservative. Missing information and risk flags stay visible because they often change the decision.
             </p>
             <p class="metric-label mt-5">Your live output</p>
@@ -176,11 +176,20 @@ const toolBlocks = [
             </div>
           </div>
         </div>
-        <div class="tool-module-mount mt-8">
-          {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
-          {tool.component === "repairability" && <RepairabilityQuickCheck client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
-          {tool.component === "rfq" && <RfqStructureConverter client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
-        </div>
+        <details class="ordered-card-strong mt-8 overflow-hidden" data-tool-module>
+          <summary class="flex min-h-16 items-center justify-between gap-4 px-5 py-4 text-left font-black text-white md:px-6">
+            <span>
+              <span class="metric-label block">Interactive module</span>
+              <span class="mt-2 block text-lg">Open {tool.toolName}</span>
+            </span>
+            <span class="chip chip--steel">Open controls</span>
+          </summary>
+          <div class="tool-module-mount border-t border-white/10 p-4 md:p-6">
+            {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+            {tool.component === "repairability" && <RepairabilityQuickCheck client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+            {tool.component === "rfq" && <RfqStructureConverter client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+          </div>
+        </details>
       </div>
     </section>
   ))}
@@ -234,4 +243,26 @@ const toolBlocks = [
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const openHashModule = () => {
+        const rawHash = window.location.hash.slice(1);
+        if (!rawHash || rawHash.startsWith("preset=")) return;
+
+        let targetId = rawHash;
+        try {
+          targetId = decodeURIComponent(rawHash);
+        } catch {
+          return;
+        }
+
+        const target = document.getElementById(targetId);
+        const module = target?.querySelector("[data-tool-module]");
+        if (module instanceof HTMLDetailsElement) module.open = true;
+      };
+      openHashModule();
+      window.addEventListener("hashchange", openHashModule);
+    })();
+  </script>
 </Layout>

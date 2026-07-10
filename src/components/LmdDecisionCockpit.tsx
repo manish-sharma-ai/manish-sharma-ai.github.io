@@ -126,6 +126,7 @@ export default function LmdDecisionCockpit({
   const defaultPresetId = defaultMode === "example" ? "worn-shaft" : null;
   const [state, setState] = useState<CockpitState>(defaultMode === "example" ? stateFromPreset("worn-shaft") : emptyState);
   const [activePresetId, setActivePresetId] = useState<string | null>(defaultPresetId);
+  const [controlsExpanded, setControlsExpanded] = useState(!compact);
 
   useEffect(() => {
     const loadHashPreset = () => {
@@ -233,11 +234,13 @@ export default function LmdDecisionCockpit({
     if (!preset) return;
     setState(stateFromPreset(preset.id));
     setActivePresetId(preset.id);
+    if (compact) setControlsExpanded(false);
   }
 
   function startBlank() {
     setState(emptyState);
     setActivePresetId(null);
+    setControlsExpanded(true);
   }
 
   function updateState(nextState: CockpitState) {
@@ -307,7 +310,7 @@ export default function LmdDecisionCockpit({
                   aria-label="Start blank: LMD Decision Brief"
                   className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-secondary" : "btn-primary"}`}
                 >
-                  Start blank
+                  {compact ? "Start your own brief" : "Start blank"}
                 </button>
                 <span className="sr-only">; </span>
               </li>
@@ -321,9 +324,14 @@ export default function LmdDecisionCockpit({
                 Blank mode: make selections below. No backend, no storage, no analytics around inputs.
               </p>
             )}
+            {compact && !controlsExpanded && (
+              <p className="mt-3 text-sm leading-6 text-slate-300">
+                Review the worked output, start your own brief here, or <a href="/tools#lmd-decision-cockpit" className="font-black text-cyan-100 hover:text-white">open the full workbench</a>.
+              </p>
+            )}
           </div>
 
-          <div className="mt-6 grid gap-5">
+          {(!compact || controlsExpanded) && <div className="mt-6 grid gap-5">
             <fieldset>
               <legend className="metric-label">1. What is the situation?</legend>
               <ul className="mt-3 grid gap-2 sm:grid-cols-2" aria-label="Situation choices">
@@ -348,44 +356,56 @@ export default function LmdDecisionCockpit({
               </ul>
             </fieldset>
 
-            <fieldset>
-              <legend className="metric-label">2. What information is available?</legend>
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                {infoOptions.map(([id, label]) => (
-                  <Toggle
-                    key={id}
-                    label={label}
-                    checked={state.info.includes(id)}
-                    onChange={(checked) =>
-                      updateState({
-                        ...state,
-                        info: checked ? [...state.info, id] : state.info.filter((item) => item !== id)
-                      })
-                    }
-                  />
-                ))}
-              </div>
-            </fieldset>
+            <details className="ordered-card p-4">
+              <summary className="flex min-h-11 items-center justify-between gap-3 text-sm font-black text-white">
+                <span>2. What information is available?</span>
+                <span className="chip chip--steel">{state.info.length}/{infoOptions.length} marked</span>
+              </summary>
+              <fieldset className="mt-4 border-t border-white/10 pt-4">
+                <legend className="sr-only">What information is available?</legend>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {infoOptions.map(([id, label]) => (
+                    <Toggle
+                      key={id}
+                      label={label}
+                      checked={state.info.includes(id)}
+                      onChange={(checked) =>
+                        updateState({
+                          ...state,
+                          info: checked ? [...state.info, id] : state.info.filter((item) => item !== id)
+                        })
+                      }
+                    />
+                  ))}
+                </div>
+              </fieldset>
+            </details>
 
-            <fieldset>
-              <legend className="metric-label">3. What is the risk?</legend>
-              <div className="mt-3 grid gap-2 sm:grid-cols-2">
-                {riskOptions.map(([id, label]) => (
-                  <Toggle
-                    key={id}
-                    label={label}
-                    checked={state.risk.includes(id)}
-                    onChange={(checked) =>
-                      updateState({
-                        ...state,
-                        risk: checked ? [...state.risk, id] : state.risk.filter((item) => item !== id)
-                      })
-                    }
-                    risk
-                  />
-                ))}
-              </div>
-            </fieldset>
+            <details className="ordered-card p-4">
+              <summary className="flex min-h-11 items-center justify-between gap-3 text-sm font-black text-white">
+                <span>3. What is the risk?</span>
+                <span className="chip chip--amber">{state.risk.length}/{riskOptions.length} flagged</span>
+              </summary>
+              <fieldset className="mt-4 border-t border-white/10 pt-4">
+                <legend className="sr-only">What is the risk?</legend>
+                <div className="grid gap-2 sm:grid-cols-2">
+                  {riskOptions.map(([id, label]) => (
+                    <Toggle
+                      key={id}
+                      label={label}
+                      checked={state.risk.includes(id)}
+                      onChange={(checked) =>
+                        updateState({
+                          ...state,
+                          risk: checked ? [...state.risk, id] : state.risk.filter((item) => item !== id)
+                        })
+                      }
+                      risk
+                    />
+                  ))}
+                </div>
+              </fieldset>
+            </details>
 
             {!compact && (
               <div>
@@ -429,9 +449,12 @@ export default function LmdDecisionCockpit({
                 <span className="sr-only">; </span>
               </li>
             </ul>
-          </div>
+          </div>}
         </div>
 
+        <p className="sr-only" aria-live="polite">
+          {result.decisionSignal} {result.reviewReadiness}. Missing information and risk flags remain visible in the brief.
+        </p>
         <aside className="ordered-card tool-output-rail h-fit p-5 md:p-6" aria-label={OUTPUT_BOUNDARY_LABELS.join(" / ")}>
           <div className="tool-pane-heading mb-5">
             <p className="metric-label">Output pane</p>

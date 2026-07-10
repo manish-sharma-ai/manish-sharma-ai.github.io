@@ -1,7 +1,7 @@
 ---
 import BrandMark from "@components/BrandMark.astro";
 import MobileMenu from "@components/MobileMenu.astro";
-import { LINKS } from "@data/site";
+import { LINKS, PRIMARY_NAV_ITEMS, RESOURCE_NAV_ITEMS } from "@data/site";
 
 const normalize = (value: string) => (value === "/" ? "/" : value.replace(/\/$/, ""));
 const currentPath = normalize(Astro.url.pathname);
@@ -10,45 +10,22 @@ const isActive = (href: string) => {
   return currentPath === normalizedHref || (normalizedHref !== "/" && currentPath.startsWith(`${normalizedHref}/`));
 };
 
-const primaryNav = [
-  { label: "Home", href: "/" },
-  { label: "Thesis", href: "/thesis" },
-  { label: "LMD / DED", href: "/domains/lmd-ded" },
-  { label: "Tools", href: "/tools" },
-  { label: "Proof", href: "/public-work" },
-  { label: "About", href: "/about" }
-];
-
-const resourceNav = [
-  { label: "Frameworks", href: "/frameworks", description: "Quality, repairability, readiness, failure, maturity" },
-  { label: "Decision Map", href: "/decision-map", description: "Route repair, cladding, AM, SLM alternatives" },
-  { label: "Agent Pack", href: "/agent-pack", description: "Schemas, prompts, rules, checklists" },
-  { label: "Brief Standard", href: "/brief-standard", description: "LMD Decision Brief v1.0 schema and examples" },
-  { label: "Evidence", href: "/evidence", description: "Source layer and public proof map" },
-  { label: "Lab Notes", href: "/lab-notes", description: "Applied LMD/DED decision notes" },
-  { label: "Glossary", href: "/glossary", description: "Definitions for LMD, DED, cladding, monitoring" },
-  { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use reference for assistants" },
-  { label: "Identity", href: "/identity", description: "Canonical machine-readable profile" },
-  { label: "Press Kit", href: "/press-kit", description: "Approved bios and claim boundaries" },
-  { label: "Site Map", href: "/site-map", description: "Complete route and file index" }
-];
-
-const resourcesActive = resourceNav.some((item) => isActive(item.href));
+const resourcesActive = RESOURCE_NAV_ITEMS.some((item) => isActive(item.href));
 ---
 
 <header class="site-header" data-site-header>
   <div class="site-shell site-header__inner">
-    <a href="/" class="brand-lockup rounded-2xl" aria-label="Manish Sharma Lab Process intelligence home">
+    <a href="/" class="brand-lockup rounded-2xl" aria-label="Manish Sharma Lab home">
       <BrandMark uid="header-brand-mark" />
       <span class="min-w-0 leading-tight">
         <span class="block truncate text-sm font-black text-white">Manish Sharma Lab</span>
-        <span class="metric-label hidden truncate sm:block">Process intelligence</span>
+        <span class="metric-label hidden truncate sm:block">Industrial AI / decisions</span>
       </span>
     </a>
 
     <nav class="primary-nav" aria-label="Primary navigation">
-      {primaryNav.map((item) => (
-        <a href={item.href} class:list={["nav-trigger", isActive(item.href) ? "is-active" : ""]}>
+      {PRIMARY_NAV_ITEMS.map((item) => (
+        <a href={item.href} class:list={["nav-trigger", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
           {item.label}
         </a>
       ))}
@@ -58,10 +35,10 @@ const resourcesActive = resourceNav.some((item) => isActive(item.href));
         </summary>
         <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(92vw,34rem)] -translate-x-1/2 rounded-[24px] border border-cyan-100/14 p-4">
           <div class="grid gap-2 sm:grid-cols-2" aria-label="Secondary navigation">
-            {resourceNav.map((item) => (
-              <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]}>
+            {RESOURCE_NAV_ITEMS.map((item) => (
+              <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
                 <span class="text-sm font-black">{item.label}</span>
-                <span class="text-xs leading-5 text-slate-500">{item.description}</span>
+                <span class="text-xs leading-5 text-slate-400">{item.description}</span>
               </a>
             ))}
           </div>

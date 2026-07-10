@@ -54,7 +54,7 @@ export default function DecisionBriefCard({
           {brief.boundaryStatement}
         </p>
         {brief.createdAt && (
-          <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-500">
+          <p className="mt-2 text-xs font-bold uppercase tracking-[0.12em] text-slate-400">
             Generated {brief.createdAt}
           </p>
         )}

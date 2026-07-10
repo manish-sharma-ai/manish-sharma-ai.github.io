@@ -6,6 +6,7 @@ import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Post-Machining Is Part of the LMD Repair Plan";
+const seoTitle = "Post-Machining in LMD Repair - Manish Sharma Lab";
 const description =
   "Laser Metal Deposition repair planning should include post-machining allowance, tolerance recovery, inspection access, and acceptance criteria from the beginning.";
 const jsonLd = {
@@ -14,13 +15,13 @@ const jsonLd = {
   headline: title,
   description,
   author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
-  datePublished: SITE.lastUpdated,
+  datePublished: "2026-05-09",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/lab-notes/post-machining-is-part-of-the-lmd-repair-plan`
 };
 ---
 
-<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/post-machining-is-part-of-the-lmd-repair-plan" jsonLd={jsonLd}>
+<Layout title={seoTitle} description={description} canonical="/lab-notes/post-machining-is-part-of-the-lmd-repair-plan" jsonLd={jsonLd}>
   <article class="site-shell py-16 md:py-20">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
       <div class="max-w-3xl">

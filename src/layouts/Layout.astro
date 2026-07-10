@@ -5,7 +5,7 @@ import CommandPalette from "@components/CommandPalette.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import RelatedLinks from "@components/RelatedLinks.astro";
 import SiteShell from "@components/SiteShell.astro";
-import { COMMAND_PAGES, SITE } from "@data/site";
+import { COMMAND_PAGES, PERSON, SITE } from "@data/site";
 import { absoluteUrl, canonicalPath } from "@utils/urls";
 import "@styles/global.css";
 
@@ -16,6 +16,10 @@ interface Props {
   image?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   lastUpdated?: string;
+  lang?: "en" | "de";
+  robots?: string;
+  ogType?: "website" | "article";
+  alternates?: Array<{ lang: string; href: string }>;
 }
 
 const {
@@ -24,13 +28,20 @@ const {
   canonical = canonicalPath(Astro.url.pathname),
   image = "/og-image.png",
   jsonLd = [],
-  lastUpdated = SITE.lastUpdated
+  lastUpdated = SITE.lastUpdated,
+  lang = "en",
+  robots = "index, follow, max-image-preview:large",
+  ogType: requestedOgType,
+  alternates = []
 } = Astro.props;
 
 const canonicalUrl = absoluteUrl(canonical);
 const imageUrl = absoluteUrl(image);
 const titleText = title;
+const ogLocale = lang === "de" ? "de_DE" : "en_US";
+const ogType = requestedOgType ?? (canonical.startsWith("/lab-notes/") ? "article" : "website");
 const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+const commandPagePaths = new Set(COMMAND_PAGES.map((page) => canonicalPath(page.href)));
 const breadcrumbItems =
   canonical === "/"
     ? []
@@ -40,15 +51,21 @@ const breadcrumbItems =
         .map((segment, index, segments) => {
           const itemPath = `/${segments.slice(0, index + 1).join("/")}`;
           return {
-            "@type": "ListItem",
-            position: index + 2,
+            itemPath,
+            isLast: index === segments.length - 1,
             name: segment
               .split("-")
               .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-              .join(" "),
-            item: absoluteUrl(itemPath)
+              .join(" ")
           };
-        });
+        })
+        .filter((item) => item.isLast || commandPagePaths.has(canonicalPath(item.itemPath)))
+        .map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 2,
+          name: item.name,
+          item: absoluteUrl(item.itemPath)
+        }));
 
 const breadcrumbJsonLd =
   breadcrumbItems.length > 0
@@ -71,18 +88,24 @@ const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="author" content={PERSON.name} />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="dark" />
     <title>{titleText}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={robots} />
     <meta name="theme-color" content="#050608" />
     <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((alternate) => <link rel="alternate" hreflang={alternate.lang} href={absoluteUrl(alternate.href)} />)}
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS`} href={absoluteUrl("/rss.xml")} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={titleText} />
     <meta property="og:description" content={description} />

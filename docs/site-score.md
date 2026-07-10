@@ -1,5 +1,7 @@
 # Manish Sharma Lab Site Score
 
+> Historical 10-area rubric. The current 50-criterion baseline, evidence gates, and path to 100 live in `docs/world-class-website-scorecard.md`.
+
 Date: 2026-07-07
 
 Current target: 100/100

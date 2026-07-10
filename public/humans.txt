@@ -1,0 +1,29 @@
+/* Manish Sharma Lab */
+
+Owner: Manish Sharma
+Focus: Industrial AI & Decision Systems
+Promise: AI for Laser Metal Deposition decisions you can verify.
+Established public proof domain: AI for LMD/DED at Exafuse, Germany
+Canonical: https://manishsharma.dev
+
+/* Team */
+
+Creator, author, and maintainer: Manish Sharma
+Public profile: https://github.com/aiwithms
+
+/* Technology */
+
+Framework: Astro
+Languages: TypeScript, JavaScript, HTML, CSS
+UI: React islands and Tailwind CSS
+Delivery: Static generation through GitHub Pages
+Source: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
+
+/* Trust */
+
+Trust center: https://manishsharma.dev/trust
+Security policy: https://manishsharma.dev/trust#security
+Security contact: https://manishsharma.dev/contact
+AI-readable trust summary: https://manishsharma.dev/trust.md
+
+Last reviewed: 2026-07-10

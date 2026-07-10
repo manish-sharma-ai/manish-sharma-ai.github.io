@@ -9,7 +9,7 @@ import SourceLinks from "@components/SourceLinks.astro";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD-AI Readiness Score";
-const description = "Is an LMD workflow ready for useful AI-assisted monitoring?";
+const description = "Assess whether an LMD workflow has the data, traceability, labels, inspection links, and governance needed for useful AI-assisted monitoring.";
 
 const categories = [
   "process images recorded",
@@ -59,7 +59,7 @@ const jsonLd = {
   headline: title,
   description,
   author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
-  datePublished: SITE.lastUpdated,
+  datePublished: "2026-05-09",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/frameworks/lmd-ai-readiness-score`
 };

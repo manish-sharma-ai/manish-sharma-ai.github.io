@@ -14,16 +14,22 @@ const { pages } = Astro.props;
 const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
 ---
 
-<div data-command-palette hidden class="fixed inset-0 z-[70] bg-black/72 px-4 py-20 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Search site">
+<div id="site-search" data-command-palette hidden class="fixed inset-0 z-[70] bg-black/72 px-4 py-20 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="site-search-title" tabindex="-1">
   <div class="mx-auto max-w-2xl overflow-hidden rounded-lg border border-cyan-100/16 bg-graphite-900 shadow-panel">
     <div class="flex items-center gap-3 border-b border-white/10 px-4 py-3">
       <span aria-hidden="true" class="font-mono text-lg text-cyan-200">/</span>
+      <span id="site-search-title" class="sr-only">Search Manish Sharma Lab</span>
       <input
         data-command-input
         class="min-h-11 flex-1 bg-transparent text-base text-white outline-none placeholder:text-slate-500"
         placeholder="Search frameworks, notes, glossary..."
         autocomplete="off"
         aria-label="Search pages"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-controls="command-results"
+        aria-expanded="false"
+        aria-activedescendant=""
       />
       <button
         type="button"
@@ -34,8 +40,9 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div data-command-results class="max-h-[60vh] overflow-auto p-2" role="listbox" aria-label="Search results"></div>
-    <div class="flex items-center justify-between border-t border-white/10 px-4 py-2 text-xs font-semibold text-slate-500">
+    <p data-command-status class="sr-only" aria-live="polite"></p>
+    <div id="command-results" data-command-results class="max-h-[60vh] overflow-auto p-2" role="listbox" aria-label="Search results"></div>
+    <div class="flex items-center justify-between border-t border-white/10 px-4 py-2 text-xs font-semibold text-slate-400">
       <span>Arrow keys move</span>
       <span>Enter opens</span>
       <span>Esc closes</span>
@@ -51,8 +58,9 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
     const input = document.querySelector("[data-command-input]");
     const results = document.querySelector("[data-command-results]");
     const closeButton = document.querySelector("[data-command-close]");
+    const status = document.querySelector("[data-command-status]");
 
-    if (!pagesElement || !palette || !input || !results || !closeButton) return;
+    if (!pagesElement || !palette || !input || !results || !closeButton || !status) return;
 
     const pages = JSON.parse(pagesElement.textContent || "[]");
     let activeIndex = 0;
@@ -67,6 +75,9 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         link.classList.toggle("is-active", isActive);
         link.setAttribute("aria-selected", String(isActive));
       });
+
+      const activeResult = resultLinks[activeIndex];
+      input.setAttribute("aria-activedescendant", activeResult?.id || "");
     };
 
     const render = () => {
@@ -84,11 +95,14 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         empty.className = "px-3 py-6 text-sm text-slate-400";
         empty.textContent = "No matching page found.";
         results.append(empty);
+        input.setAttribute("aria-activedescendant", "");
+        status.textContent = "No matching page found.";
         return;
       }
 
       matches.forEach((page, index) => {
         const link = document.createElement("a");
+        link.id = `command-result-${index}`;
         link.href = page.href;
         link.className = "command-result";
         link.dataset.commandResult = "";
@@ -100,7 +114,7 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         title.textContent = page.title;
 
         const meta = document.createElement("span");
-        meta.className = "font-mono text-xs text-slate-500";
+        meta.className = "font-mono text-xs text-slate-400";
         meta.textContent = `${page.group} - ${page.href}`;
 
         link.append(title);
@@ -122,14 +136,29 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
       });
 
       updateActiveResult();
+      status.textContent = `${matches.length} search result${matches.length === 1 ? "" : "s"} available.`;
     };
 
-    function show() {
+    const backgroundElements = Array.from(palette.parentElement?.children || []).filter(
+      (element) => element !== palette && element instanceof HTMLElement && element.tagName !== "SCRIPT"
+    );
+
+    function setBackgroundInert(value) {
+      backgroundElements.forEach((element) => {
+        element.inert = value;
+        if (value) element.setAttribute("aria-hidden", "true");
+        else element.removeAttribute("aria-hidden");
+      });
+    }
+
+    function show(initialQuery = "") {
       document.dispatchEvent(new CustomEvent("site-command-open"));
       lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       palette.hidden = false;
       document.body.style.overflow = "hidden";
-      input.value = "";
+      setBackgroundInert(true);
+      input.setAttribute("aria-expanded", "true");
+      input.value = initialQuery;
       activeIndex = 0;
       render();
       window.setTimeout(() => input.focus(), 30);
@@ -138,6 +167,9 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
     function hide() {
       palette.hidden = true;
       document.body.style.overflow = "";
+      input.setAttribute("aria-expanded", "false");
+      input.setAttribute("aria-activedescendant", "");
+      setBackgroundInert(false);
       if (lastFocusedElement) {
         lastFocusedElement.focus();
       }
@@ -160,7 +192,7 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
 
       if (target.closest("[data-command-trigger]")) {
         event.preventDefault();
-        show();
+        show("");
       }
 
       if (target === palette || target.closest("[data-command-close]")) {
@@ -193,5 +225,26 @@ const pagesJson = JSON.stringify(pages).replace(/</g, "\\u003c");
         window.location.href = matches[activeIndex].href;
       }
     });
+
+    palette.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(
+        palette.querySelectorAll('input, button, a[href], [tabindex]:not([tabindex="-1"])')
+      ).filter((element) => element instanceof HTMLElement && !element.hidden);
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !palette.contains(document.activeElement))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim();
+    if (initialQuery) show(initialQuery);
   })();
 </script>

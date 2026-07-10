@@ -1,0 +1,115 @@
+---
+import CommandPalette from "@components/CommandPalette.astro";
+import Footer from "@components/Footer.astro";
+import Header from "@components/Header.astro";
+import SiteShell from "@components/SiteShell.astro";
+import { COMMAND_PAGES } from "@data/site";
+import "@styles/global.css";
+
+const title = "Page not found - Manish Sharma Lab";
+const description = "The requested route was not found. Search the site or return to a core Manish Sharma Lab task.";
+
+const coreTasks = [
+  {
+    label: "Start the LMD Decision Cockpit",
+    href: "/#lmd-decision-cockpit",
+    description: "Turn a public-safe example or blank request into an LMD Decision Brief."
+  },
+  {
+    label: "Open the tools",
+    href: "/tools",
+    description: "Use decision, repairability, process-selection, and RFQ structuring tools."
+  },
+  {
+    label: "Read the Brief Standard",
+    href: "/brief-standard",
+    description: "Review LMD Decision Brief v1.0, its schema, examples, and boundaries."
+  },
+  {
+    label: "Browse all resources",
+    href: "/resources",
+    description: "Find frameworks, sources, playbooks, lab notes, glossary entries, and AI guidance."
+  }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#050608" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <SiteShell>
+      <Header />
+      <main id="main-content">
+        <section class="site-shell section-y">
+          <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,0.7fr)] lg:items-start">
+            <div>
+              <p class="metric-label">Error 404 / route not found</p>
+              <h1 class="mt-4 max-w-4xl text-5xl font-black leading-tight text-white md:text-6xl">
+                This path stops here. Your task does not have to.
+              </h1>
+              <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+                The address may be incomplete, outdated, or mistyped. Search the full public surface or restart from a core decision workflow.
+              </p>
+              <div class="mt-8 flex flex-wrap gap-3">
+                <button type="button" data-command-trigger class="btn btn-primary">Search the site</button>
+                <a href="/" class="btn btn-secondary">Return home</a>
+                <a href="/site-map" class="btn btn-ghost">Open site map</a>
+              </div>
+              <p class="mt-5 text-sm font-semibold leading-6 text-slate-400">
+                Search shortcut: <span class="keycap">Ctrl K</span>
+              </p>
+            </div>
+
+            <aside class="ordered-card-strong p-6 md:p-7">
+              <p class="metric-label">Recovery check</p>
+              <h2 class="mt-3 text-3xl font-black leading-tight text-white">Try the route without the final segment.</h2>
+              <p class="mt-4 text-sm leading-7 text-slate-300">
+                If you followed an old link, its parent hub may still contain the intended resource. The site map lists every maintained public route and machine-readable asset.
+              </p>
+              <div class="mt-6 grid gap-3">
+                <a href="/site-map" class="ordered-card card-hover p-4">
+                  <span class="block font-black text-white">Complete site map</span>
+                  <span class="mt-1 block text-sm leading-6 text-slate-400">Human pages and public files in one index.</span>
+                </a>
+                <a href="/contact" class="ordered-card card-hover p-4">
+                  <span class="block font-black text-white">Report a broken link</span>
+                  <span class="mt-1 block text-sm leading-6 text-slate-400">Share the referring page and missing destination.</span>
+                </a>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="band section-y">
+          <div class="site-shell">
+            <p class="metric-label">Core tasks</p>
+            <h2 class="mt-3 text-3xl font-black leading-tight text-white md:text-4xl">Continue from a stable route</h2>
+            <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {coreTasks.map((task) => (
+                <a href={task.href} class="ordered-card-strong card-hover grid content-between p-6">
+                  <span>
+                    <span class="text-xl font-black leading-tight text-white">{task.label}</span>
+                    <span class="mt-3 block text-sm leading-6 text-slate-300">{task.description}</span>
+                  </span>
+                  <span class="mt-6 border-t border-white/10 pt-4 font-mono text-xs font-black uppercase text-cyan-100">Open route</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <CommandPalette pages={COMMAND_PAGES} />
+    </SiteShell>
+  </body>
+</html>

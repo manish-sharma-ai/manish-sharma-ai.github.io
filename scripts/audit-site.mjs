@@ -65,6 +65,7 @@ const keyRenderedPages = [
   "/brief-template/",
   "/demo/",
   "/de/",
+  "/trust/",
   "/for-ai-agents/",
   "/press-kit/"
 ];
@@ -1177,6 +1178,7 @@ function auditPreflight() {
     "/brief-standard/",
     "/brief-template/",
     "/demo/",
+    "/trust/",
     "/for-ai-agents/",
     "/site-map/"
   ];
@@ -1185,6 +1187,10 @@ function auditPreflight() {
     "dist/llms.txt",
     "dist/llms-full.txt",
     "dist/identity.md",
+    "dist/trust.md",
+    "dist/rss.xml",
+    "dist/.well-known/security.txt",
+    "dist/humans.txt",
     "dist/agent-pack/lmd-rfq-schema.json",
     "dist/agent-pack/lmd-decision-rules.md",
     "dist/agent-pack/lmd-prompt-library.md",
@@ -1269,6 +1275,7 @@ function auditSeoSocial() {
     "/claims/",
     "/no-hype/",
     "/de/",
+    "/trust/",
     "/for-ai-agents/"
   ];
   for (const route of pages) {
@@ -1296,6 +1303,167 @@ function auditSeoSocial() {
     }
   }
   fail("SEO/social audit failed", findings);
+}
+
+function auditExperience() {
+  const findings = [];
+  const requiredFiles = [
+    "dist/trust/index.html",
+    "dist/404.html",
+    "dist/rss.xml",
+    "dist/trust.md",
+    "dist/.well-known/security.txt",
+    "dist/humans.txt"
+  ];
+
+  for (const file of requiredFiles) {
+    if (!existsSync(join(root, file))) findings.push(`${file}: missing world-class trust/discovery artifact`);
+  }
+
+  const homeFile = "dist/index.html";
+  if (existsSync(join(root, homeFile))) {
+    const html = read(homeFile);
+    const visibleText = visibleTextFromHtml(html);
+    for (const phrase of [
+      "Start LMD Decision Cockpit",
+      "See worked example",
+      "Evaluate a worn or damaged component.",
+      "Turn a rough request into a usable RFQ brief.",
+      "Interpret a process signal without overclaiming quality.",
+      "Compare LMD with SLM / LPBF route signals.",
+      "Latest field notes"
+    ]) {
+      if (!visibleText.includes(phrase)) findings.push(`${homeFile}: missing product-path marker "${phrase}"`);
+    }
+    if (!html.includes('rel="alternate" hreflang="de"')) findings.push(`${homeFile}: missing German alternate link`);
+    if (!html.includes('rel="stylesheet"')) findings.push(`${homeFile}: missing cacheable external stylesheet`);
+  }
+
+  const germanFile = "dist/de/index.html";
+  if (existsSync(join(root, germanFile))) {
+    const html = read(germanFile);
+    if (!/<html[^>]+lang="de"/i.test(html)) findings.push(`${germanFile}: document language is not German`);
+    if (!html.includes('rel="alternate" hreflang="en"')) findings.push(`${germanFile}: missing English alternate link`);
+    if (html.includes("Ã") || html.includes("â€”")) findings.push(`${germanFile}: contains likely mojibake`);
+  }
+
+  const trustFile = "dist/trust/index.html";
+  if (existsSync(join(root, trustFile))) {
+    const visibleText = visibleTextFromHtml(read(trustFile));
+    for (const phrase of [
+      "No first-party cookies or analytics",
+      "Static, public-source surface",
+      "No formal accessibility certification is claimed.",
+      "Decision support is not decision authority"
+    ]) {
+      if (!visibleText.includes(phrase)) findings.push(`${trustFile}: missing trust marker "${phrase}"`);
+    }
+  }
+
+  const sourcesFile = "dist/research/core-lmd-ai-sources/index.html";
+  if (existsSync(join(root, sourcesFile))) {
+    const visibleText = visibleTextFromHtml(read(sourcesFile));
+    for (const forbidden of ["Working draft", "Sources to verify", "source URL not yet verified", "review source to verify"]) {
+      if (visibleText.includes(forbidden)) findings.push(`${sourcesFile}: still exposes internal source-queue language "${forbidden}"`);
+    }
+    for (const required of ["ISO/ASTM 52900:2021", "NIST AI Risk Management Framework", "Does not prove"]) {
+      if (!visibleText.includes(required)) findings.push(`${sourcesFile}: missing verified-source marker "${required}"`);
+    }
+  }
+
+  if (existsSync(join(root, "dist/rss.xml"))) {
+    const rss = read("dist/rss.xml");
+    for (const marker of ['<rss version="2.0"', '<atom:link ', "<item>", "<guid isPermaLink=\"true\">"]) {
+      if (!rss.includes(marker)) findings.push(`dist/rss.xml: missing ${marker}`);
+    }
+  }
+
+  if (existsSync(join(root, "dist/404.html"))) {
+    const html = read("dist/404.html");
+    if (!html.includes('name="robots" content="noindex, follow"')) findings.push("dist/404.html: missing noindex recovery metadata");
+    if (!visibleTextFromHtml(html).includes("Search the site")) findings.push("dist/404.html: missing search recovery action");
+  }
+
+  if (existsSync(join(root, "dist/index.html"))) {
+    const html = read("dist/index.html");
+    for (const marker of ["aria-activedescendant", "URLSearchParams", "setBackgroundInert", 'role="combobox"']) {
+      if (!html.includes(marker)) findings.push(`dist/index.html: search dialog missing behavior marker "${marker}"`);
+    }
+  }
+
+  const toolsSource = read("src/pages/tools.astro");
+  if (toolsSource.includes("document.querySelector(window.location.hash)")) {
+    findings.push("src/pages/tools.astro: raw URL hashes must not be passed to querySelector");
+  }
+  for (const marker of ['rawHash.startsWith("preset=")', "document.getElementById(targetId)"]) {
+    if (!toolsSource.includes(marker)) findings.push(`src/pages/tools.astro: missing safe hash marker "${marker}"`);
+  }
+
+  for (const { file, text } of scanFiles(["src"], [".astro"])) {
+    if (text.includes("datePublished: SITE.lastUpdated")) {
+      findings.push(`${file}: datePublished must use the truthful original publication date, not the global modification date`);
+    }
+  }
+
+  const htmlFiles = scanFiles(["dist"], [".html"]);
+  const allowedPresetIds = new Set(["worn-shaft", "monitoring-anomaly", "surface-cladding", "lmd-vs-slm", "rfq"]);
+  const routeFileForHref = (href) => {
+    const path = href.split("#")[0].split("?")[0] || "/";
+    if (path === "/") return "dist/index.html";
+    if (/\.[a-z0-9]+$/i.test(path)) return `dist${path}`;
+    return `dist${path.replace(/\/$/, "")}/index.html`;
+  };
+
+  for (const { file, text } of htmlFiles) {
+    const h1Count = (text.match(/<h1\b/gi) ?? []).length;
+    if (h1Count !== 1) findings.push(`${file}: expected exactly one H1, found ${h1Count}`);
+
+    const visibleText = visibleTextFromHtml(text);
+    const visibleLabDate = visibleText.match(/Lab note\s*[·-]\s*(\d{4}-\d{2}-\d{2})/i)?.[1];
+    const structuredPublishedDate = text.match(/"datePublished":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    const structuredModifiedDate = text.match(/"dateModified":"(\d{4}-\d{2}-\d{2})"/)?.[1];
+    if (visibleLabDate && structuredPublishedDate && visibleLabDate !== structuredPublishedDate) {
+      findings.push(`${file}: visible publication date ${visibleLabDate} differs from structured date ${structuredPublishedDate}`);
+    }
+    if (structuredPublishedDate && structuredModifiedDate && structuredModifiedDate < structuredPublishedDate) {
+      findings.push(`${file}: dateModified ${structuredModifiedDate} predates datePublished ${structuredPublishedDate}`);
+    }
+
+    const hrefs = [...text.matchAll(/<a\b[^>]*\bhref="([^"]+)"/gi)].map((match) => match[1]);
+    for (const href of hrefs) {
+      if (!href.startsWith("/") || href.startsWith("//")) continue;
+      const targetFile = routeFileForHref(href);
+      if (!existsSync(join(root, targetFile))) {
+        findings.push(`${file}: internal link target is missing (${href} -> ${targetFile})`);
+        continue;
+      }
+      const fragment = href.includes("#") ? href.split("#")[1].split("?")[0] : "";
+      if (!fragment) continue;
+      if (fragment.startsWith("preset=")) {
+        const presetId = fragment.slice("preset=".length).split("&")[0];
+        if (targetFile !== "dist/tools/index.html") {
+          findings.push(`${file}: preset fragment must target the tools workbench (${href})`);
+        } else if (!allowedPresetIds.has(presetId)) {
+          findings.push(`${file}: unknown cockpit preset fragment (${href})`);
+        }
+        continue;
+      }
+      let decodedFragment;
+      try {
+        decodedFragment = decodeURIComponent(fragment);
+      } catch {
+        findings.push(`${file}: internal fragment is not valid URL encoding (${href})`);
+        continue;
+      }
+      const targetHtml = read(targetFile);
+      const escaped = decodedFragment.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      if (!new RegExp(`\\bid=["']${escaped}["']`, "i").test(targetHtml)) {
+        findings.push(`${file}: internal fragment target is missing (${href})`);
+      }
+    }
+  }
+
+  fail("Experience audit failed", findings);
 }
 
 function auditCanonicalDomain() {
@@ -1430,6 +1598,7 @@ const audits = {
   "rubric-format": auditRubricFormat,
   preflight: auditPreflight,
   "seo-social": auditSeoSocial,
+  experience: auditExperience,
   "canonical-domain": auditCanonicalDomain,
   all() {
     auditVisualText();
@@ -1462,6 +1631,7 @@ const audits = {
     auditRubricFormat();
     auditPreflight();
     auditSeoSocial();
+    auditExperience();
     auditCanonicalDomain();
   }
 };

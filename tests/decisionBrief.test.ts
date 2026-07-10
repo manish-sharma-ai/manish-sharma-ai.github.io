@@ -1,0 +1,115 @@
+import { describe, expect, it } from "vitest";
+import {
+  BOUNDARY_STATEMENT,
+  BRIEF_NOT_VALID_FOR,
+  BRIEF_VERSION,
+  COCKPIT_PRESETS,
+  NO_AUTOMATIC_SENDING_NOTE,
+  NO_BACKEND_NOTE,
+  WORN_SHAFT_BRIEF,
+  createDecisionBrief,
+  formatAiAgentSafeSummary,
+  formatDecisionBriefJson,
+  formatExafuseEmailDraft,
+  formatExafuseMailtoHref,
+  formatMissingInformationChecklist,
+  getCockpitPreset
+} from "../src/lib/decisionBrief";
+
+describe("LMD Decision Brief invariants", () => {
+  it("preserves the canonical identity and not-valid-for boundary", () => {
+    const brief = createDecisionBrief({});
+
+    expect(brief.briefVersion).toBe(BRIEF_VERSION);
+    expect(brief.notValidFor).toEqual(BRIEF_NOT_VALID_FOR);
+    expect(brief.boundaryStatement).toBe(BOUNDARY_STATEMENT);
+    expect(brief.noBackendNote).toBe(NO_BACKEND_NOTE);
+    expect(brief.noAutomaticSendingNote).toBe(NO_AUTOMATIC_SENDING_NOTE);
+  });
+
+  it("groups, trims, and deduplicates missing information", () => {
+    const brief = createDecisionBrief({
+      knownFacts: ["Photos available"],
+      missingInformation: [
+        " Exact material grade ",
+        "Exact material grade",
+        "Machining allowance",
+        "Optional operator note"
+      ]
+    });
+
+    expect(brief.missingCritical).toEqual(["Exact material grade"]);
+    expect(brief.missingUseful).toEqual(["Machining allowance"]);
+    expect(brief.missingOptional).toEqual(["Optional operator note"]);
+    expect(brief.missingInformation).toHaveLength(3);
+  });
+
+  it("escalates safety-critical cases to formal qualification planning", () => {
+    const brief = createDecisionBrief({
+      situation: "Safety-critical repair question",
+      knownFacts: ["Component identified"],
+      riskFlags: ["Safety-critical service"],
+      evidenceNeeded: ["Acceptance criteria"]
+    });
+
+    expect(brief.briefCompleteness).toBe("Requires formal inspection / qualification planning");
+    expect(brief.expertReviewPackageStatus).toBe("Requires formal qualification planning");
+    expect(brief.evidenceBurden).toBe("Formal qualification burden");
+    expect(brief.missingCritical).toContain("Inspection requirement for safety-critical or high-risk cases");
+  });
+
+  it("does not treat an empty brief as useful review context", () => {
+    const brief = createDecisionBrief({ knownFacts: [] });
+
+    expect(brief.briefCompleteness).toBe("Too vague for useful review");
+  });
+
+  it("keeps every public preset resolvable and bounded", () => {
+    expect(COCKPIT_PRESETS.length).toBeGreaterThanOrEqual(5);
+    for (const preset of COCKPIT_PRESETS) {
+      expect(getCockpitPreset(preset.id)).toBe(preset);
+      expect(preset.brief.notValidFor).toEqual(BRIEF_NOT_VALID_FOR);
+      expect(preset.brief.boundaryStatement).toBe(BOUNDARY_STATEMENT);
+    }
+    expect(getCockpitPreset("not-a-real-preset")).toBeUndefined();
+  });
+
+  it("exports a parseable JSON handoff without weakening boundaries", () => {
+    const exported = JSON.parse(formatDecisionBriefJson(WORN_SHAFT_BRIEF));
+
+    expect(exported.outputMode).toBe("JSON handoff");
+    expect(exported.brief.outputMode).toBe("JSON handoff");
+    expect(exported.notValidFor).toEqual(BRIEF_NOT_VALID_FOR);
+    expect(exported.boundaryStatement).toBe(BOUNDARY_STATEMENT);
+    expect(exported.noBackendNote).toBe(NO_BACKEND_NOTE);
+  });
+
+  it("keeps grouped gaps explicit in the portable checklist", () => {
+    const checklist = formatMissingInformationChecklist(WORN_SHAFT_BRIEF);
+
+    expect(checklist).toContain("## Critical gaps");
+    expect(checklist).toContain("## Useful gaps");
+    expect(checklist).toContain("## Optional context");
+    expect(checklist).toContain("not feasibility");
+  });
+
+  it("marks email output as a manual review draft", () => {
+    const email = formatExafuseEmailDraft(WORN_SHAFT_BRIEF);
+    const mailto = formatExafuseMailtoHref(WORN_SHAFT_BRIEF);
+
+    expect(email).toContain("Please review; this is not approval.");
+    expect(email).toContain("generated locally in the browser");
+    expect(mailto.startsWith("mailto:?subject=")).toBe(true);
+    expect(decodeURIComponent(mailto)).toContain("preliminary decision brief");
+  });
+
+  it("keeps AI-agent output inside the explicit safe-use envelope", () => {
+    const summary = formatAiAgentSafeSummary(WORN_SHAFT_BRIEF);
+
+    expect(summary).toContain("AI-Agent-Safe LMD Decision Summary");
+    expect(summary).toContain("Do not use for: approval, certification, release, safety-critical acceptance, quality guarantee");
+    expect(summary).toContain("Commercial/company review: Exafuse.");
+    expect(summary).toContain(NO_BACKEND_NOTE);
+    expect(summary).toContain(NO_AUTOMATIC_SENDING_NOTE);
+  });
+});

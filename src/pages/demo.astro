@@ -11,8 +11,9 @@ import { BRIEF_VERSION, WORN_SHAFT_BRIEF, formatDecisionBriefMarkdown } from "..
 import { PERSON, SITE } from "@data/site";
 
 const title = "Before / after: vague request to usable brief";
+const seoTitle = "LMD Request to Decision Brief Demo - Manish Sharma Lab";
 const description =
-  "Public-safe dummy walkthrough showing how a vague LMD repair request becomes LMD Decision Brief v1.0 with facts, gaps, risks, evidence needs, and an Exafuse review route.";
+  "Public-safe walkthrough showing how a vague LMD repair request becomes a structured Decision Brief with facts, gaps, risks, and evidence needs.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 const demoMarkdown = formatDecisionBriefMarkdown(WORN_SHAFT_BRIEF);
 
@@ -78,7 +79,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/demo" jsonLd={jsonLd}>
+<Layout title={seoTitle} description={description} canonical="/demo" jsonLd={jsonLd}>
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">

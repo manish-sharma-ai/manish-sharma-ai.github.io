@@ -14,7 +14,10 @@ const normalize = (value: string) => {
 
 const currentPath = normalize(path);
 const titleMap = new Map(COMMAND_PAGES.map((page) => [normalize(page.href), page.title]));
-const cleanTitle = title.replace(` — ${SITE.name}`, "").replace(` | ${SITE.name}`, "");
+const cleanTitle = [` — ${SITE.name}`, ` - ${SITE.name}`, ` | ${SITE.name}`].reduce(
+  (value, suffix) => value.replace(suffix, ""),
+  title
+);
 
 const crumbs =
   currentPath === "/"
@@ -36,15 +39,17 @@ const crumbs =
                       .split("-")
                       .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
                       .join(" ")),
-              href
+              href,
+              isLast
             };
           })
+          .filter((crumb) => crumb.isLast || titleMap.has(normalize(crumb.href)))
       ];
 ---
 
 {crumbs.length > 0 && (
   <nav class="border-b border-white/10 bg-black/18" aria-label="Breadcrumb">
-    <ol class="site-shell flex min-h-11 items-center gap-2 overflow-x-auto whitespace-nowrap py-2 text-xs font-semibold text-slate-500">
+    <ol class="site-shell flex min-h-11 items-center gap-2 overflow-x-auto whitespace-nowrap py-2 text-xs font-semibold text-slate-400">
       {crumbs.map((crumb, index) => {
         const isLast = index === crumbs.length - 1;
         return (

@@ -7,7 +7,7 @@ import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { PERSON, SITE } from "@data/site";
 
-const title = "Resources";
+const title = "LMD / DED Resources";
 const description =
   "Intent-based resource map for Manish Sharma Lab: process choice, repairability, RFQ preparation, monitoring limits, sources, claims, and AI-agent usage.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
@@ -55,10 +55,19 @@ const resourceGroups = [
     intent: "I need sources and claim boundaries",
     links: [
       { label: "Evidence Base", href: "/evidence", description: "Open the source and evidence layer." },
-      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated starting map for source categories." },
+      { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated map of verified standards, research, monitoring, and AI-governance sources." },
       { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse proof objects and limitations." },
       { label: "Public Claim Ledger", href: "/claims", description: "Active claims and held-source-review distinction." },
       { label: "No-Hype Boundary", href: "/no-hype", description: "What this site will not claim." }
+    ]
+  },
+  {
+    intent: "I need trust, privacy, or a correction route",
+    links: [
+      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." },
+      { label: "AI-readable trust summary", href: "/trust.md", description: "Machine-readable statement of the same public posture." },
+      { label: "Responsible security contact", href: "/.well-known/security.txt", description: "Canonical reporting route and policy link." },
+      { label: "Contact routes", href: "/contact", description: "Route corrections, access barriers, professional questions, or Exafuse RFQs appropriately." }
     ]
   },
   {

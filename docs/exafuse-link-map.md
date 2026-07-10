@@ -1,6 +1,8 @@
 # Exafuse Link Map
 
-Date: 2026-07-07
+Date: 2026-07-10
+
+Cutover check: migration-gated tool, case-study, and new knowledge deep links returned `404` on 2026-07-10. Safe index/contact routes remain active; do not switch to post-migration mode yet.
 
 Manish Sharma Lab should link to Exafuse for commercial services, RFQs, company-owned case studies, quality pages, and production capability context. The personal site should not duplicate Exafuse service pages.
 

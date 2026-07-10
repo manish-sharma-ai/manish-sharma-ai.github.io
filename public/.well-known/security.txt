@@ -1,0 +1,5 @@
+Contact: https://manishsharma.dev/contact
+Expires: 2027-07-09T23:59:59Z
+Preferred-Languages: en, de
+Canonical: https://manishsharma.dev/.well-known/security.txt
+Policy: https://manishsharma.dev/trust#security

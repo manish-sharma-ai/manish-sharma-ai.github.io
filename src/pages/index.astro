@@ -1,6 +1,5 @@
 ---
 import BentoCard from "@components/BentoCard.astro";
-import BentoGrid from "@components/BentoGrid.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Chip from "@components/Chip.astro";
 import HeroLaserVisual from "@components/HeroLaserVisual";
@@ -10,11 +9,11 @@ import SectionHeading from "@components/SectionHeading.astro";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { getClaimSourceStatus } from "@data/publicClaims";
-import { LINKS, PERSON, SAME_AS, SITE } from "@data/site";
+import { LAB_NOTES, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
 
 const title = "Manish Sharma Lab - AI for Laser Metal Deposition Decisions";
 const description =
-  "AI for Laser Metal Deposition decisions you can verify: inspection-aware frameworks, RFQ tools, process-monitoring notes, public Exafuse proof context, and evidence-bound AI guidance.";
+  "AI for Laser Metal Deposition decisions you can verify: a browser-local cockpit, evidence-aware frameworks, RFQ tools, and public LMD/DED sources.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const personJsonLd = {
@@ -67,22 +66,32 @@ const profilePageJsonLd = {
 
 const startCards = [
   {
-    eyebrow: "Engineer / buyer",
-    title: "Structure an LMD, repair, cladding, or RFQ question.",
-    href: "/tools",
-    cta: "Open tools"
+    eyebrow: "Repair decision",
+    title: "Evaluate a worn or damaged component.",
+    description: "Expose material, damage, access, finishing, and inspection gaps before repair claims harden.",
+    href: "/tools/#preset=worn-shaft",
+    cta: "Start repair brief"
   },
   {
-    eyebrow: "Technical reader",
-    title: "Understand inspection-aware industrial AI.",
-    href: "/thesis",
-    cta: "Read thesis"
+    eyebrow: "RFQ preparation",
+    title: "Turn a rough request into a usable RFQ brief.",
+    description: "Separate known facts, critical gaps, useful context, risks, and the next review action.",
+    href: "/tools/#preset=rfq",
+    cta: "Structure an RFQ"
   },
   {
-    eyebrow: "AI agent / developer",
-    title: "Use structured public sources safely.",
-    href: "/for-ai-agents",
-    cta: "Open AI-agent guide"
+    eyebrow: "Monitoring evidence",
+    title: "Interpret a process signal without overclaiming quality.",
+    description: "Connect monitoring context to inspection evidence and keep the release boundary visible.",
+    href: "/tools/#preset=monitoring-anomaly",
+    cta: "Review a signal"
+  },
+  {
+    eyebrow: "Process selection",
+    title: "Compare LMD with SLM / LPBF route signals.",
+    description: "Start with part size, local deposition, feature complexity, tolerance, and qualification needs.",
+    href: "/tools/#preset=lmd-vs-slm",
+    cta: "Compare routes"
   }
 ];
 
@@ -164,7 +173,17 @@ const proofDecisionPatternText: Record<string, string> = {
 };
 ---
 
-<Layout title={title} description={description} canonical="/" jsonLd={[websiteJsonLd, personJsonLd, profilePageJsonLd]}>
+<Layout
+  title={title}
+  description={description}
+  canonical="/"
+  jsonLd={[websiteJsonLd, personJsonLd, profilePageJsonLd]}
+  alternates={[
+    { lang: "en", href: "/" },
+    { lang: "de", href: "/de" },
+    { lang: "x-default", href: "/" }
+  ]}
+>
   <section class="site-shell home-hero-grid section-y">
     <div class="relative">
       <div class="flex flex-wrap gap-2">
@@ -184,9 +203,7 @@ const proofDecisionPatternText: Record<string, string> = {
       </div>
       <div class="mt-9 flex flex-wrap gap-3">
         <CTAButton href="#lmd-decision-cockpit" variant="primary">Start LMD Decision Cockpit</CTAButton>
-        <CTAButton href="/decision-map" variant="secondary">Open Decision Map</CTAButton>
-        <CTAButton href="/tools" variant="secondary">Open Workbench</CTAButton>
-        <CTAButton href="/thesis" variant="secondary">Read Thesis</CTAButton>
+        <CTAButton href="/demo" variant="secondary">See worked example</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>
@@ -194,9 +211,9 @@ const proofDecisionPatternText: Record<string, string> = {
       <HeroLaserVisual />
       <div class="grid gap-3 sm:grid-cols-3">
         {[
-          ["Who", PERSON.name],
-          ["Builds", "inspection-aware AI tools"],
-          ["Proof", "public Exafuse LMD/DED context"]
+          ["Input", "a rough LMD question"],
+          ["Output", "Decision Brief v1.0"],
+          ["Boundary", "review-ready, never approval"]
         ].map(([label, value]) => (
           <div class="ordered-card p-4">
             <p class="metric-label">{label}</p>
@@ -209,15 +226,20 @@ const proofDecisionPatternText: Record<string, string> = {
 
   <section class="site-shell pb-12">
     <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+    <noscript>
+      <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
+        The worked brief remains readable without JavaScript. To prepare your own handoff, use the <a href="/brief-template" class="font-black text-cyan-100">copyable template</a> or the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
+      </div>
+    </noscript>
   </section>
 
-  <section class="band py-10">
+  <section class="band py-10" data-operating-loop="homepage">
     <div class="site-shell grid gap-6 lg:grid-cols-[0.76fr_0.24fr] lg:items-center">
       <div>
-        <p class="metric-label">Thesis in one line</p>
-        <h2 class="mt-3 text-4xl font-black leading-tight text-white md:text-5xl">A signal is not proof.</h2>
+        <p class="metric-label">Thesis: a signal is not proof</p>
+        <h2 class="mt-3 text-4xl font-black leading-tight text-white md:text-5xl">Sense -&gt; Model -&gt; Decide -&gt; Verify</h2>
         <p class="mt-4 max-w-3xl text-base leading-7 text-slate-300">
-          Process signals can support review. They do not replace inspection, testing, expert review, or release evidence.
+          <strong class="text-white">A signal is not proof.</strong> Process signals can support review. They do not replace inspection, testing, expert review, or release evidence.
         </p>
       </div>
       <div class="flex flex-wrap gap-3 lg:justify-end">
@@ -227,29 +249,14 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="site-shell py-8" data-operating-loop="homepage">
-    <div class="ordered-card-strong grid gap-5 p-5 md:grid-cols-[0.38fr_0.62fr] md:items-center md:p-6">
-      <div>
-        <p class="metric-label">One compact operating loop</p>
-        <h2 class="mt-3 text-2xl font-black leading-tight text-white md:text-3xl">Sense -> Model -> Decide -> Verify</h2>
-      </div>
-      <div class="grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-        <p class="text-sm leading-6 text-slate-300">
-          Signal, assumption, bounded decision, verification evidence. The detailed doctrine lives in the thesis.
-        </p>
-        <a href="/thesis" class="btn btn-secondary">Open thesis</a>
-      </div>
-    </div>
-  </section>
-
   <section class="band py-12">
     <div class="site-shell">
       <SectionHeading eyebrow="Start here" title="Choose the path that matches your question" />
-      <BentoGrid class="mt-10">
+      <div class="mt-10 grid gap-5 md:grid-cols-2">
         {startCards.map((card) => (
-          <BentoCard href={card.href} eyebrow={card.eyebrow} title={card.title} cta={card.cta} strong />
+          <BentoCard href={card.href} eyebrow={card.eyebrow} title={card.title} description={card.description} cta={card.cta} strong />
         ))}
-      </BentoGrid>
+      </div>
     </div>
   </section>
 
@@ -298,7 +305,7 @@ const proofDecisionPatternText: Record<string, string> = {
       </div>
     </div>
     <div class="mt-10 grid gap-5 lg:grid-cols-2">
-      {EXAFUSE_PROOF_CASES.slice(0, 4).map((item) => {
+      {EXAFUSE_PROOF_CASES.slice(0, 2).map((item) => {
         const related = proofFrameworks[item.code];
         const pattern = proofDecisionPatterns[item.code];
         return (
@@ -357,6 +364,34 @@ const proofDecisionPatternText: Record<string, string> = {
           </article>
         );
       })}
+    </div>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <SectionHeading
+          eyebrow="Latest field notes"
+          title="Short technical notes for better LMD decisions"
+          description="Focused explanations of the assumptions, evidence gaps, and review questions that often change an LMD/DED decision."
+        />
+        <div class="flex flex-wrap gap-3">
+          <CTAButton href="/lab-notes" variant="secondary">All lab notes</CTAButton>
+          <CTAButton href="/rss.xml" variant="secondary">RSS feed</CTAButton>
+        </div>
+      </div>
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        {LAB_NOTES.slice(0, 3).map((note) => (
+          <a href={note.href} class="ordered-card-strong card-hover grid content-between p-6">
+            <span>
+              <time class="metric-label" datetime={note.date}>{note.date}</time>
+              <h2 class="mt-3 text-2xl font-black leading-tight text-white">{note.title}</h2>
+              <p class="mt-4 text-sm leading-6 text-slate-300">{note.description}</p>
+            </span>
+            <span class="mt-6 border-t border-white/10 pt-4 font-mono text-xs font-black uppercase text-cyan-100">Read note</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

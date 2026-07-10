@@ -10,7 +10,7 @@ import { resolveExafuseLink } from "../config/externalLinks";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "LMD RFQ Toolkit";
-const description = "Schemas, prompts, and decision rules for clearer Laser Metal Deposition RFQs.";
+const description = "Schemas, prompts, checklists, and decision rules for clearer Laser Metal Deposition RFQs and safer expert handoffs.";
 
 const schema = {
   part: {
@@ -101,7 +101,7 @@ const jsonLd = {
   headline: title,
   description,
   author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
-  datePublished: SITE.lastUpdated,
+  datePublished: "2026-05-09",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/agent-pack`,
   about: ["Laser Metal Deposition RFQ", "AI agents", "Decision rules", "Prompt library"]

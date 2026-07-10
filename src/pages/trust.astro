@@ -1,0 +1,393 @@
+---
+import Badge from "@components/Badge.astro";
+import BentoCard from "@components/BentoCard.astro";
+import CTAButton from "@components/CTAButton.astro";
+import NoteBox from "@components/NoteBox.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import Layout from "@layouts/Layout.astro";
+import { resolveExafuseLink } from "../config/externalLinks";
+import { DISCLAIMER, LINKS, PERSON, SITE } from "@data/site";
+
+const title = "Trust Center - Manish Sharma Lab";
+const description =
+  "Privacy, security posture, accessibility intent, claim governance, decision boundaries, and contact routes for Manish Sharma Lab.";
+const lastUpdated = "2026-07-10";
+const exafuseContact = resolveExafuseLink("contact");
+const repositoryIssues = SITE.repoUrl + "/issues";
+
+const posture = [
+  {
+    eyebrow: "Privacy",
+    title: "No first-party cookies or analytics",
+    description:
+      "The public site code sets no cookies and includes no analytics. Workbench inputs stay in browser memory unless you deliberately move them into another application."
+  },
+  {
+    eyebrow: "Security",
+    title: "Static, public-source surface",
+    description:
+      "There are no site accounts, application authentication service, application backend, or input database. This narrows the surface; it is not a security certification."
+  },
+  {
+    eyebrow: "Evidence",
+    title: "Claims carry context",
+    description:
+      "Public claims are governed through a source-aware ledger with status, limitations, allowed surfaces, and correction paths."
+  },
+  {
+    eyebrow: "Accessibility",
+    title: "Access is a design requirement",
+    description:
+      "Keyboard use, landmarks, labels, readable contrast, responsive reflow, and reduced motion are design intents. No formal conformance certification is claimed."
+  }
+];
+
+const privacyRows = [
+  {
+    label: "Cookies",
+    status: "None in site code",
+    detail: "The first-party application code does not set or read cookies."
+  },
+  {
+    label: "Usage analytics",
+    status: "Not installed",
+    detail: "The public application does not include an analytics or behavioral-tracking integration."
+  },
+  {
+    label: "Technical inputs",
+    status: "Browser-local",
+    detail:
+      "Interactive tool values are processed in current-page browser memory. There is no application endpoint or database receiving those values."
+  },
+  {
+    label: "Persistent input storage",
+    status: "Not used",
+    detail:
+      "The tools do not use localStorage, sessionStorage, IndexedDB, or a site-side input store."
+  },
+  {
+    label: "Email drafts",
+    status: "Manual only",
+    detail:
+      "A user can intentionally open a prepared draft in their own email client. The site does not send it automatically."
+  },
+  {
+    label: "External services",
+    status: "Separate policies",
+    detail:
+      "Hosting infrastructure and destinations reached through external links may process normal request metadata under their own policies."
+  }
+];
+
+const accessibilityPractices = [
+  "Skip-to-content navigation and semantic page landmarks",
+  "Keyboard-operable primary navigation, mobile navigation, and site search",
+  "Visible focus treatment for interactive controls",
+  "Labels and state cues that do not depend on color alone",
+  "Responsive layouts and reduced-motion behavior",
+  "Concise text alternatives or hidden treatment for decorative visuals"
+];
+
+const claimControls = [
+  {
+    title: "Source context",
+    text: "A new factual claim needs public source context. Analysis or interpretation should be identified as such."
+  },
+  {
+    title: "Claim registry",
+    text: "Proof metrics and identity facts are routed through shared data, with source status, limitations, and review context."
+  },
+  {
+    title: "Visible boundaries",
+    text: "Monitoring signals, model confidence, completeness labels, and evidence-burden labels are kept separate from approval."
+  },
+  {
+    title: "Correction path",
+    text: "The public claim ledger exposes source context and a route for suggesting corrections."
+  }
+];
+
+const notValidFor = [
+  "Engineering approval",
+  "Certification",
+  "Final release",
+  "Safety-critical acceptance",
+  "Quality guarantee"
+];
+
+const trustJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": SITE.canonicalUrl + "/trust#page",
+  url: SITE.canonicalUrl + "/trust",
+  name: title,
+  description,
+  dateModified: lastUpdated,
+  isPartOf: { "@id": SITE.websiteId },
+  author: { "@id": SITE.personId, name: PERSON.name }
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical="/trust"
+  jsonLd={trustJsonLd}
+  lastUpdated={lastUpdated}
+>
+  <section class="site-shell inner-hero-grid section-y">
+    <div>
+      <div class="flex flex-wrap gap-2">
+        <Badge>Trust center</Badge>
+        <Badge tone="steel">Public posture</Badge>
+        <Badge tone="laser">Limits included</Badge>
+      </div>
+      <p class="metric-label mt-8">Trust is an interface requirement</p>
+      <h1 class="mt-4 max-w-5xl text-5xl font-black leading-tight text-white md:text-6xl">
+        Know what this site does, what it keeps, and where its authority stops.
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+        This center documents the current public posture for privacy, security, accessibility, evidence, and engineering decision boundaries. It describes the implementation honestly; it is not a certification.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <CTAButton href="/claims" variant="primary">Inspect the claim ledger</CTAButton>
+        <CTAButton href="/contact" variant="secondary">Report an issue</CTAButton>
+        <CTAButton href={SITE.repoUrl} variant="ghost" external>View public source</CTAButton>
+      </div>
+    </div>
+
+    <aside class="ordered-card-strong p-6 md:p-7" aria-label="Trust contract">
+      <p class="metric-label">The short contract</p>
+      <h2 class="mt-3 text-3xl font-black leading-tight text-white">Local tools. Visible evidence. Human review.</h2>
+      <dl class="mt-7 grid gap-5">
+        <div class="ordered-card p-4">
+          <dt class="text-sm font-black text-white">Data posture</dt>
+          <dd class="mt-2 text-sm leading-6 text-slate-300">No application backend, input storage, cookies, or analytics in this site.</dd>
+        </div>
+        <div class="ordered-card p-4">
+          <dt class="text-sm font-black text-white">Decision posture</dt>
+          <dd class="mt-2 text-sm leading-6 text-slate-300">Decision support can structure review; it cannot approve, certify, release, or guarantee a part.</dd>
+        </div>
+        <div class="ordered-card p-4">
+          <dt class="text-sm font-black text-white">Disclosure posture</dt>
+          <dd class="mt-2 text-sm leading-6 text-slate-300">Public sources only. Do not submit confidential, personal, credential, or safety-critical information.</dd>
+        </div>
+      </dl>
+      <p class="mt-6 text-xs font-semibold leading-5 text-slate-400">Last reviewed: {lastUpdated}</p>
+    </aside>
+  </section>
+
+  <section class="band section-y">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Current posture"
+        title="Four trust commitments, with their limits"
+        description="Each statement is scoped to what this public repository and its application code can support."
+      />
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {posture.map((item) => (
+          <BentoCard eyebrow={item.eyebrow} title={item.title} description={item.description} strong />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y" id="privacy">
+    <SectionHeading
+      eyebrow="Privacy"
+      title="Technical inputs remain browser-local"
+      description="The workbench is built for public-safe, preliminary structuring without an application data pipeline."
+    />
+    <div class="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-black/20">
+      <dl class="divide-y divide-white/10">
+        {privacyRows.map((row) => (
+          <div class="grid gap-3 p-5 md:grid-cols-[12rem_10rem_minmax(0,1fr)] md:items-start md:p-6">
+            <dt class="font-black text-white">{row.label}</dt>
+            <dd><span class="chip chip--steel">{row.status}</span></dd>
+            <dd class="text-sm leading-6 text-slate-300">{row.detail}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+    <div class="mt-6">
+      <NoteBox title="Browser-local does not mean suitable for secrets" tone="laser">
+        Do not enter confidential customer information, unpublished employer material, credentials, personal data, or safety-critical records. A browser, device, extension, copied export, email client, hosting layer, or external destination can have risks beyond this site's application code.
+      </NoteBox>
+    </div>
+  </section>
+
+  <section class="band section-y" id="security">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Security"
+        title="A narrow static surface, not a security guarantee"
+        description="Static delivery removes application accounts and a site-side input database, but it does not remove infrastructure, browser, dependency, DNS, TLS, build-chain, or third-party risk."
+      />
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        <article class="ordered-card-strong p-6">
+          <p class="metric-label">Architecture</p>
+          <h3 class="mt-3 text-2xl font-black text-white">Static public files</h3>
+          <p class="mt-4 text-sm leading-6 text-slate-300">
+            The deployed application is a statically generated site. It does not provide accounts, login, application authentication, or a server-side input store.
+          </p>
+        </article>
+        <article class="ordered-card p-6">
+          <p class="metric-label">Inspectability</p>
+          <h3 class="mt-3 text-2xl font-black text-white">Public source repository</h3>
+          <p class="mt-4 text-sm leading-6 text-slate-300">
+            Page code, browser tools, public data, and deployment configuration can be inspected in the public repository.
+          </p>
+        </article>
+        <article class="ordered-card p-6">
+          <p class="metric-label">Honest limit</p>
+          <h3 class="mt-3 text-2xl font-black text-white">No audit claim</h3>
+          <p class="mt-4 text-sm leading-6 text-slate-300">
+            This page does not claim a penetration test, independent security audit, security certification, uninterrupted availability, or absence of vulnerabilities.
+          </p>
+        </article>
+      </div>
+      <div class="ordered-card-strong mt-6 grid gap-6 p-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:p-7">
+        <div>
+          <p class="metric-label">Responsible reporting</p>
+          <h3 class="mt-3 text-2xl font-black text-white">Share the minimum safe reproduction.</h3>
+          <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
+            Start through the contact page. Use a public repository issue only for non-sensitive, reproducible problems. Do not publish credentials, personal data, confidential material, or live exploit details; request a private contact route first.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end">
+          <CTAButton href="/contact" variant="primary">Security contact</CTAButton>
+          <CTAButton href={repositoryIssues} variant="secondary" external>Public issues</CTAButton>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y" id="accessibility">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,0.7fr)]">
+      <div>
+        <SectionHeading
+          eyebrow="Accessibility"
+          title="Designed for access; open to correction"
+          description="The site aims to support keyboard, screen-reader, zoom, motion-sensitive, and small-screen use as part of normal product quality."
+        />
+        <ul class="mt-8 grid gap-3 text-sm font-semibold leading-6 text-slate-300 sm:grid-cols-2">
+          {accessibilityPractices.map((practice) => (
+            <li class="ordered-card flex gap-3 p-4">
+              <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-200" aria-hidden="true"></span>
+              <span>{practice}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <aside class="ordered-card-strong h-fit p-6 md:p-7">
+        <p class="metric-label">Conformance status</p>
+        <h3 class="mt-3 text-3xl font-black leading-tight text-white">No formal accessibility certification is claimed.</h3>
+        <p class="mt-4 text-sm leading-7 text-slate-300">
+          These are implementation intentions and observable controls, not a declaration of WCAG conformance or an independent accessibility audit.
+        </p>
+        <p class="mt-4 text-sm leading-7 text-slate-300">
+          If a page, control, document, visual, or interaction blocks access, report the route, device or assistive technology, and the task you were trying to complete.
+        </p>
+        <CTAButton href="/contact" variant="secondary" class="mt-6">Report an access barrier</CTAButton>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band section-y" id="claims">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Claim and source governance"
+        title="Evidence should travel with the claim"
+        description="The public trust model separates sourced facts, interpretation, limitations, and material that is still held for review."
+      />
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        {claimControls.map((control) => (
+          <article class="ordered-card p-6">
+            <h3 class="text-xl font-black text-white">{control.title}</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-300">{control.text}</p>
+          </article>
+        ))}
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <CTAButton href="/claims" variant="primary">Open claim ledger</CTAButton>
+        <CTAButton href="/evidence" variant="secondary">Inspect evidence base</CTAButton>
+        <CTAButton href="/no-hype" variant="secondary">Read no-hype boundary</CTAButton>
+        <CTAButton href="/for-ai-agents" variant="ghost">AI-agent usage rules</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell section-y" id="decision-boundaries">
+    <SectionHeading
+      eyebrow="Decision boundaries"
+      title="Decision support is not decision authority"
+      description="Structured context can improve review quality. It cannot substitute for material facts, inspection, acceptance criteria, or accountable expert judgment."
+    />
+    <div class="ordered-card-strong mt-10 p-6 md:p-8">
+      <p class="metric-label">Site-wide disclaimer</p>
+      <p class="mt-4 max-w-5xl text-xl font-black leading-8 text-white">{DISCLAIMER}</p>
+      <div class="mt-7 flex flex-wrap gap-2" aria-label="Outputs are not valid for">
+        {notValidFor.map((boundary) => <span class="chip chip--amber">Not valid for {boundary.toLowerCase()}</span>)}
+      </div>
+    </div>
+    <div class="mt-6 grid gap-5 lg:grid-cols-3">
+      <article class="ordered-card p-6">
+        <p class="metric-label">Context quality</p>
+        <h3 class="mt-3 text-2xl font-black text-white">Completeness is not feasibility.</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-300">A more complete brief means the review context is better structured. It does not mean the proposed route is feasible.</p>
+      </article>
+      <article class="ordered-card p-6">
+        <p class="metric-label">Evidence planning</p>
+        <h3 class="mt-3 text-2xl font-black text-white">Evidence burden is not approval.</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-300">An evidence-burden label helps plan review and inspection. It is not acceptance, release, or a quality guarantee.</p>
+      </article>
+      <article class="ordered-card p-6">
+        <p class="metric-label">Commercial boundary</p>
+        <h3 class="mt-3 text-2xl font-black text-white">Exafuse owns commercial review.</h3>
+        <p class="mt-4 text-sm leading-6 text-slate-300">Services, RFQs, production capability, delivery claims, company case studies, and quality pages belong to Exafuse.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="band section-y" id="contact">
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Contact paths"
+        title="Route the issue without crossing a boundary"
+        description="Choose a public-safe route, and keep confidential or safety-critical material out of this personal site."
+      />
+      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        <BentoCard
+          href="/contact"
+          eyebrow="Security / privacy / accessibility / correction"
+          title="Contact route selector"
+          description="Start here to choose LinkedIn, GitHub, or Exafuse based on the issue."
+          cta="Choose a route"
+          strong
+        />
+        <BentoCard
+          href={LINKS.linkedin}
+          eyebrow="Professional discussion"
+          title="LinkedIn"
+          description="Use for public professional context, technical discussion, and non-confidential collaboration questions."
+          cta="Open LinkedIn"
+          external
+        />
+        <BentoCard
+          href={exafuseContact.href}
+          eyebrow="Industrial RFQ / services"
+          title={exafuseContact.label}
+          description="Use the company route for commercial review, RFQs, services, production, delivery, and company-owned claims."
+          cta="Open Exafuse"
+          external
+        />
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+        <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href="/trust.md">AI-readable trust summary</a>
+        <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href="/.well-known/security.txt">security.txt</a>
+        <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href="/humans.txt">humans.txt</a>
+        <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href={SITE.repoUrl} target="_blank" rel="noreferrer">Public repository</a>
+      </div>
+    </div>
+  </section>
+</Layout>

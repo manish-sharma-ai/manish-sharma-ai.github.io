@@ -6,21 +6,22 @@ import LabNoteFooter from "@components/LabNoteFooter.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Why Local Damage on Large Parts Is an LMD Signal";
+const seoTitle = "Local Damage as an LMD Repair Signal - Manish Sharma Lab";
 const description =
-  "Local damage on a large, valuable part can be a strong signal that Laser Metal Deposition repair is worth exploring, subject to material, access, and inspection review.";
+  "Local damage on a large, valuable part can signal that Laser Metal Deposition repair is worth exploring, subject to material, access, and inspection review.";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: title,
   description,
   author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
-  datePublished: SITE.lastUpdated,
+  datePublished: "2026-05-09",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal`
 };
 ---
 
-<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal" jsonLd={jsonLd}>
+<Layout title={seoTitle} description={description} canonical="/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal" jsonLd={jsonLd}>
   <article class="site-shell py-16 md:py-20">
     <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
       <div class="max-w-3xl">

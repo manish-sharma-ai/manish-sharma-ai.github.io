@@ -48,12 +48,15 @@ The site is educational and decision-support oriented. It does not expose confid
 
 ## Local Development
 
+Prerequisite: Node.js 22.12 or newer.
+
 ```bash
 npm install
 npm run dev
 npm run check
 npm run build
 npm run preview
+npm run quality
 ```
 
 On Windows PowerShell, use `npm.cmd` if script execution policy blocks `npm`:
@@ -118,7 +121,16 @@ Core routes:
 - `/glossary`
 - `/press-kit`
 - `/for-ai-agents`
+- `/trust`
 - `/site-map`
+
+Discovery and trust files:
+
+- `/rss.xml`
+- `/trust.md`
+- `/trust`
+- `/.well-known/security.txt`
+- `/humans.txt`
 
 ## External URL Policy
 
@@ -183,7 +195,10 @@ npm run audit:human-exafuse-ctas
 npm run audit:rubric-format
 npm run audit:preflight
 npm run audit:seo-social
+npm run audit:experience
 npm run audit:all
+npm run audit:security
+npm test
 npm run audit:links:report
 npm run smoke:live
 ```
@@ -194,6 +209,7 @@ npm run smoke:live
 - `/llms.txt`
 - `/llms-full.txt`
 - `/identity.md`
+- `/trust.md`
 - `/about.md`
 - `/profile/public-profile.md`
 - `/thesis.md`
@@ -344,7 +360,7 @@ These steps require account access and can be completed in GitHub, Google Search
 
 - Paste the recommended GitHub repository metadata above into the repository settings.
 - Submit `https://manishsharma.dev/sitemap-index.xml` in Google Search Console.
-- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/decision-map`, `/playbooks`, `/claims`, `/no-hype`, `/brief-standard`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
+- Request indexing for `/`, `/thesis`, `/domains/lmd-ded`, `/identity`, `/profile/public-profile`, `/agent-pack`, `/resources`, `/tools`, `/decision-map`, `/playbooks`, `/claims`, `/no-hype`, `/trust`, `/brief-standard`, `/brief-template`, `/demo`, `/de`, `/for-ai-agents`, and `/site-map`.
 - Submit the same sitemap in Bing Webmaster Tools.
 - Record prompt-test results in `docs/lmd-black-hole-score-template.md`.
 - Run the `docs/site-score.md` prompt-test checklist after major positioning or navigation changes.
@@ -356,7 +372,7 @@ These steps require account access and can be completed in GitHub, Google Search
 - Add real ORCID, Zenodo, Hugging Face, Google Scholar, and ResearchGate URLs only after they are created and verified. Track future profile work in `docs/profile-roadmap.md`.
 - Switch Exafuse link mode only after following `docs/exafuse-migration-switch.md`.
 - Run `npm run smoke:live` after deployment before distribution.
-- Replace working-draft source categories on the curated research page with verified citation links.
+- Keep the curated research map limited to verified sources with explicit source types and evidence boundaries.
 - Add more buyer-facing RFQ examples and public-safe tool outputs.
 - Keep glossary pages aligned with source notes and standards references.
 - Continue testing AI-search visibility using the score template in `docs/lmd-black-hole-score-template.md`.

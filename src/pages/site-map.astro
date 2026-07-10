@@ -5,9 +5,9 @@ import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { SITE, SITE_MAP_GROUPS } from "@data/site";
 
-const title = "Site Map - Manish Sharma Lab";
+const title = "Manish Sharma Lab Site Map and Resources";
 const description =
-  "A complete linked map of Manish Sharma Lab: thesis, identity, LMD/DED proof domain, evidence, frameworks, tools, lab notes, glossary pages, RFQ resources, and public files.";
+  "A complete linked map of Manish Sharma Lab: thesis, LMD/DED proof, evidence, frameworks, tools, lab notes, glossary, RFQ resources, and public files.";
 
 const intentGroups = [
   {
@@ -65,6 +65,16 @@ const intentGroups = [
       { label: "Brief Standard", href: "/brief-standard" },
       { label: "llms.txt", href: "/llms.txt" },
       { label: "Agent Pack", href: "/agent-pack" }
+    ]
+  },
+  {
+    label: "I need privacy, trust, or a correction path",
+    tags: ["privacy", "security", "accessibility", "claims"],
+    links: [
+      { label: "Trust Center", href: "/trust" },
+      { label: "Claim Ledger", href: "/claims" },
+      { label: "No-Hype Boundary", href: "/no-hype" },
+      { label: "Contact Routes", href: "/contact" }
     ]
   }
 ];

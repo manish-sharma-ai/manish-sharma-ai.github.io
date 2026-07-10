@@ -6,6 +6,8 @@ Use this checklist when the new Exafuse production site is live and verified.
 
 The personal site uses `EXAFUSE_LINK_MODE = "production-safe"` in `src/config/externalLinks.ts`.
 
+Verification on 2026-07-10: the RFQ Builder, Pathfinder, four case-study paths, LMD guide, and LMD-vs-SLM guide listed below each resolved to `404` after following the current `exafuse.de` redirect. Keep production-safe mode until every required deep path returns a real supporting page.
+
 In this mode, migration-sensitive links for new tools, case pages, and knowledge pages resolve to safe production pages such as Exafuse home, case-study index, knowledge index, or contact.
 
 ## Switch Steps

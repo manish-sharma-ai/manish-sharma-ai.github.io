@@ -9,6 +9,7 @@ import { resolveExafuseLink } from "../../config/externalLinks";
 import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "AI for Laser Metal Deposition and Directed Energy Deposition";
+const seoTitle = "LMD / DED Decision Systems - Manish Sharma Lab";
 const subtitle = "The established technical proof domain behind Manish Sharma Lab.";
 const description =
   "A hub for Manish Sharma's public LMD/DED work: process monitoring, machine vision, robotics, repair, RFQ intelligence, evidence, tools, and glossary resources.";
@@ -140,7 +141,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/domains/lmd-ded" jsonLd={jsonLd}>
+<Layout title={seoTitle} description={description} canonical="/domains/lmd-ded" jsonLd={jsonLd}>
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">

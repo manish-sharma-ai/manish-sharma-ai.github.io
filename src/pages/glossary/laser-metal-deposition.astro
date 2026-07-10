@@ -9,7 +9,8 @@ import { PERSON, SITE } from "@data/site";
 const title = "Laser Metal Deposition";
 const short =
   "Laser Metal Deposition is a metal additive manufacturing route where a focused energy source melts feedstock as it is deposited, often for repair, cladding, local feature addition, and large-part additive manufacturing.";
-const description = `${title}: ${short}`;
+const description =
+  "Laser Metal Deposition explained for repair, cladding, large-part additive manufacturing, process monitoring, RFQs, and inspection-aware decisions.";
 
 const faq = [
   ["Is LMD the same as DED?", "LMD is commonly treated as a laser-based Directed Energy Deposition route. DED is the broader process family; LMD is one practical laser-based route within that family."],
@@ -43,7 +44,7 @@ const jsonLd = [
     headline: `${title} glossary`,
     description,
     author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
-    datePublished: SITE.lastUpdated,
+    datePublished: "2026-05-09",
     dateModified: SITE.lastUpdated,
     url: `${SITE.canonicalUrl}/glossary/laser-metal-deposition`
   }

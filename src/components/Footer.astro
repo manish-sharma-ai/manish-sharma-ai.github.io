@@ -21,6 +21,7 @@ const footerColumns = [
       { label: "Brief Standard", href: "/brief-standard" },
       { label: "Agent Pack", href: "/agent-pack" },
       { label: "Lab Notes", href: "/lab-notes" },
+      { label: "RSS Feed", href: "/rss.xml" },
       { label: "For AI Agents", href: "/for-ai-agents" },
       { label: "Deutsch", href: "/de" }
     ]
@@ -31,7 +32,8 @@ const footerColumns = [
       { label: "Identity", href: "/identity" },
       { label: "About", href: "/about" },
       { label: "Public Profile", href: "/profile/public-profile" },
-      { label: "Press Kit", href: "/press-kit" }
+      { label: "Press Kit", href: "/press-kit" },
+      { label: "Trust Center", href: "/trust" }
     ]
   },
   {
@@ -90,10 +92,11 @@ const footerColumns = [
     </div>
   </div>
 
-  <div class="site-shell grid gap-4 border-t border-white/10 py-6 text-sm text-slate-500 md:grid-cols-[1fr_auto] md:items-center">
+  <div class="site-shell grid gap-4 border-t border-white/10 py-6 text-sm text-slate-400 md:grid-cols-[1fr_auto] md:items-center">
     <div class="flex flex-wrap gap-x-5 gap-y-2">
       <span>&copy; {new Date().getFullYear()} Manish Sharma Lab.</span>
       <span>Decision-support content, not engineering approval.</span>
+      <a href="/trust" class="footer-link font-bold text-slate-300">Trust & privacy</a>
     </div>
     <span>Canonical: {SITE.canonicalUrl}</span>
   </div>

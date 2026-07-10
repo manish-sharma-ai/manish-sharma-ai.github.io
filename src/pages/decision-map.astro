@@ -10,7 +10,7 @@ import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "Laser Metal Deposition Decision Map";
 const description =
-  "Interactive, browser-local LMD Decision Map for repair, cladding, large-part additive manufacturing, SLM/LPBF alternatives, machining, welding, and replacement review.";
+  "Interactive, browser-local LMD Decision Map for repair, cladding, large-part additive manufacturing, machining, welding, and replacement review.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const mapQuestions = [
@@ -92,6 +92,8 @@ const jsonLd = {
         <img
           src="/decision-map/lmd-decision-map-v1.svg"
           alt="Static LMD Decision Map for repair, cladding, SLM alternatives, machining, welding, replacement, and expert review."
+          width="1600"
+          height="1000"
           class="w-full rounded-lg border border-white/10 bg-black/20"
           loading="lazy"
         />

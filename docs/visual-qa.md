@@ -1,44 +1,45 @@
 # Visual QA
 
-Date: 2026-07-07
+Date: 2026-07-10
 
-## Pages To Check In Browser
+## Current release matrix
+
+Check at 360 px, 768 px, 1024 px, and 1440 px where practical:
 
 - `/`
 - `/tools`
+- `/trust`
+- `/research/core-lmd-ai-sources`
 - `/frameworks`
 - `/for-ai-agents`
 - `/domains/lmd-ded`
-- `/evidence`
-- `/identity`
-- `/about`
+- `/de`
+- `/404.html`
 
-## Checklist
+## Interaction checklist
 
-- Header shows five primary links on desktop: Thesis, Proof, LMD / DED, Frameworks, Writing.
-- `More` menu contains secondary routes and does not overflow.
-- Mobile menu opens as a grouped panel with large tap targets.
-- Homepage first viewport clearly says `Manish Sharma Lab` and `AI for Laser Metal Deposition`.
-- The three flagship assets are visually dominant directly after the hero.
-- Exafuse actions are visually distinct and point to production Exafuse URLs.
-- Tool outputs show preliminary recommendation, why, missing information, risk flags, suggested next step, and disclaimer.
-- Tool copy buttons are visible.
-- Cards do not overlap on mobile.
-- Text does not overflow buttons, chips, nav items, cards, or tool controls.
-- Focus states are visible for keyboard navigation.
-- Motion is subtle and not required for understanding.
+- Desktop header shows Start, Thesis, LMD / DED, Tools, Proof, About, and a readable Resources control without overflow.
+- Mobile menu opens as a grouped panel with large tap targets and closes on outside click or Escape.
+- Command search traps focus, supports arrow keys and Enter, restores focus, and opens a `?q=` query automatically.
+- Homepage has one dominant cockpit action, one worked-example action, and one Exafuse handoff.
+- Homepage task paths make repair, RFQ, monitoring, and process-selection starts obvious.
+- Compact cockpit shows the worked brief before optional controls; “Start your own brief” reveals controls.
+- Information and risk controls are progressively disclosed.
+- Secondary workbench modules stay collapsed until requested and open when their hash route is used.
+- Trust, source, 404, and German pages preserve the same hierarchy and contrast as core routes.
+- Cards do not overlap; text does not overflow controls or chips.
+- Focus states remain visible at 200% zoom.
+- Reduced-motion mode removes nonessential motion without hiding information.
 
-## Automated Status
+## Automated status
 
-- `npm.cmd run check`: passing after visual refactor.
-- `npm.cmd run lint`: passing; script aliases to `astro check`.
-- `npm.cmd run build`: passing; generated 41 static pages.
-- Local preview HTTP checks returned `200` for:
-  - `/`
-  - `/tools/`
-  - `/frameworks/`
-  - `/for-ai-agents/`
+- Astro 7 production build: passing, 56 generated pages.
+- Astro diagnostics: 121 files, 0 errors, warnings, or hints.
+- Decision Brief tests: 9 passing.
+- `audit:all`: passing, including the comprehensive experience/link/fragment audit.
+- Production dependency audit: 0 vulnerabilities.
+- External shared CSS reduced homepage HTML from the 134 KB baseline to about 76 KB and tools HTML from 216 KB to about 167 KB before transfer compression.
 
-## Manual Notes
+## Manual status
 
-Preview screenshots were not captured in this Windows shell because the available Playwright wrapper requires `bash`, no repo-local Playwright binary is installed, and no browser connector was exposed for screenshot capture. Run the local preview and check the pages above before pushing to production if visual screenshots are required.
+The in-app browser backend was unavailable in this coding session, so screenshots, real-browser keyboard behavior, measured contrast, and responsive visual sign-off remain open evidence gates. The localhost preview must be reviewed before deployment. Do not convert historical Lighthouse results into current claims until the representative-route matrix is rerun.

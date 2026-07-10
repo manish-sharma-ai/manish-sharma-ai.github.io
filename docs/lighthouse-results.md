@@ -1,5 +1,7 @@
 # Lighthouse Results
 
+> Historical lab result, not current release evidence. These scores were recorded on 2026-05-10 before the current 56-page product, trust, accessibility, and Astro 7 release. Re-run the representative-route matrix after localhost visual approval and before claiming current Lighthouse scores.
+
 Run date: 2026-05-10
 
 Targets: local production preview of the homepage and press kit page.

@@ -9,7 +9,7 @@ import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
 const title = "The LMD-AI Maturity Model by Manish Sharma";
 const description =
-  "A six-level framework for moving Laser Metal Deposition workflows from manual observation to sensor recording, offline analysis, real-time decision support, semi-closed-loop correction, and validated closed-loop control.";
+  "A six-level framework for moving LMD workflows from manual observation and sensor records toward validated, governed AI decision support.";
 
 const frameworkBrief = [
   ["Definition", "A six-level model for moving LMD workflows from manual observation to validated closed-loop control candidates."],
@@ -40,7 +40,7 @@ const jsonLd = {
   headline: title,
   description,
   author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
-  datePublished: SITE.lastUpdated,
+  datePublished: "2026-05-09",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/frameworks/lmd-ai-maturity-model`,
   about: ["Laser Metal Deposition", "AI maturity", "Process monitoring", "Manufacturing data", "Closed-loop control"]
