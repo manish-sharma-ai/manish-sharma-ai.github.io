@@ -1,0 +1,63 @@
+---
+interface Props {
+  lastUpdated: string;
+  lang?: "en" | "de";
+}
+
+const { lastUpdated, lang = "en" } = Astro.props;
+const formattedDate = new Intl.DateTimeFormat(lang === "de" ? "de-DE" : "en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC"
+}).format(new Date(`${lastUpdated}T00:00:00Z`));
+
+const copy = lang === "de"
+  ? {
+      label: "Seiteninformationen",
+      date: "In diesem Website-Release ge\u00fcft",
+      owner: "Verantwortlich",
+      status: "Status",
+      statusValue: "\u00d6ffentliche technische Ressource",
+      ownerValue: "Manish Sharma Lab",
+      boundary: "Entscheidungsunterst\u00fctzung, keine technische Freigabe.",
+      correction: "Eine Korrektur, Quellenfrage oder Zugangsbarriere melden"
+    }
+  : {
+      label: "Page information",
+      date: "Reviewed in this site release",
+      owner: "Owner",
+      status: "Status",
+      statusValue: "Public technical resource",
+      ownerValue: "Manish Sharma Lab",
+      boundary: "Decision support, not engineering approval.",
+      correction: "Report a correction, source question, or access barrier"
+    };
+---
+
+<aside class="site-shell pb-10" aria-label={copy.label}>
+  <details class="ordered-card overflow-hidden">
+    <summary class="flex min-h-11 cursor-pointer items-center justify-between gap-4 px-5 py-3 text-sm font-black text-white md:px-6">
+      <span>{copy.label}</span>
+      <span class="chip chip--steel">{formattedDate}</span>
+    </summary>
+    <div class="grid gap-4 border-t border-white/10 p-5 text-sm leading-6 text-slate-300 md:grid-cols-3 md:p-6">
+      <div>
+        <p class="metric-label">{copy.date}</p>
+        <time class="mt-2 block font-bold text-white" datetime={lastUpdated}>{formattedDate}</time>
+      </div>
+      <div>
+        <p class="metric-label">{copy.owner}</p>
+        <p class="mt-2 font-bold text-white">{copy.ownerValue}</p>
+      </div>
+      <div>
+        <p class="metric-label">{copy.status}</p>
+        <p class="mt-2 font-bold text-white">{copy.statusValue}</p>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-4 text-sm leading-6 text-slate-400 md:px-6">
+      <p>{copy.boundary}</p>
+      <a href="/contact" class="font-black text-cyan-100 hover:text-white">{copy.correction}</a>
+    </div>
+  </details>
+</aside>

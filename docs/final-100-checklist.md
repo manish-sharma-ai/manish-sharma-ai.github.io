@@ -4,6 +4,7 @@ Use this before a public release.
 
 - No visual prompt leakage in rendered text.
 - Every rendered HTML page has exactly one meaningful H1.
+- Every rendered HTML page exposes an expandable, human-visible ownership, release-review date, status, boundary, and correction path.
 - `/de/` renders with `lang="de"` and reciprocal English/German alternate links.
 - Site search has combobox semantics, a focus trap, background inertness, and working `?q=` deep links.
 - The homepage and tools expose optional controls progressively instead of showing every control at once.

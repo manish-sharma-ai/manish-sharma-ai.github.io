@@ -2,8 +2,9 @@
 import CommandPalette from "@components/CommandPalette.astro";
 import Footer from "@components/Footer.astro";
 import Header from "@components/Header.astro";
+import PageProvenance from "@components/PageProvenance.astro";
 import SiteShell from "@components/SiteShell.astro";
-import { COMMAND_PAGES } from "@data/site";
+import { COMMAND_PAGES, SITE } from "@data/site";
 import "@styles/global.css";
 
 const title = "Page not found - Manish Sharma Lab";
@@ -107,6 +108,7 @@ const coreTasks = [
             </div>
           </div>
         </section>
+        <PageProvenance lastUpdated={SITE.lastUpdated} />
       </main>
       <Footer />
       <CommandPalette pages={COMMAND_PAGES} />

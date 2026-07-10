@@ -4,6 +4,7 @@ import Footer from "@components/Footer.astro";
 import CommandPalette from "@components/CommandPalette.astro";
 import Breadcrumbs from "@components/Breadcrumbs.astro";
 import RelatedLinks from "@components/RelatedLinks.astro";
+import PageProvenance from "@components/PageProvenance.astro";
 import SiteShell from "@components/SiteShell.astro";
 import { COMMAND_PAGES, PERSON, SITE } from "@data/site";
 import { absoluteUrl, canonicalPath } from "@utils/urls";
@@ -130,6 +131,7 @@ const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
       <main id="main-content">
         <slot />
         <RelatedLinks path={canonical} />
+        <PageProvenance lastUpdated={lastUpdated} lang={lang} />
       </main>
       <Footer />
       <CommandPalette pages={COMMAND_PAGES} />

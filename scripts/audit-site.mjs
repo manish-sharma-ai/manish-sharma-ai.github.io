@@ -1360,6 +1360,13 @@ function auditExperience() {
     }
   }
 
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const visibleText = visibleTextFromHtml(text);
+    const expectedLabel = file === "dist/de/index.html" ? "Seiteninformationen" : "Page information";
+    if (!visibleText.includes(expectedLabel)) findings.push(`${file}: missing visible page provenance label "${expectedLabel}"`);
+    if (!visibleText.includes("Manish Sharma Lab")) findings.push(`${file}: missing visible page provenance owner`);
+  }
+
   const germanFile = "dist/de/index.html";
   if (existsSync(join(root, germanFile))) {
     const html = read(germanFile);

@@ -106,15 +106,17 @@ No criterion is rounded up to 100 merely because the implementation is finished.
 
 ## Release-candidate re-score
 
+This release adds an expandable page-provenance panel to every rendered page. It makes the site-release review date, owner, public-resource status, decision boundary, and correction path visible without claiming an external editorial audit.
+
 The 2026-07-10 implementation closes the major repository-controlled gaps: progressive cockpit/workbench controls, task-first homepage paths, verified-source map, Trust Center, RSS, custom 404, German language metadata, complete H1 coverage, keyboard-aware query search, validated internal routes and ordinary fragments, validated preset IDs with runtime-safe hash handling, cacheable CSS, Astro 7, zero production dependency vulnerabilities, unit tests, CI gates, and synchronized AI-readable trust files. A follow-up intake refinement adds optional request role/phase and dimensions/mass plus quantity/timeline context; the mutually exclusive context choices now use accessible radio controls, while copy/export has a browser-local fallback and recovery message. The documented expert heuristic review records the role-based reasoning but does not replace observed user testing.
 
-The release-candidate score is calculated criterion by criterion in the same order as the 50-row table above. Every category contains five criteria, so the overall score is the unweighted mean of all 50 scores: `4,454 / 50 = 89.1`.
+The release-candidate score is calculated criterion by criterion in the same order as the 50-row table above. Every category contains five criteria, so the overall score is the unweighted mean of all 50 scores: `4,460 / 50 = 89.2`.
 
 | Category and criterion numbers | Release-candidate criterion scores, in order | Sum | Average |
 | --- | --- | ---: | ---: |
 | Strategy and positioning (1-5) | 94, 96, 93, 94, 91 | 468 | 93.6 |
 | Information architecture (6-10) | 94, 84, 93, 94, 91 | 456 | 91.2 |
-| Content and editorial quality (11-15) | 92, 94, 90, 84, 84 | 444 | 88.8 |
+| Content and editorial quality (11-15) | 92, 94, 90, 84, 90 | 450 | 90.0 |
 | Product utility and conversion (16-20) | 93, 93, 92, 96, 86 | 460 | 92.0 |
 | Trust and proof (21-25) | 99, 90, 68, 56, 94 | 407 | 81.4 |
 | Visual design (26-30) | 92, 90, 92, 82, 82 | 438 | 87.6 |
@@ -127,7 +129,7 @@ The release-candidate score is calculated criterion by criterion in the same ord
 | --- | ---: | ---: | --- |
 | Strategy and positioning | 89.2 | 93.6 | First-viewport comprehension test |
 | Information architecture | 78.2 | 91.2 | Real task-findability review and hub-overlap decisions |
-| Content and editorial quality | 83.0 | 88.8 | External editorial review and ongoing refresh cadence |
+| Content and editorial quality | 83.0 | 90.0 | External editorial review and ongoing refresh cadence |
 | Product utility and conversion | 79.6 | 92.0 | Timed completion and Exafuse-handoff testing |
 | Trust and proof | 76.4 | 81.4 | Exact Exafuse source migration and real third-party adoption |
 | Visual design | 83.6 | 87.6 | Browser screenshots and owner/user visual sign-off |
