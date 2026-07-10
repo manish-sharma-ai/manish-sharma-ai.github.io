@@ -77,6 +77,7 @@ https://manishsharma.dev/sitemap-index.xml
 - `https://manishsharma.dev/demo`
 - `https://manishsharma.dev/de`
 - `https://manishsharma.dev/for-ai-agents`
+- `https://manishsharma.dev/review`
 
 ## Bing Webmaster Tools
 
@@ -104,6 +105,7 @@ https://manishsharma.dev/sitemap-index.xml
 - `https://manishsharma.dev/brief-template`
 - `https://manishsharma.dev/demo`
 - `https://manishsharma.dev/resources`
+- `https://manishsharma.dev/review`
 - `https://manishsharma.dev/decision-map`
 - `https://manishsharma.dev/decision-map/lmd-decision-map-v1.md`
 - `https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg`

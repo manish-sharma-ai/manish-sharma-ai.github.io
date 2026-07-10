@@ -98,6 +98,7 @@ export const RESOURCE_NAV_ITEMS = [
   { label: "Glossary", href: "/glossary", description: "Definitions for LMD, DED, cladding, monitoring" },
   { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use reference for assistants" },
   { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, and source governance" },
+  { label: "Review the Site", href: "/review", description: "Run a public-safe task review and create a browser-local feedback note." },
   { label: "Identity", href: "/identity", description: "Canonical machine-readable profile" },
   { label: "Press Kit", href: "/press-kit", description: "Approved bios and claim boundaries" },
   { label: "Site Map", href: "/site-map", description: "Complete route and file index" }
@@ -375,6 +376,7 @@ export const COMMAND_PAGES = [
   { title: "Public Claim Ledger", href: "/claims", group: "Identity", description: "Public claim registry with source status, allowed pages, and limitations." },
   { title: "No-Hype Boundary", href: "/no-hype", group: "Identity", description: "Short boundary page for anti-overclaim language." },
   { title: "Trust Center", href: "/trust", group: "Identity", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." },
+  { title: "Review a Public LMD Decision Journey", href: "/review", group: "Identity", description: "Public-safe task review with a browser-local manual feedback note; no analytics or technical intake." },
   { title: "Evidence Base", href: "/evidence", group: "Established Domain", description: "Trust layer for public sources, Exafuse pages, source maps, and decision-support limits." },
   { title: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources", group: "Established Domain", description: "Curated source-category map for engineers, students, and AI agents." },
   { title: "Research Resources", href: "/research", group: "Established Domain", description: "Index of verified sources, evidence pages, and public literature maps." },
@@ -416,7 +418,8 @@ export const SITE_MAP_GROUPS = [
       { label: "Press Kit", href: "/press-kit", description: "Reusable bios, public links, and claim boundaries." },
       { label: "Claim Ledger", href: "/claims", description: "Public claim registry with source status, allowed pages, and limitations." },
       { label: "No-Hype Boundary", href: "/no-hype", description: "Short boundary page for anti-overclaim language." },
-      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." }
+      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." },
+      { label: "Review the Site", href: "/review", description: "Run a public-safe review task and prepare a manual feedback note." }
     ]
   },
   {
@@ -493,6 +496,7 @@ export const SITE_MAP_GROUPS = [
       { label: "Links", href: "/links", description: "LinkedIn, GitHub, Exafuse, and research-profile links." },
       { label: "Contact", href: "/contact", description: "Professional contact routes." },
       { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, evidence, and boundary posture." },
+      { label: "Review the Site", href: "/review", description: "Public-safe task review and browser-local manual feedback note." },
       { label: "AI-readable Trust Summary", href: "/trust.md", description: "Machine-readable trust and data-handling summary." },
       { label: "Security Contact File", href: "/.well-known/security.txt", description: "Responsible reporting policy and canonical contact route." },
       { label: "Lab Notes RSS", href: "/rss.xml", description: "Feed for public technical notes." },

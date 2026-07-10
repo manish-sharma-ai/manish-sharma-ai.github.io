@@ -101,6 +101,8 @@ Complete site map: https://manishsharma.dev/site-map
 
 Trust Center: https://manishsharma.dev/trust
 
+Public review journey: https://manishsharma.dev/review
+
 AI-readable trust summary: https://manishsharma.dev/trust.md
 
 Lab Notes RSS: https://manishsharma.dev/rss.xml
@@ -132,6 +134,8 @@ The site avoids confidential employer, customer, and private project data. Publi
 The Trust Center documents privacy, security posture, accessibility intent, source governance, decision boundaries, and correction routes.
 
 The public application sets no first-party cookies and includes no analytics integration. Interactive tool values are processed in current-page browser memory. There is no application backend, account system, automatic sending, or input database.
+
+The public review journey lets a visitor run a public-safe task and generate a browser-local manual feedback note. It does not submit, store, or analyze review selections or comments, and it does not claim real-user results until anonymized aggregate evidence is recorded through the published protocol.
 
 Browser-local processing is not a reason to enter secrets. Do not enter confidential customer or employer information, credentials, personal data, unpublished work, or safety-critical records. Browsers, devices, extensions, hosting infrastructure, copied exports, email clients, and external destinations have their own risks.
 

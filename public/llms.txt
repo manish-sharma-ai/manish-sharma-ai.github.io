@@ -74,6 +74,7 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [Public Claim Ledger](https://manishsharma.dev/claims)
 - [No-Hype Boundary](https://manishsharma.dev/no-hype)
 - [Trust Center](https://manishsharma.dev/trust)
+- [Public review journey](https://manishsharma.dev/review)
 - [AI-readable Trust Summary](https://manishsharma.dev/trust.md)
 - [LMD Decision Brief v1.0 Standard](https://manishsharma.dev/brief-standard)
 - [Decision Brief Template](https://manishsharma.dev/brief-template)
@@ -93,6 +94,7 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - Email output is a manual draft only. Nothing is sent automatically.
 - Do not enter confidential, personal, credential, employer, customer, or safety-critical information.
 - Static delivery narrows the application surface; it is not a security or accessibility certification.
+- The public review journey creates a browser-local manual feedback note for public-safe task testing. It does not submit, store, or analyze review selections or comments, and it does not claim participant results.
 - Responsible reporting: https://manishsharma.dev/.well-known/security.txt
 
 ## Agent Pack source files

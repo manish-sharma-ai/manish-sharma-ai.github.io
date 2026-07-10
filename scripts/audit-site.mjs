@@ -1352,6 +1352,32 @@ function auditExperience() {
     }
   }
 
+  const reviewFile = "dist/review/index.html";
+  if (existsSync(join(root, reviewFile))) {
+    const visibleText = visibleTextFromHtml(read(reviewFile));
+    for (const marker of [
+      "Review one decision journey. Help make the next one clearer.",
+      "No data collection",
+      "Make a privacy-safe review note.",
+      "Ready to test, not yet tested",
+      "Do not include customer, employer, personal, credential, technical, or safety-critical information."
+    ]) {
+      if (!visibleText.includes(marker)) findings.push(`${reviewFile}: missing public-review marker "${marker}"`);
+    }
+  } else {
+    findings.push(`${reviewFile}: missing public-review page`);
+  }
+
+  const publicReviewSource = "src/lib/publicReview.ts";
+  if (existsSync(join(root, publicReviewSource))) {
+    const source = read(publicReviewSource);
+    for (const marker of ["Privacy check:", "No public-safe comment added.", "public-review note"]) {
+      if (!source.includes(marker)) findings.push(`${publicReviewSource}: missing safe-review note marker "${marker}"`);
+    }
+  } else {
+    findings.push(`${publicReviewSource}: missing`);
+  }
+
   const cockpitSource = "src/components/LmdDecisionCockpit.tsx";
   if (existsSync(join(root, cockpitSource))) {
     const source = read(cockpitSource);

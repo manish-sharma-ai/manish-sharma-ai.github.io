@@ -108,6 +108,8 @@ No criterion is rounded up to 100 merely because the implementation is finished.
 
 This release adds an expandable page-provenance panel to every rendered page. It makes the site-release review date, owner, public-resource status, decision boundary, and correction path visible without claiming an external editorial audit.
 
+The public `/review/` journey now turns the privacy-safe outcome protocol into an executable browser-local task flow and manual feedback note. It makes target-user testing easier to run, but it does not collect participants or establish a baseline; criteria 46 and 47 remain evidence-gated and their strict scores are unchanged.
+
 The 2026-07-10 implementation closes the major repository-controlled gaps: progressive cockpit/workbench controls, task-first homepage paths, verified-source map, Trust Center, RSS, custom 404, German language metadata, complete H1 coverage, keyboard-aware query search, validated internal routes and ordinary fragments, validated preset IDs with runtime-safe hash handling, cacheable CSS, Astro 7, zero production dependency vulnerabilities, unit tests, CI gates, and synchronized AI-readable trust files. A follow-up intake refinement adds optional request role/phase and dimensions/mass plus quantity/timeline context; the mutually exclusive context choices now use accessible radio controls, while copy/export has a browser-local fallback and recovery message. The documented expert heuristic review records the role-based reasoning but does not replace observed user testing.
 
 The release-candidate score is calculated criterion by criterion in the same order as the 50-row table above. Every category contains five criteria, so the overall score is the unweighted mean of all 50 scores: `4,460 / 50 = 89.2`.

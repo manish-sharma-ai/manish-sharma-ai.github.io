@@ -39,4 +39,16 @@ Give each participant public-safe dummy data only. Record task outcome, elapsed 
 
 ## Current status
 
-Protocol ready; participant evidence not yet collected. Do not score real-user validation as complete until the anonymized aggregate results are recorded here.
+The public `/review/` journey now exposes the protocol as an executable browser-local task flow. It creates a copyable manual review note and does not submit, store, or analyze selections or comments. This makes the protocol easier to run; it does not create participant evidence by itself.
+
+Participant evidence is still not collected. Do not score real-user validation as complete until the anonymized aggregate results are recorded here.
+
+## Aggregate Result Record
+
+After a moderated session, record only the anonymized aggregate below. Do not add participant names, employers, recordings, entered text, real technical inputs, customer identifiers, or any other personal/sensitive data.
+
+| Review date | Number of participants | Tasks meeting threshold | Median worked-brief time | Boundary misunderstanding count | Main friction pattern | Follow-up change | Reviewer |
+| --- | ---: | --- | --- | ---: | --- | --- | --- |
+| Not yet run | 0 | Not yet measured | Not yet measured | Not yet measured | Not yet measured | Not yet measured | Not yet assigned |
+
+One row should represent one completed review round. Mark the strict scorecard evidence gate only after at least five target users and all release thresholds above are met.

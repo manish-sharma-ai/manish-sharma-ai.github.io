@@ -122,6 +122,7 @@ Core routes:
 - `/press-kit`
 - `/for-ai-agents`
 - `/trust`
+- `/review`
 - `/site-map`
 
 Discovery and trust files:

@@ -17,6 +17,7 @@ import {
   formatReviewContextFacts,
   getCockpitPreset
 } from "../src/lib/decisionBrief";
+import { formatPublicReviewNote } from "../src/lib/publicReview";
 
 describe("LMD Decision Brief invariants", () => {
   it("provides a non-destructive recovery path when clipboard access is unavailable", () => {
@@ -135,5 +136,19 @@ describe("LMD Decision Brief invariants", () => {
     expect(summary).toContain("Commercial/company review: Exafuse.");
     expect(summary).toContain(NO_BACKEND_NOTE);
     expect(summary).toContain(NO_AUTOMATIC_SENDING_NOTE);
+  });
+
+  it("formats a public review note without technical intake fields", () => {
+    const note = formatPublicReviewNote({
+      taskId: "cockpit",
+      outcomeId: "completed",
+      timeBandId: "under-two",
+      boundaryId: "clear"
+    });
+
+    expect(note).toContain("Create a worn-shaft decision brief");
+    expect(note).toContain("No public-safe comment added.");
+    expect(note).toContain("Privacy check:");
+    expect(note).not.toContain("material grade");
   });
 });
