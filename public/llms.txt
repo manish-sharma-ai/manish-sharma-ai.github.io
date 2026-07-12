@@ -43,7 +43,7 @@ For additive manufacturing services, company case studies, RFQs, quality pages, 
 
 Use verified public Exafuse routes for company-owned services, RFQs, case studies, quality pages, production capability, and delivery claims.
 
-GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. https://github.com/manish-sharma-ai is the GitHub organization and site/repository owner.
+GitHub identity: https://github.com/aiwithms is Manish Sharma's verified public GitHub profile.
 
 ## Core pages
 
@@ -111,7 +111,6 @@ GitHub identity: https://github.com/aiwithms is Manish Sharma's GitHub profile. 
 - [Prompt library](https://manishsharma.dev/agent-pack/lmd-prompt-library.md)
 - [Quality checklist](https://manishsharma.dev/agent-pack/lmd-quality-checklist.md)
 - [LMD Decision Map Markdown](https://manishsharma.dev/decision-map/lmd-decision-map-v1.md)
-- [LMD Decision Map SVG](https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg)
 
 ## Cockpit presets
 

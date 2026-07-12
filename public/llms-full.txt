@@ -2,13 +2,9 @@
 
 Canonical URL: https://manishsharma.dev
 
-Repository: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
-
 GitHub profile: https://github.com/aiwithms
 
-GitHub organization / site repository owner: https://github.com/manish-sharma-ai
-
-GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-ai` is the GitHub organization and repository owner for this GitHub Pages site.
+GitHub identity note: `aiwithms` is Manish Sharma's verified public GitHub profile.
 
 ## Primary Entity
 
@@ -165,10 +161,9 @@ https://manishsharma.dev/decision-map
 
 The decision map is a browser-local route screen for repair, cladding, large-part additive manufacturing, SLM/LPBF alternatives, machining, welding, replacement, and expert-review paths. It produces preliminary route signals, missing information, risk flags, evidence needed, and an LMD Decision Brief v1.0 handoff. It is not a feasibility decision, final engineering approval, material certification, or quality guarantee.
 
-Static decision map source files:
+Decision map source file:
 
 - Markdown: https://manishsharma.dev/decision-map/lmd-decision-map-v1.md
-- SVG: https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg
 
 Decision Playbooks:
 https://manishsharma.dev/playbooks
@@ -291,7 +286,6 @@ Source files:
 - Decision cockpit route: https://manishsharma.dev/tools#lmd-decision-cockpit
 - LMD Decision Map: https://manishsharma.dev/decision-map
 - LMD Decision Map Markdown: https://manishsharma.dev/decision-map/lmd-decision-map-v1.md
-- LMD Decision Map SVG: https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg
 - Decision playbooks: https://manishsharma.dev/playbooks
 - Claim source notes: https://manishsharma.dev/claims
 - No-hype boundary: https://manishsharma.dev/no-hype
@@ -446,7 +440,6 @@ Avoid these claims:
 - Exafuse: https://exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms
-- GitHub organization / site repository owner: https://github.com/manish-sharma-ai
 
 ## Disclaimer
 

@@ -2,7 +2,7 @@
 import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import SectionHeading from "@components/SectionHeading.astro";
-import { CLAIM_REVIEW_FEEDBACK_URL } from "@data/briefStandard";
+import { CLAIM_REVIEW_FEEDBACK_ROUTE } from "@data/briefStandard";
 import { PUBLIC_CLAIMS, getClaimHref, getClaimHumanExplanation, getClaimSourceStatus } from "@data/publicClaims";
 import { PERSON, SITE } from "@data/site";
 
@@ -59,7 +59,7 @@ const jsonLd = {
         Claims are public context, not transferable feasibility or approval.
       </p>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href={CLAIM_REVIEW_FEEDBACK_URL} class="btn btn-secondary" target="_blank" rel="noreferrer">Suggest a claim correction</a>
+        <a href={CLAIM_REVIEW_FEEDBACK_ROUTE} class="btn btn-secondary">Suggest a claim correction</a>
         <a href="/no-hype" class="btn btn-secondary">Review boundary rules</a>
       </div>
     </div>

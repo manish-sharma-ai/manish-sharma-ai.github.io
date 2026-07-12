@@ -22,8 +22,7 @@ const mapQuestions = [
   ["Is machining, welding, or replacement better?", "Some requests are not LMD-first until missing stock, crack root cause, economics, or inspection are clarified."]
 ];
 
-const staticLinks = [
-  { label: "Static SVG map", href: "/decision-map/lmd-decision-map-v1.svg", description: "Shareable visual version of the route logic." },
+const referenceLinks = [
   { label: "Markdown source", href: "/decision-map/lmd-decision-map-v1.md", description: "AI-readable and copyable text version." },
   { label: "LMD Decision Brief Standard", href: "/brief-standard", description: "Convert the route signal into the standard brief." },
   { label: "LMD vs SLM Advisor", href: "/tools#route-module", description: "Run a narrower process route check." },
@@ -64,7 +63,6 @@ const jsonLd = {
       <p class="mt-4 max-w-4xl text-base font-bold leading-7 text-amber-100">{DISCLAIMER}</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="#interactive-map" variant="primary">Start map</CTAButton>
-        <CTAButton href="/decision-map/lmd-decision-map-v1.svg" variant="secondary">Open SVG</CTAButton>
         <CTAButton href="/decision-map/lmd-decision-map-v1.md" variant="secondary">Open Markdown</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
@@ -72,31 +70,19 @@ const jsonLd = {
   </section>
 
   <section class="band section-y">
-    <div class="site-shell grid gap-8 lg:grid-cols-[0.52fr_0.48fr] lg:items-center">
-      <div>
-        <SectionHeading
-          eyebrow="Decision structure"
-          title="The map asks practical buyer questions first"
-          description="It does not replace expert review. It makes the route conversation less vague before an RFQ or internal review starts."
-        />
-        <div class="mt-8 grid gap-3">
-          {mapQuestions.map(([question, answer]) => (
-            <article class="ordered-card p-4">
-              <h2 class="text-lg font-black text-white">{question}</h2>
-              <p class="mt-2 text-sm leading-6 text-slate-300">{answer}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-      <div class="ordered-card-strong p-4">
-        <img
-          src="/decision-map/lmd-decision-map-v1.svg"
-          alt="Static LMD Decision Map for repair, cladding, SLM alternatives, machining, welding, replacement, and expert review."
-          width="1600"
-          height="1000"
-          class="w-full rounded-lg border border-white/10 bg-black/20"
-          loading="lazy"
-        />
+    <div class="site-shell">
+      <SectionHeading
+        eyebrow="Decision structure"
+        title="The map asks practical buyer questions first"
+        description="It does not replace expert review. It makes the route conversation less vague before an RFQ or internal review starts."
+      />
+      <div class="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {mapQuestions.map(([question, answer]) => (
+          <article class="ordered-card p-4">
+            <h2 class="text-lg font-black text-white">{question}</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-300">{answer}</p>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -115,11 +101,11 @@ const jsonLd = {
   <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-[0.42fr_0.58fr]">
       <SectionHeading
-        eyebrow="Static versions"
-        title="Share the map without using the interactive tool"
-        description="The SVG is useful for presentations and LinkedIn. The Markdown source is useful for AI retrieval, internal notes, and source-aware reuse. Use browser print to save this page as a PDF."
+        eyebrow="Reference file"
+        title="Use the text route map without the interactive tool"
+        description="The Markdown source is useful for AI retrieval, internal notes, and source-aware reuse. Use browser print to save this page as a PDF."
       />
-      <SourceLinks links={staticLinks} />
+      <SourceLinks links={referenceLinks} />
     </div>
   </section>
 </Layout>

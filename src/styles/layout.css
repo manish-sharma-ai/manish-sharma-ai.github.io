@@ -186,6 +186,7 @@ select {
   position: relative;
   min-height: min(900px, calc(100svh - var(--header-height)));
   padding-block: clamp(56px, 8vw, 112px);
+  grid-template-columns: minmax(0, 1fr) minmax(28rem, 1fr);
 }
 
 .home-hero-grid::before {

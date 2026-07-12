@@ -3,7 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { ACTIVE_PROFILE_LINKS, GITHUB_IDENTITY } from "@data/profiles";
+import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Public Profile";
@@ -22,9 +22,7 @@ const facts = [
   ["Decision map", `${SITE.canonicalUrl}/decision-map`],
   ["Website", SITE.canonicalUrl],
   ["LinkedIn", LINKS.linkedin],
-  ["GitHub profile", `${GITHUB_IDENTITY.profile.slug} - ${GITHUB_IDENTITY.profile.href}`],
-  ["Site/repository owner", `${GITHUB_IDENTITY.repositoryOwner.slug} - ${GITHUB_IDENTITY.repositoryOwner.href}`],
-  ["Website repository", GITHUB_IDENTITY.repository.href],
+  ["GitHub profile", LINKS.github],
   ["Exafuse", LINKS.exafuse]
 ];
 

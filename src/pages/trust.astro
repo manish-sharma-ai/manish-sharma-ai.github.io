@@ -13,7 +13,6 @@ const description =
   "Privacy, security posture, accessibility intent, evidence handling, decision boundaries, and contact routes for Manish Sharma Lab.";
 const lastUpdated = "2026-07-12";
 const exafuseContact = resolveExafuseLink("contact");
-const repositoryIssues = SITE.repoUrl + "/issues";
 
 const posture = [
   {
@@ -153,7 +152,6 @@ const trustJsonLd = {
         <CTAButton href="/claims" variant="primary">Inspect claim source notes</CTAButton>
         <CTAButton href="/review" variant="secondary">Review a public task</CTAButton>
         <CTAButton href="/contact" variant="secondary">Report an issue</CTAButton>
-        <CTAButton href={SITE.repoUrl} variant="ghost" external>View public source</CTAButton>
       </div>
     </div>
 
@@ -183,7 +181,7 @@ const trustJsonLd = {
       <SectionHeading
         eyebrow="Current posture"
         title="Four trust commitments, with their limits"
-        description="Each statement is scoped to what this public repository and its application code can support."
+        description="Each statement is scoped to what the public site can support and describe."
       />
       <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {posture.map((item) => (
@@ -234,9 +232,9 @@ const trustJsonLd = {
         </article>
         <article class="ordered-card p-6">
           <p class="metric-label">Inspectability</p>
-          <h3 class="mt-3 text-2xl font-black text-white">Public source repository</h3>
+          <h3 class="mt-3 text-2xl font-black text-white">Public implementation notes</h3>
           <p class="mt-4 text-sm leading-6 text-slate-300">
-            Page code, browser tools, public data, and deployment configuration can be inspected in the public repository.
+            Public pages describe the browser-local tools, data posture, and technical boundaries that matter to visitors.
           </p>
         </article>
         <article class="ordered-card p-6">
@@ -252,12 +250,11 @@ const trustJsonLd = {
           <p class="metric-label">Responsible reporting</p>
           <h3 class="mt-3 text-2xl font-black text-white">Share the minimum safe reproduction.</h3>
           <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-300">
-            Start through the contact page. Use a public repository issue only for non-sensitive, reproducible problems. Do not publish credentials, personal data, confidential material, or live exploit details; request a private contact route first.
+            Start through the contact page. Do not publish credentials, personal data, confidential material, or live exploit details; request a private contact route first.
           </p>
         </div>
         <div class="flex flex-wrap gap-3 md:justify-end">
           <CTAButton href="/contact" variant="primary">Security contact</CTAButton>
-          <CTAButton href={repositoryIssues} variant="secondary" external>Public issues</CTAButton>
         </div>
       </div>
     </div>
@@ -387,7 +384,6 @@ const trustJsonLd = {
         <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href="/trust.md">AI-readable trust summary</a>
         <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href="/.well-known/security.txt">security.txt</a>
         <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href="/humans.txt">humans.txt</a>
-        <a class="footer-link rounded-xl px-3 py-2 text-slate-300" href={SITE.repoUrl} target="_blank" rel="noreferrer">Public repository</a>
       </div>
     </div>
   </section>

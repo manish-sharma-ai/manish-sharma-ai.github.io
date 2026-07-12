@@ -1,13 +1,8 @@
 export const BRIEF_STANDARD_PATH = "/brief-standard";
 export const BRIEF_SCHEMA_PATH = "/schemas/lmd-decision-brief-v1.schema.json";
-export const BRIEF_STANDARD_GITHUB_ISSUES =
-  "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io/issues/new/choose";
-export const BRIEF_STANDARD_FEEDBACK_URL =
-  "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io/issues/new?template=brief-standard-feedback.yml";
-export const CLAIM_REVIEW_FEEDBACK_URL =
-  "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io/issues/new?template=claim-review.yml";
-export const BOUNDARY_RISK_FEEDBACK_URL =
-  "https://github.com/manish-sharma-ai/manish-sharma-ai.github.io/issues/new?template=boundary-risk.yml";
+export const BRIEF_STANDARD_FEEDBACK_ROUTE = "/contact";
+export const CLAIM_REVIEW_FEEDBACK_ROUTE = "/contact";
+export const BOUNDARY_RISK_FEEDBACK_ROUTE = "/contact";
 
 export const BRIEF_STATUS_LINES = [
   ["Version", "v1.0"],

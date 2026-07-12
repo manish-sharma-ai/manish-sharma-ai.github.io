@@ -17,7 +17,6 @@ Last reviewed: 2026-07-12
 
 - The deployed application is statically generated.
 - There are no site accounts, application login, application authentication service, server-side input endpoint, or input database.
-- The source repository is public: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
 - This narrow static architecture reduces application-side surface; it does not remove browser, extension, dependency, hosting, DNS, TLS, build-chain, or third-party risk.
 - No penetration test, independent security audit, security certification, uninterrupted availability, or absence of vulnerabilities is claimed.
 - Reporting policy: https://manishsharma.dev/trust#security

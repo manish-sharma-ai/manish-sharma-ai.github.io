@@ -75,7 +75,11 @@ const levels = [
 ];
 ---
 
-<ol class="grid gap-4">
+<section data-visual-type="conceptual-framework" aria-labelledby="evidence-ladder-title">
+  <p class="metric-label">Conceptual framework</p>
+  <h3 id="evidence-ladder-title" class="mt-2 text-2xl font-black text-white">Evidence becomes stronger through different methods</h3>
+  <p class="mt-3 max-w-4xl text-sm leading-6 text-slate-300">Read from level 1 to level 9. The level describes the kind of evidence available, not a universal quality score or approval scale.</p>
+  <ol class="mt-6 grid gap-4">
   {
     levels.map((item) => (
       <li class="ordered-card grid gap-4 p-5 md:grid-cols-[5.5rem_1fr]">
@@ -96,4 +100,5 @@ const levels = [
       </li>
     ))
   }
-</ol>
+  </ol>
+</section>

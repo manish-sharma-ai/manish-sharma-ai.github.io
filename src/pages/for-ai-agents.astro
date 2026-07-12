@@ -5,7 +5,7 @@ import Layout from "@layouts/Layout.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
-import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH, BRIEF_STANDARD_GITHUB_ISSUES } from "@data/briefStandard";
+import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH, BRIEF_STANDARD_FEEDBACK_ROUTE } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { PERSON, SITE } from "@data/site";
 
@@ -72,7 +72,6 @@ const linkGroups = [
     links: [
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source-category map." },
       { label: "LMD Decision Map Markdown", href: "/decision-map/lmd-decision-map-v1.md", description: "AI-readable source for the decision route map." },
-      { label: "LMD Decision Map SVG", href: "/decision-map/lmd-decision-map-v1.svg", description: "Static shareable map for route logic." },
       { label: "500-record LMD/DED reference map", href: "/research/lmd-literature-scan.json", description: "Broad metadata scan." },
       { label: "Decision Brief JSON schema", href: BRIEF_SCHEMA_PATH, description: "Public validation contract for JSON handoff exports." },
       ...BRIEF_EXAMPLES,
@@ -119,7 +118,7 @@ const machineSummary = {
   central_artifact_adoption_package: `${SITE.canonicalUrl}/brief-standard#adoption`,
   central_artifact_schema_url: `${SITE.canonicalUrl}${BRIEF_SCHEMA_PATH}`,
   central_artifact_examples: BRIEF_EXAMPLES.map((example) => `${SITE.canonicalUrl}${example.href}`),
-  feedback_route: BRIEF_STANDARD_GITHUB_ISSUES,
+  feedback_route: `${SITE.canonicalUrl}${BRIEF_STANDARD_FEEDBACK_ROUTE}`,
   public_standard_wording:
     "LMD Decision Brief v1.0 is a public, portable, bounded format for known facts, missing information, risk flags, evidence needs, and next action.",
   central_artifact_schema: [
@@ -198,7 +197,6 @@ const machineSummary = {
     `${SITE.canonicalUrl}/identity.md`,
     `${SITE.canonicalUrl}/profile/public-profile.md`,
     `${SITE.canonicalUrl}/decision-map/lmd-decision-map-v1.md`,
-    `${SITE.canonicalUrl}/decision-map/lmd-decision-map-v1.svg`,
     `${SITE.canonicalUrl}${BRIEF_SCHEMA_PATH}`,
     ...BRIEF_EXAMPLES.map((example) => `${SITE.canonicalUrl}${example.href}`),
     `${SITE.canonicalUrl}/agent-pack/lmd-rfq-schema.json`,

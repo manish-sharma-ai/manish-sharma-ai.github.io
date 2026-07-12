@@ -21,577 +21,200 @@ type Variant =
   | "tools"
   | "default";
 
-type VisualKind =
-  | "evidence"
-  | "framework"
-  | "identity"
-  | "industrial"
-  | "notes"
-  | "process"
-  | "research"
-  | "route"
-  | "schema"
-  | "taxonomy"
-  | "tools";
-
 interface Props {
   variant?: Variant;
   class?: string;
 }
 
-const variants: Record<Variant, {
+type VisualModel = {
   title: string;
   label: string;
-  focus: string;
-  subfocus: string;
-  kind: VisualKind;
-  accent: string;
-  cards: string[];
-  nodes: string[];
-  layers: string[];
-}> = {
+  summary: string;
+  classification: "Conceptual framework" | "Illustrative workflow" | "Navigation model";
+  steps: string[];
+  readingDirection: string;
+};
+
+const models: Record<Variant, VisualModel> = {
   default: {
-    title: "LMD process signal",
-    label: "process layer",
-    focus: "AI + LMD",
-    subfocus: "signals to evidence",
-    kind: "process",
-    accent: "#33d6ff",
-    cards: ["Melt pool", "Bead", "Inspection"],
-    nodes: ["LMD", "RFQ", "AI", "QA"],
-    layers: ["Signal", "Risk", "Evidence"]
+    title: "From process signal to evidence",
+    label: "Process model",
+    summary: "A compact way to keep a process observation separate from a quality claim.",
+    classification: "Illustrative workflow",
+    steps: ["Observe the process", "Structure the question", "Verify with evidence"],
+    readingDirection: "left to right: process observation, decision context, verification"
   },
   agent: {
-    title: "Agent schema and safety boundary",
-    label: "agent map",
-    focus: "schemas + limits",
-    subfocus: "prompt to structured review",
-    kind: "schema",
-    accent: "#33d6ff",
-    cards: ["RFQ schema", "Rules", "Checklist"],
-    nodes: ["Prompt", "Fields", "Risk", "Review"],
-    layers: ["Use for", "Do not use", "Escalate"]
+    title: "From prompt to review-ready brief",
+    label: "Agent workflow",
+    summary: "A prompt becomes structured facts, clear gaps, and a review route.",
+    classification: "Illustrative workflow",
+    steps: ["Prompt or RFQ", "Known facts and gaps", "Expert review route"],
+    readingDirection: "left to right: request, structure, escalation"
   },
   contact: {
-    title: "Contact routes",
-    label: "contact",
-    focus: "contact paths",
-    subfocus: "public lab to Exafuse",
-    kind: "route",
-    accent: "#ffb547",
-    cards: ["Question", "Context", "Next step"],
-    nodes: ["LinkedIn", "GitHub", "Exafuse", "RFQ"],
-    layers: ["Professional", "Technical", "Industrial"]
+    title: "Choose the right contact route",
+    label: "Contact model",
+    summary: "The public lab explains concepts; Exafuse handles commercial and technical requests.",
+    classification: "Navigation model",
+    steps: ["Public question", "Technical context", "Appropriate contact route"],
+    readingDirection: "left to right: question, context, next route"
   },
   evidence: {
-    title: "Evidence ladder",
-    label: "proof boundary",
-    focus: "quality evidence",
-    subfocus: "monitoring is not release",
-    kind: "evidence",
-    accent: "#33d6ff",
-    cards: ["Signal", "Inspection", "Source"],
-    nodes: ["Melt pool", "NDT", "Data", "Claim"],
-    layers: ["Process signal", "Inspection", "Validation", "Field evidence"]
+    title: "Evidence strengthens in stages",
+    label: "Evidence model",
+    summary: "Monitoring can inform a review, while inspection and testing support stronger claims.",
+    classification: "Conceptual framework",
+    steps: ["Process signal", "Inspection evidence", "Validated claim"],
+    readingDirection: "left to right: signal, evidence, claim boundary"
   },
   frameworks: {
-    title: "Framework stack",
-    label: "decision layer",
-    focus: "frameworks",
-    subfocus: "risk to evidence",
-    kind: "framework",
-    accent: "#33d6ff",
-    cards: ["Repairability", "AI readiness", "Quality"],
-    nodes: ["RFQ", "Risk", "Evidence", "Decision"],
-    layers: ["Question", "Signal", "Evidence", "Decision"]
+    title: "A framework structures the question",
+    label: "Framework model",
+    summary: "Use a framework to make facts, risks, and evidence needs explicit before acting.",
+    classification: "Conceptual framework",
+    steps: ["Question", "Risk and evidence", "Bounded action"],
+    readingDirection: "left to right: question, review, next action"
   },
   quality: {
-    title: "Quality evidence ladder",
-    label: "evidence ladder",
-    focus: "quality proof",
-    subfocus: "monitoring to inspection",
-    kind: "evidence",
-    accent: "#33d6ff",
-    cards: ["Monitoring", "NDT", "Release"],
-    nodes: ["Signal", "Defect", "Inspect", "Accept"],
-    layers: ["Signal", "AI flag", "NDT", "Release evidence"]
+    title: "Quality evidence is a ladder",
+    label: "Evidence ladder",
+    summary: "Each step can strengthen confidence, but no single process signal is final proof.",
+    classification: "Conceptual framework",
+    steps: ["Monitoring signal", "Inspection method", "Evidence for review"],
+    readingDirection: "left to right: observe, inspect, substantiate"
   },
   repairability: {
-    title: "Repairability scoring",
-    label: "repair index",
-    focus: "repairability",
-    subfocus: "material, damage, access",
-    kind: "framework",
-    accent: "#33d6ff",
-    cards: ["Material", "Damage", "Access"],
-    nodes: ["Part", "Material", "Machining", "Inspect"],
-    layers: ["Known facts", "Missing info", "Risk flags", "Candidate band"]
+    title: "Repairability starts with technical facts",
+    label: "Repair screening",
+    summary: "Technical suitability, qualification burden, and commercial context must remain separate.",
+    classification: "Conceptual framework",
+    steps: ["Technical suitability", "Qualification burden", "Commercial context"],
+    readingDirection: "left to right: technical facts, evidence burden, business context"
   },
   readiness: {
-    title: "AI readiness map",
-    label: "data foundation",
-    focus: "AI readiness",
-    subfocus: "logs to inspection labels",
-    kind: "framework",
-    accent: "#33d6ff",
-    cards: ["Logs", "Images", "Labels"],
-    nodes: ["Camera", "Machine", "CAD", "Inspection"],
-    layers: ["Capture", "Link", "Label", "Validate"]
+    title: "AI readiness depends on connected data",
+    label: "Readiness model",
+    summary: "Data capture becomes useful only when it is linked to inspection and review outcomes.",
+    classification: "Conceptual framework",
+    steps: ["Capture process data", "Link records and labels", "Validate against outcomes"],
+    readingDirection: "left to right: capture, connect, validate"
   },
   failure: {
-    title: "Failure atlas",
-    label: "failure map",
-    focus: "failure modes",
-    subfocus: "signal to validation",
-    kind: "framework",
-    accent: "#ff4d2e",
-    cards: ["Porosity", "Cracking", "Distortion"],
-    nodes: ["Mode", "Signal", "AI flag", "Evidence"],
-    layers: ["Failure mode", "Process signal", "AI visibility", "Validation"]
+    title: "A signal is not a confirmed failure",
+    label: "Failure-evidence model",
+    summary: "Name the possible mode, inspect for evidence, then select a bounded action.",
+    classification: "Conceptual framework",
+    steps: ["Possible failure mode", "Process or AI signal", "Validation evidence"],
+    readingDirection: "left to right: possible mode, indication, verification"
   },
   maturity: {
-    title: "Maturity model",
-    label: "maturity path",
-    focus: "LMD-AI maturity",
-    subfocus: "records to closed loop",
-    kind: "framework",
-    accent: "#9cc9d9",
-    cards: ["Records", "Analytics", "Governance"],
-    nodes: ["Level 0", "Level 2", "Level 4", "Level 5"],
-    layers: ["Records", "Traceability", "Decision support", "Governance"]
+    title: "Maturity builds from records to validation",
+    label: "Maturity path",
+    summary: "AI capability follows data quality, traceability, review rules, and validated outcomes.",
+    classification: "Conceptual framework",
+    steps: ["Consistent records", "Connected decision support", "Validated control candidate"],
+    readingDirection: "left to right: records, assistance, validation"
   },
   glossary: {
-    title: "Glossary taxonomy",
-    label: "term boundary",
-    focus: "terminology",
-    subfocus: "LMD, DED, cladding",
-    kind: "taxonomy",
-    accent: "#9cc9d9",
-    cards: ["Term", "Meaning", "Use case"],
-    nodes: ["LMD", "DED", "SLM", "Cladding"],
-    layers: ["Parent process", "Route", "Application"]
+    title: "Terminology keeps process choices clear",
+    label: "Terminology model",
+    summary: "Separate the parent process, the route, and the application before comparing options.",
+    classification: "Conceptual framework",
+    steps: ["Parent process", "Specific route", "Practical application"],
+    readingDirection: "left to right: category, route, use case"
   },
   lmd: {
-    title: "Laser Metal Deposition taxonomy",
-    label: "term focus",
-    focus: "LMD",
-    subfocus: "local metal addition",
-    kind: "taxonomy",
-    accent: "#33d6ff",
-    cards: ["Repair", "Cladding", "Feature"],
-    nodes: ["DED", "LMD", "SLM", "Repair"],
-    layers: ["Laser route", "Melt zone", "Deposit path"]
+    title: "LMD is a laser-based DED route",
+    label: "LMD context",
+    summary: "The route is often considered for local addition, repair, cladding, and larger features.",
+    classification: "Conceptual framework",
+    steps: ["Laser energy", "Material deposition", "Repair or build feature"],
+    readingDirection: "left to right: energy, deposition, use case"
   },
   ded: {
-    title: "Directed Energy Deposition taxonomy",
-    label: "parent family",
-    focus: "DED",
-    subfocus: "heat source + feedstock",
-    kind: "taxonomy",
-    accent: "#9cc9d9",
-    cards: ["Powder", "Wire", "Laser"],
-    nodes: ["DED", "LMD", "Wire", "Powder"],
-    layers: ["Family", "Route", "Feedstock"]
+    title: "DED is a broader process family",
+    label: "DED context",
+    summary: "Energy source and feedstock vary by system; LMD is one laser-based route within the family.",
+    classification: "Conceptual framework",
+    steps: ["Energy source", "Feedstock", "Deposited material"],
+    readingDirection: "left to right: energy, feedstock, deposit"
   },
   cladding: {
-    title: "Laser cladding taxonomy",
-    label: "surface route",
-    focus: "cladding",
-    subfocus: "surface and repair layer",
-    kind: "taxonomy",
-    accent: "#ffb547",
-    cards: ["Surface", "Coating", "Repair"],
-    nodes: ["LMD", "Clad", "Wear", "Corrosion"],
-    layers: ["Base", "Interface", "Clad layer"]
+    title: "Cladding links surface need to deposition route",
+    label: "Cladding context",
+    summary: "Surface function, base material, finishing, and validation belong in the same conversation.",
+    classification: "Conceptual framework",
+    steps: ["Base surface", "Deposited layer", "Required surface function"],
+    readingDirection: "left to right: substrate, deposit, intended function"
   },
   meltpool: {
-    title: "Melt-pool monitoring signal map",
-    label: "monitoring signal",
-    focus: "melt pool",
-    subfocus: "signal, not certificate",
-    kind: "evidence",
-    accent: "#33d6ff",
-    cards: ["Signal", "Anomaly", "Inspect"],
-    nodes: ["Pool", "Thermal", "AI", "NDT"],
-    layers: ["Live signal", "Pattern", "Risk", "Inspection"]
+    title: "Melt-pool monitoring supports awareness",
+    label: "Monitoring model",
+    summary: "A live signal can prompt review, but inspection determines what the signal means for the part.",
+    classification: "Illustrative workflow",
+    steps: ["Live process signal", "Anomaly or trend", "Inspection question"],
+    readingDirection: "left to right: observe, flag, investigate"
   },
   industrial: {
-    title: "Industrial proof map",
-    label: "public case map",
-    focus: "industrial proof",
-    subfocus: "repair, cladding, build",
-    kind: "industrial",
-    accent: "#ff4d2e",
-    cards: ["Case", "Metric", "Lesson"],
-    nodes: ["Part", "Scale", "Repair", "Evidence"],
-    layers: ["Large part", "Local repair", "Inspection"]
+    title: "Public cases provide context, not transferability",
+    label: "Public evidence model",
+    summary: "A documented example can explain a pattern while each new part still needs its own review.",
+    classification: "Conceptual framework",
+    steps: ["Public case context", "Relevant decision pattern", "Part-specific review"],
+    readingDirection: "left to right: context, pattern, review"
   },
   notes: {
-    title: "Lab note signal map",
-    label: "working note",
-    focus: "field notes",
-    subfocus: "observation to takeaway",
-    kind: "notes",
-    accent: "#33d6ff",
-    cards: ["Observe", "Question", "Takeaway"],
-    nodes: ["Signal", "Risk", "Context", "Review"],
-    layers: ["Observation", "Boundary", "Next step"]
+    title: "A field note moves from observation to action",
+    label: "Note model",
+    summary: "Short notes make the uncertainty visible before they suggest a next step.",
+    classification: "Illustrative workflow",
+    steps: ["Observation", "Technical question", "Bounded next step"],
+    readingDirection: "left to right: observe, question, act"
   },
   profile: {
-    title: "Public identity graph",
-    label: "identity",
-    focus: "Manish Sharma",
-    subfocus: "AI for LMD",
-    kind: "identity",
-    accent: "#33d6ff",
-    cards: ["Identity", "Public work", "Profiles"],
-    nodes: ["Manish", "AI", "LMD", "Exafuse"],
-    layers: ["Person", "Domain", "Company", "Public work"]
+    title: "Public technical profile",
+    label: "Profile model",
+    summary: "Identity, public work, and verified profile links are deliberately separated from company services.",
+    classification: "Navigation model",
+    steps: ["Person", "Public technical work", "Verified public links"],
+    readingDirection: "left to right: person, work, public reference"
   },
   research: {
-    title: "Research source network",
-    label: "source terrain",
-    focus: "research map",
-    subfocus: "standards, reviews, cases",
-    kind: "research",
-    accent: "#9cc9d9",
-    cards: ["Standards", "Reviews", "Cases"],
-    nodes: ["ISO", "NIST", "Review", "Case"],
-    layers: ["Terminology", "Monitoring", "AI", "Quality"]
+    title: "Research sources answer different questions",
+    label: "Source model",
+    summary: "Standards, reviews, public cases, and source notes each contribute a distinct kind of context.",
+    classification: "Conceptual framework",
+    steps: ["Terminology and standards", "Research and reviews", "Public industrial context"],
+    readingDirection: "left to right: define, investigate, contextualize"
   },
   tools: {
-    title: "LMD tool console",
-    label: "tool console",
-    focus: "LMD tools",
-    subfocus: "input to recommendation",
-    kind: "tools",
-    accent: "#33d6ff",
-    cards: ["Part", "Material", "Damage"],
-    nodes: ["Input", "Missing", "Risk", "Next"],
-    layers: ["Known", "Missing", "Risk", "Next step"]
+    title: "Tools make information gaps visible",
+    label: "Tool workflow",
+    summary: "The workbench turns inputs into missing information, risk flags, and a clear next action.",
+    classification: "Illustrative workflow",
+    steps: ["Known inputs", "Gaps and risks", "Structured next action"],
+    readingDirection: "left to right: input, structure, next action"
   }
 };
 
 const { variant = "default", class: className = "" } = Astro.props;
-const visual = variants[variant] ?? variants.default;
-const sourceNodes = [
-  { x: 260, y: 152 },
-  { x: 412, y: 92 },
-  { x: 560, y: 176 },
-  { x: 704, y: 116 },
-  { x: 642, y: 306 },
-  { x: 438, y: 338 },
-  { x: 292, y: 280 }
-];
+const visual = models[variant] ?? models.default;
 ---
 
-<div
-  class:list={["page-hero-visual glass-panel relative overflow-hidden rounded-lg p-3 md:p-4", className]}
-  style={`--page-visual-accent: ${visual.accent}`}
-  role="img"
-  aria-label={`${visual.title}.`}
->
-  <svg class="aspect-[16/10] w-full" viewBox="0 0 920 575" aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id={`${variant}-trace`} x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="#30404b" />
-        <stop offset="54%" stop-color="#7392a0" />
-        <stop offset="100%" stop-color={visual.accent} />
-      </linearGradient>
-      <linearGradient id={`${variant}-beam`} x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="#ff4d2e" stop-opacity="0.08" />
-        <stop offset="58%" stop-color="#ff4d2e" stop-opacity="0.9" />
-        <stop offset="100%" stop-color="#ffb547" stop-opacity="0.76" />
-      </linearGradient>
-      <radialGradient id={`${variant}-heat`}>
-        <stop offset="0%" stop-color="#fff3c4" stop-opacity="1" />
-        <stop offset="30%" stop-color="#ffb547" stop-opacity="0.94" />
-        <stop offset="68%" stop-color="#ff4d2e" stop-opacity="0.4" />
-        <stop offset="100%" stop-color="#ff4d2e" stop-opacity="0" />
-      </radialGradient>
-      <filter id={`${variant}-glow`} x="-70%" y="-70%" width="240%" height="240%">
-        <feGaussianBlur stdDeviation="8" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-
-    <rect width="920" height="575" rx="18" fill="#071018" />
-    <rect x="18" y="18" width="884" height="539" rx="14" fill="none" stroke="rgba(156, 201, 217, 0.16)" />
-    <g opacity="0.2">
-      {Array.from({ length: 14 }).map((_, index) => (
-        <line x1={index * 70 + 8} x2={index * 70 + 8} y1="18" y2="557" stroke="#9cc9d9" stroke-width="1" />
-      ))}
-      {Array.from({ length: 10 }).map((_, index) => (
-        <line x1="18" x2="902" y1={index * 58 + 32} y2={index * 58 + 32} stroke="#9cc9d9" stroke-width="1" />
-      ))}
-    </g>
-
-    <g transform="translate(34 28)" opacity="0.82">
-      <rect x="0" y="8" width="92" height="7" rx="3.5" fill="#9cc9d9" opacity="0.42" />
-      <rect x="0" y="35" width="212" height="14" rx="7" fill="#ffffff" opacity="0.62" />
-      <rect x="0" y="62" width="138" height="8" rx="4" fill="#9cc9d9" opacity="0.46" />
-    </g>
-
-    {visual.kind === "process" && (
-      <g>
-        <path d="M154 390 C260 348 352 360 440 404 S650 474 788 410" fill="none" stroke="#1d2934" stroke-width="64" stroke-linecap="round" opacity="0.92" />
-        <path class="page-bead-trace" d="M154 390 C260 348 352 360 440 404 S650 474 788 410" fill="none" stroke={`url(#${variant}-trace)`} stroke-width="18" stroke-linecap="round" />
-        <line x1="356" y1="96" x2="458" y2="342" stroke="rgba(255, 77, 46, 0.14)" stroke-width="34" stroke-linecap="round" />
-        <line class="page-laser-core" x1="356" y1="96" x2="458" y2="342" stroke={`url(#${variant}-beam)`} stroke-width="4" stroke-linecap="round" filter={`url(#${variant}-glow)`} />
-        <circle class="page-heat-core" cx="458" cy="342" r="54" fill={`url(#${variant}-heat)`} filter={`url(#${variant}-glow)`} />
-        <g fill="none" stroke={visual.accent} stroke-width="2" opacity="0.62">
-          <path class="page-signal-line" d="M470 310 C540 242 612 226 684 236" />
-          <path class="page-signal-line page-signal-line-alt" d="M500 360 C574 346 638 372 704 420" />
-        </g>
-      </g>
-    )}
-
-    {visual.kind === "tools" && (
-      <g>
-        <g transform="translate(58 120)">
-          {visual.cards.map((_, index) => (
-            <g class="page-card-drift" transform={`translate(0 ${index * 68})`}>
-              <rect width="230" height="48" rx="9" fill="rgba(5, 10, 14, 0.78)" stroke="rgba(156, 201, 217, 0.2)" />
-              <rect x="18" y="21" width={96 - index * 14} height="8" rx="4" fill="#e7f6fa" opacity="0.58" />
-              <line x1="136" x2="206" y1="24" y2="24" stroke={index === 1 ? "#ffb547" : visual.accent} stroke-width="3" opacity="0.64" />
-            </g>
-          ))}
-        </g>
-        <path class="page-router-line" d="M308 216 C388 216 418 292 492 292" fill="none" stroke={visual.accent} stroke-width="2" />
-        <path class="page-router-line page-signal-line-alt" d="M308 284 C395 284 414 332 492 332" fill="none" stroke="#ffb547" stroke-width="2" />
-        <g transform="translate(505 142)">
-          <rect width="326" height="248" rx="14" fill="rgba(5, 10, 14, 0.72)" stroke="rgba(51, 214, 255, 0.26)" />
-          <rect x="24" y="28" width="108" height="8" rx="4" fill="#9cc9d9" opacity="0.5" />
-          {visual.layers.map((_, index) => (
-            <g transform={`translate(24 ${70 + index * 40})`}>
-              <rect width={index === 0 ? 210 : index === 1 ? 248 : 166} height="16" rx="8" fill={index === 2 ? "#ff4d2e" : visual.accent} opacity={index === 2 ? "0.34" : "0.42"} />
-              <rect x="0" y="28" width={72 + index * 18} height="6" rx="3" fill="#d8e6ec" opacity="0.34" />
-            </g>
-          ))}
-        </g>
-        <path d="M348 454 C440 418 532 426 642 458" fill="none" stroke="#263640" stroke-width="36" stroke-linecap="round" />
-        <path class="page-bead-trace" d="M350 454 C440 418 532 426 642 458" fill="none" stroke={`url(#${variant}-trace)`} stroke-width="10" stroke-linecap="round" />
-      </g>
-    )}
-
-    {visual.kind === "framework" && (
-      <g>
-        <g transform="translate(88 140)">
-          {visual.layers.map((_, index) => (
-            <g class="page-card-drift" transform={`translate(${index * 34} ${index * 68})`}>
-              <rect width={300 - index * 18} height="48" rx="9" fill="rgba(5, 10, 14, 0.78)" stroke={index === visual.layers.length - 1 ? visual.accent : "rgba(156, 201, 217, 0.2)"} />
-              <rect x="18" y="21" width={122 - index * 16} height="8" rx="4" fill="#e7f6fa" opacity="0.58" />
-            </g>
-          ))}
-        </g>
-        <path class="page-router-line" d="M425 196 C532 150 630 170 744 116" fill="none" stroke={visual.accent} stroke-width="2" />
-        <path class="page-router-line page-signal-line-alt" d="M425 280 C548 280 622 274 774 324" fill="none" stroke="#ffb547" stroke-width="2" />
-        <g transform="translate(535 94)">
-          {visual.nodes.map((_, index) => {
-            const x = [40, 176, 250, 110][index] ?? 40;
-            const y = [70, 34, 156, 220][index] ?? 70;
-            const color = index === 1 ? "#ffb547" : index === 3 ? "#ff4d2e" : visual.accent;
-            return (
-              <g class="page-pulse-node" transform={`translate(${x} ${y})`}>
-                <circle r="22" fill={color} opacity="0.12" />
-                <circle r="6" fill={color} />
-                <rect x="-24" y="32" width="48" height="5" rx="2.5" fill="#c6d7df" opacity="0.34" />
-              </g>
-            );
-          })}
-        </g>
-        <rect x="548" y="146" width="278" height="166" rx="14" fill="rgba(5, 10, 14, 0.44)" stroke="rgba(156, 201, 217, 0.16)" />
-      </g>
-    )}
-
-    {visual.kind === "evidence" && (
-      <g>
-        <g transform="translate(92 118)">
-          {visual.layers.map((_, index) => (
-            <g transform={`translate(${index * 104} ${index * 58})`}>
-              <rect class="page-card-drift" width="178" height="52" rx="9" fill={index === 0 ? "rgba(51, 214, 255, 0.1)" : "rgba(5, 10, 14, 0.76)"} stroke={index === visual.layers.length - 1 ? "#ffb547" : "rgba(156, 201, 217, 0.22)"} />
-              <rect x="16" y="23" width={88 + index * 12} height="7" rx="3.5" fill="#e7f6fa" opacity="0.55" />
-            </g>
-          ))}
-        </g>
-        <path class="page-router-line" d="M165 174 L270 232 L374 290 L478 348" fill="none" stroke={visual.accent} stroke-width="2.4" />
-        <g transform="translate(585 126)">
-          <circle class="page-heat-core" cx="80" cy="80" r="58" fill={`url(#${variant}-heat)`} filter={`url(#${variant}-glow)`} />
-          <path class="page-wave-line" d="M0 178 C48 132 100 224 164 174 S260 166 304 120" fill="none" stroke={visual.accent} stroke-width="3" />
-          <rect x="164" y="22" width="128" height="66" rx="10" fill="rgba(5, 10, 14, 0.7)" stroke="rgba(255, 181, 71, 0.35)" />
-          <rect x="184" y="54" width="78" height="8" rx="4" fill="#ffde9c" opacity="0.5" />
-        </g>
-      </g>
-    )}
-
-    {visual.kind === "taxonomy" && (
-      <g>
-        <g transform="translate(455 278)">
-          <ellipse rx="260" ry="154" fill="rgba(51, 214, 255, 0.06)" stroke="rgba(51, 214, 255, 0.28)" />
-          <ellipse rx="168" ry="104" fill="rgba(156, 201, 217, 0.055)" stroke="rgba(156, 201, 217, 0.24)" transform="translate(-82 18)" />
-          <ellipse rx="142" ry="88" fill="rgba(255, 181, 71, 0.055)" stroke="rgba(255, 181, 71, 0.28)" transform="translate(92 22)" />
-          {visual.nodes.map((_, index) => {
-            const x = [-158, -46, 86, 176][index] ?? 0;
-            const y = [-26, 38, -42, 50][index] ?? 0;
-            const color = index === 1 ? visual.accent : index === 3 ? "#ffb547" : "#9cc9d9";
-            return (
-              <g class="page-pulse-node" transform={`translate(${x} ${y})`}>
-                <circle r="24" fill={color} opacity="0.12" />
-                <circle r="6" fill={color} />
-                <rect x="-28" y="32" width="56" height="6" rx="3" fill="#e7f6fa" opacity="0.36" />
-              </g>
-            );
-          })}
-        </g>
-        <g transform="translate(86 122)">
-          {visual.layers.map((_, index) => (
-            <g transform={`translate(0 ${index * 54})`}>
-              <rect width="212" height="38" rx="8" fill="rgba(5, 10, 14, 0.72)" stroke="rgba(156, 201, 217, 0.18)" />
-              <rect x="16" y="18" width={84 + index * 12} height="6" rx="3" fill="#d8e6ec" opacity="0.34" />
-            </g>
-          ))}
-        </g>
-        <path class="page-router-line" d="M290 296 C360 246 434 224 520 248" fill="none" stroke={visual.accent} stroke-width="2" />
-      </g>
-    )}
-
-    {visual.kind === "research" && (
-      <g>
-        <g>
-          <path class="page-router-line" d="M260 152 L412 92 L560 176 L704 116 L642 306 L438 338 L292 280 Z" fill="none" stroke="rgba(156, 201, 217, 0.42)" stroke-width="2" />
-          {sourceNodes.map((point, index) => {
-            const color = index % 3 === 0 ? visual.accent : index % 3 === 1 ? "#ffb547" : "#9cc9d9";
-            return (
-              <g class="page-pulse-node" transform={`translate(${point.x} ${point.y})`}>
-                <circle r="20" fill={color} opacity="0.12" />
-                <circle r="5" fill={color} />
-              </g>
-            );
-          })}
-        </g>
-        <g transform="translate(66 372)">
-          {visual.cards.map((_, index) => (
-            <g transform={`translate(${index * 190} 0)`}>
-              <rect width="166" height="64" rx="10" fill="rgba(5, 10, 14, 0.76)" stroke="rgba(156, 201, 217, 0.2)" />
-              <rect x="16" y="22" width={78 + index * 8} height="8" rx="4" fill="#e7f6fa" opacity="0.56" />
-              <line x1="16" x2="112" y1="44" y2="44" stroke={index === 1 ? "#ffb547" : visual.accent} stroke-width="2" opacity="0.6" />
-            </g>
-          ))}
-        </g>
-        <rect x="640" y="368" width="190" height="80" rx="12" fill="rgba(51, 214, 255, 0.07)" stroke="rgba(51, 214, 255, 0.22)" />
-        <rect x="664" y="404" width="116" height="8" rx="4" fill="#d8e6ec" opacity="0.42" />
-      </g>
-    )}
-
-    {visual.kind === "identity" && (
-      <g transform="translate(460 288)">
-        <circle r="72" fill="rgba(51, 214, 255, 0.09)" stroke="rgba(51, 214, 255, 0.32)" />
-        <rect x="-50" y="-5" width="100" height="10" rx="5" fill="#ffffff" opacity="0.58" />
-        {visual.nodes.slice(1).map((_, index) => {
-          const angle = [-140, -18, 108][index] * (Math.PI / 180);
-          const x = Math.cos(angle) * 230;
-          const y = Math.sin(angle) * 150;
-          const color = index === 2 ? "#ff4d2e" : visual.accent;
-          return (
-            <g>
-              <line class="page-router-line" x1="0" y1="0" x2={x} y2={y} stroke={color} stroke-width="2" opacity="0.62" />
-              <g class="page-pulse-node" transform={`translate(${x} ${y})`}>
-                <circle r="36" fill={color} opacity="0.12" />
-                <circle r="7" fill={color} />
-                <rect x="-28" y="48" width="56" height="6" rx="3" fill="#e7f6fa" opacity="0.38" />
-              </g>
-            </g>
-          );
-        })}
-        <g transform="translate(-344 160)">
-          {visual.cards.map((_, index) => (
-            <rect x={index * 142} y="-7" width="76" height="6" rx="3" fill="#9cc9d9" opacity="0.34" />
-          ))}
-        </g>
-      </g>
-    )}
-
-    {visual.kind === "schema" && (
-      <g>
-        <g transform="translate(74 122)">
-          {visual.cards.map((_, index) => (
-            <g transform={`translate(0 ${index * 72})`}>
-              <rect width="254" height="52" rx="10" fill="rgba(5, 10, 14, 0.78)" stroke="rgba(51, 214, 255, 0.22)" />
-              <rect x="18" y="22" width={92 + index * 20} height="8" rx="4" fill="#e7f6fa" opacity="0.56" />
-            </g>
-          ))}
-        </g>
-        <path class="page-router-line" d="M350 210 C428 210 446 286 528 286" fill="none" stroke={visual.accent} stroke-width="2" />
-        <rect x="530" y="104" width="310" height="270" rx="14" fill="rgba(5, 10, 14, 0.72)" stroke="rgba(156, 201, 217, 0.2)" />
-        <rect x="558" y="134" width="254" height="64" rx="10" fill="rgba(51, 214, 255, 0.08)" stroke="rgba(51, 214, 255, 0.22)" />
-        <rect x="558" y="222" width="254" height="64" rx="10" fill="rgba(255, 181, 71, 0.08)" stroke="rgba(255, 181, 71, 0.22)" />
-        <rect x="582" y="164" width="118" height="8" rx="4" fill="#d8e6ec" opacity="0.48" />
-        <rect x="582" y="252" width="148" height="8" rx="4" fill="#ffde9c" opacity="0.48" />
-        <path d="M558 330 L812 330" stroke="#ff4d2e" stroke-width="2" stroke-dasharray="8 10" />
-      </g>
-    )}
-
-    {visual.kind === "industrial" && (
-      <g>
-        <path d="M112 372 C222 270 342 302 464 324 C582 346 692 276 806 186" fill="none" stroke="#263640" stroke-width="76" stroke-linecap="round" opacity="0.92" />
-        <path class="page-bead-trace" d="M116 370 C224 274 344 304 464 324 C582 346 692 276 806 186" fill="none" stroke={`url(#${variant}-trace)`} stroke-width="18" stroke-linecap="round" />
-        <line x1="470" y1="118" x2="508" y2="296" stroke={`url(#${variant}-beam)`} stroke-width="5" stroke-linecap="round" filter={`url(#${variant}-glow)`} />
-        <circle class="page-heat-core" cx="508" cy="296" r="50" fill={`url(#${variant}-heat)`} />
-        <g transform="translate(78 98)">
-          {visual.cards.map((_, index) => (
-            <g transform={`translate(${index * 184} 0)`}>
-              <rect width="152" height="52" rx="10" fill="rgba(5, 10, 14, 0.72)" stroke="rgba(156, 201, 217, 0.18)" />
-              <rect x="18" y="23" width={70 + index * 10} height="8" rx="4" fill="#e7f6fa" opacity="0.56" />
-            </g>
-          ))}
-        </g>
-        <path class="page-scan-line" d="M120 478 L820 478" stroke={visual.accent} stroke-width="2" stroke-dasharray="6 12" />
-      </g>
-    )}
-
-    {visual.kind === "notes" && (
-      <g>
-        <g transform="translate(74 134)">
-          {visual.cards.map((_, index) => (
-            <g transform={`translate(${index * 172} ${index % 2 === 0 ? 0 : 42})`}>
-              <rect width="150" height="78" rx="10" fill="rgba(5, 10, 14, 0.75)" stroke={index === 1 ? "rgba(255, 181, 71, 0.32)" : "rgba(156, 201, 217, 0.2)"} />
-              <rect x="16" y="23" width={74 + index * 8} height="8" rx="4" fill="#e7f6fa" opacity="0.56" />
-              <line x1="16" x2="104" y1="52" y2="52" stroke={index === 1 ? "#ffb547" : visual.accent} stroke-width="2" opacity="0.56" />
-            </g>
-          ))}
-        </g>
-        <g transform="translate(84 340)">
-          <path class="page-wave-line" d="M0 70 C42 12 82 126 132 70 S212 28 260 70 S352 118 410 70 S506 18 574 70 S676 120 748 70" fill="none" stroke={visual.accent} stroke-width="3" />
-          <path d="M0 116 L748 116" stroke="rgba(156, 201, 217, 0.18)" />
-          <rect x="0" y="138" width="116" height="7" rx="3.5" fill="#9cc9d9" opacity="0.38" />
-        </g>
-        <rect x="612" y="150" width="220" height="120" rx="12" fill="rgba(255, 181, 71, 0.06)" stroke="rgba(255, 181, 71, 0.22)" />
-        <rect x="638" y="200" width="106" height="8" rx="4" fill="#ffde9c" opacity="0.48" />
-      </g>
-    )}
-
-    {visual.kind === "route" && (
-      <g>
-        <g transform="translate(84 164)">
-          <rect width="210" height="76" rx="12" fill="rgba(5, 10, 14, 0.78)" stroke="rgba(156, 201, 217, 0.22)" />
-          <rect x="24" y="37" width="102" height="8" rx="4" fill="#e7f6fa" opacity="0.56" />
-        </g>
-        <path class="page-router-line" d="M304 202 C430 170 500 142 644 120" fill="none" stroke={visual.accent} stroke-width="3" />
-        <path class="page-router-line page-signal-line-alt" d="M304 216 C432 266 520 328 674 390" fill="none" stroke="#ff4d2e" stroke-width="3" />
-        <g transform="translate(640 82)">
-          <rect width="202" height="80" rx="12" fill="rgba(51, 214, 255, 0.08)" stroke="rgba(51, 214, 255, 0.26)" />
-          <rect x="24" y="39" width="118" height="8" rx="4" fill="#e7f6fa" opacity="0.56" />
-        </g>
-        <g transform="translate(640 350)">
-          <rect width="202" height="80" rx="12" fill="rgba(255, 77, 46, 0.08)" stroke="rgba(255, 77, 46, 0.28)" />
-          <rect x="24" y="39" width="112" height="8" rx="4" fill="#ffdfd6" opacity="0.56" />
-        </g>
-        <circle class="page-pulse-node" cx="456" cy="238" r="12" fill="#ffb547" />
-      </g>
-    )}
-
-  </svg>
-</div>
+<figure class:list={["page-hero-model diagram-frame", className]} data-visual-type={visual.classification.toLowerCase()}>
+  <figcaption class="diagram-frame__header">
+    <p class="metric-label">{visual.classification}</p>
+    <h2 class="mt-2 text-xl font-black leading-tight text-white">{visual.title}</h2>
+    <p class="mt-2 text-sm leading-6 text-slate-300">{visual.summary}</p>
+  </figcaption>
+  <ol class="page-hero-model__steps" aria-label={visual.title}>
+    {visual.steps.map((step, index) => (
+      <li>
+        <span class="page-hero-model__index">{String(index + 1).padStart(2, "0")}</span>
+        <span>{step}</span>
+      </li>
+    ))}
+  </ol>
+  <p class="diagram-frame__direction"><strong>Reading direction:</strong> {visual.readingDirection}.</p>
+</figure>

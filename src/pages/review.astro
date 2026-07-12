@@ -9,7 +9,7 @@ import { PERSON, SITE } from "@data/site";
 
 const title = "Review a Public LMD Decision Journey";
 const description = "Run a short non-confidential review of Manish Sharma Lab, create a browser-local feedback note, and help validate decision-support clarity without sharing technical data.";
-const protocolUrl = `${SITE.repoUrl}/blob/main/docs/privacy-safe-outcome-validation.md`;
+const protocolUrl = "/trust";
 
 const reviewJsonLd = {
   "@context": "https://schema.org",
@@ -37,7 +37,7 @@ const reviewJsonLd = {
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="#review-tasks" variant="primary">Choose a public task</CTAButton>
-        <CTAButton href={protocolUrl} variant="secondary" external>Read the review protocol</CTAButton>
+        <CTAButton href={protocolUrl} variant="secondary">Read the review protocol</CTAButton>
         <CTAButton href="/schemas/public-review-v1.schema.json" variant="secondary">Review record schema</CTAButton>
         <CTAButton href="/contact" variant="ghost">Contact routes</CTAButton>
       </div>

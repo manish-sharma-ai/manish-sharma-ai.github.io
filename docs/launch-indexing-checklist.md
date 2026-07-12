@@ -63,7 +63,6 @@ Check:
 - `https://manishsharma.dev/identity.md`
 - `https://manishsharma.dev/profile/public-profile.md`
 - `https://manishsharma.dev/decision-map/lmd-decision-map-v1.md`
-- `https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg`
 - `https://manishsharma.dev/research/exafuse-public-proof-map.json`
 - `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
 - `https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json`

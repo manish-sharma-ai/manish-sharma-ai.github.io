@@ -499,8 +499,7 @@ export const SITE_MAP_GROUPS = [
       { label: "Review the Site", href: "/review", description: "Non-confidential task review and browser-local manual feedback note." },
       { label: "AI-readable Trust Summary", href: "/trust.md", description: "Machine-readable trust and data-handling summary." },
       { label: "Security Contact File", href: "/.well-known/security.txt", description: "Responsible reporting policy and canonical contact route." },
-      { label: "Lab Notes RSS", href: "/rss.xml", description: "Feed for public technical notes." },
-      { label: "Repository", href: LINKS.repo, description: "Source repository for this website." }
+      { label: "Lab Notes RSS", href: "/rss.xml", description: "Feed for public technical notes." }
     ]
   }
 ];

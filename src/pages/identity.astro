@@ -6,7 +6,7 @@ import ProfileImage from "@components/ProfileImage.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { CORE_TOPICS, LINKS, METHOD_LOOP, PERSON, SAME_AS, SITE } from "@data/site";
-import { ACTIVE_PROFILE_LINKS, GITHUB_IDENTITY } from "@data/profiles";
+import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 import { absoluteUrl } from "@utils/urls";
 
 const title = "Manish Sharma - Industrial AI & Decision Systems";
@@ -57,9 +57,7 @@ const fields = [
   ["Named framework", "The LMD-AI Maturity Model by Manish Sharma"],
   ["Decision map", `${SITE.canonicalUrl}/decision-map`],
   ["Core public topics", CORE_TOPICS.join(", ")],
-  ["GitHub profile", `${GITHUB_IDENTITY.profile.slug} - ${GITHUB_IDENTITY.profile.href}`],
-  ["Site/repository owner", `${GITHUB_IDENTITY.repositoryOwner.slug} - ${GITHUB_IDENTITY.repositoryOwner.href}`],
-  ["Website repository", GITHUB_IDENTITY.repository.href],
+  ["GitHub profile", LINKS.github],
   ["Verified public profiles", "Website, LinkedIn, GitHub profile, Exafuse"]
 ];
 ---
@@ -102,7 +100,7 @@ const fields = [
           This site is a public technical lab for frameworks, tools, notes, research maps, and profile context. It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit <a href={LINKS.exafuse} target="_blank" rel="noreferrer">Exafuse</a>.
         </p>
         <p>
-          This repository and site avoid private, unannounced, employer-confidential, customer-confidential, or commercially sensitive project material.
+          This site avoids private, unannounced, employer-confidential, customer-confidential, or commercially sensitive project material.
         </p>
       </div>
       <IdentityGraph />

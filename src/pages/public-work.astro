@@ -58,10 +58,9 @@ const sections = [
     ]
   },
   {
-    title: "GitHub and technical artifacts",
+    title: "Technical artifacts",
     status: "Public artifact",
     links: [
-      { label: "Website repository", href: SITE.repoUrl },
       { label: "llms.txt", href: "/llms.txt" },
       { label: "llms-full.txt", href: "/llms-full.txt" },
       { label: "identity.md", href: "/identity.md" }
@@ -218,15 +217,15 @@ const jsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-2">
       <div>
-        <SectionHeading eyebrow="Public Exafuse context" title="Public industrial context" />
-        <div class="mt-8">
-          <SourceLinks links={EXAFUSE_SOURCE_LINKS} />
-        </div>
-      </div>
-      <div>
         <SectionHeading eyebrow="Public profile links" title="Verified public profiles" />
         <div class="mt-8">
           <SourceLinks links={ACTIVE_PROFILE_LINKS} />
+        </div>
+      </div>
+      <div>
+        <SectionHeading eyebrow="Public Exafuse context" title="Public industrial context" />
+        <div class="mt-8">
+          <SourceLinks links={EXAFUSE_SOURCE_LINKS} />
         </div>
       </div>
     </div>

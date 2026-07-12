@@ -17,7 +17,7 @@ Framework: Astro
 Languages: TypeScript, JavaScript, HTML, CSS
 UI: React islands and Tailwind CSS
 Delivery: Static generation through GitHub Pages
-Source: https://github.com/manish-sharma-ai/manish-sharma-ai.github.io
+Site: https://manishsharma.dev
 
 /* Trust */
 

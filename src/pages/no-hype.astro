@@ -2,7 +2,7 @@
 import Badge from "@components/Badge.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Layout from "@layouts/Layout.astro";
-import { BOUNDARY_RISK_FEEDBACK_URL } from "@data/briefStandard";
+import { BOUNDARY_RISK_FEEDBACK_ROUTE } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
 import { PERSON, SITE } from "@data/site";
 
@@ -66,7 +66,7 @@ const jsonLd = {
         <CTAButton href="/for-ai-agents" variant="secondary">AI-agent guidance</CTAButton>
         <CTAButton href="/press-kit" variant="secondary">Press kit</CTAButton>
         <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
-        <CTAButton href={BOUNDARY_RISK_FEEDBACK_URL} variant="secondary" external>Report a boundary risk</CTAButton>
+        <CTAButton href={BOUNDARY_RISK_FEEDBACK_ROUTE} variant="secondary">Report a boundary risk</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
       </div>
     </div>

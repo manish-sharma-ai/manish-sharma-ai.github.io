@@ -1374,7 +1374,6 @@ function auditPreflight() {
     "dist/agent-pack/lmd-prompt-library.md",
     "dist/agent-pack/lmd-quality-checklist.md",
     "dist/decision-map/lmd-decision-map-v1.md",
-    "dist/decision-map/lmd-decision-map-v1.svg",
     "dist/schemas/lmd-decision-brief-v1.schema.json",
     "dist/examples/lmd-decision-brief-worn-shaft-v1.json",
     "dist/examples/lmd-decision-brief-worn-shaft-v1.md",
@@ -1714,6 +1713,97 @@ function auditExperience() {
   fail("Experience audit failed", findings);
 }
 
+function auditVisualSystem() {
+  const findings = [];
+  const packageJson = read("package.json");
+  const bannedRuntimeTerms = ["mermaid", "lottie", "three", "@lottiefiles", "pixi.js"];
+
+  for (const term of bannedRuntimeTerms) {
+    if (packageJson.includes(`"${term}"`)) findings.push(`package.json: visual runtime dependency "${term}" is not allowed`);
+  }
+
+  for (const { file, text } of scanFiles(["src"], [".astro", ".tsx", ".ts", ".js", ".mjs"])) {
+    for (const term of ["mermaid.initialize", "mermaid.render", "lottie.loadAnimation", "new THREE."]) {
+      if (text.includes(term)) findings.push(`${file}: contains browser-side visual runtime "${term}"`);
+    }
+  }
+
+  for (const file of walk("public").filter((item) => item.endsWith(".svg"))) {
+    const svg = read(file);
+    if (/<metadata\b/i.test(svg)) findings.push(`${file}: SVG contains editor metadata`);
+    if (/data:image\//i.test(svg)) findings.push(`${file}: SVG embeds a raster image`);
+  }
+
+  for (const file of walk("public").filter((item) => /\.(png|jpe?g)$/i.test(item))) {
+    const size = statSync(join(root, file)).size;
+    if (size > 600_000) findings.push(`${file}: large raster visual exceeds 600 KB (${size} bytes)`);
+  }
+
+  const heroSource = read("src/components/HeroLaserVisual.tsx");
+  for (const match of heroSource.matchAll(/fontSize="(\d+)"/g)) {
+    if (Number(match[1]) < 16) findings.push(`src/components/HeroLaserVisual.tsx: SVG label below 16px (${match[1]}px)`);
+  }
+
+  const diagramSources = [
+    "src/components/HeroLaserVisual.tsx",
+    "src/components/PageHeroVisual.astro",
+    "src/components/ProcessLoop.astro",
+    "src/components/EvidenceRail.astro",
+    "src/components/EvidenceLadder.astro",
+    "src/components/IdentityGraph.astro"
+  ];
+  for (const file of diagramSources) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing diagram source`);
+      continue;
+    }
+    const source = read(file);
+    if (!source.includes("data-visual-type") && !source.includes("diagram-frame")) {
+      findings.push(`${file}: missing visual classification marker`);
+    }
+  }
+
+  const homeFile = "dist/index.html";
+  if (existsSync(join(root, homeFile))) {
+    const home = read(homeFile);
+    const homeImages = [...home.matchAll(/<img\b[^>]*\bsrc="([^"]+)"[^>]*>/gi)].map((match) => match[1]);
+    const visualBytes = homeImages
+      .filter((src) => src.startsWith("/"))
+      .reduce((total, src) => {
+        const file = join(root, "public", src.replace(/^\//, ""));
+        return total + (existsSync(file) ? statSync(file).size : 0);
+      }, 0);
+    if (visualBytes > 350_000) findings.push(`${homeFile}: homepage visual asset budget exceeds 350 KB (${visualBytes} bytes)`);
+    if (!home.includes("Illustrative LMD process schematic")) findings.push(`${homeFile}: missing labelled LMD process schematic`);
+  }
+
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    for (const tag of text.match(/<img\b[^>]*>/gi) ?? []) {
+      if (!/\bwidth="\d+"/i.test(tag) || !/\bheight="\d+"/i.test(tag)) {
+        findings.push(`${file}: image omits explicit width or height`);
+      }
+      if (!/\bloading="(?:lazy|eager)"/i.test(tag)) findings.push(`${file}: image omits documented loading behavior`);
+    }
+  }
+
+  const deFile = "dist/de/index.html";
+  if (existsSync(join(root, deFile))) {
+    const html = read(deFile);
+    if (/<img\b/i.test(html)) findings.push(`${deFile}: German overview must not use a baked-text visual asset`);
+    for (const phrase of ["Lernen", "Werkzeuge", "Nachweise", "Für KI und Medien"]) {
+      if (!visibleTextFromHtml(html).includes(phrase)) findings.push(`${deFile}: missing German visual/navigation label "${phrase}"`);
+    }
+  }
+
+  for (const { file, text } of scanFiles(distRoot, [".html", ".js", ".json", ".txt", ".md", ".svg", ".xml"])) {
+    if (text.includes("github.com/manish-sharma-ai")) {
+      findings.push(`${file}: contains a public repository or organization reference`);
+    }
+  }
+
+  fail("Visual-system audit failed", findings);
+}
+
 function auditCanonicalDomain() {
   const findings = [];
   const requiredFiles = [
@@ -1848,6 +1938,7 @@ const audits = {
   preflight: auditPreflight,
   "seo-social": auditSeoSocial,
   experience: auditExperience,
+  visuals: auditVisualSystem,
   "canonical-domain": auditCanonicalDomain,
   all() {
     auditVisualText();
@@ -1882,6 +1973,7 @@ const audits = {
     auditPreflight();
     auditSeoSocial();
     auditExperience();
+    auditVisualSystem();
     auditCanonicalDomain();
   }
 };

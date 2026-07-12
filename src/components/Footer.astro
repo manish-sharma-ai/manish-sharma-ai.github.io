@@ -1,6 +1,6 @@
 ---
 import BrandMark from "@components/BrandMark.astro";
-import { LINKS, SITE } from "@data/site";
+import { LINKS } from "@data/site";
 
 interface Props {
   lang?: "en" | "de";
@@ -47,8 +47,7 @@ const footerColumnsEn = [
     links: [
       { label: "Exafuse", href: LINKS.exafuse, external: true },
       { label: "GitHub", href: LINKS.github, external: true },
-      { label: "LinkedIn", href: LINKS.linkedin, external: true },
-      { label: "Repository", href: SITE.repoUrl, external: true }
+      { label: "LinkedIn", href: LINKS.linkedin, external: true }
     ]
   }
 ];
@@ -92,8 +91,7 @@ const footerColumnsDe = [
     links: [
       { label: "Exafuse", href: LINKS.exafuse, external: true },
       { label: "GitHub", href: LINKS.github, external: true },
-      { label: "LinkedIn", href: LINKS.linkedin, external: true },
-      { label: "Repository", href: SITE.repoUrl, external: true }
+      { label: "LinkedIn", href: LINKS.linkedin, external: true }
     ]
   }
 ];

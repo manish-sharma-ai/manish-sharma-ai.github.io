@@ -108,7 +108,6 @@ https://manishsharma.dev/sitemap-index.xml
 - `https://manishsharma.dev/review`
 - `https://manishsharma.dev/decision-map`
 - `https://manishsharma.dev/decision-map/lmd-decision-map-v1.md`
-- `https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg`
 - `https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json`
 - `https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json`
 - `https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.md`

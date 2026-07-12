@@ -231,7 +231,6 @@ npm run smoke:live
 - `/resources`
 - `/decision-map`
 - `/decision-map/lmd-decision-map-v1.md`
-- `/decision-map/lmd-decision-map-v1.svg`
 - `/research/lmd-literature-scan.json`
 - `/research/exafuse-public-proof-map.json`
 - `/frameworks/lmd-quality-evidence-ladder.md`
@@ -299,7 +298,6 @@ Artifact lifecycle and future-preset rules live in `docs/artifact-lifecycle.md`.
 Public source files:
 
 - `/decision-map/lmd-decision-map-v1.md`
-- `/decision-map/lmd-decision-map-v1.svg`
 
 The map is preliminary decision-support only. It should preserve missing information, risk flags, evidence needs, and expert-review routing instead of presenting route screening as feasibility approval.
 

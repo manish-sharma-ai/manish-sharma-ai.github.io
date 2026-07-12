@@ -1038,72 +1038,141 @@ input:hover {
   padding: 16px;
 }
 
-.smdv-loop {
-  position: relative;
-  display: grid;
-  gap: 14px;
-}
-
-.smdv-loop::before {
-  position: absolute;
-  inset: 34px 12% auto;
-  height: 1px;
-  content: "";
-  background: linear-gradient(90deg, rgba(52, 221, 255, 0.1), rgba(52, 221, 255, 0.62), rgba(255, 182, 76, 0.5), rgba(52, 221, 255, 0.12));
-  box-shadow: var(--cyan-glow-sm);
-}
-
-.smdv-loop__nodes {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(min(9.5rem, 100%), 1fr));
-}
-
-.smdv-node {
-  display: grid;
-  gap: 0.75rem;
-  min-height: 11rem;
-  border: 1px solid rgba(154, 209, 226, 0.16);
+.diagram-frame {
+  overflow: hidden;
+  border: 1px solid rgba(154, 209, 226, 0.2);
   border-radius: var(--card-radius);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
-    rgba(2, 8, 12, 0.62);
+  background: linear-gradient(145deg, rgba(12, 24, 32, 0.96), rgba(5, 10, 14, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), var(--shadow-soft);
+}
+
+.diagram-frame__header {
+  padding: 1rem 1rem 0;
+}
+
+.diagram-frame__canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 0.75rem;
+}
+
+.diagram-frame__legend {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: 1rem;
+  border-top: 1px solid rgba(154, 209, 226, 0.14);
+}
+
+.diagram-frame__legend li {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.diagram-frame__legend strong {
+  color: var(--text-strong);
+  font-size: 0.84rem;
+}
+
+.diagram-frame__direction {
+  padding: 0 1rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.page-hero-model {
+  width: 100%;
+  align-self: stretch;
+}
+
+.page-hero-model__steps,
+.identity-model__steps {
+  display: grid;
+  gap: 0.6rem;
   padding: 1rem;
 }
 
-.smdv-node__index {
+.page-hero-model__steps li,
+.identity-model__steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 3.9rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(154, 209, 226, 0.16);
+  border-radius: 0.55rem;
+  background: rgba(2, 8, 12, 0.52);
+  color: var(--text-strong);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.page-hero-model__index,
+.identity-model__index {
   display: inline-grid;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2rem;
+  height: 2rem;
   place-items: center;
-  border: 1px solid rgba(52, 221, 255, 0.32);
+  border: 1px solid rgba(52, 221, 255, 0.35);
   border-radius: 999px;
-  background: rgba(52, 221, 255, 0.12);
+  background: rgba(52, 221, 255, 0.11);
   color: var(--accent-strong);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 900;
-  box-shadow: var(--cyan-glow-sm);
 }
 
-.smdv-node--verify .smdv-node__index {
-  border-color: rgba(255, 182, 76, 0.42);
-  background: rgba(255, 182, 76, 0.13);
-  color: var(--amber-strong);
-  box-shadow: var(--amber-glow-sm);
+.identity-model__steps {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.smdv-boundary {
-  display: grid;
-  gap: 0.4rem;
-  border: 1px solid rgba(255, 182, 76, 0.24);
-  border-radius: var(--card-radius);
-  background:
-    linear-gradient(90deg, rgba(255, 107, 53, 0.1), rgba(255, 182, 76, 0.045), rgba(52, 221, 255, 0.035)),
-    rgba(4, 8, 12, 0.62);
-  padding: 1rem;
+.identity-model__steps li {
+  align-items: start;
+}
+
+.identity-model__steps strong,
+.identity-model__steps small {
+  display: block;
+}
+
+.identity-model__steps strong {
+  margin-top: 0.2rem;
+  color: var(--text-strong);
+  font-size: 0.95rem;
+}
+
+.identity-model__steps small {
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.process-loop__stages {
+  position: relative;
+}
+
+.process-loop__stage {
+  position: relative;
+}
+
+.process-loop__stage:not(.is-last)::after {
+  position: absolute;
+  top: 1.1rem;
+  right: -1.15rem;
+  z-index: 2;
+  color: var(--accent-strong);
+  font-size: 1.25rem;
+  font-weight: 900;
+  content: "→";
 }
 
 .evidence-rail {
@@ -1116,8 +1185,7 @@ input:hover {
   overflow: hidden;
 }
 
-.profile-image-panel::after,
-.page-hero-visual::after {
+.profile-image-panel::after {
   position: absolute;
   inset: auto 5% 5% auto;
   width: 30%;
@@ -1128,136 +1196,31 @@ input:hover {
   opacity: 0.58;
 }
 
-.page-hero-visual {
-  width: 100%;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), var(--shadow-soft);
-}
-
-.page-hero-visual::before {
-  position: absolute;
-  inset: -20% -10% auto auto;
-  width: 56%;
-  height: 56%;
-  pointer-events: none;
-  content: "";
-  background: radial-gradient(circle, color-mix(in srgb, var(--page-visual-accent, #34ddff) 34%, transparent), transparent 68%);
-  filter: blur(18px);
-  opacity: 0.48;
-}
-
-.hero-visual .laser-core,
-.page-laser-core {
-  animation: laserPulse 3.2s ease-in-out infinite;
-}
-
-.hero-visual .bead-flow,
-.hero-visual .graph-link,
-.hero-visual .sensor-stream,
-.hero-visual .evidence-link,
-.page-bead-trace,
-.page-graph-link,
-.page-router-line,
-.page-scan-line,
-.page-signal-line,
-.page-wave-line {
-  stroke-dasharray: 10 14;
-  animation: beadFlow 9s linear infinite;
-}
-
-.page-signal-line-alt,
-.hero-visual .sensor-stream-alt {
-  animation-direction: reverse;
-}
-
-.hero-visual .signal-dot,
-.hero-visual .graph-node,
-.hero-visual .readout-card,
-.page-graph-node,
-.page-data-card {
-  animation: floatSignal 5.6s ease-in-out infinite;
-}
-
-.hero-visual .melt-core,
-.hero-visual .thermal-halo,
-.page-heat-core {
-  animation: meltPulse 3.8s ease-in-out infinite;
-  transform-origin: center;
-}
-
-.hero-visual .scan-bar {
-  animation: scanSweep 6.5s linear infinite;
-}
-
-.page-card-drift,
-.page-pulse-node,
-.smdv-node__index {
-  animation: nodePulse 4.8s ease-in-out infinite;
-}
-
-@keyframes laserPulse {
-  0%,
-  100% {
-    opacity: 0.68;
-    stroke-width: 3;
+@media (max-width: 860px) {
+  .diagram-frame__legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  50% {
-    opacity: 1;
-    stroke-width: 5;
+
+  .identity-model__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-loop__stage:not(.is-last)::after {
+    display: none;
   }
 }
 
-@keyframes beadFlow {
-  to {
-    stroke-dashoffset: -160;
+@media (max-width: 520px) {
+  .diagram-frame__header,
+  .diagram-frame__legend,
+  .page-hero-model__steps,
+  .identity-model__steps {
+    padding: 0.85rem;
   }
-}
 
-@keyframes floatSignal {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.66;
-  }
-  50% {
-    transform: translateY(-8px);
-    opacity: 1;
-  }
-}
-
-@keyframes meltPulse {
-  0%,
-  100% {
-    transform: scale(0.96);
-    opacity: 0.82;
-  }
-  50% {
-    transform: scale(1.07);
-    opacity: 1;
-  }
-}
-
-@keyframes nodePulse {
-  0%,
-  100% {
-    opacity: 0.76;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes scanSweep {
-  from {
-    transform: translateX(-70%);
-    opacity: 0;
-  }
-  18%,
-  72% {
-    opacity: 0.76;
-  }
-  to {
-    transform: translateX(72%);
-    opacity: 0;
+  .diagram-frame__legend,
+  .identity-model__steps {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1344,26 +1307,6 @@ input:hover {
     padding: 18px;
   }
 
-  .smdv-loop::before {
-    inset: 0 auto 0 18px;
-    width: 1px;
-    height: auto;
-    background: linear-gradient(180deg, rgba(52, 221, 255, 0.1), rgba(52, 221, 255, 0.62), rgba(255, 182, 76, 0.5), rgba(52, 221, 255, 0.12));
-  }
-
-  .smdv-loop__nodes {
-    grid-template-columns: 1fr;
-  }
-}
-
-@container (max-width: 700px) {
-  .smdv-loop::before {
-    display: none;
-  }
-
-  .smdv-node {
-    min-height: auto;
-  }
 }
 
 @media (max-width: 639px) {
@@ -1511,7 +1454,11 @@ input:hover {
   .print-brief .no-print *,
   button,
   .btn,
-  .page-hero-visual,
+  .page-hero-model,
+  .diagram-frame,
+  .identity-model,
+  .process-loop,
+  .evidence-rail,
   .hero-visual,
   svg {
     display: none !important;
