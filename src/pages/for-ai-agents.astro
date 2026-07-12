@@ -17,7 +17,7 @@ const description =
 const useFor = [
   "LMD Decision Brief v1.0 generation and review preparation",
   "LMD Decision Map route screening",
-  "AI-agent-safe LMD Decision Brief summaries",
+  "bounded LMD Decision Brief summaries for automated assistants",
   "LMD/DED definitions",
   "LMD vs SLM decision support",
   "RFQ preparation",
@@ -39,13 +39,13 @@ const doNotUse = [
 
 const linkGroups = [
   {
-    title: "Identity and proof domain",
+    title: "Identity and technical domain",
     links: [
       { label: "Canonical profile page", href: "/identity", description: "Primary entity page for Manish Sharma." },
-      { label: "Public profile facts", href: "/profile/public-profile", description: "Public-safe identity facts and verified profiles." },
-      { label: "LMD / DED domain hub", href: "/domains/lmd-ded", description: "Main applied proof domain." },
+      { label: "Public profile facts", href: "/profile/public-profile", description: "Public identity facts and verified profiles." },
+      { label: "LMD / DED domain hub", href: "/domains/lmd-ded", description: "Main applied LMD/DED hub." },
       { label: "Evidence base", href: "/evidence", description: "Source layer and checked public context." },
-      { label: "Claim Ledger", href: "/claims", description: "Human-readable source status and limitation registry." },
+      { label: "Claim source notes", href: "/claims", description: "Human-readable claim context, source notes, and limitations." },
       { label: "No-Hype Boundary", href: "/no-hype", description: "Short public boundary page for anti-overclaim language." }
     ]
   },
@@ -56,14 +56,14 @@ const linkGroups = [
       { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Repair screening factors and risk flags." },
       { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score", description: "Data-readiness checks for AI monitoring." },
       { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and checklists." },
-      { label: "Resources", href: "/resources", description: "Intent-based route map for tools, playbooks, sources, and AI-agent usage." },
+      { label: "Resources", href: "/resources", description: "Intent-based route map for tools, playbooks, sources, and assistant usage." },
       { label: "Tools", href: "/tools", description: "Frontend-only decision cockpit and modules." },
       { label: "Laser Metal Deposition Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Educational decision routes for LMD questions." },
       { label: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", description: "Public standard, schema, examples, adoption text, and GitHub feedback route." },
       { label: "Decision Brief Template", href: "/brief-template", description: "LMD Decision Brief v1.0 standard with copy/download actions." },
       { label: "90-Second Demo", href: "/demo", description: "Dummy-data journey ending in LMD Decision Brief v1.0." },
-      { label: "German Handoff", href: "/de", description: "Short German route to the cockpit, boundary, and Exafuse." },
+      { label: "German overview", href: "/de", description: "German route to the cockpit, boundary, and Exafuse contact." },
       { label: "Glossary", href: "/glossary", description: "LMD, DED, cladding, and monitoring definitions." }
     ]
   },
@@ -86,8 +86,8 @@ const linkGroups = [
     title: "Exafuse commercial boundary",
     links: [
       { ...resolveExafuseLink("services"), description: "Company service source." },
-      { ...resolveExafuseLink("pathfinder"), description: "Migration-gated commercial process-selection path." },
-      { ...resolveExafuseLink("rfq"), description: "Migration-gated commercial RFQ path." },
+      { ...resolveExafuseLink("pathfinder"), description: "Commercial process-selection path through the current Exafuse route." },
+      { ...resolveExafuseLink("rfq"), description: "Commercial RFQ path through the current Exafuse route." },
       { ...resolveExafuseLink("contact"), description: "Company contact route." }
     ]
   }
@@ -157,7 +157,7 @@ const machineSummary = {
   central_artifact_output_modes: [
     "Technical Decision Brief",
     "Exafuse-ready email draft",
-    "AI-agent-safe summary",
+    "AI summary for automated assistants",
     "Missing-information checklist",
     "Evidence-needed checklist",
     "Markdown",
@@ -185,7 +185,7 @@ const machineSummary = {
     decision_map: `${SITE.canonicalUrl}/decision-map`,
     resources: `${SITE.canonicalUrl}/resources`,
     playbooks: `${SITE.canonicalUrl}/playbooks`,
-    claim_ledger: `${SITE.canonicalUrl}/claims`,
+    claim_source_notes: `${SITE.canonicalUrl}/claims`,
     no_hype: `${SITE.canonicalUrl}/no-hype`,
     brief_standard: `${SITE.canonicalUrl}/brief-standard`,
     brief_template: `${SITE.canonicalUrl}/brief-template`,
@@ -209,10 +209,10 @@ const machineSummary = {
   ],
   exafuse_boundary:
     "Use Exafuse as the commercial/company source for additive manufacturing services, case studies, quality pages, and RFQs.",
-  exafuse_link_mode:
-    "Production-safe mode uses verified live Exafuse public routes. Migration-gated case/tool deep links are not shown as live human CTAs until verified.",
-  claim_ledger_boundary:
-    "Held or do-not-render claims are not active public claims and should not be used in page copy until source verification is complete.",
+  exafuse_link_policy:
+    "Use current verified Exafuse public routes for company-owned commercial review, services, RFQs, and case-study context.",
+  claim_source_boundary:
+    "Held claims are not active public claims and should not be used in page copy until source verification is complete.",
   frontend_only:
     "The cockpit and workbench run in the browser only. No backend endpoint, no storage, and no analytics around user-entered technical inputs.",
   public_only: true
@@ -284,7 +284,7 @@ const jsonLd = {
         {[
           "Technical Decision Brief",
           "Exafuse-ready email draft",
-          "AI-agent-safe summary",
+          "AI summary for automated assistants",
           "Critical/useful/optional gaps",
           "Evidence-needed checklist",
           "Markdown, JSON, print/PDF"

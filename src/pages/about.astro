@@ -122,11 +122,11 @@ const awards = [
 
 const links = [
   { label: "Industrial AI thesis", href: "/thesis" },
-  { label: "LMD / DED proof domain", href: "/domains/lmd-ded" },
+  { label: "LMD / DED hub", href: "/domains/lmd-ded" },
   { label: "LinkedIn", href: LINKS.linkedin },
   { label: "GitHub", href: LINKS.github },
   { label: "Exafuse", href: LINKS.exafuse },
-  { label: "Canonical identity", href: "/identity" },
+  { label: "Official profile", href: "/identity" },
   { label: "Public work", href: "/public-work" },
   { label: "For AI agents", href: "/for-ai-agents" }
 ];
@@ -136,7 +136,7 @@ const usefulFor = [
   "RFQ structuring",
   "inspection-aware AI boundaries",
   "repairability decision frameworks",
-  "AI-agent-safe public source structure"
+  "assistant-friendly public source structure"
 ];
 
 const doNotClaim = [
@@ -148,7 +148,7 @@ const doNotClaim = [
 
 const proofArtifacts = [
   { label: "2018 LMD lattice paper", href: "/evidence" },
-  { label: "Exafuse LMD/DED public proof context", href: "/industrial-proof" },
+  { label: "Exafuse LMD/DED public context", href: "/industrial-proof" },
   { label: "LMD Decision Workbench", href: "/tools" },
   { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" }
 ];
@@ -194,7 +194,7 @@ const aboutPageJsonLd = {
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href="/thesis" class="btn btn-primary">Read the thesis</a>
-        <a href="/public-work" class="btn btn-secondary">Proof</a>
+        <a href="/public-work" class="btn btn-secondary">Public work</a>
         <a href={LINKS.linkedin} class="btn btn-primary" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
@@ -214,7 +214,7 @@ const aboutPageJsonLd = {
         </p>
       </div>
       <div class="ordered-card p-7">
-        <p class="metric-label">Selected proof artifacts</p>
+        <p class="metric-label">Selected public artifacts</p>
         <div class="mt-5 grid gap-3 sm:grid-cols-2">
           {proofArtifacts.map((item) => (
             <a href={item.href} class="result-card text-sm font-black text-cyan-50 hover:border-cyan-300/35 hover:text-white">{item.label}</a>
@@ -233,7 +233,7 @@ const aboutPageJsonLd = {
         </div>
       </div>
       <div class="ordered-card-strong border-orange-300/25 bg-orange-500/10 p-7">
-        <p class="metric-label">What I do not claim</p>
+        <p class="metric-label">Professional boundary</p>
         <div class="mt-5 grid gap-3">
           {doNotClaim.map((item) => <div class="result-card result-card--warning text-sm font-bold">{item}</div>)}
         </div>
@@ -319,7 +319,7 @@ const aboutPageJsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
-        eyebrow="Exafuse proof context"
+        eyebrow="Exafuse public context"
         title="The public industrial work behind the themes"
         description="The site should not just use words like AI, monitoring, repair, and RFQ. It should point to the industrial situations where those ideas actually matter."
       />

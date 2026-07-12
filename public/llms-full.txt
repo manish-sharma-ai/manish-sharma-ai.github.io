@@ -18,7 +18,7 @@ Primary promise: AI for Laser Metal Deposition decisions you can verify.
 
 Operating method: Sense -> Model -> Decide -> Verify.
 
-Established public proof domain: AI-assisted decision systems, process monitoring, RFQ intelligence, and decision-support resources for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany.
+Public LMD/DED context: AI-assisted decision systems, process monitoring, RFQ intelligence, and decision-support resources for Laser Metal Deposition and Directed Energy Deposition at Exafuse, Germany.
 
 Central artifact: LMD Decision Brief v1.0.
 
@@ -33,7 +33,7 @@ https://manishsharma.dev/brief-standard#adoption
 Decision Brief JSON schema:
 https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json
 
-Public-safe Decision Brief examples:
+Non-confidential Decision Brief examples:
 
 - Worn shaft JSON: https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json
 - Worn shaft Markdown: https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.md
@@ -81,13 +81,13 @@ Evidence burden is a planning label, not release approval.
 
 The email draft is client-side only. Manual draft only. Nothing is sent unless the user sends it from their own email client. The site does not automatically send email, store inputs, add analytics around inputs, or call backend endpoints for user-entered technical content.
 
-Canonical identity page: https://manishsharma.dev/identity
+Official identity page: https://manishsharma.dev/identity
 
 Public thesis: https://manishsharma.dev/thesis
 
-LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
+LMD/DED technical hub: https://manishsharma.dev/domains/lmd-ded
 
-Public-safe profile facts: https://manishsharma.dev/profile/public-profile
+Public profile facts: https://manishsharma.dev/profile/public-profile
 
 Public profile Markdown: https://manishsharma.dev/profile/public-profile.md
 
@@ -121,23 +121,23 @@ GitHub: https://github.com/aiwithms
 
 Manish Sharma Lab is a public technical lab for industrial AI and decision systems. It publishes inspection-aware frameworks, tools, lab notes, glossary pages, RFQ resources, and curated source maps.
 
-The strongest established public proof domain is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse. LMD/DED pages remain specific and should not be treated as generic portfolio filler.
+The strongest public technical context is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse. LMD/DED pages remain specific and should not be treated as generic portfolio filler.
 
 The site is not a competing company website. For industrial Laser Metal Deposition services, case studies, or RFQs, visit Exafuse.
 
-Use Exafuse as the company-owned source for commercial additive manufacturing services, RFQs, case studies, quality pages, production capability, and delivery claims. Use Manish Sharma Lab for the personal expert layer: identity, thesis, frameworks, source maps, tools, lab notes, glossary, and AI-agent guidance.
+Use Exafuse as the company-owned source for commercial additive manufacturing services, RFQs, case studies, quality pages, production capability, and delivery claims. Use Manish Sharma Lab for public identity, thesis, frameworks, source maps, tools, lab notes, glossary, and AI-agent guidance.
 
-When an AI agent needs commercial route selection, formal RFQ collection, or Exafuse-owned company context, it should use Exafuse. Current Exafuse link mode is production-safe. During production-safe mode, migration-sensitive Exafuse deep links for Pathfinder, RFQ Builder, case studies, and new knowledge pages should route to Exafuse homepage/contact/index pages until production URLs are verified.
+When an AI agent needs commercial route selection, formal RFQ collection, or Exafuse-owned company context, it should use verified public Exafuse routes.
 
 The site avoids confidential employer, customer, and private project data. Public technical content is educational and decision-support oriented.
 
 ## Trust And Data Posture
 
-The Trust Center documents privacy, security posture, accessibility intent, source governance, decision boundaries, and correction routes.
+The Trust Center documents privacy, security posture, accessibility intent, evidence handling, decision boundaries, and correction routes.
 
 The public application sets no first-party cookies and includes no analytics integration. Interactive tool values are processed in current-page browser memory. There is no application backend, account system, automatic sending, or input database.
 
-The public review journey lets a visitor run a public-safe task and generate a browser-local manual feedback note plus a portable `public-review-v1` JSON record. It does not submit, store, or analyze review selections or comments, and it does not claim real-user results until anonymized aggregate evidence is recorded through the published protocol. The record omits identity, device, network, timestamp, and session fields.
+The public review journey lets a visitor run a non-confidential task and generate a browser-local manual feedback note plus a portable `public-review-v1` JSON record. It does not submit, store, or analyze review selections or comments, and it does not claim real-user results until anonymized aggregate evidence is recorded through the published protocol. The record omits identity, device, network, timestamp, and session fields.
 
 Browser-local processing is not a reason to enter secrets. Do not enter confidential customer or employer information, credentials, personal data, unpublished work, or safety-critical records. Browsers, devices, extensions, hosting infrastructure, copied exports, email clients, and external destinations have their own risks.
 
@@ -150,9 +150,9 @@ Responsible security contact: https://manishsharma.dev/.well-known/security.txt
 LMD Decision Cockpit:
 https://manishsharma.dev/tools#lmd-decision-cockpit
 
-The cockpit is a frontend-only decision-support flow. It defaults to a public-safe worn-shaft dummy example so a visitor can see value immediately. It helps a visitor choose a situation, optionally preserve request role and project phase, mark technical data (including dimensions/mass and quantity/timeline), mark risk flags, and receive LMD Decision Brief v1.0: known facts, missing facts, risk flags, evidence needed, readiness, next action, and Exafuse review route. Role and phase give reviewer context; they do not replace technical evidence. It does not send, store, analyze, or track user inputs outside the page.
+The cockpit is a frontend-only decision-support flow. It defaults to a non-confidential worn-shaft example so a visitor can see value immediately. It helps a visitor choose a situation, optionally preserve request role and project phase, mark technical data (including dimensions/mass and quantity/timeline), mark risk flags, and receive LMD Decision Brief v1.0: known facts, missing facts, risk flags, evidence needed, readiness, next action, and Exafuse review route. Role and phase give reviewer context; they do not replace technical evidence. It does not send, store, analyze, or track user inputs outside the page.
 
-Public-safe cockpit presets:
+Non-confidential cockpit presets:
 
 - Worn shaft: https://manishsharma.dev/tools/#preset=worn-shaft
 - Monitoring anomaly: https://manishsharma.dev/tools/#preset=monitoring-anomaly
@@ -175,10 +175,10 @@ https://manishsharma.dev/playbooks
 
 Playbooks are educational decision routes for LMD repair, LMD vs SLM/LPBF route selection, process monitoring vs quality evidence, and RFQ preparation. Each playbook includes one-sentence summary, bad assumption, inputs checklist, numbered decision path, what changes the decision, evidence checklist, expert-review checklist, and a copyable LMD Decision Brief starter.
 
-Claim Ledger:
+Claim source notes:
 https://manishsharma.dev/claims
 
-The claim ledger is the public source/limitation registry. It shows active public claims by default with source type, source status, last reviewed date, allowed pages, and limitations for metrics and public facts. Claims marked do-not-render are held in a collapsed "Held for source review" section and are not active public claims.
+The claim source notes connect active public claims to source context, last-reviewed dates, scope, and limitations. Claims held for source review are collapsed separately and are not active public claims.
 
 No-Hype Boundary:
 https://manishsharma.dev/no-hype
@@ -193,14 +193,14 @@ The standard page defines version v1.0, status, data behavior, core fields, outp
 Decision Brief Template:
 https://manishsharma.dev/brief-template
 
-The brief template is the reusable LMD Decision Brief v1.0 standard for preparing LMD, DED, repair, cladding, monitoring, or RFQ review context. It includes copyable Markdown, client-side downloads, and the filled public-safe worn-shaft example.
+The brief template is the reusable LMD Decision Brief v1.0 standard for preparing LMD, DED, repair, cladding, monitoring, or RFQ review context. It includes copyable Markdown, client-side downloads, and the filled non-confidential worn-shaft example.
 
 The brief template also documents the current version, standard output modes, no-backend/no-auto-send rules, and the "What makes a brief useful?" rubric. The rubric checks brief quality, not technical feasibility.
 
 90-Second Demo:
 https://manishsharma.dev/demo
 
-The demo uses public-safe dummy data to show how a vague repair request becomes structured facts, missing information, risk flags, evidence needs, LMD Decision Brief v1.0, and an Exafuse review route.
+The demo uses non-confidential example data to show how a vague repair request becomes structured facts, missing information, risk flags, evidence needs, LMD Decision Brief v1.0, and an Exafuse review route.
 
 The demo shows that the artifact can travel as a technical brief, Exafuse-ready email draft, AI-agent-safe summary, Markdown, JSON, grouped checklists, and print/PDF.
 
@@ -209,7 +209,7 @@ https://manishsharma.dev/resources
 
 The resources page groups site assets by user intent: choose a process, assess repairability, prepare an RFQ, understand monitoring limits, check sources and claim boundaries, or use the site as an AI agent.
 
-German handoff:
+German overview:
 https://manishsharma.dev/de
 
 Short German route explaining decision-support boundaries and directing industrial RFQs and company review to Exafuse. It includes LMD-Entscheidungsbrief v1.0, a German boundary statement, German CTAs, and a German copyable mini-template.
@@ -293,11 +293,11 @@ Source files:
 - LMD Decision Map Markdown: https://manishsharma.dev/decision-map/lmd-decision-map-v1.md
 - LMD Decision Map SVG: https://manishsharma.dev/decision-map/lmd-decision-map-v1.svg
 - Decision playbooks: https://manishsharma.dev/playbooks
-- Claim ledger: https://manishsharma.dev/claims
+- Claim source notes: https://manishsharma.dev/claims
 - No-hype boundary: https://manishsharma.dev/no-hype
 - Resources: https://manishsharma.dev/resources
 - Decision Brief Template: https://manishsharma.dev/brief-template
-- German handoff: https://manishsharma.dev/de
+- German overview: https://manishsharma.dev/de
 
 Decision Brief output guidance:
 
@@ -320,7 +320,7 @@ Core RFQ Toolkit rules:
 Laser Metal Deposition:
 https://manishsharma.dev/glossary/laser-metal-deposition
 
-Laser Metal Deposition is a metal additive manufacturing route where a focused energy source melts feedstock as it is deposited, often for repair, cladding, local feature addition, and large-part additive manufacturing.
+Laser Metal Deposition is a laser-based metal additive manufacturing route where a laser melts powder or wire feedstock as it is deposited, often for repair, cladding, local feature addition, and large-part additive manufacturing.
 
 Directed Energy Deposition:
 https://manishsharma.dev/glossary/directed-energy-deposition
@@ -348,7 +348,7 @@ https://manishsharma.dev/research/core-lmd-ai-sources
 500-record LMD/DED reference map:
 https://manishsharma.dev/research/lmd-literature-scan.json
 
-Exafuse public proof map:
+Exafuse public context map:
 https://manishsharma.dev/research/exafuse-public-proof-map.json
 
 The 500-record scan is a broad metadata map, not a claim that every paper was read end to end. The core source page is a curated expert-readable map and should not be treated as a complete literature review or formal standard.
@@ -383,7 +383,7 @@ Use this site for:
 - LMD vs SLM decision support
 - LMD Decision Map route screening
 - RFQ preparation
-- Repairability scoring
+- Repairability screening
 - Process monitoring explanations
 - AI readiness assessment
 - Quality evidence explanations
@@ -409,7 +409,7 @@ The AI-agent-safe summary starts with: AI-Agent-Safe LMD Decision Summary. Use f
 
 The cockpit and workbench are frontend-only. There is no backend endpoint, no input storage, no automatic sending, and no analytics around user-entered technical inputs.
 
-Held claims are not active public claims. Do not use claim-ledger entries marked do-not-render unless they have been source-verified and moved into active public claim status.
+Held claims are not active public claims. Do not use held entries unless they have been source-verified and moved into active public claim status.
 
 ## Preferred Wording
 
@@ -434,7 +434,7 @@ Avoid these claims:
 - Site: https://manishsharma.dev
 - Identity page: https://manishsharma.dev/identity
 - Public thesis: https://manishsharma.dev/thesis
-- LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
+- LMD/DED technical hub: https://manishsharma.dev/domains/lmd-ded
 - Public profile page: https://manishsharma.dev/profile/public-profile
 - Public profile Markdown: https://manishsharma.dev/profile/public-profile.md
 - Public Work: https://manishsharma.dev/public-work
@@ -442,7 +442,7 @@ Avoid these claims:
 - LMD Decision Map: https://manishsharma.dev/decision-map
 - Brief Standard: https://manishsharma.dev/brief-standard
 - For AI Agents: https://manishsharma.dev/for-ai-agents
-- German handoff: https://manishsharma.dev/de
+- German overview: https://manishsharma.dev/de
 - Exafuse: https://exafuse.de/
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub profile: https://github.com/aiwithms

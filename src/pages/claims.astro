@@ -6,16 +6,16 @@ import { CLAIM_REVIEW_FEEDBACK_URL } from "@data/briefStandard";
 import { PUBLIC_CLAIMS, getClaimHref, getClaimHumanExplanation, getClaimSourceStatus } from "@data/publicClaims";
 import { PERSON, SITE } from "@data/site";
 
-const title = "Public Claim Ledger";
+const title = "Public Claim Source Notes";
 const description =
-  "Human-readable ledger for public Manish Sharma Lab claims, source status, limitations, allowed pages, review dates, and correction routes.";
+  "Human-readable source notes for public Manish Sharma Lab claims, limitations, review dates, and correction routes.";
 
 const activeClaims = PUBLIC_CLAIMS.filter((claim) => claim.confidence !== "do-not-render");
 const heldClaims = PUBLIC_CLAIMS.filter((claim) => claim.confidence === "do-not-render");
 
 const groups = [
   {
-    label: "Exafuse public proof context",
+    label: "Exafuse public context",
     claims: activeClaims.filter((claim) => claim.sourceType === "exafuse-public")
   },
   {
@@ -47,13 +47,13 @@ const jsonLd = {
   <section class="site-shell section-y">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Claim ledger</Badge>
-        <Badge tone="steel">Source status</Badge>
+        <Badge>Claim notes</Badge>
+        <Badge tone="steel">Source context</Badge>
         <Badge tone="laser">Limitations visible</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Public claims should be auditable.</h1>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        This page renders active public claims as a human-readable ledger. Metrics and profile facts are not free-floating marketing copy; they carry source status, allowed pages, review dates, and limitations.
+        This page keeps public claims connected to source context, review dates, and limitations. Metrics and profile facts are not free-floating marketing copy.
       </p>
       <p class="mt-4 max-w-3xl rounded-lg border border-amber-300/25 bg-amber-400/10 p-4 text-sm font-bold leading-6 text-amber-50">
         Claims are public context, not transferable feasibility or approval.
@@ -76,11 +76,11 @@ const jsonLd = {
               const sourceStatus = getClaimSourceStatus(claim);
               const sourceHref = getClaimHref(claim);
               const auditFields = [
-                ["Source type/status", `${claim.sourceType} / ${sourceStatus}`],
+                ["Source context", `${claim.sourceType} / ${sourceStatus}`],
                 ["Last reviewed", claim.lastReviewed],
-                ["Allowed pages", claim.allowedPages.length ? claim.allowedPages.join(", ") : "Not allowed on public pages until reviewed."],
-                ["Related page/tool/framework", claim.sourceUrlKey ? "Exafuse public context via current link mode" : sourceHref],
-                ["Registry id", claim.id]
+                ["Where it may appear", claim.allowedPages.length ? claim.allowedPages.join(", ") : "Not used in public page copy until reviewed."],
+                ["Related source or page", claim.sourceUrlKey ? "Exafuse public context via current contact or index route" : sourceHref],
+                ["Reference id", claim.id]
               ];
               return (
                 <article class="ordered-card-strong p-5" data-claim-id={claim.id}>
@@ -107,7 +107,7 @@ const jsonLd = {
                   </dl>
                   <details class="ordered-card mt-5 p-4">
                     <summary class="flex cursor-pointer items-center justify-between gap-4 text-sm font-black text-white">
-                      <span>Audit details</span>
+                      <span>Review details</span>
                       <span class="metric-label">Collapsed</span>
                     </summary>
                     <dl class="mt-4 grid gap-3 text-sm leading-6">
@@ -152,14 +152,14 @@ const jsonLd = {
               ["Source status", "Not active public copy"],
               ["Source type", claim.sourceType],
               ["Last reviewed", claim.lastReviewed],
-              ["Allowed pages", "Not allowed on public pages until reviewed."],
+              ["Where it may appear", "Not used on public pages until reviewed."],
               ["Limitation", claim.limitation]
             ];
             return (
               <article class="ordered-card p-5" data-claim-id={claim.id}>
                 <div class="flex flex-wrap gap-2">
                   <span class="chip chip--steel">{claim.sourceType}</span>
-                  <span class="chip chip--amber">{claim.confidence}</span>
+                  <span class="chip chip--amber">not active</span>
                 </div>
                 <h2 class="mt-4 text-2xl font-black text-white">{claim.shortLabel}</h2>
                 <dl class="mt-5 grid gap-3 text-sm leading-6">
@@ -182,7 +182,7 @@ const jsonLd = {
     <div class="ordered-card p-6">
       <p class="metric-label">Boundary</p>
       <p class="mt-3 text-base font-semibold leading-7 text-slate-200">
-        Project targets are targets, not achieved production results. Exafuse case claims remain company-owned public context. This ledger does not disclose confidential employer, customer, or private project data.
+        Project targets are targets, not achieved production results. Exafuse case claims remain company-owned public context. This page does not disclose confidential employer, customer, or private project data.
       </p>
     </div>
   </section>

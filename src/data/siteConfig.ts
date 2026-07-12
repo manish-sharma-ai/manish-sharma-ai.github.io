@@ -26,7 +26,7 @@ export const SITE_CONFIG = {
     promise: "AI for Laser Metal Deposition decisions you can verify.",
     method: "Sense -> Model -> Decide -> Verify",
     shortBio:
-      "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with a public proof domain around LMD/DED, repair, and evidence-based manufacturing decisions.",
+      "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with public LMD/DED work around repair, monitoring, and evidence-based manufacturing decisions.",
     longBio:
       "Manish Sharma works on industrial AI, monitoring, and decision-support systems for engineering processes, grounded in public work on Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany. Manish Sharma Lab publishes public frameworks, tools, source maps, glossary notes, and RFQ resources that connect process signals, model assumptions, repairability, inspection evidence, and engineering decisions.",
     location: "Germany",

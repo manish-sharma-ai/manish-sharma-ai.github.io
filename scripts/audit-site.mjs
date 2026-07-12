@@ -40,13 +40,64 @@ const publicMigrationLeakPhrases = [
   "Pathfinder after migration",
   "Builder after migration",
   "Source activates after Exafuse production migration",
+  "Source link pending until Exafuse production migration",
   "View Exafuse after migration",
   "Exafuse RFQ path after migration",
   "Exafuse case link after migration",
   "Exafuse tool path after migration",
   "Exafuse AI-agent path after migration",
   "Exafuse knowledge link after migration",
-  "Production link after Exafuse migration"
+  "Production link after Exafuse migration",
+  "New Exafuse case/tool deep links will activate after production migration",
+  "migration-gated",
+  "Migration-gated",
+  "link mode",
+  "Link mode",
+  "production-safe",
+  "Production-safe"
+];
+
+const humanLanguageLeakPhrases = [
+  "public-safe",
+  "Public-safe",
+  "AI-agent-safe",
+  "AI-Agent-Safe",
+  "canonical identity",
+  "Canonical identity",
+  "claim ledger",
+  "Claim Ledger",
+  "proof domain",
+  "Proof domain",
+  "authority layer",
+  "source governance",
+  "allowed pages",
+  "Allowed pages",
+  "registry ID",
+  "Registry id",
+  "source type/status",
+  "Source type/status",
+  "do-not-render",
+  "audit marker",
+  "internal claim status"
+];
+
+const humanFirstRenderedPages = [
+  "/",
+  "/about/",
+  "/thesis/",
+  "/domains/lmd-ded/",
+  "/public-work/",
+  "/evidence/",
+  "/industrial-proof/",
+  "/resources/",
+  "/tools/",
+  "/decision-map/",
+  "/playbooks/",
+  "/lab-notes/",
+  "/glossary/",
+  "/contact/",
+  "/no-hype/",
+  "/de/"
 ];
 
 const keyRenderedPages = [
@@ -172,6 +223,22 @@ function auditRenderedPublicLanguage() {
       if (visibleText.includes(phrase)) {
         findings.push(`${file}: public rendered HTML contains internal migration wording "${phrase}"`);
       }
+    }
+  }
+  for (const route of humanFirstRenderedPages) {
+    const file = pagePathToDistFile(route);
+    if (!existsSync(join(root, file))) continue;
+    const visibleText = visibleTextFromHtml(read(file));
+    for (const phrase of humanLanguageLeakPhrases) {
+      if (visibleText.includes(phrase)) {
+        findings.push(`${file}: human-first page exposes internal wording "${phrase}"`);
+      }
+    }
+    for (const phrase of ["Confidence is not approval", "Decision support only", "Preliminary decision-support only", "No backend"]) {
+      const count = visibleText.split(phrase).length - 1;
+      const generatedArtifactRoute = ["/tools/", "/playbooks/", "/decision-map/"].includes(route);
+      const maxAllowed = generatedArtifactRoute ? 12 : route === "/no-hype/" ? 3 : 2;
+      if (count > maxAllowed) findings.push(`${file}: repeats caveat "${phrase}" ${count} times`);
     }
   }
   fail("Rendered public-language audit failed", findings);
@@ -329,7 +396,7 @@ function auditHomepageProduct() {
   const required = [
     "AI for Laser Metal Deposition decisions you can verify.",
     "LMD Decision Cockpit",
-    "Public-safe dummy example: worn steel shaft near bearing seat.",
+    "Example scenario: worn steel shaft near bearing seat.",
     "Compact brief preview",
     "Decision signal",
     "Brief completeness",
@@ -340,9 +407,11 @@ function auditHomepageProduct() {
     "Copy brief",
     "Open full brief",
     "Start your own brief",
-    "Decision support only",
-    "Not final engineering approval",
-    "A signal is not proof."
+    "Engineering review prep",
+    "Built to organize questions before expert review.",
+    "Documented examples",
+    "What the example shows",
+    "What still needs part-specific review"
   ];
   for (const phrase of required) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
@@ -351,9 +420,9 @@ function auditHomepageProduct() {
     if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
   }
   const cockpitIndex = visibleText.indexOf("LMD Decision Cockpit");
-  const proofIndex = visibleText.indexOf("Public proof");
-  if (cockpitIndex < 0 || proofIndex < 0 || cockpitIndex > proofIndex) {
-    findings.push(`${file}: LMD Decision Cockpit should appear before Public proof`);
+  const evidenceIndex = visibleText.indexOf("Documented examples");
+  if (cockpitIndex < 0 || evidenceIndex < 0 || cockpitIndex > evidenceIndex) {
+    findings.push(`${file}: LMD Decision Cockpit should appear before documented examples`);
   }
   const operatingLoopSections = text.match(/data-operating-loop="homepage"/g) ?? [];
   if (operatingLoopSections.length !== 1) {
@@ -366,7 +435,7 @@ function auditHomepageProduct() {
   for (const phrase of [
     "How to use this brief",
     "Copy Exafuse email draft",
-    "Copy AI-safe summary",
+    "Copy AI summary",
     "Download .json",
     "Open mail client with draft"
   ]) {
@@ -402,7 +471,7 @@ function auditBriefArtifact() {
       "confidence is not approval",
       "technical decision brief",
       "exafuse-ready email draft",
-      "ai-agent-safe summary",
+      "ai summary",
       "copy exafuse email draft",
       "download .json",
       "how to use this brief"
@@ -417,7 +486,7 @@ function auditBriefArtifact() {
   for (const phrase of [
     "Copy technical brief",
     "Copy Exafuse email draft",
-    "Copy AI-safe summary",
+    "Copy AI summary",
     "Copy missing-information checklist",
     "Copy evidence-needed checklist",
     "Download .md",
@@ -546,16 +615,45 @@ function auditGermanBrief() {
     fail("German brief audit failed", [`${file}: missing built German page`]);
     return;
   }
-  const visibleText = visibleTextFromHtml(read(file));
+  const html = read(file);
+  const visibleText = visibleTextFromHtml(html);
+  if (!/<html[^>]+lang="de"/i.test(html)) findings.push(`${file}: missing lang="de"`);
+  if (!html.includes('rel="alternate" hreflang="en"')) findings.push(`${file}: missing English hreflang`);
+  if (!html.includes('rel="alternate" hreflang="de"')) findings.push(`${file}: missing German hreflang`);
   for (const phrase of [
     "LMD-Entscheidungsbrief v1.0",
-    "Entscheidungshilfe, keine technische Freigabe. Prozesssignale sind kein Qualitätsnachweis. Die endgültige Bewertung erfordert Fachprüfung, Inspektion und geeignete Nachweise."
+    "Werkzeuge und Fachwissen für fundierte Entscheidungen im Laserauftragschweißen.",
+    "Status: vorläufige technische Einordnung",
+    "Geeignet für: Vorbereitung einer Machbarkeitsbewertung oder technischen Anfrage",
+    "Werkzeug öffnen",
+    "Grenzen ohne Hype lesen",
+    "Seiteninformationen",
+    "Startseite",
+    "Vertrauen & Datenschutz",
+    "Suche"
   ]) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
   }
-  if (visibleText.includes("Preliminary decision-support only")) {
-    findings.push(`${file}: English boundary paragraph appears on German handoff page`);
+  for (const phrase of [
+    "Skip to content",
+    "Search all pages",
+    "Page information",
+    "Resources",
+    "Contact",
+    "German Handoff",
+    "German Page",
+    "Open route",
+    "Preliminary decision-support only",
+    "Canonical:",
+    "Handoff",
+    "Prüfroute",
+    "Fachprüfung / RFQ-Gespräch",
+    "überprüfbar bleiben",
+    "Lab Notes"
+  ]) {
+    if (visibleText.includes(phrase)) findings.push(`${file}: German page leaks English or awkward interface text "${phrase}"`);
   }
+  if (html.includes("Ã") || html.includes("â€")) findings.push(`${file}: contains likely mojibake`);
   fail("German brief audit failed", findings);
 }
 
@@ -723,6 +821,32 @@ function auditDecisionBoundaries() {
     }
   }
 
+  const routeAdvisor = existsSync(join(root, "src/components/LmdVsSlmAdvisor.tsx"))
+    ? read("src/components/LmdVsSlmAdvisor.tsx")
+    : "";
+  for (const phrase of ["LMD likely better", "SLM/LPBF likely better", "better than"]) {
+    if (routeAdvisor.includes(phrase)) findings.push(`src/components/LmdVsSlmAdvisor.tsx: route output is too confident via "${phrase}"`);
+  }
+  for (const phrase of [
+    "LMD/DED-aligned signals are present",
+    "PBF-LB/M-aligned signals are present",
+    "Insufficient information for a route preference",
+    "rule-based"
+  ]) {
+    if (!routeAdvisor.includes(phrase)) findings.push(`src/components/LmdVsSlmAdvisor.tsx: missing calibrated route wording "${phrase}"`);
+  }
+
+  for (const file of ["src/components/RepairabilityQuickCheck.tsx", "src/components/RepairabilityCalculator.tsx"]) {
+    if (!existsSync(join(root, file))) continue;
+    const text = read(file);
+    if (text.includes("Repairability score") || text.includes("${result.score}/100") || text.includes("/100)")) {
+      findings.push(`${file}: public repairability output should use qualitative screening bands, not a pseudo-precise /100 score`);
+    }
+    if (!text.includes("screening band") && !text.includes("Screening band")) {
+      findings.push(`${file}: missing qualitative screening-band wording`);
+    }
+  }
+
   const unsafeClaims = [
     "monitoring proves final quality",
     "monitoring proves quality",
@@ -749,19 +873,21 @@ function auditExafuseModeHuman() {
   }
   if (exafuseMode() === "production-safe") {
     const rendered = scanFiles(distRoot, [".html"]);
-    const unsafeHumanLabels = ["Exafuse Pathfinder", "Exafuse RFQ Builder", "Use these production Exafuse URLs"];
+    const unsafeHumanLabels = [
+      "Exafuse Pathfinder",
+      "Exafuse RFQ Builder",
+      "Use these production Exafuse URLs",
+      "migration-gated",
+      "link mode",
+      "production-safe",
+      "production migration"
+    ];
     for (const { file, text } of rendered) {
       const visibleText = visibleTextFromHtml(text);
       for (const label of unsafeHumanLabels) {
         if (visibleText.includes(label)) {
-          findings.push(`${file}: production-safe human text implies migration-gated path is live: "${label}"`);
+          findings.push(`${file}: human text exposes internal Exafuse route state: "${label}"`);
         }
-      }
-    }
-    const modeNotice = "New Exafuse case/tool deep links will activate after production migration.";
-    for (const file of ["dist/domains/lmd-ded/index.html", "dist/public-work/index.html"]) {
-      if (existsSync(join(root, file)) && !visibleTextFromHtml(read(file)).includes(modeNotice)) {
-        findings.push(`${file}: missing Exafuse migration notice`);
       }
     }
   }
@@ -827,13 +953,6 @@ function auditHumanMigrationLanguage() {
   for (const phrase of ["Request Exafuse review", "Contact Exafuse"]) {
     if (!externalConfig.includes(phrase)) findings.push(`src/config/externalLinks.ts: missing human label "${phrase}"`);
   }
-  for (const file of ["dist/evidence/index.html", "dist/public-work/index.html"]) {
-    if (!existsSync(join(root, file))) continue;
-    const visibleText = visibleTextFromHtml(read(file));
-    if (!visibleText.includes("New Exafuse case/tool deep links will activate after production migration.")) {
-      findings.push(`${file}: missing production migration helper text`);
-    }
-  }
   fail("Human migration language audit failed", findings);
 }
 
@@ -892,14 +1011,17 @@ function auditClaimsHumanSurface() {
     "Claim",
     "Why it matters",
     "Limitation",
-    "Audit details",
-    "Source type/status",
-    "Registry id",
-    "Source link pending until Exafuse production migration",
+    "Review details",
+    "Source context",
+    "Reference id",
+    "Public source fallback through Exafuse contact/current production site",
     "Large bridge-node mass helps readers",
     "The image volume shows why AI and monitoring can help organize process evidence"
   ]) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
+  }
+  for (const phrase of ["Audit details", "Source type/status", "Registry id", "Allowed pages", "Source link pending until Exafuse production migration"]) {
+    if (visibleText.includes(phrase)) findings.push(`${file}: visible text still contains old claim-registry label "${phrase}"`);
   }
   if (visibleText.includes("It gives readers a bounded public reference point for LMD/DED scale")) {
     findings.push(`${file}: claim ledger still uses generic why-it-matters boilerplate`);
@@ -1399,7 +1521,7 @@ function auditExperience() {
     for (const marker of [
       "Review one decision journey. Help make the next one clearer.",
       "No data collection",
-      "Make a privacy-safe review note.",
+      "Make a non-confidential review note.",
       "Ready to test, not yet tested",
       "Review audience (optional)",
       "Primary friction",
@@ -1416,7 +1538,7 @@ function auditExperience() {
   const publicReviewSource = "src/lib/publicReview.ts";
   if (existsSync(join(root, publicReviewSource))) {
     const source = read(publicReviewSource);
-    for (const marker of ["Privacy check:", "No public-safe comment added.", "public-review note", "Audience:", "Primary friction:", "recovery", "PUBLIC_REVIEW_RECORD_VERSION", "noTechnicalDataStatement"]) {
+    for (const marker of ["Privacy check:", "No non-confidential comment added.", "public-review note", "Audience:", "Primary friction:", "recovery", "PUBLIC_REVIEW_RECORD_VERSION", "noTechnicalDataStatement"]) {
       if (!source.includes(marker)) findings.push(`${publicReviewSource}: missing safe-review note marker "${marker}"`);
     }
   } else {

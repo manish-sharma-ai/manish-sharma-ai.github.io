@@ -129,7 +129,7 @@ export default function RfqStructureConverter({
         <div className="tool-pane-heading">
           <p className="metric-label">Input pane</p>
           <p className="tool-pane-title">Free-text RFQ intake</p>
-          <p className="tool-pane-copy">Paste a rough request. The parser extracts public-safe hints and keeps missing RFQ fields explicit.</p>
+          <p className="tool-pane-copy">Paste a rough request. The parser extracts visible hints and keeps missing RFQ fields explicit.</p>
         </div>
         <label className="tool-field" htmlFor="rfq-structure-input">
           Repair request text

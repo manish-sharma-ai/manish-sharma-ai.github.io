@@ -21,9 +21,9 @@ Industrial AI becomes useful when it does more than produce a confident output. 
 - Verification must match the consequence of failure.
 - Useful industrial AI creates traceability, not only predictions.
 
-## Applied Public Proof
+## Applied Public Context
 
-The established public proof domain for this thesis is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany. The loop applies to process monitoring, melt-pool signals, bead geometry, repairability screening, RFQ preparation, process route selection, and inspection evidence.
+The main public technical context for this thesis is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany. The loop applies to process monitoring, melt-pool signals, bead geometry, repairability screening, RFQ preparation, process route selection, and inspection evidence.
 
 ## Links
 

@@ -6,7 +6,7 @@ Primary promise: AI for Laser Metal Deposition decisions you can verify.
 
 Operating method: Sense -> Model -> Decide -> Verify.
 
-Established public proof domain: AI for Laser Metal Deposition, Directed Energy Deposition, process monitoring, RFQ intelligence, laser cladding, industrial repair, and metal additive manufacturing.
+Public LMD/DED context: AI for Laser Metal Deposition, Directed Energy Deposition, process monitoring, RFQ intelligence, laser cladding, industrial repair, and metal additive manufacturing.
 
 This site is Manish Sharma's public technical lab for inspection-aware industrial AI and decision systems. It contains frameworks, lab notes, RFQ resources, glossary pages, tools, and LMD/DED decision-support ideas.
 
@@ -24,7 +24,7 @@ This site avoids confidential customer, employer, and private project data.
 | Public category | Industrial AI & Decision Systems |
 | Primary promise | AI for Laser Metal Deposition decisions you can verify |
 | Method | Sense -> Model -> Decide -> Verify |
-| Established proof | AI for LMD/DED at Exafuse |
+| Public LMD/DED context | AI for LMD/DED at Exafuse |
 | Company connection | Exafuse |
 | Location | Germany |
 | Core topics | industrial AI, decision support systems, process monitoring, machine vision, robotics, engineering evidence, LMD, DED, DED-LB/M, laser cladding, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing |
@@ -48,7 +48,7 @@ GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-
 - Site: https://manishsharma.dev
 - Identity page: https://manishsharma.dev/identity
 - Public thesis: https://manishsharma.dev/thesis
-- LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
+- LMD/DED technical hub: https://manishsharma.dev/domains/lmd-ded
 - Public profile page: https://manishsharma.dev/profile/public-profile
 - Personal profile: https://manishsharma.dev/about
 - Public work: https://manishsharma.dev/public-work
@@ -59,9 +59,9 @@ GitHub identity note: `aiwithms` is the personal GitHub profile. `manish-sharma-
 - Site map: https://manishsharma.dev/site-map
 - Evidence base: https://manishsharma.dev/evidence
 - Core LMD-AI sources: https://manishsharma.dev/research/core-lmd-ai-sources
-- Industrial proof map: https://manishsharma.dev/industrial-proof
+- Industrial evidence map: https://manishsharma.dev/industrial-proof
 - 500-record LMD/DED reference map: https://manishsharma.dev/research/lmd-literature-scan.json
-- Exafuse public proof map: https://manishsharma.dev/research/exafuse-public-proof-map.json
+- Exafuse public context map: https://manishsharma.dev/research/exafuse-public-proof-map.json
 - Open Graph image: https://manishsharma.dev/og-image.png
 - LMD Quality Evidence Ladder: https://manishsharma.dev/frameworks/lmd-quality-evidence-ladder
 - LMD Repairability Index: https://manishsharma.dev/frameworks/lmd-repairability-index

@@ -8,13 +8,13 @@ import { CORE_TOPICS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Manish Sharma Public Profile";
 const description =
-  "Public-safe profile facts for Manish Sharma, focused on Industrial AI & Decision Systems with established public proof in AI for LMD/DED at Exafuse.";
+  "Public profile facts for Manish Sharma, focused on Industrial AI & Decision Systems with public LMD/DED work at Exafuse.";
 
 const facts = [
   ["Name", PERSON.name],
   ["Focus", SITE.publicCategory],
   ["Primary promise", SITE.primaryPromise],
-  ["Established technical proof", "AI for LMD/DED, process monitoring, robotics, industrial repair, and RFQ intelligence at Exafuse."],
+  ["Public technical context", "AI for LMD/DED, process monitoring, robotics, industrial repair, and RFQ intelligence at Exafuse."],
   ["Company connection", PERSON.company],
   ["Location", PERSON.location],
   ["Operating method", "Sense -> Model -> Decide -> Verify"],
@@ -47,12 +47,12 @@ const jsonLd = {
       <p class="metric-label">Public profile</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
-        A public-safe profile reference for identity facts used across this website. It avoids confidential employer, customer, project, or commercially sensitive information.
+        A public profile reference for identity facts used across this website. It avoids confidential employer, customer, project, or commercially sensitive information.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/identity" class="btn btn-primary">Canonical Identity</a>
+        <a href="/identity" class="btn btn-primary">Official Profile</a>
         <a href="/thesis" class="btn btn-secondary">Operating Thesis</a>
-        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED Proof Domain</a>
+        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED Hub</a>
       </div>
     </div>
     <PageHeroVisual variant="profile" class="hidden lg:block" />
@@ -62,8 +62,8 @@ const jsonLd = {
     <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Facts"
-        title="Public-safe identity facts"
-        description="These facts are suitable for public website references, media snippets, AI-agent context, and internal linking."
+        title="Public identity facts"
+        description="These facts are suitable for public website references, media snippets, assistant context, and internal linking."
       />
       <div class="overflow-hidden rounded-lg border border-white/10">
         <table class="w-full border-collapse text-left text-sm">
@@ -106,7 +106,7 @@ const jsonLd = {
     <div class="ordered-card-strong p-6">
       <p class="metric-label">Boundary</p>
       <p class="mt-4 text-lg font-semibold leading-8 text-slate-200">
-        This page contains public-safe profile information only. It is not confidential company or customer material, and it is not engineering approval, material certification, or final manufacturing advice.
+        This page contains public profile information only. It is not confidential company or customer material, and it is not engineering approval, material certification, or final manufacturing advice.
       </p>
     </div>
   </section>

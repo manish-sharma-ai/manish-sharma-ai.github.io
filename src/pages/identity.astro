@@ -50,7 +50,7 @@ const fields = [
   ["Name", PERSON.name],
   ["Primary category", SITE.publicCategory],
   ["Primary promise", SITE.primaryPromise],
-  ["Established proof", "AI for LMD/DED at Exafuse"],
+  ["Public LMD/DED context", "AI for LMD/DED at Exafuse"],
   ["Company connection", PERSON.company],
   ["Location", PERSON.location],
   ["Operating method", "Sense -> Model -> Decide -> Verify"],
@@ -68,9 +68,9 @@ const fields = [
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[1fr_0.42fr] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Canonical identity</Badge>
+        <Badge>Official profile</Badge>
         <Badge tone="steel">Industrial AI / Decision Systems</Badge>
-        <Badge tone="laser">LMD / DED proof</Badge>
+        <Badge tone="laser">LMD / DED context</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-xl leading-9 text-slate-200">
@@ -81,9 +81,9 @@ const fields = [
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/thesis" class="btn btn-primary">Read the thesis</a>
-        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED proof domain</a>
+        <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED hub</a>
         <a href="/decision-map" class="btn btn-secondary">LMD Decision Map</a>
-        <a href="/public-work" class="btn btn-secondary">Proof</a>
+        <a href="/public-work" class="btn btn-secondary">Public work</a>
         <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
       </div>
     </div>
@@ -96,7 +96,7 @@ const fields = [
     <div class="site-shell grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
       <div class="prose-lab">
         <p>
-          This is the canonical public identity page for Manish Sharma Lab. The top-level identity is Industrial AI & Decision Systems; the strongest established public proof domain is AI for LMD/DED at Exafuse.
+          This is the official public identity page for Manish Sharma Lab. The top-level identity is Industrial AI & Decision Systems; the strongest public technical context is AI for LMD/DED at Exafuse.
         </p>
         <p>
           This site is a public technical lab for frameworks, tools, notes, research maps, and profile context. It is not a competing company website. For industrial Laser Metal Deposition services, case studies, and RFQs, users should visit <a href={LINKS.exafuse} target="_blank" rel="noreferrer">Exafuse</a>.

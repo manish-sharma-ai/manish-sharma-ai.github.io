@@ -234,12 +234,12 @@ export function getClaim(id: string) {
 }
 
 export function getRenderableClaimsForCase(caseCode: PublicClaim["caseCode"]) {
-  return PUBLIC_CLAIMS.filter((claim) => claim.caseCode === caseCode && claim.confidence !== "do-not-render");
+  return PUBLIC_CLAIMS.filter((claim) => claim.caseCode === caseCode && claim.confidence === "publicly-supported");
 }
 
 export function getClaimSourceStatus(claim: PublicClaim) {
   if (claim.confidence === "interpretation") return "Interpretation by Manish Sharma Lab";
-  if (claim.confidence === "needs-migration") return "Source link pending until Exafuse production migration";
+  if (claim.confidence === "needs-migration") return "Public source fallback through Exafuse contact/current production site";
   return claim.sourceType === "exafuse-public" ? "Public Exafuse source" : "Public source";
 }
 

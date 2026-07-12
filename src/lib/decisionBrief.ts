@@ -16,7 +16,7 @@ export const BRIEF_COMPLETENESS_NOTE =
 export const EVIDENCE_BURDEN_NOTE = "Evidence burden is a planning label, not release approval.";
 
 export const GERMAN_BRIEF_BOUNDARY =
-  "Entscheidungshilfe, keine technische Freigabe. Prozesssignale sind kein Qualitätsnachweis. Die endgültige Bewertung erfordert Fachprüfung, Inspektion und geeignete Nachweise.";
+  "Vorläufige Entscheidungshilfe, keine technische Freigabe. Prozesssignale unterstützen die Bewertung, ersetzen aber keine Prüfung. Die endgültige Bewertung erfordert technische Prüfung, Inspektion und geeignete Nachweise.";
 
 export type BriefCompleteness =
   | "Too vague for useful review"
@@ -346,7 +346,7 @@ export const WORN_SHAFT_SCENARIO =
   "Worn steel shaft near bearing seat; photos available; CAD missing; tight tolerance; operating conditions unknown.";
 
 export const WORN_SHAFT_BRIEF = createDecisionBrief({
-  situation: "Public-safe dummy example: worn steel shaft near bearing seat.",
+  situation: "Example scenario: worn steel shaft near bearing seat.",
   component: "Shaft near bearing seat",
   goal: "Screen whether local LMD repair is worth expert review.",
   material: "Steel material family mentioned; exact grade not confirmed.",
@@ -399,7 +399,7 @@ export const WORN_SHAFT_BRIEF = createDecisionBrief({
   nextAction: "Prepare an Exafuse-ready review package with missing facts clearly marked.",
   exafuseReviewRoute:
     "Use Exafuse for commercial and technical review after material, geometry, damage, and inspection facts are structured.",
-  generatedFrom: "LMD Decision Cockpit public-safe worn-shaft example"
+  generatedFrom: "LMD Decision Cockpit worn-shaft example"
 });
 
 export const COCKPIT_PRESETS: CockpitPreset[] = [
@@ -424,7 +424,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       risk: ["noInspection"]
     },
     brief: createDecisionBrief({
-      situation: "Public-safe dummy example: melt-pool or camera anomaly needs interpretation.",
+      situation: "Example scenario: melt-pool or camera anomaly needs interpretation.",
       component: "LMD job with process signal anomaly",
       goal: "Separate process awareness from quality evidence.",
       material: "Material not specified.",
@@ -463,7 +463,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       nextAction: "Connect the signal to inspection evidence before making a quality claim.",
       exafuseReviewRoute:
         "Use Exafuse for commercial and technical review when the monitoring question affects a real job or acceptance route.",
-      generatedFrom: "LMD Decision Cockpit public-safe monitoring preset"
+      generatedFrom: "LMD Decision Cockpit monitoring preset"
     })
   },
   {
@@ -476,7 +476,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       risk: ["tightTolerance"]
     },
     brief: createDecisionBrief({
-      situation: "Public-safe dummy example: surface cladding request.",
+      situation: "Example scenario: surface cladding request.",
       component: "Worn surface or functional coating area",
       goal: "Clarify whether cladding or build-up should move to expert review.",
       material: "Base material family mentioned; exact grade not confirmed.",
@@ -516,7 +516,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       nextAction: "Collect coating duty, area dimensions, finishing, and inspection requirements.",
       exafuseReviewRoute:
         "Use Exafuse for commercial and technical review after surface function and evidence needs are clear.",
-      generatedFrom: "LMD Decision Cockpit public-safe cladding preset"
+      generatedFrom: "LMD Decision Cockpit cladding preset"
     })
   },
   {
@@ -529,7 +529,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       risk: ["tightTolerance"]
     },
     brief: createDecisionBrief({
-      situation: "Public-safe dummy example: route selection between LMD and SLM/LPBF.",
+      situation: "Example scenario: route selection between LMD and SLM/LPBF.",
       component: "Large part or local feature candidate",
       goal: "Compare early route signals before committing to LMD, SLM/LPBF, hybrid, machining, or replacement.",
       material: "Material family not yet confirmed.",
@@ -563,7 +563,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       nextAction: "Compare scale, local addition, internal features, tolerance, and inspection burden.",
       exafuseReviewRoute:
         "Use Exafuse for commercial and technical review after route signals and RFQ data are structured.",
-      generatedFrom: "LMD Decision Cockpit public-safe LMD-vs-SLM preset"
+      generatedFrom: "LMD Decision Cockpit LMD-vs-SLM preset"
     })
   },
   {
@@ -576,7 +576,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       risk: ["unknownMaterial", "highDowntime"]
     },
     brief: createDecisionBrief({
-      situation: "Public-safe dummy example: rough LMD repair RFQ.",
+      situation: "Example scenario: rough LMD repair RFQ.",
       component: "Industrial component not yet fully identified",
       goal: "Turn a vague RFQ into known facts, gaps, risk flags, evidence needs, and review route.",
       material: "Material grade missing.",
@@ -623,7 +623,7 @@ export const COCKPIT_PRESETS: CockpitPreset[] = [
       nextAction: "Ask for missing fields and prepare a compact Exafuse-ready review summary.",
       exafuseReviewRoute:
         "Use Exafuse for commercial and technical review after the RFQ facts and gaps are structured.",
-      generatedFrom: "LMD Decision Cockpit public-safe RFQ preset"
+      generatedFrom: "LMD Decision Cockpit RFQ preset"
     })
   }
 ];
@@ -911,7 +911,7 @@ export function formatInternalEngineeringMessage(brief: DecisionBrief) {
 
 export function formatLinkedInSafeSnippet(brief: DecisionBrief) {
   return [
-    "I used a public-safe LMD Decision Brief format to separate known facts, missing information, risk flags, and evidence needed.",
+    "I used an LMD Decision Brief format to separate known facts, missing information, risk flags, and evidence needed.",
     "",
     "Key principle: a signal is not proof.",
     "",
@@ -1023,8 +1023,8 @@ export function formatGermanDecisionBriefTemplateMarkdown() {
   return [
     "# LMD-Entscheidungsbrief v1.0",
     "",
-    "Status: Vorläufige Entscheidungshilfe",
-    "Geeignet für: Vorbereitung von Fachprüfung / RFQ-Gespräch",
+    "Status: vorläufige technische Einordnung",
+    "Geeignet für: Vorbereitung einer Machbarkeitsbewertung oder technischen Anfrage",
     "Nicht geeignet für: Freigabe, Zertifizierung, Bauteilabnahme oder sicherheitskritische Entscheidung",
     "",
     "## Ausgangssituation",
@@ -1049,7 +1049,7 @@ export function formatGermanDecisionBriefTemplateMarkdown() {
     "",
     "## Nächster Schritt",
     "",
-    "## Exafuse-Prüfroute",
+    "## Exafuse-Kontakt",
     "",
     "## Grenze",
     GERMAN_BRIEF_BOUNDARY

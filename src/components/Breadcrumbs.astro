@@ -4,9 +4,10 @@ import { COMMAND_PAGES, SITE } from "@data/site";
 interface Props {
   path: string;
   title: string;
+  lang?: "en" | "de";
 }
 
-const { path, title } = Astro.props;
+const { path, title, lang = "en" } = Astro.props;
 const normalize = (value: string) => {
   if (value === "/") return "/";
   return value.replace(/\/$/, "");
@@ -14,16 +15,18 @@ const normalize = (value: string) => {
 
 const currentPath = normalize(path);
 const titleMap = new Map(COMMAND_PAGES.map((page) => [normalize(page.href), page.title]));
-const cleanTitle = [` — ${SITE.name}`, ` - ${SITE.name}`, ` | ${SITE.name}`].reduce(
+const cleanTitle = [` - ${SITE.name}`, ` | ${SITE.name}`, ` — ${SITE.name}`].reduce(
   (value, suffix) => value.replace(suffix, ""),
   title
 );
+const homeLabel = lang === "de" ? "Startseite" : "Home";
+const ariaLabel = lang === "de" ? "Breadcrumb-Navigation" : "Breadcrumb";
 
 const crumbs =
   currentPath === "/"
     ? []
     : [
-        { label: "Home", href: "/" },
+        { label: homeLabel, href: "/" },
         ...currentPath
           .split("/")
           .filter(Boolean)
@@ -48,7 +51,7 @@ const crumbs =
 ---
 
 {crumbs.length > 0 && (
-  <nav class="border-b border-white/10 bg-black/18" aria-label="Breadcrumb">
+  <nav class="border-b border-white/10 bg-black/18" aria-label={ariaLabel}>
     <ol class="site-shell flex min-h-11 items-center gap-2 overflow-x-auto whitespace-nowrap py-2 text-xs font-semibold text-slate-400">
       {crumbs.map((crumb, index) => {
         const isLast = index === crumbs.length - 1;

@@ -13,7 +13,7 @@ import { PERSON, SITE } from "@data/site";
 const title = "Before / after: vague request to usable brief";
 const seoTitle = "LMD Request to Decision Brief Demo - Manish Sharma Lab";
 const description =
-  "Public-safe walkthrough showing how a vague LMD repair request becomes a structured Decision Brief with facts, gaps, risks, and evidence needs.";
+  "Non-confidential walkthrough showing how a vague LMD repair request becomes a structured Decision Brief with facts, gaps, risks, and evidence needs.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 const demoMarkdown = formatDecisionBriefMarkdown(WORN_SHAFT_BRIEF);
 
@@ -54,14 +54,14 @@ const steps = [
   },
   {
     label: "Exafuse review route",
-    text: "Use Exafuse for commercial and technical review after the public-safe structure is ready."
+    text: "Use Exafuse for commercial and technical review after the non-confidential structure is ready."
   }
 ];
 
 const outputModes = [
   "Technical Decision Brief",
   "Exafuse-Ready Email Draft",
-  "AI-Agent-Safe Summary",
+  "AI Summary",
   "Missing-information checklist",
   "Evidence-needed checklist",
   "Markdown, JSON, and print/PDF handoff"
@@ -89,7 +89,7 @@ const jsonLd = {
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        This walkthrough uses public-safe dummy data. It shows how the site exposes known facts, missing information, risk flags, evidence needs, and the Exafuse review route without storing or sending inputs.
+        This walkthrough uses non-confidential dummy data. It shows how the site exposes known facts, missing information, risk flags, evidence needs, and the Exafuse review route without storing or sending inputs.
       </p>
       <p class="mt-4 max-w-3xl text-base font-bold leading-7 text-cyan-100">
         The final object is portable: copy it into review notes, email, AI-agent context, Markdown docs, JSON handoff, or print/PDF.
@@ -153,7 +153,7 @@ const jsonLd = {
         <p class="metric-label">Final artifact</p>
         <h2 class="mt-3 text-3xl font-black leading-tight text-white">{BRIEF_VERSION}</h2>
         <p class="mt-4 text-sm leading-7 text-slate-300">
-          The demo ends with a clean brief that can be copied as a technical brief, Exafuse-ready email draft, AI-agent-safe summary, Markdown, JSON, print/PDF, or grouped checklist.
+          The demo ends with a clean brief that can be copied as a technical brief, Exafuse-ready email draft, AI summary, Markdown, JSON, print/PDF, or grouped checklist.
         </p>
         <div class="mt-5 grid gap-2 sm:grid-cols-2">
           {outputModes.map((mode) => <span class="result-card text-sm font-semibold leading-6 text-slate-300">{mode}</span>)}

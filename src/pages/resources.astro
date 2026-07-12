@@ -29,7 +29,7 @@ const resourceGroups = [
       { label: "LMD Repairability Quick Check", href: "/tools#repairability-module", description: "Screen repair readiness before expert review." },
       { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", description: "Review the framework behind repair scoring." },
       { label: "LMD repair playbook", href: "/playbooks#lmd-repair", description: "Use a short route from damage to evidence." },
-      { label: "Run worn-shaft preset", href: "/tools/#preset=worn-shaft", description: "Open a public-safe dummy repair example." }
+      { label: "Run worn-shaft preset", href: "/tools/#preset=worn-shaft", description: "Open a generic repair example." }
     ]
   },
   {
@@ -56,18 +56,18 @@ const resourceGroups = [
     links: [
       { label: "Evidence Base", href: "/evidence", description: "Open the source and evidence layer." },
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated map of verified standards, research, monitoring, and AI-governance sources." },
-      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse proof objects and limitations." },
-      { label: "Public Claim Ledger", href: "/claims", description: "Active claims and held-source-review distinction." },
+      { label: "Industrial Evidence Map", href: "/industrial-proof", description: "Public Exafuse examples and limitations." },
+      { label: "Public Claim Source Notes", href: "/claims", description: "Active claims, source context, and held-source-review distinction." },
       { label: "No-Hype Boundary", href: "/no-hype", description: "What this site will not claim." }
     ]
   },
   {
     intent: "I need trust, privacy, or a correction route",
     links: [
-      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." },
+      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, evidence handling, and decision boundaries." },
       { label: "AI-readable trust summary", href: "/trust.md", description: "Machine-readable statement of the same public posture." },
       { label: "Responsible security contact", href: "/.well-known/security.txt", description: "Canonical reporting route and policy link." },
-      { label: "Review the Site", href: "/review", description: "Run a public-safe task review and create a browser-local manual feedback note." },
+      { label: "Review the Site", href: "/review", description: "Run a short task review and create a browser-local manual feedback note." },
       { label: "Contact routes", href: "/contact", description: "Route corrections, access barriers, professional questions, or Exafuse RFQs appropriately." }
     ]
   },
@@ -79,7 +79,7 @@ const resourceGroups = [
       { label: "llms-full.txt", href: "/llms-full.txt", description: "Detailed machine-readable summary." },
       { label: "Agent Pack", href: "/agent-pack", description: "RFQ schema, decision rules, prompts, and checklist." },
       { label: "Decision Brief JSON schema", href: BRIEF_SCHEMA_PATH, description: "Machine-readable validation contract for JSON handoff." },
-      ...BRIEF_EXAMPLES.map((example) => ({ ...example, description: `Public-safe example: ${example.description}` }))
+      ...BRIEF_EXAMPLES.map((example) => ({ ...example, description: `Example: ${example.description}` }))
     ]
   }
 ];

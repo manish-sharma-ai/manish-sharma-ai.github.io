@@ -49,6 +49,16 @@ export default function RepairabilityQuickCheck({
           : score < 75
             ? "Promising candidate for review"
             : "Strong preliminary candidate";
+    const screeningBand =
+      safetyCritical
+        ? "Formal review required"
+        : score < 30
+          ? "Very limited screening support"
+          : score < 55
+            ? "Early review candidate"
+            : score < 75
+              ? "Promising review candidate"
+              : "Strong preliminary review candidate";
     const missing = questions.filter((item) => !selected.includes(item)).map((item) => item.replace("?", "").toLowerCase());
     const why = selected.length > 0 ? selected.map((item) => item.replace("?", "").toLowerCase()) : ["No positive screening signals selected yet."];
     const riskFlags = [
@@ -73,6 +83,7 @@ export default function RepairabilityQuickCheck({
 
     return {
       score,
+      screeningBand,
       recommendation,
       why,
       missing: safetyCritical ? [...missing, "expert approval path"] : missing,
@@ -90,7 +101,7 @@ export default function RepairabilityQuickCheck({
         <div className="tool-pane-heading">
           <p className="metric-label">Input pane</p>
           <p className="tool-pane-title">Repairability screening checklist</p>
-          <p className="tool-pane-copy">Mark only public-safe known signals. Unknown material, undefined inspection, and safety-critical service stay visible as risk.</p>
+          <p className="tool-pane-copy">Mark only known screening signals. Unknown material, undefined inspection, and safety-critical service stay visible as risk.</p>
         </div>
         <fieldset className="grid gap-3">
           <legend className="metric-label mb-1">Repairability inputs</legend>
@@ -127,13 +138,13 @@ export default function RepairabilityQuickCheck({
         <div className="tool-pane-heading mb-5">
           <p className="metric-label">Output pane</p>
           <p className="tool-pane-title">Repairability review brief</p>
-          <p className="tool-pane-copy">The score screens review readiness; it does not approve repair or replace inspection planning.</p>
+          <p className="tool-pane-copy">The band screens review readiness; it does not approve repair or replace inspection planning.</p>
         </div>
         <p className="metric-label">Quick-check output</p>
         <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
-          Confidence is not approval. This score screens review readiness; it does not approve repair.
+          Confidence is not approval. This band screens review readiness; it does not approve repair.
         </p>
-        <p className="mt-4 font-mono text-5xl font-black text-white">{result.score}</p>
+        <p className="mt-4 rounded-lg border border-cyan-300/25 bg-cyan-300/10 p-4 text-2xl font-black leading-tight text-white">{result.screeningBand}</p>
         <ResultSection label="Decision signal" value={result.recommendation} large />
         <ResultSection label="Review readiness" value={result.reviewReadiness} />
         <ResultList label="Why" items={result.why} />
@@ -167,7 +178,7 @@ export default function RepairabilityQuickCheck({
             missingOptional: ["prior repair history", "reference part", "budget estimate"],
             riskFlags: result.riskFlags,
             evidenceNeeded: result.evidenceNeeded,
-            preliminaryRoute: `${result.recommendation} (${result.score}/100)`,
+            preliminaryRoute: `${result.recommendation}. Qualitative screening band: ${result.screeningBand}.`,
             reviewReadiness: result.reviewReadiness,
             nextAction: result.suggestedNextStep,
             exafuseReviewRoute: `${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`,

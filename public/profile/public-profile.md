@@ -1,6 +1,6 @@
 # Manish Sharma Public Profile
 
-Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
+Public identity facts for Manish Sharma and Manish Sharma Lab.
 
 ## Core Facts
 
@@ -33,10 +33,10 @@ Public-safe identity facts for Manish Sharma and Manish Sharma Lab.
 - Industrial repair
 - RFQ intelligence
 - Engineering evidence
-- LMD Decision Brief v1.0 standard, schema, and public-safe examples
+- LMD Decision Brief v1.0 standard, schema, and non-confidential examples
 - The LMD-AI Maturity Model by Manish Sharma
 - Laser Metal Deposition Decision Map
 
 ## Boundary
 
-This is public-safe profile information only. It is not confidential company/customer material, engineering approval, material certification, safety-critical acceptance, or a guarantee of part quality.
+This is public profile information only. It is not confidential company/customer material, engineering approval, material certification, safety-critical acceptance, or a guarantee of part quality.

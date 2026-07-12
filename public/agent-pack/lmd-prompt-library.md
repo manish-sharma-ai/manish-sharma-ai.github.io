@@ -29,14 +29,14 @@ Create an Exafuse-ready email draft from this LMD Decision Brief. Do not send it
 ## Related Public Tools
 
 - LMD Decision Cockpit: https://manishsharma.dev/tools#lmd-decision-cockpit
-- Public-safe worn-shaft preset: https://manishsharma.dev/tools/#preset=worn-shaft
+- Non-confidential worn-shaft preset: https://manishsharma.dev/tools/#preset=worn-shaft
 - RFQ structure module: https://manishsharma.dev/tools#rfq-module
 - LMD Decision Brief v1.0 Standard: https://manishsharma.dev/brief-standard
 - Decision Brief JSON schema: https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json
 - Decision Brief examples: https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json
 - Decision Brief Template: https://manishsharma.dev/brief-template
 - Resources: https://manishsharma.dev/resources
-- Claim Ledger: https://manishsharma.dev/claims
+- Claim source notes: https://manishsharma.dev/claims
 - For AI Agents: https://manishsharma.dev/for-ai-agents
 
 ## Limitation

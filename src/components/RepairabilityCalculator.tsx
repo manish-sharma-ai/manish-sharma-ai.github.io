@@ -60,11 +60,11 @@ export default function RepairabilityCalculator() {
         ))}
       </div>
       <aside className="ordered-card-strong h-fit p-6">
-        <p className="metric-label">Repairability score</p>
-        <div className="mt-4 text-6xl font-black text-white">{score}</div>
-        <p className="mt-4 text-xl font-bold text-cyan-100">{band.label}</p>
+        <p className="metric-label">Repairability screening band</p>
+        <div className="mt-4 rounded-lg border border-cyan-300/25 bg-cyan-300/10 p-4 text-3xl font-black leading-tight text-white">{band.label}</div>
+        <p className="mt-4 text-xl font-bold text-cyan-100">Qualitative output from a transparent checklist.</p>
         <p className="mt-4 text-sm leading-6 text-slate-400">
-          Low category scores indicate the next missing evidence to collect before a repair recommendation becomes credible.
+          Low category inputs indicate the next missing evidence to collect before a repair recommendation becomes credible.
         </p>
         <div className="mt-6">
           <p className="text-sm font-bold text-white">Watch items</p>

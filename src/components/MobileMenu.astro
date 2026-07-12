@@ -1,6 +1,11 @@
 ---
 import { LINKS, PRIMARY_NAV_ITEMS, RESOURCE_NAV_ITEMS } from "@data/site";
 
+interface Props {
+  lang?: "en" | "de";
+}
+
+const { lang = "en" } = Astro.props;
 const normalize = (value: string) => (value === "/" ? "/" : value.replace(/\/$/, ""));
 const currentPath = normalize(Astro.url.pathname);
 const isActive = (href: string) => {
@@ -8,17 +13,52 @@ const isActive = (href: string) => {
   return currentPath === normalizedHref || (normalizedHref !== "/" && currentPath.startsWith(`${normalizedHref}/`));
 };
 
+const primaryLabelsDe: Record<string, string> = {
+  "/": "Startseite",
+  "/thesis": "These",
+  "/domains/lmd-ded": "LMD / DED",
+  "/tools": "Werkzeuge",
+  "/public-work": "Nachweise",
+  "/about": "Über mich"
+};
+
+const resourceLabelsDe: Record<string, string> = {
+  "/frameworks": "Frameworks",
+  "/decision-map": "Entscheidungskarte",
+  "/agent-pack": "RFQ-Werkzeugkasten",
+  "/brief-standard": "Kurzbrief-Standard",
+  "/evidence": "Quellen",
+  "/lab-notes": "Fachnotizen",
+  "/glossary": "Glossar",
+  "/for-ai-agents": "Für KI-Systeme",
+  "/trust": "Vertrauen",
+  "/review": "Website prüfen",
+  "/identity": "Profil",
+  "/press-kit": "Pressekit",
+  "/site-map": "Sitemap"
+};
+
+const primaryItems =
+  lang === "de"
+    ? PRIMARY_NAV_ITEMS.map((item) => ({ ...item, label: primaryLabelsDe[item.href] ?? item.label }))
+    : PRIMARY_NAV_ITEMS;
+
+const resourceItems =
+  lang === "de"
+    ? RESOURCE_NAV_ITEMS.map((item) => ({ ...item, label: resourceLabelsDe[item.href] ?? item.label }))
+    : RESOURCE_NAV_ITEMS;
+
 const groups = [
   {
-    label: "Primary",
-    items: PRIMARY_NAV_ITEMS
+    label: lang === "de" ? "Hauptseiten" : "Primary",
+    items: primaryItems
   },
   {
-    label: "Resources",
-    items: RESOURCE_NAV_ITEMS
+    label: lang === "de" ? "Ressourcen" : "Resources",
+    items: resourceItems
   },
   {
-    label: "External",
+    label: lang === "de" ? "Extern" : "External",
     items: [
       { label: "Exafuse", href: LINKS.exafuse },
       { label: "GitHub", href: LINKS.github },
@@ -29,9 +69,9 @@ const groups = [
 ---
 
 <details class="group relative justify-self-end xl:hidden" data-mobile-menu>
-  <summary class="utility-button list-none px-4 py-2 text-white">Menu</summary>
+  <summary class="utility-button list-none px-4 py-2 text-white">{lang === "de" ? "Menü" : "Menu"}</summary>
   <div class="nav-panel absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,28rem)] overflow-auto rounded-[24px] border border-cyan-100/14 p-4">
-    <nav class="grid gap-4" aria-label="Mobile navigation">
+    <nav class="grid gap-4" aria-label={lang === "de" ? "Mobile Navigation" : "Mobile navigation"}>
       {groups.map((group) => (
         <div class="ordered-card p-3">
           <p class="metric-label px-2 py-2">{group.label}</p>
@@ -51,7 +91,7 @@ const groups = [
         </div>
       ))}
       <button type="button" data-command-trigger class="utility-button justify-start px-4 py-3 text-left text-sm text-white">
-        Search all pages
+        {lang === "de" ? "Seiten durchsuchen" : "Search all pages"}
       </button>
     </nav>
   </div>

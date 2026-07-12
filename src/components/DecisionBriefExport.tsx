@@ -96,7 +96,7 @@ export default function DecisionBriefExport({
             <ActionButton
               copied={copied === "ai"}
               onClick={() => copy("ai", aiSummary)}
-              label="Copy AI-safe summary"
+              label="Copy AI summary"
             />
           </ActionItem>
           <ActionItem>
@@ -154,7 +154,7 @@ export default function DecisionBriefExport({
           </ActionItem>
           <ActionItem>
             <a href="/for-ai-agents" className="btn btn-secondary">
-              AI-agent guidance
+              Guidance for AI systems
             </a>
           </ActionItem>
           <ActionItem>
@@ -207,14 +207,14 @@ export default function DecisionBriefExport({
               <ActionButton
                 copied={copied === "linkedin"}
                 onClick={() => copy("linkedin", formatLinkedInSafeSnippet(brief))}
-                label="Copy LinkedIn-safe snippet"
+                label="Copy LinkedIn snippet"
               />
             </ActionItem>
             <ActionItem>
               <ActionButton
                 copied={copied === "prompt"}
                 onClick={() => copy("prompt", formatAiAgentPrompt(brief))}
-                label="Copy AI-agent prompt"
+                label="Copy AI prompt"
               />
             </ActionItem>
             <ActionItem>

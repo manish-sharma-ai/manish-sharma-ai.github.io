@@ -1,12 +1,12 @@
 # About Manish Sharma
 
-Canonical identity page: https://manishsharma.dev/identity
+Official identity page: https://manishsharma.dev/identity
 
 Public thesis: https://manishsharma.dev/thesis
 
-LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
+LMD/DED technical hub: https://manishsharma.dev/domains/lmd-ded
 
-Public-safe profile facts: https://manishsharma.dev/profile/public-profile
+Public profile facts: https://manishsharma.dev/profile/public-profile
 
 Human background page: https://manishsharma.dev/about
 
@@ -18,7 +18,7 @@ Evidence base: https://manishsharma.dev/evidence
 
 Core LMD-AI sources: https://manishsharma.dev/research/core-lmd-ai-sources
 
-Industrial proof map: https://manishsharma.dev/industrial-proof
+Industrial evidence map: https://manishsharma.dev/industrial-proof
 
 LMD Decision Brief v1.0 Standard: https://manishsharma.dev/brief-standard
 
@@ -56,7 +56,7 @@ Selected public work may include published technical work, event talks, public p
 - Site: https://manishsharma.dev
 - Identity: https://manishsharma.dev/identity
 - Public thesis: https://manishsharma.dev/thesis
-- LMD/DED proof domain: https://manishsharma.dev/domains/lmd-ded
+- LMD/DED technical hub: https://manishsharma.dev/domains/lmd-ded
 - Public profile facts: https://manishsharma.dev/profile/public-profile
 - LinkedIn: https://www.linkedin.com/in/manishsharma5/
 - GitHub: https://github.com/aiwithms

@@ -30,12 +30,12 @@ The site aims to support keyboard use, semantic landmarks, visible focus, clear 
 
 This is an implementation intent, not a declaration of WCAG conformance, an accessibility certification, or an independent accessibility audit. Report an access barrier at https://manishsharma.dev/contact.
 
-## Claim and source governance
+## Claims and sources
 
 - New factual claims require public source context; analysis or interpretation should be identified as such.
-- Public proof metrics and profile facts are routed through shared data with source status, limitations, allowed surfaces, and review context.
+- Public metrics and profile facts are routed through shared data with source context, limitations, and review context.
 - Material held for source review is not active public claim copy.
-- Claim ledger: https://manishsharma.dev/claims
+- Claim source notes: https://manishsharma.dev/claims
 - Evidence base: https://manishsharma.dev/evidence
 - No-hype boundary: https://manishsharma.dev/no-hype
 - AI-agent usage rules: https://manishsharma.dev/for-ai-agents

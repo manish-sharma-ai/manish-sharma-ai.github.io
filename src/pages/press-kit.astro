@@ -15,7 +15,7 @@ const identityFacts = [
   ["Name", PERSON.name],
   ["Preferred identity", "Manish Sharma - Industrial AI & Decision Systems"],
   ["Primary promise", SITE.primaryPromise],
-  ["Established public proof", "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse"],
+  ["Public LMD/DED context", "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse"],
   ["Company connection", "Exafuse"],
   ["Location", PERSON.location],
   ["Canonical site", SITE.canonicalUrl],
@@ -28,7 +28,7 @@ const identityFacts = [
 const bios = [
   {
     label: "One-line bio",
-    text: "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with a public proof domain around LMD/DED, repair, and evidence-based manufacturing decisions."
+    text: "Manish Sharma works on inspection-aware AI and decision systems for industrial additive manufacturing, with public LMD/DED work around repair, monitoring, RFQ structure, and evidence-based manufacturing decisions."
   },
   {
     label: "Short bio",
@@ -40,7 +40,7 @@ const bios = [
   },
   {
     label: "Long bio",
-    text: "Manish Sharma works at the intersection of industrial AI, process monitoring, machine vision, robotics, and engineering decision support. His deepest public experience is in Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany, including monitoring workflows, industrial repair, robotic systems, RFQ structure, traceability, and inspection-aware decision making. Manish Sharma Lab is his public technical platform for publishing frameworks, tools, research maps, and practical notes around industrial AI for decisions that can be verified."
+    text: "Manish Sharma works across industrial AI, process monitoring, machine vision, robotics, and engineering decision support. His deepest public experience is in Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany, including monitoring workflows, industrial repair, robotic systems, RFQ structure, traceability, and inspection-aware decision making. Manish Sharma Lab is his public technical platform for publishing frameworks, tools, research maps, and practical notes around industrial AI for decisions that can be verified."
   }
 ];
 
@@ -72,15 +72,15 @@ const assetLinks = [
   { label: "Profile image JPEG fallback", href: PERSON.imageFallback },
   { label: "Open Graph image PNG", href: "/og-image.png" },
   { label: "Open Graph preview WebP", href: "/og-image-preview.webp" },
-  { label: "Canonical identity Markdown", href: "/identity.md" },
+  { label: "Identity Markdown", href: "/identity.md" },
   { label: "Public profile page", href: "/profile/public-profile" },
   { label: "Public profile Markdown", href: "/profile/public-profile.md" },
   { label: "About Markdown", href: "/about.md" },
   { label: "Evidence base", href: "/evidence" },
   { label: "Core LMD-AI sources", href: "/research/core-lmd-ai-sources" },
-  { label: "Industrial proof map", href: "/industrial-proof" },
+  { label: "Industrial evidence map", href: "/industrial-proof" },
   { label: "LMD/DED reference map JSON", href: "/research/lmd-literature-scan.json" },
-  { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" },
+  { label: "Exafuse public context JSON", href: "/research/exafuse-public-proof-map.json" },
   { label: "llms.txt", href: "/llms.txt" },
   { label: "llms-full.txt", href: "/llms-full.txt" }
 ];
@@ -89,10 +89,10 @@ const officialLinks = [
   { label: "Website", href: SITE.canonicalUrl },
   { label: "Identity", href: "/identity" },
   { label: "Industrial AI thesis", href: "/thesis" },
-  { label: "LMD / DED proof domain", href: "/domains/lmd-ded" },
+  { label: "LMD / DED hub", href: "/domains/lmd-ded" },
   { label: "Public profile", href: "/profile/public-profile" },
   { label: "About", href: "/about" },
-  { label: "Claim Ledger", href: "/claims" },
+  { label: "Claim source notes", href: "/claims" },
   { label: "No-Hype Boundary", href: "/no-hype" },
   { label: "LinkedIn", href: LINKS.linkedin },
   { label: GITHUB_IDENTITY.profile.label, href: GITHUB_IDENTITY.profile.href, description: GITHUB_IDENTITY.profile.description },
@@ -109,7 +109,7 @@ const machineSummary = {
   site_name: SITE.name,
   primary_promise: SITE.primaryPromise,
   operating_method: SITE.method,
-  established_public_proof: "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse",
+  public_lmd_ded_context: "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse",
   company_connection: PERSON.company,
   location: PERSON.location,
   official_links: {
@@ -204,7 +204,7 @@ const jsonLd = {
           Public facts for Manish Sharma Lab.
         </h1>
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-          Use this page for concise bios, official links, profile assets, preferred wording, and source context around Manish Sharma, Industrial AI & Decision Systems, Exafuse, and the established LMD/DED proof domain.
+          Use this page for concise bios, official links, profile assets, preferred wording, and source context around Manish Sharma, Industrial AI & Decision Systems, Exafuse, and public LMD/DED work.
         </p>
       </div>
       <div class="ordered-card-strong overflow-hidden p-3">

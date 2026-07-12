@@ -151,7 +151,7 @@ describe("LMD Decision Brief invariants", () => {
     expect(note).toContain("Create a worn-shaft decision brief");
     expect(note).toContain("Manufacturing / LMD engineer");
     expect(note).toContain("No meaningful friction");
-    expect(note).toContain("No public-safe comment added.");
+    expect(note).toContain("No non-confidential comment added.");
     expect(note).toContain("Privacy check:");
     expect(note).not.toContain("material grade");
   });

@@ -43,6 +43,9 @@ const ogLocale = lang === "de" ? "de_DE" : "en_US";
 const ogType = requestedOgType ?? (canonical.startsWith("/lab-notes/") ? "article" : "website");
 const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
 const commandPagePaths = new Set(COMMAND_PAGES.map((page) => canonicalPath(page.href)));
+const homeLabel = lang === "de" ? "Startseite" : "Home";
+const skipLabel = lang === "de" ? "Zum Inhalt springen" : "Skip to content";
+
 const breadcrumbItems =
   canonical === "/"
     ? []
@@ -77,7 +80,7 @@ const breadcrumbJsonLd =
           {
             "@type": "ListItem",
             position: 1,
-            name: "Home",
+            name: homeLabel,
             item: absoluteUrl("/")
           },
           ...breadcrumbItems
@@ -124,17 +127,17 @@ const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
     {allJsonLd.map((item) => <script is:inline type="application/ld+json" set:html={JSON.stringify(item)} />)}
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
+    <a class="skip-link" href="#main-content">{skipLabel}</a>
     <SiteShell>
-      <Header />
-      <Breadcrumbs path={canonical} title={titleText} />
+      <Header lang={lang} />
+      <Breadcrumbs path={canonical} title={titleText} lang={lang} />
       <main id="main-content">
         <slot />
-        <RelatedLinks path={canonical} />
+        <RelatedLinks path={canonical} lang={lang} />
         <PageProvenance lastUpdated={lastUpdated} lang={lang} />
       </main>
-      <Footer />
-      <CommandPalette pages={COMMAND_PAGES} />
+      <Footer lang={lang} />
+      <CommandPalette pages={COMMAND_PAGES} lang={lang} />
     </SiteShell>
   </body>
 </html>

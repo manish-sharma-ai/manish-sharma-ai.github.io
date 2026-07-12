@@ -1,8 +1,8 @@
 {
   "generated_at": "2026-07-07",
   "source_base": "https://exafuse.de",
-  "link_mode": "production-safe",
-  "purpose": "Public Exafuse proof-map signals used to strengthen Manish Sharma Lab without duplicating company service pages or treating process-monitoring content as certification.",
+  "link_policy": "verified-public-exafuse-routes",
+  "purpose": "Public Exafuse context signals used to strengthen Manish Sharma Lab without duplicating company service pages or treating process-monitoring content as certification.",
   "central_artifact": "LMD Decision Brief v1.0",
   "artifact_boundary": "The brief is preliminary decision-support only. It is not engineering approval, material certification, safety-critical acceptance, or a quality guarantee.",
   "artifact_output_modes": [
@@ -26,13 +26,13 @@
     "decision_cockpit": "https://manishsharma.dev/tools#lmd-decision-cockpit",
     "resources": "https://manishsharma.dev/resources",
     "playbooks": "https://manishsharma.dev/playbooks",
-    "claim_ledger": "https://manishsharma.dev/claims",
+    "claim_source_notes": "https://manishsharma.dev/claims",
     "no_hype_boundary": "https://manishsharma.dev/no-hype",
     "brief_standard": "https://manishsharma.dev/brief-standard",
     "brief_template": "https://manishsharma.dev/brief-template",
     "brief_schema": "https://manishsharma.dev/schemas/lmd-decision-brief-v1.schema.json",
     "demo": "https://manishsharma.dev/demo",
-    "german_handoff": "https://manishsharma.dev/de"
+    "german_overview": "https://manishsharma.dev/de"
   },
   "decision_brief_examples": {
     "worn_shaft_json": "https://manishsharma.dev/examples/lmd-decision-brief-worn-shaft-v1.json",
@@ -41,7 +41,7 @@
     "surface_cladding_json": "https://manishsharma.dev/examples/lmd-decision-brief-surface-cladding-v1.json",
     "rough_rfq_json": "https://manishsharma.dev/examples/lmd-decision-brief-rfq-v1.json"
   },
-  "public_safe_cockpit_presets": {
+  "non_confidential_cockpit_presets": {
     "worn_shaft": "https://manishsharma.dev/tools/#preset=worn-shaft",
     "monitoring_anomaly": "https://manishsharma.dev/tools/#preset=monitoring-anomaly",
     "surface_cladding": "https://manishsharma.dev/tools/#preset=surface-cladding",
@@ -60,14 +60,14 @@
     "case_studies": "https://exafuse.de/fallstudien/",
     "knowledge": "https://exafuse.de/wissen/"
   },
-  "migration_note": "Case-study and new knowledge deep links should be treated as production links only after Exafuse migration verification. Until then, use the safe production index/contact URLs.",
+  "public_route_note": "Use current verified Exafuse public index/contact routes for company-owned services, RFQs, case studies, quality pages, production capability, and delivery claims.",
   "case_studies": [
     {
       "code": "CS15",
       "title": "Duisburg Bridge Components with LMD",
       "url": "https://exafuse.de/fallstudien/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public case-study or contact route",
+      "status": "current public Exafuse route",
       "claim_ids": [
         "cs15-bridge-components-750kg",
         "cs15-six-structural-nodes",
@@ -83,15 +83,15 @@
         "independent validation context where production source confirms it"
       ],
       "decision_pattern": "https://manishsharma.dev/tools/#preset=monitoring-anomaly",
-      "decision_pattern_extracted": "Large-scale LMD requires evidence planning, monitoring context, and an inspection boundary.",
-      "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
+      "decision_pattern_note": "Large-scale LMD requires evidence planning, monitoring context, and an inspection boundary.",
+      "decision_pattern_boundary": "Use this as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review."
     },
     {
       "code": "CS01",
       "title": "Forging Hammer Repair and Coating with LMD",
       "url": "https://exafuse.de/fallstudien/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public case-study or contact route",
+      "status": "current public Exafuse route",
       "claim_ids": ["cs01-local-wear-repair"],
       "public_signals": [
         "local wear repair context",
@@ -101,15 +101,15 @@
         "hardness is not enough by itself"
       ],
       "decision_pattern": "https://manishsharma.dev/tools/#preset=worn-shaft",
-      "decision_pattern_extracted": "Local repair needs material, damage depth, machining route, and inspection plan.",
-      "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
+      "decision_pattern_note": "Local repair needs material, damage depth, machining route, and inspection plan.",
+      "decision_pattern_boundary": "Use this as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review."
     },
     {
       "code": "CS10",
       "title": "Nobufil Extrusion Screw Repair",
       "url": "https://exafuse.de/fallstudien/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public case-study or contact route",
+      "status": "current public Exafuse route",
       "claim_ids": ["cs10-local-crack-repair"],
       "public_signals": [
         "local crack repair context",
@@ -118,15 +118,15 @@
         "finish geometry after deposition"
       ],
       "decision_pattern": "https://manishsharma.dev/tools/#preset=rfq",
-      "decision_pattern_extracted": "Repair/RFQ quality depends on complete facts, downtime context, and service context.",
-      "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
+      "decision_pattern_note": "Repair/RFQ quality depends on complete facts, downtime context, and service context.",
+      "decision_pattern_boundary": "Use this as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review."
     },
     {
       "code": "CS13",
       "title": "Build-and-Coat Drill Workflow",
       "url": "https://exafuse.de/fallstudien/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public case-study or contact route",
+      "status": "current public Exafuse route",
       "claim_ids": ["cs13-build-and-coat-130mm"],
       "public_signals": [
         "build-and-coat workflow context",
@@ -134,8 +134,8 @@
         "surface function requires application-specific validation"
       ],
       "decision_pattern": "https://manishsharma.dev/tools/#preset=surface-cladding",
-      "decision_pattern_extracted": "Build-and-coat routes need geometry, surface function, material, finishing, and validation.",
-      "decision_pattern_boundary": "This is a pattern, not a transfer of feasibility."
+      "decision_pattern_note": "Build-and-coat routes need geometry, surface function, material, finishing, and validation.",
+      "decision_pattern_boundary": "Use this as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review."
     }
   ],
   "knowledge_articles": [
@@ -143,66 +143,66 @@
       "code": "A03",
       "title": "LMD buyer guide",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["repair, cladding, modification and hybrid routes", "process-family terminology"]
     },
     {
       "code": "A04",
       "title": "LMD vs SLM selection",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["process choice depends on geometry, purpose, post-processing and inspection"]
     },
     {
       "code": "A06",
       "title": "Large-part LMD productivity",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["large LMD depends on bead width, overlap, heat management, machining allowance, fixtures and inspection"]
     },
     {
       "code": "A12",
       "title": "Monitoring and control",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["monitoring supports process awareness but does not replace inspection or qualification"]
     },
     {
       "code": "A21",
       "title": "BreitBahnDED wide-bead research",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["research goals are not production qualification"]
     },
     {
       "code": "A25",
       "title": "2024 year in powder",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["material scale context should not be overread as customer proof or process qualification"]
     },
     {
       "code": "A29",
       "title": "Forging hammer repair evaluation",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["local accessible damage", "viable base material", "metallurgical bond", "machinability", "inspection and release criteria"]
     },
     {
       "code": "A37",
       "title": "Neural image processing",
       "url": "https://exafuse.de/wissen/",
-      "source_link_after_migration": true,
-      "status": "production link after Exafuse migration",
+      "source_route": "current Exafuse public knowledge or contact route",
+      "status": "current public Exafuse route",
       "public_signals": ["AI image processing", "segmentation and visual interpretation", "model outputs require process-context and inspection validation"]
     }
   ],
-  "claim_boundary": "These are public Exafuse proof signals. They support public technical context and buyer education, not engineering approval, certification, guaranteed outcomes, or confidential project details."
+  "claim_boundary": "These are public Exafuse context signals. They support public technical context and buyer education, not engineering approval, certification, guaranteed outcomes, or confidential project details."
 }

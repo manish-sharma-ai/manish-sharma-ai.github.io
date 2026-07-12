@@ -69,9 +69,9 @@ export default function ReviewFeedbackComposer() {
       <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
         <div>
           <p className="metric-label">Browser-local feedback</p>
-          <h2 id="review-feedback-title" className="mt-3 text-3xl font-black leading-tight text-white">Make a privacy-safe review note.</h2>
+          <h2 id="review-feedback-title" className="mt-3 text-3xl font-black leading-tight text-white">Make a non-confidential review note.</h2>
           <p className="mt-4 text-sm leading-7 text-slate-300">
-            The selections and note remain in this browser. Nothing is submitted, stored, or analyzed by this site. Keep every comment public-safe.
+            The selections and note remain in this browser. Nothing is submitted, stored, or analyzed by this site. Keep every comment non-confidential.
           </p>
           <div className="mt-5 rounded-lg border border-amber-300/25 bg-amber-400/10 p-4 text-sm font-bold leading-6 text-amber-50">
             Do not include customer, employer, personal, credential, technical, or safety-critical information.
@@ -84,7 +84,7 @@ export default function ReviewFeedbackComposer() {
             <SelectField label="Was the decision-support boundary clear?" value={boundaryId} onChange={(value) => setBoundaryId(value as PublicReviewBoundaryId)} options={PUBLIC_REVIEW_BOUNDARY_RESPONSES} />
             <SelectField label="Primary friction" value={frictionId} onChange={(value) => setFrictionId(value as PublicReviewFrictionId)} options={PUBLIC_REVIEW_FRICTION_OPTIONS} />
             <label className="tool-field" htmlFor="review-public-comment">
-              First friction or public-safe comment <span className="text-slate-500">(optional)</span>
+              First friction or non-confidential comment <span className="text-slate-500">(optional)</span>
               <textarea
                 id="review-public-comment"
                 value={comment}
@@ -94,7 +94,7 @@ export default function ReviewFeedbackComposer() {
                 className="mt-2 min-h-28 p-3 text-sm leading-6 text-slate-100 outline-none"
                 placeholder="For example: I expected the source link near the tool output."
               />
-              <span className="mt-2 block text-xs font-semibold text-slate-400">{comment.length}/500 characters. Keep it public-safe.</span>
+              <span className="mt-2 block text-xs font-semibold text-slate-400">{comment.length}/500 characters. Keep it non-confidential.</span>
             </label>
           </div>
         </div>

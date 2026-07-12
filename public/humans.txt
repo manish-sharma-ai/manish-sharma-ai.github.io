@@ -3,7 +3,7 @@
 Owner: Manish Sharma
 Focus: Industrial AI & Decision Systems
 Promise: AI for Laser Metal Deposition decisions you can verify.
-Established public proof domain: AI for LMD/DED at Exafuse, Germany
+Public LMD/DED context: AI for LMD/DED at Exafuse, Germany
 Canonical: https://manishsharma.dev
 
 /* Team */

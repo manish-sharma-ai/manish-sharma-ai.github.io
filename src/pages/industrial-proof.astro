@@ -13,7 +13,7 @@ import {
 import { getClaimSourceStatus } from "@data/publicClaims";
 import { PERSON, SITE } from "@data/site";
 
-const title = "Industrial LMD Proof Map - Manish Sharma Lab";
+const title = "Industrial LMD Evidence Map - Manish Sharma Lab";
 const description =
   "Public Exafuse-linked context for structural LMD, repair, build-and-coat workflows, monitoring, and evidence-aware AI boundaries.";
 
@@ -39,7 +39,7 @@ const jsonLd = {
   hasPart: [
     {
       "@type": "Dataset",
-      name: "Exafuse public proof map",
+      name: "Exafuse public context map",
       url: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`
     }
   ]
@@ -65,11 +65,11 @@ const proofDecisionPatternText: Record<string, string> = {
     <div class="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
       <div>
         <div class="flex flex-wrap gap-2">
-          <Badge>Industrial proof</Badge>
+          <Badge>Industrial evidence</Badge>
           <Badge tone="laser">Exafuse-linked</Badge>
           <Badge tone="steel">Public sources only</Badge>
         </div>
-        <p class="metric-label mt-8">Exafuse Public Proof Map</p>
+        <p class="metric-label mt-8">Exafuse public context map</p>
         <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">
           The industrial context behind the lab.
         </h1>
@@ -82,9 +82,9 @@ const proofDecisionPatternText: Record<string, string> = {
         <div class="ordered-card-strong p-6">
           <p class="metric-label">Claim boundary</p>
           <p class="mt-4 text-lg font-bold leading-8 text-white">
-            These are public company proof signals. They support technical context and buyer education; they are not engineering approval, certification, guaranteed outcomes, or confidential project details.
+            These are public company examples. They support technical context and buyer education; they are not engineering approval, certification, guaranteed outcomes, or confidential project details.
           </p>
-          <a href="/research/exafuse-public-proof-map.json" class="btn btn-secondary mt-6">Open proof-map JSON</a>
+          <a href="/research/exafuse-public-proof-map.json" class="btn btn-secondary mt-6">Open context JSON</a>
         </div>
       </div>
     </div>
@@ -104,9 +104,9 @@ const proofDecisionPatternText: Record<string, string> = {
 
   <section class="site-shell section-y">
     <SectionHeading
-      eyebrow="Case proof"
+      eyebrow="Documented examples"
       title="Four public stories that make the expertise tangible"
-      description="The strongest proof is not just a number. It is the chain from damaged or designed part, through route selection, deposition, finishing, monitoring, inspection, and release planning."
+      description="The strongest public context is not just a number. It is the chain from damaged or designed part, through route selection, deposition, finishing, monitoring, inspection, and release planning."
     />
     <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2">
       {EXAFUSE_PROOF_CASES.map((item) => {
@@ -133,16 +133,16 @@ const proofDecisionPatternText: Record<string, string> = {
             </div>
           )}
           <p class="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-cyan-100">
-            {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Source link pending until Exafuse production migration"}
+            {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Case-specific source available through Exafuse contact or current public pages."}
           </p>
           <p class="mt-5 text-sm leading-6 text-slate-300">{item.lesson}</p>
           <p class="mt-4 border-l border-cyan-300/35 pl-4 text-sm font-semibold leading-6 text-cyan-50">{item.labConnection}</p>
           <div class="mt-4 rounded-lg border border-cyan-300/20 bg-cyan-300/8 p-3">
-            <p class="metric-label">Decision pattern extracted</p>
+            <p class="metric-label">Useful decision pattern</p>
             <p class="mt-2 text-sm font-semibold leading-6 text-cyan-50">{proofDecisionPatternText[item.code]}</p>
           </div>
           <p class="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm font-semibold leading-6 text-slate-300">
-            This is a pattern, not a transfer of feasibility.
+            Use this as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review.
           </p>
           <div class="mt-5 flex flex-wrap gap-2">
             {item.relevance.map((signal) => (

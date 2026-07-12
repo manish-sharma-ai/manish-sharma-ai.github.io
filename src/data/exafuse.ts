@@ -13,7 +13,7 @@ function sourceLink(key: ExafuseUrlKey, description?: string) {
     description:
       description ??
       (link.migrationGated
-        ? "Current target is a safe Exafuse production route while the exact deep link is verified."
+        ? "Use the current Exafuse contact or index page while exact supporting source pages are verified."
         : "Verified production Exafuse route.")
   };
 }

@@ -10,7 +10,7 @@ import { DISCLAIMER, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "Trust Center - Manish Sharma Lab";
 const description =
-  "Privacy, security posture, accessibility intent, claim governance, decision boundaries, and contact routes for Manish Sharma Lab.";
+  "Privacy, security posture, accessibility intent, evidence handling, decision boundaries, and contact routes for Manish Sharma Lab.";
 const lastUpdated = "2026-07-10";
 const exafuseContact = resolveExafuseLink("contact");
 const repositoryIssues = SITE.repoUrl + "/issues";
@@ -94,8 +94,8 @@ const claimControls = [
     text: "A new factual claim needs public source context. Analysis or interpretation should be identified as such."
   },
   {
-    title: "Claim registry",
-    text: "Proof metrics and identity facts are routed through shared data, with source status, limitations, and review context."
+    title: "Claim source notes",
+    text: "Metrics and identity facts are routed through shared data, with source context, limitations, and review context."
   },
   {
     title: "Visible boundaries",
@@ -103,7 +103,7 @@ const claimControls = [
   },
   {
     title: "Correction path",
-    text: "The public claim ledger exposes source context and a route for suggesting corrections."
+    text: "The public claim notes expose source context and a route for suggesting corrections."
   }
 ];
 
@@ -150,7 +150,7 @@ const trustJsonLd = {
         This center documents the current public posture for privacy, security, accessibility, evidence, and engineering decision boundaries. It describes the implementation honestly; it is not a certification.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <CTAButton href="/claims" variant="primary">Inspect the claim ledger</CTAButton>
+        <CTAButton href="/claims" variant="primary">Inspect claim source notes</CTAButton>
         <CTAButton href="/review" variant="secondary">Review a public task</CTAButton>
         <CTAButton href="/contact" variant="secondary">Report an issue</CTAButton>
         <CTAButton href={SITE.repoUrl} variant="ghost" external>View public source</CTAButton>
@@ -197,7 +197,7 @@ const trustJsonLd = {
     <SectionHeading
       eyebrow="Privacy"
       title="Technical inputs remain browser-local"
-      description="The workbench is built for public-safe, preliminary structuring without an application data pipeline."
+      description="The workbench is built for preliminary structuring without an application data pipeline."
     />
     <div class="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-black/20">
       <dl class="divide-y divide-white/10">
@@ -297,7 +297,7 @@ const trustJsonLd = {
   <section class="band section-y" id="claims">
     <div class="site-shell">
       <SectionHeading
-        eyebrow="Claim and source governance"
+        eyebrow="Claims and sources"
         title="Evidence should travel with the claim"
         description="The public trust model separates sourced facts, interpretation, limitations, and material that is still held for review."
       />
@@ -310,7 +310,7 @@ const trustJsonLd = {
         ))}
       </div>
       <div class="mt-8 flex flex-wrap gap-3">
-        <CTAButton href="/claims" variant="primary">Open claim ledger</CTAButton>
+        <CTAButton href="/claims" variant="primary">Open claim source notes</CTAButton>
         <CTAButton href="/evidence" variant="secondary">Inspect evidence base</CTAButton>
         <CTAButton href="/no-hype" variant="secondary">Read no-hype boundary</CTAButton>
         <CTAButton href="/for-ai-agents" variant="ghost">AI-agent usage rules</CTAButton>
@@ -355,7 +355,7 @@ const trustJsonLd = {
       <SectionHeading
         eyebrow="Contact paths"
         title="Route the issue without crossing a boundary"
-        description="Choose a public-safe route, and keep confidential or safety-critical material out of this personal site."
+        description="Choose a public route, and keep confidential or safety-critical material out of this personal site."
       />
       <div class="mt-10 grid gap-5 lg:grid-cols-3">
         <BentoCard

@@ -285,7 +285,7 @@ export default function LmdDecisionCockpit({
         </div>
         <ul className="tool-window-status" aria-label="Decision Cockpit status">
           <li>Local session</li>
-          <li>No backend</li>
+          <li>Browser-local</li>
           <li>Decision-support only</li>
         </ul>
       </div>
@@ -294,7 +294,7 @@ export default function LmdDecisionCockpit({
           <div className="flex flex-wrap gap-2">
             <span className="chip">LMD Decision Cockpit</span>
             <span className="chip chip--steel">LMD Decision Brief v1.0</span>
-            <span className="chip chip--amber">No input tracking</span>
+            <span className="chip chip--amber">Conservative output</span>
           </div>
           <h2 className="cockpit-title mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
             Start with a rough LMD question. Leave with a brief.
@@ -306,18 +306,18 @@ export default function LmdDecisionCockpit({
             <div className="cockpit-output-modes mt-4 flex flex-wrap gap-2">
               <span className="chip chip--steel">Technical Decision Brief</span>
               <span className="chip chip--steel">Exafuse-ready email draft</span>
-              <span className="chip chip--steel">AI-agent-safe summary</span>
+              <span className="chip chip--steel">AI summary</span>
             </div>
           )}
 
-          <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4" data-public-safe-example={WORN_SHAFT_SCENARIO}>
+          <div className="mt-5 rounded-lg border border-cyan-300/22 bg-cyan-300/8 p-4" data-example-scenario={WORN_SHAFT_SCENARIO}>
             <ul className="flex flex-wrap gap-2" aria-label="Example controls">
               <li>
                 <button
                   type="button"
                   onClick={() => loadPreset("worn-shaft")}
                   aria-pressed={Boolean(activePresetId)}
-                  aria-label="Show example: public-safe worn-shaft example"
+                  aria-label="Show example: worn-shaft example"
                   className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId ? "btn-primary" : "btn-secondary"}`}
                 >
                   Show example
@@ -339,11 +339,11 @@ export default function LmdDecisionCockpit({
             </ul>
             {activePreset ? (
               <p className="mt-3 text-sm font-semibold leading-6 text-cyan-50">
-                Public-safe dummy example: {activeExampleText}
+                Example scenario: {activeExampleText}
               </p>
             ) : (
               <p className="mt-3 text-sm font-semibold leading-6 text-slate-300">
-                Blank mode: make selections below. No backend, no storage, no analytics around inputs.
+                Blank mode: make selections below. The brief updates in this browser session.
               </p>
             )}
             {compact && !controlsExpanded && (
@@ -480,15 +480,15 @@ export default function LmdDecisionCockpit({
 
             {!compact && (
               <div>
-                <p className="metric-label">Public-safe presets</p>
-                <ul className="mt-3 flex flex-wrap gap-2" aria-label="Public-safe presets">
+                <p className="metric-label">Example presets</p>
+                <ul className="mt-3 flex flex-wrap gap-2" aria-label="Example presets">
                   {COCKPIT_PRESETS.map((preset) => (
                     <li key={preset.id}>
                       <button
                         type="button"
                         onClick={() => loadPreset(preset.id)}
                         aria-pressed={activePresetId === preset.id}
-                        aria-label={`Load public-safe preset: ${preset.label}`}
+                        aria-label={`Load example preset: ${preset.label}`}
                         className={`btn min-h-10 px-4 py-2 text-sm ${activePresetId === preset.id ? "btn-primary" : "btn-secondary"}`}
                       >
                         {preset.label}

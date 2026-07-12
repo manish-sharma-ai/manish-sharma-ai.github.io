@@ -10,7 +10,7 @@ import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "AI for Laser Metal Deposition and Directed Energy Deposition";
 const seoTitle = "LMD / DED Decision Systems - Manish Sharma Lab";
-const subtitle = "The established technical proof domain behind Manish Sharma Lab.";
+const subtitle = "The focused technical domain behind Manish Sharma Lab.";
 const description =
   "A hub for Manish Sharma's public LMD/DED work: process monitoring, machine vision, robotics, repair, RFQ intelligence, evidence, tools, and glossary resources.";
 
@@ -30,7 +30,7 @@ const contextLinks = [
   { label: "Exafuse", href: LINKS.exafuse, description: "Industrial LMD/SLM services, case studies, and RFQ context." },
   { label: "About Manish Sharma", href: "/about", description: "Public career background and technical context." },
   { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
-  { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." }
+  { label: "Industrial Evidence Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." }
 ];
 
 const decisionSections = [
@@ -50,9 +50,9 @@ const decisionSections = [
       "Process monitoring and AI flags can guide review. Final confidence still depends on the inspection and validation evidence required by the part risk."
   },
   {
-    title: "Connection to Exafuse public proof",
+    title: "Connection to Exafuse public context",
     text:
-      "Commercial manufacturing, repair, case details, and RFQs belong on Exafuse. This page interprets public LMD/DED proof through AI, evidence, repairability, and decision-system language."
+      "Commercial manufacturing, repair, case details, and RFQs belong on Exafuse. This page interprets public LMD/DED context through AI, evidence, repairability, and decision-system language."
   }
 ];
 
@@ -109,7 +109,7 @@ const evidenceLinks = [
   { label: "Evidence Base", href: "/evidence" },
   { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources" },
   { label: "500-record LMD/DED literature map", href: "/research/lmd-literature-scan.json" },
-  { label: "Industrial Proof Map", href: "/industrial-proof" }
+  { label: "Industrial Evidence Map", href: "/industrial-proof" }
 ];
 
 const writingLinks = [
@@ -145,14 +145,14 @@ const jsonLd = {
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
-        <Badge>Established proof domain</Badge>
+        <Badge>Focused technical domain</Badge>
         <Badge tone="steel">LMD / DED</Badge>
         <Badge tone="laser">Exafuse-linked</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-5 text-2xl font-bold text-cyan-100">{subtitle}</p>
       <p class="mt-6 text-lg leading-8 text-slate-300">
-        This hub keeps the LMD/DED authority layer easy to navigate without duplicating the detailed pages. It connects process monitoring, machine vision, robotic deposition, industrial repair, RFQ intelligence, and inspection-aware decision support.
+        This hub keeps the LMD/DED material easy to navigate without duplicating the detailed pages. DED is the broader process category; LMD is the laser-based branch of DED, using powder or wire feedstock, and it often overlaps with laser cladding, repair, build-up, and hybrid manufacturing.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/thesis" class="btn btn-primary">Read the thesis</a>
@@ -226,8 +226,8 @@ const jsonLd = {
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Public context"
-        title="Established public context"
-        description="The public proof domain is tied to Exafuse, public profile material, public research context, and public case-study sources."
+        title="Public technical context"
+        description="The public context is tied to Exafuse, public profile material, public research context, and public case-study sources."
       />
       <SourceLinks links={contextLinks} />
     </div>
@@ -258,9 +258,9 @@ const jsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
-        eyebrow="Exafuse canonical pages"
+        eyebrow="Exafuse pages"
         title="Company-owned commercial and case-study context"
-        description="Use these Exafuse routes according to the current link mode. Manish Sharma Lab links to company-owned service, RFQ, quality, technology, and public proof context instead of duplicating service pages."
+        description="Use these Exafuse routes for company-owned service, RFQ, quality, technology, and public case-study context instead of duplicating service pages here."
       />
       <div>
         <ExafuseMigrationNotice />

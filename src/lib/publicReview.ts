@@ -15,7 +15,7 @@ export const PUBLIC_REVIEW_TASKS = [
     id: "rfq",
     label: "Structure a rough RFQ",
     href: "/tools#rfq-module",
-    check: "Use public-safe dummy text and identify the portable output you would use."
+    check: "Use non-confidential dummy text and identify the portable output you would use."
   },
   {
     id: "boundary",
@@ -73,7 +73,7 @@ export const PUBLIC_REVIEW_FRICTION_OPTIONS = [
   { id: "control", label: "Understanding a control or output" },
   { id: "boundary", label: "Finding the decision boundary" },
   { id: "access", label: "Access, display, or interaction" },
-  { id: "other", label: "Other public-safe friction" }
+  { id: "other", label: "Other non-confidential friction" }
 ] as const;
 
 export type PublicReviewTaskId = (typeof PUBLIC_REVIEW_TASKS)[number]["id"];
@@ -100,7 +100,7 @@ function optionLabel<T extends { id: string; label: string }>(options: readonly 
 }
 
 export function formatPublicReviewNote(input: PublicReviewNoteInput) {
-  const comment = input.comment?.trim() || "No public-safe comment added.";
+  const comment = input.comment?.trim() || "No non-confidential comment added.";
   return [
     "Manish Sharma Lab public-review note",
     `Audience: ${optionLabel(PUBLIC_REVIEW_AUDIENCES, input.audienceId)}`,

@@ -8,7 +8,7 @@ import { PUBLIC_REVIEW_TASKS } from "../lib/publicReview";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Review a Public LMD Decision Journey";
-const description = "Run a short public-safe review of Manish Sharma Lab, create a browser-local feedback note, and help validate decision-support clarity without sharing technical data.";
+const description = "Run a short non-confidential review of Manish Sharma Lab, create a browser-local feedback note, and help validate decision-support clarity without sharing technical data.";
 const protocolUrl = `${SITE.repoUrl}/blob/main/docs/privacy-safe-outcome-validation.md`;
 
 const reviewJsonLd = {
@@ -33,7 +33,7 @@ const reviewJsonLd = {
       <p class="metric-label mt-8">Human evidence, without technical intake</p>
       <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">Review one decision journey. Help make the next one clearer.</h1>
       <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
-        This is a public-safe, voluntary review path for the site’s navigation, outputs, boundaries, and handoff logic. It is not an RFQ, an engineering assessment, or a request for confidential information.
+        This is a non-confidential, voluntary review path for the site's navigation, outputs, boundaries, and handoff logic. It is not an RFQ, an engineering assessment, or a request for confidential information.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <CTAButton href="#review-tasks" variant="primary">Choose a public task</CTAButton>
@@ -46,7 +46,7 @@ const reviewJsonLd = {
 
   <section class="band section-y" id="review-tasks">
     <div class="site-shell">
-      <SectionHeading eyebrow="Step 1" title="Pick one short, public-safe task" description="Do not enter real part, customer, employer, personal, credential, or safety-critical information." />
+      <SectionHeading eyebrow="Step 1" title="Pick one short non-confidential task" description="Do not enter real part, customer, employer, personal, credential, or safety-critical information." />
       <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {PUBLIC_REVIEW_TASKS.map((task, index) => (
           <article class="ordered-card-strong grid content-between p-6">
@@ -74,7 +74,7 @@ const reviewJsonLd = {
       <article class="ordered-card-strong p-6">
         <p class="metric-label">What this improves</p>
         <h2 class="mt-3 text-2xl font-black text-white">Observed clarity</h2>
-        <p class="mt-4 text-sm leading-6 text-slate-300">Task completion, time bands, first friction, and boundary comprehension can reveal whether the site’s intended path is actually understandable.</p>
+        <p class="mt-4 text-sm leading-6 text-slate-300">Task completion, time bands, first friction, and boundary comprehension can reveal whether the site's intended path is actually understandable.</p>
       </article>
       <article class="ordered-card p-6">
         <p class="metric-label">What this never asks for</p>

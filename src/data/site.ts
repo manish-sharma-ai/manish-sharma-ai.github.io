@@ -15,7 +15,7 @@ export const SITE = {
   establishedProof: "AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse",
   description: SITE_CONFIG.site.description,
   shortDescription:
-    "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in AI for LMD/DED at Exafuse.",
+    "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in LMD/DED work at Exafuse.",
   lastUpdated: "2026-07-10"
 };
 
@@ -23,7 +23,7 @@ export const PERSON = {
   name: SITE_CONFIG.person.name,
   headline: SITE.publicCategory,
   primaryPositioning: "Manish Sharma - Industrial AI & Decision Systems",
-  shortIdentity: "Industrial AI & Decision Systems, with established public proof in AI for LMD/DED at Exafuse.",
+  shortIdentity: "Industrial AI & Decision Systems, with public LMD/DED work at Exafuse.",
   image: "/images/manish-sharma-profile.webp",
   imageWebp: "/images/manish-sharma-profile.webp",
   imageFallback: "/images/manish-sharma-profile.jpg",
@@ -84,7 +84,7 @@ export const PRIMARY_NAV_ITEMS = [
   { label: "Thesis", href: "/thesis" },
   { label: "LMD / DED", href: "/domains/lmd-ded" },
   { label: "Tools", href: "/tools" },
-  { label: "Proof", href: "/public-work" },
+  { label: "Evidence", href: "/public-work" },
   { label: "About", href: "/about" }
 ];
 
@@ -93,13 +93,13 @@ export const RESOURCE_NAV_ITEMS = [
   { label: "Decision Map", href: "/decision-map", description: "Route repair, cladding, AM, SLM alternatives" },
   { label: "Agent Pack", href: "/agent-pack", description: "Schemas, prompts, rules, checklists" },
   { label: "Brief Standard", href: "/brief-standard", description: "LMD Decision Brief v1.0 schema and examples" },
-  { label: "Evidence", href: "/evidence", description: "Source layer and public proof map" },
+  { label: "Evidence", href: "/evidence", description: "Sources, field notes, and public context" },
   { label: "Lab Notes", href: "/lab-notes", description: "Applied LMD/DED decision notes" },
   { label: "Glossary", href: "/glossary", description: "Definitions for LMD, DED, cladding, monitoring" },
-  { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use reference for assistants" },
-  { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, and source governance" },
-  { label: "Review the Site", href: "/review", description: "Run a public-safe task review and create a browser-local feedback note." },
-  { label: "Identity", href: "/identity", description: "Canonical machine-readable profile" },
+  { label: "For AI Systems", href: "/for-ai-agents", description: "Use guidance and clear limits for assistants" },
+  { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, evidence, and boundaries" },
+  { label: "Review the Site", href: "/review", description: "Run a short browser-local review and create a manual feedback note." },
+  { label: "Identity", href: "/identity", description: "Official public profile" },
   { label: "Press Kit", href: "/press-kit", description: "Approved bios and claim boundaries" },
   { label: "Site Map", href: "/site-map", description: "Complete route and file index" }
 ];
@@ -110,11 +110,11 @@ export const NAV_GROUPS = [
     description: "Public identity, profile facts, and press-ready context.",
     items: [
       { label: "About", href: "/about", description: "Human profile and public career context." },
-      { label: "Identity", href: "/identity", description: "Canonical machine-readable identity page." },
-      { label: "Public Profile", href: "/profile/public-profile", description: "Public-safe identity facts and verified profile links." },
-      { label: "Work & Proof", href: "/public-work", description: "Public work, proof assets, frameworks, tools, and artifacts." },
+      { label: "Identity", href: "/identity", description: "Official public identity page." },
+      { label: "Public Profile", href: "/profile/public-profile", description: "Public identity facts and verified profile links." },
+      { label: "Public Work", href: "/public-work", description: "Public work, evidence, frameworks, tools, and artifacts." },
       { label: "Press Kit", href: "/press-kit", description: "Reusable bios, public links, and claim boundaries." },
-      { label: "Claim Ledger", href: "/claims", description: "Human-readable public claim registry with source status and limitations." },
+      { label: "Claim Source Notes", href: "/claims", description: "Source context, review dates, and limits for public claims." },
       { label: "No-Hype Boundary", href: "/no-hype", description: "What this site will not claim." }
     ]
   },
@@ -126,19 +126,19 @@ export const NAV_GROUPS = [
     ]
   },
   {
-    label: "Established Domain",
-    description: "The public LMD/DED proof domain and source layer.",
+    label: "LMD / DED Domain",
+    description: "The public LMD/DED context and source layer.",
     items: [
-      { label: "LMD / DED Hub", href: "/domains/lmd-ded", description: "The established technical proof domain behind the site." },
+      { label: "LMD / DED Hub", href: "/domains/lmd-ded", description: "Main technical hub behind the site." },
       { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source map for AI and Laser Metal Deposition." },
-      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." },
+      { label: "Industrial Evidence Map", href: "/industrial-proof", description: "Public Exafuse cases connected to the site themes." },
       { label: "Glossary", href: "/glossary", description: "Definitions for LMD, DED, cladding, and melt-pool monitoring." }
     ]
   },
   {
     label: "Frameworks",
-    description: "Public frameworks grounded in the LMD/DED proof domain.",
+    description: "Public frameworks grounded in LMD/DED decisions and evidence.",
     items: [
       { label: "Frameworks Index", href: "/frameworks", description: "All public LMD and AI working frameworks in one place." },
       { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "What monitoring can show and what inspection must prove." },
@@ -150,9 +150,9 @@ export const NAV_GROUPS = [
   },
   {
     label: "Workbench",
-    description: "Tools, RFQ resources, lab notes, and AI-agent guidance.",
+    description: "Tools, RFQ resources, lab notes, and guidance for automated assistants.",
     items: [
-      { label: "Resources", href: "/resources", description: "Intent-based map for tools, playbooks, sources, and AI-agent guidance." },
+      { label: "Resources", href: "/resources", description: "Intent-based map for tools, playbooks, sources, and assistant guidance." },
       { label: "Tools", href: "/tools", description: "Decision cockpit, LMD vs SLM, repairability, and RFQ structuring tools." },
       { label: "LMD Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement questions." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Practical routes for repair, process selection, monitoring evidence, and RFQ preparation." },
@@ -160,9 +160,9 @@ export const NAV_GROUPS = [
       { label: "LMD Decision Brief Standard", href: "/brief-standard", description: "Public standard, schema, examples, and adoption package." },
       { label: "Decision Brief Template", href: "/brief-template", description: "Copyable Markdown template for LMD review preparation." },
       { label: "RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, decision rules, and RFQ checklists." },
-      { label: "Lab Notes", href: "/lab-notes", description: "Applied public notes from the LMD/DED proof domain." },
-      { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance for automated assistants." },
-      { label: "German Handoff", href: "/de", description: "Short German page routing visitors to the cockpit, boundary, and Exafuse." },
+      { label: "Lab Notes", href: "/lab-notes", description: "Applied public notes from LMD/DED decisions." },
+      { label: "For AI Systems", href: "/for-ai-agents", description: "Use guidance and limitations for automated assistants." },
+      { label: "Deutsch", href: "/de", description: "German overview for LMD/DED decision support and Exafuse contact." },
       { label: "Site Map", href: "/site-map", description: "A complete linked map of the website and public assets." }
     ]
   }
@@ -340,7 +340,7 @@ export const GLOSSARY_TERMS = [
   {
     term: "Laser Metal Deposition",
     href: "/glossary/laser-metal-deposition",
-    short: "Laser Metal Deposition is a metal additive manufacturing process where a focused energy source melts feedstock as it is deposited, often used for repair, cladding, and large-part additive manufacturing.",
+    short: "Laser Metal Deposition is a laser-based metal additive manufacturing process where a laser melts powder or wire feedstock as it is deposited, often used for repair, cladding, and large-part additive manufacturing.",
     related: ["Directed Energy Deposition", "Laser Cladding", "Melt-Pool Monitoring"]
   },
   {
@@ -364,23 +364,23 @@ export const GLOSSARY_TERMS = [
 ];
 
 export const COMMAND_PAGES = [
-  { title: "Start", href: "/", group: "Core", description: "Industrial AI lab entry point, LMD Decision Cockpit, proof domain, and Exafuse boundary." },
+  { title: "Start", href: "/", group: "Core", description: "Industrial AI lab entry point, LMD Decision Cockpit, public LMD/DED context, and Exafuse boundary." },
   { title: "Industrial AI for Decisions You Can Verify", href: "/thesis", group: "Thesis", description: "Sense, Model, Decide, Verify operating model." },
-  { title: "AI for Laser Metal Deposition and DED", href: "/domains/lmd-ded", group: "Established Domain", description: "Main public hub for LMD/DED, repair, monitoring, RFQ intelligence, and Exafuse context." },
+  { title: "AI for Laser Metal Deposition and DED", href: "/domains/lmd-ded", group: "LMD / DED Domain", description: "Main public hub for LMD/DED, repair, monitoring, RFQ intelligence, and Exafuse context." },
   { title: "About Manish Sharma", href: "/about", group: "Identity", description: "Human profile and public career context with careful claim boundaries." },
-  { title: "Identity", href: "/identity", group: "Identity", description: "Canonical machine-readable identity page." },
-  { title: "Manish Sharma Public Profile", href: "/profile/public-profile", group: "Identity", description: "Public-safe facts and verified profile links." },
-  { title: "Profile Resources", href: "/profile", group: "Identity", description: "Index of public-safe profile, identity, about, and press resources." },
-  { title: "Public Work and Technical Proof", href: "/public-work", group: "Identity", description: "Public frameworks, tools, evidence files, proof signals, and technical artifacts." },
+  { title: "Identity", href: "/identity", group: "Identity", description: "Official public identity page." },
+  { title: "Manish Sharma Public Profile", href: "/profile/public-profile", group: "Identity", description: "Public facts and verified profile links." },
+  { title: "Profile Resources", href: "/profile", group: "Identity", description: "Index of profile, identity, about, and press resources." },
+  { title: "Public Work and Evidence", href: "/public-work", group: "Identity", description: "Public frameworks, tools, evidence files, and technical artifacts." },
   { title: "Press Kit", href: "/press-kit", group: "Identity", description: "Reusable bios, approved descriptions, links, and claim limits." },
-  { title: "Public Claim Ledger", href: "/claims", group: "Identity", description: "Public claim registry with source status, allowed pages, and limitations." },
+  { title: "Claim Source Notes", href: "/claims", group: "Identity", description: "Public claim source context, review dates, and limitations." },
   { title: "No-Hype Boundary", href: "/no-hype", group: "Identity", description: "Short boundary page for anti-overclaim language." },
-  { title: "Trust Center", href: "/trust", group: "Identity", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." },
-  { title: "Review a Public LMD Decision Journey", href: "/review", group: "Identity", description: "Public-safe task review with a browser-local manual feedback note; no analytics or technical intake." },
-  { title: "Evidence Base", href: "/evidence", group: "Established Domain", description: "Trust layer for public sources, Exafuse pages, source maps, and decision-support limits." },
-  { title: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources", group: "Established Domain", description: "Curated source-category map for engineers, students, and AI agents." },
-  { title: "Research Resources", href: "/research", group: "Established Domain", description: "Index of verified sources, evidence pages, and public literature maps." },
-  { title: "Industrial Proof Map", href: "/industrial-proof", group: "Established Domain", description: "Public Exafuse proof signals mapped to monitoring, repairability, and evidence themes." },
+  { title: "Trust Center", href: "/trust", group: "Identity", description: "Privacy, security posture, accessibility intent, evidence handling, and decision boundaries." },
+  { title: "Review a Public LMD Decision Journey", href: "/review", group: "Identity", description: "Non-confidential task review with a browser-local manual feedback note; no analytics or technical intake." },
+  { title: "Evidence Base", href: "/evidence", group: "LMD / DED Domain", description: "Trust layer for public sources, Exafuse pages, source maps, and decision-support limits." },
+  { title: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources", group: "LMD / DED Domain", description: "Curated source-category map for engineers, students, and AI systems." },
+  { title: "Research Resources", href: "/research", group: "LMD / DED Domain", description: "Index of verified sources, evidence pages, and public literature maps." },
+  { title: "Industrial Evidence Map", href: "/industrial-proof", group: "LMD / DED Domain", description: "Public Exafuse context mapped to monitoring, repairability, and evidence themes." },
   { title: "Frameworks", href: "/frameworks", group: "Frameworks", description: "Index of LMD/DED decision-support frameworks and toolkit resources." },
   { title: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", group: "Frameworks", description: "Separate process signals, AI flags, inspection, and field evidence." },
   { title: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index", group: "Frameworks", description: "Screen early repair candidates before recommendations harden." },
@@ -388,17 +388,17 @@ export const COMMAND_PAGES = [
   { title: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas", group: "Frameworks", description: "Map failure modes, signals, AI visibility, and validation evidence." },
   { title: "LMD-AI Maturity Model", href: "/frameworks/lmd-ai-maturity-model", group: "Frameworks", description: "Move from manual records to validated AI decision support." },
   { title: "LMD RFQ Toolkit", href: "/agent-pack", group: "Workbench", description: "Schemas, prompts, rules, and checklists for safer LMD RFQ preparation." },
-  { title: "Resources", href: "/resources", group: "Workbench", description: "Intent-based resource map for process choice, repairability, RFQs, monitoring limits, sources, claims, and AI-agent usage." },
+  { title: "Resources", href: "/resources", group: "Workbench", description: "Intent-based resource map for process choice, repairability, RFQs, monitoring limits, sources, claims, and assistant usage." },
   { title: "Tools", href: "/tools", group: "Workbench", description: "Frontend-only decision cockpit, repairability, LMD vs SLM, and RFQ structuring aids." },
   { title: "Laser Metal Deposition Decision Map", href: "/decision-map", group: "Workbench", description: "Interactive route map for repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
   { title: "Decision Playbooks", href: "/playbooks", group: "Workbench", description: "Practical decision routes for repair, process selection, monitoring evidence, and RFQ preparation." },
   { title: "LMD Decision Brief v1.0 Standard", href: "/brief-standard", group: "Workbench", description: "Public, portable standard with schema, examples, adoption text, and boundaries." },
   { title: "LMD Decision Brief Template", href: "/brief-template", group: "Workbench", description: "Copyable Markdown template for preparing review briefs." },
   { title: "90-Second LMD Decision Demo", href: "/demo", group: "Workbench", description: "Dummy-data journey from vague request to structured decision brief." },
-  { title: "German Handoff", href: "/de", group: "Workbench", description: "Short German summary and routing page for LMD/DED decision support and Exafuse review." },
+  { title: "Deutsch", href: "/de", group: "Workbench", description: "German overview for LMD/DED decision support and Exafuse contact." },
   { title: "Lab Notes", href: "/lab-notes", group: "Workbench", description: "Applied notes on monitoring, RFQ quality, repairability, terminology, and inspection evidence." },
   ...LAB_NOTES.map((note) => ({ title: note.title, href: note.href, group: "Lab Notes", description: note.description })),
-  { title: "Glossary", href: "/glossary", group: "Established Domain", description: "Definitions that keep LMD/DED, cladding, monitoring, and RFQ language precise." },
+  { title: "Glossary", href: "/glossary", group: "LMD / DED Terms", description: "Definitions that keep LMD/DED, cladding, monitoring, and RFQ language precise." },
   ...GLOSSARY_TERMS.map((term) => ({ title: term.term, href: term.href, group: "Glossary", description: term.short })),
   { title: "For AI Agents", href: "/for-ai-agents", group: "Workbench", description: "Structured safe-use guidance for AI agents and search systems." },
   { title: "Links", href: "/links", group: "Identity", description: "Verified public links without placeholder profile URLs." },
@@ -412,14 +412,14 @@ export const SITE_MAP_GROUPS = [
     description: "Public identity, human background, profile facts, and approved media context.",
     links: [
       { label: "About", href: "/about", description: "Human profile and public career context." },
-      { label: "Identity", href: "/identity", description: "Canonical identity page for Manish Sharma." },
-      { label: "Public Profile", href: "/profile/public-profile", description: "Public-safe profile facts and verified profile links." },
-      { label: "Work & Proof", href: "/public-work", description: "Public work, proof assets, frameworks, tools, and artifacts." },
+      { label: "Identity", href: "/identity", description: "Official public identity page for Manish Sharma." },
+      { label: "Public Profile", href: "/profile/public-profile", description: "Public profile facts and verified profile links." },
+      { label: "Public Work", href: "/public-work", description: "Public work, frameworks, tools, evidence, and artifacts." },
       { label: "Press Kit", href: "/press-kit", description: "Reusable bios, public links, and claim boundaries." },
-      { label: "Claim Ledger", href: "/claims", description: "Public claim registry with source status, allowed pages, and limitations." },
+      { label: "Claim Source Notes", href: "/claims", description: "Public claim context, source notes, and limitations." },
       { label: "No-Hype Boundary", href: "/no-hype", description: "Short boundary page for anti-overclaim language." },
-      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, source governance, and decision boundaries." },
-      { label: "Review the Site", href: "/review", description: "Run a public-safe review task and prepare a manual feedback note." }
+      { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, evidence handling, and decision boundaries." },
+      { label: "Review the Site", href: "/review", description: "Run a non-confidential review task and prepare a manual feedback note." }
     ]
   },
   {
@@ -430,17 +430,17 @@ export const SITE_MAP_GROUPS = [
     ]
   },
   {
-    label: "Established Domain",
-    description: "LMD/DED public proof domain, evidence, source maps, industrial context, and definitions.",
+    label: "LMD / DED Domain",
+    description: "LMD/DED evidence, source maps, industrial context, and definitions.",
     links: [
-      { label: "LMD / DED Hub", href: "/domains/lmd-ded", description: "The established technical proof domain behind Manish Sharma Lab." },
+      { label: "LMD / DED Hub", href: "/domains/lmd-ded", description: "The technical domain behind Manish Sharma Lab." },
       { label: "Research Resources", href: "/research", description: "Verified sources, evidence pages, and public literature maps." },
       { label: "Evidence Base", href: "/evidence", description: "Reference map, field notes, and checked facts." },
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated starting map for source categories and further reading." },
-      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse case and article signals." },
+      { label: "Industrial Evidence Map", href: "/industrial-proof", description: "Public Exafuse case and article signals." },
       { label: "Glossary", href: "/glossary", description: "Practical LMD/DED definitions." },
       { label: "LMD Literature Map JSON", href: "/research/lmd-literature-scan.json", description: "500-record LMD/DED reference map." },
-      { label: "Exafuse Proof Map JSON", href: "/research/exafuse-public-proof-map.json", description: "Public proof map." }
+      { label: "Exafuse Public Context JSON", href: "/research/exafuse-public-proof-map.json", description: "Public context map." }
     ]
   },
   {
@@ -462,12 +462,12 @@ export const SITE_MAP_GROUPS = [
       { label: "Decision Playbooks", href: "/playbooks", description: "Practical decision routes for repair, process selection, monitoring evidence, and RFQ preparation." },
       { label: "LMD Decision Brief Standard", href: "/brief-standard", description: "Public standard, JSON schema, example briefs, and adoption package." },
       { label: "LMD Decision Brief Template", href: "/brief-template", description: "Copyable Markdown brief template." },
-      { label: "90-Second Demo", href: "/demo", description: "Public-safe dummy journey from vague request to review brief." },
+      { label: "90-Second Demo", href: "/demo", description: "Non-confidential example journey from vague request to review brief." },
       { label: "RFQ Toolkit", href: "/agent-pack", description: "RFQ schema, prompts, rules, and quality checklist." },
-      { label: "Lab Notes", href: "/lab-notes", description: "Applied public notes from the LMD/DED proof domain." },
+      { label: "Lab Notes", href: "/lab-notes", description: "Applied public notes from the LMD/DED domain." },
       { label: "Lab Notes RSS", href: "/rss.xml", description: "Deterministic RSS feed for every public lab note." },
       { label: "For AI Agents", href: "/for-ai-agents", description: "How automated assistants should use and not use this site." },
-      { label: "German Handoff", href: "/de", description: "Short German page routing visitors to cockpit, boundary, and Exafuse." },
+      { label: "Deutsch", href: "/de", description: "German overview for LMD/DED decision support and Exafuse contact." },
       { label: "Site Map", href: "/site-map", description: "Every page and public machine-readable asset." }
     ]
   },
@@ -496,7 +496,7 @@ export const SITE_MAP_GROUPS = [
       { label: "Links", href: "/links", description: "LinkedIn, GitHub, Exafuse, and research-profile links." },
       { label: "Contact", href: "/contact", description: "Professional contact routes." },
       { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, evidence, and boundary posture." },
-      { label: "Review the Site", href: "/review", description: "Public-safe task review and browser-local manual feedback note." },
+      { label: "Review the Site", href: "/review", description: "Non-confidential task review and browser-local manual feedback note." },
       { label: "AI-readable Trust Summary", href: "/trust.md", description: "Machine-readable trust and data-handling summary." },
       { label: "Security Contact File", href: "/.well-known/security.txt", description: "Responsible reporting policy and canonical contact route." },
       { label: "Lab Notes RSS", href: "/rss.xml", description: "Feed for public technical notes." },
@@ -509,20 +509,20 @@ export const RELATED_LINK_SETS = [
   {
     exact: ["/", "/about", "/identity", "/profile", "/profile/public-profile", "/public-work", "/links", "/contact", "/press-kit", "/trust"],
     eyebrow: "Identity path",
-    title: "Continue through the public identity layer",
+    title: "Continue through the public profile and work",
     links: [
       { label: "Industrial AI for Decisions You Can Verify", href: "/thesis", description: "The operating thesis behind the public lab." },
-      { label: "Manish Sharma - Industrial AI & Decision Systems", href: "/identity", description: "The canonical public identity page." },
-      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The established public proof domain." },
-      { label: "Work & Proof", href: "/public-work", description: "Public frameworks, tools, evidence, and artifacts." },
-      { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, source governance, and decision boundaries." },
+      { label: "Manish Sharma - Industrial AI & Decision Systems", href: "/identity", description: "The official public identity page." },
+      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The main LMD/DED technical hub." },
+      { label: "Public Work", href: "/public-work", description: "Public frameworks, tools, evidence, and artifacts." },
+      { label: "Trust Center", href: "/trust", description: "Privacy, security, accessibility, evidence handling, and decision boundaries." },
       { label: "Exafuse", href: LINKS.exafuse, description: "Industrial LMD/SLM services, case studies, and RFQ context." }
     ]
   },
   {
     exact: ["/thesis"],
     eyebrow: "Operating model",
-    title: "Apply the thesis to the established proof domain",
+    title: "Apply the thesis to LMD/DED decisions",
     links: [
       { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "Where the operating model is grounded publicly." },
       { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "Separate process signals from inspection proof." },
@@ -539,7 +539,7 @@ export const RELATED_LINK_SETS = [
       { label: "Industrial AI Thesis", href: "/thesis", description: "Sense, Model, Decide, Verify." },
       { label: "Evidence Base", href: "/evidence", description: "Checked facts, field notes, and source links." },
       { label: "Core LMD-AI Sources", href: "/research/core-lmd-ai-sources", description: "Curated source map for AI and Laser Metal Deposition." },
-      { label: "Industrial Proof Map", href: "/industrial-proof", description: "Public Exafuse cases and article signals." },
+      { label: "Industrial Evidence Map", href: "/industrial-proof", description: "Public Exafuse cases and article signals." },
       { label: "LMD RFQ Toolkit", href: "/agent-pack", description: "Schemas, prompts, rules, and checklists." }
     ]
   },
@@ -549,8 +549,8 @@ export const RELATED_LINK_SETS = [
     title: "Move from framework to verifiable decisions",
     links: [
       { label: "Industrial AI Thesis", href: "/thesis", description: "The shared operating model for the public frameworks." },
-      { label: "Manish Sharma - Industrial AI & Decision Systems", href: "/identity", description: "Canonical identity page for the author and public entity." },
-      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The established public proof domain." },
+      { label: "Manish Sharma - Industrial AI & Decision Systems", href: "/identity", description: "Official identity page for the author and public entity." },
+      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The main LMD/DED technical hub." },
       { label: "LMD Agent Pack", href: "/agent-pack", description: "RFQ schemas, prompts, rules, and checklists." },
       { label: "Tools", href: "/tools", description: "Try the decision cockpit and interactive helpers." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Use practical routes for repair, RFQ, monitoring, and process selection." },
@@ -579,7 +579,7 @@ export const RELATED_LINK_SETS = [
     links: [
       { label: "Lab Notes Index", href: "/lab-notes", description: "All applied public notes." },
       { label: "Decision Playbooks", href: "/playbooks", description: "Decision routes that turn notes into action." },
-      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The established public proof domain." },
+      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The main LMD/DED technical hub." },
       { label: "Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder", description: "Use when monitoring claims need evidence boundaries." },
       { label: "RFQ Toolkit", href: "/agent-pack", description: "Prompts and schemas for LMD RFQ structuring." },
       { label: "Glossary", href: "/glossary", description: "Terminology definitions used across the site." }
@@ -591,7 +591,7 @@ export const RELATED_LINK_SETS = [
     title: "Use definitions inside decision workflows",
     links: [
       { label: "Glossary Index", href: "/glossary", description: "All practical LMD definitions." },
-      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The established public proof domain." },
+      { label: "LMD / DED Domain Hub", href: "/domains/lmd-ded", description: "The main LMD/DED technical hub." },
       { label: "LMD vs SLM Signals", href: "/lab-notes/lmd-vs-slm-decision-signals", description: "Decision signals for process selection." },
       { label: "Frameworks", href: "/frameworks", description: "Frameworks that use this terminology." },
       { label: "RFQ Toolkit", href: "/agent-pack", description: "RFQ resources that rely on clear terms." }

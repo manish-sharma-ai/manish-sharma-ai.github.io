@@ -20,9 +20,9 @@ const evidenceClasses = [
   ["Public source", "Stable public pages, standards pages, papers, datasets, or public records that can be checked independently."],
   ["Exafuse public page", "Company-owned public context for industrial additive manufacturing services, cases, quality, technology, or RFQ paths."],
   ["External partner/source", "A public partner, venue, event, organization, or third-party source that supports a specific statement."],
-  ["Personal framework", "Manish Sharma Lab frameworks that organize decision-support thinking. Useful as interpretation, not independent proof."],
+  ["Personal framework", "Manish Sharma Lab frameworks that organize decision-support thinking. Useful as interpretation, not independent evidence."],
   ["Research/source map", "Broad metadata maps or curated source categories that orient research. Not equivalent to full-text review."],
-  ["Lab note", "Personal technical interpretation that should link back to source categories, frameworks, and public proof."],
+  ["Lab note", "Personal technical interpretation that should link back to source categories, frameworks, and public sources."],
   ["Draft / incomplete", "A source or claim that still needs verification before it is treated as citation-quality evidence."]
 ];
 
@@ -91,9 +91,9 @@ const pageJsonLd = {
     },
     {
       "@type": "Dataset",
-      name: "Exafuse public proof map",
+      name: "Exafuse public context map",
       url: `${SITE.canonicalUrl}/research/exafuse-public-proof-map.json`,
-      description: "Public Exafuse proof signals mapped to Manish Sharma Lab themes."
+      description: "Public Exafuse signals mapped to Manish Sharma Lab themes."
     },
     {
       "@type": "TechArticle",
@@ -214,8 +214,8 @@ const pageJsonLd = {
   <section class="site-shell section-y">
     <div class="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
       <SectionHeading
-        eyebrow="Industrial proof"
-        title="Public Exafuse cases that anchor the claims"
+        eyebrow="Industrial context"
+        title="Public Exafuse cases that ground the claims"
         description="These are public company case studies, not private project details. They make the site more concrete by showing the kind of industrial LMD problems behind the frameworks."
       />
       <div>
@@ -228,7 +228,7 @@ const pageJsonLd = {
             <p class="metric-label">{item.code}</p>
             <h2 class="mt-3 text-xl font-black text-white">{item.title}</h2>
             <p class="mt-3 inline-block rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-black uppercase text-slate-300">
-              {item.sourceStatus === "production-link-after-migration" ? "Migration-gated link" : "Live production link"}
+              {item.sourceStatus === "production-link-after-migration" ? "Exafuse contact/index route" : "Live production link"}
             </p>
             {item.metricClaims?.length > 0 && (
               <div class="mt-4 flex flex-wrap gap-2">
@@ -240,15 +240,15 @@ const pageJsonLd = {
               </div>
             )}
             <p class="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-cyan-100">
-              {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Source link pending until Exafuse production migration"}
+              {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Case-specific source available through Exafuse contact or current public pages."}
             </p>
             <p class="mt-4 text-sm leading-6 text-slate-400">{item.lesson}</p>
             <div class="mt-4 rounded-lg border border-cyan-300/20 bg-cyan-300/8 p-3">
-              <p class="metric-label">Decision pattern extracted</p>
+              <p class="metric-label">Useful decision pattern</p>
               <p class="mt-2 text-sm font-semibold leading-6 text-cyan-50">{proofDecisionPatternText[item.code]}</p>
             </div>
             <p class="mt-4 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm font-semibold leading-6 text-slate-300">
-              This is a pattern, not a transfer of feasibility.
+              Use this as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review.
             </p>
             <div class="mt-5 flex flex-wrap gap-3">
               <a href={pattern.href} class="btn btn-primary">{pattern.label}</a>
@@ -261,7 +261,7 @@ const pageJsonLd = {
         </div>
       </div>
     </div>
-    <a href="/industrial-proof" class="btn btn-primary mt-8">Open Industrial Proof Map</a>
+    <a href="/industrial-proof" class="btn btn-primary mt-8">Open Industrial Evidence Map</a>
   </section>
 
   <section class="site-shell section-y">

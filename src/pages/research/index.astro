@@ -5,7 +5,7 @@ import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 
 const title = "Research Resources - Manish Sharma Lab";
-const description = "Research and source resources for industrial AI, LMD/DED, monitoring, evidence, and public proof context.";
+const description = "Research and source resources for industrial AI, LMD/DED, monitoring, evidence, and public technical context.";
 ---
 
 <Layout title={title} description={description} canonical="/research">
@@ -15,18 +15,18 @@ const description = "Research and source resources for industrial AI, LMD/DED, m
         as="h1"
         eyebrow="Research"
         title="Source maps and research references"
-        description="Public resources that keep Manish Sharma Lab grounded in checked sources, standards-aware terminology, industrial AI context, and the established LMD/DED proof domain."
+        description="Public resources that keep Manish Sharma Lab grounded in checked sources, standards-aware terminology, industrial AI context, and LMD/DED work."
       />
       <PageHeroVisual variant="research" class="hidden lg:block" />
     </div>
     <div class="mt-10">
       <SourceLinks links={[
         { label: "Industrial AI Thesis", href: "/thesis" },
-        { label: "LMD / DED Proof Domain", href: "/domains/lmd-ded" },
+        { label: "LMD / DED Hub", href: "/domains/lmd-ded" },
         { label: "Core Sources for AI and Laser Metal Deposition", href: "/research/core-lmd-ai-sources" },
         { label: "Evidence Base", href: "/evidence" },
         { label: "500-record LMD/DED reference map JSON", href: "/research/lmd-literature-scan.json" },
-        { label: "Exafuse public proof map JSON", href: "/research/exafuse-public-proof-map.json" }
+        { label: "Exafuse public context JSON", href: "/research/exafuse-public-proof-map.json" }
       ]} />
     </div>
   </section>

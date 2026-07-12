@@ -37,11 +37,11 @@ const categories = [
 ];
 
 const bands = [
-  ["0-20", "Not enough information or likely unsuitable"],
-  ["21-40", "High uncertainty"],
-  ["41-60", "Possible but needs engineering review"],
-  ["61-80", "Likely candidate if material/inspection align"],
-  ["81-100", "Strong candidate, subject to expert validation"]
+  ["Very limited support", "Too many core facts are unknown or the visible signals are weak."],
+  ["High uncertainty", "The request may be worth discussion, but missing material, damage, access, or inspection facts dominate."],
+  ["Early review candidate", "Some repair signals are present; expert review should focus on the weak categories first."],
+  ["Promising review candidate", "The visible signals justify expert review if material, machining, and inspection align."],
+  ["Strong preliminary review candidate", "The request is well structured, but final feasibility still depends on expert review and evidence."]
 ];
 
 const missing = [
@@ -65,9 +65,9 @@ const whatChangesDecision = [
 ];
 
 const frameworkBrief = [
-  ["Definition", "A preliminary scoring model for deciding whether an LMD repair request is worth expert feasibility review."],
+  ["Definition", "A preliminary screening framework for deciding whether an LMD repair request is worth expert feasibility review."],
   ["Problem it solves", "Repair requests often arrive before the material, damage, access, tolerance, and inspection facts are clear."],
-  ["Who it is for", "Engineers, buyers, AI agents, students, and developers preparing LMD repair RFQs."],
+  ["Who it is for", "Engineers, buyers, students, developers, and assistants preparing LMD repair RFQs."],
   ["Inputs required", "Material grade, damage type and depth, access, geometry, service conditions, tolerance, inspection requirement, downtime, and replacement context."],
   ["Output", "A repairability band, missing-information list, risk flags, and a suggested next step."],
   ["Evidence needed", "Photos, drawing or CAD, material evidence, damage documentation, machining plan, inspection route, and expert review."],
@@ -80,13 +80,13 @@ const relatedLinks = [
   { label: "Manish Sharma - AI for Laser Metal Deposition", href: "/identity" },
   { label: "LMD Agent Pack", href: "/agent-pack" },
   { label: "Tools", href: "/tools" },
-  { label: "For AI Agents", href: "/for-ai-agents" },
+  { label: "For AI Systems", href: "/for-ai-agents" },
   { label: "What AI needs before LMD repair", href: "/lab-notes/what-ai-needs-before-lmd-repair" },
   { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" }
 ];
 ---
 
-<Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-repairability-index" jsonLd={jsonLd}>
+<Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-repairability-index" jsonLd={jsonLd}>
   <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
@@ -105,7 +105,7 @@ const relatedLinks = [
       <div class="mb-8">
         <ProcessLoop variant="micro" title="Repairability loop" />
       </div>
-      <SectionHeading eyebrow="Scoring categories" title="Repairability is not one variable" />
+      <SectionHeading eyebrow="Screening categories" title="Repairability is not one variable" />
       <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {categories.map((category) => <div class="ordered-card p-4 text-sm font-bold leading-6 text-slate-100">{category}</div>)}
       </div>
@@ -129,7 +129,7 @@ const relatedLinks = [
   </section>
 
   <section class="site-shell section-y">
-    <SectionHeading eyebrow="Interactive" title="LMD Repairability Index calculator" description="Score each category from weak or unknown to strong. The output is a preliminary band, not a final feasibility decision." />
+    <SectionHeading eyebrow="Interactive" title="LMD Repairability Index calculator" description="Rate each category from weak or unknown to strong. The output is a preliminary band, not a final feasibility decision." />
     <div class="mt-10">
       <RepairabilityCalculator client:load />
     </div>
@@ -153,9 +153,9 @@ const relatedLinks = [
   <section class="band section-y">
     <div class="site-shell grid gap-8 lg:grid-cols-2">
       <div>
-        <SectionHeading eyebrow="Score bands" title="Interpretation bands" />
+        <SectionHeading eyebrow="Screening bands" title="Interpretation bands" />
         <div class="mt-8 grid gap-3">
-          {bands.map(([score, label]) => <div class="ordered-card flex items-center gap-4 p-4"><span class="w-20 font-mono font-black text-cyan-100">{score}</span><span class="font-semibold text-slate-100">{label}</span></div>)}
+          {bands.map(([band, label]) => <div class="ordered-card p-4"><span class="block text-sm font-black text-cyan-100">{band}</span><span class="mt-2 block text-sm font-semibold leading-6 text-slate-100">{label}</span></div>)}
         </div>
       </div>
       <div>

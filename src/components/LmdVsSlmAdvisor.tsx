@@ -80,11 +80,18 @@ export default function LmdVsSlmAdvisor({
       riskFlags.push("Internal channels are usually weak signals for LMD unless the design changes.");
     }
 
-    const recommendation =
-      Math.abs(lmd - slm) <= 2 ? "Manual review" : lmd > slm ? "LMD likely better" : "SLM/LPBF likely better";
     const missing = ["material grade", "part drawing or CAD", "service conditions", "inspection requirement"];
     if (values.tolerance === "tight") missing.push("post-machining plan");
     if (values.jobType === "repair" || values.jobType === "cladding") missing.push("damage depth and repair area");
+    const routeGap = Math.abs(lmd - slm);
+    const recommendation =
+      missing.length > 5 && routeGap <= 2
+        ? "Insufficient information for a route preference; build a structured RFQ first."
+        : routeGap <= 2
+          ? "Balanced route signals; compare LMD/DED, PBF-LB/M, and hybrid options with expert review."
+          : lmd > slm
+            ? "LMD/DED-aligned signals are present; confirm material, geometry, finishing, and inspection before choosing a route."
+            : "PBF-LB/M-aligned signals are present; confirm powder-bed constraints, post-processing, and inspection before choosing a route.";
     const evidenceNeeded = [
       "material grade and compatibility context",
       "drawing/CAD or dimensional envelope",
@@ -219,7 +226,7 @@ function ToolResult({
       <div className="tool-pane-heading mb-5">
         <p className="metric-label">Output pane</p>
         <p className="tool-pane-title">Process-route brief</p>
-        <p className="tool-pane-copy">Use this as a first route signal, then validate the real part context through expert review.</p>
+        <p className="tool-pane-copy">This is a rule-based route screen. Use it as a first signal, then validate the real part context through expert review.</p>
       </div>
       <p className="metric-label">Advisor output</p>
       <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">

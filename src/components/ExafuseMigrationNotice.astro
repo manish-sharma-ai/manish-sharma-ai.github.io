@@ -1,12 +1,10 @@
 ---
-import { EXAFUSE_MIGRATION_HELPER } from "../config/externalLinks";
-
 const { class: className = "" } = Astro.props;
 ---
 
 <aside class:list={["rounded-lg border border-cyan-300/20 bg-cyan-300/10 p-4 text-sm leading-6 text-cyan-50", className]}>
-  <p class="font-black text-white">Exafuse link-mode note</p>
+  <p class="font-black text-white">Exafuse source note</p>
   <p class="mt-2">
-    {EXAFUSE_MIGRATION_HELPER} Until then, use Exafuse home/contact for company-owned review.
+    Case-specific Exafuse pages are routed through the current public Exafuse contact or index pages while exact supporting source pages are verified. Use Exafuse for company-owned review, services, RFQs, and case-study context.
   </p>
 </aside>
