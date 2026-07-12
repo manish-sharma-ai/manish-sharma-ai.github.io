@@ -16,7 +16,7 @@ export const SITE = {
   description: SITE_CONFIG.site.description,
   shortDescription:
     "Public frameworks, tools, and technical notes for industrial AI and decision systems, grounded in LMD/DED work at Exafuse.",
-  lastUpdated: "2026-07-10"
+  lastUpdated: "2026-07-12"
 };
 
 export const PERSON = {

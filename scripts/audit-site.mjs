@@ -645,11 +645,16 @@ function auditGermanBrief() {
     "Open route",
     "Preliminary decision-support only",
     "Canonical:",
+    "Kanonisch:",
     "Handoff",
     "Prüfroute",
     "Fachprüfung / RFQ-Gespräch",
     "überprüfbar bleiben",
-    "Lab Notes"
+    "Lab Notes",
+    "Website prüfen",
+    "browser-lokal",
+    "Exafuse ist der richtige Weg für RFQs und kommerzielle Prüfung",
+    "Diese Seite hilft"
   ]) {
     if (visibleText.includes(phrase)) findings.push(`${file}: German page leaks English or awkward interface text "${phrase}"`);
   }
@@ -804,23 +809,26 @@ function auditPublicProfiles() {
 
 function auditDecisionBoundaries() {
   const findings = [];
-  const sourceFiles = [
-    "src/components/LmdDecisionCockpit.tsx",
-    "src/components/LmdVsSlmAdvisor.tsx",
-    "src/components/RepairabilityQuickCheck.tsx",
-    "src/components/RfqStructureConverter.tsx"
-  ];
-  for (const file of sourceFiles) {
+  const sourceExpectations = {
+    "src/components/LmdDecisionCockpit.tsx": ["Confidence is not approval", "Missing information", "Risk flags", "Evidence needed"],
+    "src/components/LmdVsSlmAdvisor.tsx": ["Route signals", "Information completeness", "Review urgency", "Not answered", "Clear all inputs", "rule-based"],
+    "src/components/RepairabilityQuickCheck.tsx": ["Technical screening status", "Qualification burden", "Commercial urgency", "Clear all inputs", "Preliminary decision-support only"],
+    "src/components/RfqStructureConverter.tsx": ["Preliminary decision-support only", "Missing information", "Risk flags", "Evidence needed"]
+  };
+  for (const [file, expectations] of Object.entries(sourceExpectations)) {
     if (!existsSync(join(root, file))) {
       findings.push(`${file}: missing decision tool source`);
       continue;
     }
     const text = read(file);
-    for (const phrase of ["Confidence is not approval", "Missing information", "Risk flags", "Evidence needed"]) {
+    for (const phrase of expectations) {
       if (!text.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
     }
   }
 
+  const routeScreen = existsSync(join(root, "src/lib/lmdRouteScreen.ts"))
+    ? read("src/lib/lmdRouteScreen.ts")
+    : "";
   const routeAdvisor = existsSync(join(root, "src/components/LmdVsSlmAdvisor.tsx"))
     ? read("src/components/LmdVsSlmAdvisor.tsx")
     : "";
@@ -830,20 +838,27 @@ function auditDecisionBoundaries() {
   for (const phrase of [
     "LMD/DED-aligned signals are present",
     "PBF-LB/M-aligned signals are present",
-    "Insufficient information for a route preference",
-    "rule-based"
+    "Not enough route information to compare LMD/DED and PBF-LB/M."
   ]) {
-    if (!routeAdvisor.includes(phrase)) findings.push(`src/components/LmdVsSlmAdvisor.tsx: missing calibrated route wording "${phrase}"`);
+    if (!routeScreen.includes(phrase)) findings.push(`src/lib/lmdRouteScreen.ts: missing calibrated route wording "${phrase}"`);
+  }
+  for (const phrase of ["useState<RouteAnswers>({})", "Not answered", "Information completeness", "Review urgency", "Needs expert review"]) {
+    const source = ["Needs expert review"].includes(phrase) ? routeScreen : routeAdvisor;
+    const file = source === routeScreen ? "src/lib/lmdRouteScreen.ts" : "src/components/LmdVsSlmAdvisor.tsx";
+    if (!source.includes(phrase)) findings.push(`${file}: missing unanswered-state or readiness/urgency behavior "${phrase}"`);
+  }
+  if (routeScreen.includes("Ready for expert review")) {
+    findings.push("src/lib/lmdRouteScreen.ts: high-risk cases must use Needs expert review, not Ready for expert review");
   }
 
   for (const file of ["src/components/RepairabilityQuickCheck.tsx", "src/components/RepairabilityCalculator.tsx"]) {
     if (!existsSync(join(root, file))) continue;
     const text = read(file);
-    if (text.includes("Repairability score") || text.includes("${result.score}/100") || text.includes("/100)")) {
+    if (text.includes("Repairability score") || text.includes("${result.score}/100") || text.includes("/100)") || text.includes("* 12") || text.includes("? 18")) {
       findings.push(`${file}: public repairability output should use qualitative screening bands, not a pseudo-precise /100 score`);
     }
-    if (!text.includes("screening band") && !text.includes("Screening band")) {
-      findings.push(`${file}: missing qualitative screening-band wording`);
+    for (const phrase of ["Technical suitability", "Qualification burden", "Commercial context"]) {
+      if (!text.includes(phrase)) findings.push(`${file}: missing explicit repairability rule group "${phrase}"`);
     }
   }
 
@@ -1500,6 +1515,7 @@ function auditExperience() {
     }
     if (!html.includes('rel="alternate" hreflang="de"')) findings.push(`${homeFile}: missing German alternate link`);
     if (!html.includes('rel="stylesheet"')) findings.push(`${homeFile}: missing cacheable external stylesheet`);
+    if (!html.includes('name="last-modified" content="2026-07-12"')) findings.push(`${homeFile}: release date is not current`);
   }
 
   const toolsFile = "dist/tools/index.html";

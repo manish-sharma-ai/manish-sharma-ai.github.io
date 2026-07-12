@@ -18,6 +18,8 @@ import {
   getCockpitPreset
 } from "../src/lib/decisionBrief";
 import { PUBLIC_REVIEW_RECORD_VERSION, PUBLIC_REVIEW_TASKS, createPublicReviewRecord, formatPublicReviewNote, formatPublicReviewRecordJson } from "../src/lib/publicReview";
+import { documentedRouteExample, screenLmdVsPbfRoute } from "../src/lib/lmdRouteScreen";
+import { documentedRepairabilityExample, emptyRepairabilityAnswers, screenRepairability } from "../src/lib/repairabilityScreen";
 
 describe("LMD Decision Brief invariants", () => {
   it("provides a non-destructive recovery path when clipboard access is unavailable", () => {
@@ -179,5 +181,73 @@ describe("LMD Decision Brief invariants", () => {
     expect(record).not.toHaveProperty("identity");
     expect(record).not.toHaveProperty("timestamp");
     expect(json.primaryFriction.id).toBe("navigation");
+  });
+});
+
+describe("LMD route-screen semantics", () => {
+  it("keeps an empty route screen unanswered and without a route preference", () => {
+    const result = screenLmdVsPbfRoute({});
+
+    expect(result.routeSignals).toBe("Not enough route information to compare LMD/DED and PBF-LB/M.");
+    expect(result.informationCompleteness).toBe("No route inputs selected");
+    expect(result.reviewUrgency).toBe("Continue information gathering");
+  });
+
+  it("keeps mixed route signals balanced", () => {
+    const result = screenLmdVsPbfRoute({
+      partSize: "large",
+      complexity: "high",
+      jobType: "new build",
+      localAddition: "no"
+    });
+
+    expect(result.routeSignals).toContain("Balanced route signals");
+    expect(result.informationCompleteness).toBe("Early route screen; complete the remaining inputs");
+  });
+
+  it("reports LMD-aligned signals while keeping high-risk urgency separate from completeness", () => {
+    const result = screenLmdVsPbfRoute(documentedRouteExample);
+
+    expect(result.routeSignals).toContain("LMD/DED-aligned signals are present");
+    expect(result.informationCompleteness).toBe("Ready for detailed assessment");
+    expect(result.reviewUrgency).toBe("Needs expert review");
+  });
+
+  it("reports PBF-LB/M-aligned signals when powder-bed design signals dominate", () => {
+    const result = screenLmdVsPbfRoute({
+      partSize: "small",
+      complexity: "high",
+      jobType: "prototype",
+      localAddition: "no",
+      tolerance: "loose",
+      internalChannels: "yes"
+    });
+
+    expect(result.routeSignals).toContain("PBF-LB/M-aligned signals are present");
+    expect(result.reviewUrgency).toBe("Needs expert review");
+  });
+});
+
+describe("LMD repairability rule semantics", () => {
+  it("does not let commercial urgency turn an empty technical case into a repair candidate", () => {
+    const answers = emptyRepairabilityAnswers();
+    answers.commercial.replacementCost = true;
+    answers.commercial.downtimePressure = true;
+    const result = screenRepairability(answers);
+
+    expect(result.technicalScreeningStatus).toBe("No technical basis yet");
+    expect(result.commercialUrgency).toBe("High commercial urgency");
+    expect(result.recommendedNextAction).toContain("Commercial urgency does not establish technical suitability");
+  });
+
+  it("separates a well-structured technical case from a high qualification burden", () => {
+    const answers = documentedRepairabilityExample();
+    answers.qualification.safetyCriticalService = true;
+    answers.qualification.noInspectionRoute = true;
+    const result = screenRepairability(answers);
+
+    expect(result.technicalScreeningStatus).toBe("Technically structured for detailed assessment");
+    expect(result.qualificationBurden).toBe("High qualification burden");
+    expect(result.recommendedNextAction).toContain("qualification plan");
   });
 });

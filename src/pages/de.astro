@@ -12,14 +12,14 @@ import { PERSON, SITE } from "@data/site";
 
 const title = "Deutsch: KI für Laserauftragschweißen und LMD-Entscheidungen";
 const description =
-  "Deutsche Übersicht für Manish Sharma Lab: LMD-Entscheidungsbrief v1.0, browser-lokale Entscheidungshilfe, Grenzen und Kontakt zu Exafuse.";
+  "Deutsche Übersicht für Manish Sharma Lab: LMD-Entscheidungsbrief v1.0, Entscheidungshilfe im Browser, Grenzen und Kontakt zu Exafuse.";
 const exafuseContactLink = resolveExafuseLink("contact");
 const germanTemplate = formatGermanDecisionBriefTemplateMarkdown();
 
 const bullets = [
   "Vorläufige Entscheidungshilfe, keine technische Freigabe",
   "Prozesssignale unterstützen die Bewertung, ersetzen aber keine Prüfung",
-  "Exafuse ist der richtige Weg für RFQs und kommerzielle Prüfung",
+  "Für technische Machbarkeitsprüfungen und Angebotsanfragen ist Exafuse der richtige Ansprechpartner.",
   "Manish Sharma Lab bietet öffentliche Werkzeuge, Frameworks und Fachnotizen"
 ];
 
@@ -35,7 +35,7 @@ const afterItems = [
   ["Kritische Lücken", "Werkstoffgüte, CAD/Zeichnung, Schadenstiefe, Maße, Betriebsbedingungen, Prüfanforderung."],
   ["Risiken", "Enge Toleranz und unbekannte Betriebsbedingungen erhöhen Prüf- und Bearbeitungsaufwand."],
   ["Benötigte Nachweise", "Werkstoffangabe, Schadenskarte, Bearbeitungszugabe, Toleranzziel, Prüfanforderung."],
-  ["Nächster Schritt", "Kurzbrief erstellen und technische Prüfung oder RFQ vorbereiten."]
+  ["Nächster Schritt", "Kurzbrief erstellen und eine technische Prüfung oder Angebotsanfrage vorbereiten."]
 ];
 
 const jsonLd = {
@@ -73,7 +73,7 @@ const jsonLd = {
         Werkzeuge und Fachwissen für fundierte Entscheidungen im Laserauftragschweißen.
       </h1>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        Diese Seite hilft, LMD- und DED-Fragen vor einer technischen Prüfung zu strukturieren: bekannte Fakten, fehlende Informationen, Risiken, benötigte Nachweise und der nächste Schritt bleiben sichtbar.
+        Der Ansatz hilft, LMD- und DED-Fragen vor einer technischen Prüfung zu strukturieren: bekannte Fakten, fehlende Informationen, Risiken, benötigte Nachweise und der nächste Schritt bleiben sichtbar. Ihre Eingaben bleiben dabei im Browser dieses Geräts.
       </p>
       <div class="mt-6 rounded-lg border border-amber-300/25 bg-amber-400/10 p-4 text-sm font-bold leading-6 text-amber-50">
         <ul class="grid gap-2">

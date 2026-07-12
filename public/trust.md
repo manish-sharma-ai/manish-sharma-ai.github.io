@@ -1,7 +1,7 @@
 # Manish Sharma Lab - Trust and Transparency
 
 Canonical page: https://manishsharma.dev/trust
-Last reviewed: 2026-07-10
+Last reviewed: 2026-07-12
 
 ## Privacy
 

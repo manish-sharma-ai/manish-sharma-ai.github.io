@@ -57,7 +57,7 @@ const footerColumnsDe = [
   {
     label: "Kernseiten",
     links: [
-      { label: "These", href: "/thesis" },
+      { label: "Leitgedanke", href: "/thesis" },
       { label: "Nachweise", href: "/public-work" },
       { label: "LMD / DED", href: "/domains/lmd-ded" },
       { label: "Frameworks", href: "/frameworks" }
@@ -102,16 +102,15 @@ const footerColumns = lang === "de" ? footerColumnsDe : footerColumnsEn;
 const copy =
   lang === "de"
     ? {
-        subtitle: "Industrielle KI / Entscheidungssysteme",
+        subtitle: "LMD, Prozessüberwachung und industrielle KI",
         promise: "Werkzeuge und Fachwissen für fundierte LMD-Entscheidungen.",
         description:
-          "Öffentliche Frameworks, Quellenkarten, Werkzeuge und Fachnotizen. Kommerzielle Leistungen, RFQs, Lieferzusagen und firmeneigene Fallstudien gehören zu Exafuse.",
+          "Öffentliche Frameworks, Quellenkarten, Werkzeuge und Fachnotizen. Kommerzielle Leistungen, Angebotsanfragen, Lieferzusagen und firmeneigene Fallstudien gehören zu Exafuse.",
         contact: "Kontakt",
         search: "Suche",
         exafuse: "Exafuse öffnen",
         boundary: "Entscheidungshilfe, keine technische Freigabe.",
         trust: "Vertrauen & Datenschutz",
-        canonical: "Kanonisch"
       }
     : {
         subtitle: "Industrial AI / Decision Systems",
@@ -123,7 +122,6 @@ const copy =
         exafuse: "Visit Exafuse",
         boundary: "Decision-support content, not engineering approval.",
         trust: "Trust & privacy",
-        canonical: "Canonical"
       };
 ---
 
@@ -177,6 +175,5 @@ const copy =
       <span>{copy.boundary}</span>
       <a href="/trust" class="footer-link font-bold text-slate-300">{copy.trust}</a>
     </div>
-    <span>{copy.canonical}: {SITE.canonicalUrl}</span>
   </div>
 </footer>

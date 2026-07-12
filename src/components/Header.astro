@@ -2,6 +2,7 @@
 import BrandMark from "@components/BrandMark.astro";
 import MobileMenu from "@components/MobileMenu.astro";
 import { LINKS, PRIMARY_NAV_ITEMS, RESOURCE_NAV_ITEMS } from "@data/site";
+import { RESOURCE_NAV_GROUPS } from "@data/resourceNavigation";
 
 interface Props {
   lang?: "en" | "de";
@@ -19,7 +20,7 @@ const resourcesActive = RESOURCE_NAV_ITEMS.some((item) => isActive(item.href));
 
 const primaryLabelsDe: Record<string, string> = {
   "/": "Startseite",
-  "/thesis": "These",
+  "/thesis": "Leitgedanke",
   "/domains/lmd-ded": "LMD / DED",
   "/tools": "Werkzeuge",
   "/public-work": "Nachweise",
@@ -36,7 +37,7 @@ const resourceCopyDe: Record<string, { label: string; description: string }> = {
   "/glossary": { label: "Glossar", description: "Begriffe für LMD, DED, Cladding und Monitoring" },
   "/for-ai-agents": { label: "Für KI-Systeme", description: "Nutzungshinweise und klare Grenzen" },
   "/trust": { label: "Vertrauen", description: "Datenschutz, Sicherheit, Barrierefreiheit und Grenzen" },
-  "/review": { label: "Website prüfen", description: "Kurzer Browser-lokaler Review ohne Datenerfassung" },
+  "/review": { label: "Feedback geben", description: "Kurzes Feedback direkt im Browser erstellen; die Eingaben bleiben auf diesem Gerät." },
   "/identity": { label: "Profil", description: "Offizielle öffentliche Identitätsseite" },
   "/press-kit": { label: "Pressekit", description: "Bios, Links und freigegebene Beschreibungen" },
   "/site-map": { label: "Sitemap", description: "Alle Seiten und öffentlichen Dateien" }
@@ -52,11 +53,17 @@ const resourceItems =
     ? RESOURCE_NAV_ITEMS.map((item) => ({ ...item, ...(resourceCopyDe[item.href] ?? {}) }))
     : RESOURCE_NAV_ITEMS;
 
+const resourceGroups = RESOURCE_NAV_GROUPS.map((group) => ({
+  ...group,
+  label: lang === "de" ? group.labelDe : group.label,
+  items: group.items.map((item) => resourceItems.find((candidate) => candidate.href === item.href) ?? item)
+}));
+
 const copy =
   lang === "de"
     ? {
         homeLabel: "Zur Startseite von Manish Sharma Lab",
-        subtitle: "Industrielle KI / Entscheidungen",
+        subtitle: "LMD, Prozessüberwachung und industrielle KI",
         primaryNav: "Hauptnavigation",
         resources: "Ressourcen",
         secondaryNav: "Weitere Navigation",
@@ -96,13 +103,20 @@ const copy =
         <summary class:list={["nav-trigger list-none", resourcesActive ? "is-active" : ""]} aria-expanded="false">
           {copy.resources}
         </summary>
-        <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(92vw,34rem)] -translate-x-1/2 rounded-[24px] border border-cyan-100/14 p-4">
-          <div class="grid gap-2 sm:grid-cols-2" aria-label={copy.secondaryNav}>
-            {resourceItems.map((item) => (
-              <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
-                <span class="text-sm font-black">{item.label}</span>
-                <span class="text-xs leading-5 text-slate-400">{item.description}</span>
-              </a>
+        <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(94vw,46rem)] -translate-x-1/2 rounded-[24px] border border-cyan-100/14 p-4">
+          <div class="grid gap-5 sm:grid-cols-2" aria-label={copy.secondaryNav}>
+            {resourceGroups.map((group) => (
+              <section>
+                <p class="metric-label px-2 pb-2">{group.label}</p>
+                <div class="grid gap-1">
+                  {group.items.map((item) => (
+                    <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
+                      <span class="text-sm font-black">{item.label}</span>
+                      <span class="text-xs leading-5 text-slate-400">{item.description}</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </div>

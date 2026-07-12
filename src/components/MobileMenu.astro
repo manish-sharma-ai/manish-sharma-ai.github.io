@@ -1,5 +1,6 @@
 ---
-import { LINKS, PRIMARY_NAV_ITEMS, RESOURCE_NAV_ITEMS } from "@data/site";
+import { LINKS, PRIMARY_NAV_ITEMS } from "@data/site";
+import { RESOURCE_NAV_GROUPS } from "@data/resourceNavigation";
 
 interface Props {
   lang?: "en" | "de";
@@ -15,7 +16,7 @@ const isActive = (href: string) => {
 
 const primaryLabelsDe: Record<string, string> = {
   "/": "Startseite",
-  "/thesis": "These",
+  "/thesis": "Leitgedanke",
   "/domains/lmd-ded": "LMD / DED",
   "/tools": "Werkzeuge",
   "/public-work": "Nachweise",
@@ -32,7 +33,7 @@ const resourceLabelsDe: Record<string, string> = {
   "/glossary": "Glossar",
   "/for-ai-agents": "Für KI-Systeme",
   "/trust": "Vertrauen",
-  "/review": "Website prüfen",
+  "/review": "Feedback geben",
   "/identity": "Profil",
   "/press-kit": "Pressekit",
   "/site-map": "Sitemap"
@@ -43,20 +44,20 @@ const primaryItems =
     ? PRIMARY_NAV_ITEMS.map((item) => ({ ...item, label: primaryLabelsDe[item.href] ?? item.label }))
     : PRIMARY_NAV_ITEMS;
 
-const resourceItems =
-  lang === "de"
-    ? RESOURCE_NAV_ITEMS.map((item) => ({ ...item, label: resourceLabelsDe[item.href] ?? item.label }))
-    : RESOURCE_NAV_ITEMS;
+const resourceGroups = RESOURCE_NAV_GROUPS.map((group) => ({
+  label: lang === "de" ? group.labelDe : group.label,
+  items: group.items.map((item) => ({
+    ...item,
+    label: lang === "de" ? resourceLabelsDe[item.href] ?? item.label : item.label
+  }))
+}));
 
 const groups = [
   {
     label: lang === "de" ? "Hauptseiten" : "Primary",
     items: primaryItems
   },
-  {
-    label: lang === "de" ? "Ressourcen" : "Resources",
-    items: resourceItems
-  },
+  ...resourceGroups,
   {
     label: lang === "de" ? "Extern" : "External",
     items: [

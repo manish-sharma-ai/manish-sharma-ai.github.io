@@ -1,29 +1,39 @@
 import { useMemo, useState } from "react";
 import DecisionBriefCard from "./DecisionBriefCard";
 import { createDecisionBrief } from "../lib/decisionBrief";
+import {
+  documentedRepairabilityExample,
+  emptyRepairabilityAnswers,
+  screenRepairability,
+  TECHNICAL_RULES,
+  type CommercialRule,
+  type QualificationRule,
+  type TechnicalRule
+} from "../lib/repairabilityScreen";
 
 const DISCLAIMER =
   "Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.";
 const DEFAULT_EXAFUSE_URL = "/contact";
 const DEFAULT_EXAFUSE_LABEL = "Contact routes";
 
-const questions = [
-  "Material known?",
-  "Damage local?",
-  "Access possible?",
-  "Post-machining possible?",
-  "Inspection requirement known?",
-  "Replacement cost high?",
-  "Downtime important?"
+const technicalInputs: Array<{ rule: TechnicalRule; label: string }> = [
+  { rule: "materialIdentified", label: "Material identified" },
+  { rule: "damageCharacterised", label: "Damage localised and characterised" },
+  { rule: "physicalAccess", label: "Physical access available" },
+  { rule: "postMachiningRoute", label: "Post-machining route possible" },
+  { rule: "inspectionRequirements", label: "Inspection requirements known" }
 ];
 
-const exampleSelected = [
-  "Material known?",
-  "Damage local?",
-  "Access possible?",
-  "Post-machining possible?",
-  "Inspection requirement known?",
-  "Downtime important?"
+const qualificationInputs: Array<{ rule: QualificationRule; label: string }> = [
+  { rule: "safetyCriticalService", label: "Safety-critical service" },
+  { rule: "uncertainMaterialCondition", label: "Material condition uncertain" },
+  { rule: "undefinedAcceptanceCriteria", label: "Acceptance criteria undefined" },
+  { rule: "noInspectionRoute", label: "No suitable inspection route" }
+];
+
+const commercialInputs: Array<{ rule: CommercialRule; label: string }> = [
+  { rule: "replacementCost", label: "Replacement cost is high" },
+  { rule: "downtimePressure", label: "Downtime pressure is high" }
 ];
 
 interface ToolProps {
@@ -35,154 +45,75 @@ export default function RepairabilityQuickCheck({
   exafuseUrl = DEFAULT_EXAFUSE_URL,
   exafuseLabel = DEFAULT_EXAFUSE_LABEL
 }: ToolProps) {
-  const [selected, setSelected] = useState<string[]>(["Damage local?", "Access possible?", "Downtime important?"]);
-  const [safetyCritical, setSafetyCritical] = useState(false);
+  const [answers, setAnswers] = useState(emptyRepairabilityAnswers);
+  const result = useMemo(() => screenRepairability(answers), [answers]);
 
-  const result = useMemo(() => {
-    const base = selected.length * 12 - (safetyCritical ? 18 : 0);
-    const score = Math.max(0, Math.min(100, base));
-    const recommendation =
-      score < 30
-        ? "High uncertainty"
-        : score < 55
-          ? "Possible candidate with missing data"
-          : score < 75
-            ? "Promising candidate for review"
-            : "Strong preliminary candidate";
-    const screeningBand =
-      safetyCritical
-        ? "Formal review required"
-        : score < 30
-          ? "Very limited screening support"
-          : score < 55
-            ? "Early review candidate"
-            : score < 75
-              ? "Promising review candidate"
-              : "Strong preliminary review candidate";
-    const missing = questions.filter((item) => !selected.includes(item)).map((item) => item.replace("?", "").toLowerCase());
-    const why = selected.length > 0 ? selected.map((item) => item.replace("?", "").toLowerCase()) : ["No positive screening signals selected yet."];
-    const riskFlags = [
-      safetyCritical && "Safety-critical use requires stronger inspection and expert approval.",
-      !selected.includes("Material known?") && "Unknown material keeps feasibility uncertain.",
-      !selected.includes("Inspection requirement known?") && "Inspection path is not defined.",
-      !selected.includes("Post-machining possible?") && "Final geometry recovery may be difficult."
-    ].filter(Boolean) as string[];
-    const evidenceNeeded = [
-      selected.includes("Material known?") ? "confirmed material grade" : "material grade and compatibility check",
-      selected.includes("Damage local?") ? "damage map and depth estimate" : "damage extent and depth evidence",
-      selected.includes("Post-machining possible?") ? "post-machining allowance and tolerance plan" : "finishing route and tolerance recovery plan",
-      selected.includes("Inspection requirement known?") ? "defined inspection requirement" : "inspection requirement and acceptance criteria"
-    ];
-    const reviewReadiness = safetyCritical
-      ? "Requires formal inspection/qualification planning"
-      : score < 30
-        ? "Not enough information"
-        : score < 55
-          ? "Ready for preliminary discussion"
-          : "Ready for expert review";
+  const toggleTechnical = (rule: TechnicalRule) => {
+    setAnswers((current) => ({ ...current, technical: { ...current.technical, [rule]: !current.technical[rule] } }));
+  };
+  const toggleQualification = (rule: QualificationRule) => {
+    setAnswers((current) => ({ ...current, qualification: { ...current.qualification, [rule]: !current.qualification[rule] } }));
+  };
+  const toggleCommercial = (rule: CommercialRule) => {
+    setAnswers((current) => ({ ...current, commercial: { ...current.commercial, [rule]: !current.commercial[rule] } }));
+  };
 
-    return {
-      score,
-      screeningBand,
-      recommendation,
-      why,
-      missing: safetyCritical ? [...missing, "expert approval path"] : missing,
-      riskFlags: riskFlags.length > 0 ? riskFlags : ["No major risk flag from the selected inputs; missing RFQ data may still change the result."],
-      evidenceNeeded,
-      reviewReadiness,
-      suggestedNextStep:
-        "Collect the missing evidence, then send a structured RFQ with photos, drawings or CAD, material grade, operating conditions, tolerance, and inspection expectations."
-    };
-  }, [selected, safetyCritical]);
+  const knownTechnicalFacts = TECHNICAL_RULES.filter((rule) => answers.technical[rule]).map((rule) =>
+    technicalInputs.find((item) => item.rule === rule)?.label ?? rule
+  );
 
   return (
     <div className="tool-panel">
-      <div className="grid content-start gap-3">
+      <div className="grid content-start gap-5">
         <div className="tool-pane-heading">
           <p className="metric-label">Input pane</p>
-          <p className="tool-pane-title">Repairability screening checklist</p>
-          <p className="tool-pane-copy">Mark only known screening signals. Unknown material, undefined inspection, and safety-critical service stay visible as risk.</p>
+          <p className="tool-pane-title">Repairability rule groups</p>
+          <p className="tool-pane-copy">Technical suitability, qualification burden, and commercial context are kept separate so business pressure cannot raise a technical screening result.</p>
         </div>
-        <fieldset className="grid gap-3">
-          <legend className="metric-label mb-1">Repairability inputs</legend>
-          {questions.map((question) => (
-            <label key={question} className="tool-field grid-cols-[auto_1fr] items-start gap-3 text-sm font-semibold text-slate-200">
-              <input
-                type="checkbox"
-                checked={selected.includes(question)}
-                onChange={(event) =>
-                  setSelected((current) => event.target.checked ? [...current, question] : current.filter((item) => item !== question))
-                }
-                className="mt-1 accent-cyan-300"
-              />
-              <span>{question}</span>
-            </label>
-          ))}
-          <label className="flex items-start gap-3 rounded-[18px] border border-orange-300/20 bg-orange-500/10 p-4 text-sm font-semibold text-orange-50">
-            <input
-              type="checkbox"
-              checked={safetyCritical}
-              onChange={(event) => setSafetyCritical(event.target.checked)}
-              className="mt-1 accent-orange-400"
-            />
-            <span>Safety critical?</span>
-          </label>
-        </fieldset>
-        <ul className="tool-action-list mt-2" aria-label="Repairability input actions">
-          <li><button type="button" onClick={() => { setSelected(exampleSelected); setSafetyCritical(false); }} className="btn btn-secondary">Use example</button></li>
-          <li><button type="button" onClick={() => { setSelected(["Damage local?", "Access possible?", "Downtime important?"]); setSafetyCritical(false); }} className="btn btn-secondary">Reset</button></li>
-          <li><button type="button" onClick={() => { setSelected([]); setSafetyCritical(false); }} className="btn btn-secondary">Clear all inputs</button></li>
+        <RuleGroup label="Technical suitability" description="Mark only facts that are known for the candidate." inputs={technicalInputs} values={answers.technical} onToggle={toggleTechnical} />
+        <RuleGroup label="Qualification burden" description="These flags increase the evidence and review burden; they do not decide feasibility." inputs={qualificationInputs} values={answers.qualification} onToggle={toggleQualification} />
+        <RuleGroup label="Commercial context" description="These inputs can affect urgency or the business case, never technical suitability." inputs={commercialInputs} values={answers.commercial} onToggle={toggleCommercial} />
+        <ul className="tool-action-list" aria-label="Repairability input actions">
+          <li><button type="button" onClick={() => setAnswers(documentedRepairabilityExample())} className="btn btn-secondary">Load documented example</button></li>
+          <li><button type="button" onClick={() => setAnswers(emptyRepairabilityAnswers())} className="btn btn-secondary">Reset to unanswered</button></li>
+          <li><button type="button" onClick={() => setAnswers(emptyRepairabilityAnswers())} className="btn btn-secondary">Clear all inputs</button></li>
         </ul>
       </div>
       <aside className="ordered-card-strong tool-output-rail h-fit p-6 md:p-7">
         <div className="tool-pane-heading mb-5">
           <p className="metric-label">Output pane</p>
           <p className="tool-pane-title">Repairability review brief</p>
-          <p className="tool-pane-copy">The band screens review readiness; it does not approve repair or replace inspection planning.</p>
+          <p className="tool-pane-copy">A transparent rule screen for preparing the next technical conversation.</p>
         </div>
-        <p className="metric-label">Quick-check output</p>
-        <p className="mt-3 rounded-lg border border-amber-300/25 bg-amber-400/10 p-3 text-sm font-bold text-amber-50">
-          Confidence is not approval. This band screens review readiness; it does not approve repair.
-        </p>
-        <p className="mt-4 rounded-lg border border-cyan-300/25 bg-cyan-300/10 p-4 text-2xl font-black leading-tight text-white">{result.screeningBand}</p>
-        <ResultSection label="Decision signal" value={result.recommendation} large />
-        <ResultSection label="Review readiness" value={result.reviewReadiness} />
-        <ResultList label="Why" items={result.why} />
-        <ResultList label="Missing information" items={result.missing.length ? result.missing : ["No major missing field from selected checklist."]} />
-        <ResultList label="Risk flags" items={result.riskFlags} />
-        <ResultList label="Evidence needed" items={result.evidenceNeeded} />
-        <ResultSection label="Next action" value={result.suggestedNextStep} />
-        <ResultSection label="Exafuse route" value={`${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`} />
-        <ResultSection label="Disclaimer" value={DISCLAIMER} tone="warning" />
+        <ResultSection label="Technical screening status" value={result.technicalScreeningStatus} large />
+        <ResultList label="Missing technical information" items={result.missingTechnicalInformation} />
+        <ResultSection label="Qualification burden" value={result.qualificationBurden} />
+        <ResultList label="Qualification flags" items={result.qualificationFlags} />
+        <ResultSection label="Commercial urgency" value={result.commercialUrgency} />
+        <ResultList label="Commercial context" items={result.commercialContext} />
+        <ResultSection label="Recommended next action" value={result.recommendedNextAction} />
+        <ResultSection label="Important limitation" value={DISCLAIMER} tone="warning" />
         <DecisionBriefCard
           brief={createDecisionBrief({
             situation: "Preliminary LMD repairability screening.",
             component: "Repair candidate not fully specified in this quick check.",
-            goal: "Screen whether the repair question is worth expert review.",
-            material: selected.includes("Material known?")
-              ? "Material marked known; exact grade and compatibility still need review context."
-              : "Material not yet specified.",
-            geometryOrSize: "Geometry, access, and post-machining context must be confirmed outside this checklist.",
-            damageOrBuildArea: selected.includes("Damage local?")
-              ? "Local damage indicated; depth and extent still need evidence."
-              : "Damage location, extent, and depth not yet defined.",
-            availableData: result.why,
-            knownFacts: result.why,
-            missingInformation: result.missing.length ? result.missing : ["No major missing field from selected checklist."],
-            missingCritical: result.missing.filter((item) =>
-              ["material", "damage", "post-machining", "inspection", "expert approval"].some((term) => item.includes(term))
-            ),
-            missingUseful: result.missing.filter((item) =>
-              ["replacement cost", "downtime", "access"].some((term) => item.includes(term))
-            ),
-            missingOptional: ["prior repair history", "reference part", "budget estimate"],
-            riskFlags: result.riskFlags,
-            evidenceNeeded: result.evidenceNeeded,
-            preliminaryRoute: `${result.recommendation}. Qualitative screening band: ${result.screeningBand}.`,
-            reviewReadiness: result.reviewReadiness,
-            nextAction: result.suggestedNextStep,
+            goal: "Screen whether the repair question has enough technical information for detailed assessment.",
+            material: answers.technical.materialIdentified ? "Material identified; exact grade and condition still need review." : "Material not yet identified.",
+            geometryOrSize: answers.technical.physicalAccess ? "Physical access marked available; dimensions and geometry still need confirmation." : "Access and geometry not yet confirmed.",
+            damageOrBuildArea: answers.technical.damageCharacterised ? "Damage marked localised and characterised; evidence still needs review." : "Damage location, extent, and depth are not yet defined.",
+            availableData: knownTechnicalFacts.length ? knownTechnicalFacts : ["No technical repairability facts selected yet."],
+            knownFacts: knownTechnicalFacts.length ? knownTechnicalFacts : ["No technical repairability facts selected yet."],
+            missingInformation: result.missingTechnicalInformation,
+            missingCritical: result.missingTechnicalInformation,
+            missingUseful: result.qualificationFlags,
+            missingOptional: result.commercialContext,
+            riskFlags: result.qualificationFlags,
+            evidenceNeeded: result.missingTechnicalInformation,
+            preliminaryRoute: result.technicalScreeningStatus,
+            reviewReadiness: result.qualificationBurden,
+            nextAction: result.recommendedNextAction,
             exafuseReviewRoute: `${exafuseLabel}. Use Exafuse for commercial and technical review after the repair question is structured.`,
-            generatedFrom: "LMD Repairability Quick Check"
+            generatedFrom: "LMD Repairability Rule Screen"
           })}
           eyebrow="Standard artifact"
           exafuseUrl={exafuseUrl}
@@ -195,13 +126,38 @@ export default function RepairabilityQuickCheck({
   );
 }
 
+function RuleGroup<T extends string>({
+  label,
+  description,
+  inputs,
+  values,
+  onToggle
+}: {
+  label: string;
+  description: string;
+  inputs: Array<{ rule: T; label: string }>;
+  values: Record<T, boolean>;
+  onToggle: (rule: T) => void;
+}) {
+  return (
+    <fieldset className="grid gap-3">
+      <legend className="metric-label mb-1">{label}</legend>
+      <p className="-mt-1 text-sm leading-6 text-slate-400">{description}</p>
+      {inputs.map((input) => (
+        <label key={input.rule} className="tool-field grid-cols-[auto_1fr] items-start gap-3 text-sm font-semibold text-slate-200">
+          <input type="checkbox" checked={values[input.rule]} onChange={() => onToggle(input.rule)} className="mt-1 accent-cyan-300" />
+          <span>{input.label}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
 function ResultSection({ label, value, large = false, tone = "default" }: { label: string; value: string; large?: boolean; tone?: "default" | "warning" }) {
   return (
     <div className="mt-5">
       <p className="text-sm font-bold text-white">{label}:</p>
-      <p className={`${tone === "warning" ? "result-card result-card--warning" : "result-card text-slate-300"} mt-2 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>
-        {value}
-      </p>
+      <p className={`${tone === "warning" ? "result-card result-card--warning" : "result-card text-slate-300"} mt-2 leading-6 ${large ? "text-2xl font-black text-white" : "text-sm"}`}>{value}</p>
     </div>
   );
 }

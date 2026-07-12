@@ -14,7 +14,7 @@ interface Props {
 const { pages, lang = "en" } = Astro.props;
 const germanGroupLabels: Record<string, string> = {
   Core: "Kernseiten",
-  Thesis: "These",
+  Thesis: "Leitgedanke",
   Identity: "Profil",
   "LMD / DED Domain": "LMD / DED",
   Frameworks: "Frameworks",
@@ -29,7 +29,7 @@ const germanPageLabels: Record<string, Partial<Page>> = {
     title: "Start",
     description: "Einstieg in LMD/DED, Prozessüberwachung, Entscheidungsvorbereitung und Exafuse-Kontext."
   },
-  "/thesis": { title: "These", description: "Das Arbeitsmodell hinter den öffentlichen Werkzeugen." },
+  "/thesis": { title: "Leitgedanke", description: "Das Arbeitsmodell hinter den öffentlichen Werkzeugen." },
   "/domains/lmd-ded": {
     title: "KI für Laserauftragschweißen und DED",
     description: "Technischer Einstieg zu LMD/DED, Instandsetzung, Prozessüberwachung und RFQ-Vorbereitung."
@@ -57,7 +57,7 @@ const germanPageLabels: Record<string, Partial<Page>> = {
   "/frameworks": { title: "Frameworks", description: "Arbeitsmodelle für LMD/DED-Entscheidungen und technische Prüfung." },
   "/agent-pack": { title: "RFQ-Werkzeugkasten", description: "Schemas, Prompts, Regeln und Checklisten für LMD-RFQs." },
   "/resources": { title: "Ressourcen", description: "Ressourcen nach Anwendungsabsicht für Werkzeuge, Quellen und KI-Systeme." },
-  "/tools": { title: "Werkzeuge", description: "Browser-lokale Hilfen für LMD-Entscheidungen, Reparatur und RFQ-Struktur." },
+  "/tools": { title: "Werkzeuge", description: "Hilfen für LMD-Entscheidungen, Reparatur und RFQ-Struktur; Eingaben bleiben im Browser." },
   "/decision-map": { title: "Entscheidungskarte", description: "Route für Instandsetzung, Beschichtung, additive Fertigung und Alternativen." },
   "/playbooks": { title: "Entscheidungsleitfäden", description: "Praktische Wege für Reparatur, Prozesswahl, Monitoring und RFQ." },
   "/brief-standard": { title: "LMD Decision Brief v1.0 Standard", description: "Öffentlicher Standard mit Schema, Beispielen und Grenzen." },

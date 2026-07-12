@@ -39,8 +39,8 @@ const focusAreas = [
     text: "Process windows, repair and cladding workflows, traceability packs, inspection-ready documentation, and repeatability."
   },
   {
-    title: "Inspection-aware AI",
-    text: "AI outputs treated as decision support, with physical inspection and engineering evidence kept visible where risk requires it."
+    title: "AI with engineering evidence",
+    text: "AI outputs used to organize signals and questions, with inspection and engineering evidence kept central when risk requires it."
   },
   {
     title: "RFQ and engineering information structure",
@@ -139,13 +139,6 @@ const usefulFor = [
   "assistant-friendly public source structure"
 ];
 
-const doNotClaim = [
-  "certification",
-  "final manufacturing approval",
-  "confidential project disclosure",
-  "replacement for Exafuse commercial review"
-];
-
 const proofArtifacts = [
   { label: "2018 LMD lattice paper", href: "/evidence" },
   { label: "Exafuse LMD/DED public context", href: "/industrial-proof" },
@@ -184,13 +177,13 @@ const aboutPageJsonLd = {
         </span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
-        I work on industrial AI and decision systems for engineering processes. My deepest public work is in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse.
+        I work on industrial AI and decision systems for engineering processes. My public work includes AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse.
       </p>
       <p class="mt-4 max-w-2xl text-base leading-7 text-slate-400">
         The practical question is whether a decision can be traced to the right signals, assumptions, engineering context, and verification evidence.
       </p>
       <p class="mt-5 max-w-2xl rounded-lg border border-cyan-300/20 bg-cyan-300/8 p-4 text-base font-bold leading-7 text-cyan-50">
-        Operator summary: I work where process monitoring, robotics, repair decisions, RFQ quality, and physical inspection meet.
+        My current focus brings together process monitoring, robotics, repair decisions, RFQ quality, and physical inspection.
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
         <a href="/thesis" class="btn btn-primary">Read the thesis</a>
@@ -207,10 +200,10 @@ const aboutPageJsonLd = {
   <section class="band section-y">
     <div class="site-shell grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
       <div class="ordered-card-strong p-7">
-        <p class="metric-label">Operator summary</p>
+        <p class="metric-label">Current focus</p>
         <h2 class="mt-3 text-3xl font-black leading-tight text-white">Industrial AI tied to process reality.</h2>
         <p class="mt-4 text-sm leading-7 text-slate-300">
-          My useful public layer is not generic AI content. It is the practical boundary between process signals, robotics, repair choices, RFQ quality, and inspection evidence in LMD/DED workflows.
+          I work at the practical intersection of process signals, robotics, repair choices, RFQ quality, and inspection evidence in LMD/DED workflows.
         </p>
       </div>
       <div class="ordered-card p-7">
@@ -225,32 +218,12 @@ const aboutPageJsonLd = {
   </section>
 
   <section class="site-shell section-y">
-    <div class="grid gap-5 lg:grid-cols-2">
+    <div class="max-w-4xl">
       <div class="ordered-card-strong p-7">
-        <p class="metric-label">What I am useful for</p>
+        <p class="metric-label">Areas I work on</p>
         <div class="mt-5 grid gap-3">
           {usefulFor.map((item) => <div class="result-card text-sm font-bold text-slate-100">{item}</div>)}
         </div>
-      </div>
-      <div class="ordered-card-strong border-orange-300/25 bg-orange-500/10 p-7">
-        <p class="metric-label">Professional boundary</p>
-        <div class="mt-5 grid gap-3">
-          {doNotClaim.map((item) => <div class="result-card result-card--warning text-sm font-bold">{item}</div>)}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band section-y">
-    <div class="site-shell">
-      <div class="ordered-card-strong p-7 md:p-8">
-        <p class="metric-label">The useful boundary</p>
-        <h2 class="mt-3 max-w-3xl text-3xl font-black leading-tight text-white">
-          Structure the decision. Do not replace the review.
-        </h2>
-        <p class="mt-5 max-w-4xl text-lg font-semibold leading-8 text-slate-200">
-          I can help structure signals, assumptions, risks, RFQ facts, and evidence paths. I do not replace Exafuse review, inspection, certification, or safety-critical approval.
-        </p>
       </div>
     </div>
   </section>
@@ -429,7 +402,7 @@ const aboutPageJsonLd = {
       />
       <div class="ordered-card-strong p-6">
         <p class="text-lg font-semibold leading-8 text-slate-200">
-          The goal is to make complex LMD knowledge easier to structure: for buyers preparing RFQs, engineers reviewing risk, and developers building technical tools. This site stays public, inspection-aware, and careful about confidential or employer-owned information.
+          The goal is to make complex LMD knowledge easier to structure: for buyers preparing RFQs, engineers reviewing risk, and developers building technical tools. This site does not include confidential employer or customer data, and its public content supports technical discussion rather than final engineering decisions.
         </p>
         <div class="mt-8">
           <SourceLinks links={links} />
