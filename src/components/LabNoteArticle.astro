@@ -1,0 +1,73 @@
+---
+import Badge from "@components/Badge.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  route?: string;
+  contentType?: string;
+  railOrder?: "before" | "after";
+  supportingLabel?: string;
+  hasMastheadVisual?: boolean;
+}
+
+const {
+  title,
+  description,
+  route,
+  contentType = "Lab note",
+  railOrder = "after",
+  supportingLabel = "Supporting context",
+  hasMastheadVisual = false
+} = Astro.props;
+---
+
+<article
+  class:list={[
+    "site-shell section-y lab-note-article",
+    `lab-note-article--rail-${railOrder}`,
+    { "lab-note-article--has-masthead-visual": hasMastheadVisual }
+  ]}
+>
+  <header class="lab-note-article__masthead">
+    <div class="lab-note-article__masthead-copy">
+      <slot name="eyebrow"><Badge>{contentType}</Badge></slot>
+      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
+      <p class="lab-note-article__dek">{description}</p>
+      {route && (
+        <dl class="lab-note-article__metadata">
+          <div>
+            <dt>Content type</dt>
+            <dd>{contentType}</dd>
+          </div>
+          <div>
+            <dt>Route</dt>
+            <dd>{route}</dd>
+          </div>
+        </dl>
+      )}
+      <slot name="metadata" />
+    </div>
+    {hasMastheadVisual && <div class="lab-note-article__masthead-visual"><slot name="visual" /></div>}
+  </header>
+
+  <div class="lab-note-article__reading-layout">
+    {railOrder === "before" && (
+      <aside class="lab-note-article__supporting" aria-label={supportingLabel}>
+        <slot name="supporting" />
+      </aside>
+    )}
+
+    <div class="prose-lab lab-note-article__reading-surface">
+      <slot />
+    </div>
+
+    {railOrder === "after" && (
+      <aside class="lab-note-article__supporting" aria-label={supportingLabel}>
+        <slot name="supporting" />
+      </aside>
+    )}
+  </div>
+
+  <footer class="lab-note-article__footer"><slot name="footer" /></footer>
+</article>

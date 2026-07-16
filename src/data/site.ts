@@ -84,7 +84,7 @@ export const PRIMARY_NAV_ITEMS = [
   { label: "Thesis", href: "/thesis" },
   { label: "LMD / DED", href: "/domains/lmd-ded" },
   { label: "Tools", href: "/tools" },
-  { label: "Evidence", href: "/public-work" },
+  { label: "Proof", href: "/public-work" },
   { label: "About", href: "/about" }
 ];
 

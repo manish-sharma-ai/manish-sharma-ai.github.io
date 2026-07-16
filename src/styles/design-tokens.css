@@ -49,7 +49,22 @@
   --molten: #ff6b35;
   --laser: #ff4d2e;
   --danger-surface: rgba(255, 107, 53, 0.11);
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* Dark Instrumentation: shared shell and homepage hero roles. */
+  --instrument-bg: #0a0b0b;
+  --instrument-surface: #171817;
+  --instrument-technical: #0f1110;
+  --instrument-text: #f4eee5;
+  --instrument-text-soft: #c7bcad;
+  --instrument-border: #4a4035;
+  --instrument-grid: rgba(74, 64, 53, 0.32);
+  --instrument-copper: #d66a36;
+  --instrument-signal: #ff9d4a;
+  --instrument-success: #78f7d2;
+  --instrument-warning: #ffb64c;
+  --instrument-risk: #ff6b35;
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
   --cyan-glow-sm: 0 0 18px rgba(52, 221, 255, 0.12);
   --cyan-glow-md: 0 0 36px rgba(52, 221, 255, 0.1);

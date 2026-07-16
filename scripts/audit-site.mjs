@@ -428,7 +428,7 @@ function auditHomepageProduct() {
   if (operatingLoopSections.length !== 1) {
     findings.push(`${file}: expected exactly one homepage operating-loop section, found ${operatingLoopSections.length}`);
   }
-  const operatingLoopH2Matches = text.match(/<h2[^>]*>\s*Sense\s*(?:-&gt;|->)\s*Model\s*(?:-&gt;|->)\s*Decide\s*(?:-&gt;|->)\s*Verify\s*<\/h2>/g) ?? [];
+  const operatingLoopH2Matches = text.match(/<h2[^>]*>\s*Sense\s*(?:-&gt;|->|→)\s*Model\s*(?:-&gt;|->|→)\s*Decide\s*(?:-&gt;|->|→)\s*Verify\s*<\/h2>/g) ?? [];
   if (operatingLoopH2Matches.length !== 1) {
     findings.push(`${file}: expected exactly one H2 matching "Sense -> Model -> Decide -> Verify", found ${operatingLoopH2Matches.length}`);
   }

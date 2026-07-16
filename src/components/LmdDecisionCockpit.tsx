@@ -277,7 +277,7 @@ export default function LmdDecisionCockpit({
       : activePreset?.scenario;
 
   return (
-    <section id="lmd-decision-cockpit" className="ordered-card-strong tool-app-frame scroll-mt-24 p-5 md:p-7">
+    <section id="lmd-decision-cockpit" className="decision-cockpit ordered-card-strong tool-app-frame scroll-mt-24 p-5 md:p-7">
       <div className="tool-window-bar mb-5">
         <div>
           <p className="metric-label">Active module</p>
