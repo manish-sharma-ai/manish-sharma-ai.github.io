@@ -5562,3 +5562,681 @@ input:hover {
     transition: none;
   }
 }
+
+/* Dark Instrumentation: public proof surfaces and static workbench continuity. */
+.public-work-index,
+.evidence-base,
+.industrial-proof,
+.tools-workbench {
+  color: var(--instrument-text);
+}
+
+.public-work-index__masthead,
+.evidence-base__masthead,
+.industrial-proof__masthead,
+.tools-workbench__hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--instrument-border);
+}
+
+.public-work-index__masthead::before,
+.evidence-base__masthead::before,
+.industrial-proof__masthead::before,
+.tools-workbench__hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 /
+      4rem 4rem,
+    linear-gradient(180deg, var(--instrument-grid) 1px, transparent 1px) 0 0 /
+      4rem 4rem,
+    radial-gradient(
+      circle at 78% 28%,
+      color-mix(in srgb, var(--instrument-copper) 14%, transparent),
+      transparent 32%
+    );
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.public-work-index__masthead-grid,
+.evidence-base__masthead-grid,
+.industrial-proof__masthead-grid {
+  min-height: clamp(28rem, 44vw, 39rem);
+}
+
+.public-work-index h1,
+.evidence-base h1,
+.industrial-proof h1,
+.tools-workbench__hero h1 {
+  color: var(--instrument-text);
+  letter-spacing: -0.055em;
+}
+
+.public-work-index__masthead p:not(.metric-label),
+.evidence-base__masthead p:not(.metric-label),
+.industrial-proof__masthead p:not(.metric-label),
+.tools-workbench__hero p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.public-work-index__masthead .btn,
+.tools-workbench__hero .btn {
+  min-height: 2.85rem;
+}
+
+.public-work-index__context-band,
+.evidence-base__signal-band,
+.industrial-proof__signals {
+  border-block: 1px solid var(--instrument-border);
+  background: var(--instrument-technical);
+}
+
+.public-work-index__context-card,
+.evidence-base__signal-card,
+.industrial-proof__signal-card {
+  min-height: 8.35rem;
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--instrument-surface) 94%, transparent),
+    var(--instrument-technical)
+  );
+  box-shadow: none;
+}
+
+.public-work-index__context-card .metric-label,
+.evidence-base__signal-card .metric-label,
+.industrial-proof__signal-card .metric-label {
+  color: var(--instrument-signal);
+}
+
+.public-work-index__context-card p:last-child,
+.evidence-base__signal-card p:last-child,
+.industrial-proof__signal-card p:last-child {
+  color: var(--instrument-text);
+}
+
+.public-work-index__established,
+.evidence-base__rail,
+.evidence-base__classification,
+.industrial-proof__cases {
+  position: relative;
+}
+
+.public-work-index__established-grid,
+.evidence-base__industrial-context > .grid,
+.industrial-proof__knowledge > .grid,
+.industrial-proof__interpretation > .grid {
+  align-items: start;
+}
+
+.public-work-index__work-card,
+.evidence-base__classification-card,
+.evidence-base__rule-card,
+.evidence-base__field-note,
+.industrial-proof__interpretation-card {
+  min-height: 100%;
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.public-work-index__work-card h2,
+.evidence-base__classification-card h2,
+.evidence-base__rule-card h2,
+.evidence-base__field-note h2,
+.industrial-proof__interpretation-card h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.03em;
+}
+
+.public-work-index__work-card p:not(.metric-label),
+.evidence-base__classification-card p,
+.evidence-base__rule-card p,
+.evidence-base__field-note p,
+.industrial-proof__interpretation-card p {
+  color: var(--instrument-text-soft);
+}
+
+.public-work-index__proof,
+.evidence-base__rules,
+.evidence-base__field-notes,
+.evidence-base__sources,
+.industrial-proof__knowledge,
+.industrial-proof__sources,
+.tools-workbench__routes {
+  border-block: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 /
+      4rem 4rem,
+    var(--instrument-surface);
+}
+
+.public-work-index__case-grid,
+.industrial-proof__case-grid {
+  align-items: stretch;
+}
+
+.public-work-index__case-card,
+.evidence-base__case-card,
+.industrial-proof__case-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  border-color: var(--instrument-border);
+  border-radius: var(--card-radius);
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--instrument-surface) 92%, transparent),
+    var(--instrument-technical)
+  );
+  box-shadow: none;
+}
+
+.public-work-index__case-card::before,
+.evidence-base__case-card::before,
+.industrial-proof__case-card::before {
+  display: block;
+  width: 2.75rem;
+  height: 2px;
+  margin-bottom: 1.35rem;
+  background: var(--instrument-copper);
+  content: "";
+}
+
+.public-work-index__case-card h2,
+.evidence-base__case-card h2,
+.industrial-proof__case-card h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.035em;
+}
+
+.public-work-index__case-card > p,
+.evidence-base__case-card > p,
+.industrial-proof__case-card > p,
+.public-work-index__case-card > div p,
+.evidence-base__case-card > div p,
+.industrial-proof__case-card > div p {
+  color: var(--instrument-text-soft);
+}
+
+.public-work-index__case-card .metric-label,
+.evidence-base__case-card .metric-label,
+.industrial-proof__case-card .metric-label {
+  color: var(--instrument-signal);
+}
+
+.public-work-index__case-card [class*="bg-cyan"],
+.evidence-base__case-card [class*="bg-cyan"],
+.industrial-proof__case-card [class*="bg-cyan"] {
+  border-color: color-mix(
+    in srgb,
+    var(--instrument-copper) 62%,
+    var(--instrument-border)
+  );
+  background: color-mix(
+    in srgb,
+    var(--instrument-copper) 9%,
+    var(--instrument-technical)
+  );
+}
+
+.public-work-index__case-card [class*="text-cyan"],
+.evidence-base__case-card [class*="text-cyan"],
+.industrial-proof__case-card [class*="text-cyan"] {
+  color: var(--instrument-signal);
+}
+
+.public-work-index__case-card > div:last-child,
+.evidence-base__case-card > div:last-child,
+.industrial-proof__case-card > div:last-child {
+  margin-top: auto;
+}
+
+.public-work-index__collections {
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.public-work-index__collection {
+  border-color: var(--instrument-border);
+}
+
+.public-work-index__collection h2,
+.public-work-index__sources h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.035em;
+}
+
+.public-work-index .link-card,
+.evidence-base .link-card,
+.industrial-proof .link-card {
+  min-height: 10rem;
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.public-work-index .link-card:hover,
+.evidence-base .link-card:hover,
+.industrial-proof .link-card:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--instrument-copper) 72%,
+    var(--instrument-border)
+  );
+  background: color-mix(
+    in srgb,
+    var(--instrument-copper) 6%,
+    var(--instrument-technical)
+  );
+  box-shadow: none;
+}
+
+.public-work-index .link-card > span > span:last-child,
+.evidence-base .link-card > span > span:last-child,
+.industrial-proof .link-card > span > span:last-child {
+  color: var(--instrument-text-soft);
+}
+
+.public-work-index .link-card > span:last-child,
+.evidence-base .link-card > span:last-child,
+.industrial-proof .link-card > span:last-child {
+  color: var(--instrument-signal);
+}
+
+.public-work-index__sources {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.evidence-base__rail .evidence-rail {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.evidence-base__classification,
+.evidence-base__facts,
+.evidence-base__industrial-context,
+.evidence-base__reference-map,
+.industrial-proof__interpretation {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.evidence-base__facts .evidence-fact-grid > article,
+.evidence-base__reference-card,
+.evidence-base__venue-card {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.evidence-base__reference-card,
+.evidence-base__venue-card {
+  border-radius: var(--card-radius);
+}
+
+.evidence-base__reference-card h2,
+.evidence-base__venue-card h2,
+.evidence-base__reference-card p,
+.evidence-base__venue-card p {
+  color: var(--instrument-text-soft);
+}
+
+.evidence-base__reference-card h2,
+.evidence-base__venue-card h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.035em;
+}
+
+.evidence-base__reference-card .font-mono,
+.evidence-base__venue-card .font-mono {
+  color: var(--instrument-signal);
+}
+
+.industrial-proof__boundary {
+  border-color: color-mix(
+    in srgb,
+    var(--instrument-copper) 64%,
+    var(--instrument-border)
+  );
+  border-radius: var(--card-radius);
+  background: color-mix(
+    in srgb,
+    var(--instrument-copper) 7%,
+    var(--instrument-technical)
+  );
+  box-shadow: none;
+}
+
+.industrial-proof__boundary p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.industrial-proof__knowledge-card {
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.industrial-proof__knowledge-card h2,
+.industrial-proof__knowledge-card p {
+  color: var(--instrument-text);
+}
+
+.industrial-proof__knowledge-card p:not(.font-mono) {
+  color: var(--instrument-text-soft);
+}
+
+.industrial-proof__knowledge-card .font-mono,
+.industrial-proof__knowledge-card a {
+  color: var(--instrument-signal);
+}
+
+.tools-workbench__hero {
+  padding-top: clamp(3rem, 7vw, 7rem);
+}
+
+.tools-workbench__status-panel {
+  border-color: color-mix(
+    in srgb,
+    var(--instrument-copper) 62%,
+    var(--instrument-border)
+  );
+  border-radius: var(--card-radius);
+  background: linear-gradient(
+    145deg,
+    color-mix(
+      in srgb,
+      var(--instrument-copper) 10%,
+      var(--instrument-technical)
+    ),
+    var(--instrument-technical)
+  );
+  box-shadow: none;
+}
+
+.tools-workbench__status-panel h2,
+.tools-workbench__status-item p:last-child {
+  color: var(--instrument-text);
+}
+
+.tools-workbench__status-panel > div > p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.tools-workbench__status-item {
+  border-color: var(--instrument-border);
+  background: color-mix(
+    in srgb,
+    var(--instrument-surface) 88%,
+    var(--instrument-technical)
+  );
+}
+
+.tools-workbench__status-item .metric-label {
+  color: var(--instrument-signal);
+}
+
+.tools-workbench__dock {
+  border-bottom: 1px solid var(--instrument-border);
+  background: color-mix(in srgb, var(--instrument-bg) 94%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.tools-workbench__dock .tool-workbench-nav {
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.tools-workbench__dock .tool-workbench-nav a {
+  color: var(--instrument-text-soft);
+}
+
+.tools-workbench__dock .tool-workbench-nav a:hover,
+.tools-workbench__dock .tool-workbench-nav a:focus-visible {
+  color: var(--instrument-text);
+  background: color-mix(
+    in srgb,
+    var(--instrument-copper) 13%,
+    var(--instrument-technical)
+  );
+}
+
+.tools-workbench__cockpit-transition {
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.tools-workbench__module {
+  border-top: 1px solid var(--instrument-border);
+}
+
+.tools-workbench__module-header {
+  align-items: stretch;
+}
+
+.tools-workbench__module-summary,
+.tools-workbench__module-disclosure {
+  border-color: var(--instrument-border);
+  border-radius: var(--card-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.tools-workbench__module-summary p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.tools-workbench__module-summary .metric-label,
+.tools-workbench__module-disclosure .metric-label {
+  color: var(--instrument-signal);
+}
+
+.tools-workbench__module-summary span {
+  border-color: var(--instrument-border);
+  background: color-mix(
+    in srgb,
+    var(--instrument-surface) 88%,
+    var(--instrument-technical)
+  );
+  color: var(--instrument-text-soft);
+}
+
+.tools-workbench__module-disclosure summary {
+  cursor: pointer;
+}
+
+.tools-workbench__module-disclosure summary::marker {
+  color: var(--instrument-copper);
+}
+
+.tools-workbench__module-disclosure[open] {
+  border-color: color-mix(
+    in srgb,
+    var(--instrument-copper) 68%,
+    var(--instrument-border)
+  );
+}
+
+.tools-workbench__module-disclosure[open] summary {
+  background: color-mix(
+    in srgb,
+    var(--instrument-copper) 7%,
+    var(--instrument-technical)
+  );
+}
+
+.tools-workbench__rubric {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+
+.tools-workbench__rubric-card {
+  border-color: var(--instrument-border);
+  border-radius: var(--card-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.tools-workbench__rubric-card h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.04em;
+}
+
+.tools-workbench__rubric-card li {
+  border-color: var(--instrument-border);
+  background: color-mix(
+    in srgb,
+    var(--instrument-surface) 84%,
+    var(--instrument-technical)
+  );
+  color: var(--instrument-text-soft);
+}
+
+.tools-workbench__process {
+  border-top: 1px solid var(--instrument-border);
+}
+
+.tools-workbench__routes {
+  border-top: 0;
+}
+
+.tools-workbench__route-card {
+  border-color: var(--instrument-border);
+  border-radius: var(--card-radius);
+  box-shadow: none;
+}
+
+.tools-workbench__route-card--lab {
+  background: var(--instrument-technical);
+}
+
+.tools-workbench__route-card--exafuse {
+  border-color: color-mix(
+    in srgb,
+    var(--instrument-copper) 64%,
+    var(--instrument-border)
+  );
+  background: color-mix(
+    in srgb,
+    var(--instrument-copper) 7%,
+    var(--instrument-technical)
+  );
+}
+
+.tools-workbench__route-card h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.04em;
+}
+
+.tools-workbench__route-card p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.public-work-index a:focus-visible,
+.evidence-base a:focus-visible,
+.industrial-proof a:focus-visible,
+.tools-workbench a:focus-visible,
+.tools-workbench summary:focus-visible {
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .public-work-index__masthead-grid,
+  .evidence-base__masthead-grid,
+  .industrial-proof__masthead-grid {
+    min-height: 0;
+  }
+
+  .public-work-index__masthead-grid,
+  .evidence-base__masthead-grid,
+  .industrial-proof__masthead-grid,
+  .public-work-index__established-grid,
+  .evidence-base__industrial-context > .grid,
+  .industrial-proof__knowledge > .grid,
+  .industrial-proof__interpretation > .grid {
+    max-width: 52rem;
+  }
+
+  .tools-workbench__hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .public-work-index__masthead,
+  .evidence-base__masthead,
+  .industrial-proof__masthead,
+  .tools-workbench__hero {
+    padding-block: 2rem 3.75rem;
+  }
+
+  .public-work-index h1,
+  .evidence-base h1,
+  .industrial-proof h1,
+  .tools-workbench__hero h1 {
+    font-size: clamp(2.25rem, 11vw, 3.7rem);
+  }
+
+  .public-work-index__masthead .btn,
+  .tools-workbench__hero .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .public-work-index__context-card,
+  .evidence-base__signal-card,
+  .industrial-proof__signal-card {
+    min-height: 0;
+  }
+
+  .public-work-index__collections,
+  .evidence-base__classification,
+  .evidence-base__facts,
+  .evidence-base__industrial-context,
+  .evidence-base__reference-map,
+  .industrial-proof__interpretation,
+  .tools-workbench__rubric {
+    padding-block: 3.5rem;
+  }
+
+  .public-work-index__case-card,
+  .evidence-base__case-card,
+  .industrial-proof__case-card,
+  .tools-workbench__status-panel,
+  .tools-workbench__module-summary,
+  .tools-workbench__module-disclosure,
+  .tools-workbench__rubric-card,
+  .tools-workbench__route-card {
+    border-radius: var(--control-radius);
+  }
+
+  .industrial-proof__knowledge-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tools-workbench__module-disclosure summary {
+    align-items: flex-start;
+  }
+
+  .tools-workbench__module-disclosure summary > span:last-child {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-work-index .link-card,
+  .evidence-base .link-card,
+  .industrial-proof .link-card {
+    transition: none;
+  }
+}

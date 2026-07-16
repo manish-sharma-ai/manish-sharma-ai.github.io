@@ -61,8 +61,9 @@ const proofDecisionPatternText: Record<string, string> = {
 ---
 
 <Layout title={title} description={description} canonical="/industrial-proof" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
-    <div class="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+  <div class="industrial-proof">
+  <section class="site-shell section-y industrial-proof__masthead">
+    <div class="industrial-proof__masthead-grid grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
       <div>
         <div class="flex flex-wrap gap-2">
           <Badge>Industrial evidence</Badge>
@@ -79,7 +80,7 @@ const proofDecisionPatternText: Record<string, string> = {
       </div>
       <div class="grid gap-4">
         <PageHeroVisual variant="industrial" class="hidden xl:block" />
-        <div class="ordered-card-strong p-6">
+        <div class="ordered-card-strong industrial-proof__boundary p-6">
           <p class="metric-label">Claim boundary</p>
           <p class="mt-4 text-lg font-bold leading-8 text-white">
             These are public company examples. They support technical context and buyer education; they are not engineering approval, certification, guaranteed outcomes, or confidential project details.
@@ -90,10 +91,10 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="band">
+  <section class="band industrial-proof__signals">
     <div class="site-shell grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
       {EXAFUSE_CAPABILITY_SIGNALS.map((item) => (
-        <a href={item.href} class="ordered-card card-hover p-4" target="_blank" rel="noreferrer">
+        <a href={item.href} class="ordered-card card-hover industrial-proof__signal-card p-4" target="_blank" rel="noreferrer">
           <p class="metric-label">{item.label}</p>
           <p class="mt-2 text-3xl font-black text-white">{item.metric}</p>
           <p class="mt-2 text-sm leading-6 text-slate-400">{item.detail}</p>
@@ -102,17 +103,17 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="site-shell section-y">
+  <section class="site-shell section-y industrial-proof__cases">
     <SectionHeading
       eyebrow="Documented examples"
       title="Four public stories that make the expertise tangible"
       description="The strongest public context is not just a number. It is the chain from damaged or designed part, through route selection, deposition, finishing, monitoring, inspection, and release planning."
     />
-    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2">
+    <div class="equal-card-grid industrial-proof__case-grid mt-10 grid gap-5 md:grid-cols-2">
       {EXAFUSE_PROOF_CASES.map((item) => {
         const pattern = proofDecisionPatterns[item.code];
         return (
-        <article class="ordered-card-strong card-hover p-6">
+        <article class="ordered-card-strong card-hover industrial-proof__case-card p-6">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="metric-label">{item.code}</p>
@@ -155,7 +156,7 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="band section-y">
+  <section class="band section-y industrial-proof__knowledge">
     <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Knowledge signals"
@@ -164,7 +165,7 @@ const proofDecisionPatternText: Record<string, string> = {
       />
       <div class="grid gap-4">
         {EXAFUSE_KNOWLEDGE_SIGNALS.map((item) => (
-          <article class="ordered-card grid gap-4 p-5 md:grid-cols-[5rem_1fr_auto] md:items-start">
+          <article class="ordered-card industrial-proof__knowledge-card grid gap-4 p-5 md:grid-cols-[5rem_1fr_auto] md:items-start">
             <p class="font-mono text-xl font-black text-cyan-100">{item.code}</p>
             <div>
               <h2 class="text-xl font-black text-white">{item.title}</h2>
@@ -177,7 +178,7 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="site-shell section-y">
+  <section class="site-shell section-y industrial-proof__interpretation">
     <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Interpretation"
@@ -191,7 +192,7 @@ const proofDecisionPatternText: Record<string, string> = {
           ["More RFQ-led", "The best content asks for material, geometry, damage, finish, inspection and timeline before recommending a process."],
           ["More materials-aware", "Material names are useful only when tied to substrate, duty, dilution, heat input, machining and validation."]
         ].map(([title, text]) => (
-          <article class="ordered-card-strong p-5">
+          <article class="ordered-card-strong industrial-proof__interpretation-card p-5">
             <h2 class="text-xl font-black text-white">{title}</h2>
             <p class="mt-3 text-sm leading-6 text-slate-400">{text}</p>
           </article>
@@ -200,10 +201,11 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="band section-y">
+  <section class="band section-y industrial-proof__sources">
     <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading eyebrow="Sources" title="Public Exafuse pages used" />
       <SourceLinks links={EXAFUSE_SOURCE_LINKS} />
     </div>
   </section>
+  </div>
 </Layout>
