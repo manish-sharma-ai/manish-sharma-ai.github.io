@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
+import GlossaryArticle from "@components/GlossaryArticle.astro";
 import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -50,39 +50,28 @@ const jsonLd = [
 ---
 
 <Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/melt-pool-monitoring" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-4xl">
-        <p class="metric-label">Glossary</p>
-        <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-        <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
-      </div>
-      <PageHeroVisual variant="meltpool" class="hidden lg:block" />
-    </div>
+  <GlossaryArticle title={title} short={short} visualVariant="meltpool">
+    <Fragment slot="notes">
+      <NoteBox title="Short answer">Melt-pool monitoring helps observe what the deposition process is doing. It does not, by itself, approve the part.</NoteBox>
+      <NoteBox title="Common confusion" tone="laser">A stable-looking melt-pool signal is not the same as proof of internal soundness, mechanical properties, or service performance.</NoteBox>
+      <NoteBox title="Buyer/RFQ relevance" tone="steel">Ask what monitoring data will be captured, how it is reviewed, and what inspection evidence is still required for the part risk.</NoteBox>
+    </Fragment>
+    <h2>Practical Meaning</h2>
+    <p>Melt-pool monitoring can include images, video, pyrometry, coaxial sensing, or other process signals depending on the system. It helps identify trends and anomalies during deposition.</p>
+    <h2>Technical Context</h2>
+    <p>Signals may relate to heat input, feed behavior, shielding, travel speed, stand-off distance, bead geometry, and local process instability. Interpretation needs calibration and validation.</p>
+    <h2>When It Is Used</h2>
+    <p>It is used for process awareness, anomaly triage, parameter understanding, traceability, research, and improvement of repeatable deposition workflows.</p>
+    <h2>When It May Not Fit</h2>
+    <p>It may not be enough when acceptance depends on internal defects, chemistry, hardness, mechanical performance, fatigue risk, or service-specific validation.</p>
+    <h2>AI and Process-Monitoring Relevance</h2>
+    <p>AI can help sort large volumes of signal data, but model outputs must be tied to physical validation, inspection outcomes, and clear escalation rules.</p>
+    <h2>Related Terms</h2>
+    <p>Related terms include process monitoring, melt-pool signal, anomaly detection, quality evidence, inspection evidence, NDT, metallography, and AI readiness.</p>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">Melt-pool monitoring helps observe what the deposition process is doing. It does not, by itself, approve the part.</NoteBox>
-        <NoteBox title="Common confusion" tone="laser">A stable-looking melt-pool signal is not the same as proof of internal soundness, mechanical properties, or service performance.</NoteBox>
-        <NoteBox title="Buyer/RFQ relevance" tone="steel">Ask what monitoring data will be captured, how it is reviewed, and what inspection evidence is still required for the part risk.</NoteBox>
-      </div>
-      <div class="prose-lab">
-        <h2>Practical Meaning</h2>
-        <p>Melt-pool monitoring can include images, video, pyrometry, coaxial sensing, or other process signals depending on the system. It helps identify trends and anomalies during deposition.</p>
-        <h2>Technical Context</h2>
-        <p>Signals may relate to heat input, feed behavior, shielding, travel speed, stand-off distance, bead geometry, and local process instability. Interpretation needs calibration and validation.</p>
-        <h2>When It Is Used</h2>
-        <p>It is used for process awareness, anomaly triage, parameter understanding, traceability, research, and improvement of repeatable deposition workflows.</p>
-        <h2>When It May Not Fit</h2>
-        <p>It may not be enough when acceptance depends on internal defects, chemistry, hardness, mechanical performance, fatigue risk, or service-specific validation.</p>
-        <h2>AI and Process-Monitoring Relevance</h2>
-        <p>AI can help sort large volumes of signal data, but model outputs must be tied to physical validation, inspection outcomes, and clear escalation rules.</p>
-        <h2>Related Terms</h2>
-        <p>Related terms include process monitoring, melt-pool signal, anomaly detection, quality evidence, inspection evidence, NDT, metallography, and AI readiness.</p>
-      </div>
-    </div>
-
-    <section class="mt-14">
+    <Fragment slot="faq">
+      <section class="glossary-article__faq">
+        <div class="site-shell">
       <SectionHeading eyebrow="FAQ" title="Common melt-pool monitoring questions" />
       <div class="mt-8 grid gap-4 md:grid-cols-2">
         {faq.map(([question, answer]) => (
@@ -92,9 +81,12 @@ const jsonLd = [
           </article>
         ))}
       </div>
-    </section>
+        </div>
+      </section>
+    </Fragment>
 
-    <section class="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+    <Fragment slot="sources">
+      <section class="site-shell glossary-article__sources">
       <SectionHeading eyebrow="Source notes" title="Source notes and related pages" />
       <SourceLinks links={[
         { label: "Review literature on in-situ monitoring in metal additive manufacturing", href: null, status: "Source link to be added" },
@@ -104,6 +96,7 @@ const jsonLd = [
         { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
         { label: "Tools", href: "/tools" }
       ]} />
-    </section>
-  </article>
+      </section>
+    </Fragment>
+  </GlossaryArticle>
 </Layout>

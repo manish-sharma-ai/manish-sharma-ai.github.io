@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
+import GlossaryArticle from "@components/GlossaryArticle.astro";
 import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -50,39 +50,28 @@ const jsonLd = [
 ---
 
 <Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/laser-cladding" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-4xl">
-        <p class="metric-label">Glossary</p>
-        <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-        <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
-      </div>
-      <PageHeroVisual variant="cladding" class="hidden lg:block" />
-    </div>
+  <GlossaryArticle title={title} short={short} visualVariant="cladding">
+    <Fragment slot="notes">
+      <NoteBox title="Short answer">Laser cladding is surface-focused material addition. It often supports wear resistance, corrosion resistance, dimensional restoration, and repair.</NoteBox>
+      <NoteBox title="Common confusion" tone="laser">Cladding overlaps with LMD, but the goal is often a functional surface or local restoration rather than a full freeform build.</NoteBox>
+      <NoteBox title="Buyer/RFQ relevance" tone="steel">A good cladding RFQ must state base material, target surface function, thickness, area, finishing, and inspection needs.</NoteBox>
+    </Fragment>
+    <h2>Practical Meaning</h2>
+    <p>Laser cladding adds a material layer to a surface. In repair language, it can restore worn or damaged areas when the base material, access, and service requirements make the route credible.</p>
+    <h2>Technical Context</h2>
+    <p>Cladding quality depends on dilution, bond quality, heat input, surface preparation, material compatibility, layer strategy, and finishing route.</p>
+    <h2>When It Is Used</h2>
+    <p>It is often used for wear surfaces, corrosion-resistant layers, heat-resistant layers, dimensional restoration, and local repair of valuable parts.</p>
+    <h2>When It May Not Fit</h2>
+    <p>It may not fit if the base material is unknown, cracking risk is high, the surface cannot be prepared, machining is impossible, or inspection cannot confirm the relevant quality claim.</p>
+    <h2>AI and Process-Monitoring Relevance</h2>
+    <p>Monitoring may help identify deposition consistency or anomaly candidates, but final surface performance still depends on inspection and service-specific validation.</p>
+    <h2>Related Terms</h2>
+    <p>Related terms include Laser Metal Deposition, Directed Energy Deposition, functional coating, dilution, bond quality, wear resistance, repair, and post-machining.</p>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">Laser cladding is surface-focused material addition. It often supports wear resistance, corrosion resistance, dimensional restoration, and repair.</NoteBox>
-        <NoteBox title="Common confusion" tone="laser">Cladding overlaps with LMD, but the goal is often a functional surface or local restoration rather than a full freeform build.</NoteBox>
-        <NoteBox title="Buyer/RFQ relevance" tone="steel">A good cladding RFQ must state base material, target surface function, thickness, area, finishing, and inspection needs.</NoteBox>
-      </div>
-      <div class="prose-lab">
-        <h2>Practical Meaning</h2>
-        <p>Laser cladding adds a material layer to a surface. In repair language, it can restore worn or damaged areas when the base material, access, and service requirements make the route credible.</p>
-        <h2>Technical Context</h2>
-        <p>Cladding quality depends on dilution, bond quality, heat input, surface preparation, material compatibility, layer strategy, and finishing route.</p>
-        <h2>When It Is Used</h2>
-        <p>It is often used for wear surfaces, corrosion-resistant layers, heat-resistant layers, dimensional restoration, and local repair of valuable parts.</p>
-        <h2>When It May Not Fit</h2>
-        <p>It may not fit if the base material is unknown, cracking risk is high, the surface cannot be prepared, machining is impossible, or inspection cannot confirm the relevant quality claim.</p>
-        <h2>AI and Process-Monitoring Relevance</h2>
-        <p>Monitoring may help identify deposition consistency or anomaly candidates, but final surface performance still depends on inspection and service-specific validation.</p>
-        <h2>Related Terms</h2>
-        <p>Related terms include Laser Metal Deposition, Directed Energy Deposition, functional coating, dilution, bond quality, wear resistance, repair, and post-machining.</p>
-      </div>
-    </div>
-
-    <section class="mt-14">
+    <Fragment slot="faq">
+      <section class="glossary-article__faq">
+        <div class="site-shell">
       <SectionHeading eyebrow="FAQ" title="Common laser cladding questions" />
       <div class="mt-8 grid gap-4 md:grid-cols-2">
         {faq.map(([question, answer]) => (
@@ -92,9 +81,12 @@ const jsonLd = [
           </article>
         ))}
       </div>
-    </section>
+        </div>
+      </section>
+    </Fragment>
 
-    <section class="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+    <Fragment slot="sources">
+      <section class="site-shell glossary-article__sources">
       <SectionHeading eyebrow="Source notes" title="Source notes and related pages" />
       <SourceLinks links={[
         { label: "Laser cladding review source", href: null, status: "Source link to be added", description: "Needed for deeper surface engineering context." },
@@ -104,6 +96,7 @@ const jsonLd = [
         { label: "Tools", href: "/tools" },
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" }
       ]} />
-    </section>
-  </article>
+      </section>
+    </Fragment>
+  </GlossaryArticle>
 </Layout>

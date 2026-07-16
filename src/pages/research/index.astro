@@ -1,4 +1,5 @@
 ---
+import Badge from "@components/Badge.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
@@ -9,17 +10,27 @@ const description = "Research and source resources for industrial AI, LMD/DED, m
 ---
 
 <Layout title={title} description={description} canonical="/research">
-  <section class="site-shell section-y">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <SectionHeading
-        as="h1"
-        eyebrow="Research"
-        title="Source maps and research references"
-        description="Public resources that keep Manish Sharma Lab grounded in checked sources, standards-aware terminology, industrial AI context, and LMD/DED work."
-      />
-      <PageHeroVisual variant="research" class="hidden lg:block" />
-    </div>
-    <div class="mt-10">
+  <div class="research-index">
+    <header class="site-shell research-index__masthead">
+      <div class="research-index__masthead-copy">
+        <div class="research-index__tags">
+          <Badge>Research</Badge>
+          <Badge tone="steel">Source-aware</Badge>
+          <Badge tone="laser">Decision-support boundaries</Badge>
+        </div>
+        <SectionHeading
+          as="h1"
+          eyebrow="Research"
+          title="Source maps and research references"
+          description="Public resources that keep Manish Sharma Lab grounded in checked sources, standards-aware terminology, industrial AI context, and LMD/DED work."
+        />
+      </div>
+      <div class="research-index__visual"><PageHeroVisual variant="research" /></div>
+    </header>
+
+    <section class="research-index__listing" aria-label="Research resources">
+      <div class="site-shell">
+        <p class="research-index__label">Public reading and evidence routes</p>
       <SourceLinks links={[
         { label: "Industrial AI Thesis", href: "/thesis" },
         { label: "LMD / DED Hub", href: "/domains/lmd-ded" },
@@ -28,6 +39,7 @@ const description = "Research and source resources for industrial AI, LMD/DED, m
         { label: "500-record LMD/DED reference map JSON", href: "/research/lmd-literature-scan.json" },
         { label: "Exafuse public context JSON", href: "/research/exafuse-public-proof-map.json" }
       ]} />
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 </Layout>

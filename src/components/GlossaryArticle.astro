@@ -1,0 +1,33 @@
+---
+import PageHeroVisual from "@components/PageHeroVisual.astro";
+
+interface Props {
+  title: string;
+  short: string;
+  visualVariant: "lmd" | "ded" | "cladding" | "meltpool";
+}
+
+const { title, short, visualVariant } = Astro.props;
+---
+
+<article class="glossary-article">
+  <header class="site-shell glossary-article__masthead">
+    <div class="glossary-article__masthead-copy">
+      <p class="glossary-article__eyebrow">Glossary</p>
+      <h1>{title}</h1>
+      <p class="glossary-article__summary">{short}</p>
+    </div>
+    <div class="glossary-article__masthead-visual">
+      <PageHeroVisual variant={visualVariant} />
+    </div>
+  </header>
+
+  <div class="glossary-article__content">
+    <section class="site-shell glossary-article__meaning">
+      <aside class="glossary-article__notes"><slot name="notes" /></aside>
+      <div class="prose-lab glossary-article__prose"><slot /></div>
+    </section>
+    <slot name="faq" />
+    <slot name="sources" />
+  </div>
+</article>

@@ -2,6 +2,7 @@
 import Badge from "@components/Badge.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Layout from "@layouts/Layout.astro";
+import ResourceLinkCard from "@components/ResourceLinkCard.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { BRIEF_EXAMPLES, BRIEF_SCHEMA_PATH } from "@data/briefStandard";
 import { resolveExafuseLink } from "../config/externalLinks";
@@ -96,41 +97,38 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/resources" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
-    <div class="max-w-4xl">
-      <div class="flex flex-wrap gap-2">
+  <div class="resources-index">
+    <header class="site-shell resources-index__masthead">
+      <div class="resources-index__masthead-copy">
+        <div class="resources-index__tags">
         <Badge>Resources</Badge>
         <Badge tone="steel">Grouped by intent</Badge>
         <Badge tone="laser">Decision support only</Badge>
-      </div>
-      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Find the right LMD resource by intent.</h1>
-      <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
+        </div>
+        <h1>Find the right LMD resource by intent.</h1>
+        <p>
         Use this page when the menu feels too broad. Start from the question you have, then move into the tool, playbook, source, or agent file that fits.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
+        </p>
+        <div class="resources-index__actions">
         <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Start with example brief</CTAButton>
         <CTAButton href="/decision-map" variant="secondary">Open decision map</CTAButton>
         <CTAButton href="/brief-standard" variant="secondary">Open brief standard</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
+        </div>
       </div>
-    </div>
-  </section>
+    </header>
 
-  <section class="band section-y">
-    <div class="site-shell grid gap-6">
+    <section class="resources-index__groups" aria-label="Resources by intent">
+      <div class="site-shell">
       {resourceGroups.map((group) => (
-        <article class="ordered-card-strong p-6">
+        <section class="resources-index__group">
           <SectionHeading eyebrow="Intent" title={group.intent} />
-          <div class="mt-6 grid gap-4 md:grid-cols-2">
-            {group.links.map((link) => (
-              <a href={link.href} class="ordered-card card-hover p-5">
-                <h2 class="text-xl font-black text-white">{link.label}</h2>
-                <p class="mt-3 text-sm leading-6 text-slate-300">{link.description}</p>
-              </a>
-            ))}
-          </div>
-        </article>
+          <ul>
+            {group.links.map((link) => <li><ResourceLinkCard {...link} /></li>)}
+          </ul>
+        </section>
       ))}
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 </Layout>

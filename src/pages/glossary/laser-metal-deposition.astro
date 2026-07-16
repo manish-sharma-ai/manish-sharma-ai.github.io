@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
+import GlossaryArticle from "@components/GlossaryArticle.astro";
 import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -52,39 +52,28 @@ const jsonLd = [
 ---
 
 <Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/laser-metal-deposition" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-4xl">
-        <p class="metric-label">Glossary</p>
-        <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-        <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
-      </div>
-      <PageHeroVisual variant="lmd" class="hidden lg:block" />
-    </div>
+  <GlossaryArticle title={title} short={short} visualVariant="lmd">
+    <Fragment slot="notes">
+      <NoteBox title="Short answer">LMD adds metal locally with a laser-based deposition process. It is especially relevant when repair, cladding, large parts, or local feature addition matter.</NoteBox>
+      <NoteBox title="Common confusion" tone="laser">LMD is not powder-bed SLM/LPBF. LMD feeds material into a melt zone during deposition; SLM/LPBF builds inside a powder bed.</NoteBox>
+      <NoteBox title="Buyer/RFQ relevance" tone="steel">A useful LMD RFQ needs material grade, damage or build area, drawings/CAD, photos, tolerances, post-machining expectations, operating conditions, and inspection requirements.</NoteBox>
+    </Fragment>
+    <h2>Practical Meaning</h2>
+    <p>LMD is useful when material needs to be added only where it is needed: a worn region, a local crack repair after material removal, a functional surface, or a feature on a larger component.</p>
+    <h2>Technical Context</h2>
+    <p>The process depends on heat input, feedstock, shielding, overlap, stand-off distance, path planning, base-material compatibility, and thermal history. These details affect dilution, bonding, geometry, residual stress, and inspection needs.</p>
+    <h2>When It Is Used</h2>
+    <p>LMD is often considered for industrial repair, laser cladding, hybrid manufacturing, feature addition, large-part builds, and cases where replacement lead time or part value makes local deposition attractive.</p>
+    <h2>When It May Not Fit</h2>
+    <p>It may not fit when material is unknown, access is poor, heat distortion risk is unacceptable, tolerance cannot be recovered, inspection is impossible, or the part is better suited to powder-bed design freedom.</p>
+    <h2>AI and Process-Monitoring Relevance</h2>
+    <p>AI can help organize RFQ information, compare process routes, and interpret monitoring signals. It should not turn monitoring data into final quality approval without inspection evidence.</p>
+    <h2>Related Terms</h2>
+    <p>Related terms include Directed Energy Deposition, DED-LB/M, laser cladding, melt-pool monitoring, RFQ intelligence, post-machining, and inspection evidence.</p>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">LMD adds metal locally with a laser-based deposition process. It is especially relevant when repair, cladding, large parts, or local feature addition matter.</NoteBox>
-        <NoteBox title="Common confusion" tone="laser">LMD is not powder-bed SLM/LPBF. LMD feeds material into a melt zone during deposition; SLM/LPBF builds inside a powder bed.</NoteBox>
-        <NoteBox title="Buyer/RFQ relevance" tone="steel">A useful LMD RFQ needs material grade, damage or build area, drawings/CAD, photos, tolerances, post-machining expectations, operating conditions, and inspection requirements.</NoteBox>
-      </div>
-      <div class="prose-lab">
-        <h2>Practical Meaning</h2>
-        <p>LMD is useful when material needs to be added only where it is needed: a worn region, a local crack repair after material removal, a functional surface, or a feature on a larger component.</p>
-        <h2>Technical Context</h2>
-        <p>The process depends on heat input, feedstock, shielding, overlap, stand-off distance, path planning, base-material compatibility, and thermal history. These details affect dilution, bonding, geometry, residual stress, and inspection needs.</p>
-        <h2>When It Is Used</h2>
-        <p>LMD is often considered for industrial repair, laser cladding, hybrid manufacturing, feature addition, large-part builds, and cases where replacement lead time or part value makes local deposition attractive.</p>
-        <h2>When It May Not Fit</h2>
-        <p>It may not fit when material is unknown, access is poor, heat distortion risk is unacceptable, tolerance cannot be recovered, inspection is impossible, or the part is better suited to powder-bed design freedom.</p>
-        <h2>AI and Process-Monitoring Relevance</h2>
-        <p>AI can help organize RFQ information, compare process routes, and interpret monitoring signals. It should not turn monitoring data into final quality approval without inspection evidence.</p>
-        <h2>Related Terms</h2>
-        <p>Related terms include Directed Energy Deposition, DED-LB/M, laser cladding, melt-pool monitoring, RFQ intelligence, post-machining, and inspection evidence.</p>
-      </div>
-    </div>
-
-    <section class="mt-14">
+    <Fragment slot="faq">
+      <section class="glossary-article__faq">
+        <div class="site-shell">
       <SectionHeading eyebrow="FAQ" title="Common LMD questions" />
       <div class="mt-8 grid gap-4 md:grid-cols-2">
         {faq.map(([question, answer]) => (
@@ -94,9 +83,12 @@ const jsonLd = [
           </article>
         ))}
       </div>
-    </section>
+        </div>
+      </section>
+    </Fragment>
 
-    <section class="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+    <Fragment slot="sources">
+      <section class="site-shell glossary-article__sources">
       <SectionHeading eyebrow="Source notes" title="Source notes and related pages" description="Do not quote standard wording from this page. Check the original terminology source when exact definitions matter." />
       <div class="grid gap-8">
         <SourceLinks links={[
@@ -108,6 +100,7 @@ const jsonLd = [
           { label: "Directed Energy Deposition glossary", href: "/glossary/directed-energy-deposition" }
         ]} />
       </div>
-    </section>
-  </article>
+      </section>
+    </Fragment>
+  </GlossaryArticle>
 </Layout>

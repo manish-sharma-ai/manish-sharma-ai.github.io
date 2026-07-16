@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
+import ResearchSourceCard from "@components/ResearchSourceCard.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { EXAFUSE_SOURCE_LINKS } from "@data/exafuse";
@@ -128,18 +129,19 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/research/core-lmd-ai-sources" jsonLd={jsonLd} ogType="article">
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-    <div class="max-w-4xl">
-      <p class="metric-label">Verified source map</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      <p class="mt-6 text-xl leading-9 text-slate-200">
+  <article class="research-article">
+    <header class="site-shell research-article__masthead">
+      <div class="research-article__masthead-copy">
+        <p>Verified source map</p>
+        <h1>{title}</h1>
+        <div>
         Eight checked starting points for terminology, DED fundamentals, monitoring, applied LMD research, and AI risk management. Each entry states both its useful role and its evidence boundary.
-      </p>
-    </div>
-    <PageHeroVisual variant="research" class="hidden lg:block" />
-  </section>
+        </div>
+      </div>
+      <div class="research-article__masthead-visual"><PageHeroVisual variant="research" /></div>
+    </header>
 
-  <section class="band section-y">
+  <section class="research-article__operating-model">
     <div class="site-shell grid gap-4 md:grid-cols-3">
       <article class="ordered-card-strong p-5">
         <p class="metric-label">01 · Identify</p>
@@ -166,28 +168,7 @@ const jsonLd = {
       description="This is a compact reading map, not a complete literature review. Follow each link and check the original context before carrying a statement into engineering work."
     />
     <div class="mt-10 grid gap-5 lg:grid-cols-2">
-      {verifiedSources.map((source, index) => (
-        <article class="ordered-card-strong flex h-full flex-col p-6">
-          <div class="flex flex-wrap items-center justify-between gap-3">
-            <p class="metric-label">{String(index + 1).padStart(2, "0")} · {source.sourceType}</p>
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">{source.publisher}</p>
-          </div>
-          <h2 class="mt-4 text-2xl font-black leading-tight text-white">{source.title}</h2>
-          <dl class="mt-6 grid gap-4">
-            <div class="rounded-md border border-cyan-300/20 bg-cyan-300/[0.06] p-4">
-              <dt class="text-xs font-black uppercase tracking-[0.16em] text-cyan-200">Useful for</dt>
-              <dd class="mt-2 text-sm leading-6 text-slate-200">{source.usefulFor}</dd>
-            </div>
-            <div class="rounded-md border border-orange-300/20 bg-orange-400/[0.06] p-4">
-              <dt class="text-xs font-black uppercase tracking-[0.16em] text-orange-200">Does not prove</dt>
-              <dd class="mt-2 text-sm leading-6 text-slate-200">{source.doesNotProve}</dd>
-            </div>
-          </dl>
-          <a href={source.href} class="mt-6 inline-flex min-h-11 items-center self-start text-sm font-black text-cyan-200 underline decoration-cyan-300/40 underline-offset-4 hover:text-white">
-            Open verified source <span class="ml-2" aria-hidden="true">↗</span>
-          </a>
-        </article>
-      ))}
+      {verifiedSources.map((source, index) => <ResearchSourceCard {...source} index={index} />)}
     </div>
   </section>
 
@@ -213,7 +194,7 @@ const jsonLd = {
     </div>
   </section>
 
-  <section class="site-shell pb-16 md:pb-24">
+  <section class="site-shell research-article__boundary">
     <div class="rounded-lg border border-orange-300/25 bg-orange-500/10 p-6">
       <p class="metric-label text-orange-100">Decision boundary</p>
       <p class="mt-4 text-lg font-bold leading-8 text-orange-50">
@@ -224,4 +205,5 @@ const jsonLd = {
       </p>
     </div>
   </section>
+  </article>
 </Layout>

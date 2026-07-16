@@ -1,7 +1,7 @@
 ---
 import NoteBox from "@components/NoteBox.astro";
+import GlossaryArticle from "@components/GlossaryArticle.astro";
 import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
@@ -50,39 +50,28 @@ const jsonLd = [
 ---
 
 <Layout title={`${title} - Glossary - Manish Sharma Lab`} description={description} canonical="/glossary/directed-energy-deposition" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-4xl">
-        <p class="metric-label">Glossary</p>
-        <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-        <p class="mt-6 text-xl leading-9 text-slate-200">{short}</p>
-      </div>
-      <PageHeroVisual variant="ded" class="hidden lg:block" />
-    </div>
+  <GlossaryArticle title={title} short={short} visualVariant="ded">
+    <Fragment slot="notes">
+      <NoteBox title="Short answer">DED is the parent family. Laser Metal Deposition is one laser-based route inside that family.</NoteBox>
+      <NoteBox title="Common confusion" tone="laser">DED is not one machine type. A DED system may differ by heat source, powder or wire feedstock, motion platform, shielding, sensing, and control.</NoteBox>
+      <NoteBox title="Buyer/RFQ relevance" tone="steel">A DED RFQ should name the process route, material, feedstock expectation, part geometry, deposition area, tolerance, post-processing, and inspection route.</NoteBox>
+    </Fragment>
+    <h2>Practical Meaning</h2>
+    <p>DED is useful language when comparing process families. It helps separate laser-based LMD, wire-fed systems, powder-fed systems, repair routes, and cladding routes from powder-bed processes.</p>
+    <h2>Technical Context</h2>
+    <p>DED process behavior depends on heat input, material delivery, bead geometry, overlap, thermal accumulation, path strategy, shielding, base material, and inspection requirements.</p>
+    <h2>When It Is Used</h2>
+    <p>DED is often discussed for repair, cladding, feature addition, large-part manufacturing, hybrid manufacturing, and near-net-shape build work.</p>
+    <h2>When It May Not Fit</h2>
+    <p>DED may not fit small complex parts with internal channels, very fine lattice detail, or cases where powder-bed geometry freedom is the main requirement.</p>
+    <h2>AI and Process-Monitoring Relevance</h2>
+    <p>AI support for DED should be route-specific. A powder-fed laser DED workflow, a wire-fed DED workflow, and a powder-bed workflow do not produce the same data or evidence needs.</p>
+    <h2>Related Terms</h2>
+    <p>Related terms include Laser Metal Deposition, DED-LB/M, laser cladding, powder-fed DED, wire-fed DED, LPBF, SLM, and hybrid manufacturing.</p>
 
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">DED is the parent family. Laser Metal Deposition is one laser-based route inside that family.</NoteBox>
-        <NoteBox title="Common confusion" tone="laser">DED is not one machine type. A DED system may differ by heat source, powder or wire feedstock, motion platform, shielding, sensing, and control.</NoteBox>
-        <NoteBox title="Buyer/RFQ relevance" tone="steel">A DED RFQ should name the process route, material, feedstock expectation, part geometry, deposition area, tolerance, post-processing, and inspection route.</NoteBox>
-      </div>
-      <div class="prose-lab">
-        <h2>Practical Meaning</h2>
-        <p>DED is useful language when comparing process families. It helps separate laser-based LMD, wire-fed systems, powder-fed systems, repair routes, and cladding routes from powder-bed processes.</p>
-        <h2>Technical Context</h2>
-        <p>DED process behavior depends on heat input, material delivery, bead geometry, overlap, thermal accumulation, path strategy, shielding, base material, and inspection requirements.</p>
-        <h2>When It Is Used</h2>
-        <p>DED is often discussed for repair, cladding, feature addition, large-part manufacturing, hybrid manufacturing, and near-net-shape build work.</p>
-        <h2>When It May Not Fit</h2>
-        <p>DED may not fit small complex parts with internal channels, very fine lattice detail, or cases where powder-bed geometry freedom is the main requirement.</p>
-        <h2>AI and Process-Monitoring Relevance</h2>
-        <p>AI support for DED should be route-specific. A powder-fed laser DED workflow, a wire-fed DED workflow, and a powder-bed workflow do not produce the same data or evidence needs.</p>
-        <h2>Related Terms</h2>
-        <p>Related terms include Laser Metal Deposition, DED-LB/M, laser cladding, powder-fed DED, wire-fed DED, LPBF, SLM, and hybrid manufacturing.</p>
-      </div>
-    </div>
-
-    <section class="mt-14">
+    <Fragment slot="faq">
+      <section class="glossary-article__faq">
+        <div class="site-shell">
       <SectionHeading eyebrow="FAQ" title="Common DED questions" />
       <div class="mt-8 grid gap-4 md:grid-cols-2">
         {faq.map(([question, answer]) => (
@@ -92,9 +81,12 @@ const jsonLd = [
           </article>
         ))}
       </div>
-    </section>
+        </div>
+      </section>
+    </Fragment>
 
-    <section class="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+    <Fragment slot="sources">
+      <section class="site-shell glossary-article__sources">
       <SectionHeading eyebrow="Source notes" title="Source notes and related pages" />
       <SourceLinks links={[
         { label: "ISO/ASTM additive manufacturing terminology", href: null, status: "Source link to be added", description: "Needed for exact standard wording." },
@@ -104,6 +96,7 @@ const jsonLd = [
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "Tools", href: "/tools" }
       ]} />
-    </section>
-  </article>
+      </section>
+    </Fragment>
+  </GlossaryArticle>
 </Layout>

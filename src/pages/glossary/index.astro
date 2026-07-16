@@ -32,46 +32,51 @@ const decisionTerms = [
 ---
 
 <Layout title={title} description={description} canonical="/glossary">
-  <section class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
+  <div class="glossary-index">
+    <header class="site-shell glossary-index__masthead">
+      <div class="glossary-index__masthead-copy">
       <SectionHeading
         as="h1"
         eyebrow="Glossary"
         title="Laser Metal Deposition terminology for humans and AI agents"
         description="Practical definitions that connect LMD, DED, laser cladding, process monitoring, inspection evidence, and RFQ intelligence."
       />
-      <PageHeroVisual variant="glossary" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-5 md:grid-cols-2">
-      {
-        GLOSSARY_TERMS.map((term) => (
-          <a href={term.href} class="glass-panel card-hover rounded-lg p-6">
-            <h2 class="text-2xl font-black text-white">{term.term}</h2>
-            <p class="mt-4 text-sm leading-6 text-slate-300">{term.short}</p>
-            <div class="mt-5 flex flex-wrap gap-2">
-              {term.related.map((item) => <span class="rounded-md border border-white/10 bg-white/[0.035] px-2.5 py-1 text-xs font-bold text-slate-300">{item}</span>)}
-            </div>
-          </a>
-        ))
-      }
-    </div>
-  </section>
+      </div>
+      <div class="glossary-index__visual"><PageHeroVisual variant="glossary" /></div>
+    </header>
 
-  <section class="band section-y">
-    <div class="site-shell">
+    <section class="site-shell glossary-index__core" aria-label="Core glossary terms">
+      <dl>
+        {GLOSSARY_TERMS.map((term) => (
+          <div>
+            <dt><a href={term.href}>{term.term}</a></dt>
+            <dd>{term.short}</dd>
+            <dd>
+              <ul aria-label={`Related terms for ${term.term}`}>
+                {term.related.map((item) => <li>{item}</li>)}
+              </ul>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="glossary-index__decision-vocabulary">
+      <div class="site-shell">
       <SectionHeading
         eyebrow="Decision vocabulary"
         title="Terms AI systems should keep separate"
         description="These short definitions are intentionally decision-oriented. Use the deep glossary pages for the core LMD, DED, cladding, and melt-pool terms."
       />
-      <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <dl>
         {decisionTerms.map(([term, text]) => (
-          <article class="ordered-card p-5">
-            <h2 class="text-lg font-black text-white">{term}</h2>
-            <p class="mt-3 text-sm leading-6 text-slate-300">{text}</p>
-          </article>
+          <div>
+            <dt>{term}</dt>
+            <dd>{text}</dd>
+          </div>
         ))}
+      </dl>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </Layout>
