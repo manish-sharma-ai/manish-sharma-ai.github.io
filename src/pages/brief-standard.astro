@@ -61,7 +61,8 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/brief-standard" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <div class="info-page info-page--reference">
+  <section class="site-shell info-page__masthead section-y">
     <div class="max-w-5xl">
       <div class="flex flex-wrap gap-2">
         <Badge>{BRIEF_VERSION}</Badge>
@@ -200,4 +201,5 @@ const jsonLd = {
       </div>
     </div>
   </section>
+  </div>
 </Layout>

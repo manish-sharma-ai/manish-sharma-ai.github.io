@@ -6240,3 +6240,263 @@ input:hover {
     transition: none;
   }
 }
+
+/* Dark Instrumentation: shared standalone information surfaces. */
+.info-page {
+  color: var(--instrument-text);
+}
+
+.info-page__masthead {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    linear-gradient(180deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    radial-gradient(circle at 82% 24%, color-mix(in srgb, var(--instrument-copper) 13%, transparent), transparent 34%);
+}
+
+.info-page__masthead::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--instrument-copper), transparent 62%);
+  content: "";
+  pointer-events: none;
+}
+
+.info-page__masthead h1 {
+  color: var(--instrument-text);
+  letter-spacing: -0.055em;
+}
+
+.info-page__masthead p:not(.metric-label),
+.info-page__masthead li {
+  color: var(--instrument-text-soft);
+}
+
+.info-page__masthead .btn {
+  min-height: 2.85rem;
+}
+
+.info-page--compact .info-page__masthead {
+  min-height: 0;
+}
+
+.info-page--profile .info-page__masthead,
+.info-page--service .info-page__masthead,
+.info-page--thesis .info-page__masthead {
+  min-height: clamp(28rem, 44vw, 39rem);
+}
+
+.info-page--policy .info-page__masthead,
+.info-page--german .info-page__masthead {
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    linear-gradient(180deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    radial-gradient(circle at 78% 24%, color-mix(in srgb, var(--instrument-signal) 11%, transparent), transparent 32%);
+}
+
+.info-page > .band {
+  border-block: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    var(--instrument-surface);
+}
+
+.info-page .ordered-card,
+.info-page .ordered-card-strong,
+.info-page .bento-card,
+.info-page .link-card {
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.info-page .ordered-card-strong,
+.info-page .bento-card--strong {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-copper) 7%, transparent), transparent 42%),
+    var(--instrument-technical);
+}
+
+.info-page .ordered-card:hover,
+.info-page .ordered-card-strong:hover,
+.info-page .bento-card:hover,
+.info-page .link-card:hover {
+  border-color: color-mix(in srgb, var(--instrument-copper) 68%, var(--instrument-border));
+  background: color-mix(in srgb, var(--instrument-copper) 6%, var(--instrument-technical));
+  box-shadow: none;
+}
+
+.info-page .ordered-card h2,
+.info-page .ordered-card h3,
+.info-page .ordered-card-strong h2,
+.info-page .ordered-card-strong h3,
+.info-page .bento-card > span > span:nth-child(2) {
+  color: var(--instrument-text);
+  letter-spacing: -0.03em;
+}
+
+.info-page .ordered-card p:not(.metric-label),
+.info-page .ordered-card-strong p:not(.metric-label),
+.info-page .bento-card > span > span:not(.metric-label),
+.info-page .link-card > span > span:last-child {
+  color: var(--instrument-text-soft);
+}
+
+.info-page .metric-label,
+.info-page .font-mono.text-cyan-100,
+.info-page .link-card > span:last-child,
+.info-page .bento-card > span:last-child {
+  color: var(--instrument-signal);
+}
+
+.info-page .section-heading-mark span {
+  background: var(--instrument-copper);
+}
+
+.info-page .section-heading-mark {
+  background: var(--instrument-border);
+}
+
+.info-page .link-card {
+  min-height: 9.5rem;
+}
+
+.info-page .link-card:hover {
+  transform: translateY(-2px);
+}
+
+.info-page--policy .ordered-card-strong,
+.info-page--policy .bento-card--strong {
+  border-color: color-mix(in srgb, var(--instrument-signal) 54%, var(--instrument-border));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-signal) 8%, transparent), transparent 42%),
+    var(--instrument-technical);
+}
+
+.info-page--policy .chip--amber,
+.info-page--policy [class*="bg-amber"],
+.info-page--policy [class*="bg-laser"] {
+  border-color: color-mix(in srgb, var(--instrument-copper) 62%, var(--instrument-border));
+  background: color-mix(in srgb, var(--instrument-copper) 10%, var(--instrument-technical));
+  color: var(--instrument-signal);
+}
+
+.info-page--conversion .info-page__masthead {
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    radial-gradient(circle at 78% 28%, color-mix(in srgb, var(--instrument-copper) 17%, transparent), transparent 35%),
+    var(--instrument-bg);
+}
+
+.info-page--conversion .bento-card,
+.info-page--conversion .ordered-card {
+  min-height: 100%;
+}
+
+.info-page--reference pre,
+.info-page--german pre {
+  border: 1px solid var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  color: var(--instrument-text-soft);
+  box-shadow: none;
+}
+
+.info-page--reference code,
+.info-page--german code {
+  color: inherit;
+}
+
+.info-page--reference [class*="copy"],
+.info-page--german [class*="copy"] {
+  border-color: var(--instrument-border);
+}
+
+.info-page--service .ordered-card-strong,
+.info-page--thesis .ordered-card-strong {
+  border-color: color-mix(in srgb, var(--instrument-copper) 56%, var(--instrument-border));
+}
+
+.info-page--profile .ordered-card-strong,
+.info-page--profile .bento-card--strong {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-copper) 8%, transparent), transparent 46%),
+    var(--instrument-technical);
+}
+
+.info-page--compact .info-page__masthead .max-w-3xl {
+  max-width: 52rem;
+}
+
+.info-page .prose-lab,
+.info-page .prose-lab p,
+.info-page .prose-lab li {
+  color: var(--instrument-text-soft);
+}
+
+.info-page .prose-lab h2,
+.info-page .prose-lab h3 {
+  color: var(--instrument-text);
+}
+
+.info-page a:focus-visible,
+.info-page button:focus-visible,
+.info-page summary:focus-visible,
+.info-page input:focus-visible,
+.info-page select:focus-visible,
+.info-page textarea:focus-visible {
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .info-page--profile .info-page__masthead,
+  .info-page--service .info-page__masthead,
+  .info-page--thesis .info-page__masthead {
+    min-height: 0;
+  }
+
+  .info-page__masthead {
+    background-size: 3.5rem 3.5rem, 3.5rem 3.5rem, auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .info-page__masthead {
+    padding-block: 2rem 3.75rem;
+  }
+
+  .info-page__masthead h1 {
+    font-size: clamp(2.2rem, 10.5vw, 3.65rem);
+  }
+
+  .info-page__masthead .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .info-page .ordered-card,
+  .info-page .ordered-card-strong,
+  .info-page .bento-card,
+  .info-page .link-card,
+  .info-page--reference pre,
+  .info-page--german pre {
+    border-radius: var(--control-radius);
+  }
+
+  .info-page .link-card {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-page .link-card {
+    transition: none;
+  }
+}

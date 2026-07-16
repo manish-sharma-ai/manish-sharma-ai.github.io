@@ -63,7 +63,8 @@ const fields = [
 ---
 
 <Layout title={title} description={description} canonical="/identity" jsonLd={[personJsonLd, profilePageJsonLd]}>
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[1fr_0.42fr] lg:items-center">
+  <div class="info-page info-page--profile">
+  <section class="site-shell info-page__masthead grid gap-10 section-y lg:grid-cols-[1fr_0.42fr] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Official profile</Badge>
@@ -143,4 +144,5 @@ const fields = [
       <SourceLinks links={ACTIVE_PROFILE_LINKS} />
     </div>
   </section>
+  </div>
 </Layout>

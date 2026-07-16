@@ -9,10 +9,12 @@ const description = "Verified public links for Manish Sharma, Exafuse, GitHub, L
 ---
 
 <Layout title={title} description={description} canonical="/links">
-  <section class="site-shell py-16 md:py-20">
+  <div class="info-page info-page--compact">
+  <section class="site-shell info-page__masthead py-16 md:py-20">
     <SectionHeading as="h1" eyebrow="Links" title="Verified public profiles and references" description="Only real, verified public URLs are shown on public-facing link pages." />
     <div class="mt-10">
       <SourceLinks links={ACTIVE_PROFILE_LINKS} />
     </div>
   </section>
+  </div>
 </Layout>

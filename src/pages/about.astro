@@ -162,7 +162,8 @@ const aboutPageJsonLd = {
 ---
 
 <Layout title={title} description={description} canonical="/about" jsonLd={aboutPageJsonLd}>
-  <section class="site-shell grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.98fr_1.02fr] lg:py-20">
+  <div class="info-page info-page--profile">
+  <section class="site-shell info-page__masthead grid min-h-[calc(100svh-4.5rem)] items-center gap-12 py-16 lg:grid-cols-[0.98fr_1.02fr] lg:py-20">
     <div>
       <div class="flex flex-wrap gap-2">
         <Badge>Personal profile</Badge>
@@ -410,4 +411,5 @@ const aboutPageJsonLd = {
       </div>
     </div>
   </section>
+  </div>
 </Layout>

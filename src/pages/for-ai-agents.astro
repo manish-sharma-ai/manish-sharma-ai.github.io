@@ -228,7 +228,8 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/for-ai-agents" jsonLd={jsonLd}>
-  <section class="site-shell inner-hero-grid section-y">
+  <div class="info-page info-page--reference">
+  <section class="site-shell info-page__masthead inner-hero-grid section-y">
     <div>
       <div class="flex flex-wrap gap-2">
         <Chip>AI-agent reference</Chip>
@@ -315,4 +316,5 @@ const jsonLd = {
       <pre class="ordered-card-strong mt-8 overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
     </div>
   </section>
+  </div>
 </Layout>

@@ -40,7 +40,8 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/profile/public-profile" jsonLd={jsonLd}>
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
+  <div class="info-page info-page--profile">
+  <section class="site-shell info-page__masthead grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <p class="metric-label">Public profile</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
@@ -108,4 +109,5 @@ const jsonLd = {
       </p>
     </div>
   </section>
+  </div>
 </Layout>

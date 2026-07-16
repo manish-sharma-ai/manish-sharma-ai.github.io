@@ -185,7 +185,8 @@ const jsonLd = {
 ---
 
 <Layout title={title} description={description} canonical="/press-kit" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <div class="info-page info-page--profile">
+  <section class="site-shell info-page__masthead section-y">
     <div class="grid gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
       <div>
         <div class="flex flex-wrap gap-2">
@@ -290,4 +291,5 @@ const jsonLd = {
       <pre class="ordered-card-strong mt-8 overflow-auto p-5 text-sm leading-6 text-slate-200"><code>{JSON.stringify(machineSummary, null, 2)}</code></pre>
     </div>
   </section>
+  </div>
 </Layout>

@@ -142,7 +142,8 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/domains/lmd-ded" jsonLd={jsonLd}>
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
+  <div class="info-page info-page--service">
+  <section class="site-shell info-page__masthead grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Focused technical domain</Badge>
@@ -308,4 +309,5 @@ const jsonLd = {
       <a href={LINKS.exafuse} class="btn btn-laser mt-6" target="_blank" rel="noreferrer">Visit Exafuse</a>
     </div>
   </section>
+  </div>
 </Layout>
