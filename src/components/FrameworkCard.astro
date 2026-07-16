@@ -14,20 +14,30 @@ const { title, href, problem, idea, status, tags } = Astro.props;
 const tone = status.includes("Coming") ? "amber" : status.includes("Agent") ? "cyan" : status.includes("Interactive") ? "laser" : "steel";
 ---
 
-<a href={href} class="ordered-card-strong card-hover group grid min-h-[20rem] content-between overflow-hidden p-6">
-  <div>
-    <div class="flex flex-wrap items-center gap-2">
-      <Badge tone={tone}>{status}</Badge>
-      {tags.slice(0, 2).map((tag) => <Badge tone="steel">{tag}</Badge>)}
+<article class="framework-index-card__article">
+  <a href={href} class="framework-index-card">
+    <div>
+      <div class="framework-index-card__metadata">
+        <Badge tone={tone}>{status}</Badge>
+        <span>Framework</span>
+      </div>
+      <h3>{title}</h3>
+      <dl>
+        <div>
+          <dt>Problem</dt>
+          <dd>{problem}</dd>
+        </div>
+        <div>
+          <dt>Framework idea</dt>
+          <dd>{idea}</dd>
+        </div>
+      </dl>
     </div>
-    <h3 class="mt-5 text-2xl font-black leading-tight text-white">{title}</h3>
-    <div class="mt-5 grid gap-4 text-sm leading-6">
-      <p class="text-slate-400"><strong class="text-slate-200">Problem:</strong> {problem}</p>
-      <p class="text-slate-300"><strong class="text-cyan-100">Framework idea:</strong> {idea}</p>
+    <div class="framework-index-card__footer">
+      <ul class="framework-index-card__tags" aria-label="Topics">
+        {tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+      <span class="framework-index-card__action" aria-hidden="true">Open resource <span>→</span></span>
     </div>
-  </div>
-  <span class="mt-6 inline-flex items-center justify-between border-t border-white/10 pt-4 font-mono text-xs font-bold uppercase text-cyan-200">
-    Open resource
-    <span class="transition group-hover:translate-x-1 group-focus-visible:translate-x-1">&rarr;</span>
-  </span>
-</a>
+  </a>
+</article>

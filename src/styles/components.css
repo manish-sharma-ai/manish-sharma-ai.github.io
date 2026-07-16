@@ -4150,3 +4150,657 @@ input:hover {
     break-inside: avoid;
   }
 }
+
+/* Shared Dark Instrumentation framework index and detail family. */
+.frameworks-index {
+  background: var(--instrument-bg);
+  color: var(--instrument-text);
+}
+
+.frameworks-index__masthead,
+.framework-article__masthead {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.52fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  border-top: 1px solid var(--instrument-border);
+  padding-block: clamp(2.25rem, 6vw, 6rem);
+}
+
+.frameworks-index__masthead::before,
+.framework-article__masthead::before {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: clamp(4.5rem, 12vw, 9rem);
+  height: 2px;
+  background: var(--instrument-copper);
+  content: "";
+}
+
+.frameworks-index__masthead-copy,
+.framework-article__masthead-copy,
+.frameworks-index__visual,
+.framework-article__masthead-visual {
+  min-width: 0;
+}
+
+.frameworks-index__tags,
+.frameworks-index__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.frameworks-index .chip,
+.framework-article .badge {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.frameworks-index__masthead-copy > p,
+.framework-index-card dl dt,
+.frameworks-index__summary dt,
+.frameworks-index__evidence-card > p,
+.frameworks-index__commercial-boundary > p {
+  color: var(--instrument-signal);
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.frameworks-index__masthead-copy > p {
+  margin-top: 2rem;
+}
+
+.frameworks-index h1,
+.framework-article__masthead h1 {
+  max-width: 15ch;
+  margin-top: 1rem;
+  color: var(--instrument-text);
+  font-size: clamp(3rem, 5.25vw, 5.25rem);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+  overflow-wrap: anywhere;
+}
+
+.frameworks-index__intro,
+.framework-article__summary p:not(.framework-article__subtitle) {
+  max-width: 65ch;
+  margin-top: 1.25rem;
+  color: var(--instrument-text-soft);
+  font-size: clamp(1.02rem, 1.75vw, 1.18rem);
+  line-height: 1.7;
+  text-transform: none;
+}
+
+.frameworks-index__actions {
+  margin-top: 1.75rem;
+}
+
+.frameworks-index__visual .process-loop,
+.framework-article__masthead-visual .page-hero-model {
+  margin: 0;
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: var(--shadow-card-hard);
+}
+
+.frameworks-index__summary {
+  border-top: 1px solid var(--instrument-border);
+  border-bottom: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    var(--instrument-surface);
+}
+
+.frameworks-index__summary dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding-block: 1rem;
+}
+
+.frameworks-index__summary dl > div {
+  min-width: 0;
+  border-left: 1px solid var(--instrument-border);
+  padding: 0.75rem 1rem;
+}
+
+.frameworks-index__summary dt,
+.frameworks-index__summary dd {
+  margin: 0;
+}
+
+.frameworks-index__summary dd {
+  margin-top: 0.4rem;
+  color: var(--instrument-text);
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.frameworks-index__listing {
+  padding-block: clamp(3.75rem, 7vw, 6.75rem);
+}
+
+.frameworks-index .section-heading-mark {
+  width: 4.5rem;
+}
+
+.frameworks-index .section-heading-mark span {
+  background: var(--instrument-copper);
+}
+
+.frameworks-index .section-heading-mark::after {
+  background: var(--instrument-border);
+}
+
+.frameworks-index .max-w-3xl > h2 {
+  max-width: 19ch;
+  color: var(--instrument-text);
+  letter-spacing: -0.045em;
+}
+
+.frameworks-index .max-w-3xl > p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.frameworks-index__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.frameworks-index__list > li,
+.framework-index-card__article {
+  display: flex;
+  min-width: 0;
+}
+
+.framework-index-card__article {
+  width: 100%;
+}
+
+.framework-index-card {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 23rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--instrument-border);
+  border-radius: var(--card-radius);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-copper) 5%, transparent), transparent 42%),
+    var(--instrument-technical);
+  padding: clamp(1.2rem, 2.3vw, 1.6rem);
+  color: var(--instrument-text);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-med) var(--ease-industrial),
+    box-shadow var(--duration-med) var(--ease-industrial),
+    transform var(--duration-med) var(--ease-industrial);
+}
+
+.framework-index-card__metadata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--instrument-text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.framework-index-card .badge {
+  min-height: 1.7rem;
+  border-color: var(--instrument-border);
+  background: transparent;
+  color: var(--instrument-text-soft);
+  box-shadow: none;
+  font-size: 0.62rem;
+}
+
+.framework-index-card h3 {
+  margin-top: 1rem;
+  color: var(--instrument-text);
+  font-size: clamp(1.3rem, 1.85vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.framework-index-card dl {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.framework-index-card dl > div {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.framework-index-card dl dt,
+.framework-index-card dl dd {
+  margin: 0;
+}
+
+.framework-index-card dl dd {
+  color: var(--instrument-text-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.framework-index-card__footer {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--instrument-border);
+  padding-top: 1rem;
+}
+
+.framework-index-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.framework-index-card__tags li {
+  border: 1px solid var(--instrument-border);
+  border-radius: var(--button-radius);
+  padding: 0.3rem 0.55rem;
+  color: var(--instrument-text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.61rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+
+.framework-index-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  color: var(--instrument-signal);
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.framework-index-card__action > span {
+  font-size: 1rem;
+}
+
+@media (hover: hover) {
+  .framework-index-card:hover {
+    border-color: var(--instrument-copper);
+    box-shadow: 0 18px 34px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.framework-index-card:focus-visible {
+  border-color: var(--instrument-signal);
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 3px;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.3);
+}
+
+.frameworks-index__boundary {
+  border-top: 1px solid var(--instrument-border);
+  background: var(--instrument-surface);
+  padding-block: clamp(3.75rem, 7vw, 6.75rem);
+}
+
+.frameworks-index__boundary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  gap: 1rem;
+}
+
+.frameworks-index__evidence-card,
+.frameworks-index__commercial-boundary {
+  display: flex;
+  min-width: 0;
+  min-height: 20rem;
+  flex-direction: column;
+  border: 1px solid var(--instrument-border);
+  border-radius: var(--card-radius);
+  background: var(--instrument-technical);
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+}
+
+.frameworks-index__evidence-card {
+  border-color: color-mix(in srgb, var(--instrument-copper) 64%, var(--instrument-border));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--instrument-copper) 10%, transparent), transparent 45%),
+    var(--instrument-technical);
+}
+
+.frameworks-index__evidence-card h2,
+.frameworks-index__commercial-boundary h2 {
+  max-width: 20ch;
+  margin-top: 1rem;
+  color: var(--instrument-text);
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.frameworks-index__evidence-card > div:not(.frameworks-index__actions),
+.frameworks-index__commercial-boundary > div {
+  max-width: 62ch;
+  margin-top: 1.25rem;
+  color: var(--instrument-text-soft);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.frameworks-index__evidence-card .frameworks-index__actions {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.frameworks-index__commercial-boundary > .btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.framework-article {
+  border-top: 1px solid var(--instrument-grid);
+  background: var(--instrument-bg);
+  color: var(--instrument-text);
+}
+
+.framework-article__masthead {
+  max-width: var(--page-max);
+}
+
+.framework-article__masthead h1 {
+  max-width: 17ch;
+}
+
+.framework-article__summary {
+  max-width: 66ch;
+  margin-top: 1.35rem;
+}
+
+.framework-article__summary p {
+  margin: 0;
+}
+
+.framework-article__summary p + p {
+  margin-top: 1rem;
+}
+
+.framework-article__subtitle {
+  color: var(--instrument-text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: clamp(1.1rem, 2vw, 1.4rem) !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.45 !important;
+  text-transform: none !important;
+}
+
+.framework-article__content {
+  border-top: 1px solid var(--instrument-border);
+}
+
+.framework-article__content > .band {
+  position: relative;
+  border-block: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    var(--instrument-surface);
+}
+
+.framework-article__content > .site-shell,
+.framework-article__content > .band > .site-shell {
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+}
+
+.framework-article__content .section-heading-mark {
+  width: 4.5rem;
+}
+
+.framework-article__content .section-heading-mark span {
+  background: var(--instrument-copper);
+}
+
+.framework-article__content .section-heading-mark::after {
+  background: var(--instrument-border);
+}
+
+.framework-article__content .max-w-3xl > h2,
+.framework-article__content .section-heading h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.04em;
+}
+
+.framework-article__content .max-w-3xl > p:not(.metric-label),
+.framework-article__content .section-heading p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.framework-article__content .ordered-card,
+.framework-article__content .ordered-card-strong {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.framework-article__content .ordered-card-strong {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-copper) 6%, transparent), transparent 42%),
+    var(--instrument-technical);
+}
+
+.framework-article__content .ordered-card .metric-label,
+.framework-article__content .ordered-card-strong .metric-label {
+  color: var(--instrument-signal);
+}
+
+.framework-article__content .ordered-card h2,
+.framework-article__content .ordered-card-strong h2 {
+  color: var(--instrument-text);
+  letter-spacing: -0.03em;
+}
+
+.framework-article__content .ordered-card p,
+.framework-article__content .ordered-card-strong p {
+  color: var(--instrument-text-soft);
+}
+
+.framework-article__content .ordered-card strong,
+.framework-article__content .ordered-card-strong strong {
+  color: var(--instrument-text);
+}
+
+.framework-article__content .btn {
+  min-height: 2.75rem;
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+  color: var(--instrument-text);
+}
+
+.framework-article__content .btn-primary {
+  border-color: var(--instrument-copper);
+  background: var(--instrument-copper);
+  color: var(--instrument-bg);
+}
+
+.framework-article__content .btn-laser {
+  border-color: var(--instrument-signal);
+  background: transparent;
+  color: var(--instrument-signal);
+}
+
+.framework-article__content .btn:hover,
+.framework-article__content .btn:focus-visible {
+  border-color: var(--instrument-signal);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--instrument-signal) 32%, transparent);
+  outline: none;
+}
+
+.framework-article__content .btn-primary:hover,
+.framework-article__content .btn-primary:focus-visible {
+  background: var(--instrument-signal);
+  color: var(--instrument-bg);
+}
+
+.framework-article__content .process-loop,
+.framework-article__content .page-hero-model {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.framework-article__footer:empty {
+  display: none;
+}
+
+@media (max-width: 1279px) {
+  .frameworks-index__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .frameworks-index__masthead,
+  .framework-article__masthead {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 52rem;
+  }
+
+  .frameworks-index__visual,
+  .framework-article__masthead-visual {
+    max-width: 40rem;
+  }
+
+  .frameworks-index__summary dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frameworks-index__boundary-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .framework-article__content > .site-shell,
+  .framework-article__content > .band > .site-shell {
+    max-width: 52rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .frameworks-index__masthead,
+  .framework-article__masthead {
+    gap: 1.75rem;
+    padding-block: 2rem 3.75rem;
+  }
+
+  .frameworks-index h1,
+  .framework-article__masthead h1 {
+    font-size: clamp(2.15rem, 10.25vw, 3.7rem);
+  }
+
+  .frameworks-index__masthead-copy > p {
+    margin-top: 1.5rem;
+  }
+
+  .frameworks-index__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .frameworks-index__actions .btn {
+    justify-content: center;
+    min-height: 2.75rem;
+    white-space: normal;
+  }
+
+  .frameworks-index__summary dl,
+  .frameworks-index__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .frameworks-index__summary dl {
+    gap: 0;
+    padding-block: 0.5rem;
+  }
+
+  .frameworks-index__summary dl > div {
+    border-bottom: 1px solid var(--instrument-grid);
+    padding: 0.8rem 0;
+  }
+
+  .frameworks-index__summary dl > div:last-child {
+    border-bottom: 0;
+  }
+
+  .frameworks-index__listing,
+  .frameworks-index__boundary {
+    padding-block: 3.5rem;
+  }
+
+  .framework-index-card,
+  .frameworks-index__evidence-card,
+  .frameworks-index__commercial-boundary {
+    min-height: 0;
+    padding: 1.25rem;
+  }
+
+  .frameworks-index__evidence-card h2,
+  .frameworks-index__commercial-boundary h2 {
+    font-size: 1.75rem;
+  }
+
+  .frameworks-index__commercial-boundary > .btn {
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .framework-article__content > .site-shell,
+  .framework-article__content > .band > .site-shell {
+    padding-block: 3.5rem;
+  }
+
+  .framework-article__content .ordered-card,
+  .framework-article__content .ordered-card-strong {
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .framework-index-card {
+    transition: none;
+  }
+}

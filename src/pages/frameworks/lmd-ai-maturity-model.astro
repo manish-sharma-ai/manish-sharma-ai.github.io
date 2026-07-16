@@ -1,5 +1,6 @@
 ---
 import Badge from "@components/Badge.astro";
+import FrameworkArticle from "@components/FrameworkArticle.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
@@ -93,21 +94,21 @@ const stages = [
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-maturity-model" jsonLd={jsonLd}>
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-    <div class="max-w-4xl">
+  <FrameworkArticle title={title}>
+    <Fragment slot="eyebrow">
       <div class="flex flex-wrap gap-2">
         <Badge>Working framework</Badge>
         <Badge tone="steel">Markdown available</Badge>
         <Badge tone="laser">Decision-support only</Badge>
       </div>
-      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      <p class="mt-6 text-xl leading-9 text-slate-200">
+    </Fragment>
+    <Fragment slot="summary">
+      <p class="framework-article__subtitle">
         A six-level model for moving from manual LMD observation to sensor recording, offline analysis, real-time decision support, semi-closed-loop correction, and validated closed-loop control.
       </p>
-      <p class="mt-5 text-lg leading-8 text-slate-300">{DISCLAIMER}</p>
-    </div>
-    <PageHeroVisual variant="maturity" class="hidden lg:block" />
-  </section>
+      <p>{DISCLAIMER}</p>
+    </Fragment>
+    <Fragment slot="visual"><PageHeroVisual variant="maturity" /></Fragment>
 
   <section class="band py-8">
     <div class="site-shell">
@@ -181,4 +182,5 @@ const stages = [
       </div>
     </div>
   </section>
+  </FrameworkArticle>
 </Layout>

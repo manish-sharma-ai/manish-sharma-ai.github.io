@@ -1,0 +1,27 @@
+---
+import Badge from "@components/Badge.astro";
+
+interface Props {
+  title: string;
+  contentType?: string;
+  hasMastheadVisual?: boolean;
+}
+
+const { title, contentType = "Working framework", hasMastheadVisual = true } = Astro.props;
+---
+
+<article class:list={["framework-article", { "framework-article--has-masthead-visual": hasMastheadVisual }]}>
+  <header class="site-shell framework-article__masthead">
+    <div class="framework-article__masthead-copy">
+      <slot name="eyebrow"><Badge>{contentType}</Badge></slot>
+      <h1>{title}</h1>
+      <div class="framework-article__summary"><slot name="summary" /></div>
+      <slot name="metadata" />
+    </div>
+    {hasMastheadVisual && <div class="framework-article__masthead-visual"><slot name="visual" /></div>}
+  </header>
+
+  <div class="framework-article__content"><slot /></div>
+
+  <footer class="site-shell framework-article__footer"><slot name="footer" /></footer>
+</article>

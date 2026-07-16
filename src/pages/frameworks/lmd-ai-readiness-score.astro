@@ -1,6 +1,7 @@
 ---
 import AIReadinessCalculator from "@components/AIReadinessCalculator";
 import Badge from "@components/Badge.astro";
+import FrameworkArticle from "@components/FrameworkArticle.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import ProcessLoop from "@components/ProcessLoop.astro";
@@ -66,20 +67,20 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/frameworks/lmd-ai-readiness-score" jsonLd={jsonLd}>
-  <section class="site-shell grid gap-10 section-y lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-    <div class="max-w-4xl">
+  <FrameworkArticle title={title}>
+    <Fragment slot="eyebrow">
       <div class="flex flex-wrap gap-2">
         <Badge>Working framework</Badge>
         <Badge tone="laser">Interactive score checker</Badge>
       </div>
-      <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      <p class="mt-5 text-2xl font-bold text-cyan-100">Is an LMD workflow ready for useful AI-assisted monitoring?</p>
-      <p class="mt-6 text-lg leading-8 text-slate-300">
+    </Fragment>
+    <Fragment slot="summary">
+      <p class="framework-article__subtitle">Is an LMD workflow ready for useful AI-assisted monitoring?</p>
+      <p>
         Useful AI in Laser Metal Deposition depends on traceable process data, inspection outcomes, labels, repeated examples, and feedback loops. The score below makes those foundations visible before model talk starts.
       </p>
-    </div>
-    <PageHeroVisual variant="readiness" class="hidden lg:block" />
-  </section>
+    </Fragment>
+    <Fragment slot="visual"><PageHeroVisual variant="readiness" /></Fragment>
 
   <section class="band section-y">
     <div class="site-shell">
@@ -131,4 +132,5 @@ const jsonLd = {
       <SourceLinks links={relatedLinks} />
     </div>
   </section>
+  </FrameworkArticle>
 </Layout>
