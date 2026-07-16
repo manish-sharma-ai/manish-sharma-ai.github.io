@@ -43,7 +43,8 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/decision-map" jsonLd={jsonLd}>
-  <section class="site-shell section-y">
+  <div class="decision-map-page">
+  <section class="decision-map-page__masthead site-shell section-y">
     <div class="max-w-5xl">
       <div class="flex flex-wrap gap-2">
         <Badge>LMD Decision Map</Badge>
@@ -108,4 +109,5 @@ const jsonLd = {
       <SourceLinks links={referenceLinks} />
     </div>
   </section>
+  </div>
 </Layout>

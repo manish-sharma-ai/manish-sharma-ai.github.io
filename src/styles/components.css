@@ -6500,3 +6500,250 @@ input:hover {
     transition: none;
   }
 }
+
+/* Dark Instrumentation: interactive Decision Brief route surfaces. */
+.brief-template-page,
+.decision-map-page,
+.demo-page {
+  color: var(--instrument-text);
+}
+
+.brief-template-page__masthead,
+.decision-map-page__masthead,
+.demo-page__masthead {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    linear-gradient(180deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    radial-gradient(circle at 78% 22%, color-mix(in srgb, var(--instrument-copper) 14%, transparent), transparent 34%);
+}
+
+.brief-template-page__masthead::after,
+.decision-map-page__masthead::after,
+.demo-page__masthead::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--instrument-copper), transparent 62%);
+  content: "";
+  pointer-events: none;
+}
+
+.brief-template-page__masthead h1,
+.decision-map-page__masthead h1,
+.demo-page__masthead h1 {
+  color: var(--instrument-text);
+  letter-spacing: -0.055em;
+}
+
+.brief-template-page__masthead .text-slate-300,
+.decision-map-page__masthead .text-slate-300,
+.demo-page__masthead .text-slate-300 {
+  color: var(--instrument-text-soft);
+}
+
+.brief-template-page > .band,
+.decision-map-page > .band,
+.demo-page > .band {
+  border-block: 1px solid var(--instrument-border);
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    var(--instrument-surface);
+}
+
+.brief-template-page .ordered-card,
+.brief-template-page .ordered-card-strong,
+.brief-template-page .link-card,
+.decision-map-page .ordered-card,
+.decision-map-page .ordered-card-strong,
+.decision-map-page .link-card,
+.demo-page .ordered-card,
+.demo-page .ordered-card-strong,
+.demo-page .link-card {
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  box-shadow: none;
+}
+
+.brief-template-page .ordered-card-strong,
+.decision-map-page .ordered-card-strong,
+.demo-page .ordered-card-strong {
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-copper) 7%, transparent), transparent 42%),
+    var(--instrument-technical);
+}
+
+.brief-template-page .ordered-card h2,
+.brief-template-page .ordered-card-strong h2,
+.brief-template-page .ordered-card h3,
+.brief-template-page .ordered-card-strong h3,
+.decision-map-page .ordered-card h2,
+.decision-map-page .ordered-card-strong h2,
+.decision-map-page .ordered-card h3,
+.decision-map-page .ordered-card-strong h3,
+.demo-page .ordered-card h2,
+.demo-page .ordered-card-strong h2,
+.demo-page .ordered-card h3,
+.demo-page .ordered-card-strong h3 {
+  color: var(--instrument-text);
+  letter-spacing: -0.03em;
+}
+
+.brief-template-page .result-card,
+.decision-map-page .result-card,
+.demo-page .result-card {
+  border-color: var(--instrument-border);
+  background: color-mix(in srgb, var(--instrument-technical) 88%, black);
+  color: var(--instrument-text-soft);
+}
+
+.brief-template-page .result-card.text-white,
+.decision-map-page .result-card.text-white,
+.demo-page .result-card.text-white {
+  color: var(--instrument-text);
+}
+
+.brief-template-page .result-card--warning,
+.decision-map-page .result-card--warning,
+.demo-page .result-card--warning {
+  border-color: color-mix(in srgb, var(--instrument-signal) 56%, var(--instrument-border));
+  background: color-mix(in srgb, var(--instrument-signal) 9%, var(--instrument-technical));
+  color: var(--instrument-text);
+}
+
+.brief-template-page .metric-label,
+.decision-map-page .metric-label,
+.demo-page .metric-label {
+  color: var(--instrument-signal);
+}
+
+.brief-template-page pre,
+.demo-page pre {
+  border: 1px solid var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  color: var(--instrument-text-soft);
+  box-shadow: none;
+}
+
+.brief-template-page [class*="rounded-lg"][class*="bg-black"],
+.demo-page [class*="rounded-lg"][class*="bg-black"] {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+}
+
+.decision-map-page .tool-panel {
+  border-color: var(--instrument-border);
+  border-radius: calc(var(--control-radius) + 0.25rem);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--instrument-copper) 6%, transparent), transparent 42%),
+    var(--instrument-surface);
+  box-shadow: none;
+}
+
+.decision-map-page .tool-panel::before {
+  background:
+    linear-gradient(90deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem,
+    linear-gradient(180deg, var(--instrument-grid) 1px, transparent 1px) 0 0 / 4rem 4rem;
+  opacity: 0.32;
+}
+
+.decision-map-page .tool-panel > aside {
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  overflow-x: hidden;
+}
+
+.decision-map-page .tool-panel > :first-child {
+  overflow-x: hidden;
+}
+
+.decision-map-page .tool-field {
+  border-color: var(--instrument-border);
+  border-radius: var(--control-radius);
+  background: var(--instrument-technical);
+  color: var(--instrument-text);
+}
+
+.decision-map-page .tool-field:focus-within {
+  border-color: var(--instrument-signal);
+  background: color-mix(in srgb, var(--instrument-copper) 8%, var(--instrument-technical));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--instrument-copper) 16%, transparent);
+}
+
+.decision-map-page .tool-field select {
+  border-color: var(--instrument-border);
+  background: color-mix(in srgb, var(--instrument-surface) 58%, black);
+  color: var(--instrument-text);
+}
+
+.decision-map-page .tool-input-grid {
+  grid-template-columns: 1fr;
+}
+
+.brief-template-page a:focus-visible,
+.brief-template-page button:focus-visible,
+.brief-template-page summary:focus-visible,
+.decision-map-page a:focus-visible,
+.decision-map-page button:focus-visible,
+.decision-map-page select:focus-visible,
+.demo-page a:focus-visible,
+.demo-page button:focus-visible {
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  .brief-template-page__masthead,
+  .decision-map-page__masthead,
+  .demo-page__masthead {
+    background-size: 3.5rem 3.5rem, 3.5rem 3.5rem, auto;
+  }
+
+  .decision-map-page .tool-panel > aside {
+    max-height: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .brief-template-page__masthead,
+  .decision-map-page__masthead,
+  .demo-page__masthead {
+    padding-block: 2rem 3.75rem;
+  }
+
+  .brief-template-page__masthead h1,
+  .decision-map-page__masthead h1,
+  .demo-page__masthead h1 {
+    font-size: clamp(2.2rem, 10.5vw, 3.65rem);
+  }
+
+  .brief-template-page .btn,
+  .decision-map-page .btn,
+  .demo-page .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .decision-map-page .tool-panel {
+    padding: 1rem;
+  }
+
+  .decision-map-page .tool-panel > aside {
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brief-template-page *,
+  .decision-map-page *,
+  .demo-page * {
+    transition-duration: 0.01ms !important;
+  }
+}
