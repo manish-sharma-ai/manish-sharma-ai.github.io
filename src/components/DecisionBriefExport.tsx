@@ -1,6 +1,6 @@
 import { Check, Clipboard, Download, Mail, Printer } from "lucide-react";
 import type { ReactNode } from "react";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { COPY_UNAVAILABLE_MESSAGE, copyText } from "../lib/clipboard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
@@ -38,6 +38,7 @@ export default function DecisionBriefExport({
   matchingToolLabel = "Open matching tool",
   compact = false
 }: DecisionBriefExportProps) {
+  const headingId = useId();
   const [copied, setCopied] = useState<CopyKey>(null);
   const [copyError, setCopyError] = useState<string | null>(null);
   const markdown = formatTechnicalDecisionBrief(brief);
@@ -75,8 +76,8 @@ export default function DecisionBriefExport({
           {copyError}
         </p>
       )}
-      <section aria-labelledby="brief-copy-actions">
-        <h4 id="brief-copy-actions" className="metric-label mb-2">Copy and export</h4>
+      <section aria-labelledby={`${headingId}-brief-copy-actions`}>
+        <h4 id={`${headingId}-brief-copy-actions`} className="metric-label mb-2">Copy and export</h4>
         <ul className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
           <ActionItem>
             <ActionButton
@@ -134,8 +135,8 @@ export default function DecisionBriefExport({
       </section>
 
       {!compact && (
-        <section className="mt-4" aria-labelledby="brief-next-actions">
-          <h4 id="brief-next-actions" className="metric-label mb-2">Next actions</h4>
+        <section className="mt-4" aria-labelledby={`${headingId}-brief-next-actions`}>
+          <h4 id={`${headingId}-brief-next-actions`} className="metric-label mb-2">Next actions</h4>
           <p className="mb-3 text-xs font-bold leading-5 text-slate-400">
             Review before sending. Remove confidential data if needed.
           </p>
