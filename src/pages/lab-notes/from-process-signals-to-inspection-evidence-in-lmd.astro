@@ -1,8 +1,9 @@
 ---
-import NoteBox from "@components/NoteBox.astro";
-import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "From Process Signals to Inspection Evidence in LMD";
@@ -22,42 +23,45 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/lab-notes/from-process-signals-to-inspection-evidence-in-lmd" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-3xl">
-      <p class="metric-label">Lab note · 2026-05-09</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      </div>
-      <PageHeroVisual variant="evidence" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">
-          Process signals become useful when they are linked to inspection evidence and measured outcomes.
-        </NoteBox>
-        <NoteBox title="Common mistake" tone="laser">
-          Treating a monitoring alert as the defect itself, instead of a signal that should route attention toward validation.
-        </NoteBox>
-        <NoteBox title="Practical takeaway" tone="steel">
-          Build a chain: signal, anomaly, suspected risk, inspection method, acceptance criterion, expert decision.
-        </NoteBox>
-      </div>
-      <div class="prose-lab">
-        <p>
-          In LMD, process signals can include images, videos, pyrometry, machine logs, parameter histories, operator notes, and geometry measurements. AI can help organize these signals and detect unusual patterns.
-        </p>
-        <p>
-          The useful question is not whether a signal looks unusual. The useful question is what physical risk the signal may represent and which inspection method can confirm or reject that risk.
-        </p>
-        <p>
-          A practical workflow links monitoring signals to suspected failure modes, then links those failure modes to dimensional inspection, NDT, metallography, hardness, mechanical testing, or functional testing.
-        </p>
-      </div>
-    </div>
-    <LabNoteFooter links={[
+  <LabNoteArticle
+    title={title}
+    description={description}
+    railOrder="before"
+    supportingLabel="Lab note takeaways"
+    hasMastheadVisual
+  >
+    <p slot="eyebrow" class="metric-label">Lab note · 2026-05-09</p>
+    <PageHeroVisual slot="visual" variant="evidence" class="hidden lg:block" />
+
+    <Fragment slot="supporting">
+      <NoteBox title="Short answer">
+        Process signals become useful when they are linked to inspection evidence and measured outcomes.
+      </NoteBox>
+      <NoteBox title="Common mistake" tone="laser">
+        Treating a monitoring alert as the defect itself, instead of a signal that should route attention toward validation.
+      </NoteBox>
+      <NoteBox title="Practical takeaway" tone="steel">
+        Build a chain: signal, anomaly, suspected risk, inspection method, acceptance criterion, expert decision.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      In LMD, process signals can include images, videos, pyrometry, machine logs, parameter histories, operator notes, and geometry measurements. AI can help organize these signals and detect unusual patterns.
+    </p>
+    <p>
+      The useful question is not whether a signal looks unusual. The useful question is what physical risk the signal may represent and which inspection method can confirm or reject that risk.
+    </p>
+    <p>
+      A practical workflow links monitoring signals to suspected failure modes, then links those failure modes to dimensional inspection, NDT, metallography, hardness, mechanical testing, or functional testing.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
         { label: "LMD Failure Atlas", href: "/frameworks/lmd-failure-atlas" },
         { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
         { label: "Melt-pool monitoring glossary", href: "/glossary/melt-pool-monitoring" }
-      ]} />
-  </article>
+      ]}
+    />
+  </LabNoteArticle>
 </Layout>

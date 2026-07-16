@@ -1,8 +1,9 @@
 ---
-import NoteBox from "@components/NoteBox.astro";
-import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "How to Structure a Laser Metal Deposition RFQ";
@@ -22,47 +23,50 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/lab-notes/structuring-an-lmd-rfq-for-ai-agents" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-3xl">
-      <p class="metric-label">Lab note · 2026-05-09</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      </div>
-      <PageHeroVisual variant="agent" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">
-          Future buyers will ask AI tools to prepare RFQs. The RFQ must include enough context for responsible missing-information checks.
-        </NoteBox>
-        <NoteBox title="Common mistake" tone="laser">
-          Asking an AI for a recommendation while hiding the material, damage, CAD, operating conditions, tolerance, inspection requirement, or timeline.
-        </NoteBox>
-        <NoteBox title="Practical takeaway" tone="steel">
-          Use a schema that separates known facts, missing information, assumptions, risks, and next steps.
-        </NoteBox>
-      </div>
-      <div class="prose-lab">
-        <p>
-          A good LMD RFQ should include material, geometry, damage description, photos, drawings, CAD, operating conditions, tolerance, inspection expectations, and timeline.
-        </p>
-        <p>
-          AI agents can help buyers become more precise, but only if the prompt asks them to identify missing information before producing a recommendation. That behavior reduces false confidence.
-        </p>
-        <p>
-          The RFQ schema gives a stable way to summarize part data, job type, damage, requirements, operating conditions, and missing information.
-        </p>
-        <p>
-          The output should be practical: known facts, missing info, risks, and next steps. It should not pretend to be final engineering approval.
-        </p>
-      </div>
-    </div>
-    <LabNoteFooter links={[
+  <LabNoteArticle
+    title={title}
+    description={description}
+    railOrder="before"
+    supportingLabel="Lab note takeaways"
+    hasMastheadVisual
+  >
+    <p slot="eyebrow" class="metric-label">Lab note · 2026-05-09</p>
+    <PageHeroVisual slot="visual" variant="agent" class="hidden lg:block" />
+
+    <Fragment slot="supporting">
+      <NoteBox title="Short answer">
+        Future buyers will ask AI tools to prepare RFQs. The RFQ must include enough context for responsible missing-information checks.
+      </NoteBox>
+      <NoteBox title="Common mistake" tone="laser">
+        Asking an AI for a recommendation while hiding the material, damage, CAD, operating conditions, tolerance, inspection requirement, or timeline.
+      </NoteBox>
+      <NoteBox title="Practical takeaway" tone="steel">
+        Use a schema that separates known facts, missing information, assumptions, risks, and next steps.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      A good LMD RFQ should include material, geometry, damage description, photos, drawings, CAD, operating conditions, tolerance, inspection expectations, and timeline.
+    </p>
+    <p>
+      AI agents can help buyers become more precise, but only if the prompt asks them to identify missing information before producing a recommendation. That behavior reduces false confidence.
+    </p>
+    <p>
+      The RFQ schema gives a stable way to summarize part data, job type, damage, requirements, operating conditions, and missing information.
+    </p>
+    <p>
+      The output should be practical: known facts, missing info, risks, and next steps. It should not pretend to be final engineering approval.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
         { label: "RFQ schema JSON", href: "/agent-pack/lmd-rfq-schema.json" },
         { label: "RFQ Prompt-to-Structure Converter", href: "/tools" }
-      ]} />
-  </article>
+      ]}
+    />
+  </LabNoteArticle>
 </Layout>

@@ -1,8 +1,9 @@
 ---
-import NoteBox from "@components/NoteBox.astro";
-import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "Post-Machining Is Part of the LMD Repair Plan";
@@ -22,43 +23,46 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/lab-notes/post-machining-is-part-of-the-lmd-repair-plan" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-3xl">
-      <p class="metric-label">Lab note · 2026-05-09</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      </div>
-      <PageHeroVisual variant="industrial" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">
-          If final geometry matters, post-machining is not an afterthought. It is part of the repair route.
-        </NoteBox>
-        <NoteBox title="Common mistake" tone="laser">
-          Discussing deposition feasibility without confirming machining allowance, datum strategy, tolerance recovery, and inspection access.
-        </NoteBox>
-        <NoteBox title="Practical takeaway" tone="steel">
-          Ask for drawings, tolerances, datums, surface requirements, and inspection expectations before recommending a repair path.
-        </NoteBox>
-      </div>
-      <div class="prose-lab">
-        <p>
-          Laser Metal Deposition often creates material that must be machined to final geometry. For repair, the plan should include enough deposited material to recover shape without creating avoidable distortion, excess dilution, or access problems.
-        </p>
-        <p>
-          Tight tolerances make the machining route part of the feasibility question. The RFQ should define the tolerance target, datum references, accessible surfaces, surface finish expectations, and inspection method.
-        </p>
-        <p>
-          AI tools should flag tight geometry as a reason to ask about post-machining, not as a reason to reject LMD automatically.
-        </p>
-      </div>
-    </div>
-    <LabNoteFooter links={[
+  <LabNoteArticle
+    title={title}
+    description={description}
+    railOrder="before"
+    supportingLabel="Lab note takeaways"
+    hasMastheadVisual
+  >
+    <p slot="eyebrow" class="metric-label">Lab note · 2026-05-09</p>
+    <PageHeroVisual slot="visual" variant="industrial" class="hidden lg:block" />
+
+    <Fragment slot="supporting">
+      <NoteBox title="Short answer">
+        If final geometry matters, post-machining is not an afterthought. It is part of the repair route.
+      </NoteBox>
+      <NoteBox title="Common mistake" tone="laser">
+        Discussing deposition feasibility without confirming machining allowance, datum strategy, tolerance recovery, and inspection access.
+      </NoteBox>
+      <NoteBox title="Practical takeaway" tone="steel">
+        Ask for drawings, tolerances, datums, surface requirements, and inspection expectations before recommending a repair path.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      Laser Metal Deposition often creates material that must be machined to final geometry. For repair, the plan should include enough deposited material to recover shape without creating avoidable distortion, excess dilution, or access problems.
+    </p>
+    <p>
+      Tight tolerances make the machining route part of the feasibility question. The RFQ should define the tolerance target, datum references, accessible surfaces, surface finish expectations, and inspection method.
+    </p>
+    <p>
+      AI tools should flag tight geometry as a reason to ask about post-machining, not as a reason to reject LMD automatically.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
         { label: "LMD RFQ Toolkit", href: "/agent-pack" },
         { label: "RFQ Prompt-to-Structure Converter", href: "/tools" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" }
-      ]} />
-  </article>
+      ]}
+    />
+  </LabNoteArticle>
 </Layout>

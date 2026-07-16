@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  description: string;
+  date: string;
+  tags: string[];
+}
+
+const { title, href, description, date, tags } = Astro.props;
+---
+
+<li class="lab-notes-index__item">
+  <article class="lab-note-index-card__article">
+    <a href={href} class="lab-note-index-card" aria-label={`Read lab note: ${title}`}>
+      <span class="lab-note-index-card__metadata">
+        <span>Lab note</span>
+        <time datetime={date}>{date}</time>
+      </span>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <span class="lab-note-index-card__tags" aria-label="Topics">
+        {tags.map((tag) => <span class="lab-note-index-card__tag">{tag}</span>)}
+      </span>
+    </a>
+  </article>
+</li>

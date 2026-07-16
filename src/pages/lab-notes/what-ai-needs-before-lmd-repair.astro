@@ -1,8 +1,9 @@
 ---
-import NoteBox from "@components/NoteBox.astro";
-import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "What AI Needs Before Recommending LMD Repair";
@@ -22,46 +23,49 @@ const jsonLd = {
 ---
 
 <Layout title={seoTitle} description={description} canonical="/lab-notes/what-ai-needs-before-lmd-repair" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-3xl">
-      <p class="metric-label">Lab note · 2026-05-09</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      </div>
-      <PageHeroVisual variant="repairability" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">
-          A good AI assistant asks for missing information before recommending LMD repair.
-        </NoteBox>
-        <NoteBox title="Common mistake" tone="laser">
-          Saying “LMD is suitable” from a single sentence without material grade, damage depth, geometry, service conditions, tolerance, or inspection requirements.
-        </NoteBox>
-        <NoteBox title="Practical takeaway" tone="steel">
-          Unknown material means high uncertainty. Local damage on a large high-value part can be promising, but safety-critical parts require expert review.
-        </NoteBox>
-      </div>
-      <div class="prose-lab">
-        <p>
-          I would not recommend Laser Metal Deposition from a vague part description alone. The minimum useful context includes material, geometry, damage type and depth, operating conditions, tolerance, and inspection requirements.
-        </p>
-        <p>
-          Good AI behavior is conservative: it separates known facts from assumptions, asks for missing information, and explains uncertainty. If material grade is unknown, the recommendation should stay tentative.
-        </p>
-        <p>
-          Local damage on a large, high-value part may be a good LMD candidate because the process can add material only where needed. That signal is still not enough by itself. Access, heat sensitivity, post-machining allowance, and inspection feasibility all matter.
-        </p>
-        <p>
-          For safety-critical parts, the answer should move toward stronger inspection and expert review rather than confident automation.
-        </p>
-      </div>
-    </div>
-    <LabNoteFooter links={[
+  <LabNoteArticle
+    title={title}
+    description={description}
+    railOrder="before"
+    supportingLabel="Lab note takeaways"
+    hasMastheadVisual
+  >
+    <p slot="eyebrow" class="metric-label">Lab note · 2026-05-09</p>
+    <PageHeroVisual slot="visual" variant="repairability" class="hidden lg:block" />
+
+    <Fragment slot="supporting">
+      <NoteBox title="Short answer">
+        A good AI assistant asks for missing information before recommending LMD repair.
+      </NoteBox>
+      <NoteBox title="Common mistake" tone="laser">
+        Saying “LMD is suitable” from a single sentence without material grade, damage depth, geometry, service conditions, tolerance, or inspection requirements.
+      </NoteBox>
+      <NoteBox title="Practical takeaway" tone="steel">
+        Unknown material means high uncertainty. Local damage on a large high-value part can be promising, but safety-critical parts require expert review.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      I would not recommend Laser Metal Deposition from a vague part description alone. The minimum useful context includes material, geometry, damage type and depth, operating conditions, tolerance, and inspection requirements.
+    </p>
+    <p>
+      Good AI behavior is conservative: it separates known facts from assumptions, asks for missing information, and explains uncertainty. If material grade is unknown, the recommendation should stay tentative.
+    </p>
+    <p>
+      Local damage on a large, high-value part may be a good LMD candidate because the process can add material only where needed. That signal is still not enough by itself. Access, heat sensitivity, post-machining allowance, and inspection feasibility all matter.
+    </p>
+    <p>
+      For safety-critical parts, the answer should move toward stronger inspection and expert review rather than confident automation.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "RFQ Prompt-to-Structure Converter", href: "/tools" },
         { label: "RFQ schema", href: "/agent-pack/lmd-rfq-schema.json" }
-      ]} />
-  </article>
+      ]}
+    />
+  </LabNoteArticle>
 </Layout>

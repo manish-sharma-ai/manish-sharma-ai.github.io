@@ -1,5 +1,6 @@
 ---
 import Badge from "@components/Badge.astro";
+import LabNoteCard from "@components/LabNoteCard.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { LAB_NOTES } from "@data/site";
@@ -10,33 +11,25 @@ const description =
 ---
 
 <Layout title={title} description={description} canonical="/lab-notes">
-  <section class="site-shell section-y">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-4xl">
-        <Badge>Inspection-aware notes</Badge>
-        <Badge tone="steel" class="ml-2">Applied LMD / DED notes</Badge>
-        <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">Lab Notes</h1>
-        <p class="mt-6 text-lg leading-8 text-slate-300">
+  <section class="site-shell section-y lab-notes-index">
+    <header class="lab-notes-index__masthead">
+      <div class="lab-notes-index__masthead-copy">
+        <div class="lab-notes-index__context">
+          <Badge>Inspection-aware notes</Badge>
+          <Badge tone="steel">Applied LMD / DED notes</Badge>
+        </div>
+        <h1>Lab Notes</h1>
+        <p class="lab-notes-index__intro">
           Concise public notes on LMD/DED decisions, process monitoring boundaries, repair RFQs, and manufacturing route selection.
         </p>
       </div>
-      <PageHeroVisual variant="notes" class="hidden lg:block" />
-    </div>
-    <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-      {
-        LAB_NOTES.map((note) => (
-          <a href={note.href} class="ordered-card-strong card-hover grid min-h-[20rem] content-between p-6">
-            <div>
-            <p class="metric-label">{note.date}</p>
-            <h2 class="mt-3 text-2xl font-black text-white">{note.title}</h2>
-            <p class="mt-4 text-sm leading-6 text-slate-400">{note.description}</p>
-            </div>
-            <div class="mt-5 flex flex-wrap gap-2">
-              {note.tags.map((tag) => <span class="ordered-card px-2.5 py-1 text-xs font-bold text-slate-300">{tag}</span>)}
-            </div>
-          </a>
-        ))
-      }
-    </div>
+      <PageHeroVisual variant="notes" class="lab-notes-index__visual hidden lg:block" />
+    </header>
+
+    <section class="lab-notes-index__collection" aria-label="Lab Notes">
+      <ul class="lab-notes-index__list">
+        {LAB_NOTES.map((note) => <LabNoteCard {...note} />)}
+      </ul>
+    </section>
   </section>
 </Layout>

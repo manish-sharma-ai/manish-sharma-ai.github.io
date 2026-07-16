@@ -1,8 +1,9 @@
 ---
-import NoteBox from "@components/NoteBox.astro";
-import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "LMD vs SLM: Decision Signals";
@@ -21,46 +22,49 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/lmd-vs-slm-decision-signals" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-3xl">
-      <p class="metric-label">Lab note · 2026-05-09</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      </div>
-      <PageHeroVisual variant="lmd" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">
-          LMD often fits large parts, local material addition, repair, cladding, near-net-shape builds, and hybrid manufacturing. SLM/LPBF often fits small complex geometry, internal channels, fine detail, and powder-bed design freedom.
-        </NoteBox>
-        <NoteBox title="Common mistake" tone="laser">
-          Treating either process as universally better. The part, material, tolerance, economics, post-processing, and inspection route decide.
-        </NoteBox>
-        <NoteBox title="Practical takeaway" tone="steel">
-          Select the process after mapping size, geometry, local deposition need, tolerance, internal features, and validation route.
-        </NoteBox>
-      </div>
-      <div class="prose-lab">
-        <p>
-          LMD is often attractive for large parts, local material addition, repair, cladding, near-net-shape builds, and hybrid manufacturing. Its value often appears when only a region needs material or when the part is too large or expensive to remake from scratch.
-        </p>
-        <p>
-          SLM/LPBF is often attractive for small complex geometry, internal channels, fine detail, and powder-bed design freedom. It can be powerful when the geometry is designed for the process.
-        </p>
-        <p>
-          Neither process is automatically superior. Context decides. Tight tolerances, surface finish, heat sensitivity, support strategy, post-machining, inspection, and cost all shape the decision.
-        </p>
-        <p>
-          The practical comparison should not stop at the printing step. Post-processing and inspection matter as much as the deposition or build route.
-        </p>
-      </div>
-    </div>
-    <LabNoteFooter links={[
+  <LabNoteArticle
+    title={title}
+    description={description}
+    railOrder="before"
+    supportingLabel="Lab note takeaways"
+    hasMastheadVisual
+  >
+    <p slot="eyebrow" class="metric-label">Lab note · 2026-05-09</p>
+    <PageHeroVisual slot="visual" variant="lmd" class="hidden lg:block" />
+
+    <Fragment slot="supporting">
+      <NoteBox title="Short answer">
+        LMD often fits large parts, local material addition, repair, cladding, near-net-shape builds, and hybrid manufacturing. SLM/LPBF often fits small complex geometry, internal channels, fine detail, and powder-bed design freedom.
+      </NoteBox>
+      <NoteBox title="Common mistake" tone="laser">
+        Treating either process as universally better. The part, material, tolerance, economics, post-processing, and inspection route decide.
+      </NoteBox>
+      <NoteBox title="Practical takeaway" tone="steel">
+        Select the process after mapping size, geometry, local deposition need, tolerance, internal features, and validation route.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      LMD is often attractive for large parts, local material addition, repair, cladding, near-net-shape builds, and hybrid manufacturing. Its value often appears when only a region needs material or when the part is too large or expensive to remake from scratch.
+    </p>
+    <p>
+      SLM/LPBF is often attractive for small complex geometry, internal channels, fine detail, and powder-bed design freedom. It can be powerful when the geometry is designed for the process.
+    </p>
+    <p>
+      Neither process is automatically superior. Context decides. Tight tolerances, surface finish, heat sensitivity, support strategy, post-machining, inspection, and cost all shape the decision.
+    </p>
+    <p>
+      The practical comparison should not stop at the printing step. Post-processing and inspection matter as much as the deposition or build route.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
         { label: "LMD vs SLM Advisor", href: "/tools" },
         { label: "LMD Repairability Index", href: "/frameworks/lmd-repairability-index" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "Directed Energy Deposition glossary", href: "/glossary/directed-energy-deposition" }
-      ]} />
-  </article>
+      ]}
+    />
+  </LabNoteArticle>
 </Layout>

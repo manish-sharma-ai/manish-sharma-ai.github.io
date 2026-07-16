@@ -1,7 +1,9 @@
 ---
 import Badge from "@components/Badge.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
 import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
 import { resolveExafuseLink } from "../../config/externalLinks";
 import { DISCLAIMER, PERSON, SITE } from "@data/site";
 
@@ -22,6 +24,9 @@ const sections = [
   ["Boundary disclaimer", DISCLAIMER]
 ];
 
+const boundarySection = sections.find(([heading]) => heading === "Boundary disclaimer");
+const readingSections = sections.filter(([heading]) => heading !== "Boundary disclaimer");
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -34,21 +39,26 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/lab-notes/traceability-is-a-product-feature" jsonLd={jsonLd}>
-  <article class="site-shell section-y">
-    <div class="max-w-3xl">
-      <Badge>Lab note</Badge>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      <p class="mt-6 text-lg leading-8 text-slate-300">{description}</p>
-    </div>
-    <div class="prose-lab mt-10">
-      {sections.map(([heading, text]) => (
-        <>
+  <LabNoteArticle title={title} description={description} supportingLabel="Evidence boundary">
+    <Fragment slot="eyebrow"><Badge>Lab note</Badge></Fragment>
+
+    {readingSections.map(([heading, text]) => (
+      <section class="lab-note-article__section">
           <h2>{heading}</h2>
           <p>{text}</p>
-        </>
-      ))}
-    </div>
+      </section>
+    ))}
+
+    {boundarySection && (
+      <Fragment slot="supporting">
+        <NoteBox title={boundarySection[0]} tone="laser">
+          {boundarySection[1]}
+        </NoteBox>
+      </Fragment>
+    )}
+
     <LabNoteFooter
+      slot="footer"
       links={[
         { label: "LMD-AI Readiness Score", href: "/frameworks/lmd-ai-readiness-score" },
         { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
@@ -58,5 +68,5 @@ const jsonLd = {
         { label: exafuseRfqLink.label, href: exafuseRfqLink.href }
       ]}
     />
-  </article>
+  </LabNoteArticle>
 </Layout>

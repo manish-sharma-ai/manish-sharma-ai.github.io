@@ -1,8 +1,9 @@
 ---
-import NoteBox from "@components/NoteBox.astro";
-import Layout from "@layouts/Layout.astro";
-import PageHeroVisual from "@components/PageHeroVisual.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
 import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { PERSON, SITE } from "@data/site";
 
 const title = "DED-LB/M Terms That Should Not Be Mixed Up";
@@ -21,43 +22,46 @@ const jsonLd = {
 ---
 
 <Layout title={`${title} — Manish Sharma Lab`} description={description} canonical="/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up" jsonLd={jsonLd}>
-  <article class="site-shell py-16 md:py-20">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
-      <div class="max-w-3xl">
-      <p class="metric-label">Lab note · 2026-05-09</p>
-      <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
-      </div>
-      <PageHeroVisual variant="ded" class="hidden lg:block" />
-    </div>
-    <div class="mt-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
-      <div class="grid h-fit gap-4">
-        <NoteBox title="Short answer">
-          Keep process family, process route, monitoring signal, and quality evidence separate.
-        </NoteBox>
-        <NoteBox title="Common mistake" tone="laser">
-          Blending DED, LMD, laser cladding, SLM/LPBF, melt-pool monitoring, and certification into one fuzzy additive manufacturing answer.
-        </NoteBox>
-        <NoteBox title="Practical takeaway" tone="steel">
-          Clear terms make recommendations safer, more searchable, and easier for industrial buyers to evaluate.
-        </NoteBox>
-      </div>
-      <div class="prose-lab">
-        <p>
-          Directed Energy Deposition is a broader additive manufacturing category. Laser Metal Deposition can be understood as a laser-based metal DED route, often connected to the DED-LB/M term.
-        </p>
-        <p>
-          Laser cladding is often surface- or restoration-focused. SLM/LPBF is a powder-bed process with different geometry, support, tolerance, and post-processing implications.
-        </p>
-        <p>
-          Melt-pool monitoring is a process-awareness method, not a certificate. Certification or release decisions require inspection and validation evidence appropriate to the part risk.
-        </p>
-      </div>
-    </div>
-    <LabNoteFooter links={[
+  <LabNoteArticle
+    title={title}
+    description={description}
+    railOrder="before"
+    supportingLabel="Lab note takeaways"
+    hasMastheadVisual
+  >
+    <p slot="eyebrow" class="metric-label">Lab note · 2026-05-09</p>
+    <PageHeroVisual slot="visual" variant="ded" class="hidden lg:block" />
+
+    <Fragment slot="supporting">
+      <NoteBox title="Short answer">
+        Keep process family, process route, monitoring signal, and quality evidence separate.
+      </NoteBox>
+      <NoteBox title="Common mistake" tone="laser">
+        Blending DED, LMD, laser cladding, SLM/LPBF, melt-pool monitoring, and certification into one fuzzy additive manufacturing answer.
+      </NoteBox>
+      <NoteBox title="Practical takeaway" tone="steel">
+        Clear terms make recommendations safer, more searchable, and easier for industrial buyers to evaluate.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      Directed Energy Deposition is a broader additive manufacturing category. Laser Metal Deposition can be understood as a laser-based metal DED route, often connected to the DED-LB/M term.
+    </p>
+    <p>
+      Laser cladding is often surface- or restoration-focused. SLM/LPBF is a powder-bed process with different geometry, support, tolerance, and post-processing implications.
+    </p>
+    <p>
+      Melt-pool monitoring is a process-awareness method, not a certificate. Certification or release decisions require inspection and validation evidence appropriate to the part risk.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
         { label: "Directed Energy Deposition glossary", href: "/glossary/directed-energy-deposition" },
         { label: "Laser Metal Deposition glossary", href: "/glossary/laser-metal-deposition" },
         { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" },
         { label: "LMD vs SLM Decision Signals", href: "/lab-notes/lmd-vs-slm-decision-signals" }
-      ]} />
-  </article>
+      ]}
+    />
+  </LabNoteArticle>
 </Layout>
