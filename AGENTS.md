@@ -233,6 +233,18 @@ When updating SEO-sensitive content:
 - Do not make dropdowns or important text too transparent to read.
 - Optimize large images with WebP/responsive sources when practical.
 
+## Figma-driven UI rules
+
+- Inspect existing components and design tokens before creating new ones.
+- Reuse the current routing, content, accessibility, and SEO patterns.
+- Preserve all technical claims and evidence boundaries.
+- Do not add a UI framework without explicit approval.
+- Treat Figma as the visual source of truth, not as final code architecture.
+- Implement one logical section at a time.
+- Validate desktop and mobile against Figma screenshots.
+- Prefer responsive grid and flex layouts over absolute positioning.
+- Use project tokens instead of hardcoded values whenever possible.
+
 ## Final Release Checklist
 
 Before committing a precision or trust-hardening release, run:
