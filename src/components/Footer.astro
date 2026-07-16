@@ -123,52 +123,50 @@ const copy =
       };
 ---
 
-<footer class="border-t border-white/10 bg-black/30">
-  <div class="site-shell grid gap-8 py-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-stretch">
-    <div class="ordered-card-strong p-6 md:p-7">
-      <div class="flex items-center gap-3">
+<footer class="site-footer">
+  <div class="site-shell site-footer__main">
+    <section class="site-footer__identity" aria-label="Manish Sharma Lab">
+      <div class="site-footer__brand">
         <BrandMark uid="footer-brand-mark" />
         <div>
-          <p class="text-sm font-black text-white">Manish Sharma Lab</p>
-          <p class="metric-label mt-1">{copy.subtitle}</p>
+          <p class="site-footer__name">Manish Sharma Lab</p>
+          <p class="site-footer__subtitle">{copy.subtitle}</p>
         </div>
       </div>
-      <p class="mt-6 max-w-xl text-xl font-black leading-tight text-white">
-        {copy.promise}
-      </p>
-      <p class="mt-4 max-w-xl text-sm leading-6 text-slate-400">
-        {copy.description}
-      </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/contact" class="btn btn-primary min-h-10 px-4 py-2 text-sm">{copy.contact}</a>
-        <button type="button" data-command-trigger class="btn btn-secondary min-h-10 px-4 py-2 text-sm">{copy.search}</button>
-        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="btn btn-laser min-h-10 px-4 py-2 text-sm">{copy.exafuse}</a>
+      <p class="site-footer__promise">{copy.promise}</p>
+      <p class="site-footer__description">{copy.description}</p>
+      <div class="site-footer__actions">
+        <a href="/contact" class="btn btn-primary">{copy.contact}</a>
+        <button type="button" data-command-trigger class="btn btn-secondary">{copy.search}</button>
+        <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="btn btn-laser">{copy.exafuse}</a>
       </div>
-    </div>
+    </section>
 
-    <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div class="site-footer__groups">
       {footerColumns.map((column) => (
-        <div class="ordered-card p-5">
-          <p class="metric-label">{column.label}</p>
-          <div class="mt-4 grid gap-2">
+        <nav class="site-footer__group" aria-label={column.label}>
+          <p>{column.label}</p>
+          <ul>
             {column.links.map((item) => (
-              <a
-                href={item.href}
-                class="footer-link rounded-xl px-2 py-1.5 text-sm font-bold leading-5 text-slate-300 hover:bg-white/[0.045]"
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              >
-                {item.label}
-              </a>
+              <li>
+                <a
+                  href={item.href}
+                  class="footer-link"
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </nav>
       ))}
     </div>
   </div>
 
-  <div class="site-shell grid gap-4 border-t border-white/10 py-6 text-sm text-slate-400 md:grid-cols-[1fr_auto] md:items-center">
-    <div class="flex flex-wrap gap-x-5 gap-y-2">
+  <div class="site-shell site-footer__legal">
+    <div>
       <span>&copy; {new Date().getFullYear()} Manish Sharma Lab.</span>
       <span>{copy.boundary}</span>
       <a href="/trust" class="footer-link font-bold text-slate-300">{copy.trust}</a>

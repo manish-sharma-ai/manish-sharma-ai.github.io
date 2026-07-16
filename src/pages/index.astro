@@ -325,113 +325,117 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="band py-12">
-    <div class="site-shell">
-      <SectionHeading eyebrow="Start here" title="Choose the path that matches your question" />
-      <div class="mt-10 grid gap-5 md:grid-cols-2">
-        {startCards.map((card) => (
-          <BentoCard href={card.href} eyebrow={card.eyebrow} title={card.title} description={card.description} cta={card.cta} strong />
-        ))}
+  <div class="home-continuation">
+    <section class="home-section home-section--start" aria-label="Start with a decision path">
+      <div class="site-shell home-section__inner">
+        <SectionHeading eyebrow="Start here" title="Choose the path that matches your question" />
+        <div class="home-start-grid">
+          {startCards.map((card) => (
+            <BentoCard href={card.href} eyebrow={card.eyebrow} title={card.title} description={card.description} cta={card.cta} strong />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="site-shell section-y">
-    <SectionHeading
-      eyebrow="Flagship assets"
-      title="Start with the three LMD decision assets"
-      description="These are the shortest route from a vague LMD/DED question to a structured decision-support workflow."
-    />
-    <div class="mt-10 grid gap-5 lg:grid-cols-3">
-      {flagshipAssets.map((asset) => (
-        <a href={asset.href} class="ordered-card-strong card-hover grid content-between p-6">
-          <span>
-            <h2 class="text-2xl font-black leading-tight text-white">{asset.title}</h2>
-            <dl class="mt-5 grid gap-4 text-sm leading-6">
-              <div>
-                <dt class="metric-label">Problem</dt>
-                <dd class="mt-1 text-slate-300">{asset.problem}</dd>
-              </div>
-              <div>
-                <dt class="metric-label">Helps decide</dt>
-                <dd class="mt-1 text-slate-300">{asset.helps}</dd>
-              </div>
-              <div>
-                <dt class="metric-label">Cannot prove</dt>
-                <dd class="mt-1 text-slate-300">{asset.cannot}</dd>
-              </div>
-            </dl>
-          </span>
-          <span class="mt-6 border-t border-white/10 pt-4 font-mono text-xs font-black uppercase text-cyan-100">{asset.cta}</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="site-shell section-y">
-    <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-      <SectionHeading
-        eyebrow="Documented examples"
-        title="Public context for LMD/DED decisions"
-        description="Company-owned case details and RFQs belong to Exafuse. Manish Sharma Lab uses public examples only to explain monitoring, repairability, RFQ structure, and evidence planning."
-      />
-      <div class="flex flex-wrap gap-3">
-        <CTAButton href="/industrial-proof" variant="secondary">Open evidence map</CTAButton>
-        <CTAButton href="/claims" variant="secondary">Review source notes</CTAButton>
+    <section class="home-section home-section--assets" aria-label="Flagship decision assets">
+      <div class="site-shell home-section__inner">
+        <SectionHeading
+          eyebrow="Flagship assets"
+          title="Start with the three LMD decision assets"
+          description="These are the shortest route from a vague LMD/DED question to a structured decision-support workflow."
+        />
+        <div class="home-assets-grid">
+          {flagshipAssets.map((asset) => (
+            <a href={asset.href} class="home-asset-card">
+              <span>
+                <h2>{asset.title}</h2>
+                <dl>
+                  <div>
+                    <dt>Problem</dt>
+                    <dd>{asset.problem}</dd>
+                  </div>
+                  <div>
+                    <dt>Helps decide</dt>
+                    <dd>{asset.helps}</dd>
+                  </div>
+                  <div>
+                    <dt>Cannot prove</dt>
+                    <dd>{asset.cannot}</dd>
+                  </div>
+                </dl>
+              </span>
+              <span class="home-asset-card__action" aria-hidden="true">{asset.cta} <span>→</span></span>
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-    <div class="mt-10 grid gap-5 lg:grid-cols-2">
+    </section>
+
+    <section class="home-section home-section--proof" aria-label="Documented public examples">
+      <div class="site-shell home-section__inner">
+        <div class="home-section__heading-row">
+          <SectionHeading
+            eyebrow="Documented examples"
+            title="Public context for LMD/DED decisions"
+            description="Company-owned case details and RFQs belong to Exafuse. Manish Sharma Lab uses public examples only to explain monitoring, repairability, RFQ structure, and evidence planning."
+          />
+          <div class="home-section__actions">
+            <CTAButton href="/industrial-proof" variant="secondary">Open evidence map</CTAButton>
+            <CTAButton href="/claims" variant="secondary">Review source notes</CTAButton>
+          </div>
+        </div>
+        <div class="home-proof-grid">
       {EXAFUSE_PROOF_CASES.slice(0, 2).map((item) => {
         const related = proofFrameworks[item.code];
         const pattern = proofDecisionPatterns[item.code];
         return (
-          <article class="ordered-card-strong p-6">
-            <div class="flex flex-wrap items-center gap-2">
+          <article class="home-proof-card">
+            <div class="home-proof-card__tags">
               <Chip>{item.code}</Chip>
               <Chip tone="steel">Public Exafuse source</Chip>
             </div>
-            <h2 class="mt-4 text-2xl font-black leading-tight text-white">{item.title}</h2>
+            <h2>{item.title}</h2>
             {item.metricClaims?.length > 0 && (
-              <div class="mt-5 flex flex-wrap gap-2">
+              <div class="home-proof-card__claims">
                 {item.metricClaims.map((claim) => (
                   <span class="chip chip--steel" data-claim-id={claim.id} title={claim.limitation}>{claim.shortLabel}</span>
                 ))}
               </div>
             )}
-            <dl class="mt-5 grid gap-4 text-sm leading-6">
+            <dl class="home-proof-card__metadata">
               <div>
-                <dt class="metric-label">Decision it helps</dt>
-                <dd class="mt-1 text-slate-300">{proofDecisionHelp[item.code]}</dd>
+                <dt>Decision it helps</dt>
+                <dd>{proofDecisionHelp[item.code]}</dd>
               </div>
               <div>
-              <dt class="metric-label">Source note</dt>
-              <dd class="mt-1 text-slate-300">
+              <dt>Source note</dt>
+              <dd>
                   {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Case-specific source available through Exafuse contact or current public pages."}
               </dd>
               </div>
               <div>
-                <dt class="metric-label">What the example shows</dt>
-                <dd class="mt-1 text-slate-300">{related.proves}</dd>
+                <dt>What the example shows</dt>
+                <dd>{related.proves}</dd>
               </div>
               <div>
-                <dt class="metric-label">What still needs part-specific review</dt>
-                <dd class="mt-1 text-slate-300">{related.cannot}</dd>
+                <dt>What still needs part-specific review</dt>
+                <dd>{related.cannot}</dd>
               </div>
               <div>
-                <dt class="metric-label">Related framework</dt>
-                <dd class="mt-1">
-                  <a href={related.href} class="font-bold text-cyan-100">{related.label}</a>
+                <dt>Related framework</dt>
+                <dd>
+                  <a href={related.href}>{related.label}</a>
                 </dd>
               </div>
               <div>
-                <dt class="metric-label">Useful decision pattern</dt>
-                <dd class="mt-1 text-slate-300">{proofDecisionPatternText[item.code]}</dd>
+                <dt>Useful decision pattern</dt>
+                <dd>{proofDecisionPatternText[item.code]}</dd>
               </div>
             </dl>
-            <p class="mt-5 rounded-lg border border-white/10 bg-white/[0.035] p-3 text-sm font-semibold leading-6 text-slate-300">
+            <p class="home-proof-card__boundary">
               Use the pattern as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review.
             </p>
-            <div class="mt-6 flex flex-wrap gap-3">
+            <div class="home-proof-card__actions">
               <a href={pattern.href} class="btn btn-primary">{pattern.label}</a>
               <a href={item.href} class="btn btn-laser" target="_blank" rel="noreferrer">
                 {item.sourceStatus === "production-link-after-migration" ? "Contact Exafuse" : "Public Exafuse source"}
@@ -440,61 +444,63 @@ const proofDecisionPatternText: Record<string, string> = {
           </article>
         );
       })}
-    </div>
-  </section>
+        </div>
+      </div>
+    </section>
 
-  <section class="band section-y">
-    <div class="site-shell">
-      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+    <section class="home-section home-section--notes" aria-label="Latest field notes">
+      <div class="site-shell home-section__inner">
+        <div class="home-section__heading-row">
         <SectionHeading
           eyebrow="Latest field notes"
           title="Short technical notes for better LMD decisions"
           description="Focused explanations of the assumptions, evidence gaps, and review questions that often change an LMD/DED decision."
         />
-        <div class="flex flex-wrap gap-3">
+          <div class="home-section__actions">
           <CTAButton href="/lab-notes" variant="secondary">All lab notes</CTAButton>
           <CTAButton href="/rss.xml" variant="secondary">RSS feed</CTAButton>
+          </div>
         </div>
-      </div>
-      <div class="mt-10 grid gap-5 lg:grid-cols-3">
+        <div class="home-notes-grid">
         {LAB_NOTES.slice(0, 3).map((note) => (
-          <a href={note.href} class="ordered-card-strong card-hover grid content-between p-6">
+          <a href={note.href} class="home-note-card">
             <span>
-              <time class="metric-label" datetime={note.date}>{note.date}</time>
-              <h2 class="mt-3 text-2xl font-black leading-tight text-white">{note.title}</h2>
-              <p class="mt-4 text-sm leading-6 text-slate-300">{note.description}</p>
+              <time datetime={note.date}>{note.date}</time>
+              <h2>{note.title}</h2>
+              <p>{note.description}</p>
             </span>
-            <span class="mt-6 border-t border-white/10 pt-4 font-mono text-xs font-black uppercase text-cyan-100">Read note</span>
+            <span class="home-note-card__action" aria-hidden="true">Read note <span>→</span></span>
           </a>
         ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="band section-y">
-    <div class="site-shell grid gap-5 lg:grid-cols-2">
-      <div class="ordered-card-strong p-7 md:p-8">
-        <p class="metric-label">Public technical layer</p>
-        <h2 class="mt-3 text-3xl font-black leading-tight text-white">Use this site for public frameworks and AI-readable guidance.</h2>
-        <p class="mt-4 leading-7 text-slate-300">
+    <section class="home-section home-section--routes" aria-label="Public and commercial routes">
+      <div class="site-shell home-section__inner home-route-grid">
+      <div class="home-route-card home-route-card--public">
+        <p>Public technical layer</p>
+        <h2>Use this site for public frameworks and AI-readable guidance.</h2>
+        <p>
           The useful paths are thesis, tools, documented public context, agent files, and evidence-aware LMD/DED frameworks.
         </p>
-        <div class="mt-6 flex flex-wrap gap-3">
+        <div class="home-route-card__actions">
           <CTAButton href="/identity" variant="primary">Public profile</CTAButton>
           <CTAButton href="/for-ai-agents" variant="secondary">Guide for AI systems</CTAButton>
         </div>
       </div>
-      <div class="ordered-card p-7 md:p-8">
-        <p class="metric-label">Commercial boundary</p>
-        <h2 class="mt-3 text-3xl font-black leading-tight text-white">For services, RFQs, and company claims, use Exafuse.</h2>
-        <p class="mt-4 leading-7 text-slate-300">
+      <div class="home-route-card home-route-card--commercial">
+        <p>Commercial boundary</p>
+        <h2>For services, RFQs, and company claims, use Exafuse.</h2>
+        <p>
           This personal site avoids confidential employer/customer data and does not replace expert review, inspection, certification, or formal approval.
         </p>
-        <div class="mt-6 flex flex-wrap gap-3">
+        <div class="home-route-card__actions">
           <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
           <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
         </div>
       </div>
+      </div>
+    </section>
     </div>
-  </section>
 </Layout>
