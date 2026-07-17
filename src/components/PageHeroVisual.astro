@@ -202,11 +202,11 @@ const { variant = "default", class: className = "" } = Astro.props;
 const visual = models[variant] ?? models.default;
 ---
 
-<figure class:list={["page-hero-model diagram-frame", className]} data-visual-type={visual.classification.toLowerCase()}>
+<figure class:list={["page-hero-model diagram-frame", className]} data-hero-model={variant} data-visual-type={visual.classification.toLowerCase()}>
   <figcaption class="diagram-frame__header">
-    <p class="metric-label">{visual.classification}</p>
-    <h2 class="mt-2 text-xl font-black leading-tight text-white">{visual.title}</h2>
-    <p class="mt-2 text-sm leading-6 text-slate-300">{visual.summary}</p>
+    <p class="page-hero-model__classification">{visual.classification}</p>
+    <h2 class="page-hero-model__title mt-2 text-xl font-black leading-tight">{visual.title}</h2>
+    <p class="page-hero-model__summary mt-2 text-sm leading-6">{visual.summary}</p>
   </figcaption>
   <ol class="page-hero-model__steps" aria-label={visual.title}>
     {visual.steps.map((step, index) => (
@@ -216,5 +216,5 @@ const visual = models[variant] ?? models.default;
       </li>
     ))}
   </ol>
-  <p class="diagram-frame__direction"><strong>Reading direction:</strong> {visual.readingDirection}.</p>
+  <p class="page-hero-model__direction"><strong>Reading direction:</strong> {visual.readingDirection}.</p>
 </figure>

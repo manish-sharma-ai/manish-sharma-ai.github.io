@@ -20,18 +20,18 @@ const stageText = isMicro
   : METHOD_LOOP;
 ---
 
-<section class:list={["process-loop ordered-card-strong", `process-loop--${variant}`, isMicro ? "p-4" : "p-6 md:p-7"]} data-visual-type="illustrative-workflow" aria-labelledby={`process-loop-${variant}`}>
-  <div class:list={["grid gap-4", isFull ? "lg:grid-cols-[0.82fr_1.18fr] lg:items-start" : ""]}>
-    <div>
-      <p class="metric-label">Operating loop</p>
-      <h2 id={`process-loop-${variant}`} class:list={["mt-3 font-black leading-tight text-white", isMicro ? "text-xl" : "text-3xl md:text-4xl"]}>
+<section class:list={["process-loop", `process-loop--${variant}`, isMicro ? "p-4" : "p-6 md:p-7"]} data-visual-type="illustrative-workflow" aria-labelledby={`process-loop-${variant}`}>
+  <div class:list={["process-loop__header grid gap-4", isFull ? "lg:grid-cols-[0.82fr_1.18fr] lg:items-start" : ""]}>
+    <div class="process-loop__copy">
+      <p class="process-loop__eyebrow">Operating loop</p>
+      <h2 id={`process-loop-${variant}`} class:list={["process-loop__title mt-3 font-black leading-tight", isMicro ? "text-xl" : "text-3xl md:text-4xl"]}>
         {title}
       </h2>
-      {!isMicro && <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-300">{subtitle}</p>}
-      <p class="mt-3 text-xs font-bold leading-5 text-cyan-100">Illustrative workflow. Read left to right; Verify is the evidence boundary.</p>
+      {!isMicro && <p class="process-loop__subtitle mt-3 max-w-3xl text-sm leading-6">{subtitle}</p>}
+      <p class="process-loop__boundary mt-3 text-xs font-bold leading-5">Illustrative workflow. Read left to right; Verify is the evidence boundary.</p>
     </div>
     {isFull && (
-      <p class="rounded-lg border border-amber-300/25 bg-amber-400/10 p-4 text-sm font-bold leading-6 text-amber-50">
+      <p class="process-loop__full-boundary p-4 text-sm font-bold leading-6">
         Confidence is not approval. The loop is useful only when process signals, model assumptions, decisions, and verification evidence stay separate.
       </p>
     )}
@@ -39,19 +39,19 @@ const stageText = isMicro
 
   <ol class:list={["process-loop__stages mt-5 grid gap-3", isMicro ? "grid-cols-2 md:grid-cols-4" : "md:grid-cols-4"]} aria-label="Process stages">
     {stageText.map((stage, index) => (
-      <li class:list={["process-loop__stage ordered-card", isMicro ? "p-3" : "min-h-[9rem] p-4", index === stageText.length - 1 ? "is-last" : ""]}>
+      <li class:list={["process-loop__stage", isMicro ? "p-3" : "min-h-[9rem] p-4", index === stageText.length - 1 ? "is-last" : ""]}>
         <div class="flex items-center justify-between gap-3">
-          <span class="metric-label">{String(index + 1).padStart(2, "0")}</span>
-          <span class:list={["h-2 w-2 rounded-full", index === 3 ? "bg-orange-300" : "bg-cyan-200"]} aria-hidden="true"></span>
+          <span class="process-loop__index">{String(index + 1).padStart(2, "0")}</span>
+          <span class:list={["process-loop__signal", index === 3 ? "is-verify" : ""]} aria-hidden="true"></span>
         </div>
-        <h3 class:list={["mt-3 font-black text-white", isMicro ? "text-base" : "text-2xl"]}>{stage.label}</h3>
-        {!isMicro && <p class="mt-3 text-sm leading-6 text-slate-300">{stage.text}</p>}
+        <h3 class:list={["process-loop__stage-title mt-3 font-black", isMicro ? "text-base" : "text-2xl"]}>{stage.label}</h3>
+        {!isMicro && <p class="process-loop__stage-text mt-3 text-sm leading-6">{stage.text}</p>}
       </li>
     ))}
   </ol>
 
   {isFull && (
-    <div class="mt-5 rounded-lg border border-white/10 bg-black/24 p-4 text-sm leading-6 text-slate-300">
+    <div class="process-loop__note mt-5 p-4 text-sm leading-6">
       Use Sense for observed inputs, Model for assumptions and uncertainty, Decide for bounded recommendations, and Verify for inspection, testing, documentation, measured outcomes, and expert review.
     </div>
   )}

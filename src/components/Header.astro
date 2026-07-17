@@ -1,5 +1,6 @@
 ---
 import MobileMenu from "@components/MobileMenu.astro";
+import BrandMark from "@components/BrandMark.astro";
 import { LINKS, PRIMARY_NAV_ITEMS, RESOURCE_NAV_ITEMS } from "@data/site";
 import { RESOURCE_NAV_GROUPS } from "@data/resourceNavigation";
 
@@ -85,7 +86,11 @@ const copy =
 <header class="site-header" data-site-header>
   <div class="site-shell site-header__inner">
     <a href="/" class="brand-lockup" aria-label={copy.homeLabel}>
-      <span class="site-header__brand">Manish Sharma Lab</span>
+      <BrandMark uid="header-brand-mark" />
+      <span class="site-header__brand-copy">
+        <span class="site-header__brand">Manish Sharma Lab</span>
+        <span class="site-header__descriptor">{copy.subtitle}</span>
+      </span>
     </a>
 
     <nav class="primary-nav" aria-label={copy.primaryNav}>
@@ -94,16 +99,17 @@ const copy =
           {item.label}
         </a>
       ))}
-      <details class="site-header__resources relative" data-nav-flyout>
+      <details class="site-header__resources" data-nav-flyout>
         <summary class:list={["nav-trigger list-none", resourcesActive ? "is-active" : ""]} aria-expanded="false">
-          {copy.resources}
+          <span>{copy.resources}</span>
+          <span class="nav-trigger__chevron" aria-hidden="true">⌄</span>
         </summary>
-        <div class="nav-panel absolute left-1/2 top-full mt-3 w-[min(94vw,46rem)] -translate-x-1/2 rounded-[24px] border border-cyan-100/14 p-4">
-          <div class="grid gap-5 sm:grid-cols-2" aria-label={copy.secondaryNav}>
+        <div class="nav-panel nav-dropdown">
+          <div class="nav-dropdown__groups" aria-label={copy.secondaryNav}>
             {resourceGroups.map((group) => (
-              <section>
-                <p class="metric-label px-2 pb-2">{group.label}</p>
-                <div class="grid gap-1">
+              <section class="nav-dropdown__group">
+                <p class="metric-label">{group.label}</p>
+                <div class="nav-dropdown__links">
                   {group.items.map((item) => (
                     <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
                       <span class="text-sm font-black">{item.label}</span>
@@ -115,17 +121,20 @@ const copy =
             ))}
           </div>
           <div class="nav-panel__actions">
-            <button type="button" data-command-trigger class="utility-button gap-2 px-4 py-2" aria-label={copy.searchAria}>
-              {copy.search} <span class="keycap">Ctrl K</span>
-            </button>
             <a href={LINKS.exafuse} class="btn btn-laser min-h-10 px-4 py-2 text-sm" target="_blank" rel="noreferrer">
               Exafuse
             </a>
-            <a href="/contact" class="utility-button px-4 py-2">{copy.contact}</a>
           </div>
         </div>
       </details>
     </nav>
+
+      <nav class="site-actions" aria-label={copy.secondaryNav}>
+      <button type="button" data-command-trigger class="utility-button site-actions__search" aria-label={copy.searchAria}>
+        {copy.search}
+      </button>
+      <a href="/contact" class="site-actions__contact">{copy.contact}</a>
+      </nav>
 
     <MobileMenu lang={lang} />
   </div>

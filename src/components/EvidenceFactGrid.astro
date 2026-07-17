@@ -14,14 +14,14 @@ interface Props {
 const { facts } = Astro.props;
 ---
 
-<div class="equal-card-grid grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+<div class="evidence-fact-grid equal-card-grid grid gap-5 md:grid-cols-2 xl:grid-cols-4">
   {
     facts.map((fact) => (
-      <article class="ordered-card-strong card-hover p-5">
-        <p class="font-mono text-2xl font-black text-cyan-100">{fact.metric}</p>
-        <h3 class="mt-3 text-lg font-black text-white">{fact.label}</h3>
-        <p class="mt-3 text-sm leading-6 text-slate-400">{fact.detail}</p>
-        <a href={fact.href} class="mt-4 inline-block text-xs font-bold uppercase tracking-[0.18em] text-cyan-100 hover:text-white" target={fact.href.startsWith("http") ? "_blank" : undefined} rel={fact.href.startsWith("http") ? "noreferrer" : undefined}>
+      <article class="evidence-fact-grid__card ordered-card-strong card-hover p-5">
+        <p class="evidence-fact-grid__metric font-mono text-2xl font-black text-cyan-100">{fact.metric}</p>
+        <h3 class="evidence-fact-grid__title mt-3 text-lg font-black text-white">{fact.label}</h3>
+        <p class="evidence-fact-grid__detail mt-3 text-sm leading-6 text-slate-400">{fact.detail}</p>
+        <a href={fact.href} class="evidence-fact-grid__source mt-4 inline-block text-xs font-bold uppercase tracking-[0.18em] text-cyan-100 hover:text-white" target={fact.href.startsWith("http") ? "_blank" : undefined} rel={fact.href.startsWith("http") ? "noreferrer" : undefined}>
           {fact.source}
         </a>
       </article>

@@ -71,12 +71,13 @@ const groups = [
 
 <details class="group relative justify-self-end" data-mobile-menu>
   <summary class="utility-button list-none px-4 py-2 text-white">{lang === "de" ? "Menü" : "Menu"}</summary>
-  <div class="nav-panel mobile-nav-panel absolute right-0 mt-3 max-h-[78vh] w-[min(92vw,28rem)] overflow-auto p-4">
-    <nav class="grid gap-4" aria-label={lang === "de" ? "Mobile Navigation" : "Mobile navigation"}>
+  <div class="nav-panel mobile-nav-panel">
+    <nav class="mobile-nav" aria-label={lang === "de" ? "Mobile Navigation" : "Mobile navigation"}>
+      <div class="mobile-nav__brand" aria-hidden="true">Manish Sharma Lab</div>
       {groups.map((group) => (
-        <div class="ordered-card p-3">
-          <p class="metric-label px-2 py-2">{group.label}</p>
-          <div class="grid gap-1">
+        <section class="mobile-nav__group">
+          <p class="mobile-nav__label">{group.label}</p>
+          <div class="mobile-nav__links">
             {group.items.map((item) => (
               <a
                 href={item.href}
@@ -89,9 +90,9 @@ const groups = [
               </a>
             ))}
           </div>
-        </div>
+        </section>
       ))}
-      <button type="button" data-command-trigger class="utility-button justify-start px-4 py-3 text-left text-sm text-white">
+      <button type="button" data-command-trigger class="mobile-nav__search">
         {lang === "de" ? "Seiten durchsuchen" : "Search all pages"}
       </button>
     </nav>
