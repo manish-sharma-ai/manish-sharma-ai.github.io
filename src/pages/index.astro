@@ -11,9 +11,9 @@ import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
 import { getClaimSourceStatus } from "@data/publicClaims";
 import { LAB_NOTES, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
 
-const title = "Manish Sharma Lab - AI for Laser Metal Deposition Decisions";
+const title = "Manish Sharma — Industrial AI & Decision Systems";
 const description =
-  "AI for Laser Metal Deposition decisions you can verify: a browser-local cockpit, evidence-aware frameworks, RFQ tools, and public LMD/DED sources.";
+  "Manish Sharma builds evidence-aware AI systems for industrial decisions. His strongest public work is in LMD/DED, process monitoring, robotics, and engineering decision support at Exafuse.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const personJsonLd = {
@@ -30,12 +30,21 @@ const personJsonLd = {
     url: LINKS.exafuse
   },
   knowsAbout: [
+    "Industrial AI",
+    "Industrial Decision Systems",
+    "Decision Support",
+    "Evidence-aware AI",
+    "Engineering Decision-making",
+    "Industrial Automation",
+    "Machine Vision",
+    "Robotics",
     "Laser Metal Deposition",
     "Directed Energy Deposition",
     "Process Monitoring",
     "RFQ Intelligence",
     "Industrial Repair",
-    "AI for Manufacturing"
+    "Repair and Cladding",
+    "Inspection Evidence"
   ]
 };
 
@@ -60,7 +69,7 @@ const profilePageJsonLd = {
   "@type": "ProfilePage",
   "@id": `${SITE.canonicalUrl}/#profile-page`,
   url: SITE.canonicalUrl,
-  name: "Manish Sharma Lab",
+  name: "Manish Sharma — Industrial AI & Decision Systems",
   mainEntity: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma` }
 };
 
@@ -214,23 +223,23 @@ const proofDecisionPatternText: Record<string, string> = {
   <section class="site-shell home-hero-grid section-y">
     <div class="home-hero__copy">
       <div class="home-hero__tags" aria-label="Technical context">
-        <span class="home-hero__tag">Instrument panel</span>
-        <span class="home-hero__tag">LMD / DED focus</span>
+        <span class="home-hero__tag">Manish Sharma</span>
+        <span class="home-hero__tag">Current proof: LMD / DED</span>
       </div>
       <p class="home-hero__eyebrow">
-        Decision support / live signal <span class="home-hero__preserve-label">Engineering review prep</span>
+        Industrial AI / decision systems <span class="home-hero__preserve-label">Evidence-aware by design</span>
       </p>
       <h1 class="home-hero__title">
-        AI for Laser Metal Deposition decisions you can verify.
+        I build AI systems for industrial decisions that need evidence, not just predictions.
       </h1>
       <p class="home-hero__intro">
-        I develop AI frameworks, RFQ tools, and process-monitoring notes that help engineers structure LMD/DED repair, cladding, and metal additive manufacturing questions before a detailed technical review.
+        Again and again, I found that a prediction alone did not settle the industrial question. My strongest public work today is in Laser Metal Deposition and Directed Energy Deposition at Exafuse, where I connect signals, models, engineering constraints, and human judgment to the next action and the evidence needed to check it.
       </p>
       <div class="home-hero__actions">
-        <CTAButton href="#lmd-decision-cockpit" variant="primary" class="home-hero__primary-action">Start LMD Decision Cockpit</CTAButton>
-        <CTAButton href="/demo" variant="secondary" class="home-hero__secondary-action">See worked example</CTAButton>
+        <CTAButton href="#lmd-decision-cockpit" variant="primary" class="home-hero__primary-action">Explore my work</CTAButton>
+        <CTAButton href="/thesis" variant="secondary" class="home-hero__secondary-action">Read how I think</CTAButton>
       </div>
-      <p class="home-hero__review-note">Built to organize questions before expert review.</p>
+      <p class="home-hero__review-note">Start with the LMD Decision Cockpit, then follow the method and current public work.</p>
     </div>
     <HeroLaserVisual />
   </section>
@@ -249,17 +258,17 @@ const proofDecisionPatternText: Record<string, string> = {
       <div class="process-proof-system__section">
         <div class="process-proof-system__intro">
           <SectionHeading
-            eyebrow="Operating loop / signal to evidence"
+            eyebrow="How I work / signal to evidence"
             title="Sense → Model → Decide → Verify"
-            description="A signal is not proof. Process signals can support review. They do not replace inspection, testing, expert review, or release evidence."
+            description="To me, a prediction is only one part of the job. The next action, the missing context, and the verification path have to be clear too."
           />
           <div class="process-proof-system__tags" aria-label="Operating loop characteristics">
             <span class="process-proof-system__tag">Decision support</span>
             <span class="process-proof-system__tag">Evidence boundary</span>
           </div>
           <div class="process-proof-system__actions">
-            <CTAButton href="/thesis#signal-is-not-proof" variant="primary">Try explainer</CTAButton>
-            <CTAButton href="/no-hype" variant="secondary">No-hype boundary</CTAButton>
+            <CTAButton href="/thesis" variant="primary">Read the method</CTAButton>
+            <CTAButton href="/domains/lmd-ded" variant="secondary">See current LMD/DED work</CTAButton>
           </div>
         </div>
 
@@ -277,9 +286,9 @@ const proofDecisionPatternText: Record<string, string> = {
       <div class="process-proof-system__section process-proof-system__section--proof" aria-label="Public context and decision routes">
         <div class="process-proof-system__proof-heading">
           <SectionHeading
-            eyebrow="Public context / decision routes"
-            title="Evidence that supports a better next question"
-            description="Public examples explain monitoring, repairability, RFQ structure, and evidence planning. They do not replace part-specific expert review."
+            eyebrow="Current proof / decision routes"
+            title="LMD/DED is my current proving ground"
+            description="It is where signals, materials, machine vision, robotics, repair, inspection, and engineering judgment meet in decisions with real consequences."
           />
           <div class="process-proof-system__tags" aria-label="Proof card characteristics">
             <span class="process-proof-system__tag">Public source context</span>
@@ -328,7 +337,7 @@ const proofDecisionPatternText: Record<string, string> = {
   <div class="home-continuation">
     <section class="home-section home-section--start" aria-label="Start with a decision path">
       <div class="site-shell home-section__inner">
-        <SectionHeading eyebrow="Start here" title="Choose the path that matches your question" />
+        <SectionHeading eyebrow="Start here" title="Current LMD/DED work: choose the question you need to structure" />
         <div class="home-start-grid">
           {startCards.map((card) => (
             <BentoCard href={card.href} eyebrow={card.eyebrow} title={card.title} description={card.description} cta={card.cta} strong />
@@ -340,9 +349,9 @@ const proofDecisionPatternText: Record<string, string> = {
     <section class="home-section home-section--assets" aria-label="Flagship decision assets">
       <div class="site-shell home-section__inner">
         <SectionHeading
-          eyebrow="Flagship assets"
-          title="Start with the three LMD decision assets"
-          description="These are the shortest route from a vague LMD/DED question to a structured decision-support workflow."
+          eyebrow="Selected work"
+          title="Three LMD decision assets from the current proving ground"
+          description="These specialist artifacts show how I turn vague industrial questions into structured decision-support workflows."
         />
         <div class="home-assets-grid">
           {flagshipAssets.map((asset) => (
@@ -376,8 +385,8 @@ const proofDecisionPatternText: Record<string, string> = {
         <div class="home-section__heading-row">
           <SectionHeading
             eyebrow="Documented examples"
-            title="Public context for LMD/DED decisions"
-            description="Company-owned case details and RFQs belong to Exafuse. Manish Sharma Lab uses public examples only to explain monitoring, repairability, RFQ structure, and evidence planning."
+            title="Current LMD/DED proof, with public source context"
+            description="These public examples show why evidence planning matters. Commercial case details and RFQs remain with Exafuse."
           />
           <div class="home-section__actions">
             <CTAButton href="/industrial-proof" variant="secondary">Open evidence map</CTAButton>
@@ -453,8 +462,8 @@ const proofDecisionPatternText: Record<string, string> = {
         <div class="home-section__heading-row">
         <SectionHeading
           eyebrow="Latest field notes"
-          title="Short technical notes for better LMD decisions"
-          description="Focused explanations of the assumptions, evidence gaps, and review questions that often change an LMD/DED decision."
+          title="Notes from the current proving ground"
+          description="Short technical explanations of the assumptions, evidence gaps, and review questions that often change an LMD/DED decision."
         />
           <div class="home-section__actions">
           <CTAButton href="/lab-notes" variant="secondary">All lab notes</CTAButton>
@@ -479,21 +488,21 @@ const proofDecisionPatternText: Record<string, string> = {
     <section class="home-section home-section--routes" aria-label="Public and commercial routes">
       <div class="site-shell home-section__inner home-route-grid">
       <div class="home-route-card home-route-card--public">
-        <p>Public technical layer</p>
-        <h2>Use this site for public frameworks and AI-readable guidance.</h2>
+        <p>Personal platform</p>
+        <h2>Explore the method, current work, and research questions.</h2>
         <p>
-          The useful paths are thesis, tools, documented public context, agent files, and evidence-aware LMD/DED frameworks.
+          I am studying how this approach can help with decisions based on incomplete physical signals, operational risk, and human responsibility. That is a research direction, not a cross-industry deployment claim.
         </p>
         <div class="home-route-card__actions">
-          <CTAButton href="/identity" variant="primary">Public profile</CTAButton>
-          <CTAButton href="/for-ai-agents" variant="secondary">Guide for AI systems</CTAButton>
+          <CTAButton href="/public-work" variant="primary">Explore my work</CTAButton>
+          <CTAButton href="/about" variant="secondary">About Manish</CTAButton>
         </div>
       </div>
       <div class="home-route-card home-route-card--commercial">
         <p>Commercial boundary</p>
-        <h2>For services, RFQs, and company claims, use Exafuse.</h2>
+        <h2>For commercial LMD/DED services and RFQs, use Exafuse.</h2>
         <p>
-          This personal site avoids confidential employer/customer data and does not replace expert review, inspection, certification, or formal approval.
+          My current applied LMD/DED work is carried out through Exafuse. This site shares public methods and notes; company services, case studies, and engineering review belong there.
         </p>
         <div class="home-route-card__actions">
           <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>

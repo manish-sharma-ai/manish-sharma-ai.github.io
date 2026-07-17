@@ -112,7 +112,7 @@ async function main() {
 
     if (check.path === "/") {
       const visibleText = visibleTextFromHtml(text);
-      for (const phrase of ["Manish Sharma Lab", "AI for Laser Metal Deposition decisions you can verify."]) {
+      for (const phrase of ["Manish Sharma Lab", "I build AI systems for industrial decisions that need evidence, not just predictions."]) {
         if (!visibleText.includes(phrase)) findings.push(`${url}: missing homepage marker "${phrase}"`);
       }
     }

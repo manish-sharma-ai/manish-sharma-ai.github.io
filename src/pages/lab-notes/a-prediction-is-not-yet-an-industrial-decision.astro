@@ -1,0 +1,84 @@
+---
+import Badge from "@components/Badge.astro";
+import LabNoteArticle from "@components/LabNoteArticle.astro";
+import LabNoteFooter from "@components/LabNoteFooter.astro";
+import Layout from "@layouts/Layout.astro";
+import NoteBox from "@components/NoteBox.astro";
+import { PERSON, SITE } from "@data/site";
+
+const title = "A Prediction Is Not Yet an Industrial Decision";
+const description =
+  "Why Manish Sharma treats a model output as one part of industrial decision support: it needs context, a clear next action, and a verification path.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${SITE.canonicalUrl}/lab-notes/a-prediction-is-not-yet-an-industrial-decision#article`,
+  headline: title,
+  description,
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  datePublished: "2026-07-17",
+  dateModified: SITE.lastUpdated,
+  url: `${SITE.canonicalUrl}/lab-notes/a-prediction-is-not-yet-an-industrial-decision`
+};
+---
+
+<Layout title={`${title} - Manish Sharma`} description={description} canonical="/lab-notes/a-prediction-is-not-yet-an-industrial-decision" jsonLd={jsonLd}>
+  <LabNoteArticle
+    title={title}
+    description={description}
+    route="/lab-notes/a-prediction-is-not-yet-an-industrial-decision/"
+    contentType="Authored field note"
+    railOrder="before"
+    supportingLabel="Authored note takeaways"
+  >
+    <Fragment slot="eyebrow"><Badge>Authored field note · 2026-07-17</Badge></Fragment>
+
+    <Fragment slot="supporting">
+      <NoteBox title="The point">
+        A technically good output can still be practically useless if it does not make the next action or the evidence still needed clear.
+      </NoteBox>
+      <NoteBox title="What changed my focus" tone="steel">
+        I became more interested in complete decision systems than individual models: sensing, assumptions, decisions, human review, and verification have to stay connected.
+      </NoteBox>
+      <NoteBox title="Scope" tone="laser">
+        This working method is grounded in LMD/DED. It is not a claim that the method is already validated in other industrial domains.
+      </NoteBox>
+    </Fragment>
+
+    <p>
+      In industrial work, I have learned that producing a prediction is only one small part of the actual problem. A model can identify a pattern, estimate a value, or flag an anomaly, yet the engineer still has to decide what that output means for the material, process conditions, geometry, machine state, inspection requirements, and consequences of being wrong.
+    </p>
+    <p>
+      That is why I do not treat model quality as the end of the work. An output needs to lead to a clear next action. It also needs to show what remains uncertain, who needs to review it, and what inspection or test could make the next claim responsibly.
+    </p>
+    <h2>Reality eventually gives the final answer</h2>
+    <p>
+      I work with physical processes, so a confident model and a clean signal are not enough on their own. They may still hide something important about the actual part or process. Verification keeps the reasoning honest: what did we observe, what did the model infer, what are we assuming, and what evidence would allow the decision to move forward?
+    </p>
+    <p>
+      I see verification as part of making AI genuinely useful, not as a limitation on it. In practical terms, it turns a prediction into a traceable decision path: signal, interpretation, proposed action, inspection or test, and responsible review.
+    </p>
+    <h2>What can transfer—and what cannot</h2>
+    <p>
+      LMD/DED has taught me that industrial decisions often sit between physical signals, materials, machines, software, process knowledge, operational pressure, and human responsibility. The discipline of keeping the unknowns visible may transfer to other industrial questions. It is especially relevant where information is incomplete and a wrong answer has an operational, financial, or safety consequence.
+    </p>
+    <p>
+      The domain knowledge does not transfer automatically. A useful LMD framework cannot simply be copied into another process and declared valid. The physics, failure modes, economics, regulations, tolerances, and verification methods have to be rebuilt for the new context. The transferable part is the way of asking better decision questions.
+    </p>
+
+    <LabNoteFooter
+      slot="footer"
+      links={[
+        { label: "Industrial AI method", href: "/thesis" },
+        { label: "LMD / DED current proving ground", href: "/domains/lmd-ded" },
+        { label: "From process signals to inspection evidence", href: "/lab-notes/from-process-signals-to-inspection-evidence-in-lmd" },
+        { label: "LMD Quality Evidence Ladder", href: "/frameworks/lmd-quality-evidence-ladder" }
+      ]}
+      sourceNotes={[
+        { label: "Author's public working perspective, 2026-07-17.", href: null, status: "Authored interpretation; not an external citation" },
+        { label: "Public LMD/DED specialist context is linked in the related pages.", href: "/domains/lmd-ded", status: "Public technical context" }
+      ]}
+    />
+  </LabNoteArticle>
+</Layout>

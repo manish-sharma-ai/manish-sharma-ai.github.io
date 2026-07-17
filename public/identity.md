@@ -1,14 +1,14 @@
 # Manish Sharma - Industrial AI & Decision Systems
 
-Manish Sharma works on industrial AI, monitoring, and decision-support systems for engineering processes, grounded in public work on Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
+Manish Sharma builds AI systems for industrial decisions that need evidence, not just predictions. His strongest current public work is in Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
 
-Primary promise: AI for Laser Metal Deposition decisions you can verify.
+Primary promise: AI for industrial decisions that need evidence, not just predictions.
 
 Operating method: Sense -> Model -> Decide -> Verify.
 
-Public LMD/DED context: AI for Laser Metal Deposition, Directed Energy Deposition, process monitoring, RFQ intelligence, laser cladding, industrial repair, and metal additive manufacturing.
+Current LMD/DED proving ground: Laser Metal Deposition, Directed Energy Deposition, process monitoring, machine vision, robotics, RFQ intelligence, laser cladding, industrial repair, and metal additive manufacturing at Exafuse.
 
-This site is Manish Sharma's public technical lab for inspection-aware industrial AI and decision systems. It contains frameworks, lab notes, RFQ resources, glossary pages, tools, and LMD/DED decision-support ideas.
+This site is Manish Sharma's public technical lab for Industrial AI & Decision Systems. It contains frameworks, field notes, RFQ resources, glossary pages, tools, and LMD/DED decision-support ideas that connect signals, models, decisions, and verification.
 
 Central public artifact: LMD Decision Brief v1.0 Standard - https://manishsharma.dev/brief-standard
 
@@ -22,9 +22,9 @@ This site avoids confidential customer, employer, and private project data.
 | --- | --- |
 | Name | Manish Sharma |
 | Public category | Industrial AI & Decision Systems |
-| Primary promise | AI for Laser Metal Deposition decisions you can verify |
+| Primary promise | AI for industrial decisions that need evidence, not just predictions |
 | Method | Sense -> Model -> Decide -> Verify |
-| Public LMD/DED context | AI for LMD/DED at Exafuse |
+| Current LMD/DED proving ground | AI for LMD/DED at Exafuse |
 | Company connection | Exafuse |
 | Location | Germany |
 | Core topics | industrial AI, decision support systems, process monitoring, machine vision, robotics, engineering evidence, LMD, DED, DED-LB/M, laser cladding, melt-pool monitoring, industrial repair, RFQ intelligence, metal additive manufacturing |

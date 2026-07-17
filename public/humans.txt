@@ -2,7 +2,7 @@
 
 Owner: Manish Sharma
 Focus: Industrial AI & Decision Systems
-Promise: AI for Laser Metal Deposition decisions you can verify.
+Promise: AI for industrial decisions that need evidence, not just predictions.
 Public LMD/DED context: AI for LMD/DED at Exafuse, Germany
 Canonical: https://manishsharma.dev
 

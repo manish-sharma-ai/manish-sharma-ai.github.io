@@ -394,7 +394,7 @@ function auditHomepageProduct() {
   const text = read(file);
   const visibleText = visibleTextFromHtml(text);
   const required = [
-    "AI for Laser Metal Deposition decisions you can verify.",
+    "I build AI systems for industrial decisions that need evidence, not just predictions.",
     "LMD Decision Cockpit",
     "Example scenario: worn steel shaft near bearing seat.",
     "Compact brief preview",
@@ -407,8 +407,8 @@ function auditHomepageProduct() {
     "Copy brief",
     "Open full brief",
     "Start your own brief",
-    "Engineering review prep",
-    "Built to organize questions before expert review.",
+    "Evidence-aware by design",
+    "Start with the LMD Decision Cockpit, then follow the method and current public work.",
     "Documented examples",
     "What the example shows",
     "What still needs part-specific review"
@@ -622,11 +622,12 @@ function auditGermanBrief() {
   if (!html.includes('rel="alternate" hreflang="de"')) findings.push(`${file}: missing German hreflang`);
   for (const phrase of [
     "LMD-Entscheidungsbrief v1.0",
-    "Werkzeuge und Fachwissen für fundierte Entscheidungen im Laserauftragschweißen.",
+    "Industrielle KI für Entscheidungen mit belastbaren Nachweisen.",
+    "Für mich ist eine Modellvorhersage nur ein Teil der Aufgabe.",
     "Status: vorläufige technische Einordnung",
     "Geeignet für: Vorbereitung einer Machbarkeitsbewertung oder technischen Anfrage",
-    "Werkzeug öffnen",
-    "Grenzen ohne Hype lesen",
+    "LMD-Entscheidungswerkzeug öffnen",
+    "Methode auf Englisch lesen",
     "Seiteninformationen",
     "Startseite",
     "Vertrauen & Datenschutz",
@@ -1502,8 +1503,8 @@ function auditExperience() {
     const html = read(homeFile);
     const visibleText = visibleTextFromHtml(html);
     for (const phrase of [
-      "Start LMD Decision Cockpit",
-      "See worked example",
+      "Explore my work",
+      "Read how I think",
       "Evaluate a worn or damaged component.",
       "Turn a rough request into a usable RFQ brief.",
       "Interpret a process signal without overclaiming quality.",
@@ -1514,7 +1515,7 @@ function auditExperience() {
     }
     if (!html.includes('rel="alternate" hreflang="de"')) findings.push(`${homeFile}: missing German alternate link`);
     if (!html.includes('rel="stylesheet"')) findings.push(`${homeFile}: missing cacheable external stylesheet`);
-    if (!html.includes('name="last-modified" content="2026-07-12"')) findings.push(`${homeFile}: release date is not current`);
+    if (!html.includes('name="last-modified" content="2026-07-17"')) findings.push(`${homeFile}: release date is not current`);
   }
 
   const toolsFile = "dist/tools/index.html";

@@ -5,9 +5,9 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import { LAB_NOTES } from "@data/site";
 
-const title = "Lab Notes — Manish Sharma Lab";
+const title = "Field Notes — Manish Sharma";
 const description =
-  "Short technical notes on Laser Metal Deposition, AI process monitoring, RFQ structuring, repairability, and LMD vs SLM decisions.";
+  "Field notes from Manish Sharma's current LMD/DED proving ground: process monitoring, RFQ structure, repairability, decision systems, and inspection evidence.";
 ---
 
 <Layout title={title} description={description} canonical="/lab-notes">
@@ -15,12 +15,12 @@ const description =
     <header class="lab-notes-index__masthead">
       <div class="lab-notes-index__masthead-copy">
         <div class="lab-notes-index__context">
-          <Badge>Inspection-aware notes</Badge>
-          <Badge tone="steel">Applied LMD / DED notes</Badge>
+          <Badge>Field notes</Badge>
+          <Badge tone="steel">Current LMD / DED proving ground</Badge>
         </div>
-        <h1>Lab Notes</h1>
+        <h1>Field Notes</h1>
         <p class="lab-notes-index__intro">
-          Concise public notes on LMD/DED decisions, process monitoring boundaries, repair RFQs, and manufacturing route selection.
+          I use these concise public notes to test and explain the decisions behind LMD/DED work: process signals, RFQ quality, repairability, route selection, and inspection evidence. They are the current technical proving ground for a broader Industrial AI & Decision Systems method.
         </p>
       </div>
       <PageHeroVisual variant="notes" class="lab-notes-index__visual hidden lg:block" />

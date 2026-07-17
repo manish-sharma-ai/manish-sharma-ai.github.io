@@ -8,14 +8,14 @@ import { ACTIVE_PROFILE_LINKS } from "@data/profiles";
 import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
 import { EXAFUSE_PROOF_CASES, EXAFUSE_SOURCE_LINKS } from "@data/exafuse";
 
-const title = "Public Work and Evidence";
+const title = "Current Work and Public Evidence";
 const description =
-  "Public work, evidence, frameworks, tools, research maps, and profile links for Manish Sharma Lab.";
+  "Manish Sharma's current public work in Industrial AI & Decision Systems, grounded in LMD/DED, process monitoring, robotics, and evidence-aware engineering decisions at Exafuse.";
 
 const currentContext = [
   ["Public category", SITE.publicCategory],
-  ["Primary promise", SITE.primaryPromise],
-  ["Public LMD/DED context", "AI for LMD/DED at Exafuse"],
+  ["Core thesis", SITE.primaryPromise],
+  ["Current proving ground", "LMD/DED at Exafuse"],
   ["Boundary", "Public technical material only"]
 ];
 
@@ -101,12 +101,12 @@ const jsonLd = {
         <p class="metric-label">Public work</p>
         <h1 class="mt-4 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
         <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-          A public map of the work that can be referenced safely: professional context, LMD/DED work, public frameworks, tools, research maps, GitHub artifacts, and profile links.
+          A public map of my current work that can be referenced safely: professional context, LMD/DED work, public frameworks, tools, research maps, GitHub artifacts, and profile links.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/identity" class="btn btn-primary">Manish Sharma identity</a>
-          <a href="/thesis" class="btn btn-secondary">Industrial AI thesis</a>
-          <a href="/domains/lmd-ded" class="btn btn-secondary">LMD / DED hub</a>
+          <a href="/about" class="btn btn-primary">About Manish</a>
+          <a href="/thesis" class="btn btn-secondary">Read the method</a>
+          <a href="/domains/lmd-ded" class="btn btn-secondary">Current LMD/DED work</a>
           <a href="/claims" class="btn btn-secondary">Claim source notes</a>
           <a href={LINKS.exafuse} class="btn btn-laser" target="_blank" rel="noreferrer">Exafuse</a>
         </div>
@@ -130,8 +130,8 @@ const jsonLd = {
     <div class="public-work-index__established-grid grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
         eyebrow="Established work"
-        title="Current professional context and LMD/DED work"
-        description="The public technical context is specific: AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse."
+        title="Current professional context: LMD/DED"
+        description="This is the deepest current public proof for my broader Industrial AI & Decision Systems work: AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse."
       />
       <div class="grid gap-4 md:grid-cols-2">
         {establishedWork.map(([heading, text]) => (

@@ -10,17 +10,17 @@ import {
 } from "../lib/decisionBrief";
 import { PERSON, SITE } from "@data/site";
 
-const title = "Deutsch: KI für Laserauftragschweißen und LMD-Entscheidungen";
+const title = "Deutsch: Manish Sharma — Industrielle KI und Entscheidungssysteme";
 const description =
-  "Deutsche Übersicht für Manish Sharma Lab: LMD-Entscheidungsbrief v1.0, Entscheidungshilfe im Browser, Grenzen und Kontakt zu Exafuse.";
+  "Deutsche Übersicht von Manish Sharma zu industrieller KI und Entscheidungssystemen, mit aktuellem öffentlichem Schwerpunkt auf LMD/DED bei Exafuse und nachweisgestützter Entscheidungshilfe.";
 const exafuseContactLink = resolveExafuseLink("contact");
 const germanTemplate = formatGermanDecisionBriefTemplateMarkdown();
 
 const bullets = [
+  "Manish Sharma: Industrielle KI und Entscheidungssysteme",
+  "Arbeitsansatz: Signale → Modell → Entscheiden → Verifizieren",
   "Vorläufige Entscheidungshilfe, keine technische Freigabe",
-  "Prozesssignale unterstützen die Bewertung, ersetzen aber keine Prüfung",
-  "Für technische Machbarkeitsprüfungen und Angebotsanfragen ist Exafuse der richtige Ansprechpartner.",
-  "Manish Sharma Lab bietet öffentliche Werkzeuge, Frameworks und Fachnotizen"
+  "Für technische Machbarkeitsprüfungen und Angebotsanfragen ist Exafuse der richtige Ansprechpartner."
 ];
 
 const statusLines = [
@@ -67,14 +67,17 @@ const jsonLd = {
     <div class="max-w-4xl">
       <div class="flex flex-wrap gap-2">
         <Badge>Deutsch</Badge>
-        <Badge tone="steel">LMD-Entscheidungsbrief v1.0</Badge>
-        <Badge tone="laser">Exafuse-Kontakt</Badge>
+        <Badge tone="steel">Industrielle KI</Badge>
+        <Badge tone="laser">Aktueller LMD/DED-Nachweis</Badge>
       </div>
       <h1 class="mt-6 text-5xl font-black leading-tight text-white md:text-6xl">
-        Werkzeuge und Fachwissen für fundierte Entscheidungen im Laserauftragschweißen.
+        Industrielle KI für Entscheidungen mit belastbaren Nachweisen.
       </h1>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        Der Ansatz hilft, LMD- und DED-Fragen vor einer technischen Prüfung zu strukturieren: bekannte Fakten, fehlende Informationen, Risiken, benötigte Nachweise und der nächste Schritt bleiben sichtbar. Ihre Eingaben bleiben dabei im Browser dieses Geräts.
+        Ich arbeite an industrieller KI und Entscheidungssystemen. Meine stärkste aktuelle öffentliche Arbeit liegt in Laserauftragschweißen, Laser Metal Deposition (LMD) und Directed Energy Deposition (DED) bei Exafuse. Mein Arbeitsansatz verbindet Signale, Modelle, Entscheidungen und Verifizierung.
+      </p>
+      <p class="mt-4 text-base leading-7 text-slate-400">
+        Für mich ist eine Modellvorhersage nur ein Teil der Aufgabe. Sie muss in eine klare nächste Handlung, offene Unsicherheiten und einen nachvollziehbaren Prüfpfad eingeordnet werden. Das LMD-Entscheidungswerkzeug hilft, diese Punkte vor einer technischen Prüfung zu strukturieren; Ihre Eingaben bleiben dabei im Browser dieses Geräts.
       </p>
       <div class="mt-6 rounded-lg border border-amber-300/25 bg-amber-400/10 p-4 text-sm font-bold leading-6 text-amber-50">
         <ul class="grid gap-2">
@@ -83,9 +86,9 @@ const jsonLd = {
         <p class="mt-3">{GERMAN_BRIEF_BOUNDARY}</p>
       </div>
       <div class="mt-8 flex flex-wrap gap-3">
-        <CTAButton href="/tools/#preset=worn-shaft" variant="primary">Werkzeug öffnen</CTAButton>
+        <CTAButton href="/tools/#preset=worn-shaft" variant="primary">LMD-Entscheidungswerkzeug öffnen</CTAButton>
+        <CTAButton href="/thesis" variant="secondary">Methode auf Englisch lesen</CTAButton>
         <GermanBriefCopy client:load />
-        <CTAButton href="/no-hype" variant="secondary">Grenzen ohne Hype lesen</CTAButton>
         <CTAButton href={exafuseContactLink.href} variant="laser" external>Exafuse kontaktieren</CTAButton>
       </div>
     </div>

@@ -18,7 +18,7 @@ Manish Sharma = Industrial AI & Decision Systems.
 
 Primary promise:
 
-AI for Laser Metal Deposition decisions you can verify.
+AI for industrial decisions that need evidence, not just predictions.
 
 Central artifact:
 
@@ -34,7 +34,7 @@ The site is educational and decision-support oriented. It does not expose confid
 
 - Broad category: Industrial AI & Decision Systems
 - Public thesis: Sense -> Model -> Decide -> Verify
-- Established proof: AI for LMD/DED at Exafuse
+- Current proving ground: AI for LMD/DED at Exafuse
 - Boundary: preliminary decision-support only, not final engineering approval
 
 ## Tech Stack
