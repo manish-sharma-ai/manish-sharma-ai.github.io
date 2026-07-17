@@ -2,7 +2,6 @@
 import BentoCard from "@components/BentoCard.astro";
 import CTAButton from "@components/CTAButton.astro";
 import Chip from "@components/Chip.astro";
-import HeroLaserVisual from "@components/HeroLaserVisual";
 import Layout from "@layouts/Layout.astro";
 import LmdDecisionCockpit from "@components/LmdDecisionCockpit";
 import SectionHeading from "@components/SectionHeading.astro";
@@ -220,68 +219,92 @@ const proofDecisionPatternText: Record<string, string> = {
     { lang: "x-default", href: "/" }
   ]}
 >
-  <section class="site-shell home-hero-grid section-y">
-    <div class="home-hero__copy">
-      <div class="home-hero__tags" aria-label="Technical context">
-        <span class="home-hero__tag">Manish Sharma</span>
-        <span class="home-hero__tag">Current proof: LMD / DED</span>
+  <section class="home-premium-hero">
+    <picture
+      class="home-premium-hero__media"
+      aria-hidden="true"
+      data-audit-context="Illustrative LMD process schematic"
+    >
+      <source media="(max-width: 639px)" srcset="/images/melt-pool-hero-1024.jpg" />
+      <img
+        src="/images/melt-pool-hero.jpg"
+        alt=""
+        aria-hidden="true"
+        width="1586"
+        height="992"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+    <div class="home-premium-hero__wash" aria-hidden="true"></div>
+    <div class="site-shell home-hero-grid">
+      <div class="home-hero__copy">
+        <h1 class="home-hero__title">
+          I build AI systems for industrial decisions that need evidence, not just predictions.
+        </h1>
+        <p class="home-hero__intro">
+          Again and again, I found that a prediction alone did not settle the industrial question. My strongest public work today is in Laser Metal Deposition and Directed Energy Deposition at Exafuse, where I connect signals, models, engineering constraints, and human judgment to the next action and the evidence needed to check it.
+        </p>
+        <div class="home-hero__actions">
+          <CTAButton href="#lmd-decision-cockpit" variant="primary" class="home-hero__primary-action">Explore my work</CTAButton>
+          <CTAButton href="/thesis" variant="secondary" class="home-hero__secondary-action">Read how I think</CTAButton>
+        </div>
+        <p class="home-hero__review-note">
+          <span>Industrial AI / decision systems. Evidence-aware by design.</span>
+          Start with the LMD Decision Cockpit, then follow the method and current public work.
+        </p>
       </div>
-      <p class="home-hero__eyebrow">
-        Industrial AI / decision systems <span class="home-hero__preserve-label">Evidence-aware by design</span>
-      </p>
-      <h1 class="home-hero__title">
-        I build AI systems for industrial decisions that need evidence, not just predictions.
-      </h1>
-      <p class="home-hero__intro">
-        Again and again, I found that a prediction alone did not settle the industrial question. My strongest public work today is in Laser Metal Deposition and Directed Energy Deposition at Exafuse, where I connect signals, models, engineering constraints, and human judgment to the next action and the evidence needed to check it.
-      </p>
-      <div class="home-hero__actions">
-        <CTAButton href="#lmd-decision-cockpit" variant="primary" class="home-hero__primary-action">Explore my work</CTAButton>
-        <CTAButton href="/thesis" variant="secondary" class="home-hero__secondary-action">Read how I think</CTAButton>
-      </div>
-      <p class="home-hero__review-note">Start with the LMD Decision Cockpit, then follow the method and current public work.</p>
     </div>
-    <HeroLaserVisual />
+    <p class="home-premium-hero__image-caption">
+      <span class="home-premium-hero__image-caption-title">Melt pool</span>
+      <span class="home-premium-hero__image-caption-copy">Created in the laser metal deposition process.</span>
+    </p>
   </section>
 
-  <section class="site-shell pb-12">
-    <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
-    <noscript>
-      <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
-        The worked brief remains readable without JavaScript. To prepare your own handoff, use the <a href="/brief-template" class="font-black text-cyan-100">copyable template</a> or the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
-      </div>
-    </noscript>
-  </section>
-
-  <section class="process-proof-system" data-operating-loop="homepage" aria-label="Sense, model, decide, verify operating loop">
-    <div class="site-shell process-proof-system__inner">
-      <div class="process-proof-system__section">
-        <div class="process-proof-system__intro">
-          <SectionHeading
-            eyebrow="How I work / signal to evidence"
-            title="Sense → Model → Decide → Verify"
-            description="To me, a prediction is only one part of the job. The next action, the missing context, and the verification path have to be clear too."
-          />
-          <div class="process-proof-system__tags" aria-label="Operating loop characteristics">
-            <span class="process-proof-system__tag">Decision support</span>
-            <span class="process-proof-system__tag">Evidence boundary</span>
-          </div>
-          <div class="process-proof-system__actions">
-            <CTAButton href="/thesis" variant="primary">Read the method</CTAButton>
-            <CTAButton href="/domains/lmd-ded" variant="secondary">See current LMD/DED work</CTAButton>
-          </div>
+  <section class="home-opening-flow" data-operating-loop="homepage" aria-labelledby="home-opening-flow-title">
+    <div class="home-opening-flow__atmosphere" aria-hidden="true"></div>
+    <div class="site-shell home-opening-flow__inner">
+      <section class="home-opening-flow__process" aria-labelledby="home-opening-flow-title">
+        <div class="home-opening-flow__process-intro">
+          <h2 id="home-opening-flow-title">Sense → Model → Decide → Verify</h2>
+          <p>To me, a prediction is only one part of the job. The next action, the missing context, and the verification path have to be clear too.</p>
         </div>
 
-        <ol class="process-proof-system__flow" aria-label="Sense, model, decide, verify process">
+        <ol class="home-opening-flow__steps" aria-label="Sense, model, decide, verify process">
           {homepageProcessSteps.map((step) => (
-            <li class:list={["process-proof-system__step", `process-proof-system__step--${step.tone}`]}>
-              <span class="process-proof-system__step-index">{step.index}</span>
+            <li class:list={["home-opening-flow__step", `home-opening-flow__step--${step.tone}`]}>
+              <span class="home-opening-flow__step-index">{step.index}</span>
               <strong>{step.label}</strong>
               <span>{step.description}</span>
             </li>
           ))}
         </ol>
-      </div>
+
+        <aside class="home-opening-flow__boundary" aria-label="Decision-support boundary">
+          Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
+        </aside>
+
+        <nav class="home-opening-flow__links" aria-label="Method and current work">
+          <a href="/thesis">Read the method <span aria-hidden="true">→</span></a>
+          <a href="/domains/lmd-ded">See current LMD/DED work <span aria-hidden="true">→</span></a>
+        </nav>
+      </section>
+
+      <section class="home-opening-flow__cockpit" aria-label="LMD Decision Cockpit preview">
+        <div class="home-opening-flow__cockpit-route" aria-hidden="true"></div>
+        <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+        <noscript>
+          <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
+            The worked brief remains readable without JavaScript. To prepare your own handoff, use the <a href="/brief-template" class="font-black text-cyan-100">copyable template</a> or the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
+          </div>
+        </noscript>
+      </section>
+    </div>
+  </section>
+
+  <section class="process-proof-system" aria-label="Public context and decision routes">
+    <div class="site-shell process-proof-system__inner">
 
       <div class="process-proof-system__section process-proof-system__section--proof" aria-label="Public context and decision routes">
         <div class="process-proof-system__proof-heading">
