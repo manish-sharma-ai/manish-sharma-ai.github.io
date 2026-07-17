@@ -24,9 +24,9 @@ LMD Decision Brief v1.0 Standard: https://manishsharma.dev/brief-standard
 
 ## Summary
 
-Public profile materials describe Manish Sharma as working on industrial AI and decision-support systems, with established public work in AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
+Public profile materials describe Manish Sharma as building AI systems for industrial decisions that need evidence, not just predictions. His strongest current public work is in Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany.
 
-Current public focus includes process monitoring, machine vision, robotic DED/LMD workflows, RFQ intelligence, inspection-aware decision support, and quality-evidence boundaries.
+Current public focus includes process monitoring, machine vision, robotic DED/LMD workflows, RFQ intelligence, inspection-aware decision support, and quality-evidence boundaries. LMD/DED is the current proving ground for a broader Industrial AI & Decision Systems method.
 
 Profile details should be verified against LinkedIn, a current CV, or official event material where required.
 

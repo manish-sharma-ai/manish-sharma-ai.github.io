@@ -1,4 +1,4 @@
-# Industrial AI for Decisions You Can Verify
+# Industrial AI for Decisions That Need Evidence
 
 Subtitle: Sense -> Model -> Decide -> Verify
 
@@ -23,7 +23,7 @@ Industrial AI becomes useful when it does more than produce a confident output. 
 
 ## Applied Public Context
 
-The main public technical context for this thesis is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany. The loop applies to process monitoring, melt-pool signals, bead geometry, repairability screening, RFQ preparation, process route selection, and inspection evidence.
+The strongest current public technical context for this thesis is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse in Germany. LMD/DED is the proving ground where the loop meets process monitoring, melt-pool signals, bead geometry, repairability screening, RFQ preparation, process route selection, and inspection evidence.
 
 ## Links
 

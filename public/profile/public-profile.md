@@ -8,7 +8,7 @@ Public identity facts for Manish Sharma and Manish Sharma Lab.
 | --- | --- |
 | Name | Manish Sharma |
 | Focus | Industrial AI & Decision Systems |
-| Primary promise | AI for Laser Metal Deposition decisions you can verify |
+| Primary promise | AI for industrial decisions that need evidence, not just predictions |
 | Company connection | Exafuse, Germany |
 | Location | Germany |
 | Website | https://manishsharma.dev |

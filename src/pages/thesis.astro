@@ -9,10 +9,10 @@ import SourceLinks from "@components/SourceLinks.astro";
 import { PERSON, SITE } from "@data/site";
 import { EXAFUSE_LINKS } from "@data/siteConfig";
 
-const title = "Industrial AI for Decisions You Can Verify";
-const subtitle = "Sense -> Model -> Decide -> Verify";
+const title = "Industrial AI for Decisions That Need Evidence";
+const subtitle = "My working method: Sense -> Model -> Decide -> Verify";
 const description =
-  "A practical operating thesis for industrial AI and decision systems: connect signals, assumptions, decisions, and verification evidence.";
+  "Manish Sharma's working method for industrial AI: connect signals, assumptions, decisions, and verification evidence, grounded in current LMD/DED work at Exafuse.";
 
 const principles = [
   "A signal is not proof.",
@@ -92,7 +92,7 @@ const jsonLd = {
   datePublished: "2026-06-24",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/thesis`,
-  about: ["Industrial AI", "Decision Support Systems", "Process Monitoring", "Engineering Evidence"]
+  about: ["Industrial AI", "Decision Support Systems", "Machine Vision", "Robotics", "Process Monitoring", "Engineering Evidence"]
 };
 ---
 
@@ -105,11 +105,11 @@ const jsonLd = {
         <Badge tone="steel">Public operating model</Badge>
         <Badge tone="laser">Evidence-bound</Badge>
       </div>
-      <p class="metric-label mt-8">Manish Sharma Lab</p>
+      <p class="metric-label mt-8">Manish Sharma / working method</p>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
       <p class="mt-5 text-2xl font-bold text-cyan-100">{subtitle}</p>
       <p class="mt-6 text-lg leading-8 text-slate-300 md:text-xl">
-        Industrial AI becomes useful when it does more than produce a confident output. It must stay connected to the signals it observed, the model assumptions it used, the decision it recommends, and the evidence that can verify the outcome.
+        I use this method because a prediction alone does not finish the industrial job. The output has to be tied to what it observed, the assumptions that may limit it, the decision under consideration, and the evidence that can responsibly check the outcome. LMD/DED is the current proving ground where I can test that discipline in public.
       </p>
     </div>
     <PageHeroVisual variant="frameworks" class="hidden lg:block" />
@@ -120,7 +120,7 @@ const jsonLd = {
       <SectionHeading
         eyebrow="Four-stage loop"
         title="Sense, Model, Decide, Verify"
-        description="This is a practical operating model for public industrial-AI work, not a claim to own a new discipline."
+        description="This is my practical operating model for industrial-AI work, not a claim to own a new discipline."
       />
       <div class="mt-10">
         <ProcessLoop variant="full" />
@@ -132,7 +132,7 @@ const jsonLd = {
     <SectionHeading
       eyebrow="Stage links"
       title="Connect each stage to a source, framework, or tool"
-      description="The thesis is useful only when it routes readers to concrete LMD/DED resources and evidence boundaries."
+      description="The method is useful only when it routes readers to concrete LMD/DED resources and an explicit verification path."
     />
     <div class="mt-10 grid gap-5 md:grid-cols-2">
       {stageLinks.map((stage) => (
@@ -194,8 +194,8 @@ const jsonLd = {
     <div class="site-shell">
       <SectionHeading
         eyebrow="Applied proof"
-        title="Grounded publicly in LMD / DED"
-        description="The focused public technical context for this thesis is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse."
+        title="LMD / DED is my current proving ground"
+        description="My strongest public technical context is AI for Laser Metal Deposition and Directed Energy Deposition at Exafuse. It is where this method meets physical signals, materials, robotics, repair, and inspection."
       />
       <div class="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {appliedProof.map(([heading, text]) => (
@@ -213,7 +213,7 @@ const jsonLd = {
       <SectionHeading
         eyebrow="Use with"
         title="Public resources that make the thesis practical"
-        description="These links connect the operating model to existing LMD/DED frameworks, evidence, and RFQ resources."
+        description="These links connect my working method to existing LMD/DED frameworks, evidence, and RFQ resources."
       />
       <SourceLinks links={links} />
     </div>
