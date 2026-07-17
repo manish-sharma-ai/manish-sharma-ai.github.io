@@ -1930,9 +1930,888 @@
   }
 }
 
+/* Premium homepage hero: scoped photographic treatment only. */
+.home-premium-hero {
+  position: relative;
+  isolation: isolate;
+  min-block-size: clamp(42rem, calc(100svh - var(--header-height)), 53rem);
+  overflow: clip;
+  background: #0e0d0b;
+}
+
+.home-premium-hero__media,
+.home-premium-hero__wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-premium-hero__media {
+  z-index: 1;
+}
+
+.home-premium-hero__wash {
+  z-index: 2;
+}
+
+.home-premium-hero__media img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: 60% 52%;
+}
+
+.home-premium-hero__wash {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 13, 11, 0.91) 0%,
+      rgba(14, 13, 11, 0.78) 30%,
+      rgba(14, 13, 11, 0.46) 55%,
+      rgba(14, 13, 11, 0.1) 88%
+    ),
+    linear-gradient(180deg, rgba(14, 13, 11, 0.08), rgba(14, 13, 11, 0.38) 100%);
+}
+
+.home-premium-hero .site-shell.home-hero-grid {
+  display: grid;
+  position: relative;
+  z-index: 3;
+  grid-template-columns: minmax(0, 39.375rem) minmax(0, 1fr);
+  align-items: start;
+  width: min(1312px, calc(100% - 64px));
+  min-block-size: inherit;
+  gap: 0;
+  padding-block: clamp(2.25rem, 4.5svh, 4rem);
+}
+
+.home-premium-hero .home-hero-grid::before {
+  display: none;
+}
+
+.home-premium-hero .home-hero__copy {
+  display: flex;
+  grid-column: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  max-inline-size: 39.375rem;
+  inline-size: 100%;
+}
+
+.home-premium-hero .home-hero__title {
+  max-inline-size: 100%;
+  margin: 0;
+  color: #f2eee5;
+  font-family: var(--font-sans);
+  font-size: clamp(3.2rem, 4.9vw, 4.375rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.97;
+  text-wrap: balance;
+}
+
+.home-premium-hero .home-hero__intro {
+  max-inline-size: 34rem;
+  margin-top: clamp(1.35rem, 2vw, 1.8rem);
+  color: #d0c8bb;
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.5;
+}
+
+.home-premium-hero .home-hero__tags {
+  gap: 0.4rem 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.home-premium-hero .home-hero__tag,
+.home-premium-hero .home-hero__eyebrow,
+.home-premium-hero .home-hero__preserve-label {
+  color: #b5aa99;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.035em;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+.home-premium-hero .home-hero__tag {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.home-premium-hero .home-hero__tag + .home-hero__tag::before {
+  margin-right: 0.8rem;
+  color: #9e4a1a;
+  content: "•";
+}
+
+.home-premium-hero .home-hero__eyebrow {
+  order: 0;
+  margin-top: 0.65rem;
+  color: #c8783f;
+}
+
+.home-premium-hero .home-hero__preserve-label {
+  margin-left: 0.4rem;
+  color: #b5aa99;
+}
+
+.home-premium-hero .home-hero__actions {
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.home-premium-hero .home-hero__actions .btn {
+  min-height: 3rem;
+  border-radius: 2px;
+  box-shadow: none;
+  font-size: 0.875rem;
+}
+
+.home-premium-hero .home-hero__primary-action {
+  border-color: #9e4a1a;
+  background: #9e4a1a;
+  color: #0e0d0b;
+}
+
+.home-premium-hero .home-hero__primary-action:hover,
+.home-premium-hero .home-hero__primary-action:focus-visible {
+  border-color: #c8783f;
+  background: #c8783f;
+  box-shadow: 0 0 0 3px rgba(242, 238, 229, 0.2);
+  color: #0e0d0b;
+}
+
+.home-premium-hero .home-hero__secondary-action {
+  border-color: transparent;
+  background: transparent;
+  color: #f2eee5;
+  padding-inline: 0.15rem;
+}
+
+.home-premium-hero .home-hero__secondary-action:hover,
+.home-premium-hero .home-hero__secondary-action:focus-visible {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(242, 238, 229, 0.2);
+  color: #f2eee5;
+}
+
+.home-premium-hero .home-hero__review-note {
+  max-inline-size: 35rem;
+  margin-top: 2rem;
+  padding-top: 0.85rem;
+  border-top: 2px solid #b45d29;
+  color: #b5aa99;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.home-premium-hero__image-caption {
+  position: absolute;
+  right: clamp(2rem, 4vw, 4rem);
+  bottom: clamp(2rem, 4vw, 3.5rem);
+  z-index: 3;
+  display: grid;
+  max-inline-size: 17rem;
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 1px solid rgba(200, 120, 63, 0.78);
+  text-align: right;
+  text-shadow: 0 1px 1rem rgba(14, 13, 11, 0.88);
+}
+
+.home-premium-hero__image-caption-title {
+  color: #f2eee5;
+  font-family: var(--font-sans);
+  font-size: clamp(1.3rem, 1.7vw, 1.7rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.home-premium-hero__image-caption-copy {
+  max-inline-size: 15rem;
+  justify-self: end;
+  margin-top: 0.38rem;
+  color: #e4d9ca;
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1180px) {
+  .home-premium-hero .site-shell.home-hero-grid {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    width: min(1376px, calc(100% - 48px));
+  }
+
+  .home-premium-hero .home-hero__copy {
+    max-inline-size: 41rem;
+  }
+
+  .home-premium-hero .home-hero__media img {
+    object-position: 67% 52%;
+  }
+}
+
+@media (max-width: 860px) {
+  .home-premium-hero .site-shell.home-hero-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 639px) {
+  .home-premium-hero {
+    min-block-size: calc(100svh - 5rem);
+  }
+
+  .home-premium-hero__wash {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(14, 13, 11, 0.88) 0%,
+        rgba(14, 13, 11, 0.7) 70%,
+        rgba(14, 13, 11, 0.34) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(14, 13, 11, 0.1) 0%,
+        rgba(14, 13, 11, 0.48) 58%,
+        rgba(14, 13, 11, 0.93) 100%
+      );
+  }
+
+  .home-premium-hero .home-premium-hero__media img {
+    object-position: 76% 48%;
+  }
+
+  .home-premium-hero .site-shell.home-hero-grid {
+    display: block;
+    width: min(1376px, calc(100% - 32px));
+    min-block-size: inherit;
+    padding-block: 1.25rem 1.5rem;
+  }
+
+  .home-premium-hero .home-hero__copy {
+    max-inline-size: none;
+  }
+
+  .home-premium-hero .home-hero__title {
+    max-inline-size: 22rem;
+    font-size: clamp(2.55rem, 10.75vw, 2.85rem);
+    letter-spacing: -0.04em;
+    line-height: 0.97;
+  }
+
+  .home-premium-hero .home-hero__intro {
+    max-inline-size: 22rem;
+    margin-top: 1.35rem;
+    color: #ddd5c9;
+    font-size: 0.94rem;
+    line-height: 1.45;
+  }
+
+  .home-premium-hero .home-hero__tags {
+    gap: 0.35rem 0.65rem;
+    margin-top: 1rem;
+  }
+
+  .home-premium-hero .home-hero__tag,
+  .home-premium-hero .home-hero__eyebrow,
+  .home-premium-hero .home-hero__preserve-label {
+    font-size: 0.64rem;
+  }
+
+  .home-premium-hero .home-hero__tag + .home-hero__tag::before {
+    margin-right: 0.65rem;
+  }
+
+  .home-premium-hero .home-hero__eyebrow {
+    margin-top: 0.45rem;
+  }
+
+  .home-premium-hero .home-hero__preserve-label {
+    display: inline;
+    margin-left: 0.25rem;
+  }
+
+  .home-premium-hero .home-hero__actions {
+    flex-direction: row;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .home-premium-hero .home-hero__actions .btn {
+    min-height: 3rem;
+    font-size: 0.81rem;
+  }
+
+  .home-premium-hero .home-hero__secondary-action {
+    min-width: 0;
+    padding-inline: 0.1rem;
+  }
+
+  .home-premium-hero .home-hero__review-note {
+    max-inline-size: 20rem;
+    margin-top: 1.6rem;
+    padding-top: 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .home-premium-hero__image-caption {
+    display: none;
+  }
+}
+
+@media (max-width: 359px) {
+  .home-premium-hero .home-hero__title {
+    font-size: 2.35rem;
+  }
+
+  .home-premium-hero .home-hero__actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .lab-note-index-card {
     transition: none;
+  }
+}
+
+/* Premium Flow: shared scenes and non-animated bridges.
+   These values are intentionally local to this prototype layer. They do not
+   replace the established instrumentation tokens used by controls and tools. */
+:root {
+  --premium-flow-brand: #13110f;
+  --premium-flow-narrative: #1a1714;
+  --premium-flow-instrument: #24211f;
+  --premium-flow-reference: #0f0e0d;
+  --premium-flow-bronze: #4d3324;
+  --premium-flow-mineral: #f2eee5;
+  --premium-flow-muted: #b8af9f;
+  --premium-flow-amber: #e85d22;
+  --premium-flow-amber-soft: rgba(232, 93, 34, 0.42);
+}
+
+/* Shared narrative scene — article shells keep their current content and rails,
+   while the reading surface rises into a quieter masthead in normal document flow. */
+:is(.lab-note-article, .framework-article, .glossary-article) {
+  --premium-flow-scene: var(--premium-flow-brand);
+  position: relative;
+  isolation: isolate;
+  color: var(--premium-flow-mineral);
+}
+
+:is(
+  .lab-note-article__masthead,
+  .framework-article__masthead,
+  .glossary-article__masthead
+) {
+  position: relative;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background:
+    linear-gradient(105deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.9) 58%, rgba(77, 51, 36, 0.48) 100%);
+  padding-bottom: clamp(5.25rem, 9vw, 8rem);
+}
+
+:is(
+  .lab-note-article__masthead,
+  .framework-article__masthead,
+  .glossary-article__masthead
+)::after {
+  position: absolute;
+  right: clamp(1rem, 5vw, 4rem);
+  bottom: 0;
+  left: clamp(1rem, 5vw, 4rem);
+  z-index: -1;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--premium-flow-amber-soft), transparent);
+  content: "";
+}
+
+:is(
+  .lab-note-article__masthead h1,
+  .framework-article__masthead h1,
+  .glossary-article__masthead h1
+) {
+  color: var(--premium-flow-mineral);
+}
+
+.lab-note-article__reading-layout,
+.framework-article__content,
+.glossary-article__content {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-6rem, -5vw, -4rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 26%, transparent);
+  background: var(--premium-flow-narrative);
+}
+
+.lab-note-article__reading-layout {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.framework-article__content,
+.glossary-article__content {
+  padding-top: clamp(4rem, 7vw, 6.5rem);
+}
+
+.lab-note-article__reading-layout::before,
+.framework-article__content::before,
+.glossary-article__content::before {
+  position: absolute;
+  top: clamp(1.25rem, 3vw, 2.5rem);
+  bottom: clamp(1.25rem, 3vw, 2.5rem);
+  left: max(0.75rem, calc((100% - 74rem) / 2));
+  width: 1px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--premium-flow-amber-soft), transparent 82%);
+  content: "";
+}
+
+.lab-note-article__reading-surface {
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.lab-note-article__reading-surface h2,
+.framework-article__content h2,
+.glossary-article__content h2 {
+  color: var(--premium-flow-mineral);
+}
+
+.lab-note-article__footer,
+.framework-article__footer {
+  position: relative;
+  margin-top: 0;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Shared index scene — mastheads remain compact; the first real collection
+   rises into a matte reference surface rather than a separate card system. */
+:is(
+  .frameworks-index,
+  .research-index,
+  .resources-index,
+  .glossary-index,
+  .public-work-index
+) {
+  position: relative;
+  isolation: isolate;
+  background: var(--premium-flow-brand);
+  color: var(--premium-flow-mineral);
+}
+
+:is(
+  .lab-notes-index,
+  .frameworks-index__masthead,
+  .research-index__masthead,
+  .resources-index__masthead,
+  .glossary-index__masthead,
+  .public-work-index__masthead
+) {
+  position: relative;
+  isolation: isolate;
+}
+
+:is(
+  .lab-notes-index__masthead,
+  .frameworks-index__masthead,
+  .research-index__masthead,
+  .resources-index__masthead,
+  .glossary-index__masthead,
+  .public-work-index__masthead
+) {
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background:
+    linear-gradient(112deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.94) 64%, rgba(77, 51, 36, 0.4) 100%);
+  padding-bottom: clamp(4.75rem, 8vw, 7rem);
+}
+
+:is(
+  .lab-notes-index__masthead h1,
+  .frameworks-index__masthead h1,
+  .research-index__masthead h1,
+  .resources-index__masthead h1,
+  .glossary-index__masthead h1,
+  .public-work-index__masthead h1
+) {
+  color: var(--premium-flow-mineral);
+}
+
+:is(
+  .lab-notes-index__collection,
+  .frameworks-index__summary,
+  .research-index__listing,
+  .resources-index__groups,
+  .glossary-index__core,
+  .public-work-index__context-band
+) {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-5rem, -5vw, -3.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 25%, transparent);
+  background: var(--premium-flow-reference);
+}
+
+.lab-notes-index__collection,
+.frameworks-index__summary,
+.research-index__listing,
+.resources-index__groups,
+.public-work-index__context-band {
+  padding-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.glossary-index__core {
+  padding-top: clamp(3rem, 5vw, 4.5rem);
+}
+
+:is(
+  .lab-notes-index__collection,
+  .frameworks-index__summary,
+  .research-index__listing,
+  .resources-index__groups,
+  .glossary-index__core,
+  .public-work-index__context-band
+)::before {
+  position: absolute;
+  top: 0;
+  left: clamp(1rem, 7vw, 8rem);
+  width: min(12rem, 22vw);
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--premium-flow-amber), transparent);
+  content: "";
+}
+
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .framework-index-card,
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .resource-card,
+.research-index .source-links a,
+.lab-notes-index .lab-note-index-card {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 16%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .framework-index-card:hover,
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .resource-card:hover,
+.research-index .source-links a:hover,
+.lab-notes-index .lab-note-index-card:hover {
+  border-color: var(--premium-flow-amber-soft);
+  background: color-mix(in srgb, var(--premium-flow-bronze) 26%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+/* Shared instrument scene — real control islands remain untouched. The shell
+   changes scene before the workbench starts, then a single amber route ends at it. */
+:is(
+  .tools-workbench__hero,
+  .decision-map-page__masthead,
+  .brief-template-page__masthead,
+  .demo-page__masthead
+) {
+  position: relative;
+  isolation: isolate;
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background:
+    linear-gradient(112deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.92) 64%, rgba(77, 51, 36, 0.4) 100%);
+  padding-bottom: clamp(4.75rem, 8vw, 7rem);
+}
+
+:is(
+  .tools-workbench__hero h1,
+  .decision-map-page__masthead h1,
+  .brief-template-page__masthead h1,
+  .demo-page__masthead h1
+) {
+  color: var(--premium-flow-mineral);
+}
+
+:is(
+  .tools-workbench__dock,
+  .tools-workbench__cockpit-transition,
+  .premium-flow-tool-surface
+) {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-5rem, -5vw, -3.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 32%, transparent);
+  background: var(--premium-flow-instrument);
+}
+
+:is(
+  .tools-workbench__dock,
+  .tools-workbench__cockpit-transition,
+  .premium-flow-tool-surface
+)::before {
+  position: absolute;
+  top: 0;
+  left: clamp(1rem, 7vw, 8rem);
+  width: min(13rem, 25vw);
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--premium-flow-amber), transparent);
+  content: "";
+}
+
+/* Shared standalone narrative scene. A bridge is deliberately omitted when a
+   route has no real fact, quotation, or chapter number to carry across it. */
+.info-page {
+  position: relative;
+  isolation: isolate;
+  background: var(--premium-flow-brand);
+}
+
+.info-page__masthead {
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 26%, var(--instrument-border));
+  background:
+    linear-gradient(110deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.93) 63%, rgba(77, 51, 36, 0.4) 100%);
+  padding-bottom: clamp(4.75rem, 8vw, 7rem);
+}
+
+.info-page__masthead h1 {
+  color: var(--premium-flow-mineral);
+}
+
+.info-page__masthead + section,
+.info-page__masthead + div {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-5rem, -5vw, -3.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 22%, transparent);
+  background: var(--premium-flow-narrative);
+}
+
+/* Closing path and provenance now share the same restrained reference scene,
+   allowing the existing footer to read as the last chapter without changing it. */
+.closing-path {
+  border-top-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background:
+    linear-gradient(105deg, var(--premium-flow-reference) 0%, var(--premium-flow-narrative) 100%);
+  padding-block: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+.closing-path::before {
+  background:
+    linear-gradient(90deg, transparent, color-mix(in srgb, var(--premium-flow-amber) 20%, transparent) 36%, transparent 70%);
+}
+
+.closing-path__header {
+  border-left-color: var(--premium-flow-amber);
+}
+
+.closing-path__title {
+  color: var(--premium-flow-mineral);
+}
+
+.closing-path__links {
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+}
+
+.closing-path__item + .closing-path__item {
+  border-left: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+}
+
+.closing-path__link {
+  min-height: 9.5rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.closing-path__link:hover,
+.closing-path__link:focus-visible {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--premium-flow-bronze) 38%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+.closing-path + .page-provenance {
+  margin-top: 0;
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 10%, transparent);
+  background: var(--premium-flow-reference);
+}
+
+@media (max-width: 639px) {
+  :is(
+    .lab-note-article__masthead,
+    .framework-article__masthead,
+    .glossary-article__masthead,
+    .lab-notes-index__masthead,
+    .frameworks-index__masthead,
+    .research-index__masthead,
+    .resources-index__masthead,
+    .glossary-index__masthead,
+    .public-work-index__masthead,
+    .tools-workbench__hero,
+    .decision-map-page__masthead,
+    .brief-template-page__masthead,
+    .demo-page__masthead,
+    .info-page__masthead
+  ) {
+    padding-bottom: clamp(3.75rem, 14vw, 4.75rem);
+  }
+
+  :is(
+    .lab-note-article__reading-layout,
+    .framework-article__content,
+    .glossary-article__content,
+    .lab-notes-index__collection,
+    .frameworks-index__summary,
+    .research-index__listing,
+    .resources-index__groups,
+    .glossary-index__core,
+    .public-work-index__context-band,
+    .tools-workbench__dock,
+    .tools-workbench__cockpit-transition,
+    .premium-flow-tool-surface,
+    .info-page__masthead + section,
+    .info-page__masthead + div
+  ) {
+    margin-top: clamp(-3rem, -10vw, -2rem);
+  }
+
+  .lab-note-article__reading-layout {
+    padding: 0.75rem;
+  }
+
+  .closing-path__links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .closing-path__item + .closing-path__item {
+    border-top: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+    border-left: 0;
+  }
+
+  .closing-path__link {
+    min-height: 0;
+  }
+}
+
+/* Keep premium scene chrome warm and quiet. This deliberately excludes the
+   interactive control rails, where existing state colour still carries meaning. */
+:is(.frameworks-index, .tools-workbench__hero, .info-page__masthead) .chip,
+:is(.frameworks-index, .tools-workbench__hero, .info-page__masthead) .badge {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 20%, transparent);
+  background: color-mix(in srgb, var(--premium-flow-reference) 88%, transparent);
+  color: var(--premium-flow-mineral);
+  box-shadow: none;
+}
+
+:is(.frameworks-index, .tools-workbench__hero, .info-page__masthead) .chip::before,
+:is(.frameworks-index, .tools-workbench__hero, .info-page__masthead) .badge::before {
+  background: var(--premium-flow-amber);
+  box-shadow: none;
+}
+
+:is(.frameworks-index, .tools-workbench__hero) .btn-primary {
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 70%, var(--premium-flow-bronze));
+  background: var(--premium-flow-bronze);
+  box-shadow: none;
+  color: var(--premium-flow-mineral);
+}
+
+:is(.frameworks-index, .tools-workbench__hero) .btn-primary:hover,
+:is(.frameworks-index, .tools-workbench__hero) .btn-primary:focus-visible {
+  border-color: var(--premium-flow-amber);
+  background: color-mix(in srgb, var(--premium-flow-bronze) 72%, var(--premium-flow-amber));
+  box-shadow: 0 0 0 3px rgba(242, 238, 229, 0.16);
+}
+
+:is(.frameworks-index, .tools-workbench__hero) .btn-secondary {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 18%, transparent);
+  background: rgba(19, 17, 15, 0.48);
+  box-shadow: none;
+  color: var(--premium-flow-mineral);
+}
+
+:is(.tools-workbench__hero, .info-page__masthead) [class*="text-cyan"] {
+  color: var(--premium-flow-mineral) !important;
+}
+
+:is(.frameworks-index, .tools-workbench__hero, .info-page__masthead) [class*="border-cyan"] {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 20%, transparent) !important;
+}
+
+:is(.frameworks-index, .tools-workbench__hero, .info-page__masthead) [class*="bg-cyan"] {
+  background-color: color-mix(in srgb, var(--premium-flow-bronze) 36%, transparent) !important;
+}
+
+.info-page__masthead h1 span {
+  background: none !important;
+  color: var(--premium-flow-mineral) !important;
+  -webkit-text-fill-color: currentColor;
+}
+
+.frameworks-index__visual .process-loop {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 17%, transparent);
+  border-radius: 2px;
+  background: var(--premium-flow-reference);
+  box-shadow: none;
+}
+
+.frameworks-index__visual .process-loop::before,
+.frameworks-index__visual .process-loop::after {
+  display: none;
+}
+
+.frameworks-index__visual :is(.process-loop__eyebrow, .process-loop__index) {
+  color: var(--premium-flow-amber);
+}
+
+.frameworks-index__visual .process-loop__stages {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 15%, transparent);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--premium-flow-mineral) 15%, transparent);
+}
+
+.frameworks-index__visual .process-loop__stage {
+  background: var(--premium-flow-reference);
+}
+
+.frameworks-index__visual .process-loop__stage::before,
+.frameworks-index__visual .process-loop__signal,
+.frameworks-index__visual .process-loop__signal.is-verify {
+  border-color: var(--premium-flow-amber);
+  background: var(--premium-flow-amber);
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .frameworks-index,
+    .research-index,
+    .resources-index,
+    .glossary-index,
+    .public-work-index,
+    .lab-note-article,
+    .framework-article,
+    .glossary-article,
+    .info-page,
+    .closing-path
+  ) * {
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -8028,5 +8907,655 @@ input:hover {
   .evidence-base__facts .evidence-fact-grid__card {
     min-height: 0;
     padding: 1rem;
+  }
+}
+
+/* Selected premium homepage opening flow: scoped hero-to-product chapter. */
+.home-opening-flow {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: var(--instrument-bg);
+  color: var(--instrument-text);
+}
+
+.home-opening-flow__atmosphere {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  block-size: clamp(17rem, 32vw, 30rem);
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 68% -12%, color-mix(in srgb, var(--instrument-copper) 24%, transparent), transparent 58%),
+    linear-gradient(180deg, color-mix(in srgb, var(--instrument-bg) 16%, transparent), var(--instrument-bg) 82%);
+}
+
+.home-opening-flow__inner {
+  position: relative;
+  padding-block: clamp(4.5rem, 8vw, 7.5rem) clamp(4.75rem, 8vw, 7.75rem);
+}
+
+.home-opening-flow__process {
+  position: relative;
+}
+
+.home-opening-flow__process-intro {
+  max-inline-size: 50rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.home-opening-flow__process-intro h2 {
+  margin: 0;
+  color: var(--instrument-text);
+  font-family: var(--font-sans);
+  font-size: clamp(2.5rem, 4.8vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 0.97;
+  text-wrap: balance;
+}
+
+.home-opening-flow__process-intro p {
+  max-inline-size: 46rem;
+  margin: 1.35rem auto 0;
+  color: var(--instrument-text-soft);
+  font-size: clamp(1rem, 1.35vw, 1.125rem);
+  line-height: 1.55;
+}
+
+.home-opening-flow__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.8vw, 3rem);
+  margin: clamp(3rem, 6vw, 5.25rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-opening-flow__steps::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  block-size: 1px;
+  background: var(--instrument-copper);
+  content: "";
+}
+
+.home-opening-flow__step {
+  position: relative;
+  display: grid;
+  align-content: start;
+  min-inline-size: 0;
+  gap: 0.45rem;
+  padding: 1.65rem 1rem 0 0;
+}
+
+.home-opening-flow__step::before {
+  position: absolute;
+  top: -0.31rem;
+  left: 0;
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border-radius: 50%;
+  background: var(--instrument-signal);
+  box-shadow: 0 0 0 4px var(--instrument-bg);
+  content: "";
+}
+
+.home-opening-flow__step-index {
+  color: var(--instrument-signal);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.home-opening-flow__step strong {
+  color: var(--instrument-text);
+  font-size: clamp(1.25rem, 1.65vw, 1.55rem);
+  line-height: 1.12;
+}
+
+.home-opening-flow__step > span:last-child {
+  max-inline-size: 16rem;
+  color: var(--instrument-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.home-opening-flow__boundary {
+  max-inline-size: 44rem;
+  margin: clamp(2.75rem, 5vw, 4rem) 0 0;
+  color: color-mix(in srgb, var(--instrument-text-soft) 78%, transparent);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.home-opening-flow__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.home-opening-flow__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--instrument-text-soft);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-opening-flow__links a:hover,
+.home-opening-flow__links a:focus-visible {
+  color: var(--instrument-text);
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 4px;
+}
+
+.home-opening-flow__links a span {
+  color: var(--instrument-signal);
+}
+
+.home-opening-flow__cockpit {
+  position: relative;
+  margin-top: clamp(3.5rem, 7vw, 6.5rem);
+  padding-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.home-opening-flow__cockpit::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  block-size: clamp(6rem, 11vw, 10rem);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--instrument-surface) 0%, transparent), var(--instrument-surface));
+  content: "";
+}
+
+.home-opening-flow__cockpit-route {
+  position: absolute;
+  top: 0;
+  left: 72%;
+  inline-size: 1px;
+  block-size: clamp(3.5rem, 6vw, 5.5rem);
+  background: var(--instrument-copper);
+}
+
+.home-opening-flow__cockpit .decision-cockpit {
+  position: relative;
+  border-color: var(--instrument-border);
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--instrument-surface) 86%, transparent), var(--instrument-technical)),
+    var(--instrument-technical);
+  box-shadow: none;
+}
+
+.home-opening-flow__cockpit .decision-cockpit::before,
+.home-opening-flow__cockpit .decision-cockpit::after {
+  display: none;
+}
+
+.home-opening-flow__cockpit .tool-window-bar,
+.home-opening-flow__cockpit .tool-control-rail,
+.home-opening-flow__cockpit .tool-output-rail {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.home-opening-flow__cockpit .tool-window-bar {
+  border-bottom-color: var(--instrument-border);
+  background: transparent;
+}
+
+.home-opening-flow__cockpit .tool-window-bar::before {
+  background: var(--instrument-copper);
+}
+
+.home-opening-flow__cockpit .cockpit-title,
+.home-opening-flow__cockpit .result-card {
+  font-family: var(--font-sans);
+}
+
+.home-opening-flow__cockpit .btn-primary,
+.home-opening-flow__cockpit button[aria-pressed="true"] {
+  border-color: var(--instrument-copper);
+  background: var(--instrument-copper);
+}
+
+@media (max-width: 1023px) {
+  .home-opening-flow__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 2.5rem;
+  }
+
+  .home-opening-flow__cockpit-route {
+    left: 67%;
+  }
+}
+
+@media (max-width: 639px) {
+  .home-opening-flow {
+    margin-top: -4.5rem;
+  }
+
+  .home-opening-flow__atmosphere {
+    block-size: 22rem;
+    background:
+      radial-gradient(ellipse at 82% 0%, color-mix(in srgb, var(--instrument-copper) 16%, transparent), transparent 54%),
+      linear-gradient(180deg, color-mix(in srgb, var(--instrument-bg) 8%, transparent), var(--instrument-bg) 72%);
+  }
+
+  .home-opening-flow__inner {
+    padding-block: 5rem 4.75rem;
+  }
+
+  .home-opening-flow__process-intro {
+    max-inline-size: 23rem;
+    text-align: left;
+  }
+
+  .home-opening-flow__process-intro h2 {
+    font-size: clamp(2.35rem, 10.6vw, 2.7rem);
+    line-height: 0.98;
+  }
+
+  .home-opening-flow__process-intro p {
+    margin-top: 1rem;
+    font-size: 0.98rem;
+  }
+
+  .home-opening-flow__steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 2.15rem;
+    padding-left: 2rem;
+  }
+
+  .home-opening-flow__steps::before {
+    top: 0;
+    right: auto;
+    bottom: 0;
+    left: 0.55rem;
+    inline-size: 1px;
+    block-size: auto;
+  }
+
+  .home-opening-flow__step {
+    min-block-size: 5.25rem;
+    padding: 0 0 1.25rem;
+  }
+
+  .home-opening-flow__step::before {
+    top: 0.25rem;
+    left: -1.72rem;
+  }
+
+  .home-opening-flow__step > span:last-child {
+    max-inline-size: 18rem;
+    font-size: 0.9rem;
+  }
+
+  .home-opening-flow__boundary {
+    max-inline-size: 19rem;
+    margin: 1.25rem 0 0 2rem;
+    font-size: 0.7rem;
+  }
+
+  .home-opening-flow__links {
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 1.1rem 0 0 2rem;
+  }
+
+  .home-opening-flow__cockpit {
+    margin-top: 2.75rem;
+    padding-top: 2.75rem;
+  }
+
+  .home-opening-flow__cockpit::before {
+    block-size: 5rem;
+  }
+
+  .home-opening-flow__cockpit-route {
+    left: 0.55rem;
+    block-size: 2.75rem;
+  }
+
+  .home-opening-flow__cockpit .decision-cockpit {
+    padding: 1rem;
+  }
+
+  .home-opening-flow__cockpit .tool-window-bar {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* Premium Flow cascade placement. This final block intentionally follows the
+   approved homepage opening so legacy family styling cannot reintroduce the
+   earlier grid-and-panel treatment after the shared scene rules above. */
+:is(.frameworks-index, .research-index, .resources-index, .glossary-index, .public-work-index) {
+  background: var(--premium-flow-brand);
+  color: var(--premium-flow-mineral);
+}
+
+:is(
+  .frameworks-index__masthead,
+  .research-index__masthead,
+  .resources-index__masthead,
+  .glossary-index__masthead,
+  .public-work-index__masthead
+) {
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background: linear-gradient(112deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.94) 64%, rgba(77, 51, 36, 0.4) 100%);
+  padding-bottom: clamp(4.75rem, 8vw, 7rem);
+}
+
+:is(
+  .frameworks-index__masthead h1,
+  .research-index__masthead h1,
+  .resources-index__masthead h1,
+  .glossary-index__masthead h1,
+  .public-work-index__masthead h1
+) {
+  color: var(--premium-flow-mineral);
+}
+
+:is(
+  .frameworks-index__summary,
+  .research-index__listing,
+  .resources-index__groups,
+  .glossary-index__core,
+  .public-work-index__context-band
+) {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-5rem, -5vw, -3.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 25%, transparent);
+  background: var(--premium-flow-reference);
+}
+
+:is(
+  .frameworks-index__summary,
+  .research-index__listing,
+  .resources-index__groups,
+  .public-work-index__context-band
+) {
+  padding-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.glossary-index__core {
+  padding-top: clamp(3rem, 5vw, 4.5rem);
+}
+
+:is(
+  .frameworks-index__summary,
+  .research-index__listing,
+  .resources-index__groups,
+  .glossary-index__core,
+  .public-work-index__context-band
+)::before {
+  position: absolute;
+  top: 0;
+  left: clamp(1rem, 7vw, 8rem);
+  width: min(12rem, 22vw);
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--premium-flow-amber), transparent);
+  content: "";
+}
+
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .framework-index-card,
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .resource-card,
+.research-index .source-links a {
+  border-color: color-mix(in srgb, var(--premium-flow-mineral) 16%, transparent);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .framework-index-card:hover,
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index) .resource-card:hover,
+.research-index .source-links a:hover {
+  border-color: var(--premium-flow-amber-soft);
+  background: color-mix(in srgb, var(--premium-flow-bronze) 26%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+:is(
+  .tools-workbench__hero,
+  .decision-map-page__masthead,
+  .brief-template-page__masthead,
+  .demo-page__masthead
+) {
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background: linear-gradient(112deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.92) 64%, rgba(77, 51, 36, 0.4) 100%);
+  padding-bottom: clamp(4.75rem, 8vw, 7rem);
+}
+
+:is(
+  .tools-workbench__hero h1,
+  .decision-map-page__masthead h1,
+  .brief-template-page__masthead h1,
+  .demo-page__masthead h1
+) {
+  color: var(--premium-flow-mineral);
+}
+
+:is(.tools-workbench__dock, .tools-workbench__cockpit-transition, .premium-flow-tool-surface) {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-5rem, -5vw, -3.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 32%, transparent);
+  background: var(--premium-flow-instrument);
+}
+
+:is(.tools-workbench__dock, .tools-workbench__cockpit-transition, .premium-flow-tool-surface)::before {
+  position: absolute;
+  top: 0;
+  left: clamp(1rem, 7vw, 8rem);
+  width: min(13rem, 25vw);
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--premium-flow-amber), transparent);
+  content: "";
+}
+
+.info-page {
+  background: var(--premium-flow-brand);
+}
+
+.info-page__masthead {
+  border-color: color-mix(in srgb, var(--premium-flow-amber) 26%, var(--instrument-border));
+  background: linear-gradient(110deg, rgba(19, 17, 15, 0.98) 0%, rgba(19, 17, 15, 0.93) 63%, rgba(77, 51, 36, 0.4) 100%);
+  padding-bottom: clamp(4.75rem, 8vw, 7rem);
+}
+
+.info-page__masthead h1 {
+  color: var(--premium-flow-mineral);
+}
+
+.info-page__masthead + section,
+.info-page__masthead + div {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-5rem, -5vw, -3.25rem);
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 22%, transparent);
+  background: var(--premium-flow-narrative);
+}
+
+.closing-path {
+  border-top-color: color-mix(in srgb, var(--premium-flow-amber) 28%, var(--instrument-border));
+  background: linear-gradient(105deg, var(--premium-flow-reference) 0%, var(--premium-flow-narrative) 100%);
+  padding-block: clamp(3rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+.closing-path::before {
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--premium-flow-amber) 20%, transparent) 36%, transparent 70%);
+}
+
+.closing-path__header {
+  border-left-color: var(--premium-flow-amber);
+}
+
+.closing-path__title {
+  color: var(--premium-flow-mineral);
+}
+
+.closing-path__links {
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+}
+
+.closing-path__item + .closing-path__item {
+  border-left: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+}
+
+.closing-path__link {
+  min-height: 9.5rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.closing-path__link:hover,
+.closing-path__link:focus-visible {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--premium-flow-bronze) 38%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+.closing-path + .page-provenance {
+  margin-top: 0;
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 10%, transparent);
+  background: var(--premium-flow-reference);
+}
+
+@media (max-width: 639px) {
+  :is(
+    .frameworks-index__masthead,
+    .research-index__masthead,
+    .resources-index__masthead,
+    .glossary-index__masthead,
+    .public-work-index__masthead,
+    .tools-workbench__hero,
+    .decision-map-page__masthead,
+    .brief-template-page__masthead,
+    .demo-page__masthead,
+    .info-page__masthead
+  ) {
+    padding-bottom: clamp(3.75rem, 14vw, 4.75rem);
+  }
+
+  :is(
+    .frameworks-index__summary,
+    .research-index__listing,
+    .resources-index__groups,
+    .glossary-index__core,
+    .public-work-index__context-band,
+    .tools-workbench__dock,
+    .tools-workbench__cockpit-transition,
+    .premium-flow-tool-surface,
+    .info-page__masthead + section,
+    .info-page__masthead + div
+  ) {
+    margin-top: clamp(-3rem, -10vw, -2rem);
+  }
+
+  .closing-path__links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .closing-path__item + .closing-path__item {
+    border-top: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+    border-left: 0;
+  }
+
+  .closing-path__link {
+    min-height: 0;
+  }
+}
+
+/* Premium Flow mastheads remain open page introductions. The overlap belongs
+   to the first real content scene, not to a large framed hero panel. */
+:is(
+  .lab-note-article__masthead,
+  .framework-article__masthead,
+  .glossary-article__masthead,
+  .lab-notes-index__masthead,
+  .frameworks-index__masthead,
+  .research-index__masthead,
+  .resources-index__masthead,
+  .glossary-index__masthead,
+  .public-work-index__masthead,
+  .tools-workbench__hero,
+  .decision-map-page__masthead,
+  .brief-template-page__masthead,
+  .demo-page__masthead,
+  .info-page__masthead
+) {
+  border: 0;
+  background: transparent;
+  padding-block: clamp(4rem, 7vw, 6.5rem) clamp(3rem, 5vw, 4.5rem);
+}
+
+:is(
+  .lab-note-article__masthead,
+  .framework-article__masthead,
+  .glossary-article__masthead,
+  .lab-notes-index__masthead,
+  .frameworks-index__masthead,
+  .research-index__masthead,
+  .resources-index__masthead,
+  .glossary-index__masthead,
+  .public-work-index__masthead,
+  .tools-workbench__hero,
+  .decision-map-page__masthead,
+  .brief-template-page__masthead,
+  .demo-page__masthead,
+  .info-page__masthead
+)::after {
+  display: none;
+}
+
+:is(
+  .tools-workbench__hero,
+  .decision-map-page__masthead,
+  .brief-template-page__masthead,
+  .demo-page__masthead,
+  .info-page__masthead
+) {
+  min-block-size: 0;
+  overflow: visible;
+}
+
+@media (max-width: 639px) {
+  :is(
+    .lab-note-article__masthead,
+    .framework-article__masthead,
+    .glossary-article__masthead,
+    .lab-notes-index__masthead,
+    .frameworks-index__masthead,
+    .research-index__masthead,
+    .resources-index__masthead,
+    .glossary-index__masthead,
+    .public-work-index__masthead,
+    .tools-workbench__hero,
+    .decision-map-page__masthead,
+    .brief-template-page__masthead,
+    .demo-page__masthead,
+    .info-page__masthead
+  ) {
+    padding-block: 3.25rem 2.5rem;
   }
 }
