@@ -10458,7 +10458,7 @@ input:hover {
 }
 
 .demo-page__artifact-grid {
-  grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .demo-page__standard-grid {
@@ -10467,6 +10467,19 @@ input:hover {
 
 .demo-page__artifact-output {
   min-width: 0;
+}
+
+.demo-page__artifact-grid > :first-child {
+  max-width: 58rem;
+}
+
+.research-index__listing .aligned-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 4rem);
+}
+
+.research-index__listing .link-card {
+  min-height: 7.5rem;
 }
 
 /* The recovery route is a compact utility chapter within the warm system. */
@@ -10588,5 +10601,24 @@ input:hover {
 
   .not-found-page__route-link + .not-found-page__route-link {
     border-top: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+  }
+
+  .research-index__listing .aligned-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .research-index__listing .link-card {
+    min-height: 6.5rem;
+  }
+
+  .site-footer__groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem clamp(1rem, 5vw, 2rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .site-footer__groups {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

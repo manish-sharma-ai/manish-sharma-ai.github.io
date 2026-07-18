@@ -18,3 +18,7 @@ Improve grouping and visual task hierarchy without changing DOM order, controls,
 ## Cycle 1 review: 8.2
 
 No semantic or interaction change was introduced. The previously off-canvas Demo island is now inside a real responsive grid, restoring the visible artifact without changing hydration or output. Five affected families retained one H1 and no overflow in the cycle captures. Keyboard/zoom evidence remains required before final acceptance.
+
+## Cycle 2 review: 8.3
+
+The single-column Demo artifact and compact Research rows preserve DOM order, hydration, link names, and touch targets. The footer retains a one-column fallback at 360px and below, and focused 320px captures show no horizontal overflow. Final keyboard, focus, hash-target, and 200% zoom evidence is still required.

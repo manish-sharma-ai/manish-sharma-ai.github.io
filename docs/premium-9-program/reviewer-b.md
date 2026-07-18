@@ -18,3 +18,7 @@ Prefer open editorial sequences and rows for discovery/reference content, mainta
 ## Cycle 1 review: 7.8
 
 The conceptual models now expose their three-step information hierarchy without nested cards. Recovery links on 404 read as an ordered utility sequence. Demo's output order is correct but the two-column composition still violates editorial balance; the next pass should place the explanation above the substantial artifact.
+
+## Cycle 2 review: 8.1
+
+The Demo explanation now precedes the substantial output instead of competing with it, and Research reads as a compact discovery list rather than four equal promotions. Content order and destination hierarchy remain intact. Evidence and provenance structures still need clearer prioritization before the editorial system reaches 9.

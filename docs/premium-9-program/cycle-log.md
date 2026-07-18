@@ -35,3 +35,15 @@ Lowest remaining dimensions: whitespace purpose, density rhythm, composition var
 Hypothesis: turning Demo's final artifact into a one-column editorial sequence, reducing equal-height research destination blocks to compact rows, and compacting mobile footer groups to a balanced two-column grid will remove large unused regions without hiding content.
 
 Acceptance gates: preserve source order and every destination; no nested links; keep minimum touch targets; no horizontal overflow at 320px; no regression to long-form reading or tools.
+
+### Cycle 2 result — accepted
+
+- Replaced Demo's hollow paired output with a single-column final-artifact sequence; all six real output modes, actions, and copy remain in their original order.
+- Reduced Research's four oversized destination containers to compact two-column editorial rows on desktop and one column on mobile.
+- Compacted the mobile footer to two balanced columns at ordinary phone widths, with a one-column fallback at 360px and below for zoom and narrow-screen safety.
+- Preserved all content, links, hydration, tool behavior, and semantic order.
+- Focused validation: 58-page build passed with 0 Astro/TypeScript diagnostics; no screenshot was malformed or showed horizontal overflow.
+- Evidence: 31 accepted screenshots under `output/playwright/premium-9/cycle-2/`, plus a targeted Demo artifact capture.
+- Reviewer result: all reviewers accept the density correction. The site remains below 9 because evidence-heavy routes still contain too many comparable proof panels, and shared endings still carry too much administrative weight.
+
+Estimated lowest-credible global score after cycle 2: **8.0**. The change is materially better, but it is not a 9.
