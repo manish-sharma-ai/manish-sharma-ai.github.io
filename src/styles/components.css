@@ -891,6 +891,207 @@
   }
 }
 
+/* Choreography refinement: progressive technical detail, proof priority, and
+   compact intent navigation without changing source content or route logic. */
+
+.tools-workbench__module-header {
+  display: block;
+  max-width: 58rem;
+}
+
+.tools-workbench__module-guide {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--instrument-border);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: color-mix(in srgb, var(--instrument-surface) 58%, var(--instrument-technical));
+}
+
+.tools-workbench__module-guide > div {
+  min-width: 0;
+}
+
+.tools-workbench__module-guide p:not(.metric-label) {
+  color: var(--instrument-text-soft);
+}
+
+.tools-workbench__module-guide .metric-label {
+  color: var(--instrument-signal);
+}
+
+.tools-chapter--workbench .tools-workbench__module::before,
+.page-flow--information .info-page > :is(section, .band) + :is(section, .band)::before,
+.page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band) + :is(section, .band)::before {
+  display: none;
+}
+
+.public-work-index__case-summary,
+.public-work-index__case-evidence {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.public-work-index__case-evidence,
+.public-work-index__case-actions {
+  margin-top: auto;
+}
+
+.public-work-index__source-group--collapsible > summary {
+  cursor: pointer;
+}
+
+.public-work-index__source-group--collapsible > summary::marker {
+  color: var(--instrument-copper);
+}
+
+.public-work-index__source-group--collapsible[open] > summary {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.public-work-index__source-group--collapsible .public-work-index__source-links {
+  min-width: 0;
+}
+
+.tools-workbench__module-disclosure:not([open]) > .tools-workbench__module-guide,
+.tools-workbench__module-disclosure:not([open]) > .tool-module-mount,
+.public-work-index__source-group--collapsible:not([open]) > .public-work-index__source-links,
+.resources-index__group:not([open]) > ul {
+  display: none;
+}
+
+.public-work-index__source-group--collapsible > summary:focus-visible,
+.resources-index__group > summary:focus-visible {
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 3px;
+}
+
+.resources-index__intent-nav {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid color-mix(in srgb, var(--instrument-border) 84%, transparent);
+  padding-top: 1.25rem;
+}
+
+.resources-index__intent-nav ol {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resources-index__intent-nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  min-height: 3rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--instrument-border) 72%, transparent);
+  padding: 0.75rem 0.85rem 0.75rem 0;
+  color: var(--instrument-text-soft);
+  font-size: 0.82rem;
+  font-weight: 750;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.resources-index__intent-nav a > span {
+  color: var(--instrument-copper);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+}
+
+.resources-index__intent-nav a:hover,
+.resources-index__intent-nav a:focus-visible {
+  color: var(--instrument-text);
+}
+
+.resources-index__intent-nav a:focus-visible {
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 3px;
+}
+
+.resources-index__group {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+.resources-index__group::before {
+  display: none;
+}
+
+.resources-index__group > summary {
+  cursor: pointer;
+  list-style-position: outside;
+}
+
+.resources-index__group > summary::marker {
+  color: var(--instrument-copper);
+}
+
+.resources-index__group > summary .section-heading {
+  display: inline-block;
+  max-width: calc(100% - 2rem);
+  vertical-align: top;
+}
+
+.resources-index__group:not([open]) > summary .section-heading-mark {
+  opacity: 0.45;
+}
+
+.resources-index__group > ul {
+  margin-top: 1.5rem;
+}
+
+.resources-index .resource-card > a {
+  min-height: 9rem;
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1.25rem 0;
+}
+
+@media (hover: hover) {
+  .resources-index .resource-card > a:hover {
+    border-color: var(--instrument-copper);
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .public-work-index__case-card--lead {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .public-work-index__case-card--lead::before {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .public-work-index__case-card--lead .public-work-index__case-evidence {
+    margin-top: 0;
+    border-left: 1px solid var(--instrument-border);
+    padding-left: clamp(1.5rem, 3vw, 2.75rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .tools-workbench__module-guide,
+  .resources-index__intent-nav ol {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .resources-index__intent-nav a {
+    padding-right: 0;
+  }
+}
+
 /* Shared Dark Instrumentation listing treatment for the Lab Notes index. */
 .lab-notes-index {
   position: relative;

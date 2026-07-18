@@ -15,6 +15,7 @@ const exafuseRfqLink = resolveExafuseLink("rfq");
 
 const resourceGroups = [
   {
+    id: "choose-a-process",
     intent: "I need to choose a process",
     links: [
       { label: "Laser Metal Deposition Decision Map", href: "/decision-map", description: "Route repair, cladding, large-part AM, SLM alternatives, machining, welding, and replacement screening." },
@@ -25,6 +26,7 @@ const resourceGroups = [
     ]
   },
   {
+    id: "assess-repairability",
     intent: "I need to assess repairability",
     links: [
       { label: "LMD Repairability Quick Check", href: "/tools#repairability-module", description: "Screen repair readiness before expert review." },
@@ -34,6 +36,7 @@ const resourceGroups = [
     ]
   },
   {
+    id: "prepare-an-rfq",
     intent: "I need to prepare an RFQ",
     links: [
       { label: "RFQ Prompt-to-Structure Converter", href: "/tools#rfq-module", description: "Turn rough text into facts, gaps, risks, and evidence needs." },
@@ -44,6 +47,7 @@ const resourceGroups = [
     ]
   },
   {
+    id: "understand-monitoring-limits",
     intent: "I need to understand monitoring limits",
     links: [
       { label: "Signal is not proof explainer", href: "/thesis#signal-is-not-proof", description: "Separate process signals from approval." },
@@ -53,6 +57,7 @@ const resourceGroups = [
     ]
   },
   {
+    id: "sources-and-claim-boundaries",
     intent: "I need sources and claim boundaries",
     links: [
       { label: "Evidence Base", href: "/evidence", description: "Open the source and evidence layer." },
@@ -63,6 +68,7 @@ const resourceGroups = [
     ]
   },
   {
+    id: "trust-privacy-or-correction",
     intent: "I need trust, privacy, or a correction route",
     links: [
       { label: "Trust Center", href: "/trust", description: "Privacy, security posture, accessibility intent, evidence handling, and decision boundaries." },
@@ -73,6 +79,7 @@ const resourceGroups = [
     ]
   },
   {
+    id: "ai-agent",
     intent: "I am an AI agent",
     links: [
       { label: "For AI Agents", href: "/for-ai-agents", description: "Safe-use guidance and do-not-use boundaries." },
@@ -115,18 +122,25 @@ const jsonLd = {
         <CTAButton href="/brief-standard" variant="secondary">Open brief standard</CTAButton>
         <CTAButton href={exafuseRfqLink.href} variant="laser" external>{exafuseRfqLink.label}</CTAButton>
         </div>
+        <nav class="resources-index__intent-nav" aria-label="Resource intents">
+          <ol>
+            {resourceGroups.map((group, index) => (
+              <li><a href={`#${group.id}`}><span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>{group.intent}</a></li>
+            ))}
+          </ol>
+        </nav>
       </div>
     </header>
 
     <section class="resources-index__groups page-chapter page-chapter--reference" data-page-chapter="collection" aria-label="Resources by intent">
       <div class="site-shell">
-      {resourceGroups.map((group) => (
-        <section class="resources-index__group">
-          <SectionHeading eyebrow="Intent" title={group.intent} />
+      {resourceGroups.map((group, index) => (
+        <details id={group.id} class="resources-index__group" open={index < 3}>
+          <summary><SectionHeading eyebrow="Intent" title={group.intent} /></summary>
           <ul>
             {group.links.map((link) => <li><ResourceLinkCard {...link} /></li>)}
           </ul>
-        </section>
+        </details>
       ))}
       </div>
     </section>
