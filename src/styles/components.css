@@ -9559,3 +9559,281 @@ input:hover {
     padding-block: 3.25rem 2.5rem;
   }
 }
+
+/* Premium visual audit refinements.
+   These final shared overrides keep the app's functional instrumentation
+   intact while reducing repeated outer surfaces in narrative and reference
+   scenes. */
+
+:is(
+  .lab-note-article__reading-layout,
+  .framework-article__content,
+  .glossary-article__content
+) {
+  margin-top: clamp(-4.25rem, -3.75vw, -2.5rem);
+  border-top-color: transparent;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--premium-flow-narrative) 92%, transparent) 0,
+    color-mix(in srgb, var(--premium-flow-narrative) 58%, transparent) 10rem,
+    transparent 22rem
+  );
+}
+
+.lab-note-article__reading-layout {
+  padding: clamp(1.75rem, 3vw, 2.75rem) 0 0;
+}
+
+:is(.framework-article__content, .glossary-article__content) {
+  padding-top: clamp(3rem, 5vw, 4.75rem);
+}
+
+:is(
+  .lab-note-article__reading-layout,
+  .framework-article__content,
+  .glossary-article__content
+)::before {
+  opacity: 0.55;
+}
+
+@media (min-width: 1024px) {
+  :is(
+    .frameworks-index__masthead,
+    .research-index__masthead,
+    .glossary-index__masthead
+  ) {
+    grid-template-columns: minmax(0, 1fr) minmax(23rem, 0.78fr);
+    column-gap: clamp(2.5rem, 5vw, 5.75rem);
+  }
+
+  :is(
+    .frameworks-index__visual,
+    .research-index__visual,
+    .glossary-index__visual
+  ) {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index)
+  .framework-index-card,
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index)
+  .resource-card > a,
+.research-index .research-source-card,
+.public-work-index .link-card,
+.lab-notes-index .lab-note-index-card {
+  min-height: 0;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+:is(.frameworks-index, .resources-index, .research-index, .public-work-index)
+  :is(.framework-index-card, .resource-card > a, .research-source-card, .link-card):hover,
+.lab-notes-index .lab-note-index-card:hover {
+  background: color-mix(in srgb, var(--premium-flow-bronze) 18%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+.frameworks-index__list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  row-gap: 0;
+}
+
+.info-page:not(.info-page--conversion):not(.info-page--policy) > .band {
+  border-block-color: color-mix(in srgb, var(--premium-flow-mineral) 8%, transparent);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--premium-flow-narrative) 78%, transparent),
+    transparent
+  );
+}
+
+.info-page__masthead + :is(section, div) {
+  border-top-color: transparent;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--premium-flow-narrative) 90%, transparent) 0,
+    transparent 24rem
+  );
+}
+
+.closing-path {
+  padding-block: clamp(2.5rem, 4vw, 3.75rem) clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.closing-path__link {
+  min-height: 8.25rem;
+}
+
+@media (max-width: 1023px) {
+  .frameworks-index__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  :is(
+    .lab-note-article__reading-layout,
+    .framework-article__content,
+    .glossary-article__content
+  ) {
+    margin-top: clamp(-2.5rem, -8vw, -1.5rem);
+  }
+
+  .lab-note-article__reading-layout {
+    padding-top: 1.5rem;
+  }
+
+  .closing-path {
+    padding-block: 2.25rem 1.5rem;
+  }
+
+  .closing-path__link {
+    min-height: 0;
+  }
+}
+
+/* Visual balance and alignment system.
+   Narrative introductions move above dense content rather than occupying a
+   hollow split column. Comparable cards retain equal rows and action baselines
+   without imposing fixed heights on prose or interactive workbenches. */
+
+.balanced-section-intro {
+  max-width: min(100%, 58rem);
+}
+
+.aligned-card-grid,
+.equal-card-grid {
+  align-items: stretch;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.aligned-card-grid > .link-card,
+.equal-card-grid > :is(.ordered-card, .ordered-card-strong, .bento-card, .link-card):not(.grid),
+.equal-card-grid > .evidence-fact-grid__card {
+  height: 100%;
+}
+
+.aligned-card-grid > .link-card,
+.equal-card-grid > :is(.bento-card, .link-card),
+.equal-card-grid > .evidence-fact-grid__card {
+  display: flex;
+  flex-direction: column;
+}
+
+.aligned-card-grid > .link-card > span:last-child,
+.equal-card-grid > :is(.bento-card, .link-card) > span:last-child,
+.industrial-proof__case-card > .btn,
+.framework-index-card__footer,
+.research-source-card__action,
+.resource-card__action {
+  margin-top: auto;
+}
+
+@media (min-width: 1024px) {
+  :is(
+    .info-page,
+    .public-work-index,
+    .evidence-base,
+    .industrial-proof,
+    .framework-article,
+    .glossary-article,
+    .research-article
+  )
+    :is(.site-shell, .band > .site-shell)
+    > .grid:has(> .balanced-section-intro) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  :is(
+    .info-page,
+    .public-work-index,
+    .evidence-base,
+    .industrial-proof,
+    .framework-article,
+    .glossary-article,
+    .research-article
+  )
+    .site-shell.grid:has(> .balanced-section-intro) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  :is(
+    .info-page,
+    .public-work-index,
+    .evidence-base,
+    .industrial-proof,
+    .framework-article,
+    .glossary-article,
+    .research-article
+  )
+    :is(.site-shell, .band > .site-shell)
+    > .grid:has(> .balanced-section-intro)
+    > .balanced-section-intro {
+    max-width: min(100%, 58rem);
+  }
+
+  :is(
+    .info-page,
+    .public-work-index,
+    .evidence-base,
+    .industrial-proof,
+    .framework-article,
+    .glossary-article,
+    .research-article
+  )
+    .site-shell.grid:has(> .balanced-section-intro)
+    > .balanced-section-intro {
+    max-width: min(100%, 58rem);
+  }
+
+  .public-work-index__collection > .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  .public-work-index__collection > .grid > :first-child {
+    max-width: 42rem;
+  }
+}
+
+.public-work-index__source-sequence {
+  display: grid;
+  gap: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+.public-work-index__source-group {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  border-top: 1px solid color-mix(in srgb, var(--instrument-border) 84%, transparent);
+  padding-top: clamp(2rem, 4vw, 3.25rem);
+}
+
+.public-work-index__source-group:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+@media (max-width: 639px) {
+  .aligned-card-grid,
+  .equal-card-grid {
+    grid-auto-rows: auto;
+  }
+
+  .aligned-card-grid > .link-card,
+  .equal-card-grid > :is(.ordered-card, .ordered-card-strong, .bento-card, .link-card):not(.grid),
+  .equal-card-grid > .evidence-fact-grid__card {
+    height: auto;
+  }
+}

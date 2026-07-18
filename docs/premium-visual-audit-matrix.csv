@@ -1,0 +1,59 @@
+route,family,baseline_hierarchy,baseline_balance,baseline_alignment,baseline_spacing,baseline_transition,baseline_type,baseline_density,baseline_responsive,baseline_functional,baseline_premium,final_hierarchy,final_balance,final_alignment,final_spacing,final_transition,final_type,final_density,final_responsive,final_functional,final_premium,change,remaining_limit
+/,Homepage,7,7,7,7,7,7,6,7,8,7,7,7,7,7,7,7,6,7,8,7,0.0,Later-page density intentionally remains
+/404,Recovery,6,6,7,6,6,7,7,7,8,6,6,6,7,6,6,7,7,7,8,6,0.0,Simple recovery route intentionally restrained
+/about/,Informational,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Legacy multi-module length remains
+/agent-pack/,Reference information,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Reference content remains dense
+/brief-standard/,Reference information,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Artifact sections retain necessary structure
+/brief-template/,Interactive reference,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Tool-adjacent reference intentionally structured
+/claims/,Policy,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Policy density intentional
+/contact/,Conversion,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Conversion hierarchy intentionally explicit
+/de/,Informational,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Localized content mirrors source depth
+/decision-map/,Interactive tool,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Long mobile control/output flow is functional by design
+/demo/,Interactive reference,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Worked output intentionally dense
+/domains/lmd-ded/,Informational domain,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Several genuine proof modules remain
+/evidence/,Evidence reference,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Evidence rails intentionally separate
+/for-ai-agents/,Reference information,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,File inventory is inherently dense
+/frameworks/,Framework index,6,5,6,6,6,7,6,6,8,6,7,7,7,7,7,7,7,7,8,7,+1.2,Framework cards still carry real metadata
+/frameworks/lmd-ai-maturity-model/,Framework detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Evidence rail remains a distinct surface
+/frameworks/lmd-ai-readiness-score/,Framework detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Evidence rail remains a distinct surface
+/frameworks/lmd-failure-atlas/,Framework detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Evidence rail remains a distinct surface
+/frameworks/lmd-quality-evidence-ladder/,Framework detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Evidence rail remains a distinct surface
+/frameworks/lmd-repairability-index/,Framework detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Evidence rail remains a distinct surface
+/glossary/,Glossary index,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Term density remains needed
+/glossary/directed-energy-deposition/,Glossary detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,FAQ/source surfaces remain technical
+/glossary/laser-cladding/,Glossary detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,FAQ/source surfaces remain technical
+/glossary/laser-metal-deposition/,Glossary detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,FAQ/source surfaces remain technical
+/glossary/melt-pool-monitoring/,Glossary detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,FAQ/source surfaces remain technical
+/identity/,Informational profile,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Profile proof remains multi-section
+/industrial-proof/,Evidence reference,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Proof records are intentionally distinct
+/lab-notes/,Lab Notes index,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Long titles and tags retain natural height
+/lab-notes/a-prediction-is-not-yet-an-industrial-decision/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/ai-red-team-questions-for-lmd-repair-recommendations/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/camera-is-not-a-certificate/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Reading scene remains intentionally calm
+/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/from-process-signals-to-inspection-evidence-in-lmd/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/height-is-not-cosmetic/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/lmd-vs-slm-decision-signals/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/melt-pool-monitoring-is-not-quality-proof/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/post-machining-is-part-of-the-lmd-repair-plan/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/rfqs-fail-when-they-hide-risk/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/structuring-an-lmd-rfq-for-ai-agents/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/traceability-is-a-product-feature/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/what-ai-needs-before-lmd-repair/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/lab-notes/why-many-lmd-rfqs-fail-before-engineering-review/,Lab Note detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Related-card group remains needed
+/links/,Informational compact,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Link volume is intentional
+/no-hype/,Policy,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Policy density intentional
+/playbooks/,Reference information,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Playbook link volume is intentional
+/press-kit/,Informational profile,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Asset/claim sections remain substantive
+/profile/,Informational compact,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Small route intentionally concise
+/profile/public-profile/,Informational profile,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,External profile links remain visible
+/public-work/,Public Work index,6,6,6,6,6,7,5,7,8,6,7,7,7,7,7,7,7,7,8,7,+1.1,Proof-object density remains high
+/research/,Research index,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Source density remains needed
+/research/core-lmd-ai-sources/,Research detail,6,6,7,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Source lists remain technical
+/resources/,Resources index,6,6,6,6,6,7,5,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.1,Mobile discovery still necessarily long
+/review/,Conversion feedback,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Browser-local feedback flow retained
+/site-map/,Reference information,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Sitemap is intentionally dense
+/thesis/,Informational thesis,6,6,6,6,6,7,6,7,7,6,7,7,7,7,7,7,7,7,7,7,+1.0,Long technical narrative remains multi-section
+/tools/,Interactive tool,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Long mobile workbench is functional by design
+/trust/,Policy,7,7,7,7,7,7,7,7,8,7,7,7,7,7,7,7,7,7,8,7,0.0,Policy density intentional
