@@ -15,6 +15,6 @@ interface Props {
 const { links } = Astro.props;
 ---
 
-<div class="equal-card-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<div class="aligned-card-grid equal-card-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
   {links.map((link) => <LinkCard {...link} />)}
 </div>

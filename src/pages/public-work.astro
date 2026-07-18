@@ -216,16 +216,16 @@ const jsonLd = {
   </section>
 
   <section class="site-shell section-y public-work-index__sources">
-    <div class="grid gap-10 lg:grid-cols-2">
-      <div>
+    <div class="public-work-index__source-sequence">
+      <div class="public-work-index__source-group public-work-index__source-group--profiles">
         <SectionHeading eyebrow="Public profile links" title="Verified public profiles" />
-        <div class="mt-8">
+        <div>
           <SourceLinks links={ACTIVE_PROFILE_LINKS} />
         </div>
       </div>
-      <div>
+      <div class="public-work-index__source-group public-work-index__source-group--industrial">
         <SectionHeading eyebrow="Public Exafuse context" title="Public industrial context" />
-        <div class="mt-8">
+        <div>
           <SourceLinks links={EXAFUSE_SOURCE_LINKS} />
         </div>
       </div>
