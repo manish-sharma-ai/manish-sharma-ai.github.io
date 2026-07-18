@@ -1,0 +1,59 @@
+route,family,hierarchy,flow,pacing,transitions,balance,alignment,spacing,typography,density,card_restraint,ending,mobile,overall,evidence
+/,Homepage,8.0,7.7,7.6,7.7,7.9,8.1,7.8,8.0,7.6,7.5,7.6,7.6,7.8,cycle-0-baseline/home/
+/404,404,7.0,6.7,6.6,6.7,6.9,7.1,6.8,7.0,6.6,6.5,6.6,6.6,6.8,cycle-0-baseline/404/
+/about/,Informational / reference,7.5,7.2,7.1,7.2,7.4,7.6,7.3,7.5,7.1,7.0,7.1,7.1,7.3,cycle-0-baseline/about/
+/agent-pack/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/agent-pack/
+/brief-standard/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/brief-standard/
+/brief-template/,Interactive tool,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/brief-template/
+/claims/,Evidence / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/claims/
+/contact/,Informational / reference,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/contact/
+/de/,Informational / reference,7.5,7.2,7.1,7.2,7.4,7.6,7.3,7.5,7.1,7.0,7.1,7.1,7.3,cycle-0-baseline/de/
+/decision-map/,Interactive tool,7.6,7.3,7.2,7.3,7.5,7.7,7.4,7.6,7.2,7.1,7.2,7.2,7.4,cycle-0-baseline/decision-map/
+/demo/,Interactive tool,7.1,6.8,6.7,6.8,7.0,7.2,6.9,7.1,6.7,6.6,6.7,6.7,6.9,cycle-0-baseline/demo/
+/domains/lmd-ded/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/domains--lmd-ded/
+/evidence/,Evidence / reference,7.3,7.0,6.9,7.0,7.2,7.4,7.1,7.3,6.9,6.8,6.9,6.9,7.1,cycle-0-baseline/evidence/
+/for-ai-agents/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/for-ai-agents/
+/frameworks/,Frameworks index,7.9,7.6,7.5,7.6,7.8,8.0,7.7,7.9,7.5,7.4,7.5,7.5,7.7,cycle-0-baseline/frameworks/
+/frameworks/lmd-ai-maturity-model/,Framework detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/frameworks--lmd-ai-maturity-model/
+/frameworks/lmd-ai-readiness-score/,Framework detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/frameworks--lmd-ai-readiness-score/
+/frameworks/lmd-failure-atlas/,Framework detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/frameworks--lmd-failure-atlas/
+/frameworks/lmd-quality-evidence-ladder/,Framework detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/frameworks--lmd-quality-evidence-ladder/
+/frameworks/lmd-repairability-index/,Framework detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/frameworks--lmd-repairability-index/
+/glossary/,Glossary index,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/glossary/
+/glossary/directed-energy-deposition/,Glossary detail,7.6,7.3,7.2,7.3,7.5,7.7,7.4,7.6,7.2,7.1,7.2,7.2,7.4,cycle-0-baseline/glossary--directed-energy-deposition/
+/glossary/laser-cladding/,Glossary detail,7.6,7.3,7.2,7.3,7.5,7.7,7.4,7.6,7.2,7.1,7.2,7.2,7.4,cycle-0-baseline/glossary--laser-cladding/
+/glossary/laser-metal-deposition/,Glossary detail,7.6,7.3,7.2,7.3,7.5,7.7,7.4,7.6,7.2,7.1,7.2,7.2,7.4,cycle-0-baseline/glossary--laser-metal-deposition/
+/glossary/melt-pool-monitoring/,Glossary detail,7.6,7.3,7.2,7.3,7.5,7.7,7.4,7.6,7.2,7.1,7.2,7.2,7.4,cycle-0-baseline/glossary--melt-pool-monitoring/
+/identity/,Informational / reference,7.9,7.6,7.5,7.6,7.8,8.0,7.7,7.9,7.5,7.4,7.5,7.5,7.7,cycle-0-baseline/identity/
+/industrial-proof/,Evidence / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/industrial-proof/
+/lab-notes/,Lab Notes index,7.8,7.5,7.4,7.5,7.7,7.9,7.6,7.8,7.4,7.3,7.4,7.4,7.6,cycle-0-baseline/lab-notes/
+/lab-notes/a-prediction-is-not-yet-an-industrial-decision/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--a-prediction-is-not-yet-an-industrial-decision/
+/lab-notes/ai-red-team-questions-for-lmd-repair-recommendations/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--ai-red-team-questions-for-lmd-repair-recommendations/
+/lab-notes/camera-is-not-a-certificate/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--camera-is-not-a-certificate/
+/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--ded-lb-m-terms-ai-systems-should-not-mix-up/
+/lab-notes/from-process-signals-to-inspection-evidence-in-lmd/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--from-process-signals-to-inspection-evidence-in-lmd/
+/lab-notes/height-is-not-cosmetic/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--height-is-not-cosmetic/
+/lab-notes/lmd-vs-slm-decision-signals/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--lmd-vs-slm-decision-signals/
+/lab-notes/melt-pool-monitoring-is-not-quality-proof/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--melt-pool-monitoring-is-not-quality-proof/
+/lab-notes/post-machining-is-part-of-the-lmd-repair-plan/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--post-machining-is-part-of-the-lmd-repair-plan/
+/lab-notes/rfqs-fail-when-they-hide-risk/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--rfqs-fail-when-they-hide-risk/
+/lab-notes/structuring-an-lmd-rfq-for-ai-agents/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--structuring-an-lmd-rfq-for-ai-agents/
+/lab-notes/traceability-is-a-product-feature/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--traceability-is-a-product-feature/
+/lab-notes/what-ai-needs-before-lmd-repair/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--what-ai-needs-before-lmd-repair/
+/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--why-local-damage-on-large-parts-is-an-lmd-signal/
+/lab-notes/why-many-lmd-rfqs-fail-before-engineering-review/,Lab Note detail,7.7,7.4,7.3,7.4,7.6,7.8,7.5,7.7,7.3,7.2,7.3,7.3,7.5,cycle-0-baseline/lab-notes--why-many-lmd-rfqs-fail-before-engineering-review/
+/links/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/links/
+/no-hype/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/no-hype/
+/playbooks/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/playbooks/
+/press-kit/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/press-kit/
+/profile/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/profile/
+/profile/public-profile/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/profile--public-profile/
+/public-work/,Public Work,8.0,7.7,7.6,7.7,7.9,8.1,7.8,8.0,7.6,7.5,7.6,7.6,7.8,cycle-0-baseline/public-work/
+/research/,Research index,7.5,7.2,7.1,7.2,7.4,7.6,7.3,7.5,7.1,7.0,7.1,7.1,7.3,cycle-0-baseline/research/
+/research/core-lmd-ai-sources/,Research detail,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/research--core-lmd-ai-sources/
+/resources/,Resources index,8.0,7.7,7.6,7.7,7.9,8.1,7.8,8.0,7.6,7.5,7.6,7.6,7.8,cycle-0-baseline/resources/
+/review/,Interactive tool,7.5,7.2,7.1,7.2,7.4,7.6,7.3,7.5,7.1,7.0,7.1,7.1,7.3,cycle-0-baseline/review/
+/site-map/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/site-map/
+/thesis/,Long-form thesis,7.6,7.3,7.2,7.3,7.5,7.7,7.4,7.6,7.2,7.1,7.2,7.2,7.4,cycle-0-baseline/thesis/
+/tools/,Interactive tool,7.8,7.5,7.4,7.5,7.7,7.9,7.6,7.8,7.4,7.3,7.4,7.4,7.6,cycle-0-baseline/tools/
+/trust/,Informational / reference,7.4,7.1,7.0,7.1,7.3,7.5,7.2,7.4,7.0,6.9,7.0,7.0,7.2,cycle-0-baseline/trust/
