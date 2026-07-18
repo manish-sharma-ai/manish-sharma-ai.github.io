@@ -11059,3 +11059,101 @@ input:hover {
     width: min(27rem, calc(100vw - 2rem));
   }
 }
+
+/* Premium 9 cycle 6: Public Work reserves bounded surfaces for the real proof
+   records. Opening metadata and capability context become balanced editorial
+   sequences, and the five mobile actions use the available width deliberately. */
+.public-work-index__context-band .site-shell {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.public-work-index .public-work-index__context-card {
+  min-height: 6rem;
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding: 1rem 0;
+}
+
+.public-work-index__established-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.public-work-index__established-grid > .section-heading {
+  max-width: 56rem;
+}
+
+.public-work-index__established-grid > .grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 3rem);
+}
+
+.public-work-index .public-work-index__work-card {
+  min-height: 9.5rem;
+  grid-column: span 2;
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.public-work-index__work-card:nth-last-child(-n + 2) {
+  grid-column: span 3;
+}
+
+@media (min-width: 1200px) {
+  .public-work-index__case-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .public-work-index__case-card--lead {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .public-work-index__case-card:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 768px) {
+  .public-work-index__context-band .site-shell {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .public-work-index__established-grid > .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .public-work-index .public-work-index__work-card,
+  .public-work-index .public-work-index__work-card:nth-last-child(-n + 2) {
+    min-height: 0;
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .public-work-index .public-work-index__masthead-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .public-work-index__masthead-actions .btn {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 0.75rem;
+    text-align: center;
+  }
+
+  .public-work-index__masthead-actions .btn:nth-child(-n + 3) {
+    grid-column: 1 / -1;
+  }
+}

@@ -43,3 +43,12 @@ state, Decision Map state, 320px reflow, and the 720px zoom-equivalent layout
 are evidenced. A 9 is still rejected because exact 200% browser zoom was not
 available in the chosen harness and the final route-family comparison has not
 yet demonstrated that no residual low family remains.
+
+## Cycle 6 review: 8.7 — 9 rejected
+
+Public Work is stronger and the clipped two-column mobile candidate was
+correctly rejected instead of rationalized. The full-page capture duplication
+was also detected and excluded. A 9 is still rejected: exact 200% browser zoom
+is not evidenced, and informational/German routes do not all have a
+distinctive dominant visual moment. Inventing imagery or rewriting those pages
+would violate the task's preservation rules, so the honest outcome is 8.7.

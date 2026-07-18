@@ -141,3 +141,46 @@ results update; one H1 remains; no browser errors.
   `output/playwright/premium-9/cycle-5/`.
 
 Estimated lowest-credible global score after cycle 5: **8.6**.
+
+## Cycle 6 hypothesis — make Public Work's proof hierarchy unambiguous
+
+Lowest remaining high-priority route: Public Work. Its opening metadata and
+five capability records still competed as cards, its five mobile actions used
+five full rows, and the three supporting cases produced an orphan at common
+desktop widths.
+
+Hypothesis: open metadata and capability rows, a balanced 3+2 capability
+composition, an explicit lead-plus-three proof layout, and a compact mobile
+action arrangement will improve balance, hierarchy, card restraint, and page
+purpose without changing a word or proof boundary.
+
+Acceptance gates: preserve every claim, link, status, source note, CTA, case,
+and source order; keep the lead case dominant; no clipped labels; no overflow;
+no change to other routes.
+
+### Cycle 6 result — accepted
+
+- Converted four opening context items to open, aligned metadata records.
+- Replaced the left-heading/right-five-card split with a full-width editorial
+  introduction and a balanced three-over-two capability sequence.
+- Kept the lead proof case full width and arranged its three supporting cases
+  symmetrically at wide desktop widths, with a full-width final case at the
+  two-column intermediate layout.
+- Reduced five mobile CTA rows to four without reordering: the three long
+  destinations remain full width and the two compact destinations share the
+  final row.
+- Rejected the first two-column action candidate after it visibly clipped
+  `Current LMD/DED work`; corrected it before acceptance.
+- Rejected two malformed full-page browser captures that duplicated page
+  tiles; accepted evidence uses deterministic viewport captures instead.
+- Focused validation: 58-page build passed with 0 diagnostics; the Public Work
+  desktop and mobile captures show zero horizontal overflow and exactly one
+  H1; all button labels fit their measured client widths.
+- Evidence: accepted captures under `output/playwright/premium-9/cycle-6/`.
+
+Estimated lowest-credible global score after cycle 6: **8.7**.
+
+The six-cycle bound is reached. The 9+ stop condition is not claimed. Exact
+browser-chrome 200% zoom remains unavailable in the selected harness, and a
+uniform 9 across restrained informational and German pages would require a
+human-approved asset/content strategy rather than further autonomous CSS.

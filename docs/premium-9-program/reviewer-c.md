@@ -41,3 +41,10 @@ Escape and click-away both work, Page Information expands, hash landing is
 clear, and both interactive tools update without console errors. The browser
 harness could not set literal page zoom; the 720px effective viewport passed,
 but an exact browser-chrome zoom capture remains an honest limitation.
+
+## Cycle 6 review: 8.9
+
+The accepted mobile action layout preserves DOM order, complete labels, touch
+targets, and route destinations; measured labels fit and no overflow appears.
+Public Work retains one H1 and all proof boundaries. Exact browser-chrome 200%
+zoom remains the only unclosed validation state in this review.

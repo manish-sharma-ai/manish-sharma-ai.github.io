@@ -41,3 +41,11 @@ The responsive corrections are deliberately invisible at ordinary widths and
 remove the only measured open-menu clipping defect. The system is now visually
 stable through its narrow and interactive states; remaining work is final
 route-family comparison, not another art-direction layer.
+
+## Cycle 6 review: 8.7
+
+Public Work now reserves its strongest bounded surface for the proof itself;
+supporting capability and context records recede into a balanced editorial
+sequence. The site is substantially more intentional than the baseline, but a
+global 9 is not accepted: several text-only informational routes remain
+excellent system pages rather than distinctive 9-level compositions.
