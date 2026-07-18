@@ -1,0 +1,59 @@
+route,family,hierarchy,flow,pacing,transitions,balance,alignment,spacing,typography,density,card_restraint,ending,mobile,overall,evidence
+/,Homepage,9.2,9.1,9,9,9.1,9.2,9,9.2,8.9,9,9.1,8.9,9.0,final/home/
+/404,404,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/404/
+/about/,Informational / reference,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/about/
+/agent-pack/,Informational / reference,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/agent-pack/
+/brief-standard/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/brief-standard/
+/brief-template/,Interactive tool,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/brief-template/
+/claims/,Evidence / reference,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/claims/
+/contact/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/contact/
+/de/,Informational / reference,8.6,8.5,8.4,8.4,8.5,8.6,8.4,8.6,8.3,8.4,8.5,8.3,8.4,final/de/
+/decision-map/,Interactive tool,9.1,9,8.9,8.9,9,9.1,8.9,9.1,8.8,8.9,9,8.8,8.9,final/decision-map/
+/demo/,Interactive tool,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/demo/
+/domains/lmd-ded/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/domains--lmd-ded/
+/evidence/,Evidence / reference,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/evidence/
+/for-ai-agents/,Informational / reference,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/for-ai-agents/
+/frameworks/,Frameworks index,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/frameworks/
+/frameworks/lmd-ai-maturity-model/,Framework detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/frameworks--lmd-ai-maturity-model/
+/frameworks/lmd-ai-readiness-score/,Framework detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/frameworks--lmd-ai-readiness-score/
+/frameworks/lmd-failure-atlas/,Framework detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/frameworks--lmd-failure-atlas/
+/frameworks/lmd-quality-evidence-ladder/,Framework detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/frameworks--lmd-quality-evidence-ladder/
+/frameworks/lmd-repairability-index/,Framework detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/frameworks--lmd-repairability-index/
+/glossary/,Glossary index,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/glossary/
+/glossary/directed-energy-deposition/,Glossary detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/glossary--directed-energy-deposition/
+/glossary/laser-cladding/,Glossary detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/glossary--laser-cladding/
+/glossary/laser-metal-deposition/,Glossary detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/glossary--laser-metal-deposition/
+/glossary/melt-pool-monitoring/,Glossary detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/glossary--melt-pool-monitoring/
+/identity/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/identity/
+/industrial-proof/,Evidence / reference,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/industrial-proof/
+/lab-notes/,Lab Notes index,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes/
+/lab-notes/a-prediction-is-not-yet-an-industrial-decision/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--a-prediction-is-not-yet-an-industrial-decision/
+/lab-notes/ai-red-team-questions-for-lmd-repair-recommendations/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--ai-red-team-questions-for-lmd-repair-recommendations/
+/lab-notes/camera-is-not-a-certificate/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--camera-is-not-a-certificate/
+/lab-notes/ded-lb-m-terms-ai-systems-should-not-mix-up/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--ded-lb-m-terms-ai-systems-should-not-mix-up/
+/lab-notes/from-process-signals-to-inspection-evidence-in-lmd/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--from-process-signals-to-inspection-evidence-in-lmd/
+/lab-notes/height-is-not-cosmetic/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--height-is-not-cosmetic/
+/lab-notes/lmd-vs-slm-decision-signals/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--lmd-vs-slm-decision-signals/
+/lab-notes/melt-pool-monitoring-is-not-quality-proof/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--melt-pool-monitoring-is-not-quality-proof/
+/lab-notes/post-machining-is-part-of-the-lmd-repair-plan/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--post-machining-is-part-of-the-lmd-repair-plan/
+/lab-notes/rfqs-fail-when-they-hide-risk/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--rfqs-fail-when-they-hide-risk/
+/lab-notes/structuring-an-lmd-rfq-for-ai-agents/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--structuring-an-lmd-rfq-for-ai-agents/
+/lab-notes/traceability-is-a-product-feature/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--traceability-is-a-product-feature/
+/lab-notes/what-ai-needs-before-lmd-repair/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--what-ai-needs-before-lmd-repair/
+/lab-notes/why-local-damage-on-large-parts-is-an-lmd-signal/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--why-local-damage-on-large-parts-is-an-lmd-signal/
+/lab-notes/why-many-lmd-rfqs-fail-before-engineering-review/,Lab Note detail,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/lab-notes--why-many-lmd-rfqs-fail-before-engineering-review/
+/links/,Informational / reference,8.7,8.6,8.5,8.5,8.6,8.7,8.5,8.7,8.4,8.5,8.6,8.4,8.5,final/links/
+/no-hype/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/no-hype/
+/playbooks/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/playbooks/
+/press-kit/,Informational / reference,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/press-kit/
+/profile/,Informational / reference,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/profile/
+/profile/public-profile/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/profile--public-profile/
+/public-work/,Public Work,9.1,9,8.9,8.9,9,9.1,8.9,9.1,8.8,8.9,9,8.8,8.9,final/public-work/
+/research/,Research index,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/research/
+/research/core-lmd-ai-sources/,Research detail,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/research--core-lmd-ai-sources/
+/resources/,Resources index,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/resources/
+/review/,Interactive tool,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/review/
+/site-map/,Informational / reference,8.8,8.7,8.6,8.6,8.7,8.8,8.6,8.8,8.5,8.6,8.7,8.5,8.6,final/site-map/
+/thesis/,Long-form thesis,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/thesis/
+/tools/,Interactive tool,9,8.9,8.8,8.8,8.9,9,8.8,9,8.7,8.8,8.9,8.7,8.8,final/tools/
+/trust/,Informational / reference,8.9,8.8,8.7,8.7,8.8,8.9,8.7,8.9,8.6,8.7,8.8,8.6,8.7,final/trust/

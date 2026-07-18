@@ -9,3 +9,7 @@ This file is intentionally initialized before implementation. It will record con
 - The selected in-app browser did not apply browser-chrome zoom commands. A
   720px CSS viewport was used as the 1440px-at-200%-zoom reflow equivalent;
   exact browser-chrome zoom remains a validation limitation, not a claimed pass.
+- Several intentionally minimal, text-only informational routes—especially
+  `/de/` and `/links/`—remain coherent system pages rather than distinctive
+  9-level compositions. Closing that gap requires a user-approved asset or
+  content-prioritization decision; inventing decoration would violate scope.
