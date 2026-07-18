@@ -22,3 +22,7 @@ No semantic or interaction change was introduced. The previously off-canvas Demo
 ## Cycle 2 review: 8.3
 
 The single-column Demo artifact and compact Research rows preserve DOM order, hydration, link names, and touch targets. The footer retains a one-column fallback at 360px and below, and focused 320px captures show no horizontal overflow. Final keyboard, focus, hash-target, and 200% zoom evidence is still required.
+
+## Cycle 3 review: 8.4
+
+Evidence changes are CSS-only and preserve semantic articles, ordered workflow stages, link names, external-link attributes, and focus treatments. The mobile verification sequence remains a logical single column. Interactive-state, hash-target, focus, and 200% zoom evidence remains a final-gate requirement.

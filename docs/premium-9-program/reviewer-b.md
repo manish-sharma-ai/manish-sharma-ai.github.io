@@ -22,3 +22,7 @@ The conceptual models now expose their three-step information hierarchy without 
 ## Cycle 2 review: 8.1
 
 The Demo explanation now precedes the substantial output instead of competing with it, and Research reads as a compact discovery list rather than four equal promotions. Content order and destination hierarchy remain intact. Evidence and provenance structures still need clearer prioritization before the editorial system reaches 9.
+
+## Cycle 3 review: 8.4
+
+The evidence family now distinguishes cited facts, classification guidance, substantial public cases, and source navigation through appropriate row and module treatments. Titles, descriptions, claims, citations, and source order remain intact. The remaining editorial weakness is the repeated full-size ending apparatus.

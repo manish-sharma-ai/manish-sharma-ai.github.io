@@ -10622,3 +10622,218 @@ input:hover {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Premium 9 cycle 3: evidence pages use open editorial proof sequences.
+   Substantive cases remain bounded modules; supporting classifications,
+   facts, signals, and sources no longer compete as equal dashboard cards. */
+.evidence-base__signal-band,
+.industrial-proof__signals {
+  background: transparent;
+}
+
+.evidence-base__signal-card,
+.industrial-proof__signal-card {
+  min-height: 0;
+  border: 0;
+  border-left: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding-left: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.evidence-base__rail .evidence-rail {
+  overflow: visible;
+  border: 0;
+  border-block: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: clamp(1.5rem, 3vw, 2.25rem) 0;
+}
+
+.evidence-base__rail .evidence-rail::before {
+  display: none;
+}
+
+.evidence-rail__stages {
+  gap: 0 clamp(1.25rem, 3vw, 3rem);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.evidence-rail__stage {
+  min-height: 10.5rem;
+  border-right: 1px solid var(--instrument-border);
+  background: transparent;
+  padding: 1.35rem clamp(1.25rem, 2.5vw, 2.25rem) 1.35rem 0;
+}
+
+.evidence-rail__stage:last-child {
+  border-right: 0;
+}
+
+.evidence-rail__stage::before {
+  left: 0;
+  width: clamp(2.5rem, 4vw, 4rem);
+}
+
+.evidence-rail__index,
+.evidence-rail__stage.is-verify .evidence-rail__index {
+  display: inline;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.evidence-rail__signal {
+  width: clamp(2rem, 4vw, 3.75rem);
+  height: 1px;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--instrument-copper), transparent);
+}
+
+.evidence-rail__stage.is-verify .evidence-rail__signal {
+  background: linear-gradient(90deg, var(--instrument-signal), transparent);
+  box-shadow: none;
+}
+
+.evidence-base__classification-card,
+.evidence-base__rule-card,
+.evidence-base__field-note,
+.industrial-proof__interpretation-card {
+  min-height: 0;
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.evidence-base__classification > .grid,
+.evidence-base__rules .grid,
+.evidence-base__field-notes .grid,
+.industrial-proof__interpretation .grid {
+  column-gap: clamp(2rem, 5vw, 5rem);
+}
+
+.evidence-base__facts .evidence-fact-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(2rem, 5vw, 5rem);
+}
+
+.evidence-base__facts .evidence-fact-grid__card {
+  min-height: 13rem;
+  overflow: visible;
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding: clamp(1.35rem, 2.5vw, 2rem) 0;
+}
+
+.evidence-base__facts .evidence-fact-grid__card::before {
+  margin-bottom: 1.35rem;
+}
+
+.evidence-base__facts .evidence-fact-grid__card:hover {
+  border-color: color-mix(in srgb, var(--instrument-copper) 72%, var(--instrument-border));
+  background: transparent;
+  transform: none;
+}
+
+.evidence-base__facts .evidence-fact-grid__source {
+  min-height: 0;
+  border-top: 0;
+  padding-top: 1rem;
+}
+
+.industrial-proof__knowledge-card {
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.evidence-base__sources .link-card,
+.industrial-proof__sources .link-card {
+  min-height: 6.5rem;
+  border: 0;
+  border-top: 1px solid var(--instrument-border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.evidence-base__sources .link-card:hover,
+.industrial-proof__sources .link-card:hover {
+  border-color: color-mix(in srgb, var(--instrument-copper) 72%, var(--instrument-border));
+  background: transparent;
+}
+
+.evidence-base__case-card [class*="bg-cyan"],
+.industrial-proof__case-card [class*="bg-cyan"],
+.evidence-base__case-card > p.rounded-lg,
+.industrial-proof__case-card > p.rounded-lg {
+  border: 0;
+  border-left: 2px solid color-mix(in srgb, var(--instrument-copper) 72%, var(--instrument-border));
+  border-radius: 0;
+  background: transparent;
+  padding-block: 0.35rem;
+}
+
+@media (max-width: 1023px) {
+  .evidence-rail__stage {
+    border-right: 0;
+    border-bottom: 1px solid var(--instrument-border);
+  }
+
+  .evidence-rail__stage:nth-child(odd) {
+    border-right: 1px solid var(--instrument-border);
+  }
+
+  .evidence-rail__stage:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .evidence-base__signal-card:nth-child(odd),
+  .industrial-proof__signal-card:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .evidence-base__rail .evidence-rail {
+    padding: 1.25rem 0;
+  }
+
+  .evidence-rail__stage,
+  .evidence-rail__stage:nth-child(odd) {
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--instrument-border);
+    padding: 1.35rem 0;
+  }
+
+  .evidence-rail__stage:last-child {
+    border-bottom: 0;
+  }
+
+  .evidence-base__facts .evidence-fact-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .evidence-base__facts .evidence-fact-grid__card {
+    min-height: 0;
+  }
+
+  .evidence-base__sources .link-card,
+  .industrial-proof__sources .link-card {
+    min-height: 5.75rem;
+    padding-inline: 0;
+  }
+}

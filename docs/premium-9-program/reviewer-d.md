@@ -21,3 +21,7 @@ The 404 and shared models improved, and the Demo off-canvas column was a real de
 ## Cycle 2 review: 7.7 — 9 rejected
 
 The obvious Demo imbalance is resolved, Research wastes less space, and the ordinary-phone footer is no longer a single uninterrupted sitemap column. That removes defects; it does not by itself create a 9. Evidence and Industrial Proof still distribute authority across too many similar containers, and the shared ending stack remains visibly bureaucratic.
+
+## Cycle 3 review: 8.0 — 9 rejected
+
+The evidence rail and cited facts no longer look like a legacy dashboard, and the public cases remain correctly dominant. This is a real hierarchy improvement, not cosmetic relabeling. A 9 is still rejected because repeated provenance, correction, related-path, and footer structures create the same administrative ending across unlike routes, and responsive interaction evidence is incomplete.

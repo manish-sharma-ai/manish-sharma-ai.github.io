@@ -47,3 +47,23 @@ Acceptance gates: preserve source order and every destination; no nested links; 
 - Reviewer result: all reviewers accept the density correction. The site remains below 9 because evidence-heavy routes still contain too many comparable proof panels, and shared endings still carry too much administrative weight.
 
 Estimated lowest-credible global score after cycle 2: **8.0**. The change is materially better, but it is not a 9.
+
+## Cycle 3 hypothesis — establish an evidence hierarchy
+
+Lowest remaining dimensions: card/container restraint, informational-page storytelling, content-density rhythm, and evidence-route hierarchy.
+
+Hypothesis: retaining substantive case records as bounded proof modules while converting supporting signals, classifications, rules, cited facts, knowledge items, and source destinations into open editorial sequences will make the evidence family more authoritative and easier to scan without weakening any boundary.
+
+Acceptance gates: preserve every fact, citation, evidence class, case, metric, boundary, and destination; maintain source order; keep external-link behavior; do not leak styles into Public Work or long-form content.
+
+### Cycle 3 result — accepted
+
+- Reworked `EvidenceRail` visually as one open Sense → Model → Decide → Verify sequence with a mobile vertical reading order.
+- Converted the evidence classification, strong/weak rules, field notes, and cited-fact grid from repeated dashboard cards into restrained editorial rows.
+- Kept the four Industrial Proof cases as the dominant bounded proof records while opening capability signals, knowledge items, interpretation points, and source links.
+- Removed nested mini-card treatment inside case records while preserving all wording, statuses, claims, tags, actions, and boundaries.
+- Focused validation: 58-page build passed with 0 diagnostics; 22 accepted evidence and regression captures show no malformed output or horizontal overflow.
+- Regression evidence: Public Work desktop and the representative Lab Note mobile remained visually stable.
+- Reviewer result: all reviewers accept the evidence hierarchy. Reviewer D still rejects 9 because shared endings remain administratively heavy and interactive mobile routes require explicit focus, zoom, and hash-state evidence.
+
+Estimated lowest-credible global score after cycle 3: **8.2**.
