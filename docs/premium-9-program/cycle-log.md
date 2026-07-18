@@ -67,3 +67,35 @@ Acceptance gates: preserve every fact, citation, evidence class, case, metric, b
 - Reviewer result: all reviewers accept the evidence hierarchy. Reviewer D still rejects 9 because shared endings remain administratively heavy and interactive mobile routes require explicit focus, zoom, and hash-state evidence.
 
 Estimated lowest-credible global score after cycle 3: **8.2**.
+
+## Cycle 4 hypothesis — turn the shared ending into one conclusion
+
+Lowest remaining dimensions: page endings, consistency without monotony,
+mobile density, and perceived administrative weight.
+
+Hypothesis: keeping the related destinations, provenance, correction route,
+and full footer intact while reducing their outer chrome and merging their
+surfaces will make unlike pages conclude calmly without hiding trust context.
+
+Acceptance gates: preserve every destination and provenance fact; keep the
+native details disclosure; retain visible focus and mobile touch targets; no
+horizontal overflow; do not change page-body layout or source order.
+
+### Cycle 4 result — accepted
+
+- Reframed the closing-path header as one balanced editorial line and reduced
+  the four destinations from tall panels to compact route records.
+- Preserved every link description, index, action, and accessible name.
+- Reduced Page Information to a quiet native disclosure line while retaining
+  all facts, decision boundary, and correction destination when expanded.
+- Dissolved the ending into the existing footer surface and reduced the
+  footer's concluding weight without changing its content or grouping.
+- Focused validation: lint passed with 0 diagnostics; 58-page build passed;
+  `git diff --check` passed; representative desktop and mobile endings showed
+  no malformed output or horizontal overflow.
+- Evidence: focused captures under `output/playwright/premium-9/cycle-4/`.
+- Reviewer result: all reviewers accept the quieter ending. Reviewer D still
+  rejects 9 pending explicit keyboard, zoom, hash-target, and open-disclosure
+  evidence across interactive and narrow-screen routes.
+
+Estimated lowest-credible global score after cycle 4: **8.4**.

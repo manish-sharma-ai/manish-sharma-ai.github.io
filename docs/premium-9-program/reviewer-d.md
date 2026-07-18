@@ -25,3 +25,12 @@ The obvious Demo imbalance is resolved, Research wastes less space, and the ordi
 ## Cycle 3 review: 8.0 — 9 rejected
 
 The evidence rail and cited facts no longer look like a legacy dashboard, and the public cases remain correctly dominant. This is a real hierarchy improvement, not cosmetic relabeling. A 9 is still rejected because repeated provenance, correction, related-path, and footer structures create the same administrative ending across unlike routes, and responsive interaction evidence is incomplete.
+
+## Cycle 4 review: 8.2 — 9 rejected
+
+The ending defect is materially reduced: four destinations, provenance, and
+the footer now share one visual cadence instead of three panel systems. A 9 is
+still rejected. The program has not yet proved 200% zoom, visible keyboard
+focus, disclosure expansion, sticky hash landing, and interactive mobile
+states together, and any remaining family-specific imbalance must be judged
+after those states are captured.

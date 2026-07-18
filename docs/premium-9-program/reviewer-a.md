@@ -27,3 +27,10 @@ Demo now presents its final artifact as a deliberate vertical sequence instead o
 ## Cycle 3 review: 8.2
 
 Evidence now has a clear visual center: the verification sequence and substantive case records carry the authority, while classifications and sources recede. The warmer open rows feel more editorial and less dashboard-like. Shared provenance and closing-path endings still make many routes conclude in the same way.
+
+## Cycle 4 review: 8.4
+
+The ending now reads as one restrained conclusion: route choices are open
+records, provenance is a quiet disclosure, and the footer continues the same
+tone. Unlike page families still share a recognizable signature, but the
+apparatus no longer competes with the page's dominant moment.

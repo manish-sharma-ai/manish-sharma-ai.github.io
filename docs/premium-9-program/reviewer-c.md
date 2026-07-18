@@ -26,3 +26,10 @@ The single-column Demo artifact and compact Research rows preserve DOM order, hy
 ## Cycle 3 review: 8.4
 
 Evidence changes are CSS-only and preserve semantic articles, ordered workflow stages, link names, external-link attributes, and focus treatments. The mobile verification sequence remains a logical single column. Interactive-state, hash-target, focus, and 200% zoom evidence remains a final-gate requirement.
+
+## Cycle 4 review: 8.5
+
+The native details element, link names, source order, touch targets, and
+correction route remain intact. The compact mobile route rows shorten the
+post-task focus path without removing destinations. Final keyboard, zoom,
+hash-target, and open-disclosure evidence remains mandatory.

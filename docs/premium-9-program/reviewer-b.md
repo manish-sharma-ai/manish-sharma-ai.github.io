@@ -26,3 +26,10 @@ The Demo explanation now precedes the substantial output instead of competing wi
 ## Cycle 3 review: 8.4
 
 The evidence family now distinguishes cited facts, classification guidance, substantial public cases, and source navigation through appropriate row and module treatments. Titles, descriptions, claims, citations, and source order remain intact. The remaining editorial weakness is the repeated full-size ending apparatus.
+
+## Cycle 4 review: 8.6
+
+Related destinations now read as a compact editorial route rather than a
+second content grid. The provenance disclosure remains complete but no longer
+interrupts the conclusion, and the footer hierarchy is present without
+becoming the final dominant section on mobile.

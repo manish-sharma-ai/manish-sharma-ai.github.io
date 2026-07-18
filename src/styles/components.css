@@ -10837,3 +10837,211 @@ input:hover {
     padding-inline: 0;
   }
 }
+
+/* Premium 9 cycle 4: the related path, provenance, and footer are one quiet
+   concluding chapter. All destinations and trust details remain available,
+   but the ending no longer restarts as three equally prominent panels. */
+.page-flow__ending {
+  background:
+    radial-gradient(ellipse at 82% 0%, color-mix(in srgb, var(--premium-flow-bronze) 16%, transparent), transparent 30rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--page-flow-reference) 35%, var(--page-flow-brand)), var(--page-flow-reference) 11rem);
+}
+
+.page-flow__ending::before {
+  height: clamp(3.5rem, 7vw, 6rem);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--premium-flow-bronze) 16%, transparent), transparent);
+}
+
+.page-flow__ending .closing-path {
+  padding-block: clamp(2.75rem, 4.5vw, 4rem) clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.page-flow__ending .closing-path::before {
+  opacity: 0.24;
+}
+
+.page-flow__ending .closing-path__inner {
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+}
+
+.page-flow__ending .closing-path__header {
+  display: grid;
+  max-width: none;
+  grid-template-columns: minmax(8rem, 0.55fr) minmax(0, 1.45fr);
+  align-items: end;
+  gap: clamp(1rem, 3vw, 3rem);
+  border-left: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+  padding: 0 0 clamp(1rem, 2vw, 1.5rem);
+}
+
+.page-flow__ending .closing-path__eyebrow {
+  padding-bottom: 0.18rem;
+}
+
+.page-flow__ending .closing-path__title {
+  max-width: 30ch;
+  margin-top: 0;
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+}
+
+.page-flow__ending .closing-path__links {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 0;
+}
+
+.page-flow__ending .closing-path__item {
+  min-width: 0;
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 13%, transparent);
+}
+
+.page-flow__ending .closing-path__item + .closing-path__item {
+  border-left: 0;
+}
+
+.page-flow__ending .closing-path__link {
+  min-height: 8.25rem;
+  gap: 0.65rem;
+  padding: 1rem clamp(0.75rem, 1.5vw, 1.15rem) 0.9rem 0;
+}
+
+.page-flow__ending .closing-path__item + .closing-path__item .closing-path__link {
+  padding-left: clamp(0.75rem, 1.5vw, 1.15rem);
+}
+
+.page-flow__ending .closing-path__link::before {
+  inset: 0 auto auto 0;
+  width: clamp(2rem, 4vw, 3.75rem);
+  height: 1px;
+  background: linear-gradient(90deg, var(--premium-flow-amber), transparent);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.page-flow__ending .closing-path__link:hover::before,
+.page-flow__ending .closing-path__link:focus-visible::before {
+  opacity: 0.82;
+}
+
+.page-flow__ending .closing-path__link:hover,
+.page-flow__ending .closing-path__link:focus-visible {
+  background: color-mix(in srgb, var(--premium-flow-bronze) 22%, transparent);
+}
+
+.page-flow__ending .closing-path__label {
+  font-size: 0.95rem;
+}
+
+.page-flow__ending .closing-path__description {
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.page-flow__ending .page-provenance {
+  padding-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.page-flow__ending .page-provenance__details {
+  overflow: visible;
+  border-block: 1px solid color-mix(in srgb, var(--premium-flow-mineral) 10%, transparent);
+  background: transparent;
+}
+
+.page-flow__ending .page-provenance__summary {
+  min-height: 2.75rem;
+  padding: 0.55rem 0;
+  color: var(--instrument-text-soft);
+  font-size: 0.76rem;
+}
+
+.page-flow__ending .page-provenance__summary:focus-visible {
+  outline-offset: 3px;
+}
+
+.page-flow__ending .page-provenance__facts,
+.page-flow__ending .page-provenance__boundary {
+  padding-inline: 0;
+}
+
+#main-content:has(.page-flow__ending) + .site-footer {
+  border-top-color: transparent;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-flow-reference) 100%, transparent), color-mix(in srgb, var(--instrument-technical) 96%, black) 8rem),
+    var(--instrument-technical);
+}
+
+#main-content:has(.page-flow__ending) + .site-footer::before {
+  opacity: 0.07;
+}
+
+#main-content:has(.page-flow__ending) + .site-footer .site-footer__main {
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  padding-block: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+#main-content:has(.page-flow__ending) + .site-footer .site-footer__identity {
+  border-top-color: color-mix(in srgb, var(--premium-flow-mineral) 11%, transparent);
+}
+
+#main-content:has(.page-flow__ending) + .site-footer .site-footer__promise {
+  font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+}
+
+@media (max-width: 1100px) {
+  .page-flow__ending .closing-path__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-flow__ending .closing-path__item:nth-child(odd) .closing-path__link {
+    padding-left: 0;
+  }
+
+  .page-flow__ending .closing-path__item:nth-child(even) .closing-path__link {
+    padding-left: clamp(0.75rem, 2vw, 1.25rem);
+  }
+}
+
+@media (max-width: 639px) {
+  .page-flow__ending .closing-path {
+    padding-block: 2.5rem 1.5rem;
+  }
+
+  .page-flow__ending .closing-path__header {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .page-flow__ending .closing-path__title {
+    font-size: clamp(1.4rem, 7vw, 1.85rem);
+  }
+
+  .page-flow__ending .closing-path__links {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-flow__ending .closing-path__item .closing-path__link,
+  .page-flow__ending .closing-path__item:nth-child(even) .closing-path__link,
+  .page-flow__ending .closing-path__item + .closing-path__item .closing-path__link {
+    min-height: 0;
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    align-items: start;
+    padding: 0.9rem 0;
+  }
+
+  .page-flow__ending .closing-path__copy {
+    gap: 0.35rem;
+  }
+
+  .page-flow__ending .closing-path__action {
+    padding-top: 0.15rem;
+  }
+
+  .page-flow__ending .page-provenance {
+    padding-bottom: 1rem;
+  }
+
+  #main-content:has(.page-flow__ending) + .site-footer .site-footer__main {
+    padding-block: 2rem 2.5rem;
+  }
+}
