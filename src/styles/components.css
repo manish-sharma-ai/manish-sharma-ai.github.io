@@ -11157,3 +11157,46 @@ input:hover {
     grid-column: 1 / -1;
   }
 }
+
+/* Shared masthead and editorial-row spacing correction.
+   The following scene intentionally overlaps each masthead, so the masthead
+   retains enough lower padding to leave a visible reading pause above that
+   transition line at desktop, tablet, and mobile widths. Open evidence and
+   proof rows keep their restrained border treatment while gaining symmetric
+   inline breathing room. */
+:is(
+  .lab-note-article__masthead,
+  .framework-article__masthead,
+  .glossary-article__masthead,
+  .research-article__masthead,
+  .lab-notes-index__masthead,
+  .frameworks-index__masthead,
+  .research-index__masthead,
+  .resources-index__masthead,
+  .glossary-index__masthead,
+  .public-work-index__masthead,
+  .evidence-base__masthead,
+  .industrial-proof__masthead,
+  .tools-workbench__hero,
+  .decision-map-page__masthead,
+  .brief-template-page__masthead,
+  .demo-page__masthead,
+  .info-page__masthead
+) {
+  padding-bottom: clamp(5rem, 8vw, 7rem);
+}
+
+:is(
+  .evidence-base__classification-card,
+  .evidence-base__rule-card,
+  .evidence-base__field-note,
+  .industrial-proof__interpretation-card,
+  .industrial-proof__knowledge-card,
+  .public-work-index__context-card,
+  .public-work-index__work-card
+),
+.evidence-base__facts .evidence-fact-grid__card,
+.evidence-base__sources .link-card,
+.industrial-proof__sources .link-card {
+  padding-inline: clamp(1rem, 2vw, 1.5rem);
+}
