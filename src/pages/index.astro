@@ -51,16 +51,12 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": `${SITE.canonicalUrl}/#website`,
-  name: SITE.name,
+  name: SITE.preferredSiteName,
+  alternateName: SITE.alternateSiteName,
   url: SITE.canonicalUrl,
   description,
   inLanguage: "en",
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma` },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${SITE.canonicalUrl}/?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma` }
 };
 
 const profilePageJsonLd = {
@@ -247,12 +243,12 @@ const proofDecisionPatternText: Record<string, string> = {
           Again and again, I found that a prediction alone did not settle the industrial question. My strongest public work today is in Laser Metal Deposition and Directed Energy Deposition at Exafuse, where I connect signals, models, engineering constraints, and human judgment to the next action and the evidence needed to check it.
         </p>
         <div class="home-hero__actions">
-          <CTAButton href="#lmd-decision-cockpit" variant="primary" class="home-hero__primary-action">Explore my work</CTAButton>
+          <CTAButton href="/public-work" variant="primary" class="home-hero__primary-action">Explore my work</CTAButton>
           <CTAButton href="/thesis" variant="secondary" class="home-hero__secondary-action">Read how I think</CTAButton>
         </div>
         <p class="home-hero__review-note">
           <span>Industrial AI / decision systems. Evidence-aware by design.</span>
-          Start with the LMD Decision Cockpit, then follow the method and current public work.
+          Start with the <a href="#lmd-decision-cockpit" aria-label="Try the LMD Decision Cockpit">LMD Decision Cockpit,</a> then follow the method and current public work.
         </p>
       </div>
     </div>

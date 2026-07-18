@@ -16,7 +16,17 @@ const jsonLd = {
   "@id": `${SITE.canonicalUrl}/lab-notes/a-prediction-is-not-yet-an-industrial-decision#article`,
   headline: title,
   description,
-  author: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma`, name: PERSON.name },
+  author: {
+    "@type": "Person",
+    "@id": `${SITE.canonicalUrl}/identity#manish-sharma`,
+    name: PERSON.name,
+    url: `${SITE.canonicalUrl}/about`
+  },
+  image: `${SITE.canonicalUrl}/images/melt-pool-hero.jpg`,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${SITE.canonicalUrl}/lab-notes/a-prediction-is-not-yet-an-industrial-decision`
+  },
   datePublished: "2026-07-17",
   dateModified: SITE.lastUpdated,
   url: `${SITE.canonicalUrl}/lab-notes/a-prediction-is-not-yet-an-industrial-decision`

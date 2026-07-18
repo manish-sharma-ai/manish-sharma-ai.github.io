@@ -4,6 +4,8 @@ import { resolveExafuseLink } from "../config/externalLinks";
 
 export const SITE = {
   name: SITE_CONFIG.site.name,
+  preferredSiteName: SITE_CONFIG.site.preferredSiteName,
+  alternateSiteName: SITE_CONFIG.site.alternateSiteName,
   canonicalUrl: PROFILE_URLS.site,
   repoUrl: PROFILE_URLS.repository,
   githubProfile: PROFILE_URLS.github,

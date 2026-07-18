@@ -12,6 +12,8 @@ export const SITE_CONFIG = {
   site: {
     baseUrl: MANISH_SITE_URL,
     name: "Manish Sharma Lab",
+    preferredSiteName: "Manish Sharma",
+    alternateSiteName: "Manish Sharma Lab",
     owner: "Manish Sharma",
     category: "Industrial AI & Decision Systems",
     title: "Industrial AI and Decision Systems",

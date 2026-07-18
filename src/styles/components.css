@@ -2312,6 +2312,20 @@
   line-height: 1.45;
 }
 
+.home-premium-hero .home-hero__review-note a {
+  color: #f2eee5;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 120, 63, 0.7);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+.home-premium-hero .home-hero__review-note a:hover,
+.home-premium-hero .home-hero__review-note a:focus-visible {
+  color: #e3a16f;
+}
+
 .home-premium-hero__image-caption {
   position: absolute;
   right: clamp(2rem, 4vw, 4rem);
