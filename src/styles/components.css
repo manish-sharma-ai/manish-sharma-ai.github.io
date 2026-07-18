@@ -11045,3 +11045,17 @@ input:hover {
     padding-block: 2rem 2.5rem;
   }
 }
+
+/* Premium 9 cycle 5: explicit keyboard focus and a viewport-safe mobile
+   navigation panel. These are state corrections, not a visual restyle. */
+.nav-menu-link:focus-visible {
+  border-color: var(--instrument-signal);
+  outline: 2px solid var(--instrument-signal);
+  outline-offset: 2px;
+}
+
+@media (max-width: 860px) {
+  .mobile-nav-panel {
+    width: min(27rem, calc(100vw - 2rem));
+  }
+}

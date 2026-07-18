@@ -99,3 +99,45 @@ horizontal overflow; do not change page-body layout or source order.
   evidence across interactive and narrow-screen routes.
 
 Estimated lowest-credible global score after cycle 4: **8.4**.
+
+## Cycle 5 hypothesis — prove fragile responsive and interaction states
+
+Lowest remaining dimensions: narrow-screen intentionality, keyboard clarity,
+zoom resilience, disclosure behavior, hash landing, and interactive confidence.
+
+Hypothesis: state evidence will either validate the shared system or expose a
+small measurable defect. Any fix must be limited to the failing state and must
+not change route content, information architecture, or tool logic.
+
+Acceptance gates: 320px and zoom-equivalent reflow without horizontal
+overflow; Resources remains dismissible by Escape and click-away; mobile menu
+stays inside the viewport; Page Information expands; Cockpit and Decision Map
+results update; one H1 remains; no browser errors.
+
+### Cycle 5 result — accepted with one harness limitation
+
+- Found and fixed a measured 3.2px left-edge clip in the open mobile menu at
+  320px by constraining the panel to viewport width minus safe margins.
+- Added an explicit two-pixel focus-visible outline to Resources and mobile
+  navigation links; existing active, hover, and open states remain intact.
+- Verified Resources opens, reports `aria-expanded=true`, closes on click-away,
+  and closes on Escape.
+- Verified open Page Information at 390px with no horizontal overflow.
+- Verified `/tools#lmd-decision-cockpit` lands above the Cockpit content without
+  header collision and the Prepare RFQ selection updates the live result.
+- Exercised Decision Map with a new, small, full-geometry, internal-channel
+  scenario; the live recommendation changed to `SLM/LPBF alternative` with no
+  runtime warning or error.
+- Measured 15 route/viewport combinations at 320px, 390px, and a 720px CSS
+  viewport equivalent to a 1440px window at 200% zoom: zero horizontal
+  overflow and exactly one H1 in every case.
+- The in-app browser did not expose a working page-zoom command, so actual
+  browser-chrome 200% zoom could not be captured. The equivalent CSS viewport
+  was tested and this limitation is retained rather than reported as an exact
+  browser-zoom pass.
+- Focused validation: lint passed with 0 diagnostics; 58-page build passed;
+  `git diff --check` passed.
+- Evidence: captures and `responsive-matrix.json` under
+  `output/playwright/premium-9/cycle-5/`.
+
+Estimated lowest-credible global score after cycle 5: **8.6**.

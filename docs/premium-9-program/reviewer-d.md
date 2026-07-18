@@ -34,3 +34,12 @@ still rejected. The program has not yet proved 200% zoom, visible keyboard
 focus, disclosure expansion, sticky hash landing, and interactive mobile
 states together, and any remaining family-specific imbalance must be judged
 after those states are captured.
+
+## Cycle 5 review: 8.5 — 9 rejected
+
+This cycle found a real defect instead of manufacturing polish and fixed it
+narrowly. Resources dismissal, provenance expansion, hash landing, Cockpit
+state, Decision Map state, 320px reflow, and the 720px zoom-equivalent layout
+are evidenced. A 9 is still rejected because exact 200% browser zoom was not
+available in the chosen harness and the final route-family comparison has not
+yet demonstrated that no residual low family remains.

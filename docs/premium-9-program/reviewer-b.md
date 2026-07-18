@@ -33,3 +33,10 @@ Related destinations now read as a compact editorial route rather than a
 second content grid. The provenance disclosure remains complete but no longer
 interrupts the conclusion, and the footer hierarchy is present without
 becoming the final dominant section on mobile.
+
+## Cycle 5 review: 8.7
+
+Narrow navigation and ending disclosures retain their complete wording and
+order without producing overflow. Tool outputs continue to change in direct
+response to real controls, so the editorial simplification has not displaced
+functional clarity.

@@ -33,3 +33,11 @@ The native details element, link names, source order, touch targets, and
 correction route remain intact. The compact mobile route rows shorten the
 post-task focus path without removing destinations. Final keyboard, zoom,
 hash-target, and open-disclosure evidence remains mandatory.
+
+## Cycle 5 review: 8.8
+
+The measured 320px menu clip is corrected, open/close semantics remain native,
+Escape and click-away both work, Page Information expands, hash landing is
+clear, and both interactive tools update without console errors. The browser
+harness could not set literal page zoom; the 720px effective viewport passed,
+but an exact browser-chrome zoom capture remains an honest limitation.

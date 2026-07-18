@@ -34,3 +34,10 @@ The ending now reads as one restrained conclusion: route choices are open
 records, provenance is a quiet disclosure, and the footer continues the same
 tone. Unlike page families still share a recognizable signature, but the
 apparatus no longer competes with the page's dominant moment.
+
+## Cycle 5 review: 8.5
+
+The responsive corrections are deliberately invisible at ordinary widths and
+remove the only measured open-menu clipping defect. The system is now visually
+stable through its narrow and interactive states; remaining work is final
+route-family comparison, not another art-direction layer.

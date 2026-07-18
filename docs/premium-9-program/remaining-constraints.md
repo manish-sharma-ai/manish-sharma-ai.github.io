@@ -6,3 +6,6 @@ This file is intentionally initialized before implementation. It will record con
 - The homepage melt-pool image cannot be reused as route-level art direction elsewhere.
 - No new font, illustration, evidence, metric, claim, or route-specific image may be invented.
 - Interactive tools must preserve calculations, outputs, hydration, exports, and native control semantics.
+- The selected in-app browser did not apply browser-chrome zoom commands. A
+  720px CSS viewport was used as the 1440px-at-200%-zoom reflow equivalent;
+  exact browser-chrome zoom remains a validation limitation, not a claimed pass.
