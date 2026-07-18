@@ -98,7 +98,7 @@ const jsonLd = {
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/resources" jsonLd={jsonLd}>
   <div class="resources-index">
-    <header class="site-shell resources-index__masthead">
+    <header class="site-shell resources-index__masthead page-chapter page-chapter--brand" data-page-chapter="masthead">
       <div class="resources-index__masthead-copy">
         <div class="resources-index__tags">
         <Badge>Resources</Badge>
@@ -118,7 +118,7 @@ const jsonLd = {
       </div>
     </header>
 
-    <section class="resources-index__groups" aria-label="Resources by intent">
+    <section class="resources-index__groups page-chapter page-chapter--reference" data-page-chapter="collection" aria-label="Resources by intent">
       <div class="site-shell">
       {resourceGroups.map((group) => (
         <section class="resources-index__group">

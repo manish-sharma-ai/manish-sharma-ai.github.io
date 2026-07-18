@@ -89,6 +89,36 @@ const breadcrumbJsonLd =
     : null;
 
 const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
+const normalizedCanonical = canonicalPath(canonical);
+const pageFamily =
+  normalizedCanonical === "/"
+    ? "home"
+    : normalizedCanonical === "/404"
+      ? "recovery"
+      : normalizedCanonical === "/tools" ||
+          normalizedCanonical === "/decision-map" ||
+          normalizedCanonical === "/brief-template" ||
+          normalizedCanonical === "/demo" ||
+          normalizedCanonical === "/review"
+        ? "tool"
+        : normalizedCanonical.startsWith("/lab-notes/") ||
+            normalizedCanonical.startsWith("/frameworks/") ||
+            normalizedCanonical.startsWith("/glossary/") ||
+            normalizedCanonical === "/thesis" ||
+            normalizedCanonical === "/research/core-lmd-ai-sources"
+          ? "long-form"
+          : normalizedCanonical === "/lab-notes" ||
+              normalizedCanonical === "/frameworks" ||
+              normalizedCanonical === "/glossary" ||
+              normalizedCanonical === "/research" ||
+              normalizedCanonical === "/resources"
+            ? "listing"
+            : normalizedCanonical === "/public-work" ||
+                normalizedCanonical === "/evidence" ||
+                normalizedCanonical === "/industrial-proof" ||
+                normalizedCanonical === "/claims"
+              ? "evidence"
+              : "information";
 ---
 
 <!doctype html>
@@ -132,9 +162,13 @@ const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
       <Header lang={lang} />
       <Breadcrumbs path={canonical} title={titleText} lang={lang} />
       <main id="main-content">
-        <slot />
-        <RelatedLinks path={canonical} lang={lang} />
-        <PageProvenance lastUpdated={lastUpdated} lang={lang} />
+        <div class:list={["page-flow", `page-flow--${pageFamily}`]} data-page-family={pageFamily}>
+          <div class="page-flow__content"><slot /></div>
+          <div class="page-flow__ending">
+            <RelatedLinks path={canonical} lang={lang} />
+            <PageProvenance lastUpdated={lastUpdated} lang={lang} />
+          </div>
+        </div>
       </main>
       <Footer lang={lang} />
       <CommandPalette pages={COMMAND_PAGES} lang={lang} />

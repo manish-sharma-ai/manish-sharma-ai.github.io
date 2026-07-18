@@ -33,7 +33,7 @@ const decisionTerms = [
 
 <Layout title={title} description={description} canonical="/glossary">
   <div class="glossary-index">
-    <header class="site-shell glossary-index__masthead">
+    <header class="site-shell glossary-index__masthead page-chapter page-chapter--brand" data-page-chapter="masthead">
       <div class="glossary-index__masthead-copy">
       <SectionHeading
         as="h1"
@@ -45,7 +45,7 @@ const decisionTerms = [
       <div class="glossary-index__visual"><PageHeroVisual variant="glossary" /></div>
     </header>
 
-    <section class="site-shell glossary-index__core" aria-label="Core glossary terms">
+    <section class="site-shell glossary-index__core page-chapter page-chapter--reference" data-page-chapter="core-terms" aria-label="Core glossary terms">
       <dl>
         {GLOSSARY_TERMS.map((term) => (
           <div>
@@ -61,7 +61,7 @@ const decisionTerms = [
       </dl>
     </section>
 
-    <section class="glossary-index__decision-vocabulary">
+    <section class="glossary-index__decision-vocabulary page-chapter page-chapter--conclusion" data-page-chapter="decision-vocabulary">
       <div class="site-shell">
       <SectionHeading
         eyebrow="Decision vocabulary"

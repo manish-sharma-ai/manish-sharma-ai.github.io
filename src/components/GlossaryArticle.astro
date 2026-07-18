@@ -11,7 +11,7 @@ const { title, short, visualVariant } = Astro.props;
 ---
 
 <article class="glossary-article">
-  <header class="site-shell glossary-article__masthead">
+  <header class="site-shell glossary-article__masthead page-chapter page-chapter--brand" data-page-chapter="masthead">
     <div class="glossary-article__masthead-copy">
       <p class="glossary-article__eyebrow">Glossary</p>
       <h1>{title}</h1>
@@ -22,7 +22,7 @@ const { title, short, visualVariant } = Astro.props;
     </div>
   </header>
 
-  <div class="glossary-article__content">
+  <div class="glossary-article__content page-chapter page-chapter--narrative" data-page-chapter="definition">
     <section class="site-shell glossary-article__meaning">
       <aside class="glossary-article__notes"><slot name="notes" /></aside>
       <div class="prose-lab glossary-article__prose"><slot /></div>

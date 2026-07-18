@@ -29,7 +29,7 @@ const {
     { "lab-note-article--has-masthead-visual": hasMastheadVisual }
   ]}
 >
-  <header class="lab-note-article__masthead">
+  <header class="lab-note-article__masthead page-chapter page-chapter--brand" data-page-chapter="masthead">
     <div class="lab-note-article__masthead-copy">
       <slot name="eyebrow"><Badge>{contentType}</Badge></slot>
       <h1 class="mt-5 text-5xl font-black leading-tight text-white md:text-6xl">{title}</h1>
@@ -51,7 +51,7 @@ const {
     {hasMastheadVisual && <div class="lab-note-article__masthead-visual"><slot name="visual" /></div>}
   </header>
 
-  <div class="lab-note-article__reading-layout">
+  <div class="lab-note-article__reading-layout page-chapter page-chapter--narrative" data-page-chapter="reading">
     {railOrder === "before" && (
       <aside class="lab-note-article__supporting" aria-label={supportingLabel}>
         <slot name="supporting" />
@@ -69,5 +69,5 @@ const {
     )}
   </div>
 
-  <footer class="lab-note-article__footer"><slot name="footer" /></footer>
+  <footer class="lab-note-article__footer page-chapter page-chapter--reference" data-page-chapter="conclusion"><slot name="footer" /></footer>
 </article>

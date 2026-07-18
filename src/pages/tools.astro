@@ -84,6 +84,7 @@ const toolBlocks = [
 
 <Layout title={title} description={description} canonical="/tools" jsonLd={workbenchJsonLd}>
   <div class="tools-workbench">
+  <div class="tools-chapter tools-chapter--orientation" data-page-chapter="orientation">
   <section class="site-shell tools-hero tools-workbench__hero">
     <div class="tools-hero__copy">
       <div class="flex flex-wrap gap-2">
@@ -144,7 +145,9 @@ const toolBlocks = [
       </nav>
     </div>
   </section>
+  </div>
 
+  <div class="tools-chapter tools-chapter--workbench" data-page-chapter="workbench">
   <section class="site-shell section-y pt-0 tools-workbench__cockpit-transition">
     <LmdDecisionCockpit client:visible defaultMode="example" exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
     <noscript>
@@ -194,7 +197,9 @@ const toolBlocks = [
       </div>
     </section>
   ))}
+  </div>
 
+  <div class="tools-chapter tools-chapter--output" data-page-chapter="output">
   <section class="site-shell section-y tools-workbench__rubric">
     <div class="ordered-card-strong tools-workbench__rubric-card grid gap-6 p-6 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
       <div>
@@ -217,7 +222,9 @@ const toolBlocks = [
       <ProcessLoop variant="compact" title="Inputs -> gaps -> risks -> next action" subtitle="The workbench keeps the loop short: structure the question, expose uncertainty, then route serious cases to expert review." />
     </div>
   </section>
+  </div>
 
+  <div class="tools-chapter tools-chapter--routes" data-page-chapter="next-paths">
   <section class="band section-y tools-workbench__routes">
     <div class="site-shell grid gap-5 lg:grid-cols-2">
       <div class="ordered-card-strong tools-workbench__route-card tools-workbench__route-card--lab p-7">
@@ -244,6 +251,7 @@ const toolBlocks = [
       </div>
     </div>
   </section>
+  </div>
 
   <script is:inline>
     (() => {

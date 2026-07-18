@@ -11,7 +11,7 @@ const { title, contentType = "Working framework", hasMastheadVisual = true } = A
 ---
 
 <article class:list={["framework-article", { "framework-article--has-masthead-visual": hasMastheadVisual }]}>
-  <header class="site-shell framework-article__masthead">
+  <header class="site-shell framework-article__masthead page-chapter page-chapter--brand" data-page-chapter="masthead">
     <div class="framework-article__masthead-copy">
       <slot name="eyebrow"><Badge>{contentType}</Badge></slot>
       <h1>{title}</h1>
@@ -21,7 +21,7 @@ const { title, contentType = "Working framework", hasMastheadVisual = true } = A
     {hasMastheadVisual && <div class="framework-article__masthead-visual"><slot name="visual" /></div>}
   </header>
 
-  <div class="framework-article__content"><slot /></div>
+  <div class="framework-article__content page-chapter page-chapter--narrative" data-page-chapter="model"><slot /></div>
 
-  <footer class="site-shell framework-article__footer"><slot name="footer" /></footer>
+  <footer class="site-shell framework-article__footer page-chapter page-chapter--reference" data-page-chapter="conclusion"><slot name="footer" /></footer>
 </article>

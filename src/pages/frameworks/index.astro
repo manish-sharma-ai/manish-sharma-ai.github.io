@@ -22,7 +22,7 @@ const stats = [
 
 <Layout title={title} description={description} canonical="/frameworks">
   <div class="frameworks-index">
-    <header class="site-shell frameworks-index__masthead">
+    <header class="site-shell frameworks-index__masthead page-chapter page-chapter--brand" data-page-chapter="masthead">
       <div class="frameworks-index__masthead-copy">
         <div class="frameworks-index__tags">
           <Chip>Framework library</Chip>
@@ -47,7 +47,7 @@ const stats = [
       </div>
     </header>
 
-    <section class="frameworks-index__summary" aria-label="Framework library summary">
+    <section class="frameworks-index__summary page-chapter page-chapter--reference" data-page-chapter="collection-intro" aria-label="Framework library summary">
       <div class="site-shell">
         <dl>
           {stats.map(([label, value]) => (
@@ -60,7 +60,7 @@ const stats = [
       </div>
     </section>
 
-    <section class="site-shell frameworks-index__listing" aria-label="Framework index">
+    <section class="site-shell frameworks-index__listing page-chapter page-chapter--reference" data-page-chapter="collection" aria-label="Framework index">
       <SectionHeading
         eyebrow="Framework index"
         title="Choose the decision layer you need"
@@ -71,7 +71,7 @@ const stats = [
       </ul>
     </section>
 
-    <section class="frameworks-index__boundary">
+    <section class="frameworks-index__boundary page-chapter page-chapter--conclusion" data-page-chapter="boundary">
       <div class="site-shell frameworks-index__boundary-grid">
         <div class="frameworks-index__evidence-card">
           <p>Evidence discipline</p>

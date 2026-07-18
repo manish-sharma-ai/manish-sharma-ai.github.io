@@ -95,6 +95,7 @@ const jsonLd = {
 
 <Layout title={`${title} - Manish Sharma Lab`} description={description} canonical="/public-work" jsonLd={jsonLd}>
   <div class="public-work-index">
+  <div class="public-work-chapter public-work-chapter--identity" data-page-chapter="identity">
   <section class="site-shell section-y public-work-index__masthead">
     <div class="public-work-index__masthead-grid grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(24rem,0.62fr)] lg:items-center">
       <div>
@@ -125,7 +126,9 @@ const jsonLd = {
       ))}
     </div>
   </section>
+  </div>
 
+  <div class="public-work-chapter public-work-chapter--proof" data-page-chapter="proof">
   <section class="site-shell section-y public-work-index__established">
     <div class="public-work-index__established-grid grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <SectionHeading
@@ -198,7 +201,9 @@ const jsonLd = {
       </div>
     </div>
   </section>
+  </div>
 
+  <div class="public-work-chapter public-work-chapter--supporting" data-page-chapter="supporting-evidence">
   <section class="site-shell section-y public-work-index__collections">
     <div class="grid gap-10">
       {sections.map((section) => (
@@ -214,7 +219,9 @@ const jsonLd = {
       ))}
     </div>
   </section>
+  </div>
 
+  <div class="public-work-chapter public-work-chapter--reference" data-page-chapter="reference">
   <section class="site-shell section-y public-work-index__sources">
     <div class="public-work-index__source-sequence">
       <div class="public-work-index__source-group public-work-index__source-group--profiles">
@@ -231,5 +238,6 @@ const jsonLd = {
       </div>
     </div>
   </section>
+  </div>
   </div>
 </Layout>

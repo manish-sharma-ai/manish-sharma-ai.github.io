@@ -219,7 +219,7 @@ const proofDecisionPatternText: Record<string, string> = {
     { lang: "x-default", href: "/" }
   ]}
 >
-  <section class="home-premium-hero">
+  <section class="home-premium-hero home-chapter home-chapter--position" data-page-chapter="position">
     <picture
       class="home-premium-hero__media"
       aria-hidden="true"
@@ -262,7 +262,7 @@ const proofDecisionPatternText: Record<string, string> = {
     </p>
   </section>
 
-  <section class="home-opening-flow" data-operating-loop="homepage" aria-labelledby="home-opening-flow-title">
+  <section class="home-opening-flow home-chapter home-chapter--method" data-page-chapter="method" data-operating-loop="homepage" aria-labelledby="home-opening-flow-title">
     <div class="home-opening-flow__atmosphere" aria-hidden="true"></div>
     <div class="site-shell home-opening-flow__inner">
       <section class="home-opening-flow__process" aria-labelledby="home-opening-flow-title">
@@ -303,7 +303,7 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="process-proof-system" aria-label="Public context and decision routes">
+  <section class="process-proof-system home-chapter home-chapter--proof" data-page-chapter="proof" aria-label="Public context and decision routes">
     <div class="site-shell process-proof-system__inner">
 
       <div class="process-proof-system__section process-proof-system__section--proof" aria-label="Public context and decision routes">
@@ -358,6 +358,7 @@ const proofDecisionPatternText: Record<string, string> = {
   </section>
 
   <div class="home-continuation">
+    <div class="home-chapter home-chapter--knowledge" data-page-chapter="knowledge">
     <section class="home-section home-section--start" aria-label="Start with a decision path">
       <div class="site-shell home-section__inner">
         <SectionHeading eyebrow="Start here" title="Current LMD/DED work: choose the question you need to structure" />
@@ -507,7 +508,9 @@ const proofDecisionPatternText: Record<string, string> = {
         </div>
       </div>
     </section>
+    </div>
 
+    <div class="home-chapter home-chapter--boundary" data-page-chapter="boundary">
     <section class="home-section home-section--routes" aria-label="Public and commercial routes">
       <div class="site-shell home-section__inner home-route-grid">
       <div class="home-route-card home-route-card--public">
@@ -534,5 +537,6 @@ const proofDecisionPatternText: Record<string, string> = {
       </div>
       </div>
     </section>
+    </div>
     </div>
 </Layout>

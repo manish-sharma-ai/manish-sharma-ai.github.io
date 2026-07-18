@@ -9837,3 +9837,356 @@ input:hover {
     height: auto;
   }
 }
+
+/* Page choreography system.
+   Semantic sections remain intact; these shared family scopes group them into
+   a smaller number of visual chapters and make the shared page ending read as
+   the conclusion of the same page rather than a separate apparatus. */
+
+.page-flow {
+  --page-flow-brand: var(--premium-flow-brand);
+  --page-flow-narrative: var(--premium-flow-narrative);
+  --page-flow-instrument: var(--premium-flow-instrument);
+  --page-flow-reference: var(--premium-flow-reference);
+  position: relative;
+  isolation: isolate;
+  background: var(--page-flow-brand);
+  color: var(--premium-flow-mineral);
+}
+
+.page-flow__content {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background:
+    radial-gradient(ellipse at 78% 4%, color-mix(in srgb, var(--premium-flow-bronze) 18%, transparent), transparent 28rem),
+    var(--page-flow-brand);
+}
+
+.page-chapter,
+.home-chapter,
+.public-work-chapter,
+.tools-chapter {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-flow__ending {
+  position: relative;
+  isolation: isolate;
+  margin-top: 0;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-flow-reference) 22%, transparent), var(--page-flow-reference) 9rem),
+    var(--page-flow-reference);
+}
+
+.page-flow__ending::before {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: clamp(5rem, 9vw, 8rem);
+  pointer-events: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--premium-flow-bronze) 24%, transparent), transparent);
+  content: "";
+}
+
+.page-flow__ending .closing-path {
+  margin-top: 0;
+  border-top: 0;
+  background: transparent;
+}
+
+.page-flow__ending .closing-path::before {
+  opacity: 0.45;
+}
+
+.page-flow__ending .page-provenance {
+  margin-top: 0;
+  background: transparent;
+}
+
+.page-flow__ending .page-provenance__details {
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--page-flow-reference) 82%, transparent);
+}
+
+#main-content:has(.page-flow__ending) + .site-footer {
+  border-top-color: color-mix(in srgb, var(--premium-flow-mineral) 8%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-flow-reference) 96%, transparent), transparent 11rem),
+    var(--instrument-technical);
+}
+
+/* Homepage: five visible chapters with one uninterrupted opening and a
+   quieter knowledge canvas instead of four independent section bands. */
+.page-flow--home .page-flow__content {
+  background: var(--instrument-bg);
+}
+
+.home-chapter--proof {
+  background:
+    linear-gradient(180deg, var(--instrument-bg), color-mix(in srgb, var(--page-flow-narrative) 76%, var(--instrument-bg)));
+}
+
+.home-chapter--knowledge {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 86% 32%, color-mix(in srgb, var(--premium-flow-bronze) 13%, transparent), transparent 31rem),
+    var(--page-flow-reference);
+}
+
+.home-chapter--knowledge::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(5rem, 10vw, 9rem);
+  pointer-events: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--page-flow-narrative) 72%, transparent), transparent);
+  content: "";
+}
+
+.home-chapter--knowledge .home-section {
+  border-top: 0;
+  background: transparent;
+}
+
+.home-chapter--knowledge .home-section::before {
+  opacity: 0.1;
+}
+
+.home-chapter--knowledge .home-section__inner {
+  padding-block: clamp(3.5rem, 5.5vw, 5.25rem);
+}
+
+.home-chapter--knowledge .home-section + .home-section .home-section__inner::before {
+  display: block;
+  width: min(100%, 14rem);
+  height: 1px;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  background: linear-gradient(90deg, var(--premium-flow-amber-soft), transparent);
+  content: "";
+}
+
+.home-chapter--boundary {
+  background:
+    linear-gradient(180deg, var(--page-flow-reference), color-mix(in srgb, var(--premium-flow-bronze) 18%, var(--page-flow-brand)));
+}
+
+.home-chapter--boundary .home-section {
+  border-top: 0;
+  background: transparent;
+}
+
+/* Public Work: identity, proof, supporting evidence, and sources now read as
+   four deliberate chapters; internal sections no longer restart the canvas. */
+.public-work-chapter > :is(section, .band) {
+  border-top: 0;
+  background: transparent;
+}
+
+.public-work-chapter--identity {
+  background: var(--page-flow-brand);
+}
+
+.public-work-chapter--identity .public-work-index__context-band {
+  margin-top: clamp(-3.25rem, -4vw, -2.25rem);
+  padding-top: clamp(2.75rem, 4vw, 3.75rem);
+}
+
+.public-work-chapter--proof {
+  background:
+    linear-gradient(180deg, var(--page-flow-brand), var(--page-flow-narrative) 9rem, var(--page-flow-narrative));
+}
+
+.public-work-chapter--proof .public-work-index__proof {
+  position: relative;
+  padding-top: clamp(3rem, 5vw, 4.75rem);
+}
+
+.public-work-chapter--proof .public-work-index__proof::before {
+  position: absolute;
+  top: 0;
+  left: max(var(--page-pad-desktop), calc((100% - var(--page-max)) / 2));
+  width: min(14rem, 28vw);
+  height: 1px;
+  background: linear-gradient(90deg, var(--premium-flow-amber-soft), transparent);
+  content: "";
+}
+
+.public-work-chapter--supporting {
+  background:
+    linear-gradient(180deg, var(--page-flow-narrative), var(--page-flow-reference) 8rem, var(--page-flow-reference));
+}
+
+.public-work-chapter--reference {
+  background:
+    radial-gradient(ellipse at 22% 0%, color-mix(in srgb, var(--premium-flow-bronze) 20%, transparent), transparent 27rem),
+    var(--page-flow-reference);
+}
+
+/* Tools: retain dense functional surfaces while eliminating alternating page
+   bands between the real workbench modules. */
+.tools-chapter > :is(section, .band) {
+  border-top: 0;
+  background: transparent;
+}
+
+.tools-chapter--orientation {
+  background: var(--page-flow-brand);
+}
+
+.tools-chapter--workbench {
+  background:
+    linear-gradient(180deg, var(--page-flow-brand), var(--page-flow-instrument) 8rem, var(--page-flow-instrument));
+}
+
+.tools-chapter--workbench .tools-workbench__dock,
+.tools-chapter--workbench .tools-workbench__cockpit-transition {
+  background: transparent;
+}
+
+.tools-chapter--workbench .tools-workbench__module {
+  position: relative;
+  padding-block: clamp(3.75rem, 6vw, 5.75rem);
+}
+
+.tools-chapter--workbench .tools-workbench__module::before {
+  position: absolute;
+  top: 0;
+  left: max(var(--page-pad-desktop), calc((100% - var(--page-max)) / 2));
+  width: min(15rem, 30vw);
+  height: 1px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--premium-flow-amber) 36%, transparent), transparent);
+  content: "";
+}
+
+.tools-chapter--output {
+  background:
+    linear-gradient(180deg, var(--page-flow-instrument), var(--page-flow-narrative) 8rem, var(--page-flow-narrative));
+}
+
+.tools-chapter--output > :is(section, .band) {
+  padding-block: clamp(3.5rem, 5.5vw, 5.25rem);
+}
+
+.tools-chapter--routes {
+  background:
+    linear-gradient(180deg, var(--page-flow-narrative), var(--page-flow-reference) 8rem, var(--page-flow-reference));
+}
+
+/* Shared long-form scene: calm brand masthead, one reading canvas, one
+   concluding reference scene. */
+.page-flow--long-form .page-flow__content {
+  background: var(--page-flow-brand);
+}
+
+.page-flow--long-form :is(.lab-note-article, .framework-article, .glossary-article, .research-article, .info-page) {
+  background: transparent;
+}
+
+.page-flow--long-form .page-chapter--narrative {
+  border-top: 0;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--page-flow-narrative) 94%, transparent), var(--page-flow-narrative) 12rem),
+    var(--page-flow-narrative);
+}
+
+.page-flow--long-form .page-chapter--reference {
+  border-top: 0;
+  background:
+    linear-gradient(180deg, var(--page-flow-narrative), var(--page-flow-reference) 8rem, var(--page-flow-reference));
+}
+
+.page-flow--long-form :is(.framework-article__content, .glossary-article__content) > .band {
+  border-block-color: color-mix(in srgb, var(--premium-flow-mineral) 7%, transparent);
+  background: transparent;
+}
+
+/* Listing/reference pages share a compact orientation scene and one continuous
+   discovery canvas. */
+.page-flow--listing :is(.frameworks-index, .research-index, .resources-index, .glossary-index, .lab-notes-index) {
+  background: transparent;
+}
+
+.page-flow--listing .page-chapter--reference {
+  border-top: 0;
+  background: var(--page-flow-reference);
+}
+
+.page-flow--listing .page-chapter--reference + .page-chapter--reference {
+  margin-top: 0;
+}
+
+.page-flow--listing :is(.resources-index__group, .glossary-index__decision-vocabulary) {
+  border-top-color: color-mix(in srgb, var(--premium-flow-mineral) 8%, transparent);
+}
+
+/* Informational/evidence families keep their semantic sections but stop
+   presenting every one as a new full-width band. */
+.page-flow--information .info-page,
+.page-flow--evidence :is(.evidence-base, .industrial-proof, .public-work-index, .info-page) {
+  background: transparent;
+}
+
+.page-flow--information .info-page > :is(section, .band),
+.page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band) {
+  position: relative;
+  border-top: 0;
+  background: transparent;
+}
+
+.page-flow--information .info-page > :is(section, .band):not(.info-page__masthead),
+.page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band):not(:first-child) {
+  padding-block: clamp(3.75rem, 6vw, 5.5rem);
+}
+
+.page-flow--information .info-page > :is(section, .band) + :is(section, .band)::before,
+.page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band) + :is(section, .band)::before {
+  position: absolute;
+  top: 0;
+  left: max(var(--page-pad-desktop), calc((100% - var(--page-max)) / 2));
+  width: min(12rem, 24vw);
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--premium-flow-amber) 30%, transparent), transparent);
+  content: "";
+}
+
+@media (max-width: 1023px) {
+  .public-work-chapter--proof .public-work-index__proof::before,
+  .tools-chapter--workbench .tools-workbench__module::before,
+  .page-flow--information .info-page > :is(section, .band) + :is(section, .band)::before,
+  .page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band) + :is(section, .band)::before {
+    left: var(--page-pad-tablet);
+  }
+}
+
+@media (max-width: 639px) {
+  .home-chapter--knowledge .home-section__inner,
+  .tools-chapter--workbench .tools-workbench__module,
+  .tools-chapter--output > :is(section, .band),
+  .page-flow--information .info-page > :is(section, .band):not(.info-page__masthead),
+  .page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band):not(:first-child) {
+    padding-block: 3.25rem;
+  }
+
+  .public-work-chapter--identity .public-work-index__context-band {
+    margin-top: -2rem;
+    padding-top: 2.5rem;
+  }
+
+  .public-work-chapter--proof .public-work-index__proof::before,
+  .tools-chapter--workbench .tools-workbench__module::before,
+  .page-flow--information .info-page > :is(section, .band) + :is(section, .band)::before,
+  .page-flow--evidence :is(.evidence-base, .industrial-proof) > :is(section, .band) + :is(section, .band)::before {
+    left: var(--page-pad-mobile);
+    width: 8rem;
+  }
+
+  .page-flow__ending .page-provenance__details {
+    border-right: 1px solid var(--instrument-border);
+    border-left: 1px solid var(--instrument-border);
+    border-radius: var(--control-radius);
+  }
+}
