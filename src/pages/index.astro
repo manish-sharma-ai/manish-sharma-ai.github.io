@@ -1,15 +1,18 @@
 ---
 import CTAButton from "@components/CTAButton.astro";
+import ExafuseProofMedia from "@components/ExafuseProofMedia.astro";
 import Layout from "@layouts/Layout.astro";
 import LmdDecisionCockpit from "@components/LmdDecisionCockpit";
 import SectionHeading from "@components/SectionHeading.astro";
 import { resolveExafuseLink } from "../config/externalLinks";
+import { EXAFUSE_PUBLIC_PROOF } from "@data/exafusePublicProof";
 import { LAB_NOTES, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
 
 const title = "Manish Sharma — Industrial AI & Decision Systems";
 const description =
   "Manish Sharma builds evidence-aware AI systems for industrial decisions. His strongest public work is in LMD/DED, process monitoring, robotics, and engineering decision support at Exafuse.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
+const flagshipProof = EXAFUSE_PUBLIC_PROOF.find((proof) => proof.id === "cs15-duisburg-bridge");
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -66,28 +69,20 @@ const profilePageJsonLd = {
 
 const flagshipAssets = [
   {
-    title: "LMD Quality Evidence Ladder",
-    href: "/frameworks/lmd-quality-evidence-ladder",
-    problem: "Monitoring data is often treated as release proof.",
-    helps: "Which evidence level is needed for a claim.",
-    cannot: "Final part quality without inspection/testing.",
-    cta: "Open framework"
+    title: "LMD Decision Cockpit",
+    href: "/tools#lmd-decision-cockpit",
+    problem: "A decision starts before every fact is known.",
+    helps: "Turn facts, gaps, risk, and evidence needs into a next action.",
+    cannot: "Replace engineering approval or final feasibility review.",
+    cta: "Run the Cockpit"
   },
   {
-    title: "LMD Repairability Index",
-    href: "/frameworks/lmd-repairability-index",
-    problem: "Repair requests arrive before material, damage, access, and inspection facts are clear.",
-    helps: "Whether a repair candidate is worth expert review.",
-    cannot: "Repair feasibility, release, or service safety.",
-    cta: "Open index"
-  },
-  {
-    title: "LMD RFQ Toolkit",
-    href: "/agent-pack",
-    problem: "Vague RFQs hide missing facts and risk flags.",
-    helps: "How to structure known facts, gaps, assumptions, and next questions.",
-    cannot: "Replace Exafuse commercial review or engineering approval.",
-    cta: "Open toolkit"
+    title: "Camera Is Not a Certificate",
+    href: "/lab-notes/camera-is-not-a-certificate",
+    problem: "A process image can look convincing before it becomes sufficient evidence.",
+    helps: "Separate monitoring signals from an inspection-backed quality claim.",
+    cannot: "Turn a signal into a release decision.",
+    cta: "Read the note"
   }
 ];
 
@@ -158,15 +153,15 @@ const homepageProcessSteps = [
           I build AI systems for industrial decisions that need evidence, not just predictions.
         </h1>
         <p class="home-hero__intro">
-          Again and again, I found that a prediction alone did not settle the industrial question. My strongest public work today is in Laser Metal Deposition and Directed Energy Deposition at Exafuse, where I connect signals, models, engineering constraints, and human judgment to the next action and the evidence needed to check it.
+          I build evidence-aware AI systems for industrial decisions. My deepest public work is in Laser Metal Deposition and Directed Energy Deposition at Exafuse, where signals, models, engineering constraints, and human judgment must resolve into a defensible next action.
         </p>
         <div class="home-hero__actions">
-          <CTAButton href="/public-work" variant="primary" class="home-hero__primary-action">Explore my work</CTAButton>
-          <CTAButton href="/thesis" variant="secondary" class="home-hero__secondary-action">Read how I think</CTAButton>
+          <CTAButton href="#lmd-decision-cockpit" variant="primary" class="home-hero__primary-action">Run the Decision Cockpit</CTAButton>
+          <CTAButton href="/public-work" variant="secondary" class="home-hero__secondary-action">View public proof</CTAButton>
         </div>
         <p class="home-hero__review-note">
           <span>Industrial AI / decision systems. Evidence-aware by design.</span>
-          Start with the <a href="#lmd-decision-cockpit" aria-label="Try the LMD Decision Cockpit">LMD Decision Cockpit,</a> then follow the method and current public work.
+          <a href="/thesis">Read the method</a> before using a prediction as a decision.
         </p>
       </div>
     </div>
@@ -176,7 +171,61 @@ const homepageProcessSteps = [
     </p>
   </section>
 
-  <section class="home-opening-flow home-chapter home-chapter--method" data-page-chapter="method" data-operating-loop="homepage" aria-labelledby="home-opening-flow-title">
+  {flagshipProof && (
+    <section class="home-proof-strip home-chapter home-chapter--proof" data-page-chapter="public-proof" aria-labelledby="home-proof-title">
+      <div class="site-shell home-proof-strip__grid">
+        <div class="home-proof-strip__lead">
+          <p class="metric-label">Public proof</p>
+          <h2 id="home-proof-title">A public LMD case, a working decision product, and an authored evidence boundary.</h2>
+          <p>Start with physical context, then inspect the decision structure and the limit attached to each source.</p>
+          <a href={`/public-work/exafuse/${flagshipProof.slug}`} class="home-proof-strip__story-link">Read the proof story <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="home-proof-strip__case">
+          <ExafuseProofMedia proof={flagshipProof} sizes="(max-width: 767px) calc(100vw - 2rem), 38vw" />
+          <div class="home-proof-strip__facts">
+            {flagshipProof.publicMetrics.slice(0, 3).map((metric) => (
+              <p data-exafuse-proof-metric={metric.sourcePath}><strong>{metric.value}{metric.unit ? ` ${metric.unit}` : ""}</strong><span>{metric.label}</span></p>
+            ))}
+          </div>
+          <p class="home-proof-strip__limit">Monitoring and project scale are public context—not engineering approval or a transferable feasibility claim.</p>
+        </div>
+        <div class="home-proof-strip__product">
+          <p class="metric-label">Working product</p>
+          <h3>LMD Decision Cockpit</h3>
+          <p>Make the evidence burden, critical gaps, risk, and next action explicit before an industrial handoff.</p>
+          <a href="#lmd-decision-cockpit">Open the preview <span aria-hidden="true">→</span></a>
+          <p class="metric-label">Authored boundary</p>
+          <a href="/lab-notes/camera-is-not-a-certificate">Camera Is Not a Certificate <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section id="lmd-decision-cockpit" class="home-opening-flow home-cockpit-chapter home-chapter home-chapter--product" data-page-chapter="product" aria-labelledby="home-cockpit-title">
+    <div class="home-opening-flow__atmosphere" aria-hidden="true"></div>
+    <div class="site-shell home-opening-flow__inner">
+      <div class="home-cockpit-chapter__intro">
+        <p class="metric-label">Working decision product</p>
+        <h2 id="home-cockpit-title">See what the decision needs before asking for confidence.</h2>
+        <p>The Cockpit keeps the decision signal, critical gaps, risk, evidence needed, and next action visible. Confidence is not approval.</p>
+      </div>
+      <section class="home-opening-flow__cockpit" aria-label="LMD Decision Cockpit preview">
+        <div class="home-opening-flow__cockpit-route" aria-hidden="true"></div>
+        <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+        <noscript>
+          <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
+            The worked brief remains readable without JavaScript. To prepare your own handoff, use the <a href="/brief-template" class="font-black text-cyan-100">copyable template</a> or the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
+          </div>
+        </noscript>
+      </section>
+      <div class="home-cockpit-chapter__actions">
+        <CTAButton href="/brief-template" variant="primary">Start your own brief</CTAButton>
+        <CTAButton href="/brief-standard" variant="secondary">Open full brief</CTAButton>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-opening-flow home-method-chapter home-chapter home-chapter--method" data-page-chapter="method" data-operating-loop="homepage" aria-labelledby="home-opening-flow-title">
     <div class="home-opening-flow__atmosphere" aria-hidden="true"></div>
     <div class="site-shell home-opening-flow__inner">
       <div class="home-opening-flow__process">
@@ -220,15 +269,6 @@ const homepageProcessSteps = [
         </nav>
       </div>
 
-      <section class="home-opening-flow__cockpit" aria-label="LMD Decision Cockpit preview">
-        <div class="home-opening-flow__cockpit-route" aria-hidden="true"></div>
-        <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
-        <noscript>
-          <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
-            The worked brief remains readable without JavaScript. To prepare your own handoff, use the <a href="/brief-template" class="font-black text-cyan-100">copyable template</a> or the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
-          </div>
-        </noscript>
-      </section>
     </div>
   </section>
 
@@ -238,10 +278,21 @@ const homepageProcessSteps = [
       <div class="site-shell home-section__inner">
         <SectionHeading
           eyebrow="Selected work"
-          title="Three LMD decision assets from the current proving ground"
-          description="These specialist artifacts show how I turn vague industrial questions into structured decision-support workflows."
+          title="One public industrial story, supported by a working product and an authored note"
+          description="The lead proof is physical and source-backed. The supporting work shows how I structure the decision and its evidence boundary."
         />
-        <div class="home-assets-grid">
+        <div class="home-assets-grid home-assets-grid--proof-led">
+          {flagshipProof && (
+            <article class="home-asset-card home-asset-card--lead">
+              <ExafuseProofMedia proof={flagshipProof} sizes="(max-width: 767px) calc(100vw - 2rem), 52vw" />
+              <span>
+                <p class="metric-label">Flagship industrial proof</p>
+                <h3><a href={`/public-work/exafuse/${flagshipProof.slug}`}>{flagshipProof.shortTitle}</a></h3>
+                <p>{flagshipProof.mainDecisionLesson}</p>
+              </span>
+              <a href={`/public-work/exafuse/${flagshipProof.slug}`} class="home-asset-card__action">Read the proof story <span aria-hidden="true">→</span></a>
+            </article>
+          )}
           {flagshipAssets.map((asset) => (
             <a href={asset.href} class="home-asset-card">
               <span>
@@ -265,6 +316,7 @@ const homepageProcessSteps = [
             </a>
           ))}
         </div>
+        <a class="home-section__all-link" href="/frameworks">Explore all frameworks <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -320,6 +372,19 @@ const homepageProcessSteps = [
           <CTAButton href="/contact" variant="secondary">Contact routes</CTAButton>
         </div>
       </div>
+      </div>
+    </section>
+    <section class="home-section home-section--mission" aria-labelledby="home-mission-title">
+      <div class="site-shell home-mission">
+        <div>
+          <p class="metric-label">Personal mission</p>
+          <h2 id="home-mission-title">Build products that make difficult industrial decisions clearer without hiding uncertainty.</h2>
+        </div>
+        <div>
+          <p>I am building toward products and ventures that help people make difficult industrial decisions without hiding uncertainty or replacing engineering responsibility. LMD/DED is where I am proving the method in public today.</p>
+          <a href="/contact">Discuss an industrial AI decision problem <span aria-hidden="true">→</span></a>
+          <p class="home-mission__context">Suitable for evidence-aware AI workflow design, monitoring and verification architecture, industrial decision-support products, human-in-the-loop engineering systems, and research or product collaboration.</p>
+        </div>
       </div>
     </section>
     </div>

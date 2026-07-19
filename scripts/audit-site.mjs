@@ -251,7 +251,6 @@ function auditLinks() {
     "exafuse-website-react",
     "www.exafuse.de",
     'href="#"',
-    "duisburger-bruecke",
     "schmiedehammer-reparatur",
     "extrusionsschnecke",
     "bombenbohrer",
@@ -318,6 +317,7 @@ function auditClaims() {
   const findings = [];
   const sourceAllow = new Set([
     "src/data/publicClaims.ts",
+    "src/data/exafusePublicProof.ts",
     "public/research/exafuse-public-proof-map.json",
     "scripts/audit-site.mjs"
   ]);
@@ -331,7 +331,7 @@ function auditClaims() {
 
   for (const { file, text } of scanFiles(distRoot, [".html"])) {
     for (const phrase of claimPhrases) {
-      if (text.includes(phrase) && !text.includes("data-claim-id")) {
+      if (text.includes(phrase) && !text.includes("data-claim-id") && !text.includes("data-exafuse-proof-metric")) {
         findings.push(`${file}: claim phrase "${phrase}" rendered without claim registry marker`);
       }
     }
@@ -408,9 +408,13 @@ function auditHomepageProduct() {
     "Open full brief",
     "Start your own brief",
     "Evidence-aware by design",
-    "Start with the LMD Decision Cockpit, then follow the method and current public work.",
+    "Run the Decision Cockpit",
+    "View public proof",
+    "Read the method",
+    "Duisburg bridge components",
+    "Exafuse",
     "The broader question behind the current work",
-    "Three LMD decision assets from the current proving ground",
+    "One public industrial story, supported by a working product and an authored note",
     "One idea behind the broader platform",
     "A Prediction Is Not Yet an Industrial Decision"
   ];
@@ -420,10 +424,12 @@ function auditHomepageProduct() {
   for (const phrase of ["Default example text:", "audit marker", "test marker", "placeholder for audit", "debug", "TODO", "FIXME"]) {
     if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
   }
-  const cockpitIndex = visibleText.indexOf("LMD Decision Cockpit");
-  const selectedWorkIndex = visibleText.indexOf("Three LMD decision assets from the current proving ground");
-  if (cockpitIndex < 0 || selectedWorkIndex < 0 || cockpitIndex > selectedWorkIndex) {
-    findings.push(`${file}: LMD Decision Cockpit should appear before the selected-work collection`);
+  const proofIndex = text.indexOf('data-page-chapter="public-proof"');
+  const cockpitIndex = text.indexOf('data-page-chapter="product"');
+  const methodIndex = text.indexOf('data-page-chapter="method"');
+  const selectedWorkIndex = text.indexOf('data-page-chapter="knowledge"');
+  if (proofIndex < 0 || cockpitIndex < 0 || methodIndex < 0 || selectedWorkIndex < 0 || !(proofIndex < cockpitIndex && cockpitIndex < methodIndex && methodIndex < selectedWorkIndex)) {
+    findings.push(`${file}: expected proof strip -> Cockpit -> method -> selected work sequence`);
   }
   for (const duplicatedHomepageModule of [
     "Current LMD/DED work: choose the question you need to structure",
@@ -1512,10 +1518,11 @@ function auditExperience() {
     const html = read(homeFile);
     const visibleText = visibleTextFromHtml(html);
     for (const phrase of [
-      "Explore my work",
-      "Read how I think",
+      "Run the Decision Cockpit",
+      "View public proof",
+      "Read the method",
       "The broader question behind the current work",
-      "Three LMD decision assets from the current proving ground",
+      "One public industrial story, supported by a working product and an authored note",
       "One idea behind the broader platform",
       "A Prediction Is Not Yet an Industrial Decision"
     ]) {
@@ -1529,13 +1536,17 @@ function auditExperience() {
   const toolsFile = "dist/tools/index.html";
   if (existsSync(join(root, toolsFile))) {
     const visibleText = visibleTextFromHtml(read(toolsFile));
+    for (const marker of ["Decision signal", "Top 3 critical gaps", "Top 3 risk flags", "Evidence needed", "Open full brief"]) {
+      if (!visibleText.includes(marker)) findings.push(`${toolsFile}: missing progressive-output marker "${marker}"`);
+    }
+    const cockpitSource = read("src/components/LmdDecisionCockpit.tsx");
     for (const marker of [
       "What is the review context?",
       "Dimensions / approximate mass known?",
       "Quantity / target date known?",
       "This only gives the reviewer context; it does not change technical evidence requirements."
     ]) {
-      if (!visibleText.includes(marker)) findings.push(`${toolsFile}: missing intake-context marker "${marker}"`);
+      if (!cockpitSource.includes(marker)) findings.push(`${cockpitSource}: missing progressive intake-context marker "${marker}"`);
     }
   }
 
@@ -1799,7 +1810,7 @@ function auditVisualSystem() {
   if (existsSync(join(root, deFile))) {
     const html = read(deFile);
     if (/<img\b/i.test(html)) findings.push(`${deFile}: German overview must not use a baked-text visual asset`);
-    for (const phrase of ["Arbeit", "Referenz", "Vertrauen & Medien"]) {
+    for (const phrase of ["Arbeit", "Referenz"]) {
       if (!visibleTextFromHtml(html).includes(phrase)) findings.push(`${deFile}: missing German visual/navigation label "${phrase}"`);
     }
   }
@@ -1811,6 +1822,171 @@ function auditVisualSystem() {
   }
 
   fail("Visual-system audit failed", findings);
+}
+
+function auditExafuseReadonlyRecord() {
+  const findings = [];
+  const registry = "src/data/exafusePublicProof.ts";
+  const record = "docs/exafuse-public-proof-import.md";
+  for (const file of [registry, record]) {
+    if (!existsSync(join(root, file))) findings.push(`${file}: missing public-proof import record`);
+  }
+  if (findings.length === 0) {
+    const source = read(registry);
+    const docs = read(record);
+    if (!/sourceCommit\s*=\s*"[0-9a-f]{40}"/.test(source)) findings.push(`${registry}: missing 40-character reviewed source commit`);
+    for (const marker of ["read-only", "0d4938331eaf2f586661587e427bc29aabdbf61c", "private repository location"]) {
+      if (!docs.toLowerCase().includes(marker.toLowerCase())) findings.push(`${record}: missing "${marker}"`);
+    }
+    for (const forbidden of ["OneDrive - Creative Polymer", "C:\\Users\\", "github.com-manishsharma05"]) {
+      if (source.includes(forbidden) || docs.includes(forbidden)) findings.push(`proof import record exposes private source locator "${forbidden}"`);
+    }
+  }
+  fail("Exafuse readonly-record audit failed", findings);
+}
+
+function auditExafuseAttribution() {
+  const findings = [];
+  const mediaRoot = "public/media/exafuse";
+  const mediaFiles = existsSync(join(root, mediaRoot)) ? walk(mediaRoot) : [];
+  const registry = existsSync(join(root, "src/data/exafusePublicProof.ts")) ? read("src/data/exafusePublicProof.ts") : "";
+  for (const file of mediaFiles.filter((file) => /\.(avif|webp|jpe?g)$/i.test(file))) {
+    const basename = file.split("/").pop()?.replace(/-\d+\.(avif|webp|jpe?g)$/i, "") ?? "";
+    if (!registry.includes(basename)) findings.push(`${file}: no matching media family in the proof registry`);
+  }
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const mediaMatches = text.match(/\/media\/exafuse\//g) ?? [];
+    if (mediaMatches.length > 0 && !visibleTextFromHtml(text).includes("Exafuse")) {
+      findings.push(`${file}: imports Exafuse media without visible Exafuse attribution`);
+    }
+  }
+  fail("Exafuse attribution audit failed", findings);
+}
+
+function auditExafuseProofClaims() {
+  const findings = [];
+  const registryPath = "src/data/exafusePublicProof.ts";
+  if (!existsSync(join(root, registryPath))) {
+    fail("Exafuse proof-claims audit failed", [`${registryPath}: missing`]);
+    return;
+  }
+  const source = read(registryPath);
+  for (const marker of ["sourcePath:", "limitation:", "whatItDoesNotProve:", "personalContribution: null", "selectedMedia:"]) {
+    if (!source.includes(marker)) findings.push(`${registryPath}: missing required proof field marker "${marker}"`);
+  }
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    if (!text.includes("/media/exafuse/")) continue;
+    for (const phrase of ["staging", "localhost", "OneDrive - Creative Polymer", "github.com-manishsharma05"]) {
+      if (text.toLowerCase().includes(phrase.toLowerCase())) findings.push(`${file}: rendered unsafe proof phrase "${phrase}"`);
+    }
+  }
+  fail("Exafuse proof-claims audit failed", findings);
+}
+
+function auditPersonalContribution() {
+  const findings = [];
+  const registryPath = "src/data/exafusePublicProof.ts";
+  const source = existsSync(join(root, registryPath)) ? read(registryPath) : "";
+  const entriesSource = source.slice(source.indexOf("export const EXAFUSE_PUBLIC_PROOF"));
+  const nullContributions = entriesSource.match(/personalContribution:\s*null/g) ?? [];
+  if (nullContributions.length !== 4) findings.push(`${registryPath}: all four imported company cases must retain null personalContribution without public contribution evidence`);
+  const risky = /Manish Sharma[^.]{0,100}\b(designed|built|led|validated|delivered|manufactured)\b/gi;
+  for (const { file, text } of scanFiles(["src"], [".astro", ".ts", ".tsx"])) {
+    if (file === registryPath) continue;
+    if (risky.test(text) && /Exafuse/i.test(text)) findings.push(`${file}: potential unsourced personal contribution claim near Exafuse content`);
+  }
+  fail("Personal-contribution audit failed", findings);
+}
+
+function auditHomepageSequence() {
+  const findings = [];
+  const file = "dist/index.html";
+  if (!existsSync(join(root, file))) {
+    fail("Homepage-sequence audit failed", [`${file}: missing`]);
+    return;
+  }
+  const text = read(file);
+  const visible = visibleTextFromHtml(text);
+  const order = ["public-proof", "product", "method", "knowledge"].map((chapter) => text.indexOf(`data-page-chapter="${chapter}"`));
+  if (order.some((index) => index < 0) || !(order[0] < order[1] && order[1] < order[2] && order[2] < order[3])) {
+    findings.push(`${file}: expected public proof -> product -> method -> selected-work chapter order`);
+  }
+  for (const phrase of ["Run the Decision Cockpit", "Duisburg bridge components", "Exafuse", "Personal mission"]) {
+    if (!visible.includes(phrase)) findings.push(`${file}: missing homepage proof narrative marker "${phrase}"`);
+  }
+  if ((text.match(/data-operating-loop="homepage"/g) ?? []).length !== 1) findings.push(`${file}: must contain exactly one homepage operating loop`);
+  fail("Homepage-sequence audit failed", findings);
+}
+
+function auditReferenceMenu() {
+  const findings = [];
+  const header = "src/components/Header.astro";
+  const mobile = "src/components/MobileMenu.astro";
+  for (const file of [header, mobile]) {
+    if (!existsSync(join(root, file))) {
+      findings.push(`${file}: missing`);
+      continue;
+    }
+    const source = read(file);
+    const destinationCount = (source.match(/href: "\/(tools|frameworks|evidence|brief-standard|resources)"/g) ?? []).length;
+    if (file === mobile && destinationCount < 5) findings.push(`${file}: compact Reference group does not expose the five approved destinations`);
+  }
+  const home = existsSync(join(root, "dist/index.html")) ? read("dist/index.html") : "";
+  const referenceSection = home.match(/<details[^>]*data-nav-flyout[\s\S]*?<\/details>/i)?.[0] ?? "";
+  if (referenceSection && (referenceSection.match(/class="nav-menu-link/g) ?? []).length > 5) findings.push("dist/index.html: Reference menu exposes more than five destinations");
+  fail("Reference-menu audit failed", findings);
+}
+
+function auditAssetBudget() {
+  const findings = [];
+  const mediaRoot = "public/media/exafuse";
+  const files = existsSync(join(root, mediaRoot)) ? walk(mediaRoot).filter((file) => /\.(avif|webp|jpe?g)$/i.test(file)) : [];
+  const total = files.reduce((sum, file) => sum + statSync(join(root, file)).size, 0);
+  if (files.length !== 28) findings.push(`${mediaRoot}: expected 28 responsive derivative files, found ${files.length}`);
+  if (total > 12 * 1024 * 1024) findings.push(`${mediaRoot}: total imported media exceeds 12 MB (${total} bytes)`);
+  for (const file of files) {
+    const size = statSync(join(root, file)).size;
+    if (size > 500_000) findings.push(`${file}: derivative exceeds 500 KB (${size} bytes)`);
+  }
+  fail("Asset-budget audit failed", findings);
+}
+
+function auditBoundaryDensity() {
+  const findings = [];
+  const phrases = ["Preliminary decision-support only", "Confidence is not approval"];
+  for (const { file, text } of scanFiles(distRoot, [".html"])) {
+    const interactiveArtifact = ["dist/tools/index.html", "dist/brief-standard/index.html", "dist/brief-template/index.html", "dist/demo/index.html", "dist/playbooks/index.html"].includes(file);
+    const visible = visibleTextFromHtml(text);
+    for (const phrase of phrases) {
+      const count = visible.split(phrase).length - 1;
+      if (!interactiveArtifact && count > 3) findings.push(`${file}: repeats "${phrase}" ${count} times`);
+      if (interactiveArtifact && count > 3) console.warn(`${file}: ${phrase} appears ${count} times in a functional artifact surface.`);
+    }
+  }
+  fail("Boundary-density audit failed", findings);
+}
+
+function auditPublicSafeCopy() {
+  const findings = [];
+  const forbidden = ["OneDrive - Creative Polymer", "C:\\Users\\", "TODO", "FIXME", "exafuse-website-react", "github.com-manishsharma05", "localhost"];
+  for (const { file, text } of scanFiles(distRoot, [".html", ".js", ".json", ".txt", ".xml", ".md"])) {
+    for (const phrase of forbidden) {
+      if (text.includes(phrase)) findings.push(`${file}: exposes non-public phrase "${phrase}"`);
+    }
+  }
+  fail("Public-safe-copy audit failed", findings);
+}
+
+function auditSourceCopyLength() {
+  const findings = [];
+  const casePages = walk("src/pages/public-work/exafuse").filter((file) => file.endsWith(".astro"));
+  for (const file of casePages) {
+    const text = read(file);
+    for (const literal of text.match(/"([^"\n]{200,})"/g) ?? []) {
+      if (literal.length > 480) findings.push(`${file}: contains an unusually long literal; keep proof-story copy concise and paraphrased`);
+    }
+  }
+  fail("Source-copy-length audit failed", findings);
 }
 
 function auditCanonicalDomain() {
@@ -1949,6 +2125,16 @@ const audits = {
   experience: auditExperience,
   visuals: auditVisualSystem,
   "canonical-domain": auditCanonicalDomain,
+  "exafuse-readonly-record": auditExafuseReadonlyRecord,
+  "exafuse-attribution": auditExafuseAttribution,
+  "exafuse-proof-claims": auditExafuseProofClaims,
+  "personal-contribution": auditPersonalContribution,
+  "homepage-sequence": auditHomepageSequence,
+  "reference-menu": auditReferenceMenu,
+  "asset-budget": auditAssetBudget,
+  "boundary-density": auditBoundaryDensity,
+  "public-safe-copy": auditPublicSafeCopy,
+  "source-copy-length": auditSourceCopyLength,
   all() {
     auditVisualText();
     auditRenderedText();
@@ -1984,6 +2170,16 @@ const audits = {
     auditExperience();
     auditVisualSystem();
     auditCanonicalDomain();
+    auditExafuseReadonlyRecord();
+    auditExafuseAttribution();
+    auditExafuseProofClaims();
+    auditPersonalContribution();
+    auditHomepageSequence();
+    auditReferenceMenu();
+    auditAssetBudget();
+    auditBoundaryDensity();
+    auditPublicSafeCopy();
+    auditSourceCopyLength();
   }
 };
 

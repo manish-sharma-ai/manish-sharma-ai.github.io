@@ -1,11 +1,13 @@
 ---
 import Badge from "@components/Badge.astro";
 import ExafuseMigrationNotice from "@components/ExafuseMigrationNotice.astro";
+import ExafuseProofMedia from "@components/ExafuseProofMedia.astro";
 import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import SourceLinks from "@components/SourceLinks.astro";
 import { resolveExafuseLink } from "../../config/externalLinks";
+import { EXAFUSE_PUBLIC_PROOF } from "@data/exafusePublicProof";
 import { FRAMEWORKS, LINKS, PERSON, SITE } from "@data/site";
 
 const title = "AI for Laser Metal Deposition and Directed Energy Deposition";
@@ -13,6 +15,7 @@ const seoTitle = "LMD / DED Decision Systems - Manish Sharma Lab";
 const subtitle = "The deepest current public proving ground for my Industrial AI & Decision Systems work.";
 const description =
   "A hub for Manish Sharma's public LMD/DED work: process monitoring, machine vision, robotics, repair, RFQ intelligence, evidence, tools, and glossary resources.";
+const flagshipProof = EXAFUSE_PUBLIC_PROOF.find((proof) => proof.id === "cs15-duisburg-bridge");
 
 const includes = [
   "Laser Metal Deposition",
@@ -163,6 +166,21 @@ const jsonLd = {
     </div>
     <PageHeroVisual variant="industrial" class="hidden lg:block" />
   </section>
+
+  {flagshipProof && (
+    <section class="site-shell section-y lmd-domain-proof" aria-labelledby="lmd-domain-proof-title">
+      <div class="lmd-domain-proof__grid">
+        <div>
+          <p class="metric-label">Public physical proof</p>
+          <h2 id="lmd-domain-proof-title">Large-part LMD becomes a decision system when scale, monitoring, finishing, and verification meet.</h2>
+          <p>{flagshipProof.mainDecisionLesson}</p>
+          <p class="lmd-domain-proof__limit">{flagshipProof.whatItDoesNotProve[0]}</p>
+          <a href={`/public-work/exafuse/${flagshipProof.slug}`}>Read the Duisburg proof story <span aria-hidden="true">→</span></a>
+        </div>
+        <ExafuseProofMedia proof={flagshipProof} sizes="(max-width: 767px) calc(100vw - 2rem), 46vw" />
+      </div>
+    </section>
+  )}
 
   <section class="band section-y">
     <div class="site-shell">

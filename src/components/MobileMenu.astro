@@ -1,6 +1,5 @@
 ---
 import { PRIMARY_NAV_ITEMS } from "@data/site";
-import { RESOURCE_NAV_GROUPS } from "@data/resourceNavigation";
 
 interface Props {
   lang?: "en" | "de";
@@ -60,20 +59,24 @@ const primaryItems =
     ? PRIMARY_NAV_ITEMS.map((item) => ({ ...item, label: primaryLabelsDe[item.href] ?? item.label }))
     : PRIMARY_NAV_ITEMS;
 
-const resourceGroups = RESOURCE_NAV_GROUPS.map((group) => ({
-  label: lang === "de" ? group.labelDe : group.label,
-  items: group.items.map((item) => ({
-    ...item,
-    label: lang === "de" ? resourceLabelsDe[item.href] ?? item.label : item.label
-  }))
-}));
+const referenceHrefs = new Set(["/tools", "/frameworks", "/evidence", "/brief-standard"]);
+const referenceItems = [
+  { href: "/tools", label: lang === "de" ? resourceLabelsDe["/tools"] : "Tools" },
+  { href: "/frameworks", label: lang === "de" ? resourceLabelsDe["/frameworks"] : "Frameworks" },
+  { href: "/evidence", label: lang === "de" ? resourceLabelsDe["/evidence"] : "Sources" },
+  { href: "/brief-standard", label: lang === "de" ? resourceLabelsDe["/brief-standard"] : "Brief Standard" },
+  { href: "/resources", label: lang === "de" ? resourceLabelsDe["/resources"] : "All Resources" }
+].filter((item) => item.href === "/resources" || referenceHrefs.has(item.href));
 
 const groups = [
   {
     label: lang === "de" ? "Hauptseiten" : "Primary",
     items: primaryItems
   },
-  ...resourceGroups
+  {
+    label: lang === "de" ? "Referenz" : "Reference",
+    items: referenceItems
+  }
 ];
 ---
 

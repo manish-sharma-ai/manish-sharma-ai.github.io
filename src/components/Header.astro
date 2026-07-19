@@ -2,7 +2,6 @@
 import MobileMenu from "@components/MobileMenu.astro";
 import BrandMark from "@components/BrandMark.astro";
 import { LINKS, PRIMARY_NAV_ITEMS, RESOURCE_NAV_ITEMS } from "@data/site";
-import { RESOURCE_NAV_GROUPS } from "@data/resourceNavigation";
 
 interface Props {
   lang?: "en" | "de";
@@ -30,7 +29,8 @@ const workSectionPaths = [
 ];
 const workSectionActive = workSectionPaths.some((href) => isActive(href));
 const primaryActive = PRIMARY_NAV_ITEMS.some((item) => isActive(item.href)) || workSectionActive;
-const resourcesActive = !primaryActive && RESOURCE_NAV_ITEMS.some((item) => isActive(item.href));
+const referenceHrefs = new Set(["/tools", "/frameworks", "/evidence", "/brief-standard"]);
+const resourcesActive = !primaryActive && RESOURCE_NAV_ITEMS.some((item) => referenceHrefs.has(item.href) && isActive(item.href));
 
 const primaryLabelsDe: Record<string, string> = {
   "/": "Startseite",
@@ -70,11 +70,7 @@ const resourceItems =
     ? RESOURCE_NAV_ITEMS.map((item) => ({ ...item, ...(resourceCopyDe[item.href] ?? {}) }))
     : RESOURCE_NAV_ITEMS;
 
-const resourceGroups = RESOURCE_NAV_GROUPS.map((group) => ({
-  ...group,
-  label: lang === "de" ? group.labelDe : group.label,
-  items: group.items.map((item) => resourceItems.find((candidate) => candidate.href === item.href) ?? item)
-}));
+const referenceItems = resourceItems.filter((item) => referenceHrefs.has(item.href));
 
 const copy =
   lang === "de"
@@ -132,20 +128,18 @@ const copy =
           <span class="nav-trigger__chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="nav-panel nav-dropdown">
-          <div class="nav-dropdown__groups" aria-label={copy.secondaryNav}>
-            {resourceGroups.map((group) => (
-              <section class="nav-dropdown__group">
-                <p class="metric-label">{group.label}</p>
-                <div class="nav-dropdown__links">
-                  {group.items.map((item) => (
-                    <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
-                      <span class="text-sm font-black">{item.label}</span>
-                      <span class="text-xs leading-5 text-slate-400">{item.description}</span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ))}
+          <div class="nav-dropdown__groups nav-dropdown__groups--reference" aria-label={copy.secondaryNav}>
+            <section class="nav-dropdown__group">
+              <p class="metric-label">{copy.resources}</p>
+              <div class="nav-dropdown__links">
+                {referenceItems.map((item) => (
+                  <a href={item.href} class:list={["nav-menu-link", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
+                    <span class="text-sm font-black">{item.label}</span>
+                    <span class="text-xs leading-5 text-slate-400">{item.description}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
           </div>
           <div class="nav-panel__actions">
             <a href="/resources" class="utility-button">{copy.allResources}</a>

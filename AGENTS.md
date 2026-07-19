@@ -58,6 +58,7 @@ On Windows PowerShell, use `npm.cmd` if execution policy blocks `npm`.
 - Every new claim needs source context or must be clearly framed as interpretation.
 - Do not add fake profile links, fake publications, fake certifications, unsupported metrics, or staging URLs.
 - Preserve the commercial boundary: Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, delivery claims, and company-owned source details.
+- When importing public Exafuse proof context, use `src/data/exafusePublicProof.ts` and `ExafuseProofMedia.astro`; record source path, reviewed commit, public URL, limitation, visible attribution, and `personalContribution: null` unless an explicit public contribution source supports a claim. The Exafuse repository is strictly read-only and is never a runtime/build dependency.
 - Resolve Exafuse URLs through `src/config/externalLinks.ts`; do not hard-code Exafuse production or staging URLs in page components.
 - Keep Exafuse labels synchronized with `EXAFUSE_LINK_MODE`. In `production-safe`, do not render labels such as "Exafuse Pathfinder", "Exafuse RFQ Builder", or individual case-study deep-link labels as if those future routes are live.
 - Human-facing pages must not show internal migration CTA language. Use "Contact Exafuse" or "Request Exafuse review" with the small helper text `New Exafuse case/tool deep links will activate after production migration.` where production-safe context is needed.

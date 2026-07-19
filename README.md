@@ -156,6 +156,31 @@ Exafuse launch mode:
 
 Public proof metrics are centralized in `src/data/publicClaims.ts`. Do not hard-code CS15 bridge metrics or other proof numbers in page components.
 
+## Public Exafuse Proof Context
+
+Selected public Exafuse case context is recorded in `src/data/exafusePublicProof.ts` and rendered through `src/components/ExafuseProofMedia.astro`. The source repository is read-only and is never used as a runtime, build, package, or Git dependency.
+
+- Public proof stories live at `/public-work/exafuse/[slug]/`.
+- Every imported image has visible Exafuse attribution, a caption, responsive derivatives, and a source link.
+- Every public metric carries source context and a limitation.
+- Company project execution and personal technical contribution are never inferred; imported case entries retain `personalContribution: null` unless a separate public source supports a claim.
+- See `docs/exafuse-public-proof-import.md`, `docs/exafuse-media-attribution.md`, and `docs/proof-story-standard.md` before adding or removing a case.
+
+Proof-led release audits:
+
+```bash
+npm run audit:exafuse-readonly-record
+npm run audit:exafuse-attribution
+npm run audit:exafuse-proof-claims
+npm run audit:personal-contribution
+npm run audit:homepage-sequence
+npm run audit:reference-menu
+npm run audit:asset-budget
+npm run audit:boundary-density
+npm run audit:public-safe-copy
+npm run audit:source-copy-length
+```
+
 Visual text rule:
 
 - Decorative SVG/diagram internals should not leak prompt-like text into rendered page output.

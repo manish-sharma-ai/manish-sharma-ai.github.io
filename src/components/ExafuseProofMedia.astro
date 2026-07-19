@@ -1,0 +1,35 @@
+---
+import type { ExafusePublicProof } from "@data/exafusePublicProof";
+import { getExafuseProofSource } from "@data/exafusePublicProof";
+
+interface Props {
+  proof: ExafusePublicProof;
+  loading?: "eager" | "lazy";
+  sizes?: string;
+  class?: string;
+}
+
+const { proof, loading = "lazy", sizes = "(max-width: 767px) calc(100vw - 2rem), 50vw", class: className = "" } = Astro.props;
+const source = getExafuseProofSource(proof);
+---
+
+<figure class:list={["exafuse-proof-media", className]} data-exafuse-media={proof.id}>
+  <picture>
+    <source type="image/avif" srcset={proof.selectedMedia.avifSrcset} sizes={sizes} />
+    <source type="image/webp" srcset={proof.selectedMedia.webpSrcset} sizes={sizes} />
+    <img
+      src={proof.selectedMedia.src}
+      alt={proof.selectedMedia.alt}
+      width={proof.selectedMedia.width}
+      height={proof.selectedMedia.height}
+      loading={loading}
+      fetchpriority={loading === "eager" ? "high" : undefined}
+      decoding="async"
+    />
+  </picture>
+  <figcaption>
+    <span class="exafuse-proof-media__credit">Exafuse — {proof.shortTitle}</span>
+    <span class="exafuse-proof-media__caption">{proof.captions}</span>
+    <a href={source.href} target="_blank" rel="noreferrer">View the Exafuse source</a>
+  </figcaption>
+</figure>

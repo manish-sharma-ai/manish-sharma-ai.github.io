@@ -114,6 +114,7 @@ const pageFamily =
               normalizedCanonical === "/resources"
             ? "listing"
             : normalizedCanonical === "/public-work" ||
+                normalizedCanonical.startsWith("/public-work/exafuse/") ||
                 normalizedCanonical === "/evidence" ||
                 normalizedCanonical === "/industrial-proof" ||
                 normalizedCanonical === "/claims"

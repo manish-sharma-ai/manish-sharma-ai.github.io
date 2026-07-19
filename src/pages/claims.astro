@@ -80,7 +80,7 @@ const jsonLd = {
                 ["Source context", `${claim.sourceType} / ${sourceStatus}`],
                 ["Last reviewed", claim.lastReviewed],
                 ["Where it may appear", claim.allowedPages.length ? claim.allowedPages.join(", ") : "Not used in public page copy until reviewed."],
-                ["Related source or page", claim.sourceUrlKey ? "Exafuse public context via current contact or index route" : sourceHref],
+                ["Related source or page", sourceHref],
                 ["Reference id", claim.id]
               ];
               return (

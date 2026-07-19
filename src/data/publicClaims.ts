@@ -17,7 +17,7 @@ export type PublicClaimConfidence =
 
 export interface PublicClaim {
   id: string;
-  caseCode?: "CS15" | "CS01" | "CS10" | "CS13";
+  caseCode?: "CS15" | "CS01" | "CS05" | "CS10" | "CS13";
   shortLabel: string;
   value: string;
   unit: string;
@@ -41,9 +41,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "Public CS15 narrative describes LMD bridge components above 750 kg.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs15",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded", "/public-work/exafuse/duisburg-bridge-components"],
     limitation: "Scale context only; not a quality approval or transferable feasibility claim."
   },
   {
@@ -55,9 +55,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "Public CS15 narrative describes six structural nodes.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs15",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded", "/public-work/exafuse/duisburg-bridge-components"],
     limitation: "Project scale context; not a claim that this site can approve structural parts."
   },
   {
@@ -69,9 +69,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "Public CS15 narrative describes one node build taking 219 hours.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs15",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded", "/public-work/exafuse/duisburg-bridge-components"],
     limitation: "Build-time context only; not a productivity guarantee."
   },
   {
@@ -83,9 +83,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "Public CS15 narrative describes roughly 38 km of robot path across six nodes.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs15",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded", "/public-work/exafuse/duisburg-bridge-components"],
     limitation: "Path-length context only; not a process capability guarantee."
   },
   {
@@ -97,9 +97,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "Use the conservative public CS15 scope: more than one million melt-pool images in the case narrative.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs15",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/", "/public-work", "/industrial-proof", "/domains/lmd-ded", "/public-work/exafuse/duisburg-bridge-components"],
     limitation: "Monitoring-image count is process context; it does not prove final part quality."
   },
   {
@@ -139,9 +139,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "CS15 public context includes independent validation support by KIT where the production source confirms it.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs15",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/industrial-proof", "/domains/lmd-ded"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/industrial-proof", "/domains/lmd-ded", "/public-work/exafuse/duisburg-bridge-components"],
     limitation: "Validation support context is not a site-level approval claim."
   },
   {
@@ -153,9 +153,9 @@ export const PUBLIC_CLAIMS: PublicClaim[] = [
     fullText: "Forging hammer repair context is useful for local wear, rebuild strategy, finishing, and inspection planning.",
     sourceType: "exafuse-public",
     sourceUrlKey: "cs01",
-    confidence: "needs-migration",
-    lastReviewed: "2026-07-07",
-    allowedPages: ["/", "/public-work", "/industrial-proof"],
+    confidence: "publicly-supported",
+    lastReviewed: "2026-07-19",
+    allowedPages: ["/", "/public-work", "/industrial-proof", "/public-work/exafuse/nobufil-extrusion-screw-repair"],
     limitation: "Does not prove all hammers or safety-critical parts are repairable."
   },
   {

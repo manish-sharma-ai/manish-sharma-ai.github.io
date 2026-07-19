@@ -16,6 +16,7 @@ export type ExafuseUrlKey =
   | "pathfinder"
   | "cs15"
   | "cs01"
+  | "cs05"
   | "cs10"
   | "cs13"
   | "technology"
@@ -43,9 +44,10 @@ const productionSafePaths: Record<ExafuseUrlKey, string> = {
   services: "/leistungen/",
   rfq: "/kontakt/",
   pathfinder: "/kontakt/",
-  cs15: "/fallstudien/",
+  cs15: "/fallstudien/duisburger-bruecke-lmd-fallstudie/",
   cs01: "/fallstudien/",
-  cs10: "/fallstudien/",
+  cs05: "/fallstudien/CS05/",
+  cs10: "/fallstudien/CS10/",
   cs13: "/fallstudien/",
   technology: "/technologie/",
   quality: "/qualitaet/",
@@ -119,10 +121,10 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs15: {
     label: "CS15 Duisburg Bridge Components",
-    productionSafeLabel: "Contact Exafuse",
-    productionSafePath: "/fallstudien/",
+    productionSafeLabel: "CS15 Duisburg Bridge Components",
+    productionSafePath: "/fallstudien/duisburger-bruecke-lmd-fallstudie/",
     postMigrationPath: "/fallstudien/duisburger-bruecke-lmd-fallstudie/",
-    statusInProductionSafe: "production-link-after-migration",
+    statusInProductionSafe: "public-production",
     group: "case"
   },
   cs01: {
@@ -135,10 +137,18 @@ const routes: Record<ExafuseUrlKey, ExafuseRoute> = {
   },
   cs10: {
     label: "CS10 Nobufil Extrusion Screw Repair",
-    productionSafeLabel: "Contact Exafuse",
-    productionSafePath: "/fallstudien/",
-    postMigrationPath: "/fallstudien/extrusionsschnecke-reparatur-lmd/",
-    statusInProductionSafe: "production-link-after-migration",
+    productionSafeLabel: "CS10 Nobufil Extrusion Screw Repair",
+    productionSafePath: "/fallstudien/CS10/",
+    postMigrationPath: "/fallstudien/CS10/",
+    statusInProductionSafe: "public-production",
+    group: "case"
+  },
+  cs05: {
+    label: "CS05 Valve-Seat Ring Cladding",
+    productionSafeLabel: "CS05 Valve-Seat Ring Cladding",
+    productionSafePath: "/fallstudien/CS05/",
+    postMigrationPath: "/fallstudien/CS05/",
+    statusInProductionSafe: "public-production",
     group: "case"
   },
   cs13: {
