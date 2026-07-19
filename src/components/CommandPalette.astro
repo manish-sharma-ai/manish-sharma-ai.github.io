@@ -26,8 +26,8 @@ const germanGroupLabels: Record<string, string> = {
 
 const germanPageLabels: Record<string, Partial<Page>> = {
   "/": {
-    title: "Start",
-    description: "Einstieg in LMD/DED, Prozessüberwachung, Entscheidungsvorbereitung und Exafuse-Kontext."
+    title: "Startseite",
+    description: "Manish Sharmas Methode, ausgewählte Arbeit und aktuelles LMD/DED-Anwendungsfeld."
   },
   "/thesis": { title: "Leitgedanke", description: "Das Arbeitsmodell hinter den öffentlichen Werkzeugen." },
   "/domains/lmd-ded": {
@@ -89,7 +89,7 @@ const pagesJson = JSON.stringify(commandPages).replace(/</g, "\\u003c");
 const copy =
   lang === "de"
     ? {
-        title: "Manish Sharma Lab durchsuchen",
+        title: "Manish Sharma durchsuchen",
         placeholder: "Frameworks, Notizen, Glossar suchen...",
         inputLabel: "Seiten suchen",
         close: "Suche schließen",
@@ -101,7 +101,7 @@ const copy =
         esc: "Esc schließt"
       }
     : {
-        title: "Search Manish Sharma Lab",
+        title: "Search Manish Sharma",
         placeholder: "Search frameworks, notes, glossary...",
         inputLabel: "Search pages",
         close: "Close search",

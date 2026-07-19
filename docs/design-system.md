@@ -1,14 +1,14 @@
 # Design System
 
-Date: 2026-07-07
+Date: 2026-07-19
 
 ## Direction
 
-Manish Sharma Lab should feel like a premium industrial AI lab and decision-system cockpit: dark, ordered, symmetrical, fast, technical, and useful. It should not feel like a generic portfolio, a service-agency landing page, a plain documentation wiki, or a flashy AI demo.
+Manish Sharma should feel like a premium personal platform for industrial AI and decision systems: dark, ordered, evidence-aware, personal where authorship matters, and technical where a tool or source system requires it. It should not feel like a generic portfolio, a service-agency landing page, a plain documentation wiki, or a single-purpose LMD portal.
 
 The public split stays clear:
 
-- Manish Sharma Lab owns identity, thesis, frameworks, source maps, public tools, lab notes, glossary pages, and AI-agent guidance.
+- Manish Sharma is the primary person and site entity. Manish Sharma Lab is the technical publishing layer for frameworks, source maps, public tools, lab notes, glossary pages, and AI-agent guidance.
 - Exafuse owns commercial services, RFQs, company case studies, quality pages, production capability, and delivery claims.
 - AI/process-monitoring outputs are preliminary decision support, not engineering approval.
 
@@ -44,6 +44,18 @@ The strict visual system is split into:
 - Use `.inner-hero-grid` and `.home-hero-grid` for hero pages with a cockpit visual panel.
 - Mobile must stack cleanly without horizontal overflow.
 
+## Editorial and instrument modes
+
+The route-aware class on `Layout.astro` formalizes two deliberate roles without
+changing body or control typography:
+
+- `.page-mode--editorial`: Home, About, Thesis, Contact, Identity, and Lab Notes. Warm mineral text and restrained copper/amber support authorship and reading.
+- `.page-mode--instrument`: Tools, Frameworks, Evidence, Research, Resources, Glossary, and other technical/reference routes. Cyan is reserved for active technical signals, controls, and source navigation.
+
+The shared header and footer remain neutral graphite bridges. The homepage
+melt-pool photograph is homepage-specific and must not become a generic page
+background.
+
 ## Components
 
 Shared visual components:
@@ -68,11 +80,14 @@ Shared visual components:
 
 Desktop header has three zones:
 
-- Brand: `Manish Sharma Lab`, industrial AI cockpit.
-- Primary nav, maximum five visible links: Thesis, Proof, LMD / DED, Frameworks, Writing.
-- Actions: Search, Exafuse, Contact.
+- Brand: `Manish Sharma`, with `Lab / Industrial AI & decisions` as the publishing descriptor.
+- Primary nav, five visible links: Home, Work, Method, Notes, About.
+- Actions: Reference, Search, Contact.
 
-Secondary pages live under `More`. Mobile uses grouped navigation with large tap targets.
+Specialist work and machine/reference pages live under `Reference`, the footer,
+search, or Site Map. The public-profile route remains available as a reference
+surface but is not promoted in the human header or footer. Mobile uses the same
+grouped hierarchy with large tap targets.
 
 ## Cards And Buttons
 

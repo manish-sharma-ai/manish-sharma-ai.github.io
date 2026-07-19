@@ -122,21 +122,9 @@ const awards = [
 
 const links = [
   { label: "Industrial AI thesis", href: "/thesis" },
-  { label: "LMD / DED hub", href: "/domains/lmd-ded" },
-  { label: "LinkedIn", href: LINKS.linkedin },
-  { label: "GitHub", href: LINKS.github },
-  { label: "Exafuse", href: LINKS.exafuse },
-  { label: "Official profile", href: "/identity" },
   { label: "Public work", href: "/public-work" },
-  { label: "For AI agents", href: "/for-ai-agents" }
-];
-
-const usefulFor = [
-  "LMD/DED process monitoring explanation",
-  "RFQ structuring",
-  "inspection-aware AI boundaries",
-  "repairability decision frameworks",
-  "assistant-friendly public source structure"
+  { label: "LinkedIn", href: LINKS.linkedin },
+  { label: "Contact", href: "/contact" }
 ];
 
 const proofArtifacts = [
@@ -198,6 +186,20 @@ const aboutPageJsonLd = {
     </div>
   </section>
 
+  <section class="about-human-note site-shell section-y">
+    <SectionHeading
+      eyebrow="Human note"
+      title="Why this site exists"
+      description="I am interested in systems that make uncertainty, engineering judgment, and the next verification step legible—not products that treat AI as a feature."
+    />
+    <div class="about-human-note__body">
+      <p>
+        I want to make complex industrial knowledge easier to structure: for buyers preparing RFQs, engineers reviewing risk, and developers building technical tools. Over time, I want to help build products, systems, and ventures around difficult industrial decisions—not AI as a feature. I will expand one real problem at a time, build the necessary domain understanding, and earn credibility through working systems and evidence. My current public proof is LMD/DED; other applications remain direction and research until validated.
+      </p>
+      <SourceLinks links={links} />
+    </div>
+  </section>
+
   <section class="band section-y">
     <div class="site-shell grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
       <div class="ordered-card-strong p-7">
@@ -213,17 +215,6 @@ const aboutPageJsonLd = {
           {proofArtifacts.map((item) => (
             <a href={item.href} class="result-card text-sm font-black text-cyan-50 hover:border-cyan-300/35 hover:text-white">{item.label}</a>
           ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="site-shell section-y">
-    <div class="max-w-4xl">
-      <div class="ordered-card-strong p-7">
-        <p class="metric-label">Areas I work on</p>
-        <div class="mt-5 grid gap-3">
-          {usefulFor.map((item) => <div class="result-card text-sm font-bold text-slate-100">{item}</div>)}
         </div>
       </div>
     </div>
@@ -249,6 +240,16 @@ const aboutPageJsonLd = {
       </div>
     </div>
   </section>
+
+  <details class="about-reference">
+    <summary class="site-shell about-reference__summary">
+      <span>
+        <strong>Formal experience and evidence</strong>
+        <span>Career chronology, checked working numbers, technical focus, education, public work, and awards.</span>
+      </span>
+      <span aria-hidden="true">View reference</span>
+    </summary>
+    <div class="about-reference__content">
 
   <section class="band">
     <div class="site-shell grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -282,7 +283,7 @@ const aboutPageJsonLd = {
       <div class="equal-card-grid mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {focusAreas.map((item) => (
           <article class="ordered-card-strong card-hover p-6">
-            <h2 class="text-xl font-black text-white">{item.title}</h2>
+            <h3 class="text-xl font-black text-white">{item.title}</h3>
             <p class="mt-4 text-sm leading-6 text-slate-400">{item.text}</p>
           </article>
         ))}
@@ -301,7 +302,7 @@ const aboutPageJsonLd = {
         {EXAFUSE_PROOF_CASES.map((item) => (
           <a href={item.href} class="ordered-card-strong card-hover p-5" target="_blank" rel="noreferrer">
             <p class="metric-label">{item.code}</p>
-            <h2 class="mt-3 text-xl font-black text-white">{item.title}</h2>
+            <h3 class="mt-3 text-xl font-black text-white">{item.title}</h3>
             <p class="mt-3 text-sm leading-6 text-slate-400">{item.labConnection}</p>
           </a>
         ))}
@@ -319,7 +320,7 @@ const aboutPageJsonLd = {
       <div class="grid gap-4 md:grid-cols-2">
         {FIELD_NOTES.map((note) => (
           <article class="ordered-card-strong p-5">
-            <h2 class="text-xl font-black text-white">{note.title}</h2>
+            <h3 class="text-xl font-black text-white">{note.title}</h3>
             <p class="mt-3 text-sm leading-6 text-slate-400">{note.text}</p>
           </article>
         ))}
@@ -337,7 +338,7 @@ const aboutPageJsonLd = {
             <p class="mt-3 text-sm font-bold text-cyan-100">{item.org}</p>
           </div>
           <div>
-            <h2 class="text-2xl font-black text-white">{item.role}</h2>
+            <h3 class="text-2xl font-black text-white">{item.role}</h3>
             <p class="mt-4 text-sm leading-7 text-slate-300">{item.text}</p>
           </div>
         </article>
@@ -367,7 +368,7 @@ const aboutPageJsonLd = {
         <div class="mt-8 grid gap-4">
           {education.map((item) => (
             <article class="ordered-card p-5">
-              <h2 class="text-xl font-black text-white">{item.title}</h2>
+              <h3 class="text-xl font-black text-white">{item.title}</h3>
               <p class="mt-2 text-sm font-bold text-cyan-100">{item.org}</p>
               <p class="mt-3 text-sm leading-6 text-slate-400">{item.detail}</p>
             </article>
@@ -378,13 +379,13 @@ const aboutPageJsonLd = {
         <SectionHeading eyebrow="Public work" title="Selected talks, publication, and awards" />
         <div class="mt-8 grid gap-4">
           <div class="ordered-card p-5">
-            <h2 class="text-xl font-black text-white">Public work</h2>
+            <h3 class="text-xl font-black text-white">Public work</h3>
             <ul class="mt-4 grid gap-3 text-sm leading-6 text-slate-300">
               {publicWork.map((item) => <li>{item}</li>)}
             </ul>
           </div>
           <div class="ordered-card p-5">
-            <h2 class="text-xl font-black text-white">Awards and signals</h2>
+            <h3 class="text-xl font-black text-white">Awards and signals</h3>
             <ul class="mt-4 grid gap-3 text-sm leading-6 text-slate-300">
               {awards.map((item) => <li>{item}</li>)}
             </ul>
@@ -394,22 +395,7 @@ const aboutPageJsonLd = {
     </div>
   </section>
 
-  <section class="band section-y">
-    <div class="site-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-      <SectionHeading
-        eyebrow="Human note"
-        title="Why this site exists"
-        description="I am interested in systems that make uncertainty, engineering judgment, and the next verification step legible—not products that treat AI as a feature."
-      />
-      <div class="ordered-card-strong p-6">
-        <p class="text-lg font-semibold leading-8 text-slate-200">
-          I want to make complex industrial knowledge easier to structure: for buyers preparing RFQs, engineers reviewing risk, and developers building technical tools. Over time, I want to help build products, systems, and ventures around difficult industrial decisions—not AI as a feature. I will expand one real problem at a time, build the necessary domain understanding, and earn credibility through working systems and evidence. My current public proof is LMD/DED; other applications remain direction and research until validated.
-        </p>
-        <div class="mt-8">
-          <SourceLinks links={links} />
-        </div>
-      </div>
     </div>
-  </section>
+  </details>
   </div>
 </Layout>

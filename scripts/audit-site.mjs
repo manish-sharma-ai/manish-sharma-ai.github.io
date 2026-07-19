@@ -409,9 +409,10 @@ function auditHomepageProduct() {
     "Start your own brief",
     "Evidence-aware by design",
     "Start with the LMD Decision Cockpit, then follow the method and current public work.",
-    "Documented examples",
-    "What the example shows",
-    "What still needs part-specific review"
+    "The broader question behind the current work",
+    "Three LMD decision assets from the current proving ground",
+    "One idea behind the broader platform",
+    "A Prediction Is Not Yet an Industrial Decision"
   ];
   for (const phrase of required) {
     if (!visibleText.includes(phrase)) findings.push(`${file}: missing "${phrase}"`);
@@ -420,9 +421,17 @@ function auditHomepageProduct() {
     if (visibleText.includes(phrase)) findings.push(`${file}: visible text contains "${phrase}"`);
   }
   const cockpitIndex = visibleText.indexOf("LMD Decision Cockpit");
-  const evidenceIndex = visibleText.indexOf("Documented examples");
-  if (cockpitIndex < 0 || evidenceIndex < 0 || cockpitIndex > evidenceIndex) {
-    findings.push(`${file}: LMD Decision Cockpit should appear before documented examples`);
+  const selectedWorkIndex = visibleText.indexOf("Three LMD decision assets from the current proving ground");
+  if (cockpitIndex < 0 || selectedWorkIndex < 0 || cockpitIndex > selectedWorkIndex) {
+    findings.push(`${file}: LMD Decision Cockpit should appear before the selected-work collection`);
+  }
+  for (const duplicatedHomepageModule of [
+    "Current LMD/DED work: choose the question you need to structure",
+    "Current LMD/DED proof, with public source context"
+  ]) {
+    if (visibleText.includes(duplicatedHomepageModule)) {
+      findings.push(`${file}: retains duplicated specialist homepage module "${duplicatedHomepageModule}"`);
+    }
   }
   const operatingLoopSections = text.match(/data-operating-loop="homepage"/g) ?? [];
   if (operatingLoopSections.length !== 1) {
@@ -1505,11 +1514,10 @@ function auditExperience() {
     for (const phrase of [
       "Explore my work",
       "Read how I think",
-      "Evaluate a worn or damaged component.",
-      "Turn a rough request into a usable RFQ brief.",
-      "Interpret a process signal without overclaiming quality.",
-      "Compare LMD with SLM / LPBF route signals.",
-      "Latest field notes"
+      "The broader question behind the current work",
+      "Three LMD decision assets from the current proving ground",
+      "One idea behind the broader platform",
+      "A Prediction Is Not Yet an Industrial Decision"
     ]) {
       if (!visibleText.includes(phrase)) findings.push(`${homeFile}: missing product-path marker "${phrase}"`);
     }
@@ -1791,7 +1799,7 @@ function auditVisualSystem() {
   if (existsSync(join(root, deFile))) {
     const html = read(deFile);
     if (/<img\b/i.test(html)) findings.push(`${deFile}: German overview must not use a baked-text visual asset`);
-    for (const phrase of ["Lernen", "Werkzeuge", "Nachweise", "Für KI und Medien"]) {
+    for (const phrase of ["Arbeit", "Referenz", "Vertrauen & Medien"]) {
       if (!visibleTextFromHtml(html).includes(phrase)) findings.push(`${deFile}: missing German visual/navigation label "${phrase}"`);
     }
   }

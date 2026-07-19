@@ -59,3 +59,16 @@ npx --yes lighthouse@latest http://127.0.0.1:4321/press-kit --output=json --outp
 - Updated `llms.txt` to use Markdown links so Lighthouse's Agentic Browsing audit recognizes the file.
 - Kept React islands scoped to interactive tools and copy blocks instead of loading React for the homepage search overlay.
 - Added a WebP preview version of the Open Graph image for the press kit page while keeping the PNG as the canonical social image.
+
+## 2026-07-19 local delivery check
+
+This is a source and browser-smoke check, not a replacement for a fresh Lighthouse or field-Core-Web-Vitals run.
+
+- The homepage hero now prefers responsive local WebP assets and retains the existing JPEGs as fallbacks.
+- Desktop WebP: `1586 × 992`, 125,508 bytes (29% smaller than the 176,776-byte JPEG fallback).
+- Mobile WebP: `1024 × 640`, 60,314 bytes (25% smaller than the 80,603-byte JPEG fallback).
+- Chromium selected the desktop WebP at 1440px and the mobile WebP at 320px.
+- Local browser smoke checks found no failed first-party requests, console errors, hydration warnings, or horizontal overflow on the representative routes.
+- The browser harness did not expose usable navigation timing or transfer-size entries, so no current FCP, LCP, CLS, INP, or Lighthouse score is claimed here.
+
+Before publishing new performance claims, run the representative-route Lighthouse matrix and review Search Console field data for `/`, `/about`, `/public-work`, `/tools`, and one Lab Note.

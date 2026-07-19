@@ -10,27 +10,21 @@ const itemFor = (href: ResourcePath) => {
 
 export const RESOURCE_NAV_GROUPS = [
   {
-    id: "learn",
-    label: "Learn",
-    labelDe: "Lernen",
-    items: [itemFor("/frameworks"), itemFor("/lab-notes"), itemFor("/glossary")]
+    id: "work",
+    label: "Work",
+    labelDe: "Arbeit",
+    items: [itemFor("/domains/lmd-ded"), itemFor("/tools"), itemFor("/frameworks")]
   },
   {
-    id: "tools",
-    label: "Tools",
-    labelDe: "Werkzeuge",
-    items: [itemFor("/decision-map"), itemFor("/agent-pack"), itemFor("/brief-standard")]
+    id: "reference",
+    label: "Reference",
+    labelDe: "Referenz",
+    items: [itemFor("/resources"), itemFor("/evidence"), itemFor("/glossary")]
   },
   {
-    id: "evidence",
-    label: "Evidence",
-    labelDe: "Nachweise",
-    items: [itemFor("/evidence"), itemFor("/trust"), itemFor("/review")]
-  },
-  {
-    id: "ai-media",
-    label: "For AI and media",
-    labelDe: "Für KI und Medien",
-    items: [itemFor("/for-ai-agents"), itemFor("/identity"), itemFor("/press-kit"), itemFor("/site-map")]
+    id: "trust-media",
+    label: "Trust & media",
+    labelDe: "Vertrauen & Medien",
+    items: [itemFor("/trust"), itemFor("/for-ai-agents"), itemFor("/identity"), itemFor("/press-kit")]
   }
 ] as const;

@@ -16,19 +16,36 @@ const isActive = (href: string) => {
   return currentPath === normalizedHref || (normalizedHref !== "/" && currentPath.startsWith(`${normalizedHref}/`));
 };
 
-const resourcesActive = RESOURCE_NAV_ITEMS.some((item) => isActive(item.href));
+const workSectionPaths = [
+  "/public-work",
+  "/domains/lmd-ded",
+  "/tools",
+  "/frameworks",
+  "/decision-map",
+  "/agent-pack",
+  "/brief-standard",
+  "/brief-template",
+  "/demo",
+  "/playbooks"
+];
+const workSectionActive = workSectionPaths.some((href) => isActive(href));
+const primaryActive = PRIMARY_NAV_ITEMS.some((item) => isActive(item.href)) || workSectionActive;
+const resourcesActive = !primaryActive && RESOURCE_NAV_ITEMS.some((item) => isActive(item.href));
 
 const primaryLabelsDe: Record<string, string> = {
   "/": "Startseite",
-  "/thesis": "Leitgedanke",
-  "/domains/lmd-ded": "LMD / DED",
-  "/tools": "Werkzeuge",
-  "/public-work": "Nachweise",
+  "/public-work": "Arbeit",
+  "/thesis": "Methode",
+  "/lab-notes": "Notizen",
   "/about": "Über mich"
 };
 
 const resourceCopyDe: Record<string, { label: string; description: string }> = {
+  "/domains/lmd-ded": { label: "LMD / DED Arbeit", description: "Aktuelles Anwendungsfeld für industrielle KI-Entscheidungssysteme" },
+  "/tools": { label: "Entscheidungswerkzeuge", description: "Cockpit, Prozessvergleich, Reparatur und RFQ-Werkzeuge" },
+  "/public-work": { label: "Öffentliche Arbeit", description: "Ausgewählte Arbeit, öffentliche Nachweise und Grenzen" },
   "/frameworks": { label: "Frameworks", description: "Qualität, Reparatur, Datenreife und Monitoring" },
+  "/resources": { label: "Alle Ressourcen", description: "Vollständige Übersicht der öffentlichen technischen Ebene" },
   "/decision-map": { label: "Entscheidungskarte", description: "Routen für Reparatur, Cladding, AM und LPBF" },
   "/agent-pack": { label: "RFQ-Werkzeugkasten", description: "Schemas, Prompts, Regeln und Checklisten" },
   "/brief-standard": { label: "Kurzbrief-Standard", description: "LMD Decision Brief v1.0 mit Schema und Beispielen" },
@@ -62,24 +79,26 @@ const resourceGroups = RESOURCE_NAV_GROUPS.map((group) => ({
 const copy =
   lang === "de"
     ? {
-        homeLabel: "Zur Startseite von Manish Sharma Lab",
-        subtitle: "LMD, Prozessüberwachung und industrielle KI",
+        homeLabel: "Zur Startseite von Manish Sharma",
+        subtitle: "Lab / Industrielle KI & Entscheidungen",
         primaryNav: "Hauptnavigation",
-        resources: "Ressourcen",
+        resources: "Referenz",
         secondaryNav: "Weitere Navigation",
         search: "Suche",
         searchAria: "Suche öffnen, Strg K",
-        contact: "Kontakt"
+        contact: "Kontakt",
+        allResources: "Alle Ressourcen"
       }
     : {
-        homeLabel: "Manish Sharma Lab home",
-        subtitle: "Industrial AI / decisions",
+        homeLabel: "Manish Sharma home",
+        subtitle: "Lab / Industrial AI & decisions",
         primaryNav: "Primary navigation",
-        resources: "Resources",
+        resources: "Reference",
         secondaryNav: "Secondary navigation",
         search: "Search",
         searchAria: "Search Ctrl K - search all pages",
-        contact: "Contact"
+        contact: "Contact",
+        allResources: "All resources"
       };
 ---
 
@@ -88,14 +107,22 @@ const copy =
     <a href="/" class="brand-lockup" aria-label={copy.homeLabel}>
       <BrandMark uid="header-brand-mark" />
       <span class="site-header__brand-copy">
-        <span class="site-header__brand">Manish Sharma Lab</span>
+        <span class="site-header__brand">Manish Sharma</span>
         <span class="site-header__descriptor">{copy.subtitle}</span>
       </span>
     </a>
 
     <nav class="primary-nav" aria-label={copy.primaryNav}>
       {navItems.map((item) => (
-        <a href={item.href} class:list={["nav-trigger", isActive(item.href) ? "is-active" : ""]} aria-current={isActive(item.href) ? "page" : undefined}>
+        <a
+          href={item.href}
+          class:list={[
+            "nav-trigger",
+            isActive(item.href) ? "is-active" : "",
+            item.href === "/public-work" && workSectionActive && !isActive(item.href) ? "is-section-active" : ""
+          ]}
+          aria-current={isActive(item.href) ? "page" : undefined}
+        >
           {item.label}
         </a>
       ))}
@@ -121,6 +148,7 @@ const copy =
             ))}
           </div>
           <div class="nav-panel__actions">
+            <a href="/resources" class="utility-button">{copy.allResources}</a>
             <a href={LINKS.exafuse} class="btn btn-laser min-h-10 px-4 py-2 text-sm" target="_blank" rel="noreferrer">
               Exafuse
             </a>
@@ -129,12 +157,12 @@ const copy =
       </details>
     </nav>
 
-      <nav class="site-actions" aria-label={copy.secondaryNav}>
+    <nav class="site-actions" aria-label={copy.secondaryNav}>
       <button type="button" data-command-trigger class="utility-button site-actions__search" aria-label={copy.searchAria}>
         {copy.search}
       </button>
       <a href="/contact" class="site-actions__contact">{copy.contact}</a>
-      </nav>
+    </nav>
 
     <MobileMenu lang={lang} />
   </div>

@@ -37,6 +37,23 @@ Topics:
 
 ## Google Search Console
 
+### Identity-alignment recrawl
+
+After the next deployment, use URL Inspection for this small priority set and
+request indexing for each URL. This is an authenticated Search Console action;
+it cannot be completed from the public repository alone.
+
+- `https://manishsharma.dev/`
+- `https://manishsharma.dev/identity`
+- `https://manishsharma.dev/profile/public-profile`
+- `https://manishsharma.dev/public-work`
+- `https://manishsharma.dev/about`
+- `https://manishsharma.dev/lab-notes/a-prediction-is-not-yet-an-industrial-decision`
+
+Then resubmit `https://manishsharma.dev/sitemap-index.xml` and record the
+inspection date and result. Do not interpret a delayed search snippet as a
+source or deployment failure until the inspected URL and live HTML disagree.
+
 1. Add property: `https://manishsharma.dev`
 2. Verify ownership using the method Google offers for GitHub Pages.
 3. Submit sitemap:

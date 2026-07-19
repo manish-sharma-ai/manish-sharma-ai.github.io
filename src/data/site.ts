@@ -82,16 +82,19 @@ export const METHOD_LOOP = [
 ];
 
 export const PRIMARY_NAV_ITEMS = [
-  { label: "Start", href: "/" },
-  { label: "Thesis", href: "/thesis" },
-  { label: "LMD / DED", href: "/domains/lmd-ded" },
-  { label: "Tools", href: "/tools" },
-  { label: "Proof", href: "/public-work" },
+  { label: "Home", href: "/" },
+  { label: "Work", href: "/public-work" },
+  { label: "Method", href: "/thesis" },
+  { label: "Notes", href: "/lab-notes" },
   { label: "About", href: "/about" }
 ];
 
 export const RESOURCE_NAV_ITEMS = [
+  { label: "LMD / DED Work", href: "/domains/lmd-ded", description: "Current proving ground for industrial AI decision systems" },
+  { label: "Decision Tools", href: "/tools", description: "Cockpit, process comparison, repairability, and RFQ tools" },
+  { label: "Public Work", href: "/public-work", description: "Selected work, public evidence, and current boundaries" },
   { label: "Frameworks", href: "/frameworks", description: "Quality, repairability, readiness, failure, maturity" },
+  { label: "All Resources", href: "/resources", description: "Complete intent-based map of the public technical layer" },
   { label: "Decision Map", href: "/decision-map", description: "Route repair, cladding, AM, SLM alternatives" },
   { label: "Agent Pack", href: "/agent-pack", description: "Schemas, prompts, rules, checklists" },
   { label: "Brief Standard", href: "/brief-standard", description: "LMD Decision Brief v1.0 schema and examples" },
@@ -373,7 +376,7 @@ export const GLOSSARY_TERMS = [
 ];
 
 export const COMMAND_PAGES = [
-  { title: "Start", href: "/", group: "Core", description: "Industrial AI lab entry point, LMD Decision Cockpit, public LMD/DED context, and Exafuse boundary." },
+  { title: "Home", href: "/", group: "Core", description: "Manish Sharma's industrial AI method, selected work, current LMD/DED proving ground, and public boundary." },
   { title: "Industrial AI for Decisions That Need Evidence", href: "/thesis", group: "Thesis", description: "Manish Sharma's Sense, Model, Decide, Verify working method." },
   { title: "AI for Laser Metal Deposition and DED", href: "/domains/lmd-ded", group: "LMD / DED Domain", description: "Deepest current public proving ground: LMD/DED, repair, monitoring, RFQ intelligence, and Exafuse context." },
   { title: "About Manish Sharma", href: "/about", group: "Identity", description: "Human profile and public career context with careful claim boundaries." },

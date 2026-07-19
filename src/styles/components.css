@@ -1166,7 +1166,7 @@
   background: var(--instrument-technical);
   color: var(--instrument-text-soft);
   font-family: var(--font-mono);
-  font-size: 0.69rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   line-height: 1;
@@ -1534,8 +1534,8 @@
   min-height: 23rem;
 }
 
-.home-asset-card h2,
-.home-note-card h2,
+.home-asset-card :is(h2, h3),
+.home-note-card :is(h2, h3),
 .home-proof-card h2,
 .home-route-card h2 {
   color: var(--instrument-text);
@@ -1544,7 +1544,7 @@
   line-height: 1.08;
 }
 
-.home-asset-card h2 {
+.home-asset-card :is(h2, h3) {
   font-size: clamp(1.45rem, 2.1vw, 1.85rem);
 }
 
@@ -6153,7 +6153,7 @@ input:hover {
   text-align: right;
 }
 
-.research-source-card h2 {
+.research-source-card :is(h2, h3) {
   margin-top: 1rem;
   color: var(--instrument-text);
   font-size: clamp(1.3rem, 1.85vw, 1.65rem);
@@ -7430,13 +7430,14 @@ input:hover {
 .info-page .ordered-card h3,
 .info-page .ordered-card-strong h2,
 .info-page .ordered-card-strong h3,
-.info-page .bento-card > span > span:nth-child(2) {
+.info-page .bento-card h3 {
   color: var(--instrument-text);
   letter-spacing: -0.03em;
 }
 
 .info-page .ordered-card p:not(.metric-label),
 .info-page .ordered-card-strong p:not(.metric-label),
+.info-page .bento-card h3 + span,
 .info-page .bento-card > span > span:not(.metric-label),
 .info-page .link-card > span > span:last-child {
   color: var(--instrument-text-soft);
@@ -7944,7 +7945,7 @@ input:hover {
 .closing-path__action {
   color: var(--instrument-signal);
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.075em;
   line-height: 1.3;
@@ -11213,4 +11214,370 @@ input:hover {
 .evidence-base__sources .link-card,
 .industrial-proof__sources .link-card {
   padding-inline: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Public-hierarchy refinement: editorial pages speak in warm material colour,
+   while workbenches and technical reference families retain cyan as an
+   operational signal. Header and footer remain neutral shared bridges. */
+.page-mode--editorial {
+  --page-mode-accent: var(--premium-flow-amber);
+}
+
+.page-mode--instrument {
+  --page-mode-accent: var(--accent);
+}
+
+.page-mode--editorial :is(
+  .section-heading .metric-label,
+  .lab-note-article__masthead .metric-label,
+  .info-page__masthead .metric-label,
+  .home-continuation .metric-label
+) {
+  color: var(--page-mode-accent);
+}
+
+.page-mode--instrument :is(
+  .section-heading .metric-label,
+  .frameworks-index__masthead .metric-label,
+  .framework-article__masthead .metric-label,
+  .tools-workbench__hero .metric-label,
+  .evidence-base__masthead .metric-label,
+  .industrial-proof__masthead .metric-label
+) {
+  color: var(--page-mode-accent);
+}
+
+.page-mode--instrument :is(
+  .frameworks-index__masthead,
+  .framework-article__masthead,
+  .tools-workbench__hero,
+  .evidence-base__masthead,
+  .industrial-proof__masthead
+) .section-heading-mark span {
+  background: var(--page-mode-accent);
+}
+
+.page-mode--instrument :is(.frameworks-index, .tools-workbench__hero) :is(.chip, .badge) {
+  border-color: color-mix(in srgb, var(--page-mode-accent) 34%, transparent);
+  background: color-mix(in srgb, var(--page-mode-accent) 8%, var(--instrument-technical));
+  color: var(--accent-strong);
+}
+
+.page-mode--instrument :is(.frameworks-index, .tools-workbench__hero) :is(.chip, .badge)::before {
+  background: var(--page-mode-accent);
+}
+
+.page-mode--instrument :is(.frameworks-index, .tools-workbench__hero) .btn-primary {
+  border-color: color-mix(in srgb, var(--page-mode-accent) 58%, transparent);
+  background: color-mix(in srgb, var(--page-mode-accent) 18%, var(--instrument-technical));
+  color: var(--text-strong);
+}
+
+/* Small labels carry real source, status, and navigation meaning. Keep them
+   comfortably above the former 10–11px range without changing body type. */
+.metric-label {
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+:is(
+  .framework-index-card__metadata,
+  .lab-note-index-card__metadata,
+  .research-source-card__metadata,
+  .home-asset-card dt,
+  .home-note-card time,
+  .evidence-fact-grid__source
+) {
+  font-size: 0.75rem;
+}
+
+.site-header__brand {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.site-header__descriptor {
+  font-size: 0.75rem;
+  letter-spacing: 0.035em;
+}
+
+.nav-dropdown {
+  width: min(52rem, calc(100vw - 3rem));
+}
+
+.nav-dropdown__groups {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mobile-nav__brand {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+.mobile-nav__brand span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--instrument-text-soft);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.home-opening-flow__direction {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 52rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  border-left: 2px solid var(--premium-flow-amber);
+  padding-left: clamp(1rem, 2vw, 1.5rem);
+}
+
+.home-opening-flow__direction h3 {
+  color: var(--instrument-text);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.home-opening-flow__direction p {
+  max-width: 68ch;
+  color: var(--instrument-text-soft);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.home-opening-flow__direction ul {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.5rem;
+  border-block: 1px solid color-mix(in srgb, var(--instrument-border) 76%, transparent);
+}
+
+.home-opening-flow__direction li {
+  min-width: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--instrument-border) 58%, transparent);
+  padding: 0.85rem 0;
+  color: var(--instrument-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.home-opening-flow__direction li:nth-child(odd) {
+  padding-right: 1.25rem;
+}
+
+.home-opening-flow__direction li:nth-child(even) {
+  border-left: 1px solid color-mix(in srgb, var(--instrument-border) 58%, transparent);
+  padding-left: 1.25rem;
+}
+
+.home-opening-flow__direction li:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.home-notes-grid--single {
+  max-width: 54rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.home-notes-grid--single .home-note-card {
+  min-height: 0;
+}
+
+.about-human-note {
+  display: grid;
+  align-items: start;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.about-human-note__body {
+  display: grid;
+  gap: 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--premium-flow-amber) 38%, transparent);
+  padding-top: 1.5rem;
+}
+
+.about-human-note__body > p {
+  max-width: 64ch;
+  color: var(--instrument-text);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  font-weight: 650;
+  line-height: 1.75;
+}
+
+.about-reference {
+  border-block: 1px solid color-mix(in srgb, var(--instrument-border) 82%, transparent);
+  background: color-mix(in srgb, var(--premium-flow-reference) 88%, transparent);
+}
+
+.about-reference__summary {
+  display: flex;
+  min-height: 5.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  padding-block: 1.35rem;
+}
+
+.about-reference__summary::-webkit-details-marker {
+  display: none;
+}
+
+.about-reference__summary > span:first-child {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.about-reference__summary strong {
+  color: var(--instrument-text);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+}
+
+.about-reference__summary span span,
+.about-reference__summary > span:last-child {
+  color: var(--instrument-text-soft);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.about-reference__summary > span:last-child {
+  flex: 0 0 auto;
+  color: var(--premium-flow-amber);
+  font-family: var(--font-mono);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.about-reference[open] .about-reference__summary > span:last-child::before {
+  content: "Close ";
+}
+
+.about-reference[open] .about-reference__summary > span:last-child {
+  font-size: 0;
+}
+
+.about-reference[open] .about-reference__summary > span:last-child::before {
+  font-size: 0.82rem;
+}
+
+.about-reference__summary:focus-visible {
+  outline: 2px solid var(--premium-flow-amber);
+  outline-offset: 4px;
+}
+
+.about-reference__content {
+  border-top: 1px solid color-mix(in srgb, var(--instrument-border) 72%, transparent);
+}
+
+.home-premium-hero__image-caption-copy {
+  font-size: 0.75rem;
+}
+
+@media (min-width: 900px) {
+  .about-human-note {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+@media (max-width: 980px) {
+  .nav-dropdown__groups {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1200px) {
+  .nav-dropdown {
+    position: fixed;
+    top: 4.625rem;
+    right: var(--page-pad-tablet);
+    left: var(--page-pad-tablet);
+    width: auto;
+  }
+}
+
+@media (max-width: 639px) {
+  .home-opening-flow__direction {
+    margin-top: 1.75rem;
+  }
+
+  .home-opening-flow__direction ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-opening-flow__direction li,
+  .home-opening-flow__direction li:nth-child(odd),
+  .home-opening-flow__direction li:nth-child(even) {
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--instrument-border) 58%, transparent);
+    border-left: 0;
+    padding-inline: 0;
+  }
+
+  .home-opening-flow__direction li:last-child {
+    border-bottom: 0;
+  }
+
+  .about-reference__summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (forced-colors: active) {
+  :is(.nav-trigger, .nav-menu-link, .btn, .about-reference__summary):focus-visible {
+    outline: 3px solid Highlight;
+    outline-offset: 3px;
+  }
+
+  :is(.ordered-card, .ordered-card-strong, .home-asset-card, .home-note-card) {
+    border: 1px solid CanvasText;
+  }
+
+  .home-opening-flow__direction {
+    border-left-color: Highlight;
+  }
+}
+
+.nav-trigger.is-section-active {
+  border-color: color-mix(in srgb, var(--instrument-copper) 50%, transparent);
+  background: color-mix(in srgb, var(--instrument-copper) 10%, transparent);
+  color: var(--instrument-signal);
+}
+
+.nav-menu-link.is-section-active {
+  border-color: var(--instrument-border);
+  background: var(--instrument-technical);
+  box-shadow: inset 3px 0 0 var(--instrument-copper);
+  color: var(--instrument-text);
+}
+
+/* Keep supporting labels legible without letting metadata compete with content. */
+.site-footer__subtitle,
+.site-footer__group > p,
+.closing-path__eyebrow,
+.closing-path__index,
+.closing-path__action,
+.page-provenance__date,
+.page-provenance__facts > div > :first-child {
+  font-size: 0.75rem;
+}
+
+.mobile-nav__label,
+.chip,
+.tool-workbench-nav a,
+.process-loop__eyebrow,
+.process-loop__index,
+.page-hero-model__classification {
+  font-size: 0.75rem;
 }

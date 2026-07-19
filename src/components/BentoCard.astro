@@ -32,7 +32,7 @@ const Tag = href ? "a" : "article";
 >
   <span>
     {eyebrow && <span class="metric-label">{eyebrow}</span>}
-    {title && <span class="mt-3 block text-2xl font-black leading-tight text-white">{title}</span>}
+    {title && <h3 class="mt-3 text-2xl font-black leading-tight text-white">{title}</h3>}
     {description && <span class="mt-4 block text-sm leading-6 text-slate-300">{description}</span>}
     <slot />
   </span>

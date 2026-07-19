@@ -12,8 +12,8 @@ const footerColumnsEn = [
   {
     label: "Explore",
     links: [
-      { label: "Thesis", href: "/thesis" },
-      { label: "Evidence", href: "/public-work" },
+      { label: "Method", href: "/thesis" },
+      { label: "Public Work", href: "/public-work" },
       { label: "LMD / DED", href: "/domains/lmd-ded" },
       { label: "Frameworks", href: "/frameworks" }
     ]
@@ -42,7 +42,6 @@ const footerColumnsEn = [
     links: [
       { label: "Identity", href: "/identity" },
       { label: "About", href: "/about" },
-      { label: "Public Profile", href: "/profile/public-profile" },
       { label: "Press Kit", href: "/press-kit" },
       { label: "Trust Center", href: "/trust" }
     ]
@@ -53,8 +52,8 @@ const footerColumnsDe = [
   {
     label: "Entdecken",
     links: [
-      { label: "Leitgedanke", href: "/thesis" },
-      { label: "Nachweise", href: "/public-work" },
+      { label: "Methode", href: "/thesis" },
+      { label: "Öffentliche Arbeit", href: "/public-work" },
       { label: "LMD / DED", href: "/domains/lmd-ded" },
       { label: "Frameworks", href: "/frameworks" }
     ]
@@ -83,7 +82,6 @@ const footerColumnsDe = [
     links: [
       { label: "Profil", href: "/identity" },
       { label: "Über mich", href: "/about" },
-      { label: "Öffentliches Profil", href: "/profile/public-profile" },
       { label: "Pressekit", href: "/press-kit" },
       { label: "Vertrauen", href: "/trust" }
     ]
@@ -125,11 +123,11 @@ const copy =
 
 <footer class="site-footer">
   <div class="site-shell site-footer__main">
-    <section class="site-footer__identity" aria-label="Manish Sharma Lab">
+    <section class="site-footer__identity" aria-label="Manish Sharma">
       <div class="site-footer__brand">
         <BrandMark uid="footer-brand-mark" />
         <div>
-          <p class="site-footer__name">Manish Sharma Lab</p>
+          <p class="site-footer__name">Manish Sharma</p>
           <p class="site-footer__subtitle">{copy.subtitle}</p>
         </div>
       </div>
@@ -187,7 +185,7 @@ const copy =
   <div class="site-shell site-footer__legal">
     <div class="site-footer__legal-content">
       <div class="site-footer__legal-meta">
-        <span>&copy; {new Date().getFullYear()} Manish Sharma Lab.</span>
+        <span>&copy; {new Date().getFullYear()} Manish Sharma.</span>
         <a href="/trust" class="footer-link font-bold text-slate-300">{copy.trust}</a>
       </div>
       <span class="site-footer__boundary">{copy.boundary}</span>

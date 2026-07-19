@@ -1,13 +1,9 @@
 ---
-import BentoCard from "@components/BentoCard.astro";
 import CTAButton from "@components/CTAButton.astro";
-import Chip from "@components/Chip.astro";
 import Layout from "@layouts/Layout.astro";
 import LmdDecisionCockpit from "@components/LmdDecisionCockpit";
 import SectionHeading from "@components/SectionHeading.astro";
 import { resolveExafuseLink } from "../config/externalLinks";
-import { EXAFUSE_PROOF_CASES } from "@data/exafuse";
-import { getClaimSourceStatus } from "@data/publicClaims";
 import { LAB_NOTES, LINKS, PERSON, SAME_AS, SITE } from "@data/site";
 
 const title = "Manish Sharma — Industrial AI & Decision Systems";
@@ -68,37 +64,6 @@ const profilePageJsonLd = {
   mainEntity: { "@id": `${SITE.canonicalUrl}/identity#manish-sharma` }
 };
 
-const startCards = [
-  {
-    eyebrow: "Repair decision",
-    title: "Evaluate a worn or damaged component.",
-    description: "Expose material, damage, access, finishing, and inspection gaps before repair claims harden.",
-    href: "/tools/#preset=worn-shaft",
-    cta: "Start repair brief"
-  },
-  {
-    eyebrow: "RFQ preparation",
-    title: "Turn a rough request into a usable RFQ brief.",
-    description: "Separate known facts, critical gaps, useful context, risks, and the next review action.",
-    href: "/tools/#preset=rfq",
-    cta: "Structure an RFQ"
-  },
-  {
-    eyebrow: "Monitoring evidence",
-    title: "Interpret a process signal without overclaiming quality.",
-    description: "Connect monitoring context to inspection evidence and keep the release boundary visible.",
-    href: "/tools/#preset=monitoring-anomaly",
-    cta: "Review a signal"
-  },
-  {
-    eyebrow: "Process selection",
-    title: "Compare LMD with SLM / LPBF route signals.",
-    description: "Start with part size, local deposition, feature complexity, tolerance, and qualification needs.",
-    href: "/tools/#preset=lmd-vs-slm",
-    cta: "Compare routes"
-  }
-];
-
 const flagshipAssets = [
   {
     title: "LMD Quality Evidence Ladder",
@@ -153,55 +118,6 @@ const homepageProcessSteps = [
   }
 ];
 
-const proofFrameworks: Record<string, { label: string; href: string; proves: string; cannot: string }> = {
-  CS15: {
-    label: "LMD Quality Evidence Ladder",
-    href: "/frameworks/lmd-quality-evidence-ladder",
-    proves:
-      "Public context for large-part LMD scale, monitoring, validation, and inspection planning in one documented Exafuse case.",
-    cannot:
-      "It does not prove that monitoring alone certifies quality or that this site can approve structural parts."
-  },
-  CS01: {
-    label: "LMD Repairability Index",
-    href: "/frameworks/lmd-repairability-index",
-    proves: "Public context for local wear repair, material strategy, finishing, and release-evidence planning.",
-    cannot: "It does not prove every hammer or safety-critical part is repairable."
-  },
-  CS10: {
-    label: "LMD RFQ Toolkit",
-    href: "/agent-pack",
-    proves: "Public context for RFQ intelligence around local damage, downtime pressure, drawings, machining, and inspection needs.",
-    cannot: "It does not prove feasibility without part-specific material, damage, geometry, and service context."
-  },
-  CS13: {
-    label: "LMD Quality Evidence Ladder",
-    href: "/frameworks/lmd-quality-evidence-ladder",
-    proves: "Public context for combining build-up, coating function, material choice, and finishing strategy.",
-    cannot: "It does not prove surface performance without application-specific validation."
-  }
-};
-
-const proofDecisionHelp: Record<string, string> = {
-  CS15: "Helps decide how much evidence is needed before large-part LMD monitoring data becomes a defensible engineering discussion.",
-  CS01: "Helps decide whether local wear repair should move into expert review instead of becoming an automatic repair claim.",
-  CS10: "Helps decide which missing RFQ facts block a repairability conversation.",
-  CS13: "Helps decide when build-up and surface function must be planned as one route."
-};
-
-const proofDecisionPatterns: Record<string, { label: string; href: string }> = {
-  CS15: { label: "Start a brief from this pattern", href: "/tools/#preset=monitoring-anomaly" },
-  CS01: { label: "Start a brief from this pattern", href: "/tools/#preset=worn-shaft" },
-  CS10: { label: "Start a brief from this pattern", href: "/tools/#preset=rfq" },
-  CS13: { label: "Start a brief from this pattern", href: "/tools/#preset=surface-cladding" }
-};
-
-const proofDecisionPatternText: Record<string, string> = {
-  CS15: "Large-scale LMD requires evidence planning, monitoring context, and an inspection boundary.",
-  CS01: "Local repair needs material, damage depth, machining route, and inspection plan.",
-  CS10: "Repair/RFQ quality depends on complete facts, downtime context, and service context.",
-  CS13: "Build-and-coat routes need geometry, surface function, material, finishing, and validation."
-};
 ---
 
 <Layout
@@ -221,6 +137,8 @@ const proofDecisionPatternText: Record<string, string> = {
       aria-hidden="true"
       data-audit-context="Illustrative LMD process schematic"
     >
+      <source media="(max-width: 639px)" type="image/webp" srcset="/images/melt-pool-hero-1024.webp" />
+      <source type="image/webp" srcset="/images/melt-pool-hero.webp" />
       <source media="(max-width: 639px)" srcset="/images/melt-pool-hero-1024.jpg" />
       <img
         src="/images/melt-pool-hero.jpg"
@@ -261,7 +179,7 @@ const proofDecisionPatternText: Record<string, string> = {
   <section class="home-opening-flow home-chapter home-chapter--method" data-page-chapter="method" data-operating-loop="homepage" aria-labelledby="home-opening-flow-title">
     <div class="home-opening-flow__atmosphere" aria-hidden="true"></div>
     <div class="site-shell home-opening-flow__inner">
-      <section class="home-opening-flow__process" aria-labelledby="home-opening-flow-title">
+      <div class="home-opening-flow__process">
         <div class="home-opening-flow__process-intro">
           <h2 id="home-opening-flow-title">Sense → Model → Decide → Verify</h2>
           <p>To me, a prediction is only one part of the job. The next action, the missing context, and the verification path have to be clear too.</p>
@@ -281,11 +199,26 @@ const proofDecisionPatternText: Record<string, string> = {
           Preliminary decision-support only. Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.
         </aside>
 
+        <div class="home-opening-flow__direction">
+          <h3>The broader question behind the current work</h3>
+          <p>
+            I am studying how this approach can help with decisions based on incomplete physical signals, operational risk, and human responsibility. That is a research direction, not a cross-industry deployment claim.
+          </p>
+          <ul aria-label="Decision classes under study">
+            <li>Incomplete physical signals</li>
+            <li>High cost of false confidence</li>
+            <li>Model output connected to inspection</li>
+            <li>Operational context changes the recommendation</li>
+            <li>Human responsibility remains explicit</li>
+            <li>Traceability matters after the model runs</li>
+          </ul>
+        </div>
+
         <nav class="home-opening-flow__links" aria-label="Method and current work">
           <a href="/thesis">Read the method <span aria-hidden="true">→</span></a>
           <a href="/domains/lmd-ded">See current LMD/DED work <span aria-hidden="true">→</span></a>
         </nav>
-      </section>
+      </div>
 
       <section class="home-opening-flow__cockpit" aria-label="LMD Decision Cockpit preview">
         <div class="home-opening-flow__cockpit-route" aria-hidden="true"></div>
@@ -299,73 +232,8 @@ const proofDecisionPatternText: Record<string, string> = {
     </div>
   </section>
 
-  <section class="process-proof-system home-chapter home-chapter--proof" data-page-chapter="proof" aria-label="Public context and decision routes">
-    <div class="site-shell process-proof-system__inner">
-
-      <div class="process-proof-system__section process-proof-system__section--proof" aria-label="Public context and decision routes">
-        <div class="process-proof-system__proof-heading">
-          <SectionHeading
-            eyebrow="Current proof / decision routes"
-            title="LMD/DED is my current proving ground"
-            description="It is where signals, materials, machine vision, robotics, repair, inspection, and engineering judgment meet in decisions with real consequences."
-          />
-          <div class="process-proof-system__tags" aria-label="Proof card characteristics">
-            <span class="process-proof-system__tag">Public source context</span>
-            <span class="process-proof-system__tag">Decision guidance</span>
-          </div>
-        </div>
-
-        <dl class="process-proof-system__metadata" aria-label="Evidence status">
-          <div>
-            <dt>Evidence status</dt>
-            <dd>Public source context</dd>
-          </div>
-        </dl>
-
-        <div class="process-proof-system__cards">
-          <a href={flagshipAssets[0].href} class="process-proof-system__card process-proof-system__card--evidence">
-            <span class="process-proof-system__card-eyebrow">Evidence / framework</span>
-            <h3>{flagshipAssets[0].title}</h3>
-            <p>{flagshipAssets[0].helps}</p>
-            <dl class="process-proof-system__source-note">
-              <div>
-                <dt>Source note</dt>
-                <dd>Public context only</dd>
-              </div>
-            </dl>
-            <span class="process-proof-system__card-action" aria-hidden="true">Open framework →</span>
-          </a>
-
-          <a href={flagshipAssets[1].href} class="process-proof-system__card process-proof-system__card--decision">
-            <span class="process-proof-system__card-eyebrow">Decision / framework</span>
-            <h3>{flagshipAssets[1].title}</h3>
-            <p>{flagshipAssets[1].helps}</p>
-            <p class="process-proof-system__boundary"><strong>Not final:</strong> {flagshipAssets[1].cannot}</p>
-            <span class="process-proof-system__card-action" aria-hidden="true">Open index →</span>
-          </a>
-        </div>
-
-        <aside class="process-proof-system__boundary-notice" aria-label="Decision-support boundary">
-          <p>Preliminary decision-support only</p>
-          <p>Final feasibility depends on base material, geometry, service conditions, inspection requirements, and expert review.</p>
-        </aside>
-      </div>
-    </div>
-  </section>
-
   <div class="home-continuation">
     <div class="home-chapter home-chapter--knowledge" data-page-chapter="knowledge">
-    <section class="home-section home-section--start" aria-label="Start with a decision path">
-      <div class="site-shell home-section__inner">
-        <SectionHeading eyebrow="Start here" title="Current LMD/DED work: choose the question you need to structure" />
-        <div class="home-start-grid">
-          {startCards.map((card) => (
-            <BentoCard href={card.href} eyebrow={card.eyebrow} title={card.title} description={card.description} cta={card.cta} strong />
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section class="home-section home-section--assets" aria-label="Flagship decision assets">
       <div class="site-shell home-section__inner">
         <SectionHeading
@@ -377,7 +245,7 @@ const proofDecisionPatternText: Record<string, string> = {
           {flagshipAssets.map((asset) => (
             <a href={asset.href} class="home-asset-card">
               <span>
-                <h2>{asset.title}</h2>
+                <h3>{asset.title}</h3>
                 <dl>
                   <div>
                     <dt>Problem</dt>
@@ -400,102 +268,25 @@ const proofDecisionPatternText: Record<string, string> = {
       </div>
     </section>
 
-    <section class="home-section home-section--proof" aria-label="Documented public examples">
-      <div class="site-shell home-section__inner">
-        <div class="home-section__heading-row">
-          <SectionHeading
-            eyebrow="Documented examples"
-            title="Current LMD/DED proof, with public source context"
-            description="These public examples show why evidence planning matters. Commercial case details and RFQs remain with Exafuse."
-          />
-          <div class="home-section__actions">
-            <CTAButton href="/industrial-proof" variant="secondary">Open evidence map</CTAButton>
-            <CTAButton href="/claims" variant="secondary">Review source notes</CTAButton>
-          </div>
-        </div>
-        <div class="home-proof-grid">
-      {EXAFUSE_PROOF_CASES.slice(0, 2).map((item) => {
-        const related = proofFrameworks[item.code];
-        const pattern = proofDecisionPatterns[item.code];
-        return (
-          <article class="home-proof-card">
-            <div class="home-proof-card__tags">
-              <Chip>{item.code}</Chip>
-              <Chip tone="steel">Public Exafuse source</Chip>
-            </div>
-            <h2>{item.title}</h2>
-            {item.metricClaims?.length > 0 && (
-              <div class="home-proof-card__claims">
-                {item.metricClaims.map((claim) => (
-                  <span class="chip chip--steel" data-claim-id={claim.id} title={claim.limitation}>{claim.shortLabel}</span>
-                ))}
-              </div>
-            )}
-            <dl class="home-proof-card__metadata">
-              <div>
-                <dt>Decision it helps</dt>
-                <dd>{proofDecisionHelp[item.code]}</dd>
-              </div>
-              <div>
-              <dt>Source note</dt>
-              <dd>
-                  {item.metricClaims?.[0] ? getClaimSourceStatus(item.metricClaims[0]) : "Case-specific source available through Exafuse contact or current public pages."}
-              </dd>
-              </div>
-              <div>
-                <dt>What the example shows</dt>
-                <dd>{related.proves}</dd>
-              </div>
-              <div>
-                <dt>What still needs part-specific review</dt>
-                <dd>{related.cannot}</dd>
-              </div>
-              <div>
-                <dt>Related framework</dt>
-                <dd>
-                  <a href={related.href}>{related.label}</a>
-                </dd>
-              </div>
-              <div>
-                <dt>Useful decision pattern</dt>
-                <dd>{proofDecisionPatternText[item.code]}</dd>
-              </div>
-            </dl>
-            <p class="home-proof-card__boundary">
-              Use the pattern as context only; feasibility still depends on the actual part, material, service conditions, inspection needs, and expert review.
-            </p>
-            <div class="home-proof-card__actions">
-              <a href={pattern.href} class="btn btn-primary">{pattern.label}</a>
-              <a href={item.href} class="btn btn-laser" target="_blank" rel="noreferrer">
-                {item.sourceStatus === "production-link-after-migration" ? "Contact Exafuse" : "Public Exafuse source"}
-              </a>
-            </div>
-          </article>
-        );
-      })}
-        </div>
-      </div>
-    </section>
-
-    <section class="home-section home-section--notes" aria-label="Latest field notes">
+    <section class="home-section home-section--notes" aria-label="Selected authored note">
       <div class="site-shell home-section__inner">
         <div class="home-section__heading-row">
         <SectionHeading
-          eyebrow="Latest field notes"
-          title="Notes from the current proving ground"
-          description="Short technical explanations of the assumptions, evidence gaps, and review questions that often change an LMD/DED decision."
+          eyebrow="Authored note"
+          title="One idea behind the broader platform"
+          description="A first-person note on why model output, context, action, and verification need to stay connected."
         />
           <div class="home-section__actions">
           <CTAButton href="/lab-notes" variant="secondary">All lab notes</CTAButton>
           <CTAButton href="/rss.xml" variant="secondary">RSS feed</CTAButton>
           </div>
         </div>
-        <div class="home-notes-grid">
-        {LAB_NOTES.slice(0, 3).map((note) => (
+        <div class="home-notes-grid home-notes-grid--single">
+        {LAB_NOTES.slice(0, 1).map((note) => (
           <a href={note.href} class="home-note-card">
             <span>
               <time datetime={note.date}>{note.date}</time>
-              <h2>{note.title}</h2>
+              <h3>{note.title}</h3>
               <p>{note.description}</p>
             </span>
             <span class="home-note-card__action" aria-hidden="true">Read note <span>→</span></span>
@@ -512,9 +303,7 @@ const proofDecisionPatternText: Record<string, string> = {
       <div class="home-route-card home-route-card--public">
         <p>Personal platform</p>
         <h2>Explore the method, current work, and research questions.</h2>
-        <p>
-          I am studying how this approach can help with decisions based on incomplete physical signals, operational risk, and human responsibility. That is a research direction, not a cross-industry deployment claim.
-        </p>
+        <p>{SITE.shortDescription}</p>
         <div class="home-route-card__actions">
           <CTAButton href="/public-work" variant="primary">Explore my work</CTAButton>
           <CTAButton href="/about" variant="secondary">About Manish</CTAButton>

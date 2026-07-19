@@ -1,5 +1,5 @@
 ---
-import { LINKS, PRIMARY_NAV_ITEMS } from "@data/site";
+import { PRIMARY_NAV_ITEMS } from "@data/site";
 import { RESOURCE_NAV_GROUPS } from "@data/resourceNavigation";
 
 interface Props {
@@ -13,18 +13,34 @@ const isActive = (href: string) => {
   const normalizedHref = normalize(href);
   return currentPath === normalizedHref || (normalizedHref !== "/" && currentPath.startsWith(`${normalizedHref}/`));
 };
+const workSectionPaths = [
+  "/public-work",
+  "/domains/lmd-ded",
+  "/tools",
+  "/frameworks",
+  "/decision-map",
+  "/agent-pack",
+  "/brief-standard",
+  "/brief-template",
+  "/demo",
+  "/playbooks"
+];
+const workSectionActive = workSectionPaths.some((href) => isActive(href));
 
 const primaryLabelsDe: Record<string, string> = {
   "/": "Startseite",
-  "/thesis": "Leitgedanke",
-  "/domains/lmd-ded": "LMD / DED",
-  "/tools": "Werkzeuge",
-  "/public-work": "Nachweise",
+  "/public-work": "Arbeit",
+  "/thesis": "Methode",
+  "/lab-notes": "Notizen",
   "/about": "Über mich"
 };
 
 const resourceLabelsDe: Record<string, string> = {
+  "/domains/lmd-ded": "LMD / DED Arbeit",
+  "/tools": "Entscheidungswerkzeuge",
+  "/public-work": "Öffentliche Arbeit",
   "/frameworks": "Frameworks",
+  "/resources": "Alle Ressourcen",
   "/decision-map": "Entscheidungskarte",
   "/agent-pack": "RFQ-Werkzeugkasten",
   "/brief-standard": "Kurzbrief-Standard",
@@ -57,15 +73,7 @@ const groups = [
     label: lang === "de" ? "Hauptseiten" : "Primary",
     items: primaryItems
   },
-  ...resourceGroups,
-  {
-    label: lang === "de" ? "Extern" : "External",
-    items: [
-      { label: "Exafuse", href: LINKS.exafuse },
-      { label: "GitHub", href: LINKS.github },
-      { label: "LinkedIn", href: LINKS.linkedin }
-    ]
-  }
+  ...resourceGroups
 ];
 ---
 
@@ -73,7 +81,7 @@ const groups = [
   <summary class="utility-button list-none px-4 py-2 text-white">{lang === "de" ? "Menü" : "Menu"}</summary>
   <div class="nav-panel mobile-nav-panel">
     <nav class="mobile-nav" aria-label={lang === "de" ? "Mobile Navigation" : "Mobile navigation"}>
-      <div class="mobile-nav__brand" aria-hidden="true">Manish Sharma Lab</div>
+      <div class="mobile-nav__brand" aria-hidden="true">Manish Sharma <span>Lab / Industrial AI & decisions</span></div>
       {groups.map((group) => (
         <section class="mobile-nav__group">
           <p class="mobile-nav__label">{group.label}</p>
@@ -81,7 +89,11 @@ const groups = [
             {group.items.map((item) => (
               <a
                 href={item.href}
-                class:list={["nav-menu-link py-3 text-sm", isActive(item.href) ? "is-active" : ""]}
+                class:list={[
+                  "nav-menu-link py-3 text-sm",
+                  isActive(item.href) ? "is-active" : "",
+                  item.href === "/public-work" && workSectionActive && !isActive(item.href) ? "is-section-active" : ""
+                ]}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={item.href.startsWith("http") ? "noreferrer" : undefined}

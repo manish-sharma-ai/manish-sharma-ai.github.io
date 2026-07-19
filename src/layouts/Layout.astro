@@ -119,6 +119,15 @@ const pageFamily =
                 normalizedCanonical === "/claims"
               ? "evidence"
               : "information";
+const pageMode =
+  normalizedCanonical === "/" ||
+  normalizedCanonical === "/about" ||
+  normalizedCanonical === "/thesis" ||
+  normalizedCanonical === "/contact" ||
+  normalizedCanonical === "/identity" ||
+  normalizedCanonical.startsWith("/lab-notes")
+    ? "editorial"
+    : "instrument";
 ---
 
 <!doctype html>
@@ -162,7 +171,7 @@ const pageFamily =
       <Header lang={lang} />
       <Breadcrumbs path={canonical} title={titleText} lang={lang} />
       <main id="main-content">
-        <div class:list={["page-flow", `page-flow--${pageFamily}`]} data-page-family={pageFamily}>
+        <div class:list={["page-flow", `page-flow--${pageFamily}`, `page-mode--${pageMode}`]} data-page-family={pageFamily} data-page-mode={pageMode}>
           <div class="page-flow__content"><slot /></div>
           <div class="page-flow__ending">
             <RelatedLinks path={canonical} lang={lang} />
