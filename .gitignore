@@ -4,3 +4,8 @@ dist
 .DS_Store
 *.log
 coverage
+
+# Local browser QA traces, screenshots, and audit output.
+.playwright-cli/
+docs/audit/
+output/
