@@ -12202,6 +12202,7 @@ input:hover {
 .public-work-index__case-grid--proof-led,
 .industrial-proof__case-grid--proof-led {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 4rem);
 }
 
