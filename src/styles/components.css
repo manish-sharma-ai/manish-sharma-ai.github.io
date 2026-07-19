@@ -2277,7 +2277,7 @@
 .home-premium-hero .home-hero__primary-action {
   border-color: #9e4a1a;
   background: #9e4a1a;
-  color: #0e0d0b;
+  color: #f2eee5;
 }
 
 .home-premium-hero .home-hero__primary-action:hover,
@@ -5138,6 +5138,17 @@ input:hover {
   border-color: var(--cockpit-border);
   background: var(--cockpit-technical);
   box-shadow: none;
+}
+
+.decision-cockpit .tool-output-rail .print-brief,
+.decision-cockpit .tool-output-rail .print-brief * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.decision-cockpit .tool-output-rail .print-brief .btn {
+  max-width: 100%;
+  white-space: normal;
 }
 
 .decision-cockpit .tool-output-rail a:not(.btn) {

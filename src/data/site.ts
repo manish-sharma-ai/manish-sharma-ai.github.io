@@ -83,7 +83,7 @@ export const METHOD_LOOP = [
 
 export const PRIMARY_NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Work", href: "/public-work" },
+  { label: "Proof", href: "/public-work" },
   { label: "Method", href: "/thesis" },
   { label: "Notes", href: "/lab-notes" },
   { label: "About", href: "/about" }
