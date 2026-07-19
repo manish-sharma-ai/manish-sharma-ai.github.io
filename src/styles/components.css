@@ -12239,6 +12239,56 @@ input:hover {
   min-inline-size: 0;
 }
 
+/* Public Work proof stories use a full-width editorial header, then balance
+   physical evidence and the decision interpretation in equal columns. */
+.public-work-index__case-card--proof {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.public-work-index__case-card--proof .public-work-index__case-summary {
+  display: block;
+  grid-column: 1 / -1;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-summary h2 {
+  max-inline-size: 24ch;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-evidence {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto 1fr auto;
+  column-gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  row-gap: 0;
+}
+
+.public-work-index__case-card--proof .exafuse-proof-media {
+  grid-column: 1;
+  grid-row: 1 / 4;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-lesson,
+.public-work-index__case-card--proof .public-work-index__case-limit,
+.public-work-index__case-card--proof .public-work-index__case-actions {
+  grid-column: 2;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-lesson {
+  grid-row: 1;
+  margin-top: 0;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-limit {
+  grid-row: 2;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-actions {
+  align-self: end;
+  grid-row: 3;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
 .public-work-index__case-card--proof h2,
 .industrial-proof__case-card--proof h2 {
   color: var(--instrument-text);
@@ -12311,6 +12361,27 @@ input:hover {
   .public-work-index__case-card--proof .public-work-index__case-evidence,
   .industrial-proof__case-card--proof .industrial-proof__case-media {
     order: -1;
+  }
+
+  .public-work-index__case-card--proof .public-work-index__case-evidence {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    gap: 1.25rem;
+    order: 0;
+  }
+
+  .public-work-index__case-card--proof .exafuse-proof-media,
+  .public-work-index__case-card--proof .public-work-index__case-lesson,
+  .public-work-index__case-card--proof .public-work-index__case-limit,
+  .public-work-index__case-card--proof .public-work-index__case-actions {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .public-work-index__case-card--proof .public-work-index__case-lesson,
+  .public-work-index__case-card--proof .public-work-index__case-limit,
+  .public-work-index__case-card--proof .public-work-index__case-actions {
+    margin-top: 0;
   }
 }
 

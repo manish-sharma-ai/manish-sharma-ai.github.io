@@ -256,7 +256,7 @@ export default function LmdDecisionCockpit({
     if (!preset) return;
     setState(stateFromPreset(preset.id));
     setActivePresetId(preset.id);
-    if (compact) setControlsExpanded(false);
+    if (compact) setControlsExpanded(true);
   }
 
   function startBlank() {

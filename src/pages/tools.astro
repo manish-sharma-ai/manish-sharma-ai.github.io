@@ -149,7 +149,7 @@ const toolBlocks = [
 
   <div class="tools-chapter tools-chapter--workbench" data-page-chapter="workbench">
   <section class="site-shell section-y pt-0 tools-workbench__cockpit-transition">
-    <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+    <LmdDecisionCockpit client:load defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
     <noscript>
       <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
         Interactive controls require JavaScript. You can still use the <a href="/brief-template" class="font-black text-cyan-100">copyable brief template</a>, review the <a href="/demo" class="font-black text-cyan-100">worked example</a>, or open the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
@@ -193,9 +193,9 @@ const toolBlocks = [
             </div>
           </div>
           <div class="tool-module-mount border-t border-white/10 p-4 md:p-6">
-            {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
-            {tool.component === "repairability" && <RepairabilityQuickCheck client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
-            {tool.component === "rfq" && <RfqStructureConverter client:visible exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+            {tool.component === "lmd-vs-slm" && <LmdVsSlmAdvisor client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+            {tool.component === "repairability" && <RepairabilityQuickCheck client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
+            {tool.component === "rfq" && <RfqStructureConverter client:load exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />}
           </div>
         </details>
       </div>

@@ -13,6 +13,7 @@ const description =
   "Manish Sharma builds evidence-aware AI systems for industrial decisions. His strongest public work is in LMD/DED, process monitoring, robotics, and engineering decision support at Exafuse.";
 const exafuseRfqLink = resolveExafuseLink("rfq");
 const flagshipProof = EXAFUSE_PUBLIC_PROOF.find((proof) => proof.id === "cs15-duisburg-bridge");
+const supportingProof = EXAFUSE_PUBLIC_PROOF.find((proof) => proof.id === "cs10-nobufil-extrusion-screw");
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -211,7 +212,7 @@ const homepageProcessSteps = [
       </div>
       <section class="home-opening-flow__cockpit" aria-label="LMD Decision Cockpit preview">
         <div class="home-opening-flow__cockpit-route" aria-hidden="true"></div>
-        <LmdDecisionCockpit client:visible defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
+        <LmdDecisionCockpit client:load defaultMode="example" compact exafuseUrl={exafuseRfqLink.href} exafuseLabel={exafuseRfqLink.label} />
         <noscript>
           <div class="ordered-card mt-5 p-5 text-sm leading-6 text-slate-300">
             The worked brief remains readable without JavaScript. To prepare your own handoff, use the <a href="/brief-template" class="font-black text-cyan-100">copyable template</a> or the <a href="/brief-standard" class="font-black text-cyan-100">public brief standard</a>.
@@ -279,18 +280,18 @@ const homepageProcessSteps = [
         <SectionHeading
           eyebrow="Selected work"
           title="One public industrial story, supported by a working product and an authored note"
-          description="The lead proof is physical and source-backed. The supporting work shows how I structure the decision and its evidence boundary."
+          description="The opening proof is physical and source-backed. This separate repair case, the Cockpit, and the note show how I structure a decision and its evidence boundary."
         />
         <div class="home-assets-grid home-assets-grid--proof-led">
-          {flagshipProof && (
+          {supportingProof && (
             <article class="home-asset-card home-asset-card--lead">
-              <ExafuseProofMedia proof={flagshipProof} sizes="(max-width: 767px) calc(100vw - 2rem), 52vw" />
+              <ExafuseProofMedia proof={supportingProof} sizes="(max-width: 767px) calc(100vw - 2rem), 52vw" />
               <span>
-                <p class="metric-label">Flagship industrial proof</p>
-                <h3><a href={`/public-work/exafuse/${flagshipProof.slug}`}>{flagshipProof.shortTitle}</a></h3>
-                <p>{flagshipProof.mainDecisionLesson}</p>
+                <p class="metric-label">Supporting industrial proof</p>
+                <h3><a href={`/public-work/exafuse/${supportingProof.slug}`}>{supportingProof.shortTitle}</a></h3>
+                <p>{supportingProof.mainDecisionLesson}</p>
               </span>
-              <a href={`/public-work/exafuse/${flagshipProof.slug}`} class="home-asset-card__action">Read the proof story <span aria-hidden="true">→</span></a>
+              <a href={`/public-work/exafuse/${supportingProof.slug}`} class="home-asset-card__action">Read the proof story <span aria-hidden="true">→</span></a>
             </article>
           )}
           {flagshipAssets.map((asset) => (
