@@ -12246,21 +12246,49 @@ input:hover {
 }
 
 .public-work-index__case-card--proof .public-work-index__case-summary {
-  display: block;
+  display: grid;
   grid-column: 1 / -1;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 3.5vw, 3.5rem);
+}
+
+.public-work-index__case-card--proof .public-work-index__case-heading {
+  grid-column: span 7;
+  min-inline-size: 0;
+}
+
+.public-work-index__case-card--proof .public-work-index__case-context-block {
+  display: grid;
+  grid-column: span 5;
+  align-content: start;
+  gap: 1.25rem;
+  min-inline-size: 0;
 }
 
 .public-work-index__case-card--proof .public-work-index__case-summary h2 {
   max-inline-size: 24ch;
 }
 
+.public-work-index__case-card--proof .public-work-index__case-context {
+  margin-top: 0;
+}
+
+.public-work-index__case-summary-lesson {
+  color: var(--instrument-text);
+  font-size: 0.94rem;
+  font-weight: 750;
+  line-height: 1.6;
+}
+
 .public-work-index__case-card--proof .public-work-index__case-evidence {
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: repeat(3, max-content);
+  align-content: start;
   column-gap: clamp(1.5rem, 3.5vw, 3.5rem);
-  row-gap: 0;
+  row-gap: 1.25rem;
+  margin-top: 0;
 }
 
 .public-work-index__case-card--proof .exafuse-proof-media {
@@ -12284,9 +12312,9 @@ input:hover {
 }
 
 .public-work-index__case-card--proof .public-work-index__case-actions {
-  align-self: end;
+  align-self: start;
   grid-row: 3;
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: 0;
 }
 
 .public-work-index__case-card--proof h2,
@@ -12368,6 +12396,16 @@ input:hover {
     grid-template-rows: auto;
     gap: 1.25rem;
     order: 0;
+  }
+
+  .public-work-index__case-card--proof .public-work-index__case-summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .public-work-index__case-card--proof .public-work-index__case-heading,
+  .public-work-index__case-card--proof .public-work-index__case-context-block {
+    grid-column: 1;
   }
 
   .public-work-index__case-card--proof .exafuse-proof-media,

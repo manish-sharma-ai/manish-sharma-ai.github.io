@@ -162,17 +162,21 @@ const jsonLd = {
           return (
           <article class:list={["public-work-index__case-card public-work-index__case-card--proof", index === 0 && "public-work-index__case-card--lead"]}>
             <div class="public-work-index__case-summary">
-              <p class="metric-label">Exafuse public case</p>
-              <h2 class="mt-3 text-2xl font-black text-white">{item.title}</h2>
-              <p class="public-work-index__case-context">{item.industrialContext}</p>
-              {item.publicMetrics.length > 0 && (
-                <div class="mt-5 flex flex-wrap gap-2">
-                  {item.publicMetrics.slice(0, 3).map((metric) => (
-                    <span class="chip chip--steel" title={metric.limitation} data-exafuse-proof-metric={metric.sourcePath}>{metric.value}{metric.unit ? ` ${metric.unit}` : ""} · {metric.label}</span>
-                  ))}
-                </div>
-              )}
-              <p class="mt-5 text-sm leading-6 text-slate-300">{item.mainDecisionLesson}</p>
+              <div class="public-work-index__case-heading">
+                <p class="metric-label">Exafuse public case</p>
+                <h2 class="mt-3 text-2xl font-black text-white">{item.title}</h2>
+              </div>
+              <div class="public-work-index__case-context-block">
+                <p class="public-work-index__case-context">{item.industrialContext}</p>
+                {item.publicMetrics.length > 0 && (
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    {item.publicMetrics.slice(0, 3).map((metric) => (
+                      <span class="chip chip--steel" title={metric.limitation} data-exafuse-proof-metric={metric.sourcePath}>{metric.value}{metric.unit ? ` ${metric.unit}` : ""} · {metric.label}</span>
+                    ))}
+                  </div>
+                )}
+                <p class="public-work-index__case-summary-lesson">{item.mainDecisionLesson}</p>
+              </div>
             </div>
             <div class="public-work-index__case-evidence">
               <ExafuseProofMedia proof={item} sizes="(max-width: 767px) calc(100vw - 2rem), 38vw" />
