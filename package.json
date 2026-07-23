@@ -46,6 +46,7 @@
     "audit:experience": "node scripts/audit-site.mjs experience",
     "audit:visuals": "node scripts/audit-site.mjs visuals",
     "audit:canonical-domain": "node scripts/audit-site.mjs canonical-domain",
+    "audit:url-normalization": "node scripts/audit-site.mjs url-normalization",
     "audit:exafuse-readonly-record": "node scripts/audit-site.mjs exafuse-readonly-record",
     "audit:exafuse-attribution": "node scripts/audit-site.mjs exafuse-attribution",
     "audit:exafuse-proof-claims": "node scripts/audit-site.mjs exafuse-proof-claims",

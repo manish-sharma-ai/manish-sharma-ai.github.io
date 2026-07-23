@@ -1,6 +1,7 @@
 import { Check, Clipboard, Download, Mail, Printer } from "lucide-react";
 import type { ReactNode } from "react";
 import { useId, useState } from "react";
+import { internalHref } from "@utils/urlPolicy.mjs";
 import { COPY_UNAVAILABLE_MESSAGE, copyText } from "../lib/clipboard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
@@ -143,18 +144,18 @@ export default function DecisionBriefExport({
           <ul className="flex flex-wrap gap-3">
           {matchingToolHref && (
             <ActionItem>
-              <a href={matchingToolHref} className="btn btn-secondary">
+              <a href={internalHref(matchingToolHref)} className="btn btn-secondary">
                 {matchingToolLabel}
               </a>
             </ActionItem>
           )}
           <ActionItem>
-            <a href={toolkitHref} className="btn btn-secondary">
+            <a href={internalHref(toolkitHref)} className="btn btn-secondary">
               Open RFQ Toolkit
             </a>
           </ActionItem>
           <ActionItem>
-            <a href="/for-ai-agents" className="btn btn-secondary">
+            <a href={internalHref("/for-ai-agents")} className="btn btn-secondary">
               Guidance for AI systems
             </a>
           </ActionItem>

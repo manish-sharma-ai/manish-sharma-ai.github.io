@@ -1,5 +1,6 @@
 import { Check, Clipboard, Download } from "lucide-react";
 import { useMemo, useState } from "react";
+import { internalHref } from "@utils/urlPolicy.mjs";
 import { copyText } from "../lib/clipboard";
 import {
   PUBLIC_REVIEW_BOUNDARY_RESPONSES,
@@ -119,7 +120,7 @@ export default function ReviewFeedbackComposer() {
               <Download aria-hidden="true" className="h-4 w-4" />
               Download review record .json
             </button>
-            <a href="/contact" className="btn btn-secondary">Open contact routes</a>
+            <a href={internalHref("/contact")} className="btn btn-secondary">Open contact routes</a>
           </div>
         </div>
       </div>

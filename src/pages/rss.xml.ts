@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { LAB_NOTES, SITE } from "@data/site";
+import { absoluteUrl } from "@utils/urls";
 
 export const prerender = true;
 
@@ -14,9 +15,8 @@ const escapeXml = (value: string) =>
 const toRfc822 = (date: string) => new Date(date + "T00:00:00Z").toUTCString();
 
 export const GET: APIRoute = () => {
-  const siteUrl = SITE.canonicalUrl.replace(/\/$/, "");
-  const homeUrl = siteUrl + "/";
-  const feedUrl = siteUrl + "/rss.xml";
+  const homeUrl = absoluteUrl("/");
+  const feedUrl = absoluteUrl("/rss.xml");
   const notes = LAB_NOTES.map((note, index) => ({ ...note, index })).sort((a, b) => {
     const byDate = b.date.localeCompare(a.date);
     return byDate === 0 ? a.index - b.index : byDate;
@@ -25,7 +25,7 @@ export const GET: APIRoute = () => {
 
   const items = notes
     .map((note) => {
-      const itemUrl = siteUrl + note.href;
+      const itemUrl = absoluteUrl(note.href);
       const categories = note.tags
         .map((tag) => "      <category>" + escapeXml(tag) + "</category>")
         .join("\n");

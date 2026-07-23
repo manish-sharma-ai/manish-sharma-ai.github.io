@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   label: string;
   href: string;
@@ -6,11 +8,12 @@ interface Props {
 }
 
 const { label, href, description } = Astro.props;
-const isExternal = href.startsWith("http");
+const normalizedHref = internalHref(href);
+const isExternal = normalizedHref.startsWith("http");
 ---
 
 <article class="resource-card">
-  <a href={href} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined}>
+  <a href={normalizedHref} target={isExternal ? "_blank" : undefined} rel={isExternal ? "noreferrer" : undefined}>
     <h3>{label}</h3>
     <p>{description}</p>
     <span class="resource-card__action">Open resource <span aria-hidden="true">→</span></span>

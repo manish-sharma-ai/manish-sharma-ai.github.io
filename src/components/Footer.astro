@@ -1,6 +1,7 @@
 ---
 import BrandMark from "@components/BrandMark.astro";
 import { LINKS } from "@data/site";
+import { internalHref } from "@utils/urls";
 
 interface Props {
   lang?: "en" | "de";
@@ -134,7 +135,7 @@ const copy =
       <p class="site-footer__promise">{copy.promise}</p>
       <p class="site-footer__description">{copy.description}</p>
       <div class="site-footer__actions">
-        <a href="/contact" class="btn btn-primary site-footer__contact">{copy.contact}</a>
+        <a href={internalHref("/contact")} class="btn btn-primary site-footer__contact">{copy.contact}</a>
         <a href={LINKS.exafuse} target="_blank" rel="noreferrer" class="site-footer__exafuse">
           {copy.exafuse} <span aria-hidden="true">↗</span>
         </a>
@@ -166,7 +167,7 @@ const copy =
             {column.links.map((item) => (
               <li>
                 <a
-                  href={item.href}
+                  href={internalHref(item.href)}
                   class="footer-link"
                   target={item.href.startsWith("http") ? "_blank" : undefined}
                   rel={item.href.startsWith("http") ? "noreferrer" : undefined}
@@ -186,7 +187,7 @@ const copy =
     <div class="site-footer__legal-content">
       <div class="site-footer__legal-meta">
         <span>&copy; {new Date().getFullYear()} Manish Sharma.</span>
-        <a href="/trust" class="footer-link font-bold text-slate-300">{copy.trust}</a>
+        <a href={internalHref("/trust")} class="footer-link font-bold text-slate-300">{copy.trust}</a>
       </div>
       <span class="site-footer__boundary">{copy.boundary}</span>
     </div>

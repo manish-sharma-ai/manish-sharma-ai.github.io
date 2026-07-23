@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   href: string;
   variant?: "primary" | "secondary" | "laser" | "ghost";
@@ -10,6 +12,6 @@ const { href, variant = "secondary", external = href.startsWith("http"), class: 
 const variantClass = variant === "primary" ? "btn-primary" : variant === "laser" ? "btn-laser" : variant === "ghost" ? "btn-ghost" : "btn-secondary";
 ---
 
-<a href={href} class:list={["btn", variantClass, className]} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>
+<a href={internalHref(href)} class:list={["btn", variantClass, className]} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>
   <slot />
 </a>

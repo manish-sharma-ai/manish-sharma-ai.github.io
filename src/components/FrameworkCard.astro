@@ -1,5 +1,6 @@
 ---
 import Badge from "@components/Badge.astro";
+import { internalHref } from "@utils/urls";
 
 interface Props {
   title: string;
@@ -15,7 +16,7 @@ const tone = status.includes("Coming") ? "amber" : status.includes("Agent") ? "c
 ---
 
 <article class="framework-index-card__article">
-  <a href={href} class="framework-index-card">
+  <a href={internalHref(href)} class="framework-index-card">
     <div>
       <div class="framework-index-card__metadata">
         <Badge tone={tone}>{status}</Badge>

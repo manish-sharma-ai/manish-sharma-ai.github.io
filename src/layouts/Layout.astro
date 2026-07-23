@@ -7,7 +7,7 @@ import RelatedLinks from "@components/RelatedLinks.astro";
 import PageProvenance from "@components/PageProvenance.astro";
 import SiteShell from "@components/SiteShell.astro";
 import { COMMAND_PAGES, PERSON, SITE } from "@data/site";
-import { absoluteUrl, canonicalPath } from "@utils/urls";
+import { absoluteUrl, canonicalPath, normalizeStructuredDataUrls, routePath } from "@utils/urls";
 import "@styles/global.css";
 
 interface Props {
@@ -40,16 +40,17 @@ const canonicalUrl = absoluteUrl(canonical);
 const imageUrl = absoluteUrl(image);
 const titleText = title;
 const ogLocale = lang === "de" ? "de_DE" : "en_US";
-const ogType = requestedOgType ?? (canonical.startsWith("/lab-notes/") ? "article" : "website");
+const route = routePath(canonical);
+const ogType = requestedOgType ?? (route.startsWith("/lab-notes/") ? "article" : "website");
 const jsonLdItems = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
-const commandPagePaths = new Set(COMMAND_PAGES.map((page) => canonicalPath(page.href)));
+const commandPagePaths = new Set(COMMAND_PAGES.map((page) => routePath(page.href)));
 const homeLabel = lang === "de" ? "Startseite" : "Home";
 const skipLabel = lang === "de" ? "Zum Inhalt springen" : "Skip to content";
 
 const breadcrumbItems =
-  canonical === "/"
+  route === "/"
     ? []
-    : canonical
+    : route
         .split("/")
         .filter(Boolean)
         .map((segment, index, segments) => {
@@ -63,7 +64,7 @@ const breadcrumbItems =
               .join(" ")
           };
         })
-        .filter((item) => item.isLast || commandPagePaths.has(canonicalPath(item.itemPath)))
+        .filter((item) => item.isLast || commandPagePaths.has(routePath(item.itemPath)))
         .map((item, index) => ({
           "@type": "ListItem",
           position: index + 2,
@@ -88,8 +89,8 @@ const breadcrumbJsonLd =
       }
     : null;
 
-const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean);
-const normalizedCanonical = canonicalPath(canonical);
+const allJsonLd = [...jsonLdItems, breadcrumbJsonLd].filter(Boolean).map(normalizeStructuredDataUrls);
+const normalizedCanonical = route;
 const pageFamily =
   normalizedCanonical === "/"
     ? "home"
@@ -170,12 +171,12 @@ const pageMode =
     <a class="skip-link" href="#main-content">{skipLabel}</a>
     <SiteShell>
       <Header lang={lang} />
-      <Breadcrumbs path={canonical} title={titleText} lang={lang} />
+      <Breadcrumbs path={route} title={titleText} lang={lang} />
       <main id="main-content">
         <div class:list={["page-flow", `page-flow--${pageFamily}`, `page-mode--${pageMode}`]} data-page-family={pageFamily} data-page-mode={pageMode}>
           <div class="page-flow__content"><slot /></div>
           <div class="page-flow__ending">
-            <RelatedLinks path={canonical} lang={lang} />
+            <RelatedLinks path={route} lang={lang} />
             <PageProvenance lastUpdated={lastUpdated} lang={lang} />
           </div>
         </div>

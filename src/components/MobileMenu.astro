@@ -1,5 +1,6 @@
 ---
 import { PRIMARY_NAV_ITEMS } from "@data/site";
+import { internalHref } from "@utils/urls";
 
 interface Props {
   lang?: "en" | "de";
@@ -91,7 +92,7 @@ const groups = [
           <div class="mobile-nav__links">
             {group.items.map((item) => (
               <a
-                href={item.href}
+                href={internalHref(item.href)}
                 class:list={[
                   "nav-menu-link py-3 text-sm",
                   isActive(item.href) ? "is-active" : "",

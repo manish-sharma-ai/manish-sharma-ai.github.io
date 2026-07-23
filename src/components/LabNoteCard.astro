@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   title: string;
   href: string;
@@ -12,7 +14,7 @@ const { title, href, description, date, tags } = Astro.props;
 
 <li class="lab-notes-index__item">
   <article class="lab-note-index-card__article">
-    <a href={href} class="lab-note-index-card" aria-label={`Read lab note: ${title}`}>
+    <a href={internalHref(href)} class="lab-note-index-card" aria-label={`Read lab note: ${title}`}>
       <span class="lab-note-index-card__metadata">
         <span>Lab note</span>
         <time datetime={date}>{date}</time>

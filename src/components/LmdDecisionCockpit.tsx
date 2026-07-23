@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { internalHref } from "@utils/urlPolicy.mjs";
 import DecisionBriefCard from "./DecisionBriefCard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import {
@@ -348,7 +349,7 @@ export default function LmdDecisionCockpit({
             )}
             {compact && !controlsExpanded && (
               <p className="mt-3 text-sm leading-6 text-slate-300">
-                Review the worked output, start your own brief here, or <a href="/tools#lmd-decision-cockpit" className="font-black text-cyan-100 hover:text-white">open the full workbench</a>.
+                Review the worked output, start your own brief here, or <a href={internalHref("/tools#lmd-decision-cockpit")} className="font-black text-cyan-100 hover:text-white">open the full workbench</a>.
               </p>
             )}
           </div>
@@ -508,13 +509,13 @@ export default function LmdDecisionCockpit({
                 <span className="sr-only">; </span>
               </li>
               <li>
-                <a href="/demo" className="btn btn-secondary">
+                <a href={internalHref("/demo")} className="btn btn-secondary">
                   90-second demo
                 </a>
                 <span className="sr-only">; </span>
               </li>
               <li>
-                <a href="/brief-template" className="btn btn-secondary">
+                <a href={internalHref("/brief-template")} className="btn btn-secondary">
                   Brief template
                 </a>
                 <span className="sr-only">; </span>

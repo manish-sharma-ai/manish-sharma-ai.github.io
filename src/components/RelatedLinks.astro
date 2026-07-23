@@ -1,5 +1,6 @@
 ---
 import { RELATED_LINK_SETS } from "@data/site";
+import { internalHref } from "@utils/urls";
 
 interface Props {
   path: string;
@@ -50,7 +51,7 @@ const sectionId = `closing-path-${currentPath.replace(/[^a-z0-9]+/gi, "-").repla
         {links.map((link, index) => (
           <li class="closing-path__item">
             <a
-              href={link.href}
+              href={internalHref(link.href)}
               class="closing-path__link"
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noreferrer" : undefined}

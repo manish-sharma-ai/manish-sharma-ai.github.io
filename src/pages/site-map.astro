@@ -4,6 +4,7 @@ import Layout from "@layouts/Layout.astro";
 import PageHeroVisual from "@components/PageHeroVisual.astro";
 import SectionHeading from "@components/SectionHeading.astro";
 import { SITE, SITE_MAP_GROUPS } from "@data/site";
+import { internalHref } from "@utils/urls";
 
 const title = "Manish Sharma Lab Site Map and Resources";
 const description =
@@ -129,7 +130,7 @@ const jsonLd = {
             </div>
             <div class="mt-5 grid gap-2">
               {group.links.map((link) => (
-                <a href={link.href} class="text-sm font-bold text-cyan-100 hover:text-white">{link.label}</a>
+                <a href={internalHref(link.href)} class="text-sm font-bold text-cyan-100 hover:text-white">{link.label}</a>
               ))}
             </div>
           </article>
@@ -151,7 +152,7 @@ const jsonLd = {
             <div class="grid gap-3 md:grid-cols-2">
               {group.links.map((link) => (
                 <a
-                  href={link.href}
+                  href={internalHref(link.href)}
                   class="ordered-card card-hover grid min-h-32 content-between p-4"
                   target={link.href.startsWith("http") ? "_blank" : undefined}
                   rel={link.href.startsWith("http") ? "noreferrer" : undefined}
@@ -160,7 +161,7 @@ const jsonLd = {
                     <span class="block text-sm font-black text-white">{link.label}</span>
                     <span class="mt-2 block text-xs leading-5 text-slate-400">{link.description}</span>
                   </span>
-                  <span class="mt-4 font-mono text-xs font-bold text-cyan-200">{link.href}</span>
+                  <span class="mt-4 font-mono text-xs font-bold text-cyan-200">{internalHref(link.href)}</span>
                 </a>
               ))}
             </div>

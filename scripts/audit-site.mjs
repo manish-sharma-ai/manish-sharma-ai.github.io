@@ -2040,7 +2040,7 @@ function auditCanonicalDomain() {
     const file = pagePathToDistFile(route);
     if (!existsSync(join(root, file))) continue;
     const html = read(file);
-    const canonicalUrl = `${canonicalSite}${route === "/" ? "/" : route.replace(/\/$/, "")}`;
+    const canonicalUrl = `${canonicalSite}${route}`;
     for (const marker of [
       `<link rel="canonical" href="${canonicalUrl}"`,
       `<meta property="og:url" content="${canonicalUrl}"`,
@@ -2049,7 +2049,7 @@ function auditCanonicalDomain() {
     ]) {
       if (!html.includes(marker)) findings.push(`${file}: missing "${marker}"`);
     }
-    if (!html.includes(`${canonicalSite}/identity#manish-sharma`)) {
+    if (!html.includes(`${canonicalSite}/identity/#manish-sharma`)) {
       findings.push(`${file}: missing canonical Person @id reference`);
     }
   }
@@ -2058,15 +2058,15 @@ function auditCanonicalDomain() {
     ["dist/robots.txt", `Sitemap: ${canonicalSite}/sitemap-index.xml`],
     ["dist/llms.txt", `Canonical site: ${canonicalSite}`],
     ["dist/llms-full.txt", `Canonical URL: ${canonicalSite}`],
-    ["dist/llms.txt", `${canonicalSite}/brief-standard`],
+    ["dist/llms.txt", `${canonicalSite}/brief-standard/`],
     ["dist/llms.txt", `${canonicalSite}/schemas/lmd-decision-brief-v1.schema.json`],
     ["dist/llms.txt", `${canonicalSite}/examples/lmd-decision-brief-worn-shaft-v1.json`],
-    ["dist/llms-full.txt", `${canonicalSite}/brief-standard`],
+    ["dist/llms-full.txt", `${canonicalSite}/brief-standard/`],
     ["dist/llms-full.txt", `${canonicalSite}/schemas/lmd-decision-brief-v1.schema.json`],
     ["dist/llms-full.txt", `${canonicalSite}/examples/lmd-decision-brief-worn-shaft-v1.json`],
     ["dist/schemas/lmd-decision-brief-v1.schema.json", `"${canonicalSite}/schemas/lmd-decision-brief-v1.schema.json"`],
     ["dist/sitemap-index.xml", `${canonicalSite}/sitemap-0.xml`],
-    ["dist/sitemap-0.xml", `${canonicalSite}/brief-standard`]
+    ["dist/sitemap-0.xml", `${canonicalSite}/brief-standard/`]
   ];
   for (const [file, expected] of textExpectations) {
     if (!existsSync(join(root, file))) continue;
@@ -2087,6 +2087,195 @@ function auditCanonicalDomain() {
   }
 
   fail("Canonical-domain audit failed", findings);
+  auditUrlNormalization();
+}
+
+function isFileEndpointPath(pathname) {
+  return /\/[^/]+\.[a-z0-9][a-z0-9._-]*$/i.test(pathname);
+}
+
+function isNormalizedProductionUrl(value, { allowFragment = true } = {}) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    return `is not an absolute URL: ${value}`;
+  }
+
+  if (url.protocol !== "https:" || url.origin !== canonicalSite) return `is not an HTTPS ${canonicalSite} URL: ${value}`;
+  if (url.search) return `contains a query string: ${value}`;
+  if (!allowFragment && url.hash) return `contains a fragment: ${value}`;
+  if (url.pathname !== "/" && isFileEndpointPath(url.pathname)) {
+    return url.pathname.endsWith("/") ? `adds a trailing slash to file endpoint: ${value}` : null;
+  }
+  return url.pathname.endsWith("/") ? null : `does not use a trailing slash page route: ${value}`;
+}
+
+function routeForBuiltPage(file) {
+  if (file === "dist/index.html") return "/";
+  if (!file.startsWith("dist/") || !file.endsWith("/index.html")) return null;
+  return `/${file.slice("dist/".length, -"/index.html".length)}/`;
+}
+
+function firstPartyUrlsInText(text) {
+  return [...text.matchAll(/https:\/\/manishsharma\.dev(?:\/[^\s'"<>()\[\]{}]*)?/g)].map((match) => {
+    const raw = match[0];
+    const punctuation = raw.match(/[.,;:]+$/)?.[0] ?? "";
+    return punctuation ? raw.slice(0, -punctuation.length) : raw;
+  });
+}
+
+function jsonLdValues(value, visit) {
+  if (typeof value === "string") {
+    visit(value);
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item) => jsonLdValues(item, visit));
+    return;
+  }
+  if (value && typeof value === "object") {
+    Object.values(value).forEach((item) => jsonLdValues(item, visit));
+  }
+}
+
+function auditUrlNormalization() {
+  const findings = [];
+  const pageRecords = [];
+  const canonicalCounts = new Map();
+  const hreflangByCanonical = new Map();
+
+  for (const { file, text: html } of scanFiles(distRoot, [".html"])) {
+    const route = routeForBuiltPage(file);
+    if (!route || /<meta name="robots" content="[^"]*noindex/i.test(html)) continue;
+
+    const canonicalMatches = [...html.matchAll(/<link\s+rel="canonical"\s+href="([^"]+)"\s*\/?\s*>/gi)];
+    if (canonicalMatches.length !== 1) {
+      findings.push(`${file}: expected exactly one canonical link, found ${canonicalMatches.length}`);
+      continue;
+    }
+
+    const canonical = canonicalMatches[0][1];
+    const canonicalIssue = isNormalizedProductionUrl(canonical, { allowFragment: false });
+    if (canonicalIssue) findings.push(`${file}: canonical ${canonicalIssue}`);
+    const expectedCanonical = `${canonicalSite}${route}`;
+    if (canonical !== expectedCanonical) findings.push(`${file}: canonical ${canonical} must self-reference ${expectedCanonical}`);
+    const ogMatches = [...html.matchAll(/<meta\s+property="og:url"\s+content="([^"]+)"\s*\/?\s*>/gi)];
+    if (ogMatches.length !== 1) {
+      findings.push(`${file}: expected exactly one og:url, found ${ogMatches.length}`);
+    } else if (ogMatches[0][1] !== canonical) {
+      findings.push(`${file}: og:url ${ogMatches[0][1]} must match canonical ${canonical}`);
+    }
+    canonicalCounts.set(canonical, (canonicalCounts.get(canonical) ?? 0) + 1);
+    pageRecords.push({ file, html, canonical });
+  }
+
+  const canonicalPages = new Set(pageRecords.map((page) => page.canonical));
+  const noindexPages = new Set(
+    scanFiles(distRoot, [".html"])
+      .filter(({ file, text }) => routeForBuiltPage(file) && /<meta name="robots" content="[^"]*noindex/i.test(text))
+      .map(({ file }) => `${canonicalSite}${routeForBuiltPage(file)}`)
+  );
+
+  const sitemapFiles = scanFiles(distRoot, [".xml"]).filter(({ file }) => file.startsWith("dist/sitemap"));
+  const sitemapChildren = sitemapFiles.filter(({ file }) => file !== "dist/sitemap-index.xml");
+  const sitemapUrls = sitemapChildren.flatMap(({ text }) => [...text.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]));
+  const sitemapSet = new Set(sitemapUrls);
+  if (sitemapUrls.length !== sitemapSet.size) findings.push(`sitemap: contains ${sitemapUrls.length - sitemapSet.size} duplicate URL(s)`);
+
+  for (const url of sitemapUrls) {
+    const issue = isNormalizedProductionUrl(url, { allowFragment: false });
+    if (issue) findings.push(`sitemap: ${issue}`);
+    if (noindexPages.has(url)) findings.push(`sitemap: includes noindex page ${url}`);
+    if (!canonicalPages.has(url)) findings.push(`sitemap: URL does not map to an indexable generated page: ${url}`);
+  }
+  for (const url of canonicalPages) {
+    if (!sitemapSet.has(url)) findings.push(`sitemap: missing indexable canonical page ${url}`);
+  }
+
+  for (const { file, html, canonical } of pageRecords) {
+    for (const match of html.matchAll(/<a\b[^>]*\bhref=(['"])(.*?)\1/gi)) {
+      const href = decodeEntities(match[2]);
+      if (!href.startsWith("/") || href.startsWith("//") || href.startsWith("#")) continue;
+      const path = href.split(/[?#]/, 1)[0];
+      if (path !== "/" && !path.endsWith("/") && !isFileEndpointPath(path)) {
+        findings.push(`${file}: internal link is not canonical: ${href}`);
+      }
+    }
+
+    const alternateHrefs = [];
+    for (const match of html.matchAll(/<link\b[^>]*\bhreflang=(['"])(.*?)\1[^>]*\bhref=(['"])(.*?)\3[^>]*>/gi)) {
+      const href = decodeEntities(match[4]);
+      alternateHrefs.push(href);
+      const issue = isNormalizedProductionUrl(href, { allowFragment: false });
+      if (issue) findings.push(`${file}: hreflang ${match[2]} ${issue}`);
+      if (!canonicalPages.has(href)) findings.push(`${file}: hreflang ${match[2]} points to a non-indexable page: ${href}`);
+    }
+    if (alternateHrefs.length > 0 && !alternateHrefs.includes(canonical)) {
+      findings.push(`${file}: hreflang set must include the page's self-canonical URL`);
+    }
+    hreflangByCanonical.set(canonical, alternateHrefs);
+
+    for (const script of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)) {
+      try {
+        const jsonLd = JSON.parse(script[1]);
+        jsonLdValues(jsonLd, (value) => {
+          if (!value.startsWith(canonicalSite)) return;
+          const issue = isNormalizedProductionUrl(value);
+          if (issue) findings.push(`${file}: JSON-LD URL ${issue}`);
+        });
+      } catch {
+        findings.push(`${file}: contains invalid JSON-LD`);
+      }
+    }
+  }
+
+  for (const [canonical, alternates] of hreflangByCanonical) {
+    for (const alternate of alternates) {
+      if (alternate === canonical) continue;
+      const reciprocalAlternates = hreflangByCanonical.get(alternate) ?? [];
+      if (!reciprocalAlternates.includes(canonical)) {
+        findings.push(`hreflang: ${canonical} and ${alternate} are not reciprocal`);
+      }
+    }
+  }
+
+  for (const { file, text } of scanFiles(distRoot, [".txt", ".md", ".json"])) {
+    for (const url of firstPartyUrlsInText(text)) {
+      const issue = isNormalizedProductionUrl(url);
+      if (issue) findings.push(`${file}: public discovery URL ${issue}`);
+    }
+  }
+  for (const { file, text } of scanFiles(distRoot, [".xml"]).filter(({ file }) => !file.startsWith("dist/sitemap"))) {
+    for (const url of firstPartyUrlsInText(text)) {
+      const issue = isNormalizedProductionUrl(url);
+      if (issue) findings.push(`${file}: feed URL ${issue}`);
+    }
+  }
+
+  const robots = existsSync(join(root, "dist/robots.txt")) ? read("dist/robots.txt") : "";
+  if (!robots.includes(`Sitemap: ${canonicalSite}/sitemap-index.xml`)) {
+    findings.push(`dist/robots.txt: missing Sitemap: ${canonicalSite}/sitemap-index.xml`);
+  }
+
+  const coreUrls = [
+    `${canonicalSite}/`,
+    `${canonicalSite}/about/`,
+    `${canonicalSite}/identity/`,
+    `${canonicalSite}/thesis/`,
+    `${canonicalSite}/public-work/`,
+    `${canonicalSite}/domains/lmd-ded/`,
+    `${canonicalSite}/lab-notes/`,
+    `${canonicalSite}/lab-notes/a-prediction-is-not-yet-an-industrial-decision/`,
+    `${canonicalSite}/contact/`,
+    `${canonicalSite}/de/`
+  ];
+  for (const url of coreUrls) {
+    if ((canonicalCounts.get(url) ?? 0) !== 1) findings.push(`canonical: expected exactly one generated page for ${url}`);
+    if (sitemapUrls.filter((entry) => entry === url).length !== 1) findings.push(`sitemap: expected exactly one entry for ${url}`);
+  }
+
+  fail("URL-normalization audit failed", findings);
 }
 
 const audits = {
@@ -2125,6 +2314,7 @@ const audits = {
   experience: auditExperience,
   visuals: auditVisualSystem,
   "canonical-domain": auditCanonicalDomain,
+  "url-normalization": auditUrlNormalization,
   "exafuse-readonly-record": auditExafuseReadonlyRecord,
   "exafuse-attribution": auditExafuseAttribution,
   "exafuse-proof-claims": auditExafuseProofClaims,

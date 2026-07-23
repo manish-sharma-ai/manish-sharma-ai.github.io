@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   index: number;
   title: string;
@@ -28,7 +30,7 @@ const { index, title, publisher, sourceType, href, usefulFor, doesNotProve } = A
       <dd>{doesNotProve}</dd>
     </div>
   </dl>
-  <a href={href} class="research-source-card__action">
+  <a href={internalHref(href)} class="research-source-card__action">
     Open verified source <span aria-hidden="true">↗</span>
   </a>
 </article>

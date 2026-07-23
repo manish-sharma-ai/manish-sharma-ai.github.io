@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   lastUpdated: string;
   lang?: "en" | "de";
@@ -57,7 +59,7 @@ const copy = lang === "de"
     </div>
     <div class="page-provenance__boundary">
       <p>{copy.boundary}</p>
-      <a href="/contact">{copy.correction}</a>
+      <a href={internalHref("/contact")}>{copy.correction}</a>
     </div>
   </details>
 </aside>

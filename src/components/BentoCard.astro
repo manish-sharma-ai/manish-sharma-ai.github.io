@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   href?: string;
   eyebrow?: string;
@@ -22,10 +24,11 @@ const {
 } = Astro.props;
 
 const Tag = href ? "a" : "article";
+const normalizedHref = href ? internalHref(href) : undefined;
 ---
 
 <Tag
-  href={href}
+  href={normalizedHref}
   target={external ? "_blank" : undefined}
   rel={external ? "noreferrer" : undefined}
   class:list={["bento-card content-between", href ? "card-hover" : "", strong ? "bento-card--strong ordered-card-strong" : "ordered-card", className]}

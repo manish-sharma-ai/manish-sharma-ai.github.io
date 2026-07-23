@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { internalHref } from "@utils/urlPolicy.mjs";
 import { COPY_UNAVAILABLE_MESSAGE, copyText } from "../lib/clipboard";
 import type { DecisionBrief } from "../lib/decisionBrief";
 import { formatTechnicalDecisionBrief } from "../lib/decisionBrief";
@@ -231,11 +232,11 @@ function CompactBriefPreview({
             <span className="sr-only">; </span>
           </li>
           <li>
-            <a href={fullBriefHref} className="btn btn-secondary">Open full brief</a>
+            <a href={internalHref(fullBriefHref)} className="btn btn-secondary">Open full brief</a>
             <span className="sr-only">; </span>
           </li>
           <li>
-            <a href="/tools#lmd-decision-cockpit" className="btn btn-secondary">Start your own brief</a>
+            <a href={internalHref("/tools#lmd-decision-cockpit")} className="btn btn-secondary">Start your own brief</a>
             <span className="sr-only">; </span>
           </li>
         </ul>

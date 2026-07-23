@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Props {
   href?: string | null;
   label: string;
@@ -7,15 +9,16 @@ interface Props {
 }
 
 const { href, label, description, status } = Astro.props;
+const normalizedHref = href ? internalHref(href) : undefined;
 ---
 
 {
-  href ? (
+  normalizedHref ? (
     <a
-      href={href}
+      href={normalizedHref}
       class="link-card card-hover content-between"
-      target={href.startsWith("http") ? "_blank" : undefined}
-      rel={href.startsWith("http") ? "noreferrer" : undefined}
+      target={normalizedHref.startsWith("http") ? "_blank" : undefined}
+      rel={normalizedHref.startsWith("http") ? "noreferrer" : undefined}
     >
       <span>
         <span class="block text-sm font-black text-white">{label}</span>

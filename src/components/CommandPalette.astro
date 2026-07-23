@@ -1,4 +1,6 @@
 ---
+import { internalHref } from "@utils/urls";
+
 interface Page {
   title: string;
   href: string;
@@ -84,7 +86,10 @@ const localizeGermanPage = (page: Page): Page => ({
       .replace(/public lab note/g, "öffentliche Fachnotiz")
 });
 
-const commandPages = lang === "de" ? pages.map(localizeGermanPage) : pages;
+const commandPages = (lang === "de" ? pages.map(localizeGermanPage) : pages).map((page) => ({
+  ...page,
+  href: internalHref(page.href)
+}));
 const pagesJson = JSON.stringify(commandPages).replace(/</g, "\\u003c");
 const copy =
   lang === "de"
