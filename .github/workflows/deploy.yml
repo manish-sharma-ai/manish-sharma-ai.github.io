@@ -21,7 +21,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      indexnow_enabled: ${{ steps.indexnow-plan.outputs.enabled || steps.indexnow-disabled.outputs.enabled || 'false' }}
+      indexnow_enabled: ${{ steps.indexnow-plan.outputs.enabled || 'false' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,21 +52,20 @@ jobs:
 
       - name: Prepare IndexNow production output
         id: indexnow-plan
-        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && secrets.INDEXNOW_KEY != ''
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
         env:
           INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           GITHUB_SHA: ${{ github.sha }}
-        run: npm run indexnow:plan
-
-      - name: Report IndexNow disabled status
-        id: indexnow-disabled
-        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && secrets.INDEXNOW_KEY == ''
         run: |
-          echo "enabled=false" >> "$GITHUB_OUTPUT"
-          echo "mode=disabled" >> "$GITHUB_OUTPUT"
-          echo "url_count=0" >> "$GITHUB_OUTPUT"
-          echo "has_urls=false" >> "$GITHUB_OUTPUT"
-          echo "IndexNow is disabled because INDEXNOW_KEY is not configured."
+          if [ -z "$INDEXNOW_KEY" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "mode=disabled" >> "$GITHUB_OUTPUT"
+            echo "url_count=0" >> "$GITHUB_OUTPUT"
+            echo "has_urls=false" >> "$GITHUB_OUTPUT"
+            echo "IndexNow is disabled because INDEXNOW_KEY is not configured."
+          else
+            npm run indexnow:plan
+          fi
 
       - name: Upload IndexNow plan
         if: steps.indexnow-plan.outputs.enabled == 'true'
