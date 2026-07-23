@@ -4,6 +4,7 @@ dist
 .DS_Store
 *.log
 coverage
+.indexnow/
 
 # Local browser QA traces, screenshots, and audit output.
 .playwright-cli/

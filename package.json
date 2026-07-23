@@ -47,6 +47,7 @@
     "audit:visuals": "node scripts/audit-site.mjs visuals",
     "audit:canonical-domain": "node scripts/audit-site.mjs canonical-domain",
     "audit:url-normalization": "node scripts/audit-site.mjs url-normalization",
+    "audit:indexnow": "node scripts/indexnow/audit.mjs",
     "audit:exafuse-readonly-record": "node scripts/audit-site.mjs exafuse-readonly-record",
     "audit:exafuse-attribution": "node scripts/audit-site.mjs exafuse-attribution",
     "audit:exafuse-proof-claims": "node scripts/audit-site.mjs exafuse-proof-claims",
@@ -59,7 +60,10 @@
     "audit:source-copy-length": "node scripts/audit-site.mjs source-copy-length",
     "audit:all": "node scripts/audit-site.mjs all",
     "smoke:live": "node scripts/smoke-live.mjs",
-    "quality": "npm run check && npm run test && npm run build && npm run audit:all"
+    "indexnow:plan": "node scripts/indexnow/plan.mjs",
+    "indexnow:submit": "node scripts/indexnow/submit.mjs",
+    "test:indexnow": "vitest run tests/indexnow.test.mjs",
+    "quality": "npm run check && npm run test && npm run build && npm run audit:all && npm run audit:indexnow"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.1",
@@ -74,6 +78,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
+    "parse5": "^7.3.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2",

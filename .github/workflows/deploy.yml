@@ -20,6 +20,8 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      indexnow_enabled: ${{ steps.indexnow-plan.outputs.enabled || steps.indexnow-disabled.outputs.enabled || 'false' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,7 +48,34 @@ jobs:
         run: npm run build
 
       - name: Run release audits
-        run: npm run audit:all
+        run: npm run audit:all && npm run audit:indexnow
+
+      - name: Prepare IndexNow production output
+        id: indexnow-plan
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && secrets.INDEXNOW_KEY != ''
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: npm run indexnow:plan
+
+      - name: Report IndexNow disabled status
+        id: indexnow-disabled
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && secrets.INDEXNOW_KEY == ''
+        run: |
+          echo "enabled=false" >> "$GITHUB_OUTPUT"
+          echo "mode=disabled" >> "$GITHUB_OUTPUT"
+          echo "url_count=0" >> "$GITHUB_OUTPUT"
+          echo "has_urls=false" >> "$GITHUB_OUTPUT"
+          echo "IndexNow is disabled because INDEXNOW_KEY is not configured."
+
+      - name: Upload IndexNow plan
+        if: steps.indexnow-plan.outputs.enabled == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexnow-plan
+          path: .indexnow/indexnow-plan.json
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -63,3 +92,38 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    needs: [build, deploy]
+    if: >-
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch) &&
+      needs.build.result == 'success' &&
+      needs.deploy.result == 'success' &&
+      needs.build.outputs.indexnow_enabled == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download IndexNow plan
+        uses: actions/download-artifact@v4
+        with:
+          name: indexnow-plan
+          path: .indexnow
+
+      - name: Submit IndexNow notifications
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: npm run indexnow:submit

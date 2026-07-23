@@ -39,7 +39,7 @@ jobs:
         run: npm run build
 
       - name: Release audits
-        run: npm run audit:all
+        run: npm run audit:all && npm run audit:indexnow
 
       - name: Diff hygiene
         run: git diff --check
